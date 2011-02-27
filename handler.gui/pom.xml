@@ -88,8 +88,8 @@
     </dependency>
     <dependency>
       <!--used the following in order to make a bundle from the jar: mvn install:install-file -Dfile=src\main\resources\lib\TableLayout.jar -DgroupId=org.aal-persona.platform -DartifactId=tableLayout -Dversion=1.0 -Dpackaging=jar -->
-      <groupId>org.aal-persona.platform</groupId>
-      <artifactId>tableLayout</artifactId>
+      <groupId>org.universAAL.ui</groupId>
+      <artifactId>ui.handler.gui.tableLayout</artifactId>
       <version>1.0</version>
       <!-- scope>assembly</scope-->
     </dependency> 	
