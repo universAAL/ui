@@ -25,7 +25,6 @@ import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -35,7 +34,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
@@ -50,7 +48,6 @@ import java.util.Hashtable;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxEditor;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -58,7 +55,6 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -73,7 +69,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.Scrollable;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
@@ -1481,6 +1476,75 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 			}			
 		}
 		System.out.println(logString);
+	}
+
+	public Dimension getPreferredScrollableViewportSize() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getScrollableBlockIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean getScrollableTracksViewportHeight() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean getScrollableTracksViewportWidth() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int getScrollableUnitIncrement(Rectangle visibleRect,
+			int orientation, int direction) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void stateChanged(ChangeEvent e) {
+		Object varSource = e.getSource();
+		if(varSource instanceof JSlider){
+			JSlider source=(JSlider)e.getSource();
+		if (source.getValueIsAdjusting()) {
+            int selectedValue = (Integer)source.getValue();
+            setSliderValue(selectedValue);
+		}
+		}else if(varSource instanceof SpinnerNumberModel){
+			// SpinnerModel numberModel=(SpinnerModel)e.getSource();
+			// int selValue=(Integer)numberModel.getValue();
+		}
+	}
+
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getValueIsAdjusting() == false) 
+		{
+            if (list.getSelectedIndex() == -1) 
+            {
+                setListValue("");
+            } 
+            else 
+            {
+            	if(list.getSelectedValue() instanceof ChoiceItem)
+            	{
+	            	Object userSelection=list.getSelectedValue();
+	            	ChoiceItem value=(ChoiceItem)userSelection;
+	            	if(value.getValue() instanceof String)
+	            	{
+	            		setListValue((String)value.getValue());
+	            	}
+	            	else 
+	            		if(value.getValue() instanceof Integer)
+	            		{
+		            		int intValue= (Integer)value.getValue();
+		            		setListValue(""+intValue);	
+	            		}
+            	}
+            }
+		}
 	}	
 	
 	
@@ -1563,81 +1627,5 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 //		returnValues[3] = Integer.valueOf(appropriateRows).doubleValue();
 //		return returnValues;
 //	}	
-	
-	@Override
-	public Dimension getPreferredScrollableViewportSize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getScrollableBlockIncrement(Rectangle visibleRect,
-			int orientation, int direction) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean getScrollableTracksViewportHeight() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean getScrollableTracksViewportWidth() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int getScrollableUnitIncrement(Rectangle visibleRect,
-			int orientation, int direction) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		Object varSource = e.getSource();
-		if(varSource instanceof JSlider){
-			JSlider source=(JSlider)e.getSource();
-		if (source.getValueIsAdjusting()) {
-            int selectedValue = (Integer)source.getValue();
-            setSliderValue(selectedValue);
-		}
-		}else if(varSource instanceof SpinnerNumberModel){
-			// SpinnerModel numberModel=(SpinnerModel)e.getSource();
-			// int selValue=(Integer)numberModel.getValue();
-		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		if (e.getValueIsAdjusting() == false) 
-		{
-            if (list.getSelectedIndex() == -1) 
-            {
-                setListValue("");
-            } 
-            else 
-            {
-            	if(list.getSelectedValue() instanceof ChoiceItem)
-            	{
-	            	Object userSelection=list.getSelectedValue();
-	            	ChoiceItem value=(ChoiceItem)userSelection;
-	            	if(value.getValue() instanceof String)
-	            	{
-	            		setListValue((String)value.getValue());
-	            	}
-	            	else 
-	            		if(value.getValue() instanceof Integer)
-	            		{
-		            		int intValue= (Integer)value.getValue();
-		            		setListValue(""+intValue);	
-	            		}
-            	}
-            }
-		}
-	}
 
 }
