@@ -28,7 +28,7 @@ import java.util.Locale;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.osgi.framework.BundleContext;
-import org.universAAL.tools.conversion.jena.JenaConverter;
+import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.rdf.TypeMapper;

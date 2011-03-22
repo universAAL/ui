@@ -23,7 +23,7 @@ package org.universAAL.ui.dm;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.universAAL.tools.conversion.jena.JenaConverter;
+import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.util.LogUtils;
 import org.universAAL.middleware.util.Messages;
