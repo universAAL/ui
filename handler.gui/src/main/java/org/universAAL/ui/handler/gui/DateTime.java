@@ -41,6 +41,10 @@ public class DateTime {
 		private int refreshRate = 5000; // in milliseconds
 		private boolean stop = false;
 
+		/**
+		 * Work for the thread: wait and then update 
+		 * @see DateTime#updateTime()
+		 */
 		public void run() {
 			while (!stop) {
 				updateTime();
@@ -61,7 +65,11 @@ public class DateTime {
 
 	private GregorianCalendar calendar;
 	private SimpleDateFormat dateFormat;
-
+	
+	/**
+	 * Constructor.
+	 * @param comp
+	 */
 	public DateTime(JComponent comp) {
 		super();
 		_comp = comp;
@@ -70,6 +78,8 @@ public class DateTime {
 
 	/**
 	 * Create the GregorianCalendar that keeps track of the time.
+	 * 
+	 * TODO: add option to set different date formats.
 	 */
 	private void createCalendar() {
 		calendar = new GregorianCalendar();
@@ -81,7 +91,8 @@ public class DateTime {
 	/**
 	 * Sets the time label.
 	 *
-	 * @time time the time to set
+	 * @param timeLabel label into which set the time
+	 * @param time time the time to set
 	 */
 	private void setTimeLabel(final JButton timeLabel, final String time) {
 		SwingUtilities.invokeLater(new Runnable() {

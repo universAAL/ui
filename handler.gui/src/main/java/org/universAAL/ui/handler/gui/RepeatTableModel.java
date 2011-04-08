@@ -23,6 +23,7 @@
 package org.universAAL.ui.handler.gui;
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.io.rdf.FormControl;
@@ -33,15 +34,31 @@ import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.owl.ManagedIndividual;
 
 /**
+ * This class implements a multiple inheritance of {@link Repeat} and {@link AbstractTableModel}.
+ * 
  * @author mtazari
  *
  */
 public class RepeatTableModel extends AbstractTableModel {
-	public static final long serialVersionUID = RepeatTableModel.class.hashCode();
 	
+	public static final long serialVersionUID 
+	= RepeatTableModel.class.hashCode();
+
+	/**
+	 * {@link Repeat} object to be used.
+	 */
 	private Repeat repeat;
+	
+	/**
+	 * container for children of {@link #repeat}
+	 */
 	private FormControl[] elems;
 	
+	/**
+	 * Constructor method.
+	 * 
+	 * @param repeat initial {@link Repeat} object
+	 */
 	public RepeatTableModel(Repeat repeat) {
 		this.repeat = repeat;
 		elems = repeat.getChildren();
@@ -55,6 +72,10 @@ public class RepeatTableModel extends AbstractTableModel {
 			throw new IllegalArgumentException("Malformed argument!");
 	}
 	
+	/**
+	 * Call {@link Repeat#addValue()} and 
+	 * then {@link AbstractTableModel#fireTableRowsInserted(int, int)}
+	 */
 	void addValue() {
 		if (repeat.addValue()) {
 			int sel = repeat.getSelectionIndex();
@@ -62,6 +83,10 @@ public class RepeatTableModel extends AbstractTableModel {
 		}
 	}
 	
+	/**
+	 * Implements {@link TableModel#getColumnClass(int)}
+	 * @param col indicates column index 
+	 */
 	public Class<?> getColumnClass(int col) {
 		String type = elems[col].getTypeURI();
 		if (type == null)
@@ -78,16 +103,26 @@ public class RepeatTableModel extends AbstractTableModel {
 	/* (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
+	/**
+	 * Implements {@link TableModel#getColumnCount()}
+	 */
 	public int getColumnCount() {
 		return elems.length;
 	}
 	
+	/**
+	 * Implements {@link TableModel#getColumnName(int)}
+	 * @param col column Index
+	 */
 	public String getColumnName(int col) {
 		Label l = elems[col].getLabel();
 		String answer = (l == null)? null : l.getText();
 		return (answer == null)? super.getColumnName(col) : answer;
 	}
 	
+	/**
+	 * Getter for {@link #elems}
+	 */
 	FormControl[] getSelectionControls() {
 		return elems;
 	}
@@ -95,16 +130,31 @@ public class RepeatTableModel extends AbstractTableModel {
 	/* (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getRowCount()
 	 */
+	/**
+	 * Implements {@link TableModel#getRowCount()}
+	 */
 	public int getRowCount() {
 		return repeat.getNumberOfValues();
 	}
 	
+	/**
+	 * 
+	 * @param col Column index.
+	 * @return the value contained in column.
+	 */
 	Object getSelectionColumnValue(int col) {
 		return elems[col].getValue();
 	}
 
 	/* (non-Javadoc)
 	 * @see javax.swing.table.TableModel#getValueAt(int, int)
+	 */
+	/**
+	 * Implements {@link TableModel#getValueAt(int, int)}
+	 * 
+	 * @param rowIndex index of the row
+	 * @param columnIndex index of the column
+	 * @return object conained at cell in position rowIndex, columnIndex
 	 */
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		if (rowIndex < 0  ||  rowIndex >= repeat.getNumberOfValues()
@@ -116,16 +166,29 @@ public class RepeatTableModel extends AbstractTableModel {
 		return repeat.getValue(pp);
 	}
 	
+	/**
+	 * calls {@link Repeat#removeSelection()} for {@link #repeat} 
+	 * with the right arguments (calling {@link Repeat#getSelectionIndex()}
+	 */
 	void removeValue() {
 		int sel = repeat.getSelectionIndex();
 		if (repeat.removeSelection())
 			fireTableRowsDeleted(sel, sel);
 	}
 	
+	/**
+	 * Call {@link Repeat#setSelection(int)} for {@link #repeat}
+	 * @param i index of the new selection
+	 */
 	void setSelection(int i) {
 		repeat.setSelection(i);
 	}
 	
+	/**
+	 * Call {@link Repeat#updateSelection()} for {@link #repeat}
+	 * with the right arguments (calling {@link Repeat#getSelectionIndex()}
+	 * then updates rows calling {@link AbstractTableModel#fireTableRowsUpdated(int, int)}
+	 */
 	void updateSelection() {
 		if (repeat.updateSelection()) {
 			int sel = repeat.getSelectionIndex();

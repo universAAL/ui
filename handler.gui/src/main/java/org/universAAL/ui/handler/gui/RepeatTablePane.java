@@ -46,6 +46,8 @@ import org.universAAL.middleware.io.rdf.Repeat;
 
 
 /**
+ * Java Swing Panel used to display {@link RepeatTableModel}
+ * 
  * @author mtazari
  *
  */
@@ -54,8 +56,18 @@ public class RepeatTablePane extends JPanel implements ActionListener, ListSelec
 	
 	private JButton add, edit, remove;
 	private JComponent[] selectionComps;
+	
+	/**
+	 * {@link RepeatTableModel} to be displayed to the user in this plane.
+	 */
 	private RepeatTableModel rtm;
 
+	/**
+	 * Constructor.
+	 * creates {@link RepeatTableModel} and all the controls to the plane
+	 * @param r {@link Repeat} object to create {@link RepeatTableModel} from
+	 * @param siblings same level components to link with
+	 */
 	public RepeatTablePane(Repeat r, Component[] siblings) {
 		super();
 		
@@ -96,6 +108,10 @@ public class RepeatTablePane extends JPanel implements ActionListener, ListSelec
 		add(buttons, gbc);
 	}
 
+	/**
+	 * Implements {@link ActionListener#actionPerformed(ActionEvent)}
+	 * @param e  Captured event
+	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if (src == add)
@@ -106,6 +122,10 @@ public class RepeatTablePane extends JPanel implements ActionListener, ListSelec
 			rtm.removeValue();
 	}
 	
+	/**
+	 * Used to add Buttons to the plane.
+	 * @param container Swing component where the buttons will be added
+	 */
 	private void addButtons(JPanel container) {
 		container.setLayout(new GridLayout(3, 1));
 		add = new JButton("+");
@@ -119,10 +139,13 @@ public class RepeatTablePane extends JPanel implements ActionListener, ListSelec
 		edit.addActionListener(this);
 	}
 
+	/**
+	 * Implements {@link ListSelectionListener#valueChanged(ListSelectionEvent)}
+	 */
 	public synchronized void valueChanged(ListSelectionEvent e) {
         ListSelectionModel lsm = (ListSelectionModel) e.getSource();
         if (lsm.isSelectionEmpty()) {
-        	for (int i=0; i<selectionComps.length; i++) {
+        	for (int i = 0; i < selectionComps.length; i++) {
         		if (selectionComps[i] instanceof JTextField)
         			((JTextField) selectionComps[i]).setText("");
         		else if (selectionComps[i] instanceof JCheckBox)
@@ -133,7 +156,7 @@ public class RepeatTablePane extends JPanel implements ActionListener, ListSelec
         	rtm.setSelection(-1);
         } else {
         	rtm.setSelection(lsm.getMinSelectionIndex());
-        	for (int i=0; i<selectionComps.length; i++) {
+        	for (int i = 0; i < selectionComps.length; i++) {
     			Object val = rtm.getSelectionColumnValue(i);
         		if (selectionComps[i] instanceof JTextField)
         			((JTextField) selectionComps[i]).setText((val==null)? "" : val.toString());

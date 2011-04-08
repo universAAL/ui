@@ -166,7 +166,10 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 		this.theHandler = theHandler;
 		this.rendererGuiConstants = new RendererGuiConstants();
 	}
-
+	
+	/**
+	 * Implements {@link ActionListener#actionPerformed(ActionEvent)}
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		Object src = arg0.getSource();
 		if (src instanceof JComponent)
@@ -409,10 +412,16 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 		this.dispose();
 	}
 	
+	/**
+	 * Implements {@link FocusListener#focusGained(FocusEvent)}
+	 */
 	public void focusGained(FocusEvent e) {
 		// do nothing
 	}
 	
+	/**
+	 * Implements {@link FocusListener#focusLost(FocusEvent)}
+	 */
 	public void focusLost(FocusEvent e) {
 		Object src = e.getSource();
 		if (src instanceof JComponent)
@@ -1478,33 +1487,51 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 		System.out.println(logString);
 	}
 
+	/**
+	 * Implements {@link Scrollable#getPreferredScrollableViewportSize()}
+	 */
 	public Dimension getPreferredScrollableViewportSize() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Implements {@link Scrollable#getScrollableBlockIncrement(Rectangle, int, int)}
+	 */
 	public int getScrollableBlockIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	/**
+	 * Implements {@link Scrollable#getScrollableTracksViewportHeight()}
+	 */
 	public boolean getScrollableTracksViewportHeight() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Implements {@link Scrollable#getScrollableTracksViewportWidth()}
+	 */
 	public boolean getScrollableTracksViewportWidth() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Implements {@link Scrollable#getScrollableUnitIncrement(Rectangle, int, int)}
+	 */
 	public int getScrollableUnitIncrement(Rectangle visibleRect,
 			int orientation, int direction) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * Implements {@link ChangeListener#stateChanged(ChangeEvent)}
+	 */
 	public void stateChanged(ChangeEvent e) {
 		Object varSource = e.getSource();
 		if(varSource instanceof JSlider){
@@ -1519,6 +1546,9 @@ public class SwingRenderer extends JFrame implements ActionListener, FocusListen
 		}
 	}
 
+	/**
+	 * Implements {@link ListSelectionListener#valueChanged(ListSelectionEvent)}
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		if (e.getValueIsAdjusting() == false) 
 		{
