@@ -1,22 +1,22 @@
 /*
 	Copyright 2008-2010 SPIRIT, http://www.spirit-intl.com/
 	SPIRIT S.A. E-BUSINESS AND COMMUNICATIONS ENGINEERING 
-	
+
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	See the License for the specific language governing permissions and
 	limitations under the License.
-*/
+ */
 package org.universAAL.ui.handler.gui;
 
 import org.osgi.framework.BundleActivator;
@@ -29,18 +29,54 @@ import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.User;
 
-
+/**
+ * OSGi Activator Class for gui.handler
+ * 
+ * This class is responsible of managing the bundle actions, 
+ * such as Starting and Stopping. Also monitors Services changes
+ * specially looking for TypeMapper status changes.
+ */
 public class Activator implements BundleActivator, ServiceListener {
 
+	/**
+	 * Service TypeMapper reference.
+	 */
 	private static TypeMapper tm = null;
+	
+	/**
+	 * 
+	 */
 	public static int drawNum = 0;
+	
+	/**
+	 * Registrated ElderlyUser.
+	 * For testing proposes it is fixed to "saied"
+	 * @see Activator#user
+	 */
 	static final ElderlyUser testUser = 
 		new ElderlyUser(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
+
+	/**
+	 * Registrated user.
+	 * End user, the one who is actually using the GUI 
+	 */
 	public static User user = null;
-	
+
+	/**
+	 * OSGi BundleContext.
+	 * used to keep track of anything going on inside the OSGi framework
+	 */
 	public static BundleContext context;
+	
+	/**
+	 * Starting method of org.universAAl.ui.handler.gui bundle.
+	 * 
+	 * Starts new {@link GUIIOHandler} in a new Thread.
+	 * 
+	 * @param 	context		Context passed by the OSGi framework it is 
+	 * 							tracked through {@link Activator#context}.
+	 */
 	public void start(final BundleContext context) throws Exception {
-		// TODO Auto-generated method stub
 		Activator.context = context;
 
 		String filter = "(objectclass=" + TypeMapper.class.getName() + ")";
@@ -48,7 +84,7 @@ public class Activator implements BundleActivator, ServiceListener {
 		ServiceReference references[] = context.getServiceReferences(null, filter);
 		for (int i = 0; references != null && i < references.length; i++)
 			this.serviceChanged(new ServiceEvent(ServiceEvent.REGISTERED, references[i]));
-		
+
 		new Thread() {
 			public void run() {
 				new GUIIOHandler(context);
@@ -75,10 +111,23 @@ public class Activator implements BundleActivator, ServiceListener {
 		}.start();
 	}
 	
-	public void stop(BundleContext arg0) throws Exception {
+	/**
+	 * Stopping method of org.universAAl.ui.handler.gui bundle.
+	 * @param 	context		Context passed by the OSGi framework.
+	 */
+	public void stop(BundleContext context) throws Exception {
 		// TODO Auto-generated method stub	
 	}
 	
+	/**
+	 * Service status change event callback.
+	 * 
+	 * Monitor changes in TypeMapper service estatus and keep reference
+	 * up to date.
+	 * 
+	 * @param event event describing service status change.
+	 * @see Activator#tm.
+	 */
 	public void serviceChanged(ServiceEvent event) {
 		switch (event.getType()) {
 		case ServiceEvent.REGISTERED:
@@ -90,6 +139,11 @@ public class Activator implements BundleActivator, ServiceListener {
 			break;
 		}		
 	}
+
+	/**
+	 * Get singleton access to TypeMapper.
+	 * @return reference to TypeMapper service.
+	 */
 	public static TypeMapper getTypeMapper() {
 		return tm;
 	}

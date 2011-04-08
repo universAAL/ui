@@ -27,6 +27,9 @@ import java.util.ResourceBundle;
 
 import java.util.Enumeration;
 
+/**
+ * Load Properties from a .property file.
+ */
 public abstract class PropertyLoader
 {
     /**
