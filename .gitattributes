@@ -71,6 +71,7 @@ handler.gui/src/main/resources/img/bt_white_min.png -text
 handler.gui/src/main/resources/img/doctor.gif -text
 handler.gui/src/main/resources/img/header.jpg -text
 handler.gui/src/main/resources/img/logo.jpg -text
+handler.gui/src/main/resources/img/logo_persona.jpg -text
 handler.gui/src/main/resources/img/nutritional/en/Thumbs.db -text
 handler.gui/src/main/resources/img/nutritional/en/breakfast.jpg -text
 handler.gui/src/main/resources/img/nutritional/en/brunch.jpg -text
