@@ -35,6 +35,7 @@ dm/src/main/resources/org/universAAL/ui/dm/main_menu_en.txt -text
 dm/src/main/resources/org/universAAL/ui/dm/messages.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
+dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
 form.tester/pom.xml -text
 form.tester/src/main/java/org/persona/platform/ui/tester/Activator.java -text
 form.tester/src/main/java/org/persona/platform/ui/tester/ISubscriber.java -text
