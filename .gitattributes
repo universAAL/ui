@@ -21,6 +21,7 @@ dm/LICENSE-GPL-MYSQL -text
 dm/LICENSE-JGCL.txt -text
 dm/LICENSE.txt -text
 dm/NOTICE.txt -text
+dm/documentation/ui.dm[!!-~]dependencies[!!-~]19.4.2011.png -text
 dm/pom.xml -text
 dm/src/main/java/org/universAAL/ui/dm/Activator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ContextSubscriber.java -text
