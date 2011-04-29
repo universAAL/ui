@@ -45,8 +45,8 @@ import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.rdf.model.Model;
 
 /**
+ * The bundle activator.
  * @author mtazari
- * 
  */
 public class Activator extends Thread implements BundleActivator {
 
@@ -59,6 +59,7 @@ public class Activator extends Thread implements BundleActivator {
 	private static InputSubscriber inputSubscriber = null;
 	private static OutputPublisher outputPublisher = null;
 	private static ServiceCaller serviceCaller = null;
+	private static Messages messages;
 
 	static final String JENA_DB_URL = System.getProperty(
 			"org.persona.platform.jena_db.url",
@@ -69,6 +70,7 @@ public class Activator extends Thread implements BundleActivator {
 			"org.persona.platform.ui.dm.db_passwd", "ui_dm");
 	static final String JENA_MODEL_NAME = System.getProperty(
 			"org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
+
 
 	// static void changeTestData() {
 	// Resource b = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
@@ -164,8 +166,6 @@ public class Activator extends Thread implements BundleActivator {
 		}
 	}
 
-	private static Messages messages;
-
 	static String getString(String key) {
 		return messages.getString(key);
 	}
@@ -179,11 +179,11 @@ public class Activator extends Thread implements BundleActivator {
 			messages = new Messages(context.getBundle().getSymbolicName());
 		} catch (Exception e) {
 			LogUtils.logError(
-							logger,
-							"Activator",
-							"start",
-							new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
-							e);
+					logger,
+					"Activator",
+					"start",
+					new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
+					e);
 			return;
 		}
 

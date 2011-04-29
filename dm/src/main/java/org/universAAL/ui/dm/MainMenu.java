@@ -47,6 +47,17 @@ public class MainMenu {
 		thisUser = user;
 	}
 
+	static MainMenu getMenuInstance(Resource user) {
+		String ln = getUserLocalName(user);
+		MainMenu mm = userMenus.get(ln);
+		if (mm == null) {
+			mm = new MainMenu(ln);
+			userMenus.put(ln, mm);
+		}
+		mm.constructMenu();
+		return mm;
+	}
+
 	private void constructMenu() {
 		String lang = Locale.getDefault().getLanguage();
 
@@ -156,17 +167,6 @@ public class MainMenu {
 			else
 				return node.getService(user);
 		return (oldSelection == selection) ? null : updateMenu;
-	}
-
-	static MainMenu getMenuInstance(Resource user) {
-		String ln = getUserLocalName(user);
-		MainMenu mm = userMenus.get(ln);
-		if (mm == null) {
-			mm = new MainMenu(ln);
-			userMenus.put(ln, mm);
-		}
-		mm.constructMenu();
-		return mm;
 	}
 
 	private MenuNode getNode(String nodePath) {

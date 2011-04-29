@@ -45,11 +45,17 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 
 /**
+ * This class realizes system reactivity. It subscribes to context events
+ * according to some predefined context event patterns (stored in a database).
+ * As soon as such an event occurs, the database is queried again to get
+ * an appropriate service request which will be executed.
+ * 
  * @author mtazari
  * 
  */
 public class ContextSubscriber extends
 		org.universAAL.middleware.context.ContextSubscriber {
+	
 	private DataSource datasource = null;
 
 	ContextSubscriber(BundleContext context) {
@@ -109,6 +115,11 @@ public class ContextSubscriber extends
 		}
 	}
 
+	/**
+	 * Close a result set from the database.
+	 * 
+	 * @param rs the result set to be closed
+	 */
 	private void closeResultSet(ResultSet rs) {
 		try {
 			Statement stmt = rs.getStatement();
@@ -244,6 +255,13 @@ public class ContextSubscriber extends
 		}
 	}
 
+	/**
+	 * Queries the database with a given SQL select string.
+	 *  
+	 * @param sql the selection string for the SQL database
+	 * @param conn the connection with the database
+	 * @return the result of this selection
+	 */
 	private ResultSet select(String sql, Connection conn) {
 		Statement stmt = null;
 		try {
