@@ -26,11 +26,15 @@ import org.universAAL.middleware.service.ServiceRequest;
 import org.universAAL.middleware.util.LogUtils;
 
 /**
+ * The InputSubscriber subscribes to and handles all events from the input bus
+ * that are interesting for the Dialog Manager.
+ *  
  * @author mtazari
  * 
  */
 public class InputSubscriber extends
 		org.universAAL.middleware.input.InputSubscriber {
+	
 	InputSubscriber(BundleContext context) {
 		super(context);
 		// register for all context-free user input
@@ -157,10 +161,22 @@ public class InputSubscriber extends
 		}
 	}
 
+	/**
+	 * Subscribes to all input events with a given dialog ID. When an input
+	 * event for this dialog occurs, the method
+	 * {@link #handleInputEvent(InputEvent)} is called.
+	 * 
+	 * @param dialogID ID of the dialog
+	 */
 	void subscribe(String dialogID) {
 		addNewRegParams(dialogID);
 	}
 
+	/**
+	 * Unsubscribes from all input events with a given dialog ID.
+	 * 
+	 * @param dialogID ID of the dialog
+	 */
 	void unsubscribe(String dialogID) {
 		removeMatchingRegParams(dialogID);
 	}
