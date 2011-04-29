@@ -25,15 +25,16 @@ import org.universAAL.middleware.util.LogUtils;
 
 /**
  * @author mtazari
- *
+ * 
  */
-public class ServiceCaller extends org.universAAL.middleware.service.ServiceCaller {
+public class ServiceCaller extends
+		org.universAAL.middleware.service.ServiceCaller {
 	ServiceCaller(BundleContext context) {
 		super(context);
 	}
 
 	/**
-	 * @see org.persona.middleware.service.ServiceCaller#communicationChannelBroken()
+	 * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
 	 */
 	@Override
 	public void communicationChannelBroken() {
@@ -41,12 +42,13 @@ public class ServiceCaller extends org.universAAL.middleware.service.ServiceCall
 	}
 
 	/**
-	 * @see org.persona.middleware.service.ServiceCaller#handleResponse(java.lang.String, org.persona.middleware.service.ServiceResponse)
+	 * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
+	 *      org.universAAL.middleware.service.ServiceResponse)
 	 */
 	@Override
 	public void handleResponse(String reqID, ServiceResponse response) {
-		LogUtils.logInfo(Activator.logger, "ServiceCaller", "handleResponse", new Object[]{
-				"Reply to ", reqID, " received: ", response.getCallStatus().getLocalName()
-				}, null);
+		LogUtils.logInfo(Activator.logger, "ServiceCaller", "handleResponse",
+				new Object[] { "Reply to ", reqID, " received: ",
+						response.getCallStatus().getLocalName() }, null);
 	}
 }

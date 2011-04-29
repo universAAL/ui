@@ -65,6 +65,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.rdf.model.Model;
+
 //import com.hp.hpl.jena.rdf.model.Resource;
 
 /**
@@ -72,7 +73,8 @@ import com.hp.hpl.jena.rdf.model.Model;
  * 
  */
 public class OutputPublisher extends
-		org.universAAL.middleware.output.OutputPublisher implements DialogManager {
+		org.universAAL.middleware.output.OutputPublisher implements
+		DialogManager {
 	private static String CALL_PREFIX = "urn:ui.dm:OutputPublisher"; //$NON-NLS-1$
 	static final String ABORT_ALL_OPEN_DIALOGS_CALL = CALL_PREFIX
 			+ "#abortAllOpenDialogs"; //$NON-NLS-1$
@@ -176,13 +178,14 @@ public class OutputPublisher extends
 				Model m = qexec.execDescribe();
 				// m.write(System.out, "RDF/XML-ABBREV");
 				JenaConverter mc = Activator.getModelConverter();
-				com.hp.hpl.jena.rdf.model.Resource root = mc.getJenaRootResource(m);
+				com.hp.hpl.jena.rdf.model.Resource root = mc
+						.getJenaRootResource(m);
 				if (root == null) {
 					qexec.close();
 					Activator.loadTestData(
-									Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-											+ "saied", //$NON-NLS-1$
-									"Saied"); //$NON-NLS-1$
+							Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+							+ "saied", //$NON-NLS-1$
+							"Saied"); //$NON-NLS-1$
 					Activator.loadTestData(
 							"urn:org.aal-persona.profiling:12345:ella", //$NON-NLS-1$
 							"Ella"); //$NON-NLS-1$
@@ -222,14 +225,18 @@ public class OutputPublisher extends
 								event.setPrivacyMapping(pl);
 							}
 							event.setOutputModality(ppp.getXactionModality());
-							event.setScreenResolutionMaxX(ppp.getInsensibleMaxX());
-							event.setScreenResolutionMaxY(ppp.getInsensibleMaxY());
-							event.setScreenResolutionMinX(ppp.getPersonalMinX());
-							event.setScreenResolutionMinY(ppp.getPersonalMinY());
+							event.setScreenResolutionMaxX(ppp
+									.getInsensibleMaxX());
+							event.setScreenResolutionMaxY(ppp
+									.getInsensibleMaxY());
+							event.setScreenResolutionMinX(ppp
+									.getPersonalMinX());
+							event.setScreenResolutionMinY(ppp
+									.getPersonalMinY());
 							event.setVoiceGender(ppp.getVoiceGender());
 							event.setVoiceLevel(((pl == PrivacyLevel.insensible) ? ppp
-											.getInsensibleVolumeLevel()
-											: ppp.getPersonalVolumeLevel()));
+									.getInsensibleVolumeLevel()
+									: ppp.getPersonalVolumeLevel()));
 						}
 					}
 					event.setPresentationAbsLocation(eu.getLocation());
@@ -239,7 +246,7 @@ public class OutputPublisher extends
 			}
 			con.close();
 		} catch (Exception e) {
-			LogUtils.logError(Activator.logger, 
+			LogUtils.logError(Activator.logger,
 					"OutputPublisher", "addAdaptationParams", null, e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
@@ -378,7 +385,7 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * @see org.persona.middleware.output.OutputPublisher#communicationChannelBroken()
+	 * @see org.universAAL.middleware.output.OutputPublisher#communicationChannelBroken()
 	 */
 	@Override
 	public void communicationChannelBroken() {
@@ -415,9 +422,10 @@ public class OutputPublisher extends
 				finished = messages.get(dialogID);
 				if (finished == null) {
 					if (myDialogs.remove(dialogID) == null)
-						LogUtils.logWarning(Activator.logger, 
-										"OutputPublisher", "dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
-										dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
+						LogUtils.logWarning(
+								Activator.logger,
+								"OutputPublisher", "dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
+								dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
 					return;
 				} else {
 					user = finished.getAddressedUser();
@@ -473,8 +481,8 @@ public class OutputPublisher extends
 		LevelRating lr = LevelRating.none;
 		XMLGregorianCalendar t = TypeMapper.getCurrentDateTime();
 		OutputEvent selected = null;
-		for (Iterator<OutputEvent> i = waitingDialogs.values().iterator(); i
-				.hasNext();) {
+		for (Iterator<OutputEvent> i = waitingDialogs.values().iterator();
+				i.hasNext();) {
 			OutputEvent cur = i.next();
 			if (!user.equals(cur.getAddressedUser()))
 				continue;
@@ -581,8 +589,9 @@ public class OutputPublisher extends
 
 	void showMenu(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(Activator.logger, 
-							"OutputPublisher", "showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarning(
+					Activator.logger,
+					"OutputPublisher", "showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -604,8 +613,9 @@ public class OutputPublisher extends
 
 	void showMessages(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(Activator.logger, 
-							"OutputPublisher", "showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarning(
+					Activator.logger,
+					"OutputPublisher", "showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -637,9 +647,8 @@ public class OutputPublisher extends
 				}
 				if (!messageList.isEmpty()) {
 					Resource msgList = new Resource();
-					msgList
-							.setProperty(PROP_MSG_LIST_MESSAGE_LIST,
-									messageList);
+					msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST,
+							messageList);
 					msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
 					f = Form.newDialog(Activator
 							.getString("OutputPublisher.pendingMessages"),
@@ -647,9 +656,8 @@ public class OutputPublisher extends
 					Group g = f.getIOControls();
 					g = new Repeat(
 							g,
-							new Label(
-									Activator
-											.getString("OutputPublisher.pendingMessages"),
+							new Label(Activator
+									.getString("OutputPublisher.pendingMessages"),
 									null),
 							new PropertyPath(null, false,
 									new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
@@ -695,8 +703,8 @@ public class OutputPublisher extends
 
 	void showOpenDialogs(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(Activator.logger, 
-							"OutputPublisher", "showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarning(Activator.logger,
+					"OutputPublisher", "showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -719,9 +727,8 @@ public class OutputPublisher extends
 					Resource aux = new Resource();
 					aux.setProperty(PROP_MSG_LIST_MESSAGE_DATE, tmp
 							.getCreationTime());
-					aux
-							.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, tmp
-									.getTitle());
+					aux.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, tmp
+							.getTitle());
 					aux.setProperty(PROP_MSG_LIST_MSG_DIALOG_ID, tmp
 							.getDialogID());
 					dialogs.add(aux);
@@ -782,7 +789,7 @@ public class OutputPublisher extends
 		synchronized (waitingDialogs) {
 			OutputEvent out = removeRunningDialog(dialogID);
 			if (out == null)
-				LogUtils.logWarning(Activator.logger, 
+				LogUtils.logWarning(Activator.logger,
 						"OutputPublisher", "suspendDialog", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
 						dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
 			else
