@@ -46,22 +46,28 @@ import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
 
 /**
  * @author mtazari
- *
+ * 
  */
-public class ContextSubscriber extends org.universAAL.middleware.context.ContextSubscriber {
+public class ContextSubscriber extends
+		org.universAAL.middleware.context.ContextSubscriber {
 	private DataSource datasource = null;
-	
+
 	ContextSubscriber(BundleContext context) {
 		super(context, null);
 		datasource = new MysqlConnectionPoolDataSource();
-		((MysqlConnectionPoolDataSource) datasource).setURL(Activator.JENA_DB_URL);
-		((MysqlConnectionPoolDataSource) datasource).setUser(Activator.JENA_DB_USER);
-		((MysqlConnectionPoolDataSource) datasource).setPassword(Activator.JENA_DB_PASSWORD);
-		
+		((MysqlConnectionPoolDataSource) datasource)
+				.setURL(Activator.JENA_DB_URL);
+		((MysqlConnectionPoolDataSource) datasource)
+				.setUser(Activator.JENA_DB_USER);
+		((MysqlConnectionPoolDataSource) datasource)
+				.setPassword(Activator.JENA_DB_PASSWORD);
+
 		// connect to DB and get the relevant context patterns to subscribe for
 		try {
 			Connection conn = datasource.getConnection();
-			ResultSet rs = select("SELECT ind_subj, ind_subj_type, ind_pred FROM ca_service_req;", conn);
+			ResultSet rs = select(
+					"SELECT ind_subj, ind_subj_type, ind_pred FROM ca_service_req;",
+					conn);
 			if (rs != null) {
 				ArrayList<ContextEventPattern> regParams = new ArrayList<ContextEventPattern>();
 				try {
@@ -69,25 +75,37 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 						ContextEventPattern cep = new ContextEventPattern();
 						String aux = extractURI(rs.getString(1));
 						if (aux != null)
-							cep.addRestriction(Restriction.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT, aux));
+							cep.addRestriction(Restriction
+									.getFixedValueRestriction(
+											ContextEvent.PROP_RDF_SUBJECT,
+											aux));
 						aux = extractURI(rs.getString(2));
 						if (aux != null)
-							cep.addRestriction(Restriction.getAllValuesRestriction(ContextEvent.PROP_RDF_SUBJECT, aux));
+							cep.addRestriction(Restriction
+									.getAllValuesRestriction(
+											ContextEvent.PROP_RDF_SUBJECT,
+											aux));
 						aux = extractURI(rs.getString(3));
 						if (aux != null)
-							cep.addRestriction(Restriction.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE, aux));
+							cep.addRestriction(Restriction
+									.getFixedValueRestriction(
+											ContextEvent.PROP_RDF_PREDICATE,
+											aux));
 						regParams.add(cep);
 					}
-					addNewRegParams(regParams.toArray(new ContextEventPattern[regParams.size()]));
+					addNewRegParams(regParams
+							.toArray(new ContextEventPattern[regParams.size()]));
 				} catch (SQLException e) {
-					LogUtils.logWarning(Activator.logger, "ContextSubscriber", "init", null, e);
+					LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+							"init", null, e);
 				} finally {
 					closeResultSet(rs);
 				}
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logError(Activator.logger, "ContextSubscriber", "init", null, e);
+			LogUtils.logError(Activator.logger, "ContextSubscriber", "init",
+					null, e);
 		}
 	}
 
@@ -97,33 +115,36 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber", "closeResultSet", null, e);
+			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+					"closeResultSet", null, e);
 		}
 	}
 
 	/**
-	 * @see org.persona.middleware.context.ContextSubscriber#communicationChannelBroken()
+	 * @see org.universAAL.middleware.context.ContextSubscriber#communicationChannelBroken()
 	 */
 	@Override
 	public void communicationChannelBroken() {
 		// TODO Auto-generated method stub
 	}
-	
+
 	private String extractURI(String in) {
-		return (in != null  &&  in.startsWith("Uv::")  &&  in.endsWith(":"))?
-				in.substring(4, in.length()-1) : in;
+		return (in != null && in.startsWith("Uv::") && in.endsWith(":")) ? in
+				.substring(4, in.length() - 1) : in;
 	}
-	
+
 	private String getVarValue(String vardef, Connection conn) throws Exception {
 		if (vardef == null)
 			return "";
-		
+
 		if (vardef.startsWith("sparql:")) {
-			DBConnection con = Activator.getConnection(); 
+			DBConnection con = Activator.getConnection();
 			if (con.containsModel(Activator.JENA_MODEL_NAME)) {
-				ModelRDB CHModel = ModelRDB.open(con, Activator.JENA_MODEL_NAME);
+				ModelRDB CHModel = ModelRDB
+						.open(con, Activator.JENA_MODEL_NAME);
 				Query query = QueryFactory.create(vardef.substring(7));
-				QueryExecution qexec = QueryExecutionFactory.create(query, CHModel) ;
+				QueryExecution qexec = QueryExecutionFactory.create(query,
+						CHModel);
 				com.hp.hpl.jena.query.ResultSet results = qexec.execSelect();
 				if (results.hasNext()) {
 					QuerySolution qs = results.nextSolution();
@@ -141,7 +162,7 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 		} else if (vardef.startsWith("sql:")) {
 			ResultSet rs = select(vardef.substring(4), conn);
 			if (rs != null) {
-				vardef = rs.next()? extractURI(rs.getString(1)) : "";
+				vardef = rs.next() ? extractURI(rs.getString(1)) : "";
 				closeResultSet(rs);
 			} else
 				vardef = "";
@@ -150,7 +171,7 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 	}
 
 	/**
-	 * @see org.persona.middleware.context.ContextSubscriber#handleContextEvent(org.persona.middleware.context.ContextEvent)
+	 * @see org.universAAL.middleware.context.ContextSubscriber#handleContextEvent(org.universAAL.middleware.context.ContextEvent)
 	 */
 	@Override
 	public void handleContextEvent(ContextEvent event) {
@@ -160,9 +181,12 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 			String pred = event.getRDFPredicate();
 			StringBuffer sb = new StringBuffer(256);
 			sb.append("SELECT service_req FROM ca_service_req WHERE (ind_subj IS NULL OR ind_subj = '");
-			sb.append(subj).append("') AND (ind_subj_type IS NULL OR ind_subj_type = '");
-			sb.append(subjType).append("') AND (ind_pred IS NULL OR ind_pred = '").append(pred).append("');");
-			Connection conn = datasource.getConnection();	
+			sb.append(subj).append(
+					"') AND (ind_subj_type IS NULL OR ind_subj_type = '");
+			sb.append(subjType).append(
+					"') AND (ind_pred IS NULL OR ind_pred = '").append(pred)
+					.append("');");
+			Connection conn = datasource.getConnection();
 			ResultSet rs = select(sb.toString(), conn);
 			if (rs != null) {
 				while (rs.next()) {
@@ -178,31 +202,45 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 						int ord = 0;
 						i = vars.indexOf("${0=");
 						int j = vars.indexOf("=0}");
-						while (i > -1  &&  j > i) {
-							varMap.put(Integer.toString(ord), getVarValue(vars.substring(i+4, j), conn));
-							vars = vars.replaceAll("[$][{]"+ord+"[}]", varMap.get(Integer.toString(ord)));
+						while (i > -1 && j > i) {
+							varMap.put(Integer.toString(ord), getVarValue(vars
+									.substring(i + 4, j), conn));
+							vars = vars.replaceAll("[$][{]" + ord + "[}]",
+									varMap.get(Integer.toString(ord)));
 							ord++;
-							i = vars.indexOf("${"+ord+"=");
-							j = vars.indexOf("="+ord+"}");
+							i = vars.indexOf("${" + ord + "=");
+							j = vars.indexOf("=" + ord + "}");
 						}
 						while (--ord > -1)
-							req = req.replaceAll("[$][{]"+ord+"[}]", varMap.get(Integer.toString(ord)));
+							req = req.replaceAll("[$][{]" + ord + "[}]", varMap
+									.get(Integer.toString(ord)));
 					}
-					Object o = (Activator.getSerializer() == null)? null
+					Object o = (Activator.getSerializer() == null) ? null
 							: Activator.getSerializer().deserialize(req);
 					if (o instanceof ServiceRequest)
-						LogUtils.logInfo(Activator.logger, "ContextSubscriber", "handleContextEvent", new Object[]{
-								"Context-aware service call proceeded with success!"}, null);
-						// Activator.getServiceCaller().sendRequest((ServiceRequest) o);
+						LogUtils.logInfo(
+								Activator.logger,
+								"ContextSubscriber",
+								"handleContextEvent",
+								new Object[] { "Context-aware service call proceeded with success!" },
+								null);
+					// Activator.getServiceCaller().sendRequest((ServiceRequest)
+					// o);
 					else
-						LogUtils.logWarning(Activator.logger, "ContextSubscriber", "handleContextEvent", new Object[]{
-								"could not create the service request ", req}, null);
+						LogUtils.logWarning(
+								Activator.logger,
+								"ContextSubscriber",
+								"handleContextEvent",
+								new Object[] {
+										"could not create the service request ",
+										req }, null);
 				}
 				closeResultSet(rs);
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber", "handleContextEvent", null, e);
+			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+					"handleContextEvent", null, e);
 		}
 	}
 
@@ -215,12 +253,18 @@ public class ContextSubscriber extends org.universAAL.middleware.context.Context
 				throw new SQLException("ResultSet is null!");
 			return rs;
 		} catch (SQLException e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber", "select", new Object[]{
-					"SQL exception: 'select(", sql, ")' - "}, e);
+			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+					"select", new Object[] { "SQL exception: 'select(", sql,
+							")' - " }, e);
 			try {
 				stmt.close();
 			} catch (Exception e1) {
-				LogUtils.logWarning(Activator.logger, "ContextSubscriber", "select", new Object[]{"Exception while closing statement - "}, e1);
+				LogUtils.logWarning(
+						Activator.logger,
+						"ContextSubscriber",
+						"select",
+						new Object[] { "Exception while closing statement - " },
+						e1);
 			}
 			return null;
 		}

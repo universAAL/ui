@@ -27,26 +27,27 @@ import org.universAAL.middleware.service.owl.InitialServiceDialog;
 
 /**
  * @author mtazari
- *
+ * 
  */
 public class MenuNode {
-	
-	private class NodeChildren implements Iterable<MenuNode>, Iterator<MenuNode> {
+
+	private class NodeChildren implements Iterable<MenuNode>,
+			Iterator<MenuNode> {
 		int i = 0;
-		
+
 		public boolean hasNext() {
 			return i < MenuNode.this.child.length
-				&& MenuNode.this.child[i] != null;
+					&& MenuNode.this.child[i] != null;
 		}
-		
+
 		public Iterator<MenuNode> iterator() {
 			return this;
 		}
-		
+
 		public MenuNode next() {
 			return MenuNode.this.child[i++];
 		}
-		
+
 		public void remove() {
 			throw new RuntimeException("Operation not supported!");
 		}
@@ -63,19 +64,19 @@ public class MenuNode {
 	private MenuNode parent;
 
 	private boolean visible = false;
-	
+
 	MenuNode(int level) {
-		child = new MenuNode[] { null, null, null, null, null, null, null, null,
-				null, null, null, null, null, null, null };
+		child = new MenuNode[] { null, null, null, null, null, null, null,
+				null, null, null, null, null, null, null, null };
 		label = "";
 		this.level = level;
 	}
-	
+
 	int add(String path, String vendor, String serviceClass) {
 		MenuNode aux, cur = this;
 		String[] pathArr = path.split("/");
 		// the first path elem is normally ""
-		int offset = ("".equals(pathArr[0])? 1 : 0);
+		int offset = ("".equals(pathArr[0]) ? 1 : 0);
 		// skip existing nodes
 		int i = offset;
 		while (i < pathArr.length) {
@@ -100,9 +101,9 @@ public class MenuNode {
 		// return the number of newly created nodes
 		return createdNodes;
 	}
-	
+
 	void addChild(MenuNode c) {
-		for (int i = 0;  i < child.length; i++)
+		for (int i = 0; i < child.length; i++)
 			if (child[i] == null) {
 				child[i] = c;
 				c.parent = this;
@@ -144,7 +145,7 @@ public class MenuNode {
 				return n;
 		return null;
 	}
-	
+
 	public String getLabel() {
 		return label;
 	}
@@ -152,7 +153,7 @@ public class MenuNode {
 	public int getLevel() {
 		return level;
 	}
-	
+
 	public MenuNode getParent() {
 		if (level > 0)
 			return parent;
@@ -171,15 +172,14 @@ public class MenuNode {
 	}
 
 	public ServiceRequest getService(Resource user) {
-		return hasService()?
-				InitialServiceDialog.getInitialDialogRequest(serviceClass, vendor, user)
-				: null;
+		return hasService() ? InitialServiceDialog.getInitialDialogRequest(
+				serviceClass, vendor, user) : null;
 	}
-	
+
 	String getServiceClass() {
 		return serviceClass;
 	}
-	
+
 	String getVendor() {
 		return vendor;
 	}
@@ -187,63 +187,69 @@ public class MenuNode {
 	public boolean hasChild() {
 		return child[0] != null;
 	}
-	
+
 	/**
 	 * is a service bound to this node?
+	 * 
 	 * @return
 	 */
 	public boolean hasService() {
-		return !isEmptyString(serviceClass)  &&  !isEmptyString(vendor);
+		return !isEmptyString(serviceClass) && !isEmptyString(vendor);
 	}
-	
+
 	private boolean isEmptyString(String str) {
-		return str == null  ||  "".equals(str);
+		return str == null || "".equals(str);
 	}
-	
+
 	/**
-	 * determines if a node has at least one visible child.
-	 * Used for visualizing Menues
+	 * determines if a node has at least one visible child. Used for visualizing
+	 * Menues
+	 * 
 	 * @return
 	 */
 	public boolean hasVisibleChilds() {
-		return child[0] != null  &&  child[0].isVisible();
+		return child[0] != null && child[0].isVisible();
 	}
-	
+
 	/**
-	 * Convenience method to avoid rightmanager handling in JSPs
-	 * Is this Node active, has the user sufficient rights to use the Service
-	 * represented by this node
+	 * Convenience method to avoid rightmanager handling in JSPs Is this Node
+	 * active, has the user sufficient rights to use the Service represented by
+	 * this node
 	 * 
-	 * Warning! only valid if set in advance. it can return null if not set. 
+	 * Warning! only valid if set in advance. it can return null if not set.
+	 * 
 	 * @return
 	 */
 	public boolean isActive() {
 		return bActive;
 	}
-	
-//	public boolean isActive(PortletRequest request) {
-//		return !hasService()
-//			|| Portal.getRightManager(request).hasRight(service.getRightCode().getPortalGroup(), true);
-//	}
-	
+
+	// public boolean isActive(PortletRequest request) {
+	// return !hasService()
+	// ||
+	// Portal.getRightManager(request).hasRight(service.getRightCode().getPortalGroup(),
+	// true);
+	// }
+
 	/**
-	 * Determines if this node ist Active 
+	 * Determines if this node is Active
+	 * 
 	 * @param rightManager
 	 * @return
 	 */
-//	public boolean isActive(RightManager rightManager) {
-//		return !hasService()
-//			|| rightManager.hasRight(service.getRightCode().getPortalGroup(), true);
-//	}
-	
+	// public boolean isActive(RightManager rightManager) {
+	// return !hasService()
+	// || rightManager.hasRight(service.getRightCode().getPortalGroup(), true);
+	// }
+
 	public boolean isSelected(MainMenu navList) {
 		return this == navList.getSelectedNode();
 	}
-	
+
 	public boolean isVisible() {
 		return visible;
 	}
-	
+
 	public boolean pathMatches(String[] keywords) {
 		String path = getPath();
 		for (String keyword : keywords)
@@ -251,10 +257,10 @@ public class MenuNode {
 				return true;
 		return false;
 	}
-	
-	
+
 	/**
 	 * Sets the active flag
+	 * 
 	 * @param isActive
 	 */
 	public void setActive(boolean isActive) {
@@ -281,7 +287,7 @@ public class MenuNode {
 			// are also visible --> this is done recursively
 			parent.setVisibility(true);
 	}
-	
+
 	public void setLabel(String label) {
 		if (label != null)
 			if (this.label == null)
