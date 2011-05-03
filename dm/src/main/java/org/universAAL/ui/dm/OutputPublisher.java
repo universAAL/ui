@@ -140,12 +140,12 @@ public class OutputPublisher extends
 				+ adaptationQueryMid.length() + adaptationQueryTail.length();
 	}
 
-	void abortAllOPenDialogs(Resource user, Resource data) {
+	void abortAllOpenDialogs(Resource user, Resource data) {
 		if (user == null || data == null)
 			return;
 
 		Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS);
-		if (!(o instanceof List))
+		if (!(o instanceof List<?>))
 			return;
 
 		for (Iterator<?> i = ((List<?>) o).iterator(); i.hasNext();) {
@@ -266,7 +266,7 @@ public class OutputPublisher extends
 			Activator.getInputSubscriber().subscribe(
 					stdButtons.getFormObject().getStandardButtonsDialogID());
 			break;
-		case DialogType.MESSGAE:
+		case DialogType.MESSAGE:
 			break;
 		case DialogType.SUBDIALOG:
 			break;
@@ -331,12 +331,12 @@ public class OutputPublisher extends
 			return;
 
 		Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS);
-		List<?> sentItems = (o instanceof List) ? (List<?>) o : null;
+		List<?> sentItems = (o instanceof List<?>) ? (List<?>) o : null;
 		if (sentItems == null)
 			return;
 
 		o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST);
-		List<?> remaining = (o instanceof List) ? (List<?>) o : null;
+		List<?> remaining = (o instanceof List<?>) ? (List<?>) o : null;
 		boolean allRemoved = remaining == null || remaining.isEmpty();
 
 		for (Iterator<?> i = sentItems.iterator(); i.hasNext();) {
@@ -359,12 +359,12 @@ public class OutputPublisher extends
 			return;
 
 		Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS);
-		List<?> sentItems = (o instanceof List) ? (List<?>) o : null;
+		List<?> sentItems = (o instanceof List<?>) ? (List<?>) o : null;
 		if (sentItems == null)
 			return;
 
 		o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST);
-		List<?> remaining = (o instanceof List) ? (List<?>) o : null;
+		List<?> remaining = (o instanceof List<?>) ? (List<?>) o : null;
 		boolean allRemoved = remaining == null || remaining.isEmpty();
 
 		for (Iterator<?> i = sentItems.iterator(); i.hasNext();) {
@@ -397,7 +397,7 @@ public class OutputPublisher extends
 			return;
 
 		Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS);
-		if (!(o instanceof List))
+		if (!(o instanceof List<?>))
 			return;
 
 		for (Iterator<?> i = ((List<?>) o).iterator(); i.hasNext();) {
@@ -802,12 +802,12 @@ public class OutputPublisher extends
 			return;
 
 		Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS);
-		List<?> sentItems = (o instanceof List) ? (List<?>) o : null;
+		List<?> sentItems = (o instanceof List<?>) ? (List<?>) o : null;
 		if (sentItems == null)
 			return;
 
 		o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST);
-		List<?> remaining = (o instanceof List) ? (List<?>) o : null;
+		List<?> remaining = (o instanceof List<?>) ? (List<?>) o : null;
 		boolean allRemoved = remaining == null || remaining.isEmpty();
 
 		int selected = -1;
