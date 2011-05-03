@@ -36,13 +36,13 @@ import org.universAAL.middleware.service.ServiceRequest;
  * A set of main menus. The main menu of the Dialog Manager represents
  * a list of services installed in the system that can be called by the user.
  * Additionally, the Dialog Manager provides methods to search for services
- * and to show pending messages and dialogs.
- * 
+ * and to show pending messages and dialogs.<br>
  * There is one main menu for every user of the system. The content is
- * determined by a configuration file where each line contains 3 values:
- *  1. list of labels (multiple labels for hierarchical menus)
- *  2. vendor
- *  3. service class
+ * determined by a configuration file where each line contains 3 values:<br>
+ *  1. list of labels (multiple labels for hierarchical menus are separated
+ *    by '/')<br>
+ *  2. vendor<br>
+ *  3. service class<br>
  * 
  * @author mtazari
  */
@@ -241,14 +241,16 @@ public class MainMenu {
 
 	
 	/**
-	 * Get a service request for a specific menu node. Creates the service
-	 * request according to the service class and vendor for this menu leaf
-	 * node.
+	 * Get a service request for a specific menu node.
+	 * If the node is a leaf node, it creates the service request according to
+	 * the service class and vendor of this node. If the node is not a leaf
+	 * node and the selection has changed, the update service is returned.
 	 *  
 	 * @param nodePath Determines the menu node. Can be a set of labels for
 	 *		hierarchical menus.
 	 * @param user Use the main menu from thus user.
-	 * @return The service request.
+	 * @return The service for a leaf node, the pre-defined update service for
+	 * 		an inner node.
 	 */
 	ServiceRequest getAssociatedServiceRequest(String nodePath, Resource user) {
 		MenuNode oldSelection = selection, node = getNode(nodePath);
