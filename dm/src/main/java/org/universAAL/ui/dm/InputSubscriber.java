@@ -143,12 +143,7 @@ public class InputSubscriber extends
 							"handleInputEvent",
 							new Object[] { "Submission without effect: ",
 									submissionID }, null);
-					Activator.getOutputPublisher().showMenu(u);
-				} else if (sr == MainMenu.updateMenu) {
-					LogUtils.logInfo(Activator.logger, "InputSubscriber",
-							"handleInputEvent", new Object[] {
-									"Selected menu entry: ",
-									event.getSubmissionID() }, null);
+					MainMenu.setSelection(u, submissionID);
 					Activator.getOutputPublisher().showMenu(u);
 				} else {
 					LogUtils.logInfo(Activator.logger, "InputSubscriber",
