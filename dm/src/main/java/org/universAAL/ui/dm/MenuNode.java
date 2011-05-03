@@ -27,13 +27,18 @@ import org.universAAL.middleware.service.owl.InitialServiceDialog;
 
 /**
  * A node of the main menu. The main menu can be hierarchically. Thus, a node
- * can have a parent and multiple children. The leaf node of this tree should
- * have a service class and vendor associated.
+ * can have a parent and multiple children (currently, a maximum of 15
+ * children is allowed). The leaf node of this tree should have a service
+ * class and vendor associated.
  * 
  * @author mtazari
+ * @author cstockloew
  */
 public class MenuNode {
 
+	/**
+	 * An iterator for children.
+	 */
 	private class NodeChildren implements Iterable<MenuNode>,
 			Iterator<MenuNode> {
 		int i = 0;
@@ -56,19 +61,43 @@ public class MenuNode {
 		}
 	}
 
-//	private boolean bActive = false;
-
-	private MenuNode[] child;
-
-	private String label;
-	private String vendor;
-	private String serviceClass;
-
-	private int level;
-
+	/**
+	 * The parent node, or null if root node.
+	 */
 	private MenuNode parent;
 
+	/**
+	 * The set of children.
+	 */
+	private MenuNode[] child;
+
+
+	/**
+	 * The label of the node. This must be a simple human-readable text
+	 * because it is directly shown in the user interface.
+	 */
+	private String label;
+	
+	/**
+	 * The vendor. Multiple implementations of the same service class can
+	 * be distinguished by the vendor name.
+	 */
+	private String vendor;
+	
+	/**
+	 * The service class for this service.
+	 */
+	private String serviceClass;
+
+	/**
+	 * The level for hierarchical menus. The root node is at level -1, so that
+	 * the main list of menu entries is at level 0.
+	 */
+	private int level;
+
 //	private boolean visible = false;
+//	private boolean bActive = false;
+
 
 	MenuNode(int level) {
 		child = new MenuNode[] { null, null, null, null, null, null, null,
@@ -83,7 +112,6 @@ public class MenuNode {
 	 * levels of the menu. Nodes are automatically created if they do not
 	 * exist. The leaf node is associated with the given parameters for
 	 * vendor and service class.
-	 * 
 	 * @param path The path of possibly multiple labels according to the
 	 * 		different levels in the menu.
 	 * @param vendor The vendor of the service.
@@ -123,7 +151,6 @@ public class MenuNode {
 	/**
 	 * Add a single child to this node and set correctly the parent of
 	 * the newly created child.
-	 * 
 	 * @param c The child.
 	 */
 	private void addChild(MenuNode c) {
@@ -137,7 +164,6 @@ public class MenuNode {
 
 	/**
 	 * Get an iterator for all children of this node.
-	 * 
 	 * @return The iterator.
 	 */
 	public Iterable<MenuNode> children() {
@@ -168,7 +194,6 @@ public class MenuNode {
 
 	/**
 	 * Get a child with a given label. Only considers direct children.
-	 * 
 	 * @param label The label.
 	 * @return The child, or null if no child with this label is available.
 	 */
@@ -195,7 +220,6 @@ public class MenuNode {
 
 	/**
 	 * Get the parent of this node.
-	 * 
 	 * @return The parent.
 	 */
 	public MenuNode getParent() {
@@ -207,27 +231,25 @@ public class MenuNode {
 	/**
 	 * Get the path of this node. The path is a string containing the labels
 	 * of all nodes from this node up to the root node. It starts with '/'
-	 * and the labels are separated by '/'. Iff this node has children, the
-	 * path ends with '/'.
-	 * 
+	 * and the labels are separated by '/'.
 	 * @return The path.
 	 */
 	public String getPath() {
 		if (parent == null)
-			return "/";
-		String res = label, aux = parent.getPath();
-		if (res == null || aux == null)
-			return null;
-		if (child[0] != null)
-			res += "/";
-		return aux + res;
+			return "/";		// root node
+		
+		String res = label;
+		if (res == null)
+			res = "";
+		if (parent.parent == null)
+			return "/" + res;	// parent is root node
+		return parent.getPath() + "/" + res;
 	}
 
 	/**
 	 * Create a service request with the user as well as service class and
 	 * vendor of this node (if this node a leaf node and has an associated
 	 * service).
-	 * 
 	 * @param user The user.
 	 * @return The service request.
 	 */
@@ -236,22 +258,33 @@ public class MenuNode {
 				serviceClass, vendor, user) : null;
 	}
 
+	/**
+	 * Get the service class associated with this node.
+	 * @return The service class, or null if no service class available.
+	 */
 	String getServiceClass() {
 		return serviceClass;
 	}
 
+	/**
+	 * Get the vendor associated with this node.
+	 * @return The vendor, or null if no vendor available.
+	 */
 	String getVendor() {
 		return vendor;
 	}
 
+	/**
+	 * Determines whether this node has children.
+	 * @return true, if this node has children.
+	 */
 	public boolean hasChild() {
 		return child[0] != null;
 	}
 
 	/**
-	 * Is a service (and a vendor) bound to this node?
-	 * 
-	 * @return
+	 * Determines whether a service (and a vendor) is bound to this node.
+	 * @return true, if this node has a service.
 	 */
 	public boolean hasService() {
 		return !isEmptyString(serviceClass) && !isEmptyString(vendor);
@@ -262,8 +295,7 @@ public class MenuNode {
 	}
 
 //	/**
-//	 * determines if a node has at least one visible child. Used for visualizing
-//	 * Menues
+//	 * determines if a node has at least one visible child.
 //	 * 
 //	 * @return
 //	 */

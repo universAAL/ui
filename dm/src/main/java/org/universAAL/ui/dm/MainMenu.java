@@ -24,11 +24,11 @@ import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 
+//import org.universAAL.middleware.io.rdf.SimpleOutput;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.io.rdf.Group;
 import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.middleware.io.rdf.Submit;
-import org.universAAL.middleware.io.rdf.SimpleOutput;
 import org.universAAL.middleware.service.ServiceRequest;
 
 
@@ -38,13 +38,22 @@ import org.universAAL.middleware.service.ServiceRequest;
  * Additionally, the Dialog Manager provides methods to search for services
  * and to show pending messages and dialogs.<br>
  * There is one main menu for every user of the system. The content is
- * determined by a configuration file where each line contains 3 values:<br>
- *  1. list of labels (multiple labels for hierarchical menus are separated
+ * determined by a configuration file where each line contains 3 values
+ * (separated by '|'):
+ * <ol>
+ *  <li> list of labels starting with '/' (multiple labels for hierarchical menus are separated
  *    by '/')<br>
- *  2. vendor<br>
- *  3. service class<br>
- * 
+ *  <li> vendor<br>
+ *  <li> service class<br>
+ * </ol>
+ * Examples:<br>
+ * <code>
+ * /Light Control|myVendor|LightingURI<br>
+ * /Home Control/Light Control|myVendor|LightingURI
+ * </code>
+ *
  * @author mtazari
+ * @author cstockloew
  */
 public class MainMenu {
 	
@@ -70,21 +79,14 @@ public class MainMenu {
 	 * reconstructed if the language has changed. As this value is determined
 	 * by the local system the JVM runs on, it currently does not change, but
 	 * ensures that the menu is created only once.
-	 * @TODO: What if the configuration of the menu changes?
 	 */
+	// TODO: What if the configuration of the menu changes?
 	private String lastLanguage = null;
 	
 	/**
 	 * The user.
 	 */
 	private String thisUser = null;
-
-	
-	/**
-	 * A service request for updating the menu.
-	 */
-	static ServiceRequest updateMenu = new ServiceRequest();
-
 
 	
 	/**
@@ -97,7 +99,6 @@ public class MainMenu {
 	/**
 	 * Get an instance of the main menu given a user. Creates the menu if
 	 * it was not available before.
-	 * 
 	 * @param user The user.
 	 * @return The menu for this user.
 	 */
@@ -124,6 +125,9 @@ public class MainMenu {
 
 		if (lang.equals(lastLanguage))
 			return;
+
+		root = new MenuNode(-1);
+		selection = root;
 
 		lastLanguage = lang;
 		Vector<String[]> entries = new Vector<String[]>();
@@ -173,79 +177,86 @@ public class MainMenu {
 		}
 
 		// create the menu according to the entries from the config file
-		MenuNode oldSelection = selection;
-		selection = null;
-		root = new MenuNode(-1);
-		int j = 0;
-		for (String[] entry : entries) {
-			j += root.add(entry[0], entry[1], entry[2]);
-			if (oldSelection != null && oldSelection.hasService()
-					&& oldSelection.getVendor().equals(entry[1])
-					&& oldSelection.getServiceClass().equals(entry[2]))
-				selection = getNode(entry[0]);
-		}
-
-//		// init the navigation list
-//		j = 0;
-//		for (MenuNode child : root.children())
-//			child.setVisibility(true);
+		for (String[] entry : entries)
+			root.add(entry[0], entry[1], entry[2]);
 	}
 
 	
 	/**
-	 * Adds this menu to a group from the dialog package that will be
-	 * sent to the output bus.
-	 * 
+	 * Adds this menu to a dialog presented to the user. The dialog can
+	 * contain other information like pending messages or a functionality to
+	 * search for services. The services that are added in this method are
+	 * added to a special group and then the whole dialog is sent to the 
+	 * output bus.
 	 * @param rg The group to add the menu.
 	 */
 	void addMenuRepresentation(Group rg) {
-		if (selection == null)
-			// no selection -> add children of root 
-			for (MenuNode child : root.children())
-				new Submit(rg, new Label(child.getLabel(), null), child
-						.getPath());
+		if (selection == null  ||  selection == root)
+			// add children of root 
+			for (MenuNode child : root.children()) {
+				new Submit(rg, new Label(child.getLabel(), null),
+						child.getPath());
+				System.out.println("Menu child: "+child.getPath());
+			}
 		else {
-			MenuNode pathEnd = selection.hasChild() ? selection : selection
-					.getParent();
-			if (pathEnd == null)
-				// no parent -> add children of root 
-				for (MenuNode child : root.children())
-					new Submit(rg, new Label(child.getLabel(), null), child
-							.getPath());
-			else {
-				// we have a selection that is not a direct child of root
-				// -> we have a hierarchical menu
-				// -> add the appropriate level
-				String path = pathEnd.getPath();
-				Group g = new Group(rg, new Label("Selection", null), null,
-						null, null);
-				if (path != null && path.startsWith("/")) {
-					int i = 1;
-					for (int j = path.indexOf('/', i); j > 0; j = path.indexOf(
-							'/', i)) {
-						new Submit(g, new Label(path.substring(i, j), null),
-								path.substring(0, j));
-						new SimpleOutput(g, null, null, "->");
-						i = j + 1;
-					}
-					new Submit(g, new Label(path.substring(i), null), path);
-					g = new Group(rg, new Label("Options", null), null, null,
-							null);
-				}
-				for (MenuNode child : pathEnd.children())
-					new Submit(g, new Label(child.getLabel(), null), child
-							.getPath());
+			// add children of an inner node
+			Group g;
+			
+			// selection: the currently selected node, acts as possibility to
+			// go to higher level
+			g = new Group(rg, new Label("Selection", null), null, null, null);
+			MenuNode parent = selection.getParent();
+			if (parent == null)
+				parent = root;
+			new Submit(g, new Label(selection.getLabel(), null),
+					parent.getPath());
+			System.out.println("Menu Parent: "+parent.getPath());
+			
+			// options: the children of the currently selected node
+			g = new Group(rg, new Label("Options", null), null, null, null);
+			for (MenuNode child : selection.children()) {
+				new Submit(g, new Label(child.getLabel(), null),
+						child.getPath());
+				System.out.println("Menu child: "+child.getPath());
 			}
 		}
 	}
 
 	
 	/**
+	 * Select a specific node given its node path.
+	 * @param user The user.
+	 * @param nodePath The path to the node.
+	 * @return true, iff selection has changed.
+	 */
+	static boolean setSelection(Resource user, String nodePath) {
+		MainMenu mm = getMenuInstance(user);
+		if (mm == null)
+			return false;
+		return mm.setSelection(nodePath);
+	}
+
+	/**
+	 * Select a specific node given its node path.
+	 * @param nodePath The path to the node.
+	 * @return true, iff selection has changed.
+	 */
+	boolean setSelection(String nodePath) {
+		MenuNode node = getNode(nodePath);
+		if (node == null)
+			return false;
+		
+		MenuNode oldSelection = selection;
+		selection = node;
+		return oldSelection != selection;
+	}
+	
+	
+	/**
 	 * Get a service request for a specific menu node.
 	 * If the node is a leaf node, it creates the service request according to
 	 * the service class and vendor of this node. If the node is not a leaf
 	 * node and the selection has changed, the update service is returned.
-	 *  
 	 * @param nodePath Determines the menu node. Can be a set of labels for
 	 *		hierarchical menus.
 	 * @param user Use the main menu from thus user.
@@ -253,25 +264,28 @@ public class MainMenu {
 	 * 		an inner node.
 	 */
 	ServiceRequest getAssociatedServiceRequest(String nodePath, Resource user) {
-		MenuNode oldSelection = selection, node = getNode(nodePath);
-		if (node != null)
-			if (node.hasChild())
-				selection = node;
-			else
-				return node.getService(user);
-		return (oldSelection == selection) ? null : updateMenu;
+		MenuNode node = getNode(nodePath);
+		if (node == null)
+			return null;
+		
+		if (!node.hasChild())
+			return node.getService(user);
+			
+		return null;
 	}
 
 	
 	/**
 	 * Get a specific menu node.
-	 * 
 	 * @param nodePath Determines the menu node. Can be a set of labels for
 	 *		hierarchical menus.
 	 * @return The menu node.
 	 */
 	private MenuNode getNode(String nodePath) {
 		if (nodePath != null && nodePath.startsWith("/")) {
+			if (nodePath.equals("/"))
+				return root;
+			
 			int i = 1;
 			MenuNode node = root;
 			for (int j = nodePath.indexOf('/', i); j > 0; j = nodePath.indexOf(
@@ -294,7 +308,6 @@ public class MainMenu {
 	/**
 	 * Get the name of a user given as Resource. This method filters and
 	 * returns only the name from the URI of a given resource.
-	 * 
 	 * @param u The user as Resource.
 	 * @return The name of the user.
 	 */
