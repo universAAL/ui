@@ -83,7 +83,7 @@ public class InputSubscriber extends
 			}
 			if (OutputPublisher.ABORT_ALL_OPEN_DIALOGS_CALL
 					.equals(submissionID)) {
-				Activator.getOutputPublisher().abortAllOPenDialogs(u,
+				Activator.getOutputPublisher().abortAllOpenDialogs(u,
 						event.getSubmittedData());
 				Activator.getOutputPublisher().showMenu(u);
 			} else if (OutputPublisher.CLOSE_MESSAGES_CALL.equals(submissionID)) {
