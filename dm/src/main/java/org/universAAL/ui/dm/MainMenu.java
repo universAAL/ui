@@ -210,14 +210,14 @@ public class MainMenu {
 				parent = root;
 			new Submit(g, new Label(selection.getLabel(), null),
 					parent.getPath());
-			System.out.println("Menu Parent: "+parent.getPath());
+			//System.out.println("Menu Parent: "+parent.getPath());
 			
 			// options: the children of the currently selected node
 			g = new Group(rg, new Label("Options", null), null, null, null);
 			for (MenuNode child : selection.children()) {
 				new Submit(g, new Label(child.getLabel(), null),
 						child.getPath());
-				System.out.println("Menu child: "+child.getPath());
+				//System.out.println("Menu child: "+child.getPath());
 			}
 		}
 	}
