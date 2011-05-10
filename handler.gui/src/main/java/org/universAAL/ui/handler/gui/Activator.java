@@ -49,7 +49,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	public static int drawNum = 0;
 	
 	/**
-	 * Registrated ElderlyUser.
+	 * Registered ElderlyUser.
 	 * For testing proposes it is fixed to "saied"
 	 * @see Activator#user
 	 */
@@ -57,7 +57,7 @@ public class Activator implements BundleActivator, ServiceListener {
 		new ElderlyUser(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
 
 	/**
-	 * Registrated user.
+	 * Registered user.
 	 * End user, the one who is actually using the GUI 
 	 */
 	public static User user = null;
