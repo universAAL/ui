@@ -58,9 +58,8 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 /**
- * Implementation of {@link org.universAAL.tools.conversion.jena.JenaConverter}.
- * Converts uAAL {@link org.universAAL.middleware.rdf.Resource} to Jena
- * {@link com.hp.hpl.jena.rdf.model.Resource and vice-versa}
+ * This is the reference implementation of the
+ * {@link org.universAAL.context.conversion.jena.JenaConverter}.
  * 
  * @author mtazari
  * 
@@ -148,7 +147,15 @@ public class JenaModelConverter implements JenaConverter {
 //	public Object deserialize(String serialized) {
 //		return deserialize(serialized, false);
 //	}
-
+    /**
+     * Deserializes a complex object that is not an XML literal, that is, a
+     * {@link org.universAAL.middleware.rdf.Resource} root element.
+     * 
+     * @param serialized
+     *            The serialized object in RDF
+     * @return The deserialized <code>Object</code>. Returns <code>null</code>
+     *         if there was an error.
+     */
 	private Object deserialize(String serialized, boolean wasXMLLiteral) {
 		if (serialized == null)
 			return null;
@@ -376,6 +383,16 @@ public class JenaModelConverter implements JenaConverter {
 		return true;
 	}
 
+    /**
+     * Serializes an object into RDF format. The object to serialize must be a
+     * {@link org.universAAL.middleware.rdf.Resource}
+     * 
+     * @param messageContent
+     *            The object to serialize
+     * @return The <String> representing the serialized object. Returns
+     *         <code>null</code> if could not serialize or the argument is not a
+     *         {@link org.universAAL.middleware.rdf.Resource}
+     */
 	private String serialize(Object messageContent) {
 		if (messageContent instanceof org.universAAL.middleware.rdf.Resource) {
 			Model m = toJenaResource((org.universAAL.middleware.rdf.Resource) messageContent).getModel();

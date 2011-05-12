@@ -20,58 +20,64 @@
 package org.universAAL.tools.conversion.jena;
 
 import com.hp.hpl.jena.rdf.model.Model;
+
 //import com.hp.hpl.jena.rdf.model.Resource;
 //import org.universAAL.middleware.rdf.Resource;
 
 /**
- * Interface for classes that implement a conversion between Jena
- * {@link com.hp.hpl.jena.rdf.model.Resource} and uAAL
- * {@link org.universAAL.middleware.rdf.Resource}
+ * Interface for those that wish to implement the conversion between Resources
+ * of Jena and Resources of universAAL.
  * 
  * @author mtazari
  * 
  */
 public interface JenaConverter {
     /**
-     * Given a Jena {@link com.hp.hpl.jena.rdf.model.Model}, this method returns
-     * the Jena {@link com.hp.hpl.jena.rdf.model.Resource} placed at its root.
+     * Get the root Resource of a Jena Model, so that it can be passed for
+     * conversion to another method.
      * 
      * @param m
-     *            The Jena Model to find the root for.
-     * @return The Jena Resource at the root of the Model.
+     *            The {@link com.hp.hpl.jena.rdf.model.Model} to get the root
+     *            from
+     * @return The {@link com.hp.hpl.jena.rdf.model.Resource} that is at the
+     *         root of the Model
      */
-	public com.hp.hpl.jena.rdf.model.Resource getJenaRootResource(Model m);
+    public com.hp.hpl.jena.rdf.model.Resource getJenaRootResource(Model m);
 
     /**
-     * Converts a uAAL {@link org.universAAL.middleware.rdf.Resource} into its
-     * equivalent Jena {@link com.hp.hpl.jena.rdf.model.Resource}
+     * Convert a universAAL Resource into a Jena Resource
      * 
      * @param r
-     *            The uAAL Resource
-     * @return The equivalent Jena Resource
+     *            The uAAL {@link org.universAAL.middleware.rdf.Resource} to
+     *            convert
+     * @return The resulting Jena {@link com.hp.hpl.jena.rdf.model.Resource}
      */
-	public com.hp.hpl.jena.rdf.model.Resource toJenaResource(org.universAAL.middleware.rdf.Resource r);
+    public com.hp.hpl.jena.rdf.model.Resource toJenaResource(
+	    org.universAAL.middleware.rdf.Resource r);
 
     /**
-     * Converts a Jena {@link com.hp.hpl.jena.rdf.model.Resource} into its
-     * equivalent uAAL {@link org.universAAL.middleware.rdf.Resource}
+     * Convert a Jena Resource into a universAAL Resource. This method still
+     * shows the original name "PERSONA", because it is used in many other
+     * artifacts.
      * 
      * @param r
-     *            The Jena Resource
-     * @return The equivalent uAAL Resource
+     *            The Jena {@link com.hp.hpl.jena.rdf.model.Resource} to convert
+     * @return The resulting uAAL {@link org.universAAL.middleware.rdf.Resource}
      */
-	public org.universAAL.middleware.rdf.Resource toPersonaResource(com.hp.hpl.jena.rdf.model.Resource r);
+    public org.universAAL.middleware.rdf.Resource toPersonaResource(
+	    com.hp.hpl.jena.rdf.model.Resource r);
 
     /**
-     * In case there is a database backing up a persistent Jena Resource
-     * storage, this methods allows keeping it up to date.
+     * Update a Jena Resource that is linked to a database with a new value.
+     * This is a helper method for artifacts that have direct access to the Jena
+     * database. Its usage is discouraged.
      * 
      * @param dbRes
-     *            A Jena Resource backed up by a persistent storage database
+     *            The Jena Resource that is backed up by a Database
      * @param updater
-     *            The Jena Resource that contains the information to update in
-     *            the database
-     * @return {@code true} if the storage succeeded. {@code false} otherwise.
+     *            The new value of the Resource that will be saved
+     * @return <code>true</code> if succeeded
      */
-	public boolean updateDBResource(com.hp.hpl.jena.rdf.model.Resource dbRes, com.hp.hpl.jena.rdf.model.Resource updater);
+    public boolean updateDBResource(com.hp.hpl.jena.rdf.model.Resource dbRes,
+	    com.hp.hpl.jena.rdf.model.Resource updater);
 }
