@@ -58,6 +58,10 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 /**
+ * Implementation of {@link org.universAAL.tools.conversion.jena.JenaConverter}.
+ * Converts uAAL {@link org.universAAL.middleware.rdf.Resource} to Jena
+ * {@link com.hp.hpl.jena.rdf.model.Resource and vice-versa}
+ * 
  * @author mtazari
  * 
  */
@@ -384,6 +388,12 @@ public class JenaModelConverter implements JenaConverter {
 		return null;
 	}
 
+    /**
+     * Set the TypeMapper to use for resolving literals.
+     * 
+     * @param tm
+     *            The {@link org.universAAL.middleware.rdf.TypeMapper} to use
+     */
 	void setTypeMapper(TypeMapper tm) {
 		this.tm = tm;
 	}
