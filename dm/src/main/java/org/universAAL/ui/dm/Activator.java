@@ -59,15 +59,34 @@ public class Activator extends Thread implements BundleActivator {
 	private static InputSubscriber inputSubscriber = null;
 	private static OutputPublisher outputPublisher = null;
 	private static ServiceCaller serviceCaller = null;
+	
+	/**
+	 * The configuration file with translated strings to show to the user. 
+	 */
 	private static Messages messages;
 
+	/**
+	 * URL of the database.
+	 */
 	static final String JENA_DB_URL = System.getProperty(
 			"org.persona.platform.jena_db.url",
 			"jdbc:mysql://localhost:3306/persona_aal_space");
+	
+	/**
+	 * User name for accessing the database.
+	 */
 	static final String JENA_DB_USER = System.getProperty(
 			"org.persona.platform.ui.dm.db_user", "ui_dm");
+	
+	/**
+	 * Password for accessing the database.
+	 */
 	static final String JENA_DB_PASSWORD = System.getProperty(
 			"org.persona.platform.ui.dm.db_passwd", "ui_dm");
+	
+	/**
+	 * Model name of the database.
+	 */
 	static final String JENA_MODEL_NAME = System.getProperty(
 			"org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
 
@@ -88,39 +107,80 @@ public class Activator extends Thread implements BundleActivator {
 	// Location.PROP_TARGET_TEMPERATURE));
 	// }
 
+	/**
+	 * Get the bundle context
+	 * @return The bundle context.
+	 */
 	static BundleContext getBundleContext() {
 		return context;
 	}
 
+	/**
+	 * Get a connection to the database.
+	 * @return The database connection.
+	 */
 	static DBConnection getConnection() {
 		return new DBConnection(JENA_DB_URL, JENA_DB_USER, JENA_DB_PASSWORD,
 				"MySQL");
 	}
 
+	/**
+	 * Get the context subscriber which is responsible for realizing system
+	 * reactivity.
+	 * @return The context subscriber.
+	 */
 	static ContextSubscriber getContextSubscriber() {
 		return contextSubscriber;
 	}
 
+	/**
+	 * Get the input subscriber which handles input events from the input bus.
+	 * @return The input subscriber.
+	 */
 	static InputSubscriber getInputSubscriber() {
 		return inputSubscriber;
 	}
 
+	/**
+	 * Get the model converter for accessing the database.
+	 * @return The model converter.
+	 */
 	static JenaConverter getModelConverter() {
 		return mc;
 	}
 
+	/**
+	 * Get output publisher which handles dialogs and messages and interacts
+	 * with the output bus.
+	 * @return The output publisher.
+	 */
 	static OutputPublisher getOutputPublisher() {
 		return outputPublisher;
 	}
 
+	/**
+	 * Get the message serializer which can be used to (de-)serialize
+	 * RDF messages.
+	 * @return The message serializer.
+	 */
 	static MessageContentSerializer getSerializer() {
 		return serializer;
 	}
 
+	/**
+	 * Get service caller.
+	 * @return The service caller.
+	 */
 	static ServiceCaller getServiceCaller() {
 		return serviceCaller;
 	}
 
+	/**
+	 * Create a new user for testing purposes with some default values. The
+	 * new user is then uploaded to the database.
+	 * @param uri The URI of the user.
+	 * @param name The name of the user.
+	 */
 	static void loadTestData(String uri, String name) {
 		UserIdentificationProfile uip = new UserIdentificationProfile();
 		uip.setName(name);
@@ -148,6 +208,10 @@ public class Activator extends Thread implements BundleActivator {
 		insert(eu);
 	}
 
+	/**
+	 * Insert a new user into the database, e.g. a self-defined test user. 
+	 * @param pr
+	 */
 	private static void insert(Resource pr) {
 		try {
 			DBConnection conn = getConnection();
@@ -166,14 +230,29 @@ public class Activator extends Thread implements BundleActivator {
 		}
 	}
 
+	/**
+	 * Get a string from the configuration file.
+	 * @param key Get the translated string for this key.
+	 * @return The translated string.
+	 */
 	static String getString(String key) {
 		return messages.getString(key);
 	}
 
+	/**
+	 * Get the configuration file reader which contains the translated strings
+	 * of all messages shown to the user. The configuration file reader is
+	 * initialized with the correct path to the file system.
+	 * @return The configuration file reader.
+	 */
 	static Messages getConfFileReader() {
 		return messages;
 	}
 
+	/**
+	 * The bundle start method externalized in a separate thread for non-
+	 * blocking initialization of this bundle.
+	 */
 	public void run() {
 		try {
 			messages = new Messages(context.getBundle().getSymbolicName());
@@ -197,6 +276,9 @@ public class Activator extends Thread implements BundleActivator {
 		// changeTestData();
 	}
 
+	/**
+	 * Method for OSGi bundle: start this bundle.
+	 */
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
 		ServiceReference sref = context
@@ -208,6 +290,9 @@ public class Activator extends Thread implements BundleActivator {
 		start();
 	}
 
+	/**
+	 * Method for OSGi bundle: stop this bundle.
+	 */
 	public void stop(BundleContext arg0) throws Exception {
 		// TODO Auto-generated method stub
 	}
