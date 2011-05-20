@@ -28,7 +28,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 /**
- * 
+ * Keeping time, and displaying it on the screen
  * @author phamisu
  *
  */
@@ -91,8 +91,10 @@ public class DateTime {
 	/**
 	 * Sets the time label.
 	 *
-	 * @param timeLabel label into which set the time
-	 * @param time time the time to set
+	 * @param timeLabel 
+	 * 			label into which set the time
+	 * @param time 
+	 * 			time the time to set
 	 */
 	private void setTimeLabel(final JButton timeLabel, final String time) {
 		SwingUtilities.invokeLater(new Runnable() {
