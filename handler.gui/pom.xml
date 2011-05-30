@@ -85,7 +85,7 @@
 			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<!--used the following in order to make a bundle from the jar: mvn deploy:deploy-file -Dfile=src\main\resources\lib\TableLayout.jar -DgroupId=org.universAAL.ui -DartifactId=ui.handler.gui.tableLayout -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Durl=http://a1gforge.igd.fraunhofer.de:8081/nexus/content/repositories/snapshots -DrepositoryId=snapshots -->
+			<!--used the following in order to make a bundle from the jar: mvn deploy:deploy-file -Dfile=src\main\resources\lib\TableLayout.jar -DgroupId=org.universAAL.ui -DartifactId=ui.handler.gui.tableLayout -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Durl=http://depot.universaal.org/nexus/content/repositories/snapshots -DrepositoryId=snapshots -->
 			<groupId>org.universAAL.ui</groupId>
 			<artifactId>ui.handler.gui.tableLayout</artifactId>
 			<version>1.0-SNAPSHOT</version>
