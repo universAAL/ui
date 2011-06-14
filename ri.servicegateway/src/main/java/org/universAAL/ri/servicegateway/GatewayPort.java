@@ -54,7 +54,7 @@ public abstract class GatewayPort extends javax.servlet.http.HttpServlet {
 	// used to call the profiling service
 	private ServiceCaller caller;
 	private BundleContext bc;
-	private static final String PROFILE_CLIENT_NAMESPACE = "http://ontology.persona.anco.gr/ProfileClient.owl#";
+	private static final String PROFILE_CLIENT_NAMESPACE = "http://ontology.universAAL/ProfileClient.owl#";
 	private static final String OUTPUT_USER = PROFILE_CLIENT_NAMESPACE + "oUser";
 	// the realm is used for HTTP Authentication
 	public final static String REALM = "Help when outside";
