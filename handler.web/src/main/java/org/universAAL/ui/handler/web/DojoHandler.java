@@ -56,6 +56,7 @@ import org.universAAL.middleware.io.rdf.TextArea;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputEventPattern;
 import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.profile.User;
 
 import org.universAAL.ri.servicegateway.GatewayPort;
@@ -110,7 +111,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 				OutputEvent.PROP_OUTPUT_MODALITY, Modality.sms));
 		// oep.addRestriction(Restriction.getFixedValueRestriction(
 		// OutputEvent.PROP_PRESENTATION_LOCATION, new
-		// PLocation(MiddlewareConstants.PERSONA_MIDDLEWARE_LOCAL_ID_PREFIX+"Internet")));
+		 //PLocation(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+"Internet")));
 		return oep;
 	}
 
@@ -494,7 +495,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 
 	@Override
 	public String url() {
-		return "/persona";
+		return "/universAAL";
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -520,7 +521,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 			event = new InputEvent(new User(userURI), null/*
 														 * newPLocation(
 														 * MiddlewareConstants.
-														 * PERSONA_MIDDLEWARE_LOCAL_ID_PREFIX
+														 * uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 														 * +"Internet")
 														 */,
 					InputEvent.uAAL_MAIN_MENU_REQUEST);
