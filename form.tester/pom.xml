@@ -1,17 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.universAAL.samples</groupId>
-  <artifactId>smp.form.tester</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <packaging>bundle</packaging>
-  
-  <dependencies>
-			<dependency>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>org.osgi.core</artifactId>
-				<version>1.0.1</version>
-			</dependency>
-			<dependency>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.universAAL.samples</groupId>
+		<artifactId>smp.pom</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../../../middleware/trunk/samples/pom/pom.xml</relativePath>
+	</parent>
+	<groupId>org.universAAL.samples</groupId>
+	<artifactId>smp.form.tester</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.felix</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.ops4j.pax.logging</groupId>
 			<artifactId>pax-logging-api</artifactId>
 			<version>1.4</version>
@@ -29,7 +35,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.data.representation</artifactId>
 			<version>0.3.0-SNAPSHOT</version>
@@ -49,24 +55,24 @@
 			<artifactId>ont.profile</artifactId>
 			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-Name>${pom.name}</Bundle-Name>
-            <Bundle-Activator>org.persona.platform.ui.tester.Activator</Bundle-Activator>
-            <Bundle-Description>${pom.description}</Bundle-Description>
-            <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
-            <Private-Package>org.persona.platform.ui.tester.*</Private-Package>
-          </instructions>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Name>${pom.name}</Bundle-Name>
+						<Bundle-Activator>org.persona.platform.ui.tester.Activator</Bundle-Activator>
+						<Bundle-Description>${pom.description}</Bundle-Description>
+						<Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+						<Private-Package>org.persona.platform.ui.tester.*</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
