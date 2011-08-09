@@ -30,8 +30,6 @@ import org.universAAL.middleware.rdf.Resource;
  * Subscriber Class to Output Bus.
  * 
  * Handles the Output events, and delivers them to {@link SwingRenderer}.
- */
-/**
  * @author amedrano
  * 
  */
