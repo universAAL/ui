@@ -1,1 +1,6 @@
 * text=auto !eol
+form.tester/pom.xml -text
+form.tester/src/main/java/org/persona/platform/ui/tester/Activator.java -text
+form.tester/src/main/java/org/persona/platform/ui/tester/ISubscriber.java -text
+form.tester/src/main/java/org/persona/platform/ui/tester/OPublisher.java -text
+form.tester/src/main/java/org/persona/platform/ui/tester/SCallee.java -text
