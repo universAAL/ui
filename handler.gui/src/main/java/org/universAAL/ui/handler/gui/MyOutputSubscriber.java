@@ -19,7 +19,7 @@
  */
 package org.universAAL.ui.handler.gui;
 
-import org.osgi.framework.BundleContext;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputEventPattern;
@@ -55,17 +55,17 @@ public class MyOutputSubscriber extends OutputSubscriber {
 	 * {@link SwingRenderer} instance.
 	 * 
 	 * @param context
-	 *            {@link BundleContext} passed by the activator.
+	 *            {@link ModuleContext} passed by the activator.
 	 * @param initialSubscription
 	 *            list of patterns which the {@link OutputSubscriber} will
 	 *            listen for.
 	 * @param guiHandler
 	 *            {@link GUIIOHandler} to which to link {@link SwingRenderer}
 	 */
-	protected MyOutputSubscriber(BundleContext context,
+	protected MyOutputSubscriber(ModuleContext context,
 			OutputEventPattern initialSubscription, GUIIOHandler guiHandler) {
 		super(context, initialSubscription);
-		renderer = new SwingRenderer(guiHandler, context);
+		renderer = new SwingRenderer(guiHandler);
 	}
 
 	/**

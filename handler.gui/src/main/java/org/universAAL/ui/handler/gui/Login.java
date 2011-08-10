@@ -21,9 +21,8 @@ package org.universAAL.ui.handler.gui;
 
 import javax.swing.*;
 
-import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.middleware.input.DefaultInputPublisher;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.input.InputEvent;
 import org.universAAL.middleware.input.InputPublisher;
 import org.universAAL.middleware.service.CallStatus;
@@ -49,6 +48,10 @@ import java.util.List;
  * Display and retrieve Login Information.
  */
 public class Login extends JFrame implements ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final static Logger log = LoggerFactory.getLogger(GUIIOHandler.class);
 	private static final String PROFILE_CLIENT_NAMESPACE = "http://ontology.persona.anco.gr/ProfileClient.owl#";
 	private static final String OUTPUT_USER = PROFILE_CLIENT_NAMESPACE + "oUser";
@@ -70,7 +73,7 @@ public class Login extends JFrame implements ActionListener {
 	 * @param inPublisher Input Publisher so to publish in 
 	 * 			input bus the login data collected from the user
 	 */
-	public Login(BundleContext context, InputPublisher inPublisher)
+	public Login(ModuleContext context, InputPublisher inPublisher)
 	{
 		caller=new DefaultServiceCaller(context);
 		ip = inPublisher;

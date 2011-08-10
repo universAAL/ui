@@ -83,8 +83,8 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext; //import org.osgi.service.log.LogService;
+import layout.TableLayout;
+
 import org.universAAL.middleware.io.rdf.ChoiceItem;
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.FormControl;
@@ -96,12 +96,10 @@ import org.universAAL.middleware.io.rdf.Range;
 import org.universAAL.middleware.io.rdf.Repeat;
 import org.universAAL.middleware.io.rdf.Select;
 import org.universAAL.middleware.io.rdf.Select1;
+import org.universAAL.middleware.io.rdf.SimpleOutput;
 import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.middleware.io.rdf.TextArea;
-import org.universAAL.middleware.io.rdf.SimpleOutput;
-import org.universAAL.ui.handler.gui.RendererGuiConstants;
-
-import layout.TableLayout;
+import org.universAAL.middleware.rdf.TypeMapper;
 
 /**
  * Main Java swing worker. manages all rendering and events for java swing. This
@@ -151,7 +149,6 @@ public class SwingRenderer extends JFrame implements ActionListener,
 		this.listValue = listValue;
 	}
 
-	private BundleContext context = null;
 	private int sliderValue = 0;
 	private JList list;
 	private String listValue = "";
@@ -178,10 +175,9 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	 * @param theHandler
 	 * @param context
 	 */
-	public SwingRenderer(GUIIOHandler theHandler, BundleContext context)
+	public SwingRenderer(GUIIOHandler theHandler)
 			throws HeadlessException {
 		super();
-		this.context = context;
 		this.theHandler = theHandler;
 		this.rendererGuiConstants = new RendererGuiConstants();
 	}
@@ -240,7 +236,10 @@ public class SwingRenderer extends JFrame implements ActionListener,
 			if (src instanceof JCheckBox)
 				value = new Boolean(((JCheckBox) src).isSelected());
 			else if (src instanceof JTextField)
-				value = Activator.getTypeMapper().getJavaInstance(
+				/*value = Activator.getTypeMapper().getJavaInstance(
+						((JTextField) src).getText(),
+						((InputField) o).getTypeURI());*/
+				value = TypeMapper.getJavaInstance(
 						((JTextField) src).getText(),
 						((InputField) o).getTypeURI());
 			if (!((InputField) o).storeUserInput(value))
@@ -468,23 +467,8 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	}
 
 	private ImageIcon getIcon(String name, String description) {
-		URL r = null;
+		URL r = Activator.getResource(name);
 		ImageIcon icon = null;
-		if (this.context != null) {
-			Bundle b = null;
-			try {
-				b = this.context.getBundle();
-			} catch (RuntimeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			if (b.getEntry(name) != null) {
-				String path = b.getEntry(name).getPath();
-				r = b.getResource(path);
-			}
-		} else {
-			r = SwingRenderer.class.getResource(name);
-		}
 		if (r != null) {
 			if (description == null)
 				icon = new ImageIcon(r);

@@ -19,9 +19,9 @@
  */
 package org.universAAL.ui.handler.gui;
 
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.input.DefaultInputPublisher;
 import org.universAAL.middleware.input.InputEvent;
 import org.universAAL.middleware.input.InputPublisher;
@@ -72,7 +72,7 @@ public class GUIIOHandler {
 	 * @param context
 	 *            Bundle context passed by {@link Activator}
 	 */
-	public GUIIOHandler(BundleContext context) {
+	public GUIIOHandler(ModuleContext context) {
 		super();
 
 		os = new MyOutputSubscriber(context, getOutputSubscriptionParams(),
