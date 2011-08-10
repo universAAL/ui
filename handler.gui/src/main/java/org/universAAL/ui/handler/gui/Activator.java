@@ -19,12 +19,21 @@
  */
 package org.universAAL.ui.handler.gui;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.universAAL.middleware.util.Constants;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.User;
@@ -69,6 +78,17 @@ public class Activator implements BundleActivator, ServiceListener {
 	public static BundleContext context;
 	
 	/**
+	 * uAAL {@link ModuleContext}
+	 */
+	private static ModuleContext mcontext;
+	
+	/**
+	 * uAAL Configuration folder
+	 * {@link BundleConfigHome}
+	 */
+	private static final BundleConfigHome home = new BundleConfigHome("ui.handler.gui");
+	
+	/**
 	 * Starting method of org.universAAl.ui.handler.gui bundle.
 	 * 
 	 * Starts new {@link GUIIOHandler} in a new Thread.
@@ -78,7 +98,8 @@ public class Activator implements BundleActivator, ServiceListener {
 	 */
 	public void start(final BundleContext context) throws Exception {
 		Activator.context = context;
-
+		BundleContext[] bc = {context};
+		Activator.mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
 		String filter = "(objectclass=" + TypeMapper.class.getName() + ")";
 		context.addServiceListener(this, filter);
 		ServiceReference references[] = context.getServiceReferences(null, filter);
@@ -87,7 +108,7 @@ public class Activator implements BundleActivator, ServiceListener {
 
 		new Thread() {
 			public void run() {
-				new GUIIOHandler(context);
+				new GUIIOHandler(Activator.mcontext);
 				//
 				// un-comment the following lines, if you want to test the handling of messages
 				//
@@ -147,5 +168,47 @@ public class Activator implements BundleActivator, ServiceListener {
 	public static TypeMapper getTypeMapper() {
 		return tm;
 	}
-
+	
+	/**
+	 * Get resource
+	 */
+	public static URL getResource(String name) {
+		URL r = null;
+		if (Activator.context != null) {
+			Bundle b = null;
+			try {
+				b = Activator.context.getBundle();
+			} catch (RuntimeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (b.getEntry(name) != null) {
+				String path = b.getEntry(name).getPath();
+				r = b.getResource(path);
+			}
+		} else {
+			r = SwingRenderer.class.getResource(name);
+		}
+		return r;
+	}
+	
+	/**
+	 * Get a configuration file as a stream.
+	 * For example to read properties.
+	 */
+	public static InputStream getConfFileAsStream(String name) {
+		try {
+			return home.getConfFileAsStream(name);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	/**
+	 * Get the configuration directory
+	 */
+	public static String getConfDir() {
+		return home.getAbsolutePath();
+	}
 }
