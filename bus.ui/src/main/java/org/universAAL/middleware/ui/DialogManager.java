@@ -58,7 +58,7 @@ public interface DialogManager {
      *         the event in a queue of suspended dialogs and will re-activate it
      *         whenever appropriate.
      */
-    public boolean checkNewDialog(UICall event);
+    public boolean checkNewDialog(UIRequest event);
 
     /**
      * Informs the Dialog Manager that a running dialog has finished according
@@ -71,7 +71,7 @@ public interface DialogManager {
      */
     public void dialogFinished(String dialogID);
 
-    public UICall getMainMenu(Resource user, AbsLocation loginLocation);
+    public UIRequest getMainMenu(Resource user, AbsLocation loginLocation);
 
     /**
      * When the application has informed the bus that a suspended parent dialog
@@ -82,7 +82,7 @@ public interface DialogManager {
      *            ID of the dialog
      * @return
      */
-    public UICall getSuspendedDialog(String dialogID);
+    public UIRequest getSuspendedDialog(String dialogID);
 
     /**
      * The bus must use this method in order to inform the Dialog Manager that a

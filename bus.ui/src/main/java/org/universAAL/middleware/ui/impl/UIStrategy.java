@@ -32,11 +32,11 @@ import org.universAAL.middleware.sodapop.SodaPop;
 import org.universAAL.middleware.sodapop.msg.Message;
 import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
-import org.universAAL.middleware.ui.UICall;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UICallPattern;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
-import org.universAAL.middleware.ui.UserInput;
+import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.util.Constants;
 
 /**
@@ -148,7 +148,7 @@ public class UIStrategy extends BusStrategy {
      * @param changedProp
      *            Changed property from the request
      */
-    void adaptationParametersChanged(DialogManager dm, UICall request,
+    void adaptationParametersChanged(DialogManager dm, UIRequest request,
 	    String changedProp) {
 	if (dm != null && dm == dialogManager) {
 	    int aux, numInMod = 0, matchResult = UICallPattern.MATCH_LEVEL_FAILED;
@@ -254,7 +254,7 @@ public class UIStrategy extends BusStrategy {
      * @param poppedMessage
      *            Indicates if the dialog was a popup
      */
-    void dialogFinished(final String subscriberID, final UserInput input) {
+    void dialogFinished(final String subscriberID, final UIResponse input) {
 	final String dialogID = input.getDialogID();
 	// first handle the bus internal handling of this request
 	if (isCoordinator()) {
@@ -333,7 +333,7 @@ public class UIStrategy extends BusStrategy {
 	    if (res.getType().equals(TYPE_uAAL_UI_BUS_NOTIFICATION)) {
 		String handlerID = (String) res
 			.getProperty(PROP_uAAL_UI_HANDLER_ID);
-		UICall oe = (UICall) res.getProperty(PROP_uAAL_UI_CALL);
+		UIRequest oe = (UIRequest) res.getProperty(PROP_uAAL_UI_CALL);
 		Boolean isNew = (Boolean) res
 			.getProperty(PROP_uAAL_UI_IS_NEW_REQUEST);
 		if (handlerID == null || oe == null || isNew == null) {
@@ -348,24 +348,24 @@ public class UIStrategy extends BusStrategy {
 		    notifyHandler_apChanged(handlerID, oe, res.getProperty(
 			    PROP_uAAL_CHANGED_PROPERTY).toString());
 		// handle UI requests
-	    } else if (res instanceof UICall) {
+	    } else if (res instanceof UIRequest) {
 		// if the message is from the local instance directly push it to
 		// the request queue
 		if (!msg.isRemote()) {
 		    BusMember sender = getBusMember(senderID);
 		    if (sender instanceof UICaller)
-			pendingRequests.put(((UICall) res).getDialogForm()
+			pendingRequests.put(((UIRequest) res).getDialogForm()
 				.getDialogID(), sender);
 		    // TODO: else log entry about inconsistency
 		}
 		// if the local instance is the coordinator check if we need to
 		// adapt an existing dialog
 		if (isCoordinator()) {
-		    if (dialogManager.checkNewDialog((UICall) res)) {
+		    if (dialogManager.checkNewDialog((UIRequest) res)) {
 			res.setProperty(PROP_uAAL_UI_CALL, msg
 				.getContentAsString());
 			adaptationParametersChanged(dialogManager,
-				(UICall) res, null);
+				(UIRequest) res, null);
 			res.changeProperty(PROP_uAAL_UI_CALL, null);
 		    }
 		    // If it is not the coordinator send the message to it ???
@@ -381,7 +381,7 @@ public class UIStrategy extends BusStrategy {
 	    boolean parametrizedNotification = res.getType().equals(
 		    TYPE_uAAL_UI_BUS_NOTIFICATION);
 	    if (parametrizedNotification) {
-		UserInput input = (UserInput) res
+		UIResponse input = (UIResponse) res
 			.getProperty(PROP_uAAL_UI_USER_INPUT);
 		if (input != null) {
 		    UICaller caller = (UICaller) pendingRequests.get(input
@@ -525,10 +525,10 @@ public class UIStrategy extends BusStrategy {
 	// Add an user input the pool
 	case MessageType.REPLY:
 	    if (isCoordinator()
-		    && res instanceof UserInput
-		    && waitingForCut.get(((UserInput) res).getDialogID()) instanceof String) {
+		    && res instanceof UIResponse
+		    && waitingForCut.get(((UIResponse) res).getDialogID()) instanceof String) {
 		synchronized (waitingForCut) {
-		    waitingForCut.put(((UserInput) res).getDialogID(), res);
+		    waitingForCut.put(((UIResponse) res).getDialogID(), res);
 		    notifyAll();
 		}
 	    }
@@ -549,12 +549,12 @@ public class UIStrategy extends BusStrategy {
 			    .substring(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 				    .length()));
 		    if (o instanceof UIHandler) {
-			UserInput ie = new UserInput();
-			ie.setProperty(UserInput.PROP_DIALOG_ID, dialogID);
+			UIResponse ie = new UIResponse();
+			ie.setProperty(UIResponse.PROP_DIALOG_ID, dialogID);
 			Resource userInput = ((UIHandler) o)
 				.cutDialog(dialogID);
 			if (userInput != null)
-			    ie.setProperty(UserInput.PROP_DIALOG_DATA,
+			    ie.setProperty(UIResponse.PROP_DIALOG_DATA,
 				    userInput);
 			UIBusImpl.assessContentSerialization(ie);
 			sodapop.propagateMessage(bus, msg.createReply(ie));
@@ -651,7 +651,7 @@ public class UIStrategy extends BusStrategy {
      * @param changedProp
      *            Property changed in the new content
      */
-    private void notifyHandler_apChanged(String handlerID, UICall request,
+    private void notifyHandler_apChanged(String handlerID, UIRequest request,
 	    String changedProp) {
 	String content = (String) request.getProperty(PROP_uAAL_UI_CALL);
 	String peerID = Constants.extractPeerID(handlerID);
@@ -721,14 +721,14 @@ public class UIStrategy extends BusStrategy {
 	    synchronized (waitingForCut) {
 		waitingForCut.put(dialogID, handlerID);
 		sodapop.propagateMessage(bus, m);
-		while (!(waitingForCut.get(handlerID) instanceof UserInput)) {
+		while (!(waitingForCut.get(handlerID) instanceof UIResponse)) {
 		    try {
 			wait();
 		    } catch (Exception e) {
 		    }
 		}
-		UserInput ie = (UserInput) waitingForCut.remove(handlerID);
-		return (Resource) ie.getProperty(UserInput.PROP_DIALOG_DATA);
+		UIResponse ie = (UIResponse) waitingForCut.remove(handlerID);
+		return (Resource) ie.getProperty(UIResponse.PROP_DIALOG_DATA);
 	    }
 	} // else
 	// TODO: a log entry
@@ -744,7 +744,7 @@ public class UIStrategy extends BusStrategy {
      * @param request
      *            Request to handle
      */
-    private void notifyHandler_handle(String handlerID, UICall request) {
+    private void notifyHandler_handle(String handlerID, UIRequest request) {
 	String content = (String) request.getProperty(PROP_uAAL_UI_CALL);
 	String peerID = Constants.extractPeerID(handlerID);
 	// if the handler is the local node handle the output
@@ -859,7 +859,7 @@ public class UIStrategy extends BusStrategy {
      */
     void resumeDialog(String dialogID, Resource dialogData) {
 	if (isCoordinator()) {
-	    UICall oe = dialogManager.getSuspendedDialog(dialogID);
+	    UIRequest oe = dialogManager.getSuspendedDialog(dialogID);
 	    if (oe != null) {
 		oe.setCollectedInput(dialogData);
 		adaptationParametersChanged(dialogManager, oe, null);

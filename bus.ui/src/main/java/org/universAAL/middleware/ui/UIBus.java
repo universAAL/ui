@@ -70,7 +70,7 @@ public interface UIBus {
      * notified to abort the dialog while returning any intermediate user input
      * collected so far (by calling {@link UIHandler#cutDialog(String)}), and
      * then the new UI handler is mandated (by calling
-     * {@link UIHandler#handleOutputEvent(UICall)}) to continue with the dialog
+     * {@link UIHandler#handleOutputEvent(UIRequest)}) to continue with the dialog
      * presentation without loss of data.
      * 
      * @param dm
@@ -83,12 +83,12 @@ public interface UIBus {
      *            the property (from among all properties of the call context)
      *            that has changed
      */
-    public void adaptationParametersChanged(DialogManager dm, UICall uicall,
+    public void adaptationParametersChanged(DialogManager dm, UIRequest uicall,
 	    String changedProp);
 
     /**
      * Extends the profile of a registered subscriber (UI handler) with regard
-     * to {@link UICall}s that it can be handle. Responsible (together with
+     * to {@link UIRequest}s that it can be handle. Responsible (together with
      * {@link #removeMatchingRegParams(String, UICallPattern)}) for changing the
      * handler's profile dynamically.
      * 
@@ -96,7 +96,7 @@ public interface UIBus {
      *            ID of the UI handler introducing the new registration
      *            parameters
      * @param newSubscription
-     *            the new class of {@link UICall}s that can additionally be
+     *            the new class of {@link UIRequest}s that can additionally be
      *            handled by the given UI handler
      */
     public void addNewRegParams(String handlerID, UICallPattern newSubscription);
@@ -109,9 +109,9 @@ public interface UIBus {
      *            ID of the UI handler that has finished the dialog
      * @param input
      *            The user input constructed by calling
-     *            {@link UserInput#UserInput(Resource, AbsLocation, Submit)}
+     *            {@link UIResponse#UserInput(Resource, AbsLocation, Submit)}
      */
-    public void dialogFinished(String handlerID, UserInput input);
+    public void dialogFinished(String handlerID, UIResponse input);
 
     /**
      * Only the Dialog Manager (DM) can call this method. When the DM wants that
@@ -164,7 +164,7 @@ public interface UIBus {
     public String register(UIHandler handler, UICallPattern initialSubscription);
 
     /**
-     * Removes matching patterns of {@link UICall}s from the profile of the UI
+     * Removes matching patterns of {@link UIRequest}s from the profile of the UI
      * handler. Responsible (together with
      * {@link #addNewRegParams(String, UICallPattern)}) for changing the
      * handler's profile dynamically.
@@ -197,14 +197,14 @@ public interface UIBus {
 	    Resource dialogData);
 
     /**
-     * Can be used by applications to send a UICall.
+     * Can be used by applications to send a UIRequest.
      * 
      * @param callerID
      *            ID of the caller that is sending the UI request
      * @param uicall
      *            The actual UI request
      */
-    public void sendMessage(String callerID, UICall uicall);
+    public void sendMessage(String callerID, UIRequest uicall);
 
     /**
      * Unregisters an application's caller from the bus.
