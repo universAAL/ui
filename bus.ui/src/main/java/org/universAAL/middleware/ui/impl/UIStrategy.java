@@ -33,7 +33,7 @@ import org.universAAL.middleware.sodapop.msg.Message;
 import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UICallPattern;
+import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIResponse;
@@ -51,7 +51,7 @@ public class UIStrategy extends BusStrategy {
 
     /**
      * 
-     * A subscription is the combination of a filter in form of an UICallPattern
+     * A subscription is the combination of a filter in form of an UIHandlerProfile
      * and the ID of the subscriber.
      * 
      * @author amarinc
@@ -59,9 +59,9 @@ public class UIStrategy extends BusStrategy {
      */
     private class Subscription {
 	String subscriberID;
-	UICallPattern filter;
+	UIHandlerProfile filter;
 
-	Subscription(String subscriberID, UICallPattern filter) {
+	Subscription(String subscriberID, UIHandlerProfile filter) {
 	    this.subscriberID = subscriberID;
 	    this.filter = filter;
 	}
@@ -151,7 +151,7 @@ public class UIStrategy extends BusStrategy {
     void adaptationParametersChanged(DialogManager dm, UIRequest request,
 	    String changedProp) {
 	if (dm != null && dm == dialogManager) {
-	    int aux, numInMod = 0, matchResult = UICallPattern.MATCH_LEVEL_FAILED;
+	    int aux, numInMod = 0, matchResult = UIHandlerProfile.MATCH_LEVEL_FAILED;
 	    synchronized (globalSubscriptions) {
 		String selectedHandler = null, currentHandler = (String) runningDialogs
 			.get(request.getDialogID());
@@ -172,7 +172,7 @@ public class UIStrategy extends BusStrategy {
 		for (Iterator i = globalSubscriptions.iterator(); i.hasNext();) {
 		    Subscription s = (Subscription) i.next();
 		    aux = s.filter.matches(request);
-		    if (aux > UICallPattern.MATCH_LEVEL_FAILED) {
+		    if (aux > UIHandlerProfile.MATCH_LEVEL_FAILED) {
 			if (s.subscriberID.equals(currentHandler)) {
 			    notifyHandler_apChanged(currentHandler, request,
 				    changedProp);
@@ -217,10 +217,10 @@ public class UIStrategy extends BusStrategy {
      * @param subscriberID
      *            ID of the subscriber
      * @param newSubscription
-     *            UICallPattern thats contains the details about the
+     *            UIHandlerProfile thats contains the details about the
      *            subscription
      */
-    void addRegParams(String subscriberID, UICallPattern newSubscription) {
+    void addRegParams(String subscriberID, UIHandlerProfile newSubscription) {
 	if (newSubscription == null)
 	    return;
 
@@ -415,7 +415,7 @@ public class UIStrategy extends BusStrategy {
 		else if (res.getType().equals(TYPE_uAAL_UI_BUS_SUBSCRIPTION)) {
 		    String handler = (String) res
 			    .getProperty(PROP_uAAL_UI_HANDLER_ID);
-		    UICallPattern subscription = (UICallPattern) res
+		    UIHandlerProfile subscription = (UIHandlerProfile) res
 			    .getProperty(PROP_uAAL_UI_SUBSCRIPTION);
 		    Boolean removes = (Boolean) res
 			    .getProperty(PROP_uAAL_UI_REMOVE_SUBSCRIPTION);
@@ -787,7 +787,7 @@ public class UIStrategy extends BusStrategy {
      *            Subscription to remove
      */
     void removeMatchingRegParams(String subscriberID,
-	    UICallPattern oldSubscription) {
+	    UIHandlerProfile oldSubscription) {
 	if (subscriberID == null || oldSubscription == null)
 	    return;
 

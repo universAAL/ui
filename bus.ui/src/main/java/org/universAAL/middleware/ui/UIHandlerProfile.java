@@ -32,9 +32,9 @@ import org.universAAL.middleware.ui.owl.Modality;
  * @author mtazari
  * 
  */
-public class UICallPattern extends Resource {
+public class UIHandlerProfile extends Resource {
     public static final String MY_URI = UIRequest.uAAL_UI_NAMESPACE
-	    + "UICallPattern";
+	    + "UIHandlerProfile";
     public static final String PROP_INPUT_MODALITY = UIRequest.uAAL_UI_NAMESPACE
 	    + "inputModality";
 
@@ -43,12 +43,12 @@ public class UICallPattern extends Resource {
     public static final int MATCH_LEVEL_SUCCESS = 2;
 
     static {
-	addResourceClass(MY_URI, UICallPattern.class);
+	addResourceClass(MY_URI, UIHandlerProfile.class);
     }
 
     private List restrictions;
 
-    public UICallPattern() {
+    public UIHandlerProfile() {
 	super();
 	addType(MY_URI, true);
 	restrictions = new ArrayList(12);
@@ -116,7 +116,7 @@ public class UICallPattern extends Resource {
 	return result;
     }
 
-    public boolean matches(UICallPattern subtype) {
+    public boolean matches(UIHandlerProfile subtype) {
 	if (subtype == null)
 	    return false;
 

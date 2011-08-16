@@ -89,7 +89,7 @@ public interface UIBus {
     /**
      * Extends the profile of a registered subscriber (UI handler) with regard
      * to {@link UIRequest}s that it can be handle. Responsible (together with
-     * {@link #removeMatchingRegParams(String, UICallPattern)}) for changing the
+     * {@link #removeMatchingRegParams(String, UIHandlerProfile)}) for changing the
      * handler's profile dynamically.
      * 
      * @param handlerID
@@ -99,7 +99,7 @@ public interface UIBus {
      *            the new class of {@link UIRequest}s that can additionally be
      *            handled by the given UI handler
      */
-    public void addNewRegParams(String handlerID, UICallPattern newSubscription);
+    public void addNewRegParams(String handlerID, UIHandlerProfile newSubscription);
 
     /**
      * Whenever a dialog is finished, UI handlers must inform the UI Bus by
@@ -155,18 +155,18 @@ public interface UIBus {
      *            replies.
      * @param initialSubscription
      *            The initial profile of the handler (see also
-     *            {@link #addNewRegParams(String, UICallPattern)} and
-     *            {@link #removeMatchingRegParams(String, UICallPattern)}).
+     *            {@link #addNewRegParams(String, UIHandlerProfile)} and
+     *            {@link #removeMatchingRegParams(String, UIHandlerProfile)}).
      * @return An ID for this bus member that is used as a kind of "password" of
      *         the handler. It must be passed to the bus when calling the other
      *         bus methods.
      */
-    public String register(UIHandler handler, UICallPattern initialSubscription);
+    public String register(UIHandler handler, UIHandlerProfile initialSubscription);
 
     /**
      * Removes matching patterns of {@link UIRequest}s from the profile of the UI
      * handler. Responsible (together with
-     * {@link #addNewRegParams(String, UICallPattern)}) for changing the
+     * {@link #addNewRegParams(String, UIHandlerProfile)}) for changing the
      * handler's profile dynamically.
      * 
      * @param subscriberID
@@ -175,7 +175,7 @@ public interface UIBus {
      *            old subscription
      */
     public void removeMatchingRegParams(String subscriberID,
-	    UICallPattern oldSubscription);
+	    UIHandlerProfile oldSubscription);
 
     /**
      * Applications can use this method to ask the output bus to resume a dialog
