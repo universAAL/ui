@@ -64,7 +64,6 @@ handler.gui/src/main/java/org/universAAL/ui/handler/gui/GUIIOHandler.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/Login.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/MyOutputSubscriber.java -text svneol=unset#text/plain
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/PropertyLoader.java -text
-handler.gui/src/main/java/org/universAAL/ui/handler/gui/RendererGuiConstants.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTableModel.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTablePane.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/SwingRenderer.java -text
