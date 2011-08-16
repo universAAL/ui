@@ -285,7 +285,9 @@
 		<module>../dm</module>
 		<module>../conversion.jena</module>
 		<module>../handler.gui</module>
-		<module>../../../ontologies/trunk/user.profile</module>
+		<module>../handler.web</module>
+		<module>../ri.servicegateway</module>
+<!-- 		<module>../../../ontologies/trunk/user.profile</module> -->
 	</modules>
 
 </project>
