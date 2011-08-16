@@ -44,10 +44,10 @@ import org.universAAL.middleware.ui.rdf.Form;
  * @author mtazari
  * 
  */
-public class UICall extends Resource {
+public class UIRequest extends Resource {
     public static final String uAAL_UI_NAMESPACE = uAAL_NAMESPACE_PREFIX
 	    + "UI.owl#";
-    public static final String MY_URI = uAAL_UI_NAMESPACE + "UICall";
+    public static final String MY_URI = uAAL_UI_NAMESPACE + "UIRequest";
 
     public static final String PROP_ADDRESSED_USER = uAAL_UI_NAMESPACE
 	    + "addressedUser";
@@ -81,17 +81,17 @@ public class UICall extends Resource {
 	    + "voiceLevel";
 
     static {
-	addResourceClass(MY_URI, UICall.class);
+	addResourceClass(MY_URI, UIRequest.class);
     }
 
     /**
      * This constructor is for the exclusive usage by deserializers.
      */
-    public UICall() {
+    public UIRequest() {
 	super();
     }
 
-    public UICall(Resource user, Form dialogForm, LevelRating dialogPriority,
+    public UIRequest(Resource user, Form dialogForm, LevelRating dialogPriority,
 	    Locale dialogLang, PrivacyLevel dialogPrivacy) {
 	super();
 

@@ -33,9 +33,9 @@ import org.universAAL.middleware.ui.owl.Modality;
  * 
  */
 public class UICallPattern extends Resource {
-    public static final String MY_URI = UICall.uAAL_UI_NAMESPACE
+    public static final String MY_URI = UIRequest.uAAL_UI_NAMESPACE
 	    + "UICallPattern";
-    public static final String PROP_INPUT_MODALITY = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_INPUT_MODALITY = UIRequest.uAAL_UI_NAMESPACE
 	    + "inputModality";
 
     public static final int MATCH_LEVEL_FAILED = 0;
@@ -60,17 +60,17 @@ public class UICallPattern extends Resource {
 	    return;
 
 	String prop = r.getOnProperty();
-	if (UICall.PROP_HAS_ACCESS_IMPAIRMENT.equals(prop)
-		|| UICall.PROP_DIALOG_LANGUAGE.equals(prop)
-		|| UICall.PROP_PRESENTATION_MODALITY.equals(prop)
-		|| UICall.PROP_PRESENTATION_LOCATION.equals(prop)
-		|| UICall.PROP_DIALOG_PRIVACY_LEVEL.equals(prop)
-		|| UICall.PROP_SCREEN_RESOLUTION_MAX_X.equals(prop)
-		|| UICall.PROP_SCREEN_RESOLUTION_MAX_Y.equals(prop)
-		|| UICall.PROP_SCREEN_RESOLUTION_MIN_X.equals(prop)
-		|| UICall.PROP_SCREEN_RESOLUTION_MIN_Y.equals(prop)
-		|| UICall.PROP_VOICE_GENDER.equals(prop)
-		|| UICall.PROP_VOICE_LEVEL.equals(prop))
+	if (UIRequest.PROP_HAS_ACCESS_IMPAIRMENT.equals(prop)
+		|| UIRequest.PROP_DIALOG_LANGUAGE.equals(prop)
+		|| UIRequest.PROP_PRESENTATION_MODALITY.equals(prop)
+		|| UIRequest.PROP_PRESENTATION_LOCATION.equals(prop)
+		|| UIRequest.PROP_DIALOG_PRIVACY_LEVEL.equals(prop)
+		|| UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(prop)
+		|| UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y.equals(prop)
+		|| UIRequest.PROP_SCREEN_RESOLUTION_MIN_X.equals(prop)
+		|| UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y.equals(prop)
+		|| UIRequest.PROP_VOICE_GENDER.equals(prop)
+		|| UIRequest.PROP_VOICE_LEVEL.equals(prop))
 	    if (propRestrictionAllowed(prop))
 		restrictions.add(r);
     }
@@ -95,7 +95,7 @@ public class UICallPattern extends Resource {
 		.size()]);
     }
 
-    public int matches(UICall oe) {
+    public int matches(UIRequest oe) {
 	if (oe == null)
 	    return MATCH_LEVEL_FAILED;
 
@@ -103,9 +103,9 @@ public class UICallPattern extends Resource {
 	for (int i = 0; i < restrictions.size(); i++) {
 	    Restriction r = (Restriction) restrictions.get(i);
 	    if (!r.hasMember(oe, null))
-		if (UICall.PROP_PRESENTATION_MODALITY.equals(r.getOnProperty())
+		if (UIRequest.PROP_PRESENTATION_MODALITY.equals(r.getOnProperty())
 			&& r.copyOnNewProperty(
-				UICall.PROP_PRESENTATION_MODALITY_ALT)
+				UIRequest.PROP_PRESENTATION_MODALITY_ALT)
 				.hasMember(oe, null)) {
 		    result = MATCH_LEVEL_ALT;
 		    continue;

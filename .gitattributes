@@ -4,11 +4,11 @@ bus.ui/NOTICE.txt -text
 bus.ui/pom.xml -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/DialogManager.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/UIBus.java -text
-bus.ui/src/main/java/org/universAAL/middleware/ui/UICall.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/UICallPattern.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/UICaller.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/UIHandler.java -text
-bus.ui/src/main/java/org/universAAL/middleware/ui/UserInput.java -text
+bus.ui/src/main/java/org/universAAL/middleware/ui/UIRequest.java -text
+bus.ui/src/main/java/org/universAAL/middleware/ui/UIResponse.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/impl/UIBusImpl.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/impl/UIStrategy.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/impl/osgi/Activator.java -text

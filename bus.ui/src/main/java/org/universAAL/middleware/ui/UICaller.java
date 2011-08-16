@@ -54,7 +54,7 @@ public abstract class UICaller implements Caller {
 	bus.abortDialog(myID, dialogID);
     }
 
-    public void adaptationParametersChanged(UICall call, String changedProp) {
+    public void adaptationParametersChanged(UIRequest call, String changedProp) {
 	if (this instanceof DialogManager)
 	    bus.adaptationParametersChanged((DialogManager) this, call,
 		    changedProp);
@@ -82,13 +82,13 @@ public abstract class UICaller implements Caller {
 	return false;
     }
 
-    public abstract void handlUserInput(UserInput input);
+    public abstract void handlUserInput(UIResponse input);
 
     public void resumeDialog(String dialogID, Resource dialogData) {
 	bus.resumeDialog(myID, dialogID, dialogData);
     }
 
-    public final void sendUIRequest(UICall e) {
+    public final void sendUIRequest(UIRequest e) {
 	if (e != null) {
 	    bus.sendMessage(myID, e);
 	}

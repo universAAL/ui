@@ -87,7 +87,7 @@ import org.universAAL.middleware.ui.owl.DialogType;
  * events from these two types of buttons (and e.g. keep the parent dialog open
  * until the subdialog loop is closed) or not. In any case, the middleware will
  * re-dispatch the main dialog by calling
- * {@link org.universAAL.middleware.ui.UIHandler#handleOutputEvent(org.universAAL.middleware.ui.UICall)}
+ * {@link org.universAAL.middleware.ui.UIHandler#handleOutputEvent(org.universAAL.middleware.ui.UIRequest)}
  * of the output subscriber of the selected I/O handler, as soon as the
  * application requests to resume the dialog. In this way, the freezing and
  * re-activating the main dialog is forced by the middleware even if the I/O
@@ -173,7 +173,7 @@ public class Form extends Resource {
 	 * hidden data and initial data associated with the form controls using
 	 * {@link org.universAAL.middleware.rdf.Resource#setPropertyPath(String[], Object)}
 	 * . They can retrieve the form data from input events by calling
-	 * {@link org.universAAL.middleware.ui.UserInput#getUserInput(String[])}
+	 * {@link org.universAAL.middleware.ui.UIResponse#getUserInput(String[])}
 	 * . Note: initial data to be associated with form controls can be set
 	 * through their constructors, as well.
 	 */
@@ -295,7 +295,7 @@ public class Form extends Resource {
 	/**
 	 * Constructs and returns a new form object representing a
 	 * {@link DialogType#message Message} dialog that is ready to publish within
-	 * an {@link org.universAAL.middleware.ui.UICall}. See also the
+	 * an {@link org.universAAL.middleware.ui.UIRequest}. See also the
 	 * discussion of dialog types in the above documentation of this class.
 	 * 
 	 * @param formTitle
@@ -305,7 +305,7 @@ public class Form extends Resource {
 	 * @return A newly constructed form object representing a
 	 *         {@link DialogType#message Message} dialog that is ready to
 	 *         publish within an
-	 *         {@link org.universAAL.middleware.ui.UICall}.
+	 *         {@link org.universAAL.middleware.ui.UIRequest}.
 	 */
 	public static Form newMessage(String formTitle, String message) {
 		Form f = new Form(formTitle, (Resource) null);

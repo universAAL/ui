@@ -79,7 +79,7 @@ public abstract class UIHandler implements Callee {
 
     public abstract Resource cutDialog(String dialogID);
 
-    public final void dialogFinished(UserInput input) {
+    public final void dialogFinished(UIResponse input) {
 	bus.dialogFinished(myID, input);
     }
 
@@ -88,16 +88,16 @@ public abstract class UIHandler implements Callee {
     }
 
     public final void handleRequest(Message m) {
-	if (m.getContent() instanceof UICall) {
+	if (m.getContent() instanceof UIRequest) {
 	    LogUtils.logInfo(thisCalleeContext, UIHandler.class,
 		    "handleRequest",
 		    new Object[] { localID, " received UI request:\n",
 			    m.getContentAsString() }, null);
-	    handleUICall((UICall) m.getContent());
+	    handleUICall((UIRequest) m.getContent());
 	}
     }
 
-    public abstract void handleUICall(UICall uicall);
+    public abstract void handleUICall(UIRequest uicall);
 
     protected final void removeMatchingRegParams(UICallPattern oldSubscription) {
 	bus.removeMatchingRegParams(myID, oldSubscription);

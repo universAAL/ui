@@ -31,11 +31,11 @@ import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIBus;
-import org.universAAL.middleware.ui.UICall;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UICallPattern;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
-import org.universAAL.middleware.ui.UserInput;
+import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.util.ResourceComparator;
 
@@ -149,7 +149,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      * @param changedProp
      *            Property that has been changed since last time
      */
-    public void adaptationParametersChanged(DialogManager dm, UICall oe,
+    public void adaptationParametersChanged(DialogManager dm, UIRequest oe,
 	    String changedProp) {
 	((UIStrategy) busStrategy).adaptationParametersChanged(dm, oe,
 		changedProp);
@@ -188,7 +188,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      * @param poppedMessage
      * 
      */
-    public void dialogFinished(String subscriberID, UserInput input) {
+    public void dialogFinished(String subscriberID, UIResponse input) {
 	if (input != null
 		&& subscriberID != null
 		&& subscriberID
@@ -298,9 +298,9 @@ public class UIBusImpl extends AbstractBus implements UIBus {
 		    .substring(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 			    .length());
 	    Object o = registry.get(localID);
-	    if (o instanceof DialogManager && dialogData instanceof UICall)
+	    if (o instanceof DialogManager && dialogData instanceof UIRequest)
 		((UIStrategy) busStrategy).adaptationParametersChanged(
-			(DialogManager) o, (UICall) dialogData, null);
+			(DialogManager) o, (UIRequest) dialogData, null);
 	    else if (o instanceof UICaller)
 		((UIStrategy) busStrategy).resumeDialog(dialogID, dialogData);
 	}
@@ -315,7 +315,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
 
     /**
      * 
-     * Publish the given UICall on the bus
+     * Publish the given UIRequest on the bus
      * 
      * @param publisherID
      *            Publisher of the event
@@ -323,7 +323,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      *            Message to be sent
      * 
      */
-    public void sendMessage(String publisherID, UICall msg) {
+    public void sendMessage(String publisherID, UIRequest msg) {
 	assessContentSerialization(msg);
 	if (publisherID != null
 		&& publisherID

@@ -31,29 +31,29 @@ import org.universAAL.middleware.ui.rdf.Submit;
  * @author mtazari
  * 
  */
-public class UserInput extends Resource {
+public class UIResponse extends Resource {
 
-    public static final String MY_URI = UICall.uAAL_UI_NAMESPACE + "UserInput";
+    public static final String MY_URI = UIRequest.uAAL_UI_NAMESPACE + "UIResponse";
 
-    public static final String PROP_DIALOG_DATA = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_DIALOG_DATA = UIRequest.uAAL_UI_NAMESPACE
 	    + "dialogData";
-    public static final String PROP_DIALOG_ID = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_DIALOG_ID = UIRequest.uAAL_UI_NAMESPACE
 	    + "dialogID";
-    public static final String PROP_SUBMISSION_LOCATION = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_SUBMISSION_LOCATION = UIRequest.uAAL_UI_NAMESPACE
 	    + "submissionLocation";
-    public static final String PROP_IS_SUBDIALOG_CALL = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_IS_SUBDIALOG_CALL = UIRequest.uAAL_UI_NAMESPACE
 	    + "isSubdialogCall";
-    public static final String PROP_SUBMISSION_ID = UICall.uAAL_UI_NAMESPACE
+    public static final String PROP_SUBMISSION_ID = UIRequest.uAAL_UI_NAMESPACE
 	    + "submissionID";
 
     static {
-	addResourceClass(MY_URI, UserInput.class);
+	addResourceClass(MY_URI, UIResponse.class);
     }
 
     /**
      * This constructor is for the exclusive usage by deserializers.
      */
-    public UserInput() {
+    public UIResponse() {
 	super();
     }
 
@@ -67,7 +67,7 @@ public class UserInput extends Resource {
      * @param submit
      *            instance of a submit button that has finished the dialog
      */
-    public UserInput(Resource user, AbsLocation inputLocation, Submit submit) {
+    public UIResponse(Resource user, AbsLocation inputLocation, Submit submit) {
 	super();
 
 	addType(MY_URI, true);
