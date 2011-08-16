@@ -64,6 +64,7 @@ handler.gui/src/main/java/org/universAAL/ui/handler/gui/GUIIOHandler.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/Login.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/MyOutputSubscriber.java -text svneol=unset#text/plain
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/PropertyLoader.java -text
+handler.gui/src/main/java/org/universAAL/ui/handler/gui/RendererGuiConstants.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTableModel.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTablePane.java -text
 handler.gui/src/main/java/org/universAAL/ui/handler/gui/SwingRenderer.java -text
@@ -1062,7 +1063,6 @@ handler.web/src/main/resources/webhandler/img/bt_white2.gif -text
 handler.web/src/main/resources/webhandler/img/bt_white3.gif -text
 handler.web/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web/src/main/resources/webhandler/img/persona_logo.jpg -text
-handler.web/target/ui.handler.web-0.1.5-SNAPSHOT.jar -text
 pom/pom.xml -text
 ri.servicegateway/.classpath -text
 ri.servicegateway/.project -text
@@ -1080,6 +1080,3 @@ ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/GatewayPort.jav
 ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/GatewayPortTracker.java -text
 ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/impl/Base64.java -text
 ri.servicegateway/src/test/java/org/unversAAL/ri/servicegateway/LoginServletTest.java -text
-ri.servicegateway/target/ri.servicegateway-0.3.5.jar -text
-ri.servicegateway/target/surefire-reports/TEST-org.unversAAL.ri.servicegateway.LoginServletTest.xml -text
-ri.servicegateway/target/surefire-reports/org.unversAAL.ri.servicegateway.LoginServletTest.txt -text

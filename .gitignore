@@ -14,7 +14,9 @@ handler.gui/.classpath
 handler.gui/.project
 handler.gui/.settings
 handler.gui/target
+handler.web/target
 pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+ri.servicegateway/target
