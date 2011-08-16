@@ -32,7 +32,7 @@ import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIBus;
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UICallPattern;
+import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIResponse;
@@ -165,7 +165,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      *            Description of the subscription
      */
     public void addNewRegParams(String subscriberID,
-	    UICallPattern newSubscription) {
+	    UIHandlerProfile newSubscription) {
 	if (subscriberID != null
 		&& subscriberID
 			.startsWith(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX)) {
@@ -255,7 +255,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      * @return ID of the subscriber
      */
     public String register(UIHandler subscriber,
-	    UICallPattern initialSubscription) {
+	    UIHandlerProfile initialSubscription) {
 	String id = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 		+ super.register(subscriber);
 	if (initialSubscription != null)
@@ -272,7 +272,7 @@ public class UIBusImpl extends AbstractBus implements UIBus {
      *            Subscription to remove
      */
     public void removeMatchingRegParams(String subscriberID,
-	    UICallPattern oldSubscription) {
+	    UIHandlerProfile oldSubscription) {
 	if (subscriberID != null
 		&& subscriberID
 			.startsWith(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX)) {

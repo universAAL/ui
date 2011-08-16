@@ -33,7 +33,7 @@ import org.universAAL.middleware.ui.impl.UIBusImpl;
  * <ul>
  * <li>UICallers provide no registration params.</li>
  * <li>UIHandlers may pass an array of
- * {@link org.universAAL.middleware.ui.UICallPattern}s as their initial
+ * {@link org.universAAL.middleware.ui.UIHandlerProfile}s as their initial
  * subscriptions and can always add new (and remove old) subscriptions
  * dynamically.</li>
  * </ul>

@@ -51,7 +51,7 @@ public abstract class UIHandler implements Callee {
     private ModuleContext thisCalleeContext;
     private String myID, localID;
 
-    protected UIHandler(ModuleContext context, UICallPattern initialSubscription) {
+    protected UIHandler(ModuleContext context, UIHandlerProfile initialSubscription) {
 	thisCalleeContext = context;
 	bus = (UIBus) context.getContainer().fetchSharedObject(context,
 		UIBusImpl.busFetchParams);
@@ -62,7 +62,7 @@ public abstract class UIHandler implements Callee {
     public abstract void adaptationParametersChanged(String dialogID,
 	    String changedProp, Object newVal);
 
-    protected final void addNewRegParams(UICallPattern newSubscription) {
+    protected final void addNewRegParams(UIHandlerProfile newSubscription) {
 	bus.addNewRegParams(myID, newSubscription);
     }
 
@@ -99,7 +99,7 @@ public abstract class UIHandler implements Callee {
 
     public abstract void handleUICall(UIRequest uicall);
 
-    protected final void removeMatchingRegParams(UICallPattern oldSubscription) {
+    protected final void removeMatchingRegParams(UIHandlerProfile oldSubscription) {
 	bus.removeMatchingRegParams(myID, oldSubscription);
     }
 
