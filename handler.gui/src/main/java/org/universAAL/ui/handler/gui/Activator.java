@@ -21,7 +21,6 @@ package org.universAAL.ui.handler.gui;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 
 import org.osgi.framework.Bundle;
@@ -112,22 +111,24 @@ public class Activator implements BundleActivator, ServiceListener {
 				//
 				// un-comment the following lines, if you want to test the handling of messages
 				//
-//				try { sleep(20000); } catch (Exception e) {}
-//				org.persona.middleware.output.DefaultOutputPublisher op = new org.persona.middleware.output.DefaultOutputPublisher(context);
-//				org.persona.middleware.dialog.Form f = org.persona.middleware.dialog.Form.newMessage("Msg1", "test message #1!");
-//				org.persona.middleware.output.OutputEvent out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
-//						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
-//				op.publish(out);
-//				try { sleep(10000); } catch (Exception e) {}
-//				f = org.persona.middleware.dialog.Form.newMessage("Msg2", "test message #2!");
-//				out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
-//						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
-//				op.publish(out);
-//				try { sleep(10000); } catch (Exception e) {}
-//				f = org.persona.middleware.dialog.Form.newMessage("Msg3", "test message #3!");
-//				out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
-//						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
-//				op.publish(out);
+/*
+ 				try { sleep(20000); } catch (Exception e) {}
+				org.persona.middleware.output.DefaultOutputPublisher op = new org.persona.middleware.output.DefaultOutputPublisher(context);
+				org.persona.middleware.dialog.Form f = org.persona.middleware.dialog.Form.newMessage("Msg1", "test message #1!");
+				org.persona.middleware.output.OutputEvent out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
+						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
+				op.publish(out);
+				try { sleep(10000); } catch (Exception e) {}
+				f = org.persona.middleware.dialog.Form.newMessage("Msg2", "test message #2!");
+				out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
+						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
+				op.publish(out);
+				try { sleep(10000); } catch (Exception e) {}
+				f = org.persona.middleware.dialog.Form.newMessage("Msg3", "test message #3!");
+				out = new org.persona.middleware.output.OutputEvent(testUser, f, null,
+						java.util.Locale.ENGLISH, org.persona.ontology.PrivacyLevel.insensible);
+				op.publish(out);
+*/
 			}
 		}.start();
 	}
@@ -198,6 +199,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	 */
 	public static InputStream getConfFileAsStream(String name) {
 		try {
+			mcontext.registerConfigFile(new Object[] {name});
 			return home.getConfFileAsStream(name);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
