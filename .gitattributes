@@ -35,7 +35,7 @@ bus.ui/src/main/java/org/universAAL/middleware/ui/rdf/SimpleOutput.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/rdf/SubdialogTrigger.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/rdf/Submit.java -text
 bus.ui/src/main/java/org/universAAL/middleware/ui/rdf/TextArea.java -text
-bus.ui/src/test/java/org/universAAL/middleware/io/rdf/RangeTest.java -text
+bus.ui/src/test/java/org/universAAL/middleware/ui/rdf/RangeTest.java -text
 conversion.jena/LICENSE-BSD-Jena.txt -text
 conversion.jena/LICENSE-CPL-JUnit.txt -text
 conversion.jena/LICENSE-MIT11-Bouncycastle.txt -text
