@@ -85,29 +85,29 @@ public class UIBusImpl extends AbstractBus implements UIBus {
     }
 
     public static void loadExportedClasses() throws ClassNotFoundException {
-	Class.forName("org.universAAL.middleware.input.InputEvent");
-	Class.forName("org.universAAL.middleware.io.owl.AccessImpairment");
-	Class.forName("org.universAAL.middleware.io.owl.DialogType");
-	Class.forName("org.universAAL.middleware.io.owl.Gender");
-	Class.forName("org.universAAL.middleware.io.owl.Modality");
-	Class.forName("org.universAAL.middleware.io.owl.PrivacyLevel");
-	Class.forName("org.universAAL.middleware.io.rdf.ChoiceItem");
-	Class.forName("org.universAAL.middleware.io.rdf.ChoiceList");
-	Class.forName("org.universAAL.middleware.io.rdf.Form");
-	Class.forName("org.universAAL.middleware.io.rdf.Group");
-	Class.forName("org.universAAL.middleware.io.rdf.InputField");
-	Class.forName("org.universAAL.middleware.io.rdf.Label");
-	Class.forName("org.universAAL.middleware.io.rdf.MediaObject");
-	Class.forName("org.universAAL.middleware.io.rdf.Range");
-	Class.forName("org.universAAL.middleware.io.rdf.Repeat");
-	Class.forName("org.universAAL.middleware.io.rdf.Select");
-	Class.forName("org.universAAL.middleware.io.rdf.Select1");
-	Class.forName("org.universAAL.middleware.io.rdf.SimpleOutput");
-	Class.forName("org.universAAL.middleware.io.rdf.SubdialogTrigger");
-	Class.forName("org.universAAL.middleware.io.rdf.Submit");
-	Class.forName("org.universAAL.middleware.io.rdf.TextArea");
-	Class.forName("org.universAAL.middleware.output.OutputEvent");
-	Class.forName("org.universAAL.middleware.output.OutputEventPattern");
+	Class.forName("org.universAAL.middleware.ui.UIResponse");
+	Class.forName("org.universAAL.middleware.ui.owl.AccessImpairment");
+	Class.forName("org.universAAL.middleware.ui.owl.DialogType");
+	Class.forName("org.universAAL.middleware.ui.owl.Gender");
+	Class.forName("org.universAAL.middleware.ui.owl.Modality");
+	Class.forName("org.universAAL.middleware.ui.owl.PrivacyLevel");
+	Class.forName("org.universAAL.middleware.ui.rdf.ChoiceItem");
+	Class.forName("org.universAAL.middleware.ui.rdf.ChoiceList");
+	Class.forName("org.universAAL.middleware.ui.rdf.Form");
+	Class.forName("org.universAAL.middleware.ui.rdf.Group");
+	Class.forName("org.universAAL.middleware.ui.rdf.InputField");
+	Class.forName("org.universAAL.middleware.ui.rdf.Label");
+	Class.forName("org.universAAL.middleware.ui.rdf.MediaObject");
+	Class.forName("org.universAAL.middleware.ui.rdf.Range");
+	Class.forName("org.universAAL.middleware.ui.rdf.Repeat");
+	Class.forName("org.universAAL.middleware.ui.rdf.Select");
+	Class.forName("org.universAAL.middleware.ui.rdf.Select1");
+	Class.forName("org.universAAL.middleware.ui.rdf.SimpleOutput");
+	Class.forName("org.universAAL.middleware.ui.rdf.SubdialogTrigger");
+	Class.forName("org.universAAL.middleware.ui.rdf.Submit");
+	Class.forName("org.universAAL.middleware.ui.rdf.TextArea");
+	Class.forName("org.universAAL.middleware.ui.UIRequest");
+	Class.forName("org.universAAL.middleware.ui.UIHandlerProfile");
     }
 
     /**

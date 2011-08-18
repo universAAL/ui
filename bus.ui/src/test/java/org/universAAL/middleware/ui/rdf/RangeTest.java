@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.universAAL.middleware.io.rdf;
+package org.universAAL.middleware.ui.rdf;
 
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.rdf.TypeMapper;
