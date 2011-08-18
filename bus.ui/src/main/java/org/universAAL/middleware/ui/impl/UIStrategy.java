@@ -32,10 +32,10 @@ import org.universAAL.middleware.sodapop.SodaPop;
 import org.universAAL.middleware.sodapop.msg.Message;
 import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.util.Constants;
 
@@ -51,8 +51,8 @@ public class UIStrategy extends BusStrategy {
 
     /**
      * 
-     * A subscription is the combination of a filter in form of an UIHandlerProfile
-     * and the ID of the subscriber.
+     * A subscription is the combination of a filter in form of an
+     * UIHandlerProfile and the ID of the subscriber.
      * 
      * @author amarinc
      * 
@@ -91,7 +91,8 @@ public class UIStrategy extends BusStrategy {
 	    + "SubscriberNotification";
     public static final String TYPE_uAAL_UI_BUS_SUBSCRIPTION = Resource.uAAL_VOCABULARY_NAMESPACE
 	    + "Subscription";
-
+    public static final String TYPE_uAAL_UI_MAIN_MENU = Resource.uAAL_VOCABULARY_NAMESPACE
+	    + "GetMainMenu";
     public static final String TYPE_uAAL_SUSPEND_DIALOG = Resource.uAAL_VOCABULARY_NAMESPACE
 	    + "SuspendDialog";
 
@@ -291,7 +292,7 @@ public class UIStrategy extends BusStrategy {
 	    Message m = new Message(MessageType.p2p_event, pr);
 	    sodapop.propagateMessage(bus, m);
 	} else
-	    caller.handlUserInput(input);
+	    caller.handleUIResponse(input);
     }
 
     /**
@@ -387,7 +388,7 @@ public class UIStrategy extends BusStrategy {
 		    UICaller caller = (UICaller) pendingRequests.get(input
 			    .getDialogID());
 		    if (caller != null) {
-			caller.handlUserInput(input);
+			caller.handleUIResponse(input);
 			return;
 		    }
 		}
@@ -408,8 +409,14 @@ public class UIStrategy extends BusStrategy {
 		// if the local instance is the coordinator it really need to
 		// perform the indicated tasks
 	    } else if (isCoordinator()) {
-		// suspend a dialog
-		if (res.getType().equals(TYPE_uAAL_SUSPEND_DIALOG))
+		if (res.getType().equals(TYPE_uAAL_UI_MAIN_MENU)) {
+		    Resource user = (Resource) res
+			    .getProperty(Resource.PROP_uAAL_INVOLVED_HUMAN_USER);
+		    AbsLocation loginLocation = (AbsLocation) res
+			    .getProperty(UIResponse.PROP_SUBMISSION_LOCATION);
+		    dialogManager.getMainMenu(user, loginLocation);
+		    // suspend a dialog
+		} else if (res.getType().equals(TYPE_uAAL_SUSPEND_DIALOG))
 		    suspendDialog((String) res.getProperty(PROP_uAAL_DIALOG_ID));
 		// handle subscription messages
 		else if (res.getType().equals(TYPE_uAAL_UI_BUS_SUBSCRIPTION)) {
@@ -956,7 +963,21 @@ public class UIStrategy extends BusStrategy {
 	}
     }
 
-    public void userLoggedIn(String handlerID, Resource user,
-	    AbsLocation loginLocation) {
+    void userLoggedIn(Resource user, AbsLocation loginLocation) {
+	if (isCoordinator()) {
+	    dialogManager.getMainMenu(user, loginLocation);
+	    // }
+	} else {
+	    Resource res = new Resource();
+	    res.addType(TYPE_uAAL_UI_MAIN_MENU, true);
+	    res.setProperty(Resource.PROP_uAAL_INVOLVED_HUMAN_USER, user);
+	    if (loginLocation != null)
+		res.setProperty(UIResponse.PROP_SUBMISSION_LOCATION,
+			loginLocation);
+	    UIBusImpl.assessContentSerialization(res);
+	    Message m = new Message(MessageType.p2p_event, res);
+	    m.setReceivers(theCoordinator);
+	    sodapop.propagateMessage(bus, m);
+	}
     }
 }
