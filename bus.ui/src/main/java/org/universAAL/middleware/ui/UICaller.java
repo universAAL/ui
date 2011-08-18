@@ -82,7 +82,18 @@ public abstract class UICaller implements Caller {
 	return false;
     }
 
-    public abstract void handlUserInput(UIResponse input);
+    /*
+     * (non-Javadoc)
+     * 
+     * @seeorg.universAAL.middleware.sodapop.Caller#handleReply(org.universAAL.
+     * middleware.sodapop.msg.Message)
+     */
+    public final void handleReply(Message m) {
+	if (m != null && m.getContent() instanceof UIResponse)
+	    handleUIResponse((UIResponse) m.getContent());
+    }
+
+    public abstract void handleUIResponse(UIResponse input);
 
     public void resumeDialog(String dialogID, Resource dialogData) {
 	bus.resumeDialog(myID, dialogID, dialogData);

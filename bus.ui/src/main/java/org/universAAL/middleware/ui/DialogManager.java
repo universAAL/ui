@@ -71,7 +71,7 @@ public interface DialogManager {
      */
     public void dialogFinished(String dialogID);
 
-    public UIRequest getMainMenu(Resource user, AbsLocation loginLocation);
+    public void getMainMenu(Resource user, AbsLocation loginLocation);
 
     /**
      * When the application has informed the bus that a suspended parent dialog

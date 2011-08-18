@@ -31,10 +31,10 @@ import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.middleware.sodapop.msg.MessageType;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIBus;
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.util.ResourceComparator;
@@ -387,9 +387,8 @@ public class UIBusImpl extends AbstractBus implements UIBus {
 	    Object o = registry.get(handlerID
 		    .substring(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 			    .length()));
-	    if (o instanceof UIHandler)
-		((UIStrategy) busStrategy).userLoggedIn(handlerID, user,
-			loginLocation);
+	    if (o instanceof UIHandler && user != null)
+		((UIStrategy) busStrategy).userLoggedIn(user, loginLocation);
 	}
 
     }
