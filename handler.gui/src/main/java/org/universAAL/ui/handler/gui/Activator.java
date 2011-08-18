@@ -19,6 +19,7 @@
  */
 package org.universAAL.ui.handler.gui;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -85,7 +86,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	 * uAAL Configuration folder
 	 * {@link BundleConfigHome}
 	 */
-	private static final BundleConfigHome home = new BundleConfigHome("ui.handler.gui");
+	private static BundleConfigHome home;
 	
 	/**
 	 * Starting method of org.universAAl.ui.handler.gui bundle.
@@ -99,6 +100,7 @@ public class Activator implements BundleActivator, ServiceListener {
 		Activator.context = context;
 		BundleContext[] bc = {context};
 		Activator.mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
+		Activator.home = new BundleConfigHome("ui.handler.gui");
 		String filter = "(objectclass=" + TypeMapper.class.getName() + ")";
 		context.addServiceListener(this, filter);
 		ServiceReference references[] = context.getServiceReferences(null, filter);
@@ -199,8 +201,8 @@ public class Activator implements BundleActivator, ServiceListener {
 	 */
 	public static InputStream getConfFileAsStream(String name) {
 		try {
-			mcontext.registerConfigFile(new Object[] {name});
-			return home.getConfFileAsStream(name);
+			//mcontext.registerConfigFile(new Object[] {name});
+			return Activator.home.getConfFileAsStream(name);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
