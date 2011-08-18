@@ -513,7 +513,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 		String[] userPass = getUserPass(req.getHeader("Authorization"));
 		String userURI = userURIs.get(userPass[0]);
 		log.info("Received HTTP request from user {} ", userURI);
-		// Check if it´s the first time
+		// Check if it is the first time
 		if (!userSessions.containsKey(userURI)) {
 			// Start and request main menu
 			log.info("Starting interaction and session with {} ", userURI);
