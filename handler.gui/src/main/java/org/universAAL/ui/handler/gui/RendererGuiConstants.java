@@ -582,13 +582,14 @@ public class RendererGuiConstants {
 			}*/
 			Properties p = new Properties();
 			p.load(Activator.getConfFileAsStream(propertiesFileName));
+			return p;
 
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			System.out.println("ERROR in Gui.Handler: unable to load properties! "
 					+ propertiesFileName);
-		}
-		return null;
+			return null;
+		}		
 	}
 	/**
 	 * Load variables for {@link SwingRenderer} from a file.
@@ -842,8 +843,8 @@ public class RendererGuiConstants {
 
 				String messagesFile = layoutProperties.getProperty(
 						"General.GuiMessages", GUI_MESSAGES_FILENAME);
-				Properties messageProperties = readProperties(
-						Activator.getConfDir() + messagesFile);
+				
+				Properties messageProperties = readProperties(messagesFile);
 				if (messageProperties == null)
 					messageProperties = new Properties();
 				searchBoxLabel = messageProperties
