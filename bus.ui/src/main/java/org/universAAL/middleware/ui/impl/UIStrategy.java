@@ -37,6 +37,7 @@ import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.util.Constants;
 
 /**
@@ -158,6 +159,9 @@ public class UIStrategy extends BusStrategy {
 			.get(request.getDialogID());
 		if (changedProp == null) {
 		    // this is a new dialog published to the bus
+		    if (pendingRequests.get(request.getDialogID()) == null)
+			// the UICaller is the dialog manager
+			pendingRequests.put(request.getDialogID(), dm);
 		    if (currentHandler != null) {
 			// strange situation: duplication dialog ID??!!
 			// TODO: a log entry!
@@ -349,32 +353,6 @@ public class UIStrategy extends BusStrategy {
 		    notifyHandler_apChanged(handlerID, oe, res.getProperty(
 			    PROP_uAAL_CHANGED_PROPERTY).toString());
 		// handle UI requests
-	    } else if (res instanceof UIRequest) {
-		// if the message is from the local instance directly push it to
-		// the request queue
-		if (!msg.isRemote()) {
-		    BusMember sender = getBusMember(senderID);
-		    if (sender instanceof UICaller)
-			pendingRequests.put(((UIRequest) res).getDialogForm()
-				.getDialogID(), sender);
-		    // TODO: else log entry about inconsistency
-		}
-		// if the local instance is the coordinator check if we need to
-		// adapt an existing dialog
-		if (isCoordinator()) {
-		    if (dialogManager.checkNewDialog((UIRequest) res)) {
-			res.setProperty(PROP_uAAL_UI_CALL, msg
-				.getContentAsString());
-			adaptationParametersChanged(dialogManager,
-				(UIRequest) res, null);
-			res.changeProperty(PROP_uAAL_UI_CALL, null);
-		    }
-		    // If it is not the coordinator send the message to it ???
-		    // Wrong? should be only send if it is a local message, or?
-		} else {
-		    msg.setReceivers(theCoordinator);
-		    sodapop.propagateMessage(bus, msg);
-		}
 	    }
 	    break;
 	// handle P2P events
@@ -543,7 +521,61 @@ public class UIStrategy extends BusStrategy {
 	// This request is meant in terms of the user. As response to this
 	// request the result of a cut-dialog is propagated as user input
 	case MessageType.REQUEST:
-	    if (!isCoordinator()
+	    if (res instanceof UIRequest) {
+		if (!msg.isRemote()) {
+		    Form f = ((UIRequest) res).getDialogForm();
+		    if (f == null) {
+			// TODO: ERROR... add a log entry... not allowed!
+			return;
+		    }
+		    if (!f.isMessage()) {
+			// remember whom to notify once the response is received
+			BusMember sender = getBusMember(senderID);
+			if (sender instanceof UICaller)
+			    pendingRequests.put(f.getDialogID(), sender);
+			else {
+			    // TODO: log entry... we shouldn't get here!
+			}
+		    }
+		    if (!isCoordinator()) {
+			// just forward it to the coordinator
+			msg.setReceivers(theCoordinator);
+			sodapop.propagateMessage(bus, msg);
+			return;
+		    }
+		}
+		if (isCoordinator()) {
+		    // if the coordinator is receiving this messages (no matter
+		    // if from a local bus member or forwarded by a peer) we ask
+		    // the dialog manager to check if this dialog should be
+		    // presented to the user immediately or the DM will queue it
+		    // for later;
+		    if (dialogManager.checkNewDialog((UIRequest) res)) {
+			// as a side effect of checkNewDialog(), the request
+			// should have been enriched by the current adaptation
+			// parameters
+
+			// keep the original request in its serialized form for
+			// possible log entries because the coordinator might
+			// locally add other info to the request during
+			// matchmaking
+			res.setProperty(PROP_uAAL_UI_CALL, msg
+				.getContentAsString());
+			// we call adaptationParametersChanged() because the
+			// matchmaking
+			// logic is the same; we needed only to add an 'if'
+			// there
+			adaptationParametersChanged(dialogManager,
+				(UIRequest) res, null);
+			// remove the temporary prop not needed
+			res.changeProperty(PROP_uAAL_UI_CALL, null);
+		    }
+		} else {
+		    // this is the combination non-coordinator + remote because
+		    // non-coordinator + local returns immediately
+		    // TODO: we shouldn't get here
+		}
+	    } else if (!isCoordinator()
 		    && res.getType().equals(TYPE_uAAL_UI_BUS_NOTIFICATION)) {
 		String handler = (String) res
 			.getProperty(PROP_uAAL_UI_HANDLER_ID);
