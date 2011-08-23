@@ -159,10 +159,6 @@ handler.gui/src/main/resources/img/sound[!!-~]-[!!-~]Copy[!!-~](2).gif -text
 handler.gui/src/main/resources/img/sound.gif -text
 handler.gui/src/main/resources/lib/TableLayout.jar -text
 handler.gui/src/main/resources/lib/pom.xml -text svneol=unset#text/plain
-handler.web/.classpath -text
-handler.web/.project -text
-handler.web/.settings/org.eclipse.jdt.core.prefs -text
-handler.web/.settings/org.maven.ide.eclipse.prefs -text
 handler.web/LICENSE-BSD-Dojo.txt -text
 handler.web/LICENSE-JGCL.txt -text
 handler.web/LICENSE-MIT11-Bouncycastle.txt -text
