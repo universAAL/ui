@@ -17,6 +17,7 @@ form.tester/target
 handler.gui/.classpath
 handler.gui/.project
 handler.gui/.settings
+handler.gui/src/main/resources/lib/target
 handler.gui/target
 handler.web/target
 pom/.classpath
