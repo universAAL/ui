@@ -9,7 +9,7 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>ui.dm</artifactId>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.2.1-SNAPSHOT</version>
 	<name>Dialog Manager</name>
 	<description>The component providing the UniversAAL system menu, handling context-free user input, and managing system reactivity.</description>
 	<inceptionYear>2008</inceptionYear>
@@ -80,33 +80,53 @@
 		<dependency>
 			<groupId>org.universAAL.context</groupId>
 			<artifactId>ctxt.jena.converter</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.io</artifactId>  
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.context</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.bus.service</artifactId>
+			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
-			<version>0.2.0-SNAPSHOT</version>
+			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.weather</artifactId>
-			<version>0.2.0-SNAPSHOT</version>
+			<version>0.2.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.container.xfaces</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.container.osgi</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.data.representation</artifactId>
+			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -125,11 +145,11 @@
 				<configuration>
 					<instructions>
 						<Bundle-Name>${project.name}</Bundle-Name>
-						<Bundle-Activator>org.universAAL.ui.dm.Activator</Bundle-Activator>
+						<Bundle-Activator>org.universAAL.ui.dm.osgi.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-						<!-- Export-Package>org.universAAL.ui.dm</Export-Package -->
-						<Private-Package>org.universAAL.ui.dm</Private-Package>
+						<Export-Package>org.universAAL.ui.dm, org.universAAL.ui.dm.osgi</Export-Package>
+						<!-- <Private-Package>org.universAAL.ui.dm</Private-Package> -->
 					</instructions>
 				</configuration>
 			</plugin>

@@ -28,11 +28,11 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import javax.sql.DataSource;
 
-import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.service.ServiceRequest;
-import org.universAAL.middleware.util.LogUtils;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.Restriction;
 
 import com.hp.hpl.jena.db.DBConnection;
@@ -58,15 +58,15 @@ public class ContextSubscriber extends
 	
 	private DataSource datasource = null;
 
-	ContextSubscriber(BundleContext context) {
+	ContextSubscriber(ModuleContext context) {
 		super(context, null);
 		datasource = new MysqlConnectionPoolDataSource();
 		((MysqlConnectionPoolDataSource) datasource)
-				.setURL(Activator.JENA_DB_URL);
+				.setURL(SharedResources.JENA_DB_URL);
 		((MysqlConnectionPoolDataSource) datasource)
-				.setUser(Activator.JENA_DB_USER);
+				.setUser(SharedResources.JENA_DB_USER);
 		((MysqlConnectionPoolDataSource) datasource)
-				.setPassword(Activator.JENA_DB_PASSWORD);
+				.setPassword(SharedResources.JENA_DB_PASSWORD);
 
 		// connect to DB and get the relevant context patterns to subscribe for
 		try {
@@ -102,7 +102,7 @@ public class ContextSubscriber extends
 					addNewRegParams(regParams
 							.toArray(new ContextEventPattern[regParams.size()]));
 				} catch (SQLException e) {
-					LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+					LogUtils.logWarn(SharedResources.moduleContext, this.getClass(),
 							"init", null, e);
 				} finally {
 					closeResultSet(rs);
@@ -110,7 +110,7 @@ public class ContextSubscriber extends
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logError(Activator.logger, "ContextSubscriber", "init",
+			LogUtils.logError(SharedResources.moduleContext, this.getClass(), "init",
 					null, e);
 		}
 	}
@@ -126,7 +126,7 @@ public class ContextSubscriber extends
 			rs.close();
 			stmt.close();
 		} catch (SQLException e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+			LogUtils.logWarn(SharedResources.moduleContext, this.getClass(),
 					"closeResultSet", null, e);
 		}
 	}
@@ -149,10 +149,10 @@ public class ContextSubscriber extends
 			return "";
 
 		if (vardef.startsWith("sparql:")) {
-			DBConnection con = Activator.getConnection();
-			if (con.containsModel(Activator.JENA_MODEL_NAME)) {
+			DBConnection con = SharedResources.getConnection();
+			if (con.containsModel(SharedResources.JENA_MODEL_NAME)) {
 				ModelRDB CHModel = ModelRDB
-						.open(con, Activator.JENA_MODEL_NAME);
+						.open(con, SharedResources.JENA_MODEL_NAME);
 				Query query = QueryFactory.create(vardef.substring(7));
 				QueryExecution qexec = QueryExecutionFactory.create(query,
 						CHModel);
@@ -226,21 +226,21 @@ public class ContextSubscriber extends
 							req = req.replaceAll("[$][{]" + ord + "[}]", varMap
 									.get(Integer.toString(ord)));
 					}
-					Object o = (Activator.getSerializer() == null) ? null
-							: Activator.getSerializer().deserialize(req);
+					Object o = (SharedResources.getSerializer() == null) ? null
+							: SharedResources.getSerializer().deserialize(req);
 					if (o instanceof ServiceRequest)
 						LogUtils.logInfo(
-								Activator.logger,
-								"ContextSubscriber",
+							SharedResources.moduleContext,
+							this.getClass(),
 								"handleContextEvent",
 								new Object[] { "Context-aware service call proceeded with success!" },
 								null);
-					// Activator.getServiceCaller().sendRequest((ServiceRequest)
+					// SharedResources.getServiceCaller().sendRequest((ServiceRequest)
 					// o);
 					else
-						LogUtils.logWarning(
-								Activator.logger,
-								"ContextSubscriber",
+						LogUtils.logWarn(
+							SharedResources.moduleContext,
+							this.getClass(),
 								"handleContextEvent",
 								new Object[] {
 										"could not create the service request ",
@@ -250,7 +250,7 @@ public class ContextSubscriber extends
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+			LogUtils.logWarn(SharedResources.moduleContext, this.getClass(),
 					"handleContextEvent", null, e);
 		}
 	}
@@ -271,15 +271,15 @@ public class ContextSubscriber extends
 				throw new SQLException("ResultSet is null!");
 			return rs;
 		} catch (SQLException e) {
-			LogUtils.logWarning(Activator.logger, "ContextSubscriber",
+			LogUtils.logWarn(SharedResources.moduleContext, this.getClass(),
 					"select", new Object[] { "SQL exception: 'select(", sql,
 							")' - " }, e);
 			try {
 				stmt.close();
 			} catch (Exception e1) {
-				LogUtils.logWarning(
-						Activator.logger,
-						"ContextSubscriber",
+				LogUtils.logWarn(
+					SharedResources.moduleContext,
+					this.getClass(),
 						"select",
 						new Object[] { "Exception while closing statement - " },
 						e1);

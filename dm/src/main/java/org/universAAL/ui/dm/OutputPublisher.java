@@ -27,7 +27,6 @@ import java.util.Locale;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.osgi.framework.BundleContext;
 import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.rdf.Resource;
@@ -45,7 +44,8 @@ import org.universAAL.middleware.input.InputEvent;
 import org.universAAL.middleware.output.DialogManager;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.rdf.PropertyPath;
-import org.universAAL.middleware.util.LogUtils;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.io.owl.DialogType;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.io.owl.PrivacyLevel;
@@ -257,7 +257,7 @@ public class OutputPublisher extends
 
 	
 	
-	OutputPublisher(BundleContext context) {
+	OutputPublisher(ModuleContext context) {
 		super(context);
 
 		// create data structures to hold dialogs and messages
@@ -335,28 +335,28 @@ public class OutputPublisher extends
 			queryStr = getQueryString(event.getAddressedUser().getURI());
 
 		try {
-			DBConnection con = Activator.getConnection();
-			if (con.containsModel(Activator.JENA_MODEL_NAME)) {
+			DBConnection con = SharedResources.getConnection();
+			if (con.containsModel(SharedResources.JENA_MODEL_NAME)) {
 				ModelRDB CHModel = ModelRDB
-						.open(con, Activator.JENA_MODEL_NAME);
+						.open(con, SharedResources.JENA_MODEL_NAME);
 				Query query = QueryFactory.create(queryStr);
 				QueryExecution qexec = QueryExecutionFactory.create(query,
 						CHModel);
 				Model m = qexec.execDescribe();
 				// m.write(System.out, "RDF/XML-ABBREV");
-				JenaConverter mc = Activator.getModelConverter();
+				JenaConverter mc = SharedResources.getModelConverter();
 				com.hp.hpl.jena.rdf.model.Resource root = mc
 						.getJenaRootResource(m);
 				if (root == null) {
 					qexec.close();
-					Activator.loadTestData(
+					SharedResources.loadTestData(
 							Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 							+ "saied", //$NON-NLS-1$
 							"Saied"); //$NON-NLS-1$
-					Activator.loadTestData(
+					SharedResources.loadTestData(
 							"urn:org.aal-persona.profiling:12345:ella", //$NON-NLS-1$
 							"Ella"); //$NON-NLS-1$
-					Activator.loadTestData(
+					SharedResources.loadTestData(
 							"urn:org.aal-persona.profiling:12345:john", //$NON-NLS-1$
 							"John"); //$NON-NLS-1$
 					qexec = QueryExecutionFactory.create(query, CHModel);
@@ -413,8 +413,8 @@ public class OutputPublisher extends
 			}
 			con.close();
 		} catch (Exception e) {
-			LogUtils.logError(Activator.logger,
-					"OutputPublisher", "addAdaptationParams", null, e); //$NON-NLS-1$ //$NON-NLS-2$
+			LogUtils.logError(SharedResources.moduleContext,
+					this.getClass(), "addAdaptationParams", null, e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -428,15 +428,15 @@ public class OutputPublisher extends
 		Group stdButtons = f.getStandardButtons();
 		switch (f.getDialogType().ord()) {
 		case DialogType.SYS_MENU:
-			new Submit(stdButtons, new Label(Activator
+			new Submit(stdButtons, new Label(SharedResources
 					.getString("OutputPublisher.pendingMessages"), null),
 					MESSAGES_CALL);
-			new Submit(stdButtons, new Label(Activator
+			new Submit(stdButtons, new Label(SharedResources
 					.getString("OutputPublisher.pendingDialogs"), null),
 					OPEN_DIALOGS_CALL);
-			new Submit(stdButtons, new Label(Activator
+			new Submit(stdButtons, new Label(SharedResources
 					.getString("OutputPublisher.exit"), null), EXIT_CALL);
-			Activator.getInputSubscriber().subscribe(
+			SharedResources.getInputSubscriber().subscribe(
 					stdButtons.getFormObject().getStandardButtonsDialogID());
 			break;
 		case DialogType.MESSAGE:
@@ -444,20 +444,20 @@ public class OutputPublisher extends
 		case DialogType.SUBDIALOG:
 			break;
 		case DialogType.STD_DIALOG:
-			new Submit(stdButtons, new Label(Activator
+			new Submit(stdButtons, new Label(SharedResources
 					.getString("OutputPublisher.mainMenu"), null), MENU_CALL);
 			String dialogTitle = f.getTitle();
-			if (!Activator.getString("OutputPublisher.pendingMessages").equals(
+			if (!SharedResources.getString("OutputPublisher.pendingMessages").equals(
 					dialogTitle))
-				new Submit(stdButtons, new Label(Activator
+				new Submit(stdButtons, new Label(SharedResources
 						.getString("OutputPublisher.pendingMessages"), null),
 						MESSAGES_CALL);
-			if (!Activator.getString("OutputPublisher.pendingMessages").equals(
+			if (!SharedResources.getString("OutputPublisher.pendingMessages").equals(
 					dialogTitle))
-				new Submit(stdButtons, new Label(Activator
+				new Submit(stdButtons, new Label(SharedResources
 						.getString("OutputPublisher.pendingDialogs"), null),
 						OPEN_DIALOGS_CALL);
-			Activator.getInputSubscriber().subscribe(
+			SharedResources.getInputSubscriber().subscribe(
 					stdButtons.getFormObject().getStandardButtonsDialogID());
 			break;
 		}
@@ -508,7 +508,7 @@ public class OutputPublisher extends
 					runningDialogs.put(userID, event);
 				else if (!ignorableMessage) {
 					messages.put(f.getDialogID(), event);
-					Activator.getInputSubscriber().subscribe(f.getDialogID());
+					SharedResources.getInputSubscriber().subscribe(f.getDialogID());
 				}
 				addAdaptationParams(event, getQueryString(userID));
 				return true;
@@ -640,9 +640,9 @@ public class OutputPublisher extends
 				finished = messages.get(dialogID);
 				if (finished == null) {
 					if (myDialogs.remove(dialogID) == null)
-						LogUtils.logWarning(
-								Activator.logger,
-								"OutputPublisher", "dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
+						LogUtils.logWarn(
+							SharedResources.moduleContext,
+							this.getClass(), "dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
 								dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
 					return;
 				} else {
@@ -661,7 +661,7 @@ public class OutputPublisher extends
 					// 2. a subdialog has no standard buttons so that no
 					// unsubscribe is needed
 					return;
-				Activator.getInputSubscriber().unsubscribe(
+				SharedResources.getInputSubscriber().unsubscribe(
 						f.getStandardButtonsDialogID());
 				user = finished.getAddressedUser();
 			}
@@ -771,9 +771,9 @@ public class OutputPublisher extends
 	}
 
 	private boolean isIgnorableMessage(Object msgContent, String formTitle) {
-		return Activator.getString("OutputPublisher.noPendingMessages").equals(
+		return SharedResources.getString("OutputPublisher.noPendingMessages").equals(
 				msgContent)
-				&& Activator.getString("OutputPublisher.pendingMessages")
+				&& SharedResources.getString("OutputPublisher.pendingMessages")
 						.equals(formTitle);
 	}
 
@@ -794,13 +794,13 @@ public class OutputPublisher extends
 			} else
 				// a running dialog has been aborted; it's better to send a
 				// message to the user
-				pushDialog(out.getAddressedUser(), Form.newMessage(Activator
+				pushDialog(out.getAddressedUser(), Form.newMessage(SharedResources
 						.getString("OutputPublisher.forcedCancellation"),
-						Activator.getString("OutputPublisher.sorryAborted")));
+						SharedResources.getString("OutputPublisher.sorryAborted")));
 			if (out != null)
 				// notification from the middleware that an app has requested
 				// the abort
-				Activator.getInputSubscriber().unsubscribe(
+				SharedResources.getInputSubscriber().unsubscribe(
 						out.getDialogForm().getStandardButtonsDialogID());
 			// else: it is really the confirmation about an abort triggered by
 			// myself
@@ -824,7 +824,7 @@ public class OutputPublisher extends
 				PrivacyLevel.insensible);
 		String dialogID = form.getDialogID(), userID = user.getURI();
 		addAdaptationParams(out, getQueryString(userID));
-		Activator.getInputSubscriber().subscribe(dialogID);
+		SharedResources.getInputSubscriber().subscribe(dialogID);
 		synchronized (waitingDialogs) {
 			OutputEvent oe = runningDialogs.remove(userID);
 			if (oe != null) {
@@ -860,24 +860,24 @@ public class OutputPublisher extends
 	 */
 	void showMenu(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(
-					Activator.logger,
-					"OutputPublisher", "showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarn(
+				SharedResources.moduleContext,
+				this.getClass(), "showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
-		Form f = Form.newSystemMenu(Activator
+		Form f = Form.newSystemMenu(SharedResources
 				.getString("OutputPublisher.personaMainMenu"));
 		Group main = f.getIOControls();
 		MainMenu.getMenuInstance(u).addMenuRepresentation(main);
-		Group g = new Group(main, new Label(Activator
+		Group g = new Group(main, new Label(SharedResources
 				.getString("OutputPublisher.search"), null), null, null, null);
 		Input in = new InputField(g, null, new PropertyPath(null, false,
 				new String[] { InputEvent.PROP_INPUT_SENTENCE }), Restriction
 				.getAllValuesRestrictionWithCardinality(
 						InputEvent.PROP_INPUT_SENTENCE, TypeMapper
 								.getDatatypeURI(String.class), 1, 1), null);
-		new Submit(g, new Label(Activator.getString("OutputPublisher.search"),
+		new Submit(g, new Label(SharedResources.getString("OutputPublisher.search"),
 				null), SEARCH_CALL).addMandatoryInput(in);
 		pushDialog(u, f);
 	}
@@ -888,9 +888,9 @@ public class OutputPublisher extends
 	 */
 	void showMessages(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(
-					Activator.logger,
-					"OutputPublisher", "showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarn(
+				SharedResources.moduleContext,
+				this.getClass(), "showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -935,13 +935,13 @@ public class OutputPublisher extends
 					msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST,
 							messageList);
 					msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
-					f = Form.newDialog(Activator
+					f = Form.newDialog(SharedResources
 							.getString("OutputPublisher.pendingMessages"),
 							msgList);
 					Group g = f.getIOControls();
 					g = new Repeat(
 							g,
-							new Label(Activator
+							new Label(SharedResources
 									.getString("OutputPublisher.pendingMessages"),
 									null),
 							new PropertyPath(null, false,
@@ -952,7 +952,7 @@ public class OutputPublisher extends
 					g = new Group(g, null, null, null, null);
 					new SimpleOutput(
 							g,
-							new Label(Activator
+							new Label(SharedResources
 									.getString("OutputPublisher.subject"), null),
 							new PropertyPath(
 									null,
@@ -961,7 +961,7 @@ public class OutputPublisher extends
 							null);
 					new SimpleOutput(
 							g,
-							new Label(Activator
+							new Label(SharedResources
 									.getString("OutputPublisher.date"), null),
 							new PropertyPath(null, false,
 									new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
@@ -970,10 +970,10 @@ public class OutputPublisher extends
 							new String[] { PROP_MSG_LIST_MESSAGE_BODY }), null);
 					// add submits
 					g = f.getSubmits();
-					new Submit(g, new Label(Activator
+					new Submit(g, new Label(SharedResources
 							.getString("OutputPublisher.ok"), null),
 							CLOSE_MESSAGES_CALL);
-					new Submit(g, new Label(Activator
+					new Submit(g, new Label(SharedResources
 							.getString("OutputPublisher.deleteAll"), null),
 							DELETE_ALL_MESSAGES_CALL);
 				}
@@ -983,8 +983,8 @@ public class OutputPublisher extends
 		// if there are no messages available, create a new message saying
 		// exactly that, so that the user knows that there are no messages
 		if (f == null)
-			f = Form.newMessage(Activator
-					.getString("OutputPublisher.pendingMessages"), Activator
+			f = Form.newMessage(SharedResources
+					.getString("OutputPublisher.pendingMessages"), SharedResources
 					.getString("OutputPublisher.noPendingMessages"));
 		pushDialog(u, f);
 	}
@@ -998,9 +998,9 @@ public class OutputPublisher extends
 	// some of the variable names..
 	void showOpenDialogs(Resource u) {
 		if (u == null) {
-			LogUtils.logWarning(
-					Activator.logger,
-					"OutputPublisher", "showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarn(
+				SharedResources.moduleContext,
+				this.getClass(), "showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -1048,10 +1048,10 @@ public class OutputPublisher extends
 				Resource msgList = new Resource();
 				msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, dialogs);
 				msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
-				f = Form.newDialog(Activator
+				f = Form.newDialog(SharedResources
 						.getString("OutputPublisher.pendingMessages"), msgList);
 				Group g = f.getIOControls();
-				g = new Repeat(g, new Label(Activator
+				g = new Repeat(g, new Label(SharedResources
 						.getString("OutputPublisher.pendingDialogs"), null),
 						new PropertyPath(null, false,
 								new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
@@ -1059,33 +1059,33 @@ public class OutputPublisher extends
 				// dummy group needed if more than one form control is going to
 				// be added as child of the repeat
 				g = new Group(g, null, null, null, null);
-				new SimpleOutput(g, new Label(Activator
+				new SimpleOutput(g, new Label(SharedResources
 						.getString("OutputPublisher.subject"), null),
 						new PropertyPath(null, false,
 								new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
 						null);
-				new SimpleOutput(g, new Label(Activator
+				new SimpleOutput(g, new Label(SharedResources
 						.getString("OutputPublisher.date"), null),
 						new PropertyPath(null, false,
 								new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
 						null);
-				new SubdialogTrigger(g, new Label(Activator
+				new SubdialogTrigger(g, new Label(SharedResources
 						.getString("OutputPublisher.switchTo"), null),
 						SubdialogTrigger.VAR_REPEATABLE_ID)
 						.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 				// add submits
 				g = f.getSubmits();
-				new Submit(g, new Label(Activator
+				new Submit(g, new Label(SharedResources
 						.getString("OutputPublisher.ok"), null),
 						CLOSE_OPEN_DIALOGS_CALL);
-				new Submit(g, new Label(Activator
+				new Submit(g, new Label(SharedResources
 						.getString("OutputPublisher.abortAll"), null),
 						ABORT_ALL_OPEN_DIALOGS_CALL);
 			}
 		}
 		if (f == null)
-			f = Form.newMessage(Activator
-					.getString("OutputPublisher.pendingMessages"), Activator
+			f = Form.newMessage(SharedResources
+					.getString("OutputPublisher.pendingMessages"), SharedResources
 					.getString("OutputPublisher.noPendingMessages"));
 		pushDialog(u, f);
 	}
@@ -1109,8 +1109,8 @@ public class OutputPublisher extends
 		synchronized (waitingDialogs) {
 			OutputEvent out = removeRunningDialog(dialogID);
 			if (out == null)
-				LogUtils.logWarning(Activator.logger,
-						"OutputPublisher", "suspendDialog", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
+				LogUtils.logWarn(SharedResources.moduleContext,
+					this.getClass(), "suspendDialog", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
 						dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
 			else
 				suspendedDialogs.put(dialogID, out);

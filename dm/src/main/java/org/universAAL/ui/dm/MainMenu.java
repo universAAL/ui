@@ -138,7 +138,7 @@ public class MainMenu {
 		//  2. vendor
 		//  3. service class
 		try {
-			InputStream in = Activator.getConfFileReader().getConfFileAsStream(
+			InputStream in = SharedResources.getConfFileAsStream(
 					"main_menu_" + thisUser + lang + ".txt");
 			// if (in == null)
 			// in = MainMenu.class.getResourceAsStream("main_menu.txt");
