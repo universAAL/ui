@@ -19,9 +19,9 @@
  */
 package org.universAAL.ui.dm;
 
-import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.service.ServiceResponse;
-import org.universAAL.middleware.util.LogUtils;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * @author mtazari
@@ -29,7 +29,8 @@ import org.universAAL.middleware.util.LogUtils;
  */
 public class ServiceCaller extends
 		org.universAAL.middleware.service.ServiceCaller {
-	ServiceCaller(BundleContext context) {
+    
+	ServiceCaller(ModuleContext context) {
 		super(context);
 	}
 
@@ -47,7 +48,7 @@ public class ServiceCaller extends
 	 */
 	@Override
 	public void handleResponse(String reqID, ServiceResponse response) {
-		LogUtils.logInfo(Activator.logger, "ServiceCaller", "handleResponse",
+		LogUtils.logInfo(SharedResources.moduleContext, this.getClass(), "handleResponse",
 				new Object[] { "Reply to ", reqID, " received: ",
 						response.getCallStatus().getLocalName() }, null);
 	}

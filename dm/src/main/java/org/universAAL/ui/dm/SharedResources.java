@@ -1,6 +1,6 @@
-/*
-	Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
-	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
+/*	
+	Copyright 2007-2014 Fraunhofer IGD, http://www.igd.fraunhofer.de
+	Fraunhofer-Gesellschaft - Institut für Graphische Datenverarbeitung
 	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
@@ -19,13 +19,14 @@
  */
 package org.universAAL.ui.dm;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.util.LogUtils;
-import org.universAAL.middleware.util.Messages;
+import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.container.osgi.util.Messages;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.io.owl.AccessImpairment;
 import org.universAAL.middleware.io.owl.Gender;
 import org.universAAL.middleware.owl.supply.LevelRating;
@@ -38,8 +39,6 @@ import org.universAAL.ontology.profile.HearingImpairment;
 import org.universAAL.ontology.profile.PersonalPreferenceProfile;
 import org.universAAL.ontology.profile.UserIdentificationProfile;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -48,45 +47,33 @@ import com.hp.hpl.jena.rdf.model.Model;
  * The bundle activator.
  * @author mtazari
  */
-public class Activator extends Thread implements BundleActivator {
+public class SharedResources extends Thread {
 
-	private static BundleContext context = null;
-	static final Logger logger = LoggerFactory.getLogger(Activator.class);
-	private static JenaConverter mc = null;
-	private static MessageContentSerializer serializer = null;
+	public static ModuleContext moduleContext;
+    
+	public static JenaConverter mc = null;
+	public static MessageContentSerializer serializer = null;
+	public static Messages messages;
 
 	private static ContextSubscriber contextSubscriber = null;
 	private static InputSubscriber inputSubscriber = null;
 	private static OutputPublisher outputPublisher = null;
 	private static ServiceCaller serviceCaller = null;
 	
-	/**
-	 * The configuration file with translated strings to show to the user. 
-	 */
-	private static Messages messages;
-
-	/**
-	 * URL of the database.
-	 */
+	/** URL of the database. */
 	static final String JENA_DB_URL = System.getProperty(
 			"org.persona.platform.jena_db.url",
 			"jdbc:mysql://localhost:3306/persona_aal_space");
 	
-	/**
-	 * User name for accessing the database.
-	 */
+	/** User name for accessing the database. */
 	static final String JENA_DB_USER = System.getProperty(
 			"org.persona.platform.ui.dm.db_user", "ui_dm");
 	
-	/**
-	 * Password for accessing the database.
-	 */
+	/** Password for accessing the database. */
 	static final String JENA_DB_PASSWORD = System.getProperty(
 			"org.persona.platform.ui.dm.db_passwd", "ui_dm");
 	
-	/**
-	 * Model name of the database.
-	 */
+	/** Model name of the database. */
 	static final String JENA_MODEL_NAME = System.getProperty(
 			"org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
 
@@ -106,14 +93,6 @@ public class Activator extends Thread implements BundleActivator {
 	// new DefaultContextPublisher(context, null).publish(new ContextEvent(pl,
 	// Location.PROP_TARGET_TEMPERATURE));
 	// }
-
-	/**
-	 * Get the bundle context
-	 * @return The bundle context.
-	 */
-	static BundleContext getBundleContext() {
-		return context;
-	}
 
 	/**
 	 * Get a connection to the database.
@@ -226,7 +205,7 @@ public class Activator extends Thread implements BundleActivator {
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logWarning(logger, "Activator", "insert", null, e);
+			LogUtils.logWarn(moduleContext, SharedResources.class, "insert", null, e);
 		}
 	}
 
@@ -244,9 +223,10 @@ public class Activator extends Thread implements BundleActivator {
 	 * of all messages shown to the user. The configuration file reader is
 	 * initialized with the correct path to the file system.
 	 * @return The configuration file reader.
+	 * @throws IOException 
 	 */
-	static Messages getConfFileReader() {
-		return messages;
+	static InputStream getConfFileAsStream(String filename) throws IOException {
+	    return messages.getConfFileAsStream(filename);
 	}
 
 	/**
@@ -254,46 +234,13 @@ public class Activator extends Thread implements BundleActivator {
 	 * blocking initialization of this bundle.
 	 */
 	public void run() {
-		try {
-			messages = new Messages(context.getBundle().getSymbolicName());
-		} catch (Exception e) {
-			LogUtils.logError(
-					logger,
-					"Activator",
-					"start",
-					new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
-					e);
-			return;
-		}
-
-		contextSubscriber = new ContextSubscriber(context);
+		contextSubscriber = new ContextSubscriber(moduleContext);
 		// it is important to instantiate the input subscriber before the output
 		// publisher
-		inputSubscriber = new InputSubscriber(context);
+		inputSubscriber = new InputSubscriber(moduleContext);
 		// loadTestData();
-		outputPublisher = new OutputPublisher(context);
-		serviceCaller = new ServiceCaller(context);
+		outputPublisher = new OutputPublisher(moduleContext);
+		serviceCaller = new ServiceCaller(moduleContext);
 		// changeTestData();
-	}
-
-	/**
-	 * Method for OSGi bundle: start this bundle.
-	 */
-	public void start(BundleContext context) throws Exception {
-		Activator.context = context;
-		ServiceReference sref = context
-				.getServiceReference(MessageContentSerializer.class.getName());
-		serializer = (sref == null) ? null : (MessageContentSerializer) context
-				.getService(sref);
-		sref = context.getServiceReference(JenaConverter.class.getName());
-		mc = (sref == null) ? null : (JenaConverter) context.getService(sref);
-		start();
-	}
-
-	/**
-	 * Method for OSGi bundle: stop this bundle.
-	 */
-	public void stop(BundleContext arg0) throws Exception {
-		// TODO Auto-generated method stub
 	}
 }
