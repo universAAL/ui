@@ -28,28 +28,29 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * 
  */
 public class ServiceCaller extends
-		org.universAAL.middleware.service.ServiceCaller {
-    
-	ServiceCaller(ModuleContext context) {
-		super(context);
-	}
+	org.universAAL.middleware.service.ServiceCaller {
 
-	/**
-	 * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
-	 */
-	@Override
-	public void communicationChannelBroken() {
-		// TODO Auto-generated method stub
-	}
+    ServiceCaller(ModuleContext context) {
+	super(context);
+    }
 
-	/**
-	 * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
-	 *      org.universAAL.middleware.service.ServiceResponse)
-	 */
-	@Override
-	public void handleResponse(String reqID, ServiceResponse response) {
-		LogUtils.logInfo(SharedResources.moduleContext, this.getClass(), "handleResponse",
-				new Object[] { "Reply to ", reqID, " received: ",
-						response.getCallStatus().getLocalName() }, null);
-	}
+    /**
+     * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
+     */
+    @Override
+    public void communicationChannelBroken() {
+	// TODO Auto-generated method stub
+    }
+
+    /**
+     * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
+     *      org.universAAL.middleware.service.ServiceResponse)
+     */
+    @Override
+    public void handleResponse(String reqID, ServiceResponse response) {
+	LogUtils.logInfo(SharedResources.moduleContext, this.getClass(),
+		"handleResponse",
+		new Object[] { "Reply to ", reqID, " received: ",
+			response.getCallStatus().getLocalName() }, null);
+    }
 }
