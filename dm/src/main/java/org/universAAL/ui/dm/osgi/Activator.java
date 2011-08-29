@@ -31,10 +31,11 @@ import org.universAAL.ui.dm.SharedResources;
 
 /**
  * The bundle activator.
+ * 
  * @author Carsten Stockloew
  */
 public class Activator implements BundleActivator {
-    
+
     SharedResources sr;
 
     public void start(BundleContext context) throws Exception {
@@ -56,8 +57,8 @@ public class Activator implements BundleActivator {
 	try {
 	    SharedResources.messages = new Messages(context.getBundle()
 		    .getSymbolicName());
-//	    BundleConfigHome(context.getBundle()
-//		    .getSymbolicName());
+	    // BundleConfigHome(context.getBundle()
+	    // .getSymbolicName());
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
@@ -68,7 +69,7 @@ public class Activator implements BundleActivator {
 			    e);
 	    return;
 	}
-	
+
 	// start
 	sr = new SharedResources();
 	sr.start();
