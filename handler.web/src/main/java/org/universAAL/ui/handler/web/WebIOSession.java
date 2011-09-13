@@ -28,28 +28,29 @@ import org.universAAL.middleware.output.OutputEvent;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
- *
+ * 
  */
 public class WebIOSession {
-	
-	private OutputEvent currenOutput;
-	private Hashtable<String, FormControl> currentFormAssociation;
 
-	public Hashtable<String,FormControl> getCurrentFormAssociation() {
-		return currentFormAssociation;
-	}
+    private OutputEvent currenOutput;
+    private Hashtable<String, FormControl> currentFormAssociation;
 
-	public void setCurrentFormAssociation(Hashtable<String, FormControl> currentFormAssociation) {
-		this.currentFormAssociation = currentFormAssociation;
-	}
+    public Hashtable<String, FormControl> getCurrentFormAssociation() {
+	return currentFormAssociation;
+    }
 
-	public OutputEvent getCurrentOutputEvent() {
-		return currenOutput;
-	}
+    public void setCurrentFormAssociation(
+	    Hashtable<String, FormControl> currentFormAssociation) {
+	this.currentFormAssociation = currentFormAssociation;
+    }
 
-	public void setCurrentOutputEvent(OutputEvent o) {
-		this.currenOutput=o;
-		
-	}
+    public OutputEvent getCurrentOutputEvent() {
+	return currenOutput;
+    }
+
+    public void setCurrentOutputEvent(OutputEvent o) {
+	this.currenOutput = o;
+
+    }
 
 }
