@@ -37,101 +37,101 @@ import org.universAAL.middleware.owl.Restriction;
  * Handles input and output events.
  */
 public class GUIIOHandler {
-	/**
-	 * Logging object for debugging purposes.
-	 */
-	private final static Logger log = LoggerFactory
-			.getLogger(GUIIOHandler.class);
-	/**
-	 * GUI RDF namespace
-	 */
-	private static final String GUI_NAMESPACE = "http://gui.io.persona.ima.igd.fhg.de/GuiHandler.owl#";
-	/**
-	 * RDF property for stating the users.
-	 */
-	private static final String OUTPUT_LIST_OF_USERS = GUI_NAMESPACE
-			+ "listOfUsers";
+    /**
+     * Logging object for debugging purposes.
+     */
+    private final static Logger log = LoggerFactory
+	    .getLogger(GUIIOHandler.class);
+    /**
+     * GUI RDF namespace
+     */
+    private static final String GUI_NAMESPACE = "http://gui.io.persona.ima.igd.fhg.de/GuiHandler.owl#";
+    /**
+     * RDF property for stating the users.
+     */
+    private static final String OUTPUT_LIST_OF_USERS = GUI_NAMESPACE
+	    + "listOfUsers";
 
-	/**
-	 * Publishes input events, collected form the gui, so the applications can
-	 * subscribe and read the user's input.
-	 */
-	private InputPublisher ip = null;
+    /**
+     * Publishes input events, collected form the gui, so the applications can
+     * subscribe and read the user's input.
+     */
+    private InputPublisher ip = null;
 
-	/**
-	 * collects Output events, produced by applications, to update/prompt the
-	 * user
-	 */
-	private MyOutputSubscriber os = null;
+    /**
+     * collects Output events, produced by applications, to update/prompt the
+     * user
+     */
+    private MyOutputSubscriber os = null;
 
-	/**
-	 * Constructor function. Creates a {@link MyOutputSubscriber} and a
-	 * {@link DefaultInputPublisher} to read output and provide input to the
-	 * respective busses. Also creates a {@link Login} for the user to log on.
-	 * 
-	 * @param context
-	 *            Bundle context passed by {@link Activator}
-	 */
-	public GUIIOHandler(ModuleContext context) {
-		super();
+    /**
+     * Constructor function. Creates a {@link MyOutputSubscriber} and a
+     * {@link DefaultInputPublisher} to read output and provide input to the
+     * respective busses. Also creates a {@link Login} for the user to log on.
+     * 
+     * @param context
+     *            Bundle context passed by {@link Activator}
+     */
+    public GUIIOHandler(ModuleContext context) {
+	super();
 
-		os = new MyOutputSubscriber(context, getOutputSubscriptionParams(),
-				this);
-		ip = new DefaultInputPublisher(context);
-		Login login = new Login(context, ip);
+	os = new MyOutputSubscriber(context, getOutputSubscriptionParams(),
+		this);
+	ip = new DefaultInputPublisher(context);
+	Login login = new Login(context, ip);
+    }
+
+    /**
+     * Callback for when a dialog is terminated, a submit button has been
+     * pressed
+     * 
+     * @param s
+     *            the botton pressed
+     */
+    public void dialogFinished(Submit s) {
+	// for the next line, see the comment within handleOutputEvent() above
+	Object o = s.getFormObject().getProperty(OutputEvent.MY_URI);
+	if (o instanceof OutputEvent) {
+	    // a popup action is being finished
+	    os.dialogFinished(s, true);
+	    ip.publish(new InputEvent(((OutputEvent) o).getAddressedUser(),
+		    ((OutputEvent) o).getPresentationAbsLocation(), s));
+	} else {
+	    os.dialogFinished(s, false);
+	    synchronized (os) {
+		InputEvent ie = new InputEvent(os.currentOutputEvent
+			.getAddressedUser(), os.currentOutputEvent
+			.getPresentationAbsLocation(), s);
+		if (s.getDialogID().equals(os.dialogID))
+		    os.currentOutputEvent = null;
+		ip.publish(ie);
+	    }
 	}
+    }
 
-	/**
-	 * Callback for when a dialog is terminated, a submit button has been
-	 * pressed
-	 * 
-	 * @param s
-	 *            the botton pressed
-	 */
-	public void dialogFinished(Submit s) {
-		// for the next line, see the comment within handleOutputEvent() above
-		Object o = s.getFormObject().getProperty(OutputEvent.MY_URI);
-		if (o instanceof OutputEvent) {
-			// a popup action is being finished
-			os.dialogFinished(s, true);
-			ip.publish(new InputEvent(((OutputEvent) o).getAddressedUser(),
-					((OutputEvent) o).getPresentationAbsLocation(), s));
-		} else {
-			os.dialogFinished(s, false);
-			synchronized (os) {
-				InputEvent ie = new InputEvent(os.currentOutputEvent
-						.getAddressedUser(), os.currentOutputEvent
-						.getPresentationAbsLocation(), s);
-				if (s.getDialogID().equals(os.dialogID))
-					os.currentOutputEvent = null;
-				ip.publish(ie);
-			}
-		}
-	}
+    /**
+     * States the pattern of interesting output events, for the handler.
+     * 
+     * used to create the parttern needed for {@link MyOutputSubscriber}.
+     * 
+     * @return a pattern used to subscribe to the output bus.
+     */
+    private OutputEventPattern getOutputSubscriptionParams() {
+	// I am interested in all events with following OutputEventPattern
+	// restrictions
+	OutputEventPattern oep = new OutputEventPattern();
+	// oep.addRestriction(Restriction.getAllValuesRestriction(
+	// OutputEvent.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
+	// new AccessImpairment[] {
+	// new HearingImpairment(LevelRating.low),
+	// new HearingImpairment(LevelRating.middle),
+	// new HearingImpairment(LevelRating.high),
+	// new HearingImpairment(LevelRating.full),
+	// new SightImpairment(LevelRating.low),
+	// new PhysicalImpairment(LevelRating.low)})));
+	oep.addRestriction(Restriction.getFixedValueRestriction(
+		OutputEvent.PROP_OUTPUT_MODALITY, Modality.gui));
 
-	/**
-	 * States the pattern of interesting output events, for the handler.
-	 * 
-	 * used to create the parttern needed for {@link MyOutputSubscriber}.
-	 * 
-	 * @return a pattern used to subscribe to the output bus.
-	 */
-	private OutputEventPattern getOutputSubscriptionParams() {
-		// I am interested in all events with following OutputEventPattern
-		// restrictions
-		OutputEventPattern oep = new OutputEventPattern();
-		// oep.addRestriction(Restriction.getAllValuesRestriction(
-		// OutputEvent.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
-		// new AccessImpairment[] {
-		// new HearingImpairment(LevelRating.low),
-		// new HearingImpairment(LevelRating.middle),
-		// new HearingImpairment(LevelRating.high),
-		// new HearingImpairment(LevelRating.full),
-		// new SightImpairment(LevelRating.low),
-		// new PhysicalImpairment(LevelRating.low)})));
-		oep.addRestriction(Restriction.getFixedValueRestriction(
-				OutputEvent.PROP_OUTPUT_MODALITY, Modality.gui));
-
-		return oep;
-	}
+	return oep;
+    }
 }
