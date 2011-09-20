@@ -2958,10 +2958,6 @@ handler.web/src/main/resources/webhandler/img/bt_white3.gif -text
 handler.web/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web/src/main/resources/webhandler/img/persona_logo.jpg -text
 pom/pom.xml -text
-ri.servicegateway/.classpath -text
-ri.servicegateway/.project -text
-ri.servicegateway/.settings/org.eclipse.jdt.core.prefs -text
-ri.servicegateway/.settings/org.maven.ide.eclipse.prefs -text
 ri.servicegateway/LICENSE -text
 ri.servicegateway/LICENSE-CPL-JUnit -text
 ri.servicegateway/LICENSE-JGCL -text
