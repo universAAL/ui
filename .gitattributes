@@ -2953,15 +2953,3 @@ handler.web/src/main/resources/webhandler/img/bt_white3.gif -text
 handler.web/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web/src/main/resources/webhandler/img/persona_logo.jpg -text
 pom/pom.xml -text
-ri.servicegateway/LICENSE -text
-ri.servicegateway/LICENSE-CPL-JUnit -text
-ri.servicegateway/LICENSE-JGCL -text
-ri.servicegateway/LICENSE-MIT11-httpunit -text
-ri.servicegateway/NOTICE -text
-ri.servicegateway/doc/Service[!!-~]Gateway_v0.4.doc -text
-ri.servicegateway/pom.xml -text
-ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/Activator.java -text
-ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/GatewayPort.java -text
-ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/GatewayPortTracker.java -text
-ri.servicegateway/src/main/java/org/universAAL/ri/servicegateway/impl/Base64.java -text
-ri.servicegateway/src/test/java/org/unversAAL/ri/servicegateway/LoginServletTest.java -text
