@@ -19,38 +19,37 @@
  */
 package org.universAAL.ui.dm;
 
-import org.universAAL.middleware.service.ServiceResponse;
+import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.service.ServiceResponse;
 
 /**
  * @author mtazari
  * 
  */
 public class ServiceCaller extends
-	org.universAAL.middleware.service.ServiceCaller {
+		org.universAAL.middleware.service.ServiceCaller {
+	ServiceCaller(ModuleContext context) {
+		super(context);
+	}
 
-    ServiceCaller(ModuleContext context) {
-	super(context);
-    }
+	/**
+	 * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
+	 */
+	@Override
+	public void communicationChannelBroken() {
+		// TODO Auto-generated method stub
+	}
 
-    /**
-     * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
-     */
-    @Override
-    public void communicationChannelBroken() {
-	// TODO Auto-generated method stub
-    }
-
-    /**
-     * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
-     *      org.universAAL.middleware.service.ServiceResponse)
-     */
-    @Override
-    public void handleResponse(String reqID, ServiceResponse response) {
-	LogUtils.logInfo(SharedResources.moduleContext, this.getClass(),
-		"handleResponse",
-		new Object[] { "Reply to ", reqID, " received: ",
-			response.getCallStatus().getLocalName() }, null);
-    }
+	/**
+	 * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
+	 *      org.universAAL.middleware.service.ServiceResponse)
+	 */
+	@Override
+	public void handleResponse(String reqID, ServiceResponse response) {
+		LogUtils.logInfo(Activator.getBundleContext(), ServiceCaller.class, "handleResponse",
+				new Object[] { "Reply to ", reqID, " received: ",
+						response.getCallStatus().getLocalName() }, null);
+	}
 }
