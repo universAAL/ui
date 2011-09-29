@@ -300,7 +300,7 @@
 		<module>../conversion.jena</module>
 		<module>../handler.gui</module>
 		<module>../handler.web</module>
-		<module>../ri.servicegateway</module>
+		<!-- <module>../ri.servicegateway</module>-->
 		<!-- <module>../../../ontologies/trunk/user.profile</module> -->
 	</modules>
 
