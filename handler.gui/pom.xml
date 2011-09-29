@@ -9,7 +9,7 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>ui.handler.gui</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>IO handler GUI</name>
 	<description>Demonstrates a GUI io handler</description>
 	<inceptionYear>2008</inceptionYear>
@@ -76,18 +76,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.service</artifactId>  
-			<version>0.3.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.data.representation</artifactId>  
 			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
+			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<!--used the following in order to make a bundle from the jar: mvn deploy:deploy-file -Dfile=src\main\resources\lib\TableLayout.jar -DgroupId=org.universAAL.ui -DartifactId=ui.handler.gui.tableLayout -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Durl=http://depot.universaal.org/nexus/content/repositories/snapshots -DrepositoryId=snapshots -->
