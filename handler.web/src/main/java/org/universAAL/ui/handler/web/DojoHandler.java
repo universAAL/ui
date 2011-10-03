@@ -132,7 +132,10 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	// Is this necessary?
     }
 
-    // --RENDERERS-- //Maybe in the future will be moved to other class
+    
+    // RENDERERS
+    
+    //Maybe in the future will be moved to other class
     private String renderGroupControl(Group ctrl,
 	    Hashtable<String, FormControl> assoc, boolean repeat,
 	    boolean vertical) {
@@ -326,7 +329,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	    imageURL = cl.getIconURL();
 	if (imageURL != null) {
 	    // html.append("<input type=\"image\" src=\""+imageURL+"\" ");//TODO
-	    // doesnt work like submit
+	    // doesn't work like submit
 	    html
 		    .append("<input dojotype=\"dijit.form.Button\" type=\"submit\" ");
 	} else {
@@ -487,7 +490,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	return html.toString();
     }
 
-    // --GW PORT (HANDLER)--
+    // GW PORT (HANDLER)
     @Override
     public String dataDir() {
 	return "/webhandler";
@@ -509,7 +512,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	    log.info("Received unauthorized HTTP request");
 	    return;
 	}
-	// --Input processing--
+	// Input processing
 	String[] userPass = getUserPass(req.getHeader("Authorization"));
 	String userURI = userURIs.get(userPass[0]);
 	log.info("Received HTTP request from user {} ", userURI);
@@ -599,7 +602,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	    ses.setCurrentOutputEvent(o);
 	}
 
-	// --Output processing--
+	// Output processing
 	// Load the template
 	InputStream pageReader = this.getClass().getClassLoader()
 		.getResourceAsStream("webhandler/dojobase.html");
