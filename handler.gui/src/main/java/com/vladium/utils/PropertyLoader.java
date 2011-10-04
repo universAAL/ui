@@ -137,4 +137,3 @@ public abstract class PropertyLoader {
     private static final String SUFFIX = ".properties";
 
 } // end of class
-// ----------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.universAAL.ui</groupId>
@@ -28,7 +29,7 @@
     http://www.igd.fraunhofer.de/
     http://www.vodafone.it/
     ]]></url>
-	</organization> 
+	</organization>
 
 	<licenses>
 		<license>
@@ -62,7 +63,7 @@
 					<groupId>log4j</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>	    	
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -71,12 +72,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.io</artifactId>  
+			<artifactId>mw.bus.io</artifactId>
 			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.data.representation</artifactId>  
+			<artifactId>mw.data.representation</artifactId>
 			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -85,11 +86,18 @@
 			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<!--used the following in order to make a bundle from the jar: mvn deploy:deploy-file -Dfile=src\main\resources\lib\TableLayout.jar -DgroupId=org.universAAL.ui -DartifactId=ui.handler.gui.tableLayout -Dversion=1.0-SNAPSHOT -Dpackaging=jar -Durl=http://depot.universaal.org/nexus/content/repositories/snapshots -DrepositoryId=snapshots -->
+			<!--
+				used the following in order to make a bundle from the jar: mvn
+				deploy:deploy-file -Dfile=src\main\resources\lib\TableLayout.jar
+				-DgroupId=org.universAAL.ui -DartifactId=ui.handler.gui.tableLayout
+				-Dversion=1.0-SNAPSHOT -Dpackaging=jar
+				-Durl=http://depot.universaal.org/nexus/content/repositories/snapshots
+				-DrepositoryId=snapshots
+			-->
 			<groupId>org.universAAL.ui</groupId>
 			<artifactId>ui.handler.gui.tableLayout</artifactId>
 			<version>1.0-SNAPSHOT</version>
-		</dependency> 	
+		</dependency>
 	</dependencies>
 
 	<properties>
@@ -110,17 +118,22 @@
 						<Bundle-Name>${project.name}</Bundle-Name>
 						<Bundle-Activator>org.universAAL.ui.handler.gui.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
-						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName> 
-						<!--<Import-Package>org.persona.middleware.dialog, javax.swing.table,
-              javax.swing, javax.swing.border, org.osgi.framework,
-              org.persona.middleware, org.persona.middleware.service,org.slf4j,
-              org.persona.middleware.input, org.persona.middleware.output,
-              org.persona.middleware.service, org.persona.middleware.service.process,
-              org.persona.ontology, org.persona.ontology.expr, 
-              org.persona.platform.profiling.ontology, org.persona.platform.profiling.ontology.service,
-              javax.swing.event, javax.swing.text, layout							
-            </Import-Package>-->
-						<Private-Package>org.universAAL.ui.handler.gui<!-- , info.clearthought.layout--></Private-Package>
+						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<!--
+							<Import-Package>org.persona.middleware.dialog, javax.swing.table,
+							javax.swing, javax.swing.border, org.osgi.framework,
+							org.persona.middleware, org.persona.middleware.service,org.slf4j,
+							org.persona.middleware.input, org.persona.middleware.output,
+							org.persona.middleware.service,
+							org.persona.middleware.service.process, org.persona.ontology,
+							org.persona.ontology.expr,
+							org.persona.platform.profiling.ontology,
+							org.persona.platform.profiling.ontology.service,
+							javax.swing.event, javax.swing.text, layout </Import-Package>
+						-->
+						<Private-Package>
+							org.universAAL.ui.handler.gui<!-- , info.clearthought.layout-->
+						</Private-Package>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -132,7 +145,7 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-			</plugin>			
+			</plugin>
 		</plugins>
 	</build>
 </project>

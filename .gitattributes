@@ -83,7 +83,6 @@ handler.gui/LICENSE.txt -text
 handler.gui/NOTICE.txt -text
 handler.gui/documentation/handler.gui[!!-~]class[!!-~]diagram[!!-~]20.4.2011.png -text
 handler.gui/documentation/handler.gui[!!-~]dependencies[!!-~]19.4.2011.png -text
-handler.gui/handler.gui[!!-~]dependencies[!!-~]18.4.2011.jpg -text
 handler.gui/pom.xml -text
 handler.gui/src/main/java/com/vladium/utils/PropertyLoader.java -text
 handler.gui/src/main/java/info/clearthought/layout/SingleFiledLayout.java -text
