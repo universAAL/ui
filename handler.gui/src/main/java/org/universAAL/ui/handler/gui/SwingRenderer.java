@@ -56,8 +56,8 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -71,6 +71,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -519,14 +520,165 @@ public class SwingRenderer extends JFrame implements ActionListener,
      */
     void popMessage(Form f) {
 	String msg = (String) f.getIOControls().getChildren()[0].getValue();
+	// This is the old Pop up
+	/*
+	 * FormControl[] submits = f.getSubmits().getChildren(); String[]
+	 * options = new String[submits.length]; for (int i=0; i<submits.length;
+	 * i++) options[i] = submits[i].getLabel().getText(); int selection =
+	 * JOptionPane.showOptionDialog(this, msg, f.getTitle(),
+	 * JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+	 * options, options[0]); if(selection==JOptionPane.CLOSED_OPTION){
+	 * theHandler.dialogFinished((Submit) submits[submits.length-1]); }else{
+	 * theHandler.dialogFinished((Submit) submits[selection]); }
+	 */
+
+	// This is the new Pop up
 	FormControl[] submits = f.getSubmits().getChildren();
-	String[] options = new String[submits.length];
-	for (int i = 0; i < submits.length; i++)
-	    options[i] = submits[i].getLabel().getText();
-	int selection = JOptionPane.showOptionDialog(this, msg, f.getTitle(),
-		JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-		null, options, options[0]);
-	theHandler.dialogFinished((Submit) submits[selection]);
+	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+	GridBagConstraints gbc = new GridBagConstraints();
+	JButton[] buttons = new JButton[submits.length];
+	// create container
+	JFrame optionPanel = new JFrame();
+	optionPanel.setUndecorated(true);
+	optionPanel.setAlwaysOnTop(true);
+	optionPanel.setBounds((dim.width / 2) - (350),
+		(dim.height / 2) - (200), 700, 400);
+	optionPanel.setLocation((dim.width / 2) - (optionPanel.getWidth() / 2),
+		(dim.height / 2) - (optionPanel.getHeight() / 2));
+	// create panel
+	JPanel panel = new JPanel();
+	// This is to adapt size if you want
+	// panel.setBounds((dim.width/2)-(350), (dim.height/2)-(200), 700, 400);
+	// panel.setLocation((dim.width/2)-(optionPanel.getWidth()/2),
+	// (dim.height/2)-(optionPanel.getHeight()/2));
+	panel.setBackground(rendererGuiConstants.getDefaultBackgroundColor());
+	panel.setForeground(rendererGuiConstants.getDefaultBackgroundColor());
+	panel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED,
+		Color.LIGHT_GRAY, null, null, null));
+	panel.setLayout(new GridBagLayout());
+	// create message
+	JTextArea optionMsg = new JTextArea(msg); //$NON-NLS-1$
+	optionMsg.setBackground(Color.white);
+	setLookAndFeelFont(rendererGuiConstants.getSubmitFont(),
+		rendererGuiConstants.getSubmitFontStyle(), rendererGuiConstants
+			.getSubmitFontSize(), optionMsg);
+	optionMsg.setOpaque(true);
+	optionMsg.setForeground(new Color(0x565656));
+	optionMsg.setEditable(false);
+	optionMsg.setLineWrap(true);
+	optionMsg.setWrapStyleWord(true);
+	optionMsg.setSize(600, (rendererGuiConstants.getSubmitFontSize() * 3)
+		+ rendererGuiConstants.getWrapSubmitIncreaseHeight());
+	// add header
+	gbc.gridx = 0;
+	gbc.gridy = 0;
+	gbc.gridwidth = submits.length;
+	gbc.gridheight = 1;
+	gbc.weightx = 1.0;
+	gbc.weighty = 0.5;
+	gbc.anchor = GridBagConstraints.NORTH;
+	panel.add(createGUIHeader(f.getTitle(), false), gbc);
+	// add message
+	gbc.gridx = 0;
+	gbc.gridy = 1;
+	gbc.gridwidth = submits.length;
+	gbc.gridheight = 1;
+	gbc.weightx = 1.0;
+	gbc.weighty = 1.0;
+	gbc.anchor = GridBagConstraints.CENTER;
+	panel.add(optionMsg, gbc);
+	// create and add buttons
+	for (int i = 0; i < submits.length; i++) {
+	    Label cl = submits[i].getLabel();
+	    String labelStr = cl.getText();
+	    cl.setResourceLabel(labelStr.replace(" ", "<p>"));
+	    String iconURL = cl.getIconURL();
+	    String htmlvalue = isEmptyString(labelStr) ? "" : "<html>"
+		    + "<FONT COLOR=#"
+		    + Integer.toHexString(
+			    rendererGuiConstants.getSubmitFontColor().getRGB())
+			    .substring(2) + "> " + submits[i].getLabel()
+		    + " </FONT>";
+	    if (rendererGuiConstants.getWrapSubmitText())
+		htmlvalue = htmlvalue.replaceFirst("FONT COLOR", "FONT_COLOR")
+			.replace(" ", "<P>").replaceFirst("FONT_COLOR",
+				"FONT COLOR");
+	    // create button
+	    JButton submit = new JButton(htmlvalue);
+	    setLookAndFeelFont(rendererGuiConstants.getSubmitFont(),
+		    rendererGuiConstants.getSubmitFontStyle(),
+		    rendererGuiConstants.getSubmitFontSize(), submit);
+	    submit.setBorderPainted(false);
+	    submit.setFocusPainted(false);
+	    submit.setContentAreaFilled(false);
+	    submit.setHorizontalTextPosition(SwingConstants.CENTER);
+	    submit.setVerticalAlignment(SwingConstants.CENTER);
+	    submit.setName(submits[i].getLabel().getText());
+	    submit.putClientProperty("Stretched", new Integer(1));
+	    if (iconURL == null) {
+		ImageIcon icon = getIcon(rendererGuiConstants.getSubmitIcon(),
+			null);
+		submit.setIcon(icon);
+	    }
+	    submit.addActionListener(new MyButtonListener(theHandler,
+		    optionPanel, (Submit) submits[i]));
+	    // add button
+	    gbc.gridx = i;
+	    gbc.gridy = 2;
+	    gbc.gridwidth = 1;
+	    gbc.gridheight = 1;
+	    gbc.weightx = 1 / submits.length;
+	    gbc.weighty = 0.5;
+	    gbc.anchor = GridBagConstraints.LINE_START;
+	    panel.add(submit, gbc);
+	    buttons[i] = submit;
+	}
+	// add panel
+	optionPanel.add(panel);
+	// show and restructure container
+	panel.setVisible(true);
+	optionPanel.setVisible(true);
+	int wid = 0;
+	for (int k = 0; k < buttons.length; k++) {
+	    wid += buttons[k].getWidth() /*
+					  * +rendererGuiConstants.
+					  * getWrapSubmitIncreaseWidth()
+					  */;
+	}
+	wid = (wid > 700) ? wid : 700;
+	optionPanel.setBounds((dim.width / 2) - (wid / 2),
+		(dim.height / 2) - (200), wid, 400);
+	optionPanel.setLocation((dim.width / 2) - (optionPanel.getWidth() / 2),
+		(dim.height / 2) - (optionPanel.getHeight() / 2));
+	// This is to adapt size if you want
+	// panel.setBounds((dim.width/2)-(wid/2), (dim.height/2)-(200), wid,
+	// 400);
+	// panel.setLocation((dim.width/2)-(optionPanel.getWidth()/2),
+	// (dim.height/2)-(optionPanel.getHeight()/2));
+	repaintIcons(optionPanel);
+
+    }
+
+    /**
+     * This is accessory for the "show Pop up message" above
+     */
+    private class MyButtonListener implements ActionListener {
+	private GUIIOHandler ioh;
+	private JFrame fr;
+	private Submit s;
+
+	MyButtonListener(GUIIOHandler ioh, JFrame fr, Submit s) {
+	    this.ioh = ioh;
+	    this.fr = fr;
+	    this.s = s;
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+	    fr.setVisible(false);
+	    fr.dispose();
+	    ioh.dialogFinished(s);
+	}
     }
 
     public void renderForm(Form f) {
@@ -552,21 +704,7 @@ public class SwingRenderer extends JFrame implements ActionListener,
 		    rendererGuiConstants.getDefaultCols(), false);
 	}
 
-	JScrollPane mainScrollPane = new JScrollPane(mainPanelData); // an to
-	// balw
-	// stin
-	// koryfi
-	// meta
-	// to
-	// new
-	// JPanel
-	// den
-	// emfanizetai
-	// to
-	// mainPanel
-	// me ta
-	// menu
-	// buttons
+	JScrollPane mainScrollPane = new JScrollPane(mainPanelData);
 
 	if (mainPanelData != null) {
 	    if (f.isSystemMenu())
@@ -589,6 +727,18 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	}
 
 	mainScrollPane.setBorder(null);
+	JScrollBar bar = new JScrollBar();
+	bar.setPreferredSize(new Dimension(60, 60));
+	bar.setUnitIncrement(50);
+	bar.setBlockIncrement(100);
+	bar.setOrientation(JScrollBar.VERTICAL);
+	mainScrollPane.setVerticalScrollBar(bar);//
+	JScrollBar barh = new JScrollBar();
+	barh.setPreferredSize(new Dimension(45, 45));
+	barh.setUnitIncrement(50);
+	barh.setBlockIncrement(100);
+	barh.setOrientation(JScrollBar.HORIZONTAL);
+	mainScrollPane.setHorizontalScrollBar(barh);//
 
 	getContentPane().add(mainScrollPane,
 		(f.isSystemMenu()) ? "1, 2, 2, 2" : "1, 2, 1, 2");
