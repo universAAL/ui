@@ -76,6 +76,7 @@ dm/src/main/resources/org/universAAL/ui/dm/messages.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
 dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
+handler.gui/.checkstyle -text
 handler.gui/LICENSE-CPL-JUnit.txt -text
 handler.gui/LICENSE-Clearthought.txt -text
 handler.gui/LICENSE-JGCL.txt -text
