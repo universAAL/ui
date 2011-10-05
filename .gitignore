@@ -2,3 +2,7 @@
 /.project
 /.settings
 /target
+ui.handler.gui/.classpath
+ui.handler.gui/.project
+ui.handler.gui/.settings
+ui.handler.gui/target
