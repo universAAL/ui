@@ -507,6 +507,7 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	OutputEvent o;
 	WebIOSession ses = new WebIOSession();
 
+	// begin authentication block
 	// Check if user is authorized
 	if (!handleAuthorization(req, resp)) {
 	    log.info("Received unauthorized HTTP request");
@@ -515,6 +516,12 @@ public class DojoHandler extends GatewayPort implements IWebHandler {
 	// Input processing
 	String[] userPass = getUserPass(req.getHeader("Authorization"));
 	String userURI = userURIs.get(userPass[0]);
+
+	// end authentication block, this block can be replaced by below 
+	// hardcoded line/user for e.g. testing purposes
+	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
+	// "Userkostas";
+
 	log.info("Received HTTP request from user {} ", userURI);
 	// Check if it is the first time
 	if (!userSessions.containsKey(userURI)) {

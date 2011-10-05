@@ -1472,3 +1472,47 @@
 	background:#fff;
 	-moz-border-radius: 0px !important;
 }
+
+.soria label{
+	margin:3px 0;
+}
+.soria label b{
+	display:inline-block;
+	width:120px;
+	text-align:right;
+	padding:5px;
+}
+.soria .dijitAlignTop{
+	padding:5px 20px 20px;
+	border-bottom:solid 2px #CCC;
+}
+.soria .dijitButtonContents{
+	display:inline-block !important;
+	width:80px !important;
+	font-weight:bold !important;
+}
+.soria .dijitTextBox:hover, .soria .dijitTextBox:focus, .soria .dijitTextArea:hover, .soria .dijitTextArea:focus, .soria .dijitSpinner:hover, .soria .dijitSpinner:focus, .soria .dijitComboBox:hover, .soria .dijitComboBox:focus{
+	border:solid 2px #3CF !important;
+	background:#FFC !important;
+}
+.soria fieldset{
+	-moz-box-shadow: 5px 5px 5px #ccc;
+  	-webkit-box-shadow: 5px 5px 5px #ccc;
+ 	box-shadow: 5px 5px 5px #ccc;
+
+}
+.soria{
+	font-family:Verdana, Arial;
+	font-size:14px;
+	line-height:22px;
+}
+.soria .dijtButton{
+	margin-left:10px !important;
+}
+
+.soria p{
+	text-align:center !important;
+	font-weight:bold !important;
+	margin:2px 0;
+	padding:0;
+}
