@@ -10,7 +10,7 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>ui.handler.gui</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>ICON-0.1.1-SNAPSHOT</version>
 	<name>IO handler GUI</name>
 	<description>Demonstrates a GUI io handler</description>
 	<inceptionYear>2008</inceptionYear>

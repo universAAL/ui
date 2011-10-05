@@ -2,6 +2,7 @@
 /.project
 /.settings
 /target
+ui.handler.gui/.checkstyle
 ui.handler.gui/.classpath
 ui.handler.gui/.project
 ui.handler.gui/.settings

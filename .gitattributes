@@ -1,5 +1,4 @@
 * text=auto !eol
-ui.handler.gui/.checkstyle -text
 ui.handler.gui/LICENSE-CPL-JUnit.txt -text
 ui.handler.gui/LICENSE-Clearthought.txt -text
 ui.handler.gui/LICENSE-JGCL.txt -text
