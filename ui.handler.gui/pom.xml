@@ -10,9 +10,11 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>ui.handler.gui</artifactId>
-	<version>ICON-0.1.1-SNAPSHOT</version>
+	<version>DEMO-0.1.1-SNAPSHOT</version>
 	<name>IO handler GUI</name>
-	<description>Demonstrates a GUI io handler</description>
+	<description>Demonstrates a GUI io handler.
+	 used for DEMO for the Review
+	 Branched from version 99 of trunk svn, and then undone container adaptation.</description>
 	<inceptionYear>2008</inceptionYear>
 	<url />
 
@@ -73,17 +75,17 @@
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.io</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.data.representation</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<!--
