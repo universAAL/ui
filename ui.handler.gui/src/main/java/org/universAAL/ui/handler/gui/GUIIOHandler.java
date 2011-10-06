@@ -19,9 +19,9 @@
  */
 package org.universAAL.ui.handler.gui;
 
+import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.input.DefaultInputPublisher;
 import org.universAAL.middleware.input.InputEvent;
 import org.universAAL.middleware.input.InputPublisher;
@@ -30,6 +30,8 @@ import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputEventPattern;
 import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.util.Constants;
+import org.universAAL.ontology.profile.ElderlyUser;
 
 /**
  * Actual IO GUI Handler.
@@ -72,13 +74,17 @@ public class GUIIOHandler {
      * @param context
      *            Bundle context passed by {@link Activator}
      */
-    public GUIIOHandler(ModuleContext context) {
+    public GUIIOHandler(BundleContext context) {
 	super();
 
 	os = new MyOutputSubscriber(context, getOutputSubscriptionParams(),
 		this);
 	ip = new DefaultInputPublisher(context);
-	Login login = new Login(context, ip);
+	Activator.user = new ElderlyUser(
+		    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
+	ip.publish(new InputEvent(Activator.user, null,
+		InputEvent.uAAL_MAIN_MENU_REQUEST));
+	//Login login = new Login(context, ip);
     }
 
     /**

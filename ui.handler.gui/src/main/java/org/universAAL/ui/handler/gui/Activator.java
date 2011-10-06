@@ -19,6 +19,7 @@
  */
 package org.universAAL.ui.handler.gui;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -30,9 +31,6 @@ import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.User;
@@ -75,15 +73,7 @@ public class Activator implements BundleActivator, ServiceListener {
      */
     public static BundleContext context;
 
-    /**
-     * uAAL {@link ModuleContext}
-     */
-    private static ModuleContext mcontext;
-
-    /**
-     * uAAL Configuration folder {@link BundleConfigHome}
-     */
-    private static BundleConfigHome home;
+    
 
     /**
      * Starting method of org.universAAl.ui.handler.gui bundle.
@@ -96,10 +86,9 @@ public class Activator implements BundleActivator, ServiceListener {
      */
     public void start(final BundleContext context) throws Exception {
 	Activator.context = context;
-	BundleContext[] bc = { context };
-	Activator.mcontext = uAALBundleContainer.THE_CONTAINER
-		.registerModule(bc);
-	Activator.home = new BundleConfigHome("ui.handler.gui");
+	//BundleContext[] bc = { context };
+	//Activator.mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
+	//Activator.home = new BundleConfigHome("ui.handler.gui");
 	String filter = "(objectclass=" + TypeMapper.class.getName() + ")";
 	context.addServiceListener(this, filter);
 	ServiceReference references[] = context.getServiceReferences(null,
@@ -110,7 +99,7 @@ public class Activator implements BundleActivator, ServiceListener {
 
 	new Thread() {
 	    public void run() {
-		new GUIIOHandler(Activator.mcontext);
+		new GUIIOHandler(Activator.context);
 		//
 		// un-comment the following lines, if you want to test the
 		// handling of messages
@@ -215,8 +204,9 @@ public class Activator implements BundleActivator, ServiceListener {
      */
     public static InputStream getConfFileAsStream(String name) {
 	try {
-	    mcontext.registerConfigFile(new Object[] { name });
-	    return Activator.home.getConfFileAsStream(name);
+	    //mcontext.registerConfigFile(new Object[] { name });
+	    //return Activator.home.getConfFileAsStream(name);
+		return new FileInputStream(getConfDir()+ RendererGuiConstants.CONFIG_FILE_DIR);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -228,6 +218,6 @@ public class Activator implements BundleActivator, ServiceListener {
      * Get the configuration directory
      */
     public static String getConfDir() {
-	return home.getAbsolutePath();
+    	return org.universAAL.middleware.util.Constants.getSpaceConfRoot();
     }
 }

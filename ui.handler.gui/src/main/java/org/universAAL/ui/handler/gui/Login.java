@@ -22,7 +22,6 @@ package org.universAAL.ui.handler.gui;
 import javax.swing.*;
 
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.input.InputEvent;
 import org.universAAL.middleware.input.InputPublisher;
 import org.universAAL.middleware.service.CallStatus;
@@ -35,6 +34,7 @@ import org.universAAL.middleware.owl.Restriction;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.User; //import org.persona.platform.profiling.ontology.service.
 import org.universAAL.ontology.profile.service.ProfilingService;
+import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,7 +76,7 @@ public class Login extends JFrame implements ActionListener {
      *            Input Publisher so to publish in input bus the login data
      *            collected from the user
      */
-    public Login(ModuleContext context, InputPublisher inPublisher) {
+    public Login(BundleContext context, InputPublisher inPublisher) {
 	caller = new DefaultServiceCaller(context);
 	ip = inPublisher;
 
@@ -115,8 +115,7 @@ public class Login extends JFrame implements ActionListener {
      */
     private void showMainGUI(User user) {
 	Activator.user = user;
-	ip
-		.publish(new InputEvent(user, null,
+	ip.publish(new InputEvent(user, null,
 			InputEvent.uAAL_MAIN_MENU_REQUEST));
     }
 

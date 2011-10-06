@@ -10,10 +10,10 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>ui.handler.gui</artifactId>
-	<version>DEMO-0.1.1-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT-DEMO</version>
 	<name>IO handler GUI</name>
 	<description>Demonstrates a GUI io handler.
-	 used for DEMO for the Review
+	 Specially tweaked for DEMO for the Review 2011, prototype 1
 	 Branched from version 99 of trunk svn, and then undone container adaptation.</description>
 	<inceptionYear>2008</inceptionYear>
 	<url />

@@ -19,7 +19,7 @@
  */
 package org.universAAL.ui.handler.gui;
 
-import org.universAAL.middleware.container.ModuleContext;
+import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputEventPattern;
@@ -63,7 +63,7 @@ public class MyOutputSubscriber extends OutputSubscriber {
      * @param guiHandler
      *            {@link GUIIOHandler} to which to link {@link SwingRenderer}
      */
-    protected MyOutputSubscriber(ModuleContext context,
+    protected MyOutputSubscriber(BundleContext context,
 	    OutputEventPattern initialSubscription, GUIIOHandler guiHandler) {
 	super(context, initialSubscription);
 	renderer = new SwingRenderer(guiHandler);

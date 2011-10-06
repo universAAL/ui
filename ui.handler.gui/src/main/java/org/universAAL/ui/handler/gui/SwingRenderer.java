@@ -228,13 +228,13 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	    if (src instanceof JCheckBox)
 		value = new Boolean(((JCheckBox) src).isSelected());
 	    else if (src instanceof JTextField)
-		/*
-		 * value = Activator.getTypeMapper().getJavaInstance(
-		 * ((JTextField) src).getText(), ((InputField) o).getTypeURI());
-		 */
-		value = TypeMapper.getJavaInstance(
-			((JTextField) src).getText(), ((InputField) o)
-				.getTypeURI());
+		
+		value = Activator.getTypeMapper().getJavaInstance(
+		((JTextField) src).getText(), ((InputField) o).getTypeURI());
+		 
+//		value = TypeMapper.getJavaInstance(
+//			((JTextField) src).getText(), ((InputField) o)
+//				.getTypeURI());
 	    if (!((InputField) o).storeUserInput(value))
 		highlightError(src);
 	} else if (o instanceof Select1) {

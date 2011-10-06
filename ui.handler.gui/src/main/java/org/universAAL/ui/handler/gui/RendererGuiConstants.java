@@ -38,8 +38,7 @@ public class RendererGuiConstants {
     private static final String GUI_MESSAGES_FILENAME = "guiMessages_en_US.properties";
     // private static final String CONFIG_FILE_DIR =
     // System.getProperty("user.home");
-    // private static final String CONFIG_FILE_DIR =
-    // BundleConfigHome.uAAL_CONF_ROOT_DIR + "\\ui.handler.gui";
+    static final String CONFIG_FILE_DIR = "\\ui.handler.gui";
 
     private static final String GUI_FOOTER_PANEL_NAME = "GUIFooter";
     private static final String GUI_HEADER_PANEL_NAME = "titlePanel";
