@@ -206,7 +206,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	try {
 	    //mcontext.registerConfigFile(new Object[] { name });
 	    //return Activator.home.getConfFileAsStream(name);
-		return new FileInputStream(getConfDir()+ RendererGuiConstants.CONFIG_FILE_DIR);
+		return new FileInputStream(getConfDir()+ RendererGuiConstants.CONFIG_FILE_DIR + "\\"+name);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
