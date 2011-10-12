@@ -1,4 +1,8 @@
 * text=auto !eol
+config[!!-~]files[!!-~]for[!!-~]rundir/ui.handler.gui/formsPrototypeProperties.properties -text
+config[!!-~]files[!!-~]for[!!-~]rundir/ui.handler.gui/formsPrototypes.properties -text
+config[!!-~]files[!!-~]for[!!-~]rundir/ui.handler.gui/guiMessages_en_US.properties -text
+config[!!-~]files[!!-~]for[!!-~]rundir/ui.handler.gui/serviceIconMapper.properties -text
 ui.handler.gui/LICENSE-CPL-JUnit.txt -text
 ui.handler.gui/LICENSE-Clearthought.txt -text
 ui.handler.gui/LICENSE-JGCL.txt -text
