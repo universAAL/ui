@@ -8,8 +8,6 @@ ui.handler.gui/LICENSE-Clearthought.txt -text
 ui.handler.gui/LICENSE-JGCL.txt -text
 ui.handler.gui/LICENSE.txt -text
 ui.handler.gui/NOTICE.txt -text
-ui.handler.gui/documentation/handler.gui[!!-~]class[!!-~]diagram[!!-~]20.4.2011.png -text
-ui.handler.gui/documentation/handler.gui[!!-~]dependencies[!!-~]19.4.2011.png -text
 ui.handler.gui/pom.xml -text
 ui.handler.gui/src/main/java/com/vladium/utils/PropertyLoader.java -text
 ui.handler.gui/src/main/java/info/clearthought/layout/SingleFiledLayout.java -text
@@ -21,15 +19,10 @@ ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/DateTime.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/GUIIOHandler.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/Login.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/MyOutputSubscriber.java -text svneol=unset#text/plain
-ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/PropertyLoader.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/RendererGuiConstants.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTableModel.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/RepeatTablePane.java -text
 ui.handler.gui/src/main/java/org/universAAL/ui/handler/gui/SwingRenderer.java -text
-ui.handler.gui/src/main/resources/formsPrototypeProperties.properties -text
-ui.handler.gui/src/main/resources/formsPrototypes.properties -text
-ui.handler.gui/src/main/resources/generalExample.properties -text
-ui.handler.gui/src/main/resources/img/Thumbs.db -text
 ui.handler.gui/src/main/resources/img/bt_white[!!-~]-[!!-~]Copy.png -text
 ui.handler.gui/src/main/resources/img/bt_white.gif -text
 ui.handler.gui/src/main/resources/img/bt_white.png -text
@@ -38,6 +31,8 @@ ui.handler.gui/src/main/resources/img/doctor.gif -text
 ui.handler.gui/src/main/resources/img/header.jpg -text
 ui.handler.gui/src/main/resources/img/logo.jpg -text
 ui.handler.gui/src/main/resources/img/logo_persona.jpg -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/agenda.jpg -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/nutritional.jpg -text
 ui.handler.gui/src/main/resources/img/nutritional/en/Thumbs.db -text
 ui.handler.gui/src/main/resources/img/nutritional/en/breakfast.jpg -text
 ui.handler.gui/src/main/resources/img/nutritional/en/brunch.jpg -text
