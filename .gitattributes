@@ -9,7 +9,6 @@ ui.handler.gui/LICENSE-JGCL.txt -text
 ui.handler.gui/LICENSE.txt -text
 ui.handler.gui/NOTICE.txt -text
 ui.handler.gui/pom.xml -text
-ui.handler.gui/src/main/java/com/vladium/utils/PropertyLoader.java -text
 ui.handler.gui/src/main/java/info/clearthought/layout/SingleFiledLayout.java -text
 ui.handler.gui/src/main/java/info/clearthought/layout/TableLayout.java -text
 ui.handler.gui/src/main/java/info/clearthought/layout/TableLayoutConstants.java -text
