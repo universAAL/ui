@@ -1305,39 +1305,44 @@ public class SwingRenderer extends JFrame implements ActionListener,
 			submit.setIcon(icon);
 		}
 
-		// added for DEMO (special icon for each service).
-		// icon is added on top and text is added at the bottom of the button.
+		/*
+		  * added for DEMO (special icon for each service).
+		  * icon is added on top and text is added at the bottom of the button.
+		  */		 
 		if (isMainMenu) {
 			String iconURLfromConfigFile = rendererGuiConstants
 					.fetchServiceIconURL(labelStr);
 			if (iconURLfromConfigFile != null) {
 				submit.setIcon(getIcon(iconURLfromConfigFile, null));
-			} else
+				/*
+				 * Nice Rendering ONLY when Icon is defined:
+				 */
+				// submit.setIconTextGap(5);
+				// submit.setVerticalTextPosition(SwingConstants.BOTTOM);
+				/*
+				 *  remove service name from the button
+				 */
+				submit.setText("");
+				submit.setBorderPainted(true);
+
+				/*
+				 *  Set border and add service name below the button
+				 */
+				Border border = BorderFactory.createTitledBorder(BorderFactory
+						.createEtchedBorder(EtchedBorder.LOWERED), labelStr,
+						TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
+				// Border border = BorderFactory.createTitledBorder(BorderFactory
+				// .createCompoundBorder(BorderFactory
+				// .createLineBorder(Color.BLUE), BorderFactory
+				// .createRaisedBevelBorder()), labelStr,
+				// TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
+				submit.setBorder(border);
+			} 
+			/*
+			 else
 				System.out
 						.println("ERROR in fetchServiceIconURL: unable to load properties! ");
-
-			// submit.setIconTextGap(5);
-			// submit.setVerticalTextPosition(SwingConstants.BOTTOM);
-			
-			// remove service name from the button
-			submit.setText("");
-			
-			submit.setBorderPainted(true);
-
-			// set border and add service name below the button
-			Border border = BorderFactory.createTitledBorder(BorderFactory
-					.createEtchedBorder(EtchedBorder.LOWERED), labelStr,
-					TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
-			
-
-
-			// Border border = BorderFactory.createTitledBorder(BorderFactory
-			// .createCompoundBorder(BorderFactory
-			// .createLineBorder(Color.BLUE), BorderFactory
-			// .createRaisedBevelBorder()), labelStr,
-			// TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
-
-			submit.setBorder(border);
+			*/
 		}
 
 		submit.putClientProperty("Stretched", new Integer(1));
