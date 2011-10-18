@@ -1306,9 +1306,9 @@ public class SwingRenderer extends JFrame implements ActionListener,
 		}
 
 		/*
-		  * added for DEMO (special icon for each service).
-		  * icon is added on top and text is added at the bottom of the button.
-		  */		 
+		 * added for DEMO (special icon for each service). icon is added on top
+		 * and text is added at the bottom of the button.
+		 */
 		if (isMainMenu) {
 			String iconURLfromConfigFile = rendererGuiConstants
 					.fetchServiceIconURL(labelStr);
@@ -1320,29 +1320,28 @@ public class SwingRenderer extends JFrame implements ActionListener,
 				// submit.setIconTextGap(5);
 				// submit.setVerticalTextPosition(SwingConstants.BOTTOM);
 				/*
-				 *  remove service name from the button
+				 * remove service name from the button
 				 */
 				submit.setText("");
 				submit.setBorderPainted(true);
 
 				/*
-				 *  Set border and add service name below the button
+				 * Set border and add service name below the button
 				 */
+				Font f = new Font(rendererGuiConstants.getLabelFont(),
+						Font.BOLD, rendererGuiConstants.getLabelFontSize());
+
 				Border border = BorderFactory.createTitledBorder(BorderFactory
 						.createEtchedBorder(EtchedBorder.LOWERED), labelStr,
-						TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
-				// Border border = BorderFactory.createTitledBorder(BorderFactory
-				// .createCompoundBorder(BorderFactory
-				// .createLineBorder(Color.BLUE), BorderFactory
-				// .createRaisedBevelBorder()), labelStr,
-				// TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM);
+						TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM, f,
+						rendererGuiConstants.getLabelFontColor());
 				submit.setBorder(border);
-			} 
-			/*
-			 else
+			}
+
+			else
 				System.out
 						.println("ERROR in fetchServiceIconURL: unable to load properties! ");
-			*/
+
 		}
 
 		submit.putClientProperty("Stretched", new Integer(1));
