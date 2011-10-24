@@ -19,7 +19,6 @@
  */
 package org.universAAL.ui.dm;
 
-import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.service.ServiceResponse;
