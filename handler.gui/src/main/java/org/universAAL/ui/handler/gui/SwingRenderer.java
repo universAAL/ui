@@ -743,8 +743,12 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	getContentPane().add(mainScrollPane,
 		(f.isSystemMenu()) ? "1, 2, 2, 2" : "1, 2, 1, 2");
 
-	this.setExtendedState(MAXIMIZED_BOTH);
-	this.setUndecorated(true);
+	if (rendererGuiConstants.isFullScreen()) {
+		this.setExtendedState(MAXIMIZED_BOTH);
+		this.setUndecorated(true);
+	}
+	else
+		this.setSize(800, 600);
 
 	Runnable redrawContainer = new Runnable() {
 	    public void run() {
