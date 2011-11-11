@@ -145,6 +145,8 @@ public class RendererGuiConstants {
     private static final String SEARCH_BOX_LABEL = "Search";
     private static final String SOUND_LABEL = "Sound";
     private static final String DATE_TIME_LABEL = "Date-Time";
+    
+    private static final boolean FULLSCREEN = true;
 
     private String formLayoutPrototype;
     private boolean generalPropertiesRed = false;
@@ -409,6 +411,10 @@ public class RendererGuiConstants {
     public boolean keepWideLastControlsColumn() {
 	return keepWideLastControlsColumn;
     }
+    
+    public boolean isFullScreen() {
+    	return fullscreen;
+    }
 
     /*
      * From-wise Variables
@@ -481,6 +487,8 @@ public class RendererGuiConstants {
     private String searchBoxLabel;
     private String soundLabel;
     private String dateTimeLabel;
+    
+    private boolean fullscreen;
 
     /**
      * Constructor for a instance to use at a form-wise environment. inicializes
@@ -567,6 +575,8 @@ public class RendererGuiConstants {
 	defaultRows = DEFAULT_ROWS;
 	defaultHAlign = DEFAULT_HALIGN;
 	defaultVAlign = DEFAULT_VALIGN;
+	
+	fullscreen = FULLSCREEN;
     }
 
     private Properties readProperties(String propertiesFileName) {
@@ -749,6 +759,10 @@ public class RendererGuiConstants {
 			layoutProperties.getProperty(formLayoutPrototype
 				+ ".screenBorder", Integer
 				.valueOf(screenBorder).toString())).intValue();
+		fullscreen = Boolean.valueOf(
+				layoutProperties.getProperty(formLayoutPrototype
+					+ ".fullscreen", Boolean
+					.valueOf(fullscreen).toString())).booleanValue();
 		componentsBorder = Integer.valueOf(
 			layoutProperties.getProperty(formLayoutPrototype
 				+ ".componentsBorder", Integer.valueOf(
