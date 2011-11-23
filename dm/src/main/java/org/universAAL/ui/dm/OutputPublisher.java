@@ -71,28 +71,28 @@ import com.hp.hpl.jena.rdf.model.Model;
 /**
  * The OutputPublisher implements the interface
  * {@link org.universAAL.middleware.output.DialogManager}.
+ * 
  * @author mtazari
  */
 /*
  * TODO: Some code improvements (in addition to the TODOs in the code):
  * 
  * - Check variable names, i.e. PROP_MSG_LIST_MESSAGE_TITLE, which is not only
- *   used for pending messages, but also for pending dialogs. Maybe use FORM
- *   instead of MESSAGE.
- *   
- * - Also: check method names, i.e. showOpenDialogs() -> showPendingDialogs()
- *   and showMessages() -> showPendingMessages()
+ * used for pending messages, but also for pending dialogs. Maybe use FORM
+ * instead of MESSAGE.
  * 
- * - "OutputPublisher.pendingMessages" is also used for pending dialogs.
- *   -> wrong title
- *   Warning: this is also used in isIgnorableMessage(Object, String)
- *   
+ * - Also: check method names, i.e. showOpenDialogs() -> showPendingDialogs()
+ * and showMessages() -> showPendingMessages()
+ * 
+ * - "OutputPublisher.pendingMessages" is also used for pending dialogs. ->
+ * wrong title Warning: this is also used in isIgnorableMessage(Object, String)
+ * 
  * - Order of forms is not given, the forms in the list of pending messages/
- *   dialogs my not be the correct order which could lead to confusion and even
- *   wrong decisions by the user.
- *   
+ * dialogs my not be the correct order which could lead to confusion and even
+ * wrong decisions by the user.
+ * 
  * - What exactly is the difference between suspended and waiting dialogs?
- *   Shouldn't suspended dialogs be shown in the list of pending dialogs?
+ * Shouldn't suspended dialogs be shown in the list of pending dialogs?
  */
 public class OutputPublisher extends
 		org.universAAL.middleware.output.OutputPublisher implements
@@ -102,22 +102,20 @@ public class OutputPublisher extends
 	 * URI namespace of this class.
 	 */
 	private static String CALL_PREFIX = "urn:ui.dm:OutputPublisher"; //$NON-NLS-1$
-	
-	
+
 	/**
 	 * The submission ID to abort all open dialogs. A button with this
-	 * functionality is available in the dialog showing the list of all
-	 * pending dialogs.
+	 * functionality is available in the dialog showing the list of all pending
+	 * dialogs.
 	 */
 	static final String ABORT_ALL_OPEN_DIALOGS_CALL = CALL_PREFIX
 			+ "#abortAllOpenDialogs"; //$NON-NLS-1$
-	
+
 	/**
 	 * The submission ID to close the dialog that shows all pending messages.
 	 */
-	static final String CLOSE_MESSAGES_CALL = CALL_PREFIX
-			+ "#closeMessages"; //$NON-NLS-1$
-	
+	static final String CLOSE_MESSAGES_CALL = CALL_PREFIX + "#closeMessages"; //$NON-NLS-1$
+
 	/**
 	 * The submission ID to close the dialog that shows all pending dialogs.
 	 */
@@ -126,53 +124,49 @@ public class OutputPublisher extends
 
 	/**
 	 * The submission ID to delete all messages. This event occurs when the
-	 * dialog with all messages is presented and the user selects the button
-	 * to delete all messages. Note, that only the messages are deleted that
-	 * are presented in this dialog to avoid deleting unseen messages.
+	 * dialog with all messages is presented and the user selects the button to
+	 * delete all messages. Note, that only the messages are deleted that are
+	 * presented in this dialog to avoid deleting unseen messages.
 	 */
 	static final String DELETE_ALL_MESSAGES_CALL = CALL_PREFIX
 			+ "#deleteAllMessages"; //$NON-NLS-1$
-	
+
 	/**
-	 * The submission ID to exit the main menu. A button with this
-	 * functionality is available only in the main menu.
+	 * The submission ID to exit the main menu. A button with this functionality
+	 * is available only in the main menu.
 	 * */
 	static final String EXIT_CALL = CALL_PREFIX + "#stopDialogLoop"; //$NON-NLS-1$
 
 	/**
-	 * The submission ID to show the main menu. A button with this
-	 * functionality is available in the standard dialog.
+	 * The submission ID to show the main menu. A button with this functionality
+	 * is available in the standard dialog.
 	 */
 	static final String MENU_CALL = CALL_PREFIX + "#showMainMenu"; //$NON-NLS-1$
-	
+
 	/**
 	 * The submission ID to show pending messages. A button with this
-	 * functionality is available in the system dialog and in standard
-	 * dialogs.
+	 * functionality is available in the system dialog and in standard dialogs.
 	 */
-	static final String MESSAGES_CALL = CALL_PREFIX
-			+ "#showMessages"; //$NON-NLS-1$
-	
+	static final String MESSAGES_CALL = CALL_PREFIX + "#showMessages"; //$NON-NLS-1$
+
 	/**
 	 * The submission ID to show pending dialogs. A button with this
 	 * functionality is available in the system menu.
 	 */
-	static final String OPEN_DIALOGS_CALL = CALL_PREFIX
-			+ "#showOpenDialogs"; //$NON-NLS-1$
-	
+	static final String OPEN_DIALOGS_CALL = CALL_PREFIX + "#showOpenDialogs"; //$NON-NLS-1$
+
 	/**
 	 * The submission ID to search for a specific service. A button with this
 	 * functionality is available in the system menu.
 	 */
 	static final String SEARCH_CALL = CALL_PREFIX + "#doSearch"; //$NON-NLS-1$
-	
+
 	/**
 	 * Prefix of a submission ID to switch to a pending dialog. All pending
 	 * dialogs are given in a {@link org.universAAL.middleware.io.rdf.Repeat}
 	 * control which atomatically adds index numbers to this prefix.
 	 */
-	static final String SWITCH_TO_CALL_PREFIX = CALL_PREFIX
-			+ ":switchTo#"; //$NON-NLS-1$
+	static final String SWITCH_TO_CALL_PREFIX = CALL_PREFIX + ":switchTo#"; //$NON-NLS-1$
 
 	static final String PROP_MSG_LIST_MESSAGE_BODY = Form.uAAL_DIALOG_NAMESPACE
 			+ "msgBody"; //$NON-NLS-1$
@@ -187,39 +181,36 @@ public class OutputPublisher extends
 	static final String PROP_MSG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
 			+ "msgListSentItems"; //$NON-NLS-1$
 
-
 	/**
-	 * The set of dialogs that were created by the dialog manager itself.
-	 * The key of the hash table is the dialog ID.
+	 * The set of dialogs that were created by the dialog manager itself. The
+	 * key of the hash table is the dialog ID.
 	 */
 	private Hashtable<String, Form> myDialogs;
-	
+
 	/**
-	 * The set of all messages.
-	 * The key of the hash table is the dialog ID.
+	 * The set of all messages. The key of the hash table is the dialog ID.
 	 */
 	private Hashtable<String, OutputEvent> messages;
-	
+
 	/**
-	 * The set of all dialogs that are currently running. Only one dialog
-	 * per user can be stored here; the user ID is used as the key of the
-	 * hash table.
+	 * The set of all dialogs that are currently running. Only one dialog per
+	 * user can be stored here; the user ID is used as the key of the hash
+	 * table.
 	 */
 	private Hashtable<String, OutputEvent> runningDialogs;
-	
+
 	/**
 	 * The set of all suspended dialogs.
 	 */
 	private Hashtable<String, OutputEvent> suspendedDialogs;
-	
+
 	/**
 	 * The set of all waiting dialogs.
 	 */
 	// Note: synchronization throughout this class is realized with this
-	// variable ('synchronized(waitingDialogs)'). 
+	// variable ('synchronized(waitingDialogs)').
 	private Hashtable<String, OutputEvent> waitingDialogs;
-	
-	
+
 	/**
 	 * Part of query for adaptation parameters. For performance reasons, the
 	 * query is created at the beginning in the class constructor and consists
@@ -255,8 +246,6 @@ public class OutputPublisher extends
 	 */
 	private int queryLength;
 
-	
-	
 	OutputPublisher(ModuleContext context) {
 		super(context);
 
@@ -271,15 +260,23 @@ public class OutputPublisher extends
 		adaptationQueryHead = "PREFIX list: <http://jena.hpl.hp.com/ARQ/list#>\nDESCRIBE <"; //$NON-NLS-1$
 		adaptationQueryMid = "> ?ep ?hp ?ppp ?ipl ?ppl ?imp ?vg ?mod ?loc\n   WHERE {\n     <"; //$NON-NLS-1$
 		StringBuffer sb = new StringBuffer(1024);
-		sb.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 		sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("          <").append(PersonalPreferenceProfile.PROP_D_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
-		sb.append("     ?hp <").append(HealthProfile.PROP_HAS_DISABILITY).append("> ?imps .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("          <").append(PersonalPreferenceProfile.PROP_D_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		sb
+				.append("     ?hp <").append(HealthProfile.PROP_HAS_DISABILITY).append("> ?imps .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 		sb.append("     ?ipls list:member ?ipl .\n"); //$NON-NLS-1$
 		sb.append("     ?ppls list:member ?ppl .\n"); //$NON-NLS-1$
 		sb.append("     ?imps list:member ?imp .\n"); //$NON-NLS-1$
@@ -289,16 +286,16 @@ public class OutputPublisher extends
 				+ adaptationQueryMid.length() + adaptationQueryTail.length();
 	}
 
-	
 	/**
 	 * This method is called when an input event of type
-	 * {@link #ABORT_ALL_OPEN_DIALOGS_CALL} occurs on the input bus. All
-	 * dialogs whose ID are given in 'data' are removed from the set of
-	 * waiting dialogs.
+	 * {@link #ABORT_ALL_OPEN_DIALOGS_CALL} occurs on the input bus. All dialogs
+	 * whose ID are given in 'data' are removed from the set of waiting dialogs.
 	 * 
-	 * @param user The addressed user.
-	 * @param data Contains a list with dialog IDs, see
-	 * 		{@link #PROP_MSG_LIST_SENT_ITEMS}.
+	 * @param user
+	 *            The addressed user.
+	 * @param data
+	 *            Contains a list with dialog IDs, see
+	 *            {@link #PROP_MSG_LIST_SENT_ITEMS}.
 	 */
 	void abortAllOpenDialogs(Resource user, Resource data) {
 		if (user == null || data == null)
@@ -326,9 +323,12 @@ public class OutputPublisher extends
 	/**
 	 * Add adaptation parameters to an output event. It gets the parameters
 	 * (like output modality to be used for this output) from the database.
-	 * @param event The output event to add the parameters to.
-	 * @param queryStr A query string to fetch the database for parameters.
-	 * 		This string already contains the user ID.
+	 * 
+	 * @param event
+	 *            The output event to add the parameters to.
+	 * @param queryStr
+	 *            A query string to fetch the database for parameters. This
+	 *            string already contains the user ID.
 	 */
 	private void addAdaptationParams(OutputEvent event, String queryStr) {
 		if (queryStr == null)
@@ -339,20 +339,42 @@ public class OutputPublisher extends
 			if (con.containsModel(Activator.JENA_MODEL_NAME)) {
 				ModelRDB CHModel = ModelRDB
 						.open(con, Activator.JENA_MODEL_NAME);
+				LogUtils.logInfo(Activator.getBundleContext(),
+						OutputPublisher.class,
+						"addAdaptationParams. queryStr:\n " + queryStr, null,
+						null);
 				Query query = QueryFactory.create(queryStr);
+				// System.out.println("query "+query);
 				QueryExecution qexec = QueryExecutionFactory.create(query,
 						CHModel);
+				// if(!query.isDescribeType())
+				// System.err.println("OutputPublisher.addAdaptationParams->Query is not DescribeType ");
+
 				Model m = qexec.execDescribe();
-				// m.write(System.out, "RDF/XML-ABBREV");
+				/*
+				 * m.write(System.out, "RDF/XML-ABBREV"); above line output is:
+				 * <rdf:RDF
+				 * xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+				 * xmlns:list="http://jena.hpl.hp.com/ARQ/list#"> </rdf:RDF>
+				 */
+
 				JenaConverter mc = Activator.getModelConverter();
-				com.hp.hpl.jena.rdf.model.Resource root = mc
-						.getJenaRootResource(m);
+				com.hp.hpl.jena.rdf.model.Resource root = null;
+				root = mc.getJenaRootResource(m);
+//				System.err
+//						.println("DM output publisher-> jenaModelConverter.getJenaRootResource: "
+//								+ root);
 				if (root == null) {
 					qexec.close();
-					Activator.loadTestData(
-							Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-							+ "saied", //$NON-NLS-1$
-							"Saied"); //$NON-NLS-1$
+					Activator
+							.loadTestData(
+									Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+											+ "saied", //$NON-NLS-1$
+									"Saied"); //$NON-NLS-1$
+
+//					Activator.loadTestData(
+//							"urn:org.universAAL.aal_space:test_env#saied", //$NON-NLS-1$
+//							"Saied"); //$NON-NLS-1$
 					Activator.loadTestData(
 							"urn:org.aal-persona.profiling:12345:ella", //$NON-NLS-1$
 							"Ella"); //$NON-NLS-1$
@@ -362,6 +384,9 @@ public class OutputPublisher extends
 					qexec = QueryExecutionFactory.create(query, CHModel);
 					m = qexec.execDescribe();
 					root = mc.getJenaRootResource(m);
+					System.err
+							.println("DM output publisher-> jenaModelConverter.getJenaRootResource after loading testData:\n "
+									+ root);
 				}
 				Resource pr = mc.toPersonaResource(root);
 				if (pr instanceof ElderlyUser) {
@@ -396,14 +421,17 @@ public class OutputPublisher extends
 									.getInsensibleMaxX());
 							event.setScreenResolutionMaxY(ppp
 									.getInsensibleMaxY());
-							event.setScreenResolutionMinX(ppp
-									.getPersonalMinX());
-							event.setScreenResolutionMinY(ppp
-									.getPersonalMinY());
+							event
+									.setScreenResolutionMinX(ppp
+											.getPersonalMinX());
+							event
+									.setScreenResolutionMinY(ppp
+											.getPersonalMinY());
 							event.setVoiceGender(ppp.getVoiceGender());
-							event.setVoiceLevel(((pl == PrivacyLevel.insensible) ? ppp
-									.getInsensibleVolumeLevel()
-									: ppp.getPersonalVolumeLevel()));
+							event
+									.setVoiceLevel(((pl == PrivacyLevel.insensible) ? ppp
+											.getInsensibleVolumeLevel()
+											: ppp.getPersonalVolumeLevel()));
 						}
 					}
 					event.setPresentationAbsLocation(eu.getLocation());
@@ -419,10 +447,12 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * Add standard buttons to a given form. Which buttons to add depends on
-	 * the dialog type, e.g. for a standard dialog buttons for showing
-	 * pending messages and pending dialogs are added.
-	 * @param f The form to add buttons to.
+	 * Add standard buttons to a given form. Which buttons to add depends on the
+	 * dialog type, e.g. for a standard dialog buttons for showing pending
+	 * messages and pending dialogs are added.
+	 * 
+	 * @param f
+	 *            The form to add buttons to.
 	 */
 	private void addStandardButtons(Form f) {
 		Group stdButtons = f.getStandardButtons();
@@ -466,12 +496,15 @@ public class OutputPublisher extends
 	/**
 	 * When an input event occurs on the input bus, this method determines
 	 * whether the event is associated with a dialog of type 'Message' that is
-	 * stored by the dialog manager. If this is the case, the dialog is
-	 * removed from the dialog manager.
-	 * @param dialogID ID of the dialog.
-	 * @param submissionID ID of the message from the input event. 
-	 * @return true, if this input event is associated with a stored dialog
-	 * 		of type 'Message'.
+	 * stored by the dialog manager. If this is the case, the dialog is removed
+	 * from the dialog manager.
+	 * 
+	 * @param dialogID
+	 *            ID of the dialog.
+	 * @param submissionID
+	 *            ID of the message from the input event.
+	 * @return true, if this input event is associated with a stored dialog of
+	 *         type 'Message'.
 	 */
 	boolean checkMessageFinish(String dialogID, String submissionID) {
 		OutputEvent msg = null;
@@ -483,12 +516,14 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * This method is called by the output bus and determines whether a
-	 * dialog can be shown directly (e.g. by comparing the dialogs priority
-	 * with the priority of a dialog that is currently shown). Additionally,
-	 * it adds adaptation parameters.
+	 * This method is called by the output bus and determines whether a dialog
+	 * can be shown directly (e.g. by comparing the dialogs priority with the
+	 * priority of a dialog that is currently shown). Additionally, it adds
+	 * adaptation parameters.
+	 * 
 	 * @see org.universAAL.middleware.output.DialogManager#checkNewDialog(OutputEvent)
-	 * @param event The output event containing a dialog.
+	 * @param event
+	 *            The output event containing a dialog.
 	 * @return true, if the dialog can be shown directly.
 	 */
 	public boolean checkNewDialog(OutputEvent event) {
@@ -597,11 +632,14 @@ public class OutputPublisher extends
 	 * Delete all messages. This method is called when the dialog with all
 	 * messages is presented and the user selects the button to delete all
 	 * messages.
-	 * @param user The current user.
-	 * @param data The data structure with a list with the IDs of all
-	 * 		messages. Note, that we cannot just delete all messages here since
-	 * 		new messages may have arrived. Instead only the messages that were
-	 * 		presented are deleted.
+	 * 
+	 * @param user
+	 *            The current user.
+	 * @param data
+	 *            The data structure with a list with the IDs of all messages.
+	 *            Note, that we cannot just delete all messages here since new
+	 *            messages may have arrived. Instead only the messages that were
+	 *            presented are deleted.
 	 */
 	void deleteAllMessages(Resource user, Resource data) {
 		if (user == null || data == null)
@@ -625,11 +663,13 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * This method is called by the output bus to inform the dialog manager
-	 * that a dialog was successfully finished. The dialog manager can then
-	 * show dialogs that were previously suspended.
+	 * This method is called by the output bus to inform the dialog manager that
+	 * a dialog was successfully finished. The dialog manager can then show
+	 * dialogs that were previously suspended.
+	 * 
 	 * @see org.universAAL.middleware.output.DialogManager#dialogFinished(String)
-	 * @param dialogID ID of the dialog that is now finished.
+	 * @param dialogID
+	 *            ID of the dialog that is now finished.
 	 */
 	public void dialogFinished(String dialogID) {
 		OutputEvent finished = null, out = null;
@@ -640,9 +680,9 @@ public class OutputPublisher extends
 				finished = messages.get(dialogID);
 				if (finished == null) {
 					if (myDialogs.remove(dialogID) == null)
-						LogUtils.logWarn(
-								Activator.getBundleContext(),
-								OutputPublisher.class, "dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
+						LogUtils.logWarn(Activator.getBundleContext(),
+								OutputPublisher.class,
+								"dialogFinished", new Object[] { //$NON-NLS-1$ //$NON-NLS-2$
 								dialogID, " is not a running dialog!" }, null); //$NON-NLS-1$
 					return;
 				} else {
@@ -680,12 +720,15 @@ public class OutputPublisher extends
 
 	/**
 	 * Get a message from a list of messages given the dialog ID. In the list
-	 * every message is represented as a Resource with a property 
+	 * every message is represented as a Resource with a property
 	 * {@link #PROP_MSG_LIST_MSG_DIALOG_ID} holding the ID of the dialog/
 	 * message.
-	 * @param dialogID The dialog ID. The list is searched for a message
-	 * 		with this dalog ID.
-	 * @param msgList The list containing the messages.
+	 * 
+	 * @param dialogID
+	 *            The dialog ID. The list is searched for a message with this
+	 *            dalog ID.
+	 * @param msgList
+	 *            The list containing the messages.
 	 * @return The Resource in which the message is stored.
 	 */
 	private Resource getMessage(String dialogID, List<?> msgList) {
@@ -705,7 +748,9 @@ public class OutputPublisher extends
 	/**
 	 * Get the next dialog from the list of {@link waitingDialogs}. The dialog
 	 * with the highest priority is returned.
-	 * @param user The current user.
+	 * 
+	 * @param user
+	 *            The current user.
 	 * @return A dialog from the list of waiting dialogs.
 	 */
 	private OutputEvent getNextDialog(Resource user) {
@@ -715,8 +760,8 @@ public class OutputPublisher extends
 		LevelRating lr = LevelRating.none;
 		XMLGregorianCalendar t = TypeMapper.getCurrentDateTime();
 		OutputEvent selected = null;
-		for (Iterator<OutputEvent> i = waitingDialogs.values().iterator();
-				i.hasNext();) {
+		for (Iterator<OutputEvent> i = waitingDialogs.values().iterator(); i
+				.hasNext();) {
 			OutputEvent cur = i.next();
 			if (!user.equals(cur.getAddressedUser()))
 				continue;
@@ -740,7 +785,9 @@ public class OutputPublisher extends
 
 	/**
 	 * Get query string for getting adaptation parameters from the database.
-	 * @param userID ID of the user to get the parameters from.
+	 * 
+	 * @param userID
+	 *            ID of the user to get the parameters from.
 	 * @return The query string for database.
 	 */
 	private String getQueryString(String userID) {
@@ -754,7 +801,9 @@ public class OutputPublisher extends
 	/**
 	 * Get a suspended dialog. Removes the dialog from {@link suspendedDialogs}
 	 * and adds it to {@link runningDialogs}
-	 * @param dialogID ID of the dialog.
+	 * 
+	 * @param dialogID
+	 *            ID of the dialog.
 	 */
 	public OutputEvent getSuspendedDialog(String dialogID) {
 		synchronized (waitingDialogs) {
@@ -780,8 +829,9 @@ public class OutputPublisher extends
 	/**
 	 * This method is called when an event on the input bus occurs indicating
 	 * that a dialog was aborted. It removes the dialog from the list (it
-	 * searches the lists {@link runningDialogs}, {@link suspendedDialogs},
-	 * and {@link waitingDialogs}) and unsubscribes from input bus.
+	 * searches the lists {@link runningDialogs}, {@link suspendedDialogs}, and
+	 * {@link waitingDialogs}) and unsubscribes from input bus.
+	 * 
 	 * @param dialogID
 	 */
 	void processAbortConfirmation(String dialogID) {
@@ -808,20 +858,21 @@ public class OutputPublisher extends
 		}
 	}
 
-	
 	/**
-	 * Pushes a special dialog. This method suspends the currently shown
-	 * dialog, stores it in {@link #waitingDialogs} and shows the given
-	 * dialog
-	 * @param user The user.
-	 * @param form The dialog that needs to be shown.
+	 * Pushes a special dialog. This method suspends the currently shown dialog,
+	 * stores it in {@link #waitingDialogs} and shows the given dialog
+	 * 
+	 * @param user
+	 *            The user.
+	 * @param form
+	 *            The dialog that needs to be shown.
 	 */
 	// TODO: what about priority?
 	private void pushDialog(Resource user, Form form) {
 		myDialogs.put(form.getDialogID(), form);
 		addStandardButtons(form);
-		OutputEvent out = new OutputEvent(user, form, null, Locale.getDefault(),
-				PrivacyLevel.insensible);
+		OutputEvent out = new OutputEvent(user, form, null,
+				Locale.getDefault(), PrivacyLevel.insensible);
 		String dialogID = form.getDialogID(), userID = user.getURI();
 		addAdaptationParams(out, getQueryString(userID));
 		Activator.getInputSubscriber().subscribe(dialogID);
@@ -836,9 +887,11 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * Removes a dialog from the list of running dialogs.
-	 * Warning: this method is unsynchronized.
-	 * @param dialogID ID of the dialog to remove.
+	 * Removes a dialog from the list of running dialogs. Warning: this method
+	 * is unsynchronized.
+	 * 
+	 * @param dialogID
+	 *            ID of the dialog to remove.
 	 * @return The dialog or null, if no dialog with this ID was found.
 	 */
 	private OutputEvent removeRunningDialog(String dialogID) {
@@ -856,13 +909,15 @@ public class OutputPublisher extends
 
 	/**
 	 * Show the main menu.
-	 * @param u The user.
+	 * 
+	 * @param u
+	 *            The user.
 	 */
 	void showMenu(Resource u) {
 		if (u == null) {
-			LogUtils.logWarn(
-					Activator.getBundleContext(),
-					OutputPublisher.class, "showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils.logWarn(Activator.getBundleContext(),
+					OutputPublisher.class,
+					"showMenu", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -884,13 +939,17 @@ public class OutputPublisher extends
 
 	/**
 	 * Shows a dialog with a list of all messages.
-	 * @param u The user.
+	 * 
+	 * @param u
+	 *            The user.
 	 */
 	void showMessages(Resource u) {
 		if (u == null) {
-			LogUtils.logWarn(
-					Activator.getBundleContext(),
-					OutputPublisher.class, "showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils
+					.logWarn(
+							Activator.getBundleContext(),
+							OutputPublisher.class,
+							"showMessages", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -904,7 +963,7 @@ public class OutputPublisher extends
 				// a list with dialog IDs; each entry corresponds with a
 				// entry in messageList
 				List<String> sentItems = new ArrayList<String>(messages.size());
-				
+
 				// fill the lists with all pending messages for the current
 				// user
 				for (Iterator<OutputEvent> i = messages.values().iterator(); i
@@ -927,13 +986,14 @@ public class OutputPublisher extends
 						sentItems.add(tmp.getDialogID());
 					}
 				}
-				
+
 				// if there are messages available for the current user,
 				// create a new form with a list of all messages
 				if (!messageList.isEmpty()) {
 					Resource msgList = new Resource();
-					msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST,
-							messageList);
+					msgList
+							.setProperty(PROP_MSG_LIST_MESSAGE_LIST,
+									messageList);
 					msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
 					f = Form.newDialog(Activator
 							.getString("OutputPublisher.pendingMessages"),
@@ -941,8 +1001,9 @@ public class OutputPublisher extends
 					Group g = f.getIOControls();
 					g = new Repeat(
 							g,
-							new Label(Activator
-									.getString("OutputPublisher.pendingMessages"),
+							new Label(
+									Activator
+											.getString("OutputPublisher.pendingMessages"),
 									null),
 							new PropertyPath(null, false,
 									new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
@@ -979,7 +1040,7 @@ public class OutputPublisher extends
 				}
 			}
 		}
-		
+
 		// if there are no messages available, create a new message saying
 		// exactly that, so that the user knows that there are no messages
 		if (f == null)
@@ -990,17 +1051,21 @@ public class OutputPublisher extends
 	}
 
 	/**
-	 * Show all pending dialogs (from {@link waitingDialogs}). This method
-	 * is called from the main menu.
-	 * @param u The current user.
+	 * Show all pending dialogs (from {@link waitingDialogs}). This method is
+	 * called from the main menu.
+	 * 
+	 * @param u
+	 *            The current user.
 	 */
 	// TODO: code seems to be copied originally from showMessages. Maybe rename
 	// some of the variable names..
 	void showOpenDialogs(Resource u) {
 		if (u == null) {
-			LogUtils.logWarn(
-					Activator.getBundleContext(),
-					OutputPublisher.class, "showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			LogUtils
+					.logWarn(
+							Activator.getBundleContext(),
+							OutputPublisher.class,
+							"showOpenDialogs", new Object[] { "no user specified!" }, null); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			return;
 		}
 
@@ -1013,14 +1078,14 @@ public class OutputPublisher extends
 				dialogSuspended(oe.getDialogID());
 				waitingDialogs.put(oe.getDialogID(), oe);
 			}
-			
+
 			// a list with information about a dialog in RDF-form:
 			// title, date, dialog ID
 			List<Resource> dialogs = new ArrayList<Resource>();
 			// a list with dialog IDs; each entry corresponds with a
 			// entry in dialogs
 			List<String> sentItems = new ArrayList<String>();
-			
+
 			// fill the lists with all pending dialogs for the current
 			// user
 			for (Iterator<OutputEvent> i = waitingDialogs.values().iterator(); i
@@ -1033,15 +1098,16 @@ public class OutputPublisher extends
 					Resource aux = new Resource();
 					aux.setProperty(PROP_MSG_LIST_MESSAGE_DATE, tmp
 							.getCreationTime());
-					aux.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, tmp
-							.getTitle());
+					aux
+							.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, tmp
+									.getTitle());
 					aux.setProperty(PROP_MSG_LIST_MSG_DIALOG_ID, tmp
 							.getDialogID());
 					dialogs.add(aux);
 					sentItems.add(tmp.getDialogID());
 				}
 			}
-			
+
 			// if there are dialogs available for the current user,
 			// create a new form with a list of all dialogs
 			if (!dialogs.isEmpty()) {
@@ -1092,18 +1158,22 @@ public class OutputPublisher extends
 
 	/**
 	 * Show results from a search request from the main menu.
-	 * @param u The current user.
-	 * @param searchString The search string.
+	 * 
+	 * @param u
+	 *            The current user.
+	 * @param searchString
+	 *            The search string.
 	 */
 	void showSearchResults(Resource u, String searchString) {
 		// TODO:
 	}
 
 	/**
-	 * Suspend a dialog. This method is called by the output bus and
-	 * removes the given dialog from 'runningDialogs' and stores it in
-	 * 'suspendedDialogs'.
-	 * @param dialogID ID of the dialog.
+	 * Suspend a dialog. This method is called by the output bus and removes the
+	 * given dialog from 'runningDialogs' and stores it in 'suspendedDialogs'.
+	 * 
+	 * @param dialogID
+	 *            ID of the dialog.
 	 */
 	public void suspendDialog(String dialogID) {
 		synchronized (waitingDialogs) {
@@ -1119,12 +1189,16 @@ public class OutputPublisher extends
 
 	/**
 	 * Switch to a specific pending dialog. This method is called from the
-	 * dialog presenting the list of pending dialogs when the user selects
-	 * the appropriate button.
-	 * @param user The current user.
-	 * @param data The data from the dialog; contains information about all
-	 * 		pending dialogs.
-	 * @param selectionIndex Index of the selected pending dialog.
+	 * dialog presenting the list of pending dialogs when the user selects the
+	 * appropriate button.
+	 * 
+	 * @param user
+	 *            The current user.
+	 * @param data
+	 *            The data from the dialog; contains information about all
+	 *            pending dialogs.
+	 * @param selectionIndex
+	 *            Index of the selected pending dialog.
 	 */
 	void switchTo(Resource user, Resource data, int selectionIndex) {
 		if (user == null || data == null)
