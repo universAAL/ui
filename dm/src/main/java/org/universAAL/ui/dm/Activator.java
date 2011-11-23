@@ -52,6 +52,7 @@ import com.hp.hpl.jena.rdf.model.Model;
 
 /**
  * The bundle activator.
+ * 
  * @author mtazari
  */
 public class Activator extends Thread implements BundleActivator {
@@ -59,16 +60,16 @@ public class Activator extends Thread implements BundleActivator {
 	private static ModuleContext context = null;
 	private static BundleContext bundleContext = null;
 	static final Logger logger = LoggerFactory.getLogger(Activator.class);
-	private static JenaConverter mc = null;
+	private static JenaConverter jenaConverter = null;
 	private static MessageContentSerializer serializer = null;
 
 	private static ContextSubscriber contextSubscriber = null;
 	private static InputSubscriber inputSubscriber = null;
 	private static OutputPublisher outputPublisher = null;
 	private static ServiceCaller serviceCaller = null;
-	
+
 	/**
-	 * The configuration file with translated strings to show to the user. 
+	 * The configuration file with translated strings to show to the user.
 	 */
 	private static Messages messages;
 
@@ -78,44 +79,28 @@ public class Activator extends Thread implements BundleActivator {
 	static final String JENA_DB_URL = System.getProperty(
 			"org.persona.platform.jena_db.url",
 			"jdbc:mysql://localhost:3306/persona_aal_space");
-	
+
 	/**
 	 * User name for accessing the database.
 	 */
 	static final String JENA_DB_USER = System.getProperty(
 			"org.persona.platform.ui.dm.db_user", "ui_dm");
-	
+
 	/**
 	 * Password for accessing the database.
 	 */
 	static final String JENA_DB_PASSWORD = System.getProperty(
 			"org.persona.platform.ui.dm.db_passwd", "ui_dm");
-	
+
 	/**
 	 * Model name of the database.
 	 */
 	static final String JENA_MODEL_NAME = System.getProperty(
 			"org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
 
-
-	// static void changeTestData() {
-	// Resource b = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
-	// "boiler1");
-	// b.addType("http://ontology.persona.ratio.it/DummyServiceProvider.owl#Boiler",
-	// true);
-	// Location pl = new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
-	// "livingRoom");
-	// b.setProperty(PhysicalThing.PROP_PHYSICAL_LOCATION, pl);
-	// insert(b);
-	// Temperature t = new Temperature();
-	// t.setValue(21);
-	// pl.setTargetTemperature(t);
-	// new DefaultContextPublisher(context, null).publish(new ContextEvent(pl,
-	// Location.PROP_TARGET_TEMPERATURE));
-	// }
-
 	/**
 	 * Get the bundle context
+	 * 
 	 * @return The bundle context.
 	 */
 	static ModuleContext getBundleContext() {
@@ -124,30 +109,37 @@ public class Activator extends Thread implements BundleActivator {
 
 	/**
 	 * Get a connection to the database.
+	 * 
 	 * @return The database connection.
 	 */
 	static DBConnection getConnection() {
-		
-        try {
-        	com.mysql.jdbc.Driver test = new com.mysql.jdbc.Driver();
-        	//Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/persona_aal_space", "ui_dm", "ui_dm");
-			System.out.println(con.toString()+test.toString());
+		DBConnection con = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(JENA_DB_URL,
+					JENA_DB_USER, JENA_DB_PASSWORD);
+
+			/*
+			 * con = new DBConnection(JENA_DB_URL, JENA_DB_USER,
+			 * JENA_DB_PASSWORD, "MySQL"); alternative creation of DBConnection.
+			 * For some reason above construction did not work correctly.
+			 */
+			con = new DBConnection(conn, "MySQL");
+			// logger.info("DM connection to: " + JENA_DB_URL + " opened.");
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger
+					.error(
+							"Exception in DM while trying to get connection to database: {} ",
+							e);
 		}
-        
-        DBConnection con = new DBConnection("jdbc:mysql://localhost:3306/persona_aal_space", JENA_DB_USER, JENA_DB_PASSWORD, "MySQL");
-        
-        IRDBDriver driver = con.getDriver();
-        System.out.println(driver.toString());
-        
+
 		return con;
 	}
 
 	/**
 	 * Get the context subscriber which is responsible for realizing system
 	 * reactivity.
+	 * 
 	 * @return The context subscriber.
 	 */
 	static ContextSubscriber getContextSubscriber() {
@@ -156,6 +148,7 @@ public class Activator extends Thread implements BundleActivator {
 
 	/**
 	 * Get the input subscriber which handles input events from the input bus.
+	 * 
 	 * @return The input subscriber.
 	 */
 	static InputSubscriber getInputSubscriber() {
@@ -164,15 +157,17 @@ public class Activator extends Thread implements BundleActivator {
 
 	/**
 	 * Get the model converter for accessing the database.
+	 * 
 	 * @return The model converter.
 	 */
 	static JenaConverter getModelConverter() {
-		return mc;
+		return jenaConverter;
 	}
 
 	/**
 	 * Get output publisher which handles dialogs and messages and interacts
 	 * with the output bus.
+	 * 
 	 * @return The output publisher.
 	 */
 	static OutputPublisher getOutputPublisher() {
@@ -180,8 +175,9 @@ public class Activator extends Thread implements BundleActivator {
 	}
 
 	/**
-	 * Get the message serializer which can be used to (de-)serialize
-	 * RDF messages.
+	 * Get the message serializer which can be used to (de-)serialize RDF
+	 * messages.
+	 * 
 	 * @return The message serializer.
 	 */
 	static MessageContentSerializer getSerializer() {
@@ -190,6 +186,7 @@ public class Activator extends Thread implements BundleActivator {
 
 	/**
 	 * Get service caller.
+	 * 
 	 * @return The service caller.
 	 */
 	static ServiceCaller getServiceCaller() {
@@ -197,10 +194,13 @@ public class Activator extends Thread implements BundleActivator {
 	}
 
 	/**
-	 * Create a new user for testing purposes with some default values. The
-	 * new user is then uploaded to the database.
-	 * @param uri The URI of the user.
-	 * @param name The name of the user.
+	 * Create a new user for testing purposes with some default values. The new
+	 * user is then uploaded to the database.
+	 * 
+	 * @param uri
+	 *            The URI of the user.
+	 * @param name
+	 *            The name of the user.
 	 */
 	static void loadTestData(String uri, String name) {
 		UserIdentificationProfile uip = new UserIdentificationProfile();
@@ -218,7 +218,8 @@ public class Activator extends Thread implements BundleActivator {
 		ppp.setPersonalMinX(176);
 		ppp.setPersonalMinY(320);
 		ppp.setPersonalVolumeLevel(60);
-		ppp.setPLsMappedToInsensible(new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly });
+		ppp
+				.setPLsMappedToInsensible(new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly });
 		ppp.setPLsMappedToPersonal(new PrivacyLevel[] {
 				PrivacyLevel.intimatesOnly, PrivacyLevel.homeMatesOnly });
 		ppp.setVoiceGender(Gender.female);
@@ -230,16 +231,19 @@ public class Activator extends Thread implements BundleActivator {
 	}
 
 	/**
-	 * Insert a new user into the database, e.g. a self-defined test user. 
+	 * Insert a new user into the database, e.g. a self-defined test user.
+	 * 
 	 * @param pr
 	 */
 	private static void insert(Resource pr) {
+		System.err.println("dm Activator insert to db test ElderlyUser: " + pr);
 		try {
 			DBConnection conn = getConnection();
 			if (conn.containsModel(JENA_MODEL_NAME)) {
 				ModelRDB CHModel = ModelRDB.open(conn, JENA_MODEL_NAME);
-				Model m = mc.toJenaResource(pr).getModel();
-				m.write(System.out, "RDF/XML-ABBREV");
+				Model m = jenaConverter.toJenaResource(pr).getModel();
+				// System.out.println("jena model m: "+m.toString());
+				// m.write(System.out, "RDF/XML-ABBREV");
 				// CHModel.difference(m).write(System.out, "RDF/XML-ABBREV");
 				CHModel.setDoDuplicateCheck(true);
 				CHModel.add(m);
@@ -247,13 +251,16 @@ public class Activator extends Thread implements BundleActivator {
 			}
 			conn.close();
 		} catch (Exception e) {
-			LogUtils.logWarn(Activator.context, Activator.class, "insert", null, e);
+			LogUtils.logWarn(Activator.context, Activator.class, "insert",
+					null, e);
 		}
 	}
 
 	/**
 	 * Get a string from the configuration file.
-	 * @param key Get the translated string for this key.
+	 * 
+	 * @param key
+	 *            Get the translated string for this key.
 	 * @return The translated string.
 	 */
 	static String getString(String key) {
@@ -264,6 +271,7 @@ public class Activator extends Thread implements BundleActivator {
 	 * Get the configuration file reader which contains the translated strings
 	 * of all messages shown to the user. The configuration file reader is
 	 * initialized with the correct path to the file system.
+	 * 
 	 * @return The configuration file reader.
 	 */
 	static Messages getConfFileReader() {
@@ -278,12 +286,13 @@ public class Activator extends Thread implements BundleActivator {
 		try {
 			messages = new Messages(bundleContext.getBundle().getSymbolicName());
 		} catch (Exception e) {
-			LogUtils.logError(
-					Activator.context,
-					Activator.class,
-					"start",
-					new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
-					e);
+			LogUtils
+					.logError(
+							Activator.context,
+							Activator.class,
+							"start",
+							new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
+							e);
 			return;
 		}
 
@@ -297,18 +306,44 @@ public class Activator extends Thread implements BundleActivator {
 		// changeTestData();
 	}
 
+	// static void changeTestData() {
+	// Resource b = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
+	// "boiler1");
+	// b.addType("http://ontology.persona.ratio.it/DummyServiceProvider.owl#Boiler",
+	// true);
+	// Location pl = new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
+	// "livingRoom");
+	// b.setProperty(PhysicalThing.PROP_PHYSICAL_LOCATION, pl);
+	// insert(b);
+	// Temperature t = new Temperature();
+	// t.setValue(21);
+	// pl.setTargetTemperature(t);
+	// new DefaultContextPublisher(context, null).publish(new ContextEvent(pl,
+	// Location.PROP_TARGET_TEMPERATURE));
+	// }
 	/**
 	 * Method for OSGi bundle: start this bundle.
 	 */
 	public void start(BundleContext context) throws Exception {
-		Activator.context = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		Activator.context = uAALBundleContainer.THE_CONTAINER
+				.registerModule(new Object[] { context });
 		Activator.bundleContext = context;
 		ServiceReference sref = context
 				.getServiceReference(MessageContentSerializer.class.getName());
 		serializer = (sref == null) ? null : (MessageContentSerializer) context
 				.getService(sref);
-		sref = context.getServiceReference(JenaConverter.class.getName());
-		mc = (sref == null) ? null : (JenaConverter) context.getService(sref);
+
+		/*
+		 * test block ServiceReference references[] = context
+		 * .getServiceReferences(null, null); for (int i = 0; references != null
+		 * && i < references.length; i++) System.out.println("reference[" + i +
+		 * "].toString: " + references[i].toString());
+		 */
+
+		ServiceReference sref2 = context
+				.getServiceReference(JenaConverter.class.getName());
+		jenaConverter = (sref2 == null) ? null : (JenaConverter) context
+				.getService(sref2);
 		start();
 	}
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.universAAL.ui</groupId>
@@ -22,7 +23,7 @@
 		<url><![CDATA[
     http://www.igd.fraunhofer.de/
     ]]></url>
-	</organization> 
+	</organization>
 
 	<licenses>
 		<license>
@@ -35,7 +36,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.universAAL.support</groupId>
-			<artifactId>jena.osgi</artifactId>  
+			<artifactId>jena.osgi</artifactId>
 			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -71,7 +72,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
+			<version>5.1.17</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.context</groupId>
@@ -80,7 +81,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.io</artifactId>  
+			<artifactId>mw.bus.io</artifactId>
 			<version>0.3.1-SNAPSHOT</version>
 			<scope>provided</scope>
 		</dependency>
@@ -121,6 +122,38 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<!-- Export-Package>org.universAAL.ui.dm</Export-Package -->
 						<Private-Package>org.universAAL.ui.dm</Private-Package>
+						<Import-Package>
+							com.hp.hpl.jena.db,
+							com.hp.hpl.jena.db.impl,
+							com.hp.hpl.jena.query,
+							com.hp.hpl.jena.rdf.model,
+							com.mysql.jdbc.jdbc2.optional,
+							javax.sql,
+							javax.xml.datatype,
+							org.osgi.framework,
+							org.slf4j,
+							org.universAAL.context.conversion.jena,
+							org.universAAL.middleware.container,
+							org.universAAL.middleware.container.osgi,
+							org.universAAL.middleware.container.osgi.util,
+							org.universAAL.middleware.container.utils,
+							org.universAAL.middleware.context,
+							org.universAAL.middleware.input,
+							org.universAAL.middleware.io.owl,
+							org.universAAL.middleware.io.rdf,
+							org.universAAL.middleware.output,
+							org.universAAL.middleware.owl,
+							org.universAAL.middleware.owl.supply,
+							org.universAAL.middleware.rdf,
+							org.universAAL.middleware.service,
+							org.universAAL.middleware.service.owl,
+							org.universAAL.middleware.sodapop.msg,
+							org.universAAL.middleware.util,
+							org.universAAL.ontology.location,
+							org.universAAL.ontology.phThing,
+							org.universAAL.ontology.profile,
+							com.mysql.jdbc
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
