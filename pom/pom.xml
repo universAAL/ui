@@ -306,7 +306,7 @@
 
 	<modules>
 		<module>../dm</module>
-		<module>../conversion.jena</module>
+<!-- 		<module>../conversion.jena</module> -->
 		<module>../handler.gui</module>
 		<module>../handler.web</module>
 		<!-- <module>../ri.servicegateway</module>-->
