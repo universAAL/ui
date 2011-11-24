@@ -32,25 +32,25 @@ import org.universAAL.middleware.output.OutputEvent;
  */
 public class WebIOSession {
 
-    private OutputEvent currenOutput;
-    private Hashtable<String, FormControl> currentFormAssociation;
+	private OutputEvent currenOutput;
+	private Hashtable<String, FormControl> currentFormAssociation;
 
-    public Hashtable<String, FormControl> getCurrentFormAssociation() {
-	return currentFormAssociation;
-    }
+	public Hashtable<String, FormControl> getCurrentFormAssociation() {
+		return currentFormAssociation;
+	}
 
-    public void setCurrentFormAssociation(
-	    Hashtable<String, FormControl> currentFormAssociation) {
-	this.currentFormAssociation = currentFormAssociation;
-    }
+	public void setCurrentFormAssociation(
+			Hashtable<String, FormControl> currentFormAssociation) {
+		this.currentFormAssociation = currentFormAssociation;
+	}
 
-    public OutputEvent getCurrentOutputEvent() {
-	return currenOutput;
-    }
+	public OutputEvent getCurrentOutputEvent() {
+		return currenOutput;
+	}
 
-    public void setCurrentOutputEvent(OutputEvent o) {
-	this.currenOutput = o;
+	public void setCurrentOutputEvent(OutputEvent o) {
+		this.currenOutput = o;
 
-    }
+	}
 
 }
