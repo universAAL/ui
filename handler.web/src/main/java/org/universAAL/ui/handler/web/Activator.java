@@ -27,11 +27,14 @@ import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
 import org.universAAL.middleware.util.Constants;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ri.servicegateway.GatewayPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
@@ -39,59 +42,67 @@ import org.slf4j.LoggerFactory;
  */
 public class Activator implements BundleActivator, ServiceListener {
 
-    private static TypeMapper tm = null;
-    static final ElderlyUser testUser = new ElderlyUser(
-	    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
-    public static BundleContext context;
-    private final static Logger log = LoggerFactory.getLogger(Activator.class);
+	private static TypeMapper tm = null;
+	static final ElderlyUser testUser = new ElderlyUser(
+			Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
+	public static BundleContext context;
+	/**
+	 * {@link ModuleContext}
+	 */
+	private static ModuleContext mcontext;
 
-    public void start(final/* NO FINAL!! */BundleContext context)
-	    throws Exception {
-	log.info("Starting Web I/O Handler bundle");
-	Activator.context = context;
+	private final static Logger log = LoggerFactory.getLogger(Activator.class);
 
-	String filter = "(objectclass="
-		+ org.universAAL.middleware.rdf.TypeMapper.class.getName()
-		+ ")";
-	context.addServiceListener(this, filter);
-	ServiceReference references[] = context.getServiceReferences(null,
-		filter);
-	for (int i = 0; references != null && i < references.length; i++)
-	    this.serviceChanged(new ServiceEvent(ServiceEvent.REGISTERED,
-		    references[i]));
+	public void start(final/* NO FINAL!! */BundleContext context)
+			throws Exception {
+		log.info("Starting Web I/O Handler bundle");
+		Activator.context = context;
 
-	new Thread() {
-	    public void run() {
-		// Use one of HTMLHandler or DojoHandler
-		IWebHandler handler = new DojoHandler(context);
-		context.registerService(GatewayPort.class.getName(), handler,
-			null);
-	    }
-	}.start();
+		BundleContext[] bc = { context };
+		mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
 
-	log.info("Started Web I/O Handler bundle");
-    }
+		String filter = "(objectclass="
+				+ org.universAAL.middleware.rdf.TypeMapper.class.getName()
+				+ ")";
+		context.addServiceListener(this, filter);
+		ServiceReference references[] = context.getServiceReferences(null,
+				filter);
+		for (int i = 0; references != null && i < references.length; i++)
+			this.serviceChanged(new ServiceEvent(ServiceEvent.REGISTERED,
+					references[i]));
 
-    public void stop(BundleContext arg0) throws Exception {
-	// TODO Auto-generated method stub
-	log.info("Stopped Web I/O Handler bundle");
-    }
+		new Thread() {
+			public void run() {
+				// Use one of HTMLHandler or DojoHandler
+				IWebHandler handler = new DojoHandler(mcontext);
+				context.registerService(GatewayPort.class.getName(), handler,
+						null);
+			}
+		}.start();
 
-    public void serviceChanged(ServiceEvent event) {
-	switch (event.getType()) {
-	case ServiceEvent.REGISTERED:
-	case ServiceEvent.MODIFIED:
-	    tm = (TypeMapper) Activator.context.getService(event
-		    .getServiceReference());
-	    break;
-	case ServiceEvent.UNREGISTERING:
-	    tm = null;
-	    break;
+		log.info("Started Web I/O Handler bundle");
 	}
-    }
 
-    public static TypeMapper getTypeMapper() {
-	return tm;
-    }
+	public void stop(BundleContext arg0) throws Exception {
+		// TODO Auto-generated method stub
+		log.info("Stopped Web I/O Handler bundle");
+	}
+
+	public void serviceChanged(ServiceEvent event) {
+		switch (event.getType()) {
+		case ServiceEvent.REGISTERED:
+		case ServiceEvent.MODIFIED:
+			tm = (TypeMapper) Activator.context.getService(event
+					.getServiceReference());
+			break;
+		case ServiceEvent.UNREGISTERING:
+			tm = null;
+			break;
+		}
+	}
+
+	public static TypeMapper getTypeMapper() {
+		return tm;
+	}
 
 }

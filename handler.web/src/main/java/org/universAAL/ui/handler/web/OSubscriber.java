@@ -26,6 +26,7 @@ import java.util.Hashtable;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.io.owl.DialogType;
 import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputEventPattern;
@@ -45,9 +46,9 @@ public class OSubscriber extends OutputSubscriber {
     private final static Logger log = LoggerFactory
 	    .getLogger(OSubscriber.class);
 
-    protected OSubscriber(BundleContext context,
+	protected OSubscriber(ModuleContext mcontext,
 	    OutputEventPattern initialSubscription, IWebHandler handler) {
-	super(context, initialSubscription);
+	super(mcontext, initialSubscription);
 	this.handler = handler;
     }
 

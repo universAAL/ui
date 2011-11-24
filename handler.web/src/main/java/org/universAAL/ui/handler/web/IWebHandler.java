@@ -30,14 +30,14 @@ import org.universAAL.middleware.output.OutputEvent;
  * 
  */
 public interface IWebHandler {
-    public void updateScreenResolution(int max_x, int max_y, int min_x,
-	    int min_y);
+	public void updateScreenResolution(int max_x, int max_y, int min_x,
+			int min_y);
 
-    public void finish(String user);
+	public void finish(String user);
 
-    Hashtable<String, Boolean> getWaitingInputs();
+	Hashtable<String, Boolean> getWaitingInputs();
 
-    Hashtable<String, OutputEvent> getReadyOutputs();
+	Hashtable<String, OutputEvent> getReadyOutputs();
 
-    Hashtable<String, WebIOSession> getUserSessions();
+	Hashtable<String, WebIOSession> getUserSessions();
 }
