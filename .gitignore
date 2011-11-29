@@ -18,3 +18,15 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+ui.handler.newGui/.classpath
+ui.handler.newGui/.project
+ui.handler.newGui/.settings
+ui.handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/.classpath
+ui.handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/.project
+ui.handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/.settings
+ui.handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/target
+ui.handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/.classpath
+ui.handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/.project
+ui.handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/.settings
+ui.handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/target
+ui.handler.newGui/target
