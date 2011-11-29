@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.ui.handler.newGui.model.FormModel;
@@ -41,18 +42,35 @@ public class FormLAF extends FormModel {
 		super(f);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.handler.newGui.model.FormModel#getFrame()
-	 */protected JPanel getHeader(){
-			JPanel header =new JPanel();
-			ImageIcon icon = new ImageIcon((getClass().getResource("/main/UniversAAl_logo.png")));
-			JLabel logo= new JLabel(icon);
-			
-			header.add(logo);
+	protected JScrollPane getIOPanelScroll() {
+		return new JScrollPane(super.getIOPanel(),
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	}
 
-			
+	protected JScrollPane getSubmitPanelScroll() {
+		JPanel submit = super.getSubmitPanel();
+		submit.setLayout(new BoxLayout(submit,BoxLayout.Y_AXIS));
+		return new JScrollPane(submit,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	}
+
+	protected JScrollPane getSystemPanelScroll() {
+		return new JScrollPane(super.getSystemPanel(),
+				JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	}
+
+	protected JPanel getHeader() {
+			JPanel header =new JPanel();
+			ImageIcon icon = new ImageIcon(
+					(getClass().getResource("/main/UniversAAl_logo.png")));
+			JLabel logo= new JLabel(icon);	
+			header.add(logo);
 			return (JPanel)header;
 		}
+	 
 	public JFrame getFrame() {
 		if (form.isMessage()) {
 			//TODO
@@ -62,10 +80,10 @@ public class FormLAF extends FormModel {
 			JFrame f = new JFrame(form.getTitle());
 			f.add(getHeader(), BorderLayout.NORTH);
 			f.add(getIOPanel(),BorderLayout.CENTER);
-			f.add(getSystemPanel(),BorderLayout.SOUTH);
+			f.add(getSystemPanelScroll(),BorderLayout.SOUTH);
 			f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			f.setExtendedState(Frame.MAXIMIZED_BOTH);
-			f.setUndecorated(true);
+			//f.setUndecorated(true);
 			f.pack();
 			return f;
 		}
@@ -77,15 +95,13 @@ public class FormLAF extends FormModel {
 			 *        then show like a popup.
 			 */
 			JFrame f = new JFrame(form.getTitle());
-			JPanel submit = getSubmitPanel();
-			submit.setLayout(new BoxLayout(submit,BoxLayout.Y_AXIS));
 			f.add(getHeader(), BorderLayout.NORTH);
-			f.add(getIOPanel(),BorderLayout.CENTER);
-			f.add(submit,BorderLayout.EAST);
-			f.add(getSystemPanel(),BorderLayout.SOUTH);
+			f.add(getIOPanelScroll(),BorderLayout.CENTER);
+			f.add(getSubmitPanelScroll(),BorderLayout.EAST);
+			f.add(getSystemPanelScroll(),BorderLayout.SOUTH);
 			f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			f.setExtendedState(Frame.MAXIMIZED_BOTH);
-			f.setUndecorated(true);
+			//f.setUndecorated(true);
 			f.pack();
 			
 			return f;
