@@ -6,6 +6,14 @@ dm/.classpath
 dm/.project
 dm/.settings
 dm/target
+full.form.tester/*
+full.form.tester/*.classpath
+full.form.tester/*.project
+full.form.tester/*.settings
+full.form.tester/.classpath
+full.form.tester/.project
+full.form.tester/.settings
+full.form.tester/target
 handler.gui/.classpath
 handler.gui/.project
 handler.gui/.settings
