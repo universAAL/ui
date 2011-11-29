@@ -309,6 +309,7 @@
 <!-- 		<module>../conversion.jena</module> -->
 		<module>../handler.gui</module>
 		<module>../handler.web</module>
+		<module>../handler.newGui</module>
 		<!-- <module>../ri.servicegateway</module>-->
 		<!-- <module>../../../ontologies/trunk/user.profile</module> -->
 	</modules>
