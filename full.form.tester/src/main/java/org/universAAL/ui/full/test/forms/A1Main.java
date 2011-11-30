@@ -82,7 +82,7 @@ public class A1Main implements AbstractForm {
 		return "Main";
 	}
 	
-	public void addSubDialogTriggers(Form f) {
+	static public void addSubDialogTriggers(Form f) {
 		String[] cNames=null;
 		try {
 			 cNames = ISubscriber.getClassNamesFromPackage();
@@ -97,7 +97,7 @@ public class A1Main implements AbstractForm {
 		}
 	}
 
-	private void addSubDialogTrigger(Form f,  String cName) {
+	static private void addSubDialogTrigger(Form f,  String cName) {
 			new SubdialogTrigger(f.getSubmits(), 
 				new Label(ISubscriber.getAbstractForm(cName)
 						.getSubDialogTriggerDisplay(), null),
