@@ -16,19 +16,94 @@
 package org.universAAL.ui.full.test;
 
 
+import java.util.Locale;
+
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.io.owl.PrivacyLevel;
+import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.output.OutputPublisher;
+import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.middleware.rdf.Resource;
 
 public class OPublisher extends OutputPublisher{
 
+	private Resource user = null;
+	private LevelRating priority = LevelRating.low;
+	private Locale locale = Locale.ENGLISH;
+	private PrivacyLevel privacy = PrivacyLevel.insensible;
+	
+
 	public OPublisher(ModuleContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @return the priority
+	 */
+	public LevelRating getPriority() {
+		return priority;
+	}
+
+	/**
+	 * @param priority the priority to set
+	 */
+	public void setPriority(LevelRating priority) {
+		this.priority = priority;
+	}
+
+	/**
+	 * @return the locale
+	 */
+	public Locale getLocale() {
+		return locale;
+	}
+
+	/**
+	 * @param locale the locale to set
+	 */
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	/**
+	 * @return the privacy
+	 */
+	public PrivacyLevel getPrivacy() {
+		return privacy;
+	}
+
+	/**
+	 * @param privacy the privacy to set
+	 */
+	public void setPrivacy(PrivacyLevel privacy) {
+		this.privacy = privacy;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public Resource getUser() {
+		return user;
+	}
+
+	public void setUser(Resource u) {
+		user = u;
 	}
 
 	public void communicationChannelBroken() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void publish(AbstractForm af) {
+		Form f = af.getDialog();
+		publish(
+				new OutputEvent(user,
+						f,
+						priority,
+						locale, 
+						privacy));
 	}
 
 }

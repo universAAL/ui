@@ -27,11 +27,14 @@ import org.universAAL.middleware.service.owl.InitialServiceDialog;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.full.test.forms.A1Main;
+import org.universAAL.ui.full.test.osgi.Activator;
 
 public class SCallee extends ServiceCallee {
 	private static final ServiceResponse failure = new ServiceResponse(
 			CallStatus.serviceSpecificFailure);
 	private final static Logger log = LoggerFactory.getLogger(SCallee.class);
+	private static final String SERVICE_ID = "http://ontology.universAAL.org/Tests.owl#startUI";
 
 	public SCallee(ModuleContext context) {
 		super(context, getProfiles());
@@ -69,7 +72,7 @@ public class SCallee extends ServiceCallee {
 		}
 
 		if (operation
-				.startsWith("http://ontology.aal-persona.org/Tests.owl#startUI")) {
+				.startsWith(SERVICE_ID)) {
 			log.debug("Start UI op");
 			Object inputUser = call
 					.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
@@ -83,7 +86,8 @@ public class SCallee extends ServiceCallee {
 				user = (User) inputUser;
 			}
 			log.debug("Show dialog from call");
-			//Activator.noutput.showTestDialog(user);
+			Activator.noutput.setUser(user);
+			Activator.noutput.publish(new A1Main());
 			ServiceResponse response = new ServiceResponse(CallStatus.succeeded);
 			return response;
 		}
@@ -93,9 +97,9 @@ public class SCallee extends ServiceCallee {
 
 	static ServiceProfile[] getProfiles() {
 		ServiceProfile prof = InitialServiceDialog.createInitialDialogProfile(
-				"http://ontology.aal-persona.org/Tests.owl#Forms",
-				"http://www.tsb.upv.es", "User Interface Forms tests",
-				"http://ontology.aal-persona.org/Tests.owl#startUI");
+				"http://ontology.universAAL.org/Tests.owl#IORDF",
+				"http://www.upm.es", "Full User Interface Forms tests",
+				SERVICE_ID);
 		return new ServiceProfile[] { prof };
 	}
 }
