@@ -61,6 +61,7 @@ dm/src/main/resources/org/universAAL/ui/dm/messages.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
 dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
+full.form.tester/LICENSE.txt -text svneol=unset#text/plain
 full.form.tester/pom.xml -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/AbstractForm.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/ISubscriber.java -text
