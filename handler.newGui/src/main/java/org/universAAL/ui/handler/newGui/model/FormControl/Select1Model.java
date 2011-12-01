@@ -20,9 +20,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeSelectionModel;
 
 import org.universAAL.middleware.io.rdf.ChoiceItem;
 import org.universAAL.middleware.io.rdf.Label;
+import org.universAAL.middleware.io.rdf.Select;
 import org.universAAL.middleware.io.rdf.Select1;
 
 /**
@@ -39,7 +42,7 @@ implements  ActionListener {
 	
 	public JComponent getComponent() {
 		//TODO add icons to component!
-		if (!isATree()) {
+		if (!((Select)fc).isMultilevel()) {
 			Label[] items = ((Select1) fc).getChoices();
 			JComboBox cb = new JComboBox(items);
 			for (int i = 0; i < items.length; i++) {
@@ -53,9 +56,11 @@ implements  ActionListener {
 			cb.setName(fc.getURI());
 			return cb;
 		}else{
-			/*
-			 * TODO render Tree 
-			 */
+			JTree jt = new JTree(new SelectionTreeModel());
+			jt.setEditable(false);
+			jt.setSelectionModel(new SingleTreeSelectionModel());
+			
+			jt.setName(fc.getURI());
 		}
 		return null;
 	}
@@ -66,7 +71,7 @@ implements  ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		if (!isATree()) {
+		if (!((Select)fc).isMultilevel()) {
 			int i = ((JComboBox) e.getSource()).getSelectedIndex();
 			((Select1) fc).storeUserInput(
 					((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
@@ -76,5 +81,10 @@ implements  ActionListener {
 			 */
 		}
 		
+	}
+	
+	private class SingleTreeSelectionModel extends DefaultTreeSelectionModel{
+		private static final long serialVersionUID = 1L;
+		//TODO Model the selection!
 	}
 }

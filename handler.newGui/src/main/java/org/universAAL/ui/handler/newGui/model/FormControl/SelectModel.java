@@ -18,10 +18,14 @@ package org.universAAL.ui.handler.newGui.model.FormControl;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultTreeSelectionModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 
 import org.universAAL.middleware.io.rdf.ChoiceItem;
 import org.universAAL.middleware.io.rdf.ChoiceList;
@@ -38,40 +42,12 @@ implements ListSelectionListener {
 	public SelectModel(Select control) {
 		super(control);
 	}
-
-	protected boolean isATree() {
-		/*
-		 * a select model should be rendered as a tree if 
-		 * any of it's choices are ChoiceList
-		 */
-		Label[] choices = ((Select) fc).getChoices();
-		int i = 0;
-		Class last = ChoiceItem.class;
-		while (i < choices.length
-				&& choices[i].getClass().equals(last))
-			i++;
-		return i!=choices.length;
-	}
-	
-	private void addItem(DefaultMutableTreeNode cont, Label choice) {
-		// TODO, add icon, and label to all nodes.
-		if (choice instanceof ChoiceList) {
-			//TODO add parent node
-		}
-		if (choice instanceof ChoiceItem) {
-			Label[] items = ((ChoiceList)choice).getChildren();
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode();
-			for (int i = 0; i < items.length; i++) {
-				addItem(node, items[i]);
-			}
-			cont.add(node);
-		}
-	}
 	
 	public JComponent getComponent() {
 		//TODO add icons to component!
+		//TODO use getMaxCardinality and getMinCardinality to get the max and min #ofSelections
 		Label[] items = ((Select) fc).getChoices();
-		if (!isATree()) {
+		if (!((Select)fc).isMultilevel()) {
 			/*
 			 * Not a tree, then it is a simple select list with multiple
 			 * selection power. 
@@ -83,19 +59,16 @@ implements ListSelectionListener {
 			// TODO the selected indexES should be defined in the RDF!
 			list.addListSelectionListener(this);
 			list.setName(fc.getURI());
-			JScrollPane listScrollPane = new JScrollPane(list); //TODO Really? part of LAF?
-			return listScrollPane;
+			return list;
 		}
 		else {
-			//TODO complete the Tree display
-			DefaultMutableTreeNode top = new DefaultMutableTreeNode();
-			for (int i = 0; i < items.length; i++) {
-				addItem(top, items[i]);
-			}
+			JTree jt = new JTree(new SelectionTreeModel());
+			jt.setEditable(false);
+			jt.setSelectionModel(new MultipleTreeSelectionModel());
 			
+			jt.setName(fc.getURI());
+			return jt;
 		}
-		//.setName(fc.getURI());
-		return null;
 	}
 
 	public boolean isValid(JComponent component) {
@@ -105,11 +78,77 @@ implements ListSelectionListener {
 
 	public void valueChanged(ListSelectionEvent e) {
 		// TODO Gather user input from tree
-		if (!isATree()) {
+		if (!((Select)fc).isMultilevel()) {
 			//TODO check the following is compatible with RDF
 			((Select) fc).storeUserInput(((JList)e.getSource()).getSelectedIndices());
 		}
+		else {
+			
+		}
 		
 	}
+	
+	protected class SelectionTreeModel implements TreeModel{
 
+		Label[] root;
+		
+		public Object getRoot() {
+			root = ((Select) fc).getChoices();
+			if (root.length == 1)
+				return root[1];
+			else
+				return root;
+		}
+
+		public Object getChild(Object parent, int index) {
+			if (parent == root)
+				return root[index];
+			else
+				return ((ChoiceList) parent).getChildren()[index];
+		}
+
+		public int getChildCount(Object parent) {
+			if (parent == root)
+				return root.length;
+			else
+				return ((ChoiceList) parent).getChildren().length;
+		}
+
+		public boolean isLeaf(Object node) {
+			if (node == root)
+				return root.length == 0;
+			else
+				return node instanceof ChoiceItem;
+		}
+
+		public void valueForPathChanged(TreePath path, Object newValue) {
+			// TODO editable trees?
+			
+		}
+
+		public int getIndexOfChild(Object parent, Object child) {
+			Label[] children = ((ChoiceList) parent).getChildren();
+			int i = 0;
+			while (i < children.length
+					&& children[i] != child)
+				i++;
+			return i;
+		}
+
+		public void addTreeModelListener(TreeModelListener l) {
+			// TODO Auto-generated method stub
+		}
+
+		public void removeTreeModelListener(TreeModelListener l) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	private class MultipleTreeSelectionModel extends DefaultTreeSelectionModel{
+		private static final long serialVersionUID = 1L;
+		//TODO Model the selection!
+		//TODO use getMaxCardinality and getMinCardinality to get the max and min #ofSelections
+	}
 }
