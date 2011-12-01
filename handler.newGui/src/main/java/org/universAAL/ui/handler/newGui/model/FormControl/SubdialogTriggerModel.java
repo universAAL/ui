@@ -45,11 +45,7 @@ implements ActionListener {
 		tb.addActionListener(this);
 		tb.setName(fc.getURI());
 		/*
-		 *  TODO set as pressed when displaying the dialog it triggers
-		 *  Check if it's possible!
-		 *  Maybe in acction performed, all other triggers in this
-		 *  dialog's submits should be turn "off" except the one just
-		 *  pressed.
+		 *  set as pressed when displaying the dialog it triggers
 		 */
 		return tb;
 	}
@@ -68,10 +64,13 @@ implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		/*
-		 *  TODO this will produce a rendering of a sub-dialog form!
-		 *  Check, maybe it produces the same event as a submit and the 
+		 *  This will produce a rendering of a sub-dialog form!
+		 *  It produces the same event as a submit and the 
 		 *  Dialog it triggers comes in an output event.
+		 *  TODO use needsSelection() in case of SubdialogTriggers in 
+		 *  Repeat Tables, to check if the submitID is ready
 		 */
+		super.actionPerformed(e);
 	}
 
 
