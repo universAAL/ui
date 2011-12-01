@@ -37,9 +37,11 @@ public class Activator implements BundleActivator{
 	
 	public void start(BundleContext context) throws Exception {
 		Activator.context=context;
+		home = new BundleConfigHome(context.getBundle().getSymbolicName());
 		BundleContext[] bc = { context };
 		Renderer.setModuleContext(uAALBundleContainer.THE_CONTAINER
 				.registerModule(bc));
+		Renderer.setHome(home.getAbsolutePath());
 		render = Renderer.getInstance();
 	}
 

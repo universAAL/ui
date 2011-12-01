@@ -15,11 +15,11 @@
  ******************************************************************************/
 package ui.handler.newGui.test.auto;
 
+import junit.framework.TestCase;
+
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.newGui.model.FormModelMapper;
-
-import junit.framework.TestCase;
 
 /**
  * Test the framework for locating form antecessors.
