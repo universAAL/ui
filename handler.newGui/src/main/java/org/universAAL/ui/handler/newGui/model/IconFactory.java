@@ -27,7 +27,7 @@ import javax.swing.ImageIcon;
 public class IconFactory {
 	
 	/**
-	 * search for the icon in diferent repositories, when 
+	 * search for the icon in different repositories, when 
 	 * url is relative.
 	 * @param url
 	 * @return

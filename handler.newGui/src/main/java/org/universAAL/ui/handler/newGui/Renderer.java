@@ -15,8 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Properties;
-
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.input.InputPublisher;
@@ -38,7 +39,7 @@ import org.universAAL.ui.handler.newGui.formManagement.SimpleFormManager;
  *
  */
 public class Renderer extends Thread {
-	
+
 	/**
 	 * Singleton instance for the renderer.
 	 * 
@@ -111,6 +112,21 @@ public class Renderer extends Thread {
 	 * @see SimpleFormManager
 	 */
 	private static String QUEUE_MODE="queued.forms";
+
+	/**
+	 * Directory for configuration files.
+	 */
+	private static String homeDir = "./";
+	
+	/**
+	 * FileName for the main configuration File
+	 */
+	private static String RENDERER_CONF = "renderer.properties";
+	
+	/**
+	 * Error message to display when unable to save property file
+	 */
+	private static final String NO_SAVE = "Unable to save Property File";
 	
 	/**
 	 * Constructor, using Singleton pattern:
@@ -143,8 +159,26 @@ public class Renderer extends Thread {
 		fileProp.put(GUI_LOCATION,"Unkown");
 		fileProp.put(QUEUE_MODE, "false");
 		/*
-		 * TODO try to load from file, if not create file from defaults.
+		 * Try to load from file, if not create file from defaults.
 		 */
+		try {
+			fileProp.load(new FileInputStream(getHomeDir()+"/"+RENDERER_CONF));
+		} catch (Exception e) {
+			storeProperties();
+		} 
+	}
+	
+	/**
+	 * Save the current properties in the file
+	 */
+	private void storeProperties() {
+		try {
+			fileProp.store(new FileOutputStream(getHomeDir()+"/"+RENDERER_CONF), 
+					"Configuration file for SWING Renderer");
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			moduleContext.logError(NO_SAVE, e1);
+		} 
 	}
 	
 	/**
@@ -204,6 +238,10 @@ public class Renderer extends Thread {
 		fm.flush();
 		ipublisher.close();
 		osubscriber.close();
+		/*
+		 * Save property file
+		 */
+		storeProperties();
 	}
 	
 	/**
@@ -299,5 +337,23 @@ public class Renderer extends Thread {
 		 *  TODO other location process?
 		 */ 
 		return new Location(getProerty(GUI_LOCATION));
+	}
+
+	/**
+	 * Only to be called by container activator.
+	 * Initialize the configuration home path
+	 * @param absolutePath
+	 * 		Absolute path to configuration directory
+	 */
+	public static void setHome(String absolutePath) {
+		Renderer.homeDir =absolutePath;		
+	}
+
+	/**
+	 * Get the configuration directory
+	 * @return
+	 */
+	public static String getHomeDir() {
+		return homeDir;
 	}
 }
