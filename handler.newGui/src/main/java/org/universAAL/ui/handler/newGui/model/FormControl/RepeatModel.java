@@ -118,7 +118,6 @@ public class RepeatModel extends GroupModel{
 	}
 
 	public boolean isValid(JComponent component) {
-		// TODO Auto-generated method stub
 		return super.isValid(component);
 	}
 	

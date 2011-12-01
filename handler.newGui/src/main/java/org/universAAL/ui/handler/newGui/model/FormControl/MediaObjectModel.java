@@ -28,7 +28,6 @@ import org.universAAL.ui.handler.newGui.model.IconFactory;
  */
 public class MediaObjectModel extends OutputModel{
 
-
 	public MediaObjectModel(MediaObject control) {
 		super(control);
 	}
@@ -38,7 +37,21 @@ public class MediaObjectModel extends OutputModel{
 		Icon icon = IconFactory.getIcon(((MediaObject)fc).getContentURL());
 		jl.setIcon(icon);
 		jl.setName(fc.getURI());
-		//TODO resize icon
+		if (((MediaObject)fc).getResolutionPreferredX() != 0
+				&& ((MediaObject)fc).getResolutionPreferredY() != 0) {
+		jl.setSize(((MediaObject)fc).getResolutionPreferredX(),
+				((MediaObject)fc).getResolutionPreferredY());
+		}
+		if (jl.getSize().height > ((MediaObject)fc).getResolutionMaxY()
+				|| jl.getSize().width > ((MediaObject)fc).getResolutionMaxX()) {
+		jl.setSize(((MediaObject)fc).getResolutionMaxX(),
+					((MediaObject)fc).getResolutionMaxY());
+		}
+		if (jl.getSize().height < ((MediaObject)fc).getResolutionMinY()
+				|| jl.getSize().width < ((MediaObject)fc).getResolutionMinX()) {
+		jl.setSize(((MediaObject)fc).getResolutionMinX(),
+					((MediaObject)fc).getResolutionMinY());
+		}
 		return jl;
 	}
 

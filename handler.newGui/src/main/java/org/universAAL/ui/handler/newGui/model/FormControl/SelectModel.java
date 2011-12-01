@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
-import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
