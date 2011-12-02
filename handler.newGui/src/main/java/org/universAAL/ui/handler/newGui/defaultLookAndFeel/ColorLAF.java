@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 public class ColorLAF extends DefaultMetalTheme
 {
@@ -28,10 +29,12 @@ public String getName() {
 private final ColorUIResource primary1 = new ColorUIResource(213,237,247);
 private final ColorUIResource primary2 = new ColorUIResource(238,124,38);
 private final ColorUIResource primary3 = new ColorUIResource(213,237,247);
- 
+/* (non-Javadoc)
+ * @see javax.swing.plaf.metal.MetalTheme#getWindowBackground()
+ */
+
 private final ColorUIResource secondary1 = new ColorUIResource(213,237,247);
 private final ColorUIResource secondary2 = new ColorUIResource(30,149,192);
- 
 private final ColorUIResource secondary3 = new ColorUIResource(213,237,247);
 private final ColorUIResource black = new ColorUIResource(0,0,0);
 private final ColorUIResource white = new ColorUIResource(255,255, 255);
@@ -76,4 +79,6 @@ protected static Font getplain(){return plain;}
  
 protected ColorUIResource getBlack() { return black; }
 protected ColorUIResource getWhite() { return white; }
+public FontUIResource getControlTextFont() {return new FontUIResource(plain);}
+
 }

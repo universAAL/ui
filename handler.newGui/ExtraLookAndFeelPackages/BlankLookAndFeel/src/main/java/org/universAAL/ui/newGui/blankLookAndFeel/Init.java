@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2011 Universidad PolitÃ©cnica de Madrid
+ * Copyright 2011 Universidad Politécnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,31 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import javax.swing.JComponent;
-import javax.swing.JScrollPane;
+import org.universAAL.ui.handler.newGui.model.InitInterface;
 
-import org.universAAL.middleware.io.rdf.Select;
-import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
+public class Init implements InitInterface {
 
-public class SelectLAF extends SelectModel {
+	public void install() {
+		// TODO Auto-generated method stub
 
-	public SelectLAF(Select control) {
-		super(control);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.handler.newGui.model.FormControl.SelectModel#getComponent()
-	 */
-	public JComponent getComponent() {
-		if (!((Select)fc).isMultilevel()) {
-		return new JScrollPane(super.getComponent());
-		}
-		else {
-			return super.getComponent();
-		}
-	}
-
-	
 }

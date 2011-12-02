@@ -175,7 +175,7 @@ public class ModelMapper {
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.err.println("Could not find Class: " 
-					+ LAFPackage + "." + "LookAndFeel");
+					+ LAFPackage + "." + INIT_CLASS);
 			throw e;
 		}
 	}
@@ -190,12 +190,12 @@ public class ModelMapper {
 			getLookAndFeel(Renderer.getProerty(LAFPackageProperty)).install();
 		} catch (Exception e) {
 			//e.printStackTrace();
-			System.err.println("Unable to find LookandFeel Class for selected LookAndFeel.Package");
+			System.err.println("Unable to find " + INIT_CLASS + " Class for selected LookAndFeel.Package");
 			try {
 				getLookAndFeel(DefaultLAFPackage).install();
 			}catch (Exception e2) {
 				//e2.printStackTrace();
-				System.err.println("Unable to find LookandFeel Class for Default LookAndFeel Package");
+				System.err.println("Unable to find " + INIT_CLASS + " Class for Default LookAndFeel Package");
 			}
 		}
 	}

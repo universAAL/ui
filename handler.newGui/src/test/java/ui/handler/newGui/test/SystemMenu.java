@@ -21,6 +21,7 @@ import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.ui.handler.newGui.ModelMapper;
+import org.universAAL.ui.handler.newGui.defaultLookAndFeel.Init;
 
 public class SystemMenu {
 
@@ -51,6 +52,7 @@ public class SystemMenu {
 		/*
 		 * using GUI.Model to render 
 		 */
+		new Init().install();
 		JFrame jfm = ModelMapper.getModelFor(sys).getFrame();
 		jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jfm.setVisible(true);
