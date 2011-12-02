@@ -175,17 +175,13 @@ public class Renderer extends Thread {
 	 */
 	private void storeProperties() {
 		try {
-			fileProp.store(new FileOutputStream(getHomeDir()+"/"+RENDERER_CONF), 
+			fileProp.store(new FileOutputStream(getHomeDir()+RENDERER_CONF), 
 					"Configuration file for SWING Renderer");
 		} catch (Exception e1) {
 			File dir = new File(getHomeDir());
 			if (!dir.exists()) {
-				try {
-					dir.createNewFile();
-					storeProperties();
-				} catch (IOException e) {
-					moduleContext.logError(NO_SAVE, e);
-				}				
+				dir.mkdir();
+				storeProperties();			
 			}
 			moduleContext.logError(NO_SAVE, e1);
 		} 
@@ -197,7 +193,8 @@ public class Renderer extends Thread {
 	 * 		singleton instance
 	 */
 	public static Renderer getInstance(){
-		if (singleton == null && moduleContext != null){
+		if (singleton == null 
+				&& moduleContext != null){
 			singleton = new Renderer();
 			singleton.start();
 		}
@@ -251,7 +248,7 @@ public class Renderer extends Thread {
 		/*
 		 * Save property file
 		 */
-		storeProperties();
+		//storeProperties(); // this will delete the comments!!
 	}
 	
 	/**
@@ -356,7 +353,7 @@ public class Renderer extends Thread {
 	 * 		Absolute path to configuration directory
 	 */
 	public static void setHome(String absolutePath) {
-		Renderer.homeDir =absolutePath;		
+		Renderer.homeDir =absolutePath+"/";		
 	}
 
 	/**

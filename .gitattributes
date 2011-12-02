@@ -151,6 +151,7 @@ handler.gui/src/main/resources/lib/pom.xml -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/pom.xml -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/FormLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/GroupLAF.java -text
+handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/Init.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/InputFieldLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/LabelLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/LookAndFell.java -text
@@ -164,21 +165,22 @@ handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/unive
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SubmitLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/TextAreaLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/ColorLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/FormLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/GroupLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LookAndFeel.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RangeLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Select1LAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SelectLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SimpleOutputLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubdialogTriggerLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubmitLAF.java -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/TextAreaLAF.java -text
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Init.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LookAndFeel.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text

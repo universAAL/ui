@@ -109,6 +109,7 @@
 						org.universAAL.ui.handler.newGui.defaultLookAndFeel,
 						org.universAAL.ui.handler.newGui.model,
 						org.universAAL.ui.handler.newGui.model.FormControl</Export-Package>
+						<DynamicImport-Package>*</DynamicImport-Package>
 					</instructions>
 				</configuration>
 			</plugin>

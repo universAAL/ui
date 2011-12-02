@@ -34,6 +34,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ui.handler.newGui.ModelMapper;
 import org.universAAL.ui.handler.newGui.Renderer;
+import org.universAAL.ui.handler.newGui.defaultLookAndFeel.Init;
 
 public class DialogMenu {
 
@@ -187,6 +188,7 @@ public class DialogMenu {
 		/*
 		 * using GUI.Model to render 
 		 */
+		new Init().install();
 		Renderer.getInstance();
 		JFrame jfm = ModelMapper.getModelFor(dlg).getFrame();
 		jfm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
