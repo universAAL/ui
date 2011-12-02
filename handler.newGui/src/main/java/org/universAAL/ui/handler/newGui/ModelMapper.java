@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2011 Universidad PolitÃ©cnica de Madrid
+ * Copyright 2011 Universidad Politécnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui;
 
-
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.ui.handler.newGui.model.FormModel;
+import org.universAAL.ui.handler.newGui.model.InitInterface;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
 import org.universAAL.ui.handler.newGui.model.Model;
 
@@ -46,6 +43,11 @@ public class ModelMapper {
 	 * look and feel package
 	 */
 	static final String LAFPackageProperty = "LookandFeel.package";
+
+	/**
+	 * The class name for the initialization of Look and feel package
+	 */
+	private static final String INIT_CLASS = "Init";
 	
 	/**
 	 * Default Look and Feel Package, to be used when the 
@@ -161,19 +163,13 @@ public class ModelMapper {
 		return (LabelModel)model;
 	}
 	
-	/* **************************************************************************** *
-	 * 																				*
-	 * 								SWING Specific section							*
-	 * 																				*
-	 * **************************************************************************** */
-	
 	/**
 	 * locate the {@link LookAndFeel} class of the LAF package
 	 */
-	private static LookAndFeel getLookAndFeel(String LAFPackage) throws Exception {
+	private static InitInterface getLookAndFeel(String LAFPackage) throws Exception {
 
 		try {
-			return (LookAndFeel) Class.forName(LAFPackage + "." + "LookAndFeel")
+			return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)
 			.getConstructor(null)
 			.newInstance(null);
 		} catch (Exception e) {
@@ -191,12 +187,12 @@ public class ModelMapper {
 	 */
 	public static void updateLAF() {
 		try {
-			UIManager.setLookAndFeel(getLookAndFeel(Renderer.getProerty(LAFPackageProperty)));
+			getLookAndFeel(Renderer.getProerty(LAFPackageProperty)).install();
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.err.println("Unable to find LookandFeel Class for selected LookAndFeel.Package");
 			try {
-				UIManager.setLookAndFeel(getLookAndFeel(DefaultLAFPackage));
+				getLookAndFeel(DefaultLAFPackage).install();
 			}catch (Exception e2) {
 				//e2.printStackTrace();
 				System.err.println("Unable to find LookandFeel Class for Default LookAndFeel Package");
