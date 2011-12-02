@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Frame;
 
 import javax.swing.BoxLayout;
@@ -32,20 +33,27 @@ import org.universAAL.ui.handler.newGui.model.FormModel;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
  *
  */
-public class FormLAF extends FormModel {
+public class FormLAF extends FormModel  {
 
+	
 	/**
 	 * @param f
 	 */
-	
 	public FormLAF(Form f) {
 		super(f);
 	}
 
 	protected JScrollPane getIOPanelScroll() {
-		return new JScrollPane(super.getIOPanel(),
+		JPanel ioPanel = super.getIOPanel();
+		JScrollPane sp = new JScrollPane(ioPanel,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		//ioPanelDim = ioPanel.getPreferredSize();
+		ioPanel.setPreferredSize(new Dimension(sp.getSize().width,
+		//		ioPanel.getPreferredSize().height)
+				ioPanel.getHeight()));
+		//FIXME resize Layout+scroll
+		return sp;
 	}
 
 	protected JScrollPane getSubmitPanelScroll() {
@@ -96,14 +104,16 @@ public class FormLAF extends FormModel {
 			 */
 			JFrame f = new JFrame(form.getTitle());
 			f.add(getHeader(), BorderLayout.NORTH);
-			f.add(getIOPanelScroll(),BorderLayout.CENTER);
-			f.add(getSubmitPanelScroll(),BorderLayout.EAST);
-			f.add(getSystemPanelScroll(),BorderLayout.SOUTH);
+			JScrollPane io = getIOPanelScroll();
+			JScrollPane sub = getSubmitPanelScroll();
+			JScrollPane sys = getSystemPanelScroll();
+			f.add(io,BorderLayout.CENTER);
+			f.add(sub,BorderLayout.EAST);
+			f.add(sys,BorderLayout.SOUTH);
 			f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			f.setExtendedState(Frame.MAXIMIZED_BOTH);
 			//f.setUndecorated(true);
 			f.pack();
-			
 			return f;
 		}
 		if (form.isSubdialog()) {
@@ -120,5 +130,4 @@ public class FormLAF extends FormModel {
 		// TODO Auto-generated method stub
 
 	}
-
 }

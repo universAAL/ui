@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2011 Universidad PolitÃ©cnica de Madrid
+ * Copyright 2011 Universidad Politécnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
+import javax.swing.JComponent;
+
 import org.universAAL.middleware.io.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel;
 
@@ -24,4 +26,14 @@ public class InputFieldLAF extends InputFieldModel {
 		super(control);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel#getComponent()
+	 */
+	public JComponent getComponent() {
+		JComponent inf = super.getComponent();
+		inf.setFont(ColorLAF.getplain());
+		return inf;
+	}
+
+	
 }
