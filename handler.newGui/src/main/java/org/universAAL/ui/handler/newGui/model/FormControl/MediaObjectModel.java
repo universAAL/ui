@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
+import java.awt.Dimension;
+
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -37,20 +39,21 @@ public class MediaObjectModel extends OutputModel{
 		Icon icon = IconFactory.getIcon(((MediaObject)fc).getContentURL());
 		jl.setIcon(icon);
 		jl.setName(fc.getURI());
-		if (((MediaObject)fc).getResolutionPreferredX() != 0
-				&& ((MediaObject)fc).getResolutionPreferredY() != 0) {
-		jl.setSize(((MediaObject)fc).getResolutionPreferredX(),
-				((MediaObject)fc).getResolutionPreferredY());
+		int x,y;
+		x = ((MediaObject)fc).getResolutionPreferredX();
+		y = ((MediaObject)fc).getResolutionPreferredY();
+		if ( x != 0	&& y != 0) {
+			jl.setPreferredSize( new Dimension(x,y));
 		}
-		if (jl.getSize().height > ((MediaObject)fc).getResolutionMaxY()
-				|| jl.getSize().width > ((MediaObject)fc).getResolutionMaxX()) {
-		jl.setSize(((MediaObject)fc).getResolutionMaxX(),
-					((MediaObject)fc).getResolutionMaxY());
+		x = ((MediaObject)fc).getResolutionMaxX();
+		y = ((MediaObject)fc).getResolutionMaxY();
+		if ( x != 0	&& y != 0) {
+			jl.setMaximumSize(new Dimension(x,y));
 		}
-		if (jl.getSize().height < ((MediaObject)fc).getResolutionMinY()
-				|| jl.getSize().width < ((MediaObject)fc).getResolutionMinX()) {
-		jl.setSize(((MediaObject)fc).getResolutionMinX(),
-					((MediaObject)fc).getResolutionMinY());
+		x = ((MediaObject)fc).getResolutionMinX();
+		y = ((MediaObject)fc).getResolutionMinY();
+		if ( x != 0	&& y != 0) {
+			jl.setMinimumSize(new Dimension(x,y));
 		}
 		return jl;
 	}

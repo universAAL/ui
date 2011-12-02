@@ -53,7 +53,7 @@ final private static Color font =new Color (0,0,0);
 final private static int  FONT_SIZE_BASE = 12;
 final private static Font bold = new Font("Arial", Font.BOLD, FONT_SIZE_BASE+4);
 final private static Font plain = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
-
+final private static Font label = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE-2);
  
 protected ColorUIResource getPrimary1() { return primary1; }
 protected ColorUIResource getPrimary2() { return primary2; }
@@ -80,5 +80,6 @@ protected static Font getplain(){return plain;}
 protected ColorUIResource getBlack() { return black; }
 protected ColorUIResource getWhite() { return white; }
 public FontUIResource getControlTextFont() {return new FontUIResource(plain);}
+public static Font getLabelFont() {	return label;}
 
 }
