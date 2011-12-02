@@ -15,8 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
@@ -176,7 +178,15 @@ public class Renderer extends Thread {
 			fileProp.store(new FileOutputStream(getHomeDir()+"/"+RENDERER_CONF), 
 					"Configuration file for SWING Renderer");
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
+			File dir = new File(getHomeDir());
+			if (!dir.exists()) {
+				try {
+					dir.createNewFile();
+					storeProperties();
+				} catch (IOException e) {
+					moduleContext.logError(NO_SAVE, e);
+				}				
+			}
 			moduleContext.logError(NO_SAVE, e1);
 		} 
 	}

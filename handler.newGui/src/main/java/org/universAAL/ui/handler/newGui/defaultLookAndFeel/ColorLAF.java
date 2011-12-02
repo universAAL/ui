@@ -47,8 +47,9 @@ final private static Color BackMML=new Color(213,237,247);
 final private static Color borderLineMM=new Color(102, 111, 127);
 final private static Color font =new Color (0,0,0);
 
-final private static Font bold = new Font("Arial", Font.BOLD, 16);
-final private static Font plain = new Font("Arial", Font.PLAIN, 12);
+final private static int  FONT_SIZE_BASE = 12;
+final private static Font bold = new Font("Arial", Font.BOLD, FONT_SIZE_BASE+4);
+final private static Font plain = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
 
  
 protected ColorUIResource getPrimary1() { return primary1; }

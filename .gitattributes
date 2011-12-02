@@ -196,6 +196,7 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/Renderer.java -tex
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/ColorLAF.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/FormLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/GroupLAF.java -text svneol=unset#text/plain
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Init.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/InputFieldLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/LabelLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/LookAndFeel.java -text svneol=unset#text/plain
@@ -229,6 +230,7 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormModel.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormModelMapper.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/IconFactory.java -text svneol=unset#text/plain
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/InitInterface.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/LabelModel.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/Model.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/osgi/Activator.java -text
