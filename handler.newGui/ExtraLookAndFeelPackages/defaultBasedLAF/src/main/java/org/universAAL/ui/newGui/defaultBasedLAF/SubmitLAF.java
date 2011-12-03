@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.defaultBasedLAF;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -27,230 +28,159 @@ import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
 public class SubmitLAF extends SubmitModel {
+    
+    public SubmitLAF(Submit control) {
+        super(control);
+    }
 
-	public SubmitLAF(Submit control) {
-		super(control);
-	}
+    static protected void setButtonBehaviour(JComponent button, Color border,
+            Color normalF, Color normalB,
+            Color enterF, Color enterB,
+            Color clickF, Color clickB){
+        button.setBorder(new CompoundBorder
+                (BorderFactory.createLineBorder(border),
+                        new EmptyBorder(10,10,10,10)));
+        button.setForeground(normalF);
+        button.setBackground(normalB);
+        button.addMouseListener(new MyMouseAdatper(border,
+                normalF, normalB,
+                enterF, enterB,
+                clickF, clickB));
+    }
+    
+    public JComponent getComponent() {
+        Color normalF;
+        Color normalB;
+        Color enterF;
+        Color enterB;
+        Color clickF;
+        Color clickB;
+        Color border;
+        
+        JComponent button = super.getComponent();
+    
+        border = ColorLAF.getborderLine();
+        normalF = ColorLAF.getBackLetter();
+        normalB = ColorLAF.getBackSystem();
+        enterF = ColorLAF.getBackLetter();
+        enterB = ColorLAF.getOverSytem();
+        clickF = ColorLAF.getSelectedLetter();
+        clickB = ColorLAF.getBackSystem();
+        
+        if (this.isInMainMenu()) {
+            /*
+             * System Buttons
+             */
+            border = ColorLAF.getborderLineMM();
+            normalF = ColorLAF.getBackMML();
+            normalB = ColorLAF.getBackMM();
+            enterF = ColorLAF.getBackLetter();
+            enterB = ColorLAF.getOverSytem();
+            clickF = ColorLAF.getBackLetter();
+            clickB = ColorLAF.getOverSytem();
 
-	public JComponent getComponent() {
-		// TODO Auto-generated method stub
-		final JComponent button = super.getComponent();
-		
-		button.setBorder(new CompoundBorder
-			      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-			       new EmptyBorder(10,10,10,10)));
-		button.setForeground(ColorLAF.getBackLetter());
-        button.setBackground(ColorLAF.getBackSystem());
-		
-		button.addMouseListener(new MouseAdapter() {
-			
-            
-            public void mouseEntered(MouseEvent e) {
-            	button.setForeground(ColorLAF.getBackLetter()); 
-            	button.setBackground(ColorLAF.getOverSytem());
+            if (this.isInStandardGroup()) {
+                /*
+                 * system buttons in main menu
+                 */
+                border = ColorLAF.getborderLineMM();
+                normalF = ColorLAF.getBackMML();
+                normalB = ColorLAF.getBackMM();
+                enterF = ColorLAF.getBackLetter();
+                enterB = ColorLAF.getOverSytem();
+                clickF = ColorLAF.getBackLetter();
+                clickB = ColorLAF.getOverSytem();       
             }
-
-           
-            public void mouseExited(MouseEvent e) {
-            	button.setBorder(new CompoundBorder
-      			      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-      			       new EmptyBorder(10,10,10,10)));
-      		button.setForeground(ColorLAF.getBackLetter());
-              button.setBackground(ColorLAF.getBackSystem());
-               
+            else {
+                /*
+                 * service buttons
+                 *
+                 */
+                border = ColorLAF.getborderLine();
+                normalF = ColorLAF.getBackLetter();
+                normalB =ColorLAF.getBackSystem();
+                enterF = ColorLAF.getBackLetter();
+                enterB = ColorLAF.getOverSytem();
+                clickF = ColorLAF.getSelectedLetter();
+                clickB = ColorLAF.getBackSystem();           
             }
-            public void mouseClicked(MouseEvent e){
-            	button.setForeground(ColorLAF.getSelectedLetter());
-            	button.setBackground(ColorLAF.getBackSystem());
-            	
+        }
+        else {
+            if (this.isInStandardGroup()) {
+                /*
+                 * all submits
+                 */
+                border = ColorLAF.getborderLineMM();
+                normalF = ColorLAF.getBackMML();
+                normalB = ColorLAF.getBackMM();
+                enterF = ColorLAF.getBackLetter();
+                enterB = ColorLAF.getOverSytem();
+                clickF = ColorLAF.getBackLetter();
+                clickB = ColorLAF.getOverSytem();              
             }
-        });
-		if (this.isInMainMenu()) {
-			/*
-			 * System Buttons 
-			 */
-			button.setBorder(new CompoundBorder
-				      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-				       new EmptyBorder(10,10,10,10)));
-			button.setForeground(ColorLAF.getBackMML());
-	        button.setBackground(ColorLAF.getBackMM());
+            if (this.isInIOGroup()) {
+                /*
+                 * buttons inside IO
+                 */
+                border = ColorLAF.getborderLine();
+                normalF = ColorLAF.getBackLetter();
+                normalB =ColorLAF.getBackSystem();
+                enterF = ColorLAF.getBackLetter();
+                enterB = ColorLAF.getOverSytem();
+                clickF = ColorLAF.getSelectedLetter();
+                clickB = ColorLAF.getBackSystem();           
+            }
+        }
+        setButtonBehaviour(button, border,
+                normalF, normalB,
+                enterF, enterB,
+                clickF, clickB);
+        return button;
+    }
+    
+    static protected class MyMouseAdatper extends MouseAdapter {
 
-	        button.addMouseListener(new MouseAdapter() {
-				
-	            
-	            public void mouseEntered(MouseEvent e) {
-	            	button.setForeground(ColorLAF.getBackLetter()); 
-	            	button.setBackground(ColorLAF.getOverSytem());
-	            }
+        private Color normalF;
+        private Color normalB;
+        private Color enterF;
+        private Color enterB;
+        private Color clickF;
+        private Color clickB;
+        private Color border;
+        
+        public MyMouseAdatper(Color border,
+                Color normalF, Color normalB,
+                Color enterF, Color enterB,
+                Color clickF, Color clickB) {
+            this.border = border;
+            this.normalF = normalF;
+            this.normalB = normalB;
+            this.enterF = enterF;
+            this.enterB = enterB;
+            this.clickF = clickF;
+            this.clickB = clickB;
+        }
+        
+        public void mouseEntered(MouseEvent e) {
+            JComponent src = (JComponent)e.getSource();
+            src.setForeground(enterF);
+            src.setBackground(enterB);
+        }
 
-	           
-	            public void mouseExited(MouseEvent e) {
-	            	button.setBorder(new CompoundBorder
-						      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-						       new EmptyBorder(10,10,10,10)));
-					button.setForeground(ColorLAF.getBackMML());
-			        button.setBackground(ColorLAF.getBackMM());
-
-	               
-	            }
-	            public void mousePressed(MouseEvent e){
-	            	button.setForeground(ColorLAF.getBackLetter());
-	            	button.setBackground(ColorLAF.getOverSytem());
-	            	
-	            }
-	        });
-
-	        
-			if (this.isInStandardGroup()) {
-				/*
-				 * system buttons in main menu
-				 */
-				button.setBorder(new CompoundBorder
-					      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-					       new EmptyBorder(10,10,10,10)));
-				button.setForeground(ColorLAF.getBackMML());
-		        button.setBackground(ColorLAF.getBackMM());
-
-		        button.addMouseListener(new MouseAdapter() {
-					
-		            
-		            public void mouseEntered(MouseEvent e) {
-		            	button.setForeground(ColorLAF.getBackLetter()); 
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            }
-
-		           
-		            public void mouseExited(MouseEvent e) {
-		            	button.setBorder(new CompoundBorder
-							      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-							       new EmptyBorder(10,10,10,10)));
-						button.setForeground(ColorLAF.getBackMML());
-				        button.setBackground(ColorLAF.getBackMM());
-
-		               
-		            }
-		            public void mousePressed(MouseEvent e){
-		            	button.setForeground(ColorLAF.getBackLetter());
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            	
-		            }
-		        });
-
-				
-			}
-			else {
-				/*
-				 * service buttons
-				 * 
-				 */
-				button.setBorder(new CompoundBorder
-					      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-					       new EmptyBorder(10,10,10,10)));
-				button.setForeground(ColorLAF.getBackLetter());
-		        button.setBackground(ColorLAF.getBackSystem());
-				
-				button.addMouseListener(new MouseAdapter() {
-					
-		            
-		            public void mouseEntered(MouseEvent e) {
-		            	button.setForeground(ColorLAF.getBackLetter()); 
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            }
-
-		           
-		            public void mouseExited(MouseEvent e) {
-		            	button.setBorder(new CompoundBorder
-		      			      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-		      			       new EmptyBorder(10,10,10,10)));
-		      		button.setForeground(ColorLAF.getBackLetter());
-		              button.setBackground(ColorLAF.getBackSystem());
-		               
-		            }
-		            public void mouseClicked(MouseEvent e){
-		            	button.setForeground(ColorLAF.getSelectedLetter());
-		            	button.setBackground(ColorLAF.getBackSystem());
-		            	
-		            }
-		        });
-				
-			}
-		} 
-		else {
-			if (this.isInStandardGroup()) {
-				/*
-				 * all submits
-				 */
-			
-				button.setBorder(new CompoundBorder
-					      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-					       new EmptyBorder(10,10,10,10)));
-				button.setForeground(ColorLAF.getBackMML());
-		        button.setBackground(ColorLAF.getBackMM());
-
-		        button.addMouseListener(new MouseAdapter() {
-					
-		            
-		            public void mouseEntered(MouseEvent e) {
-		            	button.setForeground(ColorLAF.getBackLetter()); 
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            }
-
-		           
-		            public void mouseExited(MouseEvent e) {
-		            	button.setBorder(new CompoundBorder
-							      (BorderFactory.createLineBorder(ColorLAF.getborderLineMM()),
-							       new EmptyBorder(10,10,10,10)));
-						button.setForeground(ColorLAF.getBackMML());
-				        button.setBackground(ColorLAF.getBackMM());
-
-		               
-		            }
-		            public void mousePressed(MouseEvent e){
-		            	button.setForeground(ColorLAF.getBackLetter());
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            	
-		            }
-		        });
-
-					
-			}
-			if (this.isInIOGroup()) {
-				/*
-				 * buttons inside IO
-				 */
-				button.setBorder(new CompoundBorder
-					      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-					       new EmptyBorder(10,10,10,10)));
-				button.setForeground(ColorLAF.getBackLetter());
-		        button.setBackground(ColorLAF.getBackSystem());
-				
-				button.addMouseListener(new MouseAdapter() {
-					
-		            
-		            public void mouseEntered(MouseEvent e) {
-		            	button.setForeground(ColorLAF.getBackLetter()); 
-		            	button.setBackground(ColorLAF.getOverSytem());
-		            }
-
-		           
-		            public void mouseExited(MouseEvent e) {
-		            	button.setBorder(new CompoundBorder
-		      			      (BorderFactory.createLineBorder(ColorLAF.getborderLine()),
-		      			       new EmptyBorder(10,10,10,10)));
-		      		button.setForeground(ColorLAF.getBackLetter());
-		              button.setBackground(ColorLAF.getBackSystem());
-		               
-		            }
-		            public void mouseClicked(MouseEvent e){
-		            	button.setForeground(ColorLAF.getSelectedLetter());
-		            	button.setBackground(ColorLAF.getBackSystem());
-		            	
-		            }
-		        });
-				
-			}
-		}
-		return button;
-	}
+        public void mouseExited(MouseEvent e) {
+            JComponent src = (JComponent)e.getSource();
+            src.setBorder(new CompoundBorder
+                    (BorderFactory.createLineBorder(border),
+                            new EmptyBorder(10,10,10,10)));
+            src.setForeground(normalF);
+            src.setBackground(normalB);
+        }
+        
+        public void mouseClicked(MouseEvent e) {
+            JComponent src = (JComponent)e.getSource();
+            src.setForeground(clickF);
+            src.setBackground(clickB);
+        }
+    }
 
 }

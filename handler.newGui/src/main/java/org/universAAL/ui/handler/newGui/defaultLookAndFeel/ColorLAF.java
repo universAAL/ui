@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -23,9 +23,9 @@ import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 public class ColorLAF extends DefaultMetalTheme
 {
-public String getName() { 
-	return "uaal Default"; 
-	}
+public String getName() {
+    return "uaal Default";
+    }
 private final ColorUIResource primary1 = new ColorUIResource(213,237,247);
 private final ColorUIResource primary2 = new ColorUIResource(238,124,38);
 private final ColorUIResource primary3 = new ColorUIResource(213,237,247);
@@ -54,32 +54,32 @@ final private static int  FONT_SIZE_BASE = 12;
 final private static Font bold = new Font("Arial", Font.BOLD, FONT_SIZE_BASE+4);
 final private static Font plain = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
 final private static Font label = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE-2);
- 
+
 protected ColorUIResource getPrimary1() { return primary1; }
 protected ColorUIResource getPrimary2() { return primary2; }
 protected ColorUIResource getPrimary3() { return primary3; }
- 
+
 protected ColorUIResource getSecondary1() { return secondary1; }
 protected ColorUIResource getSecondary2() { return secondary2; }
 protected ColorUIResource getSecondary3() { return secondary3; }
 
-protected static Color getOrange(){return orange;}
-protected static Color getBackSystem(){return BackSystem;}
-protected static Color getBackLetter(){return BackLetter;}
-protected static Color getOverSytem(){return OverSytem;}
-protected static Color getSelectedLetter(){return SelectedLetter;}
-protected static Color getborderLine(){return borderLine;}
-protected static Color getBackMM(){return BackMM;}
-protected static Color getBackMML(){return BackMML;}
-protected static Color getborderLineMM(){return borderLineMM;}
-protected static Color getfont(){return font;}
+protected static Color getOrange() {return orange;}
+protected static Color getBackSystem() {return BackSystem;}
+protected static Color getBackLetter() {return BackLetter;}
+protected static Color getOverSytem() {return OverSytem;}
+protected static Color getSelectedLetter() {return SelectedLetter;}
+protected static Color getborderLine() {return borderLine;}
+protected static Color getBackMM() {return BackMM;}
+protected static Color getBackMML() {return BackMML;}
+protected static Color getborderLineMM() {return borderLineMM;}
+protected static Color getfont() {return font;}
 
-protected static Font getbold(){return bold;}
-protected static Font getplain(){return plain;}
- 
+protected static Font getbold() {return bold;}
+protected static Font getplain() {return plain;}
+
 protected ColorUIResource getBlack() { return black; }
 protected ColorUIResource getWhite() { return white; }
 public FontUIResource getControlTextFont() {return new FontUIResource(plain);}
-public static Font getLabelFont() {	return label;}
+public static Font getLabelFont() {    return label;}
 
 }
