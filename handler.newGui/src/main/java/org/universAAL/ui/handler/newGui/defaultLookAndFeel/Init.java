@@ -7,14 +7,14 @@ import org.universAAL.ui.handler.newGui.model.InitInterface;
 
 public class Init implements InitInterface {
 
-	public void install() {
-		MetalLookAndFeel.setCurrentTheme(new ColorLAF());
-		try {
-			UIManager.setLookAndFeel(new MetalLookAndFeel());
-		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public void install() {
+        MetalLookAndFeel.setCurrentTheme(new ColorLAF());
+        try {
+            UIManager.setLookAndFeel(new MetalLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }
