@@ -37,7 +37,7 @@ public class SubdialogAntecessorTest extends TestCase {
         d11 = Form.newSubdialog("Dialog 1.1", d1.getDialogID());
         d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
         d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
-    
+
         new FormLAF(root);
         new FormLAF(d1);
         new FormLAF(d11);

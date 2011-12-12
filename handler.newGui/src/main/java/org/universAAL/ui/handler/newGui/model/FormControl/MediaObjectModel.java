@@ -25,15 +25,25 @@ import org.universAAL.middleware.io.rdf.MediaObject;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
 /**
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see MediaObject
  */
 public class MediaObjectModel extends OutputModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link MediaObject} which to model.
+     */
     public MediaObjectModel(MediaObject control) {
         super(control);
     }
 
+    /** 
+     * The {@link JComponent} returned is a {@link JLabel}.
+     * in future versions it may accommodate other components for
+     * videos, audio and other media files.
+     * @return {@inheritDoc}
+     */
     public JComponent getComponent() {
         JLabel jl = new JLabel(fc.getLabel().getText());
         Icon icon = IconFactory.getIcon(((MediaObject)fc).getContentURL());
@@ -59,7 +69,7 @@ public class MediaObjectModel extends OutputModel {
     }
 
     /*
-     *  TODO:
+     *  XXX:
      *   Media Type parser for images, audio, (or video)
      *   URL Parser: know where to locate the resource
      *           - in jar
@@ -69,9 +79,9 @@ public class MediaObjectModel extends OutputModel {
      *           - other cases? use VFS..
      *   Media Cache : once located resources store and index them in
      *    config dir for faster location.
-     *   
+     *
      *    Use Locator and cache for the other Icons (using IconFactory)
-     *   
+     *
      */
 
 }

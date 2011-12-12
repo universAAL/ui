@@ -33,12 +33,13 @@ public interface FormManager {
      * at the very same instant that it is received or it should wait for
      * more important dialogs to terminate.
      * @param oe
+     * 		{@link OutputEvent} that includes the dialog to show
      */
     public void addDialog(OutputEvent oe);
 
     /**
      * get the Dialog Being currently displayed.
-     * @return
+     * @return the {@link OutputEvent} currently being displayed
      */
     public OutputEvent getCurrentDialog();
 
@@ -49,6 +50,10 @@ public interface FormManager {
 
     /**
      * Callback for {@link OSubscriber#cutDialog(String)}
+     * @param dialogID
+     * 		DialogURI to cut
+     * @return
+     * 		result of the operation
      */
     public Resource cutDialog(String dialogID);
 

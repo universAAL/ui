@@ -25,7 +25,7 @@ import org.universAAL.ontology.profile.User;
  * {@link InputPublisher} specific class for Swing GUI render.
  *
  * This extension enables certain shortcuts to make common operations easier.
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class IPublisher extends InputPublisher {
@@ -34,7 +34,7 @@ public class IPublisher extends InputPublisher {
      * Current user that is inputting information.
      */
     private User currentUser = null;
-   
+
     /**
      * constructor, only accessible within the package
      * (should only be used by {@link Renderer})
@@ -44,9 +44,7 @@ public class IPublisher extends InputPublisher {
         super(moduleContext);
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.middleware.input.InputPublisher#communicationChannelBroken()
-     */
+    /** {@inheritDoc} */
     public void communicationChannelBroken() {
         // Nothing
     }
@@ -54,22 +52,25 @@ public class IPublisher extends InputPublisher {
     /**
      * get the current user that is inputing information
      * @return
+     *     the current user.
      */
     public User getCurrentUser() {
         return currentUser;
     }
 
     /**
-     * Change the current User
+     * Change the current User.
      * @param currentUser
+     * 	     the user to be the current user.
      */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
     }
 
     /**
-     * Shortcut to send imput events related to Submit Buttons
+     * Shortcut to send input events related to Submit Buttons
      * @param submit
+     *       the {@link Submit} button model.
      */
     public void summit(Submit submit) {
         publish(

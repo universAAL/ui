@@ -22,13 +22,23 @@ import javax.swing.JTextArea;
 import org.universAAL.middleware.io.rdf.TextArea;
 import org.universAAL.ui.handler.newGui.model.FormControl.TextAreaModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class TextAreaLAF extends TextAreaModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link TextArea} which to model.
+     */
     public TextAreaLAF(TextArea control) {
         super(control);
-         
-          
+
+
     }
+    
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         String initialValue = (String) fc.getValue();
         JTextArea ta = new JTextArea(10, 15);
@@ -40,9 +50,9 @@ public class TextAreaLAF extends TextAreaModel {
         JScrollPane sp = new JScrollPane(ta);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
-       
+
         return sp;
-    
+
     }
 
 }

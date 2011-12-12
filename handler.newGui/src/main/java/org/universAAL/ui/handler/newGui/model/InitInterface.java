@@ -15,6 +15,22 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.model;
 
+/**
+ * Interface for the entry point Class for any look and feel package.
+ * 
+ * the initialization class must be named Init
+ * @author amedrano
+ *
+ */
 public interface InitInterface {
+	/**
+	 * The procedure of installing the LAF.
+	 * Any actions needed to use the LAF package should be done
+	 * here.
+	 * <br>
+	 * For example initializing the UIManager.
+	 */
     public void install();
+    
+    //XXX: need an uninstall?
 }

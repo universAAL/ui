@@ -23,19 +23,30 @@ import javax.swing.JTextArea;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.TextArea;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see TextArea
  */
 public class TextAreaModel extends InputModel
 implements CaretListener {
 
+	/**
+	 * Constructor.
+	 * @param control
+	 *      the {@link FormControl} which to model.
+	 */
     public TextAreaModel(TextArea control) {
         super(control);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return 
+     *      a {@link JTextArea}.
+     */
     public JComponent getComponent() {
         String initialValue = (String) fc.getValue();
         JTextArea ta = new JTextArea();
@@ -47,16 +58,24 @@ implements CaretListener {
         return ta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid(JComponent component) {
         /*
          *  TODO Check Validity!
          *  length
          */
-        return false;
+        return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void caretUpdate(CaretEvent e) {
-        // TODO update Model if valid
-    
+        // update Model if valid
+    	if (isValid((JComponent) e.getSource())) {
+    		((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
+    	}
     }
 }

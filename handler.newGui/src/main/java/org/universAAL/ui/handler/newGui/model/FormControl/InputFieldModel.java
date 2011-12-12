@@ -36,12 +36,16 @@ import org.universAAL.ui.handler.newGui.model.IconFactory;
  * ImputField Model, it condenses the view and controller parts of
  * the MVC methodology.
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see InputField
  */
 public class InputFieldModel extends InputModel
 implements ChangeListener, CaretListener {
 
+    /**
+     * Constructor.
+     * @param control de {@link InputField} which to model.
+     */
     public InputFieldModel(InputField control) {
         super(control);
     }
@@ -55,11 +59,12 @@ implements ChangeListener, CaretListener {
      * <li> a {@link JPasswordField} if the {@link InputField} is not boolean
      * and it is secret
      * </ul>
+     * @return {@inheritDoc}
      */
     public JComponent getComponent() {
         Object initVal = fc.getValue();
         int maxLength = ((InputField)fc).getMaxLength();
-            
+
         if (fc.isOfBooleanType()) {
             /*
              *  the input type is boolean therefore it can be
@@ -80,9 +85,9 @@ implements ChangeListener, CaretListener {
              */
             JTextComponent tf;
             if (maxLength > 0)
-                tf= new JTextField(maxLength);
+                tf = new JTextField(maxLength);
             else
-                tf= new JTextField();
+                tf = new JTextField();
             if (initVal != null)
                 tf.setText(initVal.toString());
             tf.setToolTipText(fc.getHelpString());
@@ -107,7 +112,7 @@ implements ChangeListener, CaretListener {
             return pf;
         }
     }
-
+    /** {@inheritDoc}*/
     public boolean isValid(JComponent component) {
         // TODO check input length!
         return true;
@@ -115,12 +120,13 @@ implements ChangeListener, CaretListener {
 
     /**
      * when a checkbox is pressed there will be a input
-     * event published
+     * event published.
+     * @param e the {@link ChangeEvent} to listen to.
      */
     public void stateChanged(ChangeEvent e) {
         /*
          * Update Model if valid
-         */    
+         */
         if (isValid((JComponent) e.getSource())) {
             ((Input) fc).storeUserInput(
                     Boolean.valueOf((((JCheckBox)e.getSource()).isSelected())));
@@ -129,7 +135,9 @@ implements ChangeListener, CaretListener {
 
     /**
      * In put events will be published each time the user types
-     * something in the text field
+     * something in the text field.
+     * @param e 
+     * 	    the {@link CaretEvent} to listen to.
      */
     public void caretUpdate(CaretEvent e) {
         /*

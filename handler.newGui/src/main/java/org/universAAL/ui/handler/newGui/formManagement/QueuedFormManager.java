@@ -58,6 +58,10 @@ public class QueuedFormManager implements FormManager {
      */
     private FrameManager mFrame;
 
+    /**
+     * Default constructor.
+     * 
+     */
     public QueuedFormManager() {
         dialogQueue = new PriorityQueue(QUEUE_MAX,new OutputEventPriorityComparator());
     }
@@ -65,6 +69,7 @@ public class QueuedFormManager implements FormManager {
     /* (non-Javadoc)
      * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#addDialog(org.universAAL.middleware.output.OutputEvent)
      */
+    /** {@inheritDoc} */
     public void addDialog(OutputEvent oe) {
         /*
          *   check if its the same as the current dialog
@@ -74,7 +79,7 @@ public class QueuedFormManager implements FormManager {
          *            and display new dialog
          *           (special case: message form does not terminate current dialog)
          *       if not then add to priority Queue
-         */    
+         */
         dialogQueue.add(oe);
         if (currentDialog == null
                 || currentDialog != dialogQueue.peek()
@@ -83,12 +88,12 @@ public class QueuedFormManager implements FormManager {
              * A Dialog with more priority than the current has arrived
              * or there is no current dialog
              */
-                closeCurrentDialogAndLoadNext();            
+                closeCurrentDialogAndLoadNext();
         }
         else if (currentDialog == dialogQueue.peek()) {
             /*
              * remove the just added dialog
-             * TODO reload? update?
+             * XXX reload? update?
              */
             dialogQueue.remove();
         }
@@ -97,9 +102,9 @@ public class QueuedFormManager implements FormManager {
     /* (non-Javadoc)
      * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#getCurrentDialog()
      */
+    /** {@inheritDoc} */
     public OutputEvent getCurrentDialog() {
-        // TODO Auto-generated method stub
-        return null;
+        return currentDialog;
     }
 
     /**
@@ -159,6 +164,7 @@ public class QueuedFormManager implements FormManager {
     /* (non-Javadoc)
      * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#flush()
      */
+    /** {@inheritDoc} */
     public void flush() {
         // TODO Auto-generated method stub
 
@@ -186,12 +192,13 @@ public class QueuedFormManager implements FormManager {
             currentDialog = null;
         }
         renderNextDialog();
-    
+
     }
 
     /* (non-Javadoc)
      * @see org.universAAL.ui.handler.newGui.formManagement.FormManager#cutDialog(java.lang.String)
      */
+    /** {@inheritDoc} */
     public Resource cutDialog(String dialogID) {
         closeCurrentDialogAndLoadNext();
         // TODO what to return?

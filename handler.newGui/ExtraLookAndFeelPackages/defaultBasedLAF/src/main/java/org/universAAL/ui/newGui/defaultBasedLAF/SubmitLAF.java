@@ -28,7 +28,7 @@ import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
 public class SubmitLAF extends SubmitModel {
-    
+
     public SubmitLAF(Submit control) {
         super(control);
     }
@@ -47,7 +47,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF, enterB,
                 clickF, clickB));
     }
-    
+
     public JComponent getComponent() {
         Color normalF;
         Color normalB;
@@ -56,9 +56,9 @@ public class SubmitLAF extends SubmitModel {
         Color clickF;
         Color clickB;
         Color border;
-        
+
         JComponent button = super.getComponent();
-    
+
         border = ColorLAF.getborderLine();
         normalF = ColorLAF.getBackLetter();
         normalB = ColorLAF.getBackSystem();
@@ -66,7 +66,7 @@ public class SubmitLAF extends SubmitModel {
         enterB = ColorLAF.getOverSytem();
         clickF = ColorLAF.getSelectedLetter();
         clickB = ColorLAF.getBackSystem();
-        
+
         if (this.isInMainMenu()) {
             /*
              * System Buttons
@@ -89,7 +89,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getBackLetter();
-                clickB = ColorLAF.getOverSytem();       
+                clickB = ColorLAF.getOverSytem();
             }
             else {
                 /*
@@ -102,7 +102,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getSelectedLetter();
-                clickB = ColorLAF.getBackSystem();           
+                clickB = ColorLAF.getBackSystem();
             }
         }
         else {
@@ -116,7 +116,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getBackLetter();
-                clickB = ColorLAF.getOverSytem();              
+                clickB = ColorLAF.getOverSytem();
             }
             if (this.isInIOGroup()) {
                 /*
@@ -128,7 +128,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getSelectedLetter();
-                clickB = ColorLAF.getBackSystem();           
+                clickB = ColorLAF.getBackSystem();
             }
         }
         setButtonBehaviour(button, border,
@@ -137,7 +137,7 @@ public class SubmitLAF extends SubmitModel {
                 clickF, clickB);
         return button;
     }
-    
+
     static protected class MyMouseAdatper extends MouseAdapter {
 
         private Color normalF;
@@ -147,7 +147,7 @@ public class SubmitLAF extends SubmitModel {
         private Color clickF;
         private Color clickB;
         private Color border;
-        
+
         public MyMouseAdatper(Color border,
                 Color normalF, Color normalB,
                 Color enterF, Color enterB,
@@ -160,7 +160,7 @@ public class SubmitLAF extends SubmitModel {
             this.clickF = clickF;
             this.clickB = clickB;
         }
-        
+
         public void mouseEntered(MouseEvent e) {
             JComponent src = (JComponent)e.getSource();
             src.setForeground(enterF);
@@ -175,7 +175,7 @@ public class SubmitLAF extends SubmitModel {
             src.setForeground(normalF);
             src.setBackground(normalB);
         }
-        
+
         public void mouseClicked(MouseEvent e) {
             JComponent src = (JComponent)e.getSource();
             src.setForeground(clickF);

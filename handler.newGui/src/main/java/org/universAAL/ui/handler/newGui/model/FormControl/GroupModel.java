@@ -33,41 +33,62 @@ import org.universAAL.ui.handler.newGui.model.Model;
 
 /**
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
 public class GroupModel extends Model {
 
-
+	
+    /**
+     * Constructor.
+     * @param control the {@link Group} which to model.
+     */
     public GroupModel(Group control) {
         super(control);
     }
 
+    /** The {@link JComponent} returned may be either
+     * <ul>
+     * <li> a {@link JPanel}
+     * <li> a {@link JTabbedPane}
+     * </ul>
+     * 
+     *  depending on the complexity (and other factors) of the group
+     * 
+     * @return {@inheritDoc}
+     * */
     public JComponent getComponent() {
         LevelRating complexity = ((Group)fc).getComplexity();
-        if (complexity == LevelRating.none || ((Group) fc).isRootGroup()) {
+        if (complexity == LevelRating.none
+        		|| ((Group) fc).isRootGroup()) {
             return simplePannel();
         }
         if (complexity == LevelRating.low ) {
             return simplePannel();
         }
         if (complexity == LevelRating.middle ) {
-            return tabbedPannel();
+            return tabbedPanel();
         }
         if (complexity == LevelRating.high ) {
-            return tabbedPannel();
+            return tabbedPanel();
         }
         if (complexity == LevelRating.full) {
-            return tabbedPannel();
+            return tabbedPanel();
         }
         return null;
     }
 
+    /** {@inheritDoc}*/
     public boolean isValid(JComponent component) {
         // Always valid
         return true;
     }
 
+    /**
+     * create a simple panel with the children in it
+     * @return
+     * 		a {@link JPanel} with all the group's children.
+     */
     protected JPanel simplePannel() {
         /*
          * a Simple Group containing FormControls
@@ -83,8 +104,15 @@ public class GroupModel extends Model {
         pane.setName(fc.getURI());
         return pane;
     }
-
-    protected JTabbedPane tabbedPannel() {
+    
+    /**
+     * create a tabbed panel with diferent groups
+     * in different pannels. 
+     * @return
+     * 		a {@link JTabbedPane} with children groups
+     * as panels
+     */
+    protected JTabbedPane tabbedPanel() {
         JTabbedPane tp = new JTabbedPane();
         FormControl[] children = ((Group) fc).getChildren();
         JPanel pane;
@@ -103,29 +131,62 @@ public class GroupModel extends Model {
         tp.setName(fc.getURI());
         return tp;
     }
-
+    
+    /**
+     * check whether it is the submit root group.
+     * @return
+     * 		true is it is.
+     */
     public boolean isTheSubmitGroup() {
         return ((Group)fc).isRootGroup() && isInSubmitGroup();
     }
 
+    /**
+     * check whether it is the system root group.
+     * @return
+     * 		true is it is.
+     */
     public boolean isTheMainGroup() {
         return ((Group)fc).isRootGroup() && isInStandardGroup();
     }
 
+    /**
+     * check whether it is the io root group.
+     * @return
+     * 		true is it is.
+     */
     public boolean isTheIOGroup() {
         return ((Group)fc).isRootGroup() && isInIOGroup();
     }
 
+    /**
+     * Access to the Model mapper.
+     * it will load the {@link JComponent} for a given {@link FormControl} 
+     * which is a child of the current group.
+     * @param fc
+     * 		the child from which to obtain it's model and {@link JComponent}
+     * @return
+     * 		the {@link JComponent} build by the {@link Model} of the child
+     */
     private JComponent getComponentFrom(FormControl fc) {
-    
+
         return ModelMapper.getModelFor(fc).getComponent();
     }
 
+    /**
+     * Access to the Model mapper.
+     * it will load the {@link JComponent} for a given {@link FormControl} 
+     * which is a child of the current group, and add it to a {@link Container}.
+     * @param fc
+     * 		the child from which to obtain it's model and {@link JComponent}
+     * @param c
+     * 		the {@link Container} to which to add the {@link JComponent}
+     */
     private void addComponentTo(FormControl fc, Container c) {
         Model m = ModelMapper.getModelFor(fc);
         JComponent jc = m.getComponent();
         if (jc != null  ) {
-            if (fc.getLabel()!= null) {
+            if (fc.getLabel() != null) {
                 LabelModel label = ModelMapper.getModelFor(fc.getLabel());
                 if (label.hasInfo() && m.needsLabel()) {
                     JLabel l = label.getComponent();

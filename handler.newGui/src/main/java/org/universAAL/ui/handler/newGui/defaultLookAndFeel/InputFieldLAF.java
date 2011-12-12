@@ -20,15 +20,22 @@ import javax.swing.JComponent;
 import org.universAAL.middleware.io.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class InputFieldLAF extends InputFieldModel {
 
+
+    /**
+     * Constructor
+     * @param control the {@link InputField} which to model.
+     */
     public InputFieldLAF(InputField control) {
         super(control);
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel#getComponent()
-     */
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         JComponent inf = super.getComponent();
         inf.setFont(ColorLAF.getplain());

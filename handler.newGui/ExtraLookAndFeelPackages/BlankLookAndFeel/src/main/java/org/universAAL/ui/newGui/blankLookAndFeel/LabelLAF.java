@@ -19,7 +19,7 @@ import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class LabelLAF extends LabelModel {

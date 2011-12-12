@@ -53,7 +53,7 @@ public class SubmitLAF extends SubmitModel {
                 /*
                  * all submits
                  */
-            
+
             }
             if (this.isInIOGroup()) {
                 /*

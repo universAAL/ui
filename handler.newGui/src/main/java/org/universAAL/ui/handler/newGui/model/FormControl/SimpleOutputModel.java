@@ -21,22 +21,39 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.SimpleOutput;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
 
 /**
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see SimpleOutput
  */
 public class SimpleOutputModel extends OutputModel {
 
+	/**
+	 * threshold for selecting between a {@link JTextArea} and
+	 * a {@link JTextField}
+	 */
     protected static final int TOO_LONG = 20;
 
+    /**
+     * Constructor.
+     * @param control
+     *       the {@link FormControl} which to model.
+     */
     public SimpleOutputModel(SimpleOutput control) {
         super(control);
     }
 
+    /**
+     * {@inheritDoc}
+     * @return 
+     *     either a {@link JTextArea} or a {@link JTextField} if output is a {@link String}.
+     *     or it can be a {@link JCheckBox} if the output is a {@link Boolean}.
+     *     all of them are uneditable by the user.
+     */
     public JComponent getComponent() {
         /*
          *  TODO
@@ -47,6 +64,8 @@ public class SimpleOutputModel extends OutputModel {
          *      (disabled) textarea for long length
          *   if boolean use
          *      (disabled) checkbock
+         *   if Date 
+         *       ??
          *   if number use
          *       ??
          *   if ?? use
@@ -65,11 +84,11 @@ public class SimpleOutputModel extends OutputModel {
                 //ta.setEnabled(false);
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
-                ta.setName(fc.getURI());            
+                ta.setName(fc.getURI());
                 return ta;
             }
             else {
-                JTextComponent tf= new JTextField();
+                JTextComponent tf = new JTextField();
                 tf.setText((String)content);
                 tf.setEditable(false);
                 //tf.setEnabled(false);
@@ -82,7 +101,7 @@ public class SimpleOutputModel extends OutputModel {
         if (content instanceof Boolean) {
             JCheckBox cb = new JCheckBox(fc.getLabel().getText(),
                     IconFactory.getIcon(fc.getLabel().getIconURL()));
-            needsLabel=false;
+            needsLabel = false;
             cb.setSelected(((Boolean)content).booleanValue());
             cb.setEnabled(false);
             cb.setToolTipText(fc.getHelpString());

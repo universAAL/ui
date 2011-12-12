@@ -46,7 +46,7 @@ public class GroupLAF extends GroupModel {
             String label;
             if (fc.getLabel() != null) {
                 label = fc.getLabel().getText();
-            
+
             }
             else {
                 label = "";

@@ -25,13 +25,14 @@ import org.universAAL.middleware.owl.supply.LevelRating;
  *
  * Compares the priority of events to implement the priority queue
  * of {@link OutputEvent}s
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
 public class OutputEventPriorityComparator implements Comparator {
 
     /* (non-Javadoc)
      * @see java.util.Comparator#compare(T, T)
      */
+	/** {@inheritDoc} */
     public int compare(Object o1, Object o2) {
         LevelRating p1 = ((OutputEvent) o1).getDialogPriority();
         LevelRating p2 = ((OutputEvent) o2).getDialogPriority();
@@ -41,7 +42,9 @@ public class OutputEventPriorityComparator implements Comparator {
         if (((OutputEvent)o2).getDialogForm().isSystemMenu()) {
             return -1;
         }
-        return p1.greater(p2)?-1:(p1.less(p2)?1:0);
+        return p1.greater(p2) ?
+        		-1
+        		: (p1.less(p2) ? 1 : 0);
     }
 
 }

@@ -29,7 +29,7 @@ import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class FormLAF extends FormModel {
@@ -70,7 +70,7 @@ public class FormLAF extends FormModel {
             header.add(logo);
             return (JPanel)header;
         }
-    
+
     public JFrame getFrame() {
         if (form.isMessage()) {
             //TODO
@@ -103,7 +103,7 @@ public class FormLAF extends FormModel {
             f.setExtendedState(Frame.MAXIMIZED_BOTH);
             //f.setUndecorated(true);
             f.pack();
-        
+
             return f;
         }
         if (form.isSubdialog()) {

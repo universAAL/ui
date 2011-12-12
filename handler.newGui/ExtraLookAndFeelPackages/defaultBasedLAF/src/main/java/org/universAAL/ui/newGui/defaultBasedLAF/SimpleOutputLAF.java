@@ -33,7 +33,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 
     public SimpleOutputLAF(SimpleOutput control) {
         super(control);
-    
+
     }
     public JComponent getComponent() {
         /*
@@ -82,7 +82,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 //tf.setEnabled(false);
                 tf.setToolTipText(fc.getHelpString());
                 tf.setName(fc.getURI());
-            
+
                 return tf;
             }
         }

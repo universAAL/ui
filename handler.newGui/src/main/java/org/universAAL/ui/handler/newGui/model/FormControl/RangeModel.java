@@ -29,7 +29,7 @@ import javax.swing.event.ChangeListener;
 import org.universAAL.middleware.io.rdf.Range;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Range
  */
 public class RangeModel extends InputModel
@@ -37,6 +37,10 @@ implements ChangeListener {
 
     private static final int SPINNER_SLIDER_THRESHOLD = 25;
 
+    /**
+     * Constructor.
+     * @param control the {@link Range} which to model.
+     */
     public RangeModel(Range control) {
         super(control);
     }
@@ -44,6 +48,7 @@ implements ChangeListener {
     /**
      * Ranges can yield a {@link JSpinner} if the specified range
      * is less than a threshold, or it can also be {@link JSlider}.
+     * @return {@inheritDoc}
      */
     public JComponent getComponent() {
         Comparable min_Value = ((Range) fc).getMinValue();
@@ -69,24 +74,24 @@ implements ChangeListener {
             return slider;
         }
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid(JComponent component) {
         // Swing makes sure it's all ways valid
-        // TODO check the above affirmation
+        // XXX check the above affirmation
         return true;
     }
 
     /**
      * when a range is change, it will produce an input event
+     * {@inheritDoc}
      */
     public void stateChanged(ChangeEvent e) {
         int value;
-        //TODO Check UserInput Type is Integer!
+        // Check UserInput Type is Integer!
         if (e.getSource() instanceof JSpinner) {
-            /*
-             *  TODO: Check if JPspiner.getValue in this context
-             *   will return a int.
-             */
             value = ((Integer)((JSpinner)e.getSource()).getValue()).intValue();
         }
         else {

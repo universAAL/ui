@@ -27,33 +27,48 @@ import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.TypeMapper;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Repeat
  */
 public class RepeatModel extends GroupModel {
-
+	
+    /**
+     * Constructor
+     * @param control the {@link Repeat} which to model.
+     */
     public RepeatModel(Repeat control) {
         super(control);
     }
-
+    
+    /**
+     * get the java {@link Class} of the children.
+     * @return
+     * 	    {@link Class} of the 1st child.
+     */
     private Class getChildrenType() {
         FormControl[] children = ((Repeat) fc).getChildren();
         return TypeMapper.getJavaClass(children[0].getTypeURI());
     }
-
+    
+    /**
+     * check if the {@link Repeat} {@link FormControl} models a table.
+     * @return
+     * 	   <code>true</code> is it does model a table.
+     * 	   <code>false</code> otherwise.
+     */
     private boolean isATable() {
         /*
          * Check that the children type is Group,
          * that the length of all children (Groups) are the same,
          * And that all the Groups do not contain more groups.
-         * TODO check the type for each column is consistent.
+         * XXX check the type for each column is consistent.
          */
         if (getChildrenType().equals(Group.class)) {
             FormControl[] child = ((Repeat) fc).getChildren();
             int i = 0;
             LevelRating complexity = LevelRating.none;
             Class last = child[0].getClass();
-            while (i<child.length
+            while (i < child.length
                     && child[i].getClass() == last
                     && complexity == ((Group)child[i]).getComplexity())
                 i++;
@@ -79,6 +94,7 @@ public class RepeatModel extends GroupModel {
         return table;
     }
 
+    /** {@inheritDoc}*/
     public JComponent getComponent() {
         /*
          *  TODO
@@ -91,10 +107,10 @@ public class RepeatModel extends GroupModel {
              * Representation of a table
              ********************************************
              * use:
-             *  boolean     listAcceptsNewEntries()
-                *     boolean     listEntriesDeletable()
-             *    boolean     listEntriesEditable()
-             *    int         getSelectionIndex()
+             *  boolean         listAcceptsNewEntries()
+             *  boolean         listEntriesDeletable()
+             *  boolean         listEntriesEditable()
+             *  int             getSelectionIndex()
              *  FormControl     getSearchableField() (add a listener to this component)
              * to configure the table accordingly!!
              */
@@ -107,13 +123,13 @@ public class RepeatModel extends GroupModel {
             return table;
         }
         if (getChildrenType().equals(Group.class)) {
-            /* TODO
+            /* 
              * children are Group, but not the same length
-             * display a tree?
-             * http://download.oracle.com/javase/tutorial/uiswing/components/tree.html
+             * display a tabbedpane
              */
+            return tabbedPanel();
         }
-    
+
         return super.getComponent();
     }
 
@@ -124,11 +140,11 @@ public class RepeatModel extends GroupModel {
          */
         private static final long serialVersionUID = 8263449027626068414L;
         private FormControl[][] table;
-    
+
         public RepeatTableModel() {
             table = getTable();
         }
-    
+
         public int getRowCount() {
             return table.length;
         }

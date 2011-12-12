@@ -25,19 +25,31 @@ import javax.swing.border.TitledBorder;
 import org.universAAL.middleware.io.rdf.Group;
 import org.universAAL.ui.handler.newGui.model.FormControl.GroupModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class GroupLAF extends GroupModel {
 
 
+    /**
+     * Constructor.
+     * @param control the {@link Group} which to model
+     */
     public GroupLAF(Group control) {
         super(control);
     }
 
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         JComponent jgroup  = super.getComponent();
         if (jgroup instanceof JTabbedPane) {
             /*
              * Tabbed group
              */
+            JComponent tb = super.getComponent();
+            tb.setFont(ColorLAF.getplain());
+            return tb;
         }
         else if (!((Group)fc).isRootGroup()) {
             /*
@@ -46,7 +58,7 @@ public class GroupLAF extends GroupModel {
             String label;
             if (fc.getLabel() != null) {
                 label = fc.getLabel().getText();
-            
+
             }
             else {
                 label = "";
@@ -54,10 +66,12 @@ public class GroupLAF extends GroupModel {
             //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
             Border line = BorderFactory.createLineBorder(ColorLAF.getOrange());
             TitledBorder title;
-            title = BorderFactory.createTitledBorder(line, label, 0, 0, ColorLAF.getbold(), ColorLAF.getborderLineMM());
+            title = BorderFactory.createTitledBorder
+            		(line, label, 0, 0,
+            				ColorLAF.getbold(), ColorLAF.getborderLineMM());
             jgroup.setBorder(title);
-            needsLabel=false;
-            // TODO try add icon
+            needsLabel = false;
+            // XXX try add icon
         }
         jgroup.setLayout(new BoxLayout(jgroup,BoxLayout.PAGE_AXIS));
         return jgroup;
