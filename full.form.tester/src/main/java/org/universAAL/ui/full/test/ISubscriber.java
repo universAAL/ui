@@ -22,6 +22,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.TreeMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -31,7 +32,7 @@ import org.universAAL.middleware.input.InputSubscriber;
 
 public class ISubscriber extends InputSubscriber{
 
-	//private TreeMap<String, AbstractForm> inputMapper;
+	static TreeMap<String, AbstractForm> inputMapper;
 	
 	/**
 	 * 
@@ -40,7 +41,6 @@ public class ISubscriber extends InputSubscriber{
 
 	public ISubscriber(ModuleContext context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void communicationChannelBroken() {
@@ -56,8 +56,10 @@ public class ISubscriber extends InputSubscriber{
 		/*
 		 * Delegate Handlement to subscribed UI
 		 */
-		//inputMapper.get(event.getDialogID()).handleEvent(event);
-		ISubscriber.getAbstractForm(event.getSubmissionID()).handleEvent(event);
+		inputMapper.get(event.getDialogID()).handleEvent(event);
+		inputMapper.remove(event.getDialogID());
+		//ISubscriber.getAbstractForm(event.getSubmissionID()).handleEvent(event);
+		
 	}
 
 	public static AbstractForm getAbstractForm(String cName) {
