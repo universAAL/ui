@@ -26,6 +26,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.ui.handler.newGui.model.Model;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
 /**
@@ -78,6 +79,10 @@ public class SubmitLAF extends SubmitModel {
 
     /** {@inheritDoc} */
     public JComponent getComponent() {
+    	return buttonDecorate(this, super.getComponent());
+    }
+    
+    protected static JComponent buttonDecorate(Model model, JComponent button) {
         Color normalF;
         Color normalB;
         Color enterF;
@@ -85,8 +90,6 @@ public class SubmitLAF extends SubmitModel {
         Color clickF;
         Color clickB;
         Color border;
-
-        JComponent button = super.getComponent();
 
         border = ColorLAF.getborderLine();
         normalF = ColorLAF.getBackLetter();
@@ -96,7 +99,7 @@ public class SubmitLAF extends SubmitModel {
         clickF = ColorLAF.getSelectedLetter();
         clickB = ColorLAF.getBackSystem();
 
-        if (this.isInMainMenu()) {
+        if (model.isInMainMenu()) {
             /*
              * System Buttons
              */
@@ -108,7 +111,7 @@ public class SubmitLAF extends SubmitModel {
             clickF = ColorLAF.getBackLetter();
             clickB = ColorLAF.getOverSytem();
 
-            if (this.isInStandardGroup()) {
+            if (model.isInStandardGroup()) {
                 /*
                  * system buttons in main menu
                  */
@@ -132,7 +135,7 @@ public class SubmitLAF extends SubmitModel {
                 clickB = ColorLAF.getBackSystem();
             }
         } else {
-            if (this.isInStandardGroup()) {
+            if (model.isInStandardGroup()) {
                 /*
                  * all submits
                  */
@@ -144,7 +147,7 @@ public class SubmitLAF extends SubmitModel {
                 clickF = ColorLAF.getBackLetter();
                 clickB = ColorLAF.getOverSytem();
             }
-            if (this.isInIOGroup()) {
+            if (model.isInIOGroup()) {
                 /*
                  * buttons inside IO
                  */

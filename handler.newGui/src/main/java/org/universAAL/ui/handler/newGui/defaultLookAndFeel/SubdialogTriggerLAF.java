@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
+import javax.swing.JComponent;
+
 import org.universAAL.middleware.io.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
 
@@ -32,5 +34,8 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
         super(control);
     }
 
-    // FIXME add LAF similar to Submit
+    /** {@inheritDoc} */
+    public JComponent getComponent() {
+    	return SubmitLAF.buttonDecorate(this, super.getComponent());
+    }
 }
