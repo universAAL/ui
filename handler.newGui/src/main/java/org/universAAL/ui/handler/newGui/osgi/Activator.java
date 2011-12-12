@@ -23,20 +23,26 @@ import org.universAAL.ui.handler.newGui.Renderer;
 
 /**
  * OSGi Activator Class for SWING GUI HANDLER
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class Activator implements BundleActivator {
 
-    public static BundleContext context=null;
+    /**
+     * the {@link BundleContext} for the handler.newGui bundle
+     */
+    public static BundleContext context = null;
 
+    /**
+     * the home directory where to store the config files.
+     */
     public BundleConfigHome home = null;
 
     private Renderer render;
 
-
+    /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
-        Activator.context=context;
+        Activator.context = context;
         home = new BundleConfigHome(context.getBundle().getSymbolicName());
         BundleContext[] bc = { context };
         Renderer.setModuleContext(uAALBundleContainer.THE_CONTAINER
@@ -45,6 +51,7 @@ public class Activator implements BundleActivator {
         render = Renderer.getInstance();
     }
 
+    /** {@inheritDoc} */
     public void stop(BundleContext arg0) throws Exception {
         render.finish();
     }

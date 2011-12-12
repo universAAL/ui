@@ -25,7 +25,7 @@ import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class FormLAF extends FormModel {

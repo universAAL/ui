@@ -38,46 +38,39 @@ public class SimpleFormManager implements FormManager {
      */
     private FrameManager frame;
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#addDialog(org.universAAL.middleware.output.OutputEvent)
-     */
+    /** {@inheritDoc} */
     public void addDialog(OutputEvent oe) {
             closeCurrentDialog();
             currentForm = oe;
             frame = new FrameManager(currentForm.getDialogForm());
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#getCurrentDialog()
-     */
+    /** {@inheritDoc} */
     public OutputEvent getCurrentDialog() {
         return currentForm;
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#closeCurrentDialog()
-     */
+
+    /** {@inheritDoc} */
     public void closeCurrentDialog() {
         if (frame != null) {
             frame.disposeFrame();
         }
         //FormModelMapper.unRegister(
         //        currentForm.getDialogForm().getURI());
-        currentForm=null;
+        currentForm = null;
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#flush()
-     */
+
+    /** {@inheritDoc} */
     public void flush() {
         frame.disposeFrame();
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.formManagement.FormManager#cutDialog(java.lang.String)
-     */
+    /** {@inheritDoc} */
     public Resource cutDialog(String dialogID) {
-        // TODO Auto-generated method stub
+	closeCurrentDialog();
+        // TODO Auto-generated method stub, What to return?
         return null;
     }
 

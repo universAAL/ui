@@ -34,7 +34,7 @@ public class SystemMenu {
     public static void main(String[] args) {
         /*
          * generating a RDF IO Representation
-         */    
+         */
         Form sys = Form.newSystemMenu("System Dialog Test");
         for (int i = 0; i < SYS_BTN_NO; i++) {
             String s = "Sys "+Integer.toString(i);
@@ -48,7 +48,7 @@ public class SystemMenu {
                     new Label(s, null),
                     s.toLowerCase().replace(" ", "_"));
         }
-    
+
         /*
          * using GUI.Model to render
          */

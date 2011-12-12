@@ -24,24 +24,34 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeSelectionModel;
 
 import org.universAAL.middleware.io.rdf.ChoiceItem;
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.middleware.io.rdf.Select;
 import org.universAAL.middleware.io.rdf.Select1;
 
 /**
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Select1
  */
 public class Select1Model extends SelectModel
 implements  ActionListener {
 
+	/**
+	 * constructor.
+	 * @param control
+	 * 	    the {@link FormControl} which this model represents.
+	 */
     public Select1Model(Select1 control) {
         super(control);
     }
-
+    
+    /**
+     * {@inheritDoc}
+     * @return either a {@link JTree} or a {@link JComboBox}
+     */
     public JComponent getComponent() {
-        //TODO add icons to component!
+        //XXX add icons to component!
         if (!((Select)fc).isMultilevel()) {
             Label[] items = ((Select1) fc).getChoices();
             JComboBox cb = new JComboBox(items);
@@ -55,36 +65,42 @@ implements  ActionListener {
             cb.addActionListener(this);
             cb.setName(fc.getURI());
             return cb;
-        }else {
+        } else {
             JTree jt = new JTree(new SelectionTreeModel());
             jt.setEditable(false);
             jt.setSelectionModel(new SingleTreeSelectionModel());
-        
+
             jt.setName(fc.getURI());
         }
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isValid(JComponent component) {
-        // Always valid
+        // TODO check validity.
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void actionPerformed(ActionEvent e) {
         if (!((Select)fc).isMultilevel()) {
             int i = ((JComboBox) e.getSource()).getSelectedIndex();
             ((Select1) fc).storeUserInput(
                     ((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
-        } else {
-            /*
-             * TODO gather Tree input
-             */
-        }
-    
+        } 
     }
-
+    
+    /**
+     * The selection model for, selecting only one element in a tree.
+     * @author amedrano
+     *
+     */
     private class SingleTreeSelectionModel extends DefaultTreeSelectionModel {
         private static final long serialVersionUID = 1L;
-        //TODO Model the selection!
+        //TODO Model the selection! and gather Tree input
     }
 }

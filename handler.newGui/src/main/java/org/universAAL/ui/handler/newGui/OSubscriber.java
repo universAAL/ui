@@ -35,13 +35,13 @@ import org.universAAL.ontology.profile.User;
  * Output subscriver Specific for Swing GUI Renderer.
  * this class will receive the call back from the output bus
  * and instruct the renderer to "paint" the dialogs received.
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class OSubscriber extends OutputSubscriber {
 
     /**
-     * constructor.
+     * Constructor.
      * Should only be used in {@link Renderer}
      * @param context
      *         the {@link ModuleContext} for the {@link OutputSubscriber}
@@ -52,9 +52,9 @@ public class OSubscriber extends OutputSubscriber {
         OutputEventPattern initialSubscription) {
         super(context, initialSubscription);
     }
-   
+
     /**
-     * constructor.
+     * Constructor.
      * Should only be used in {@link Renderer}.
      * uses {@link OSubscriber#getPermanentSubscriptions()} as default
      * initial subscriptions.
@@ -64,7 +64,7 @@ public class OSubscriber extends OutputSubscriber {
     protected OSubscriber(ModuleContext moduleContext) {
         super(moduleContext, getPermanentSubscriptions());
     }
-   
+
     /**
      * States the pattern of interesting output events, for the handler.
      *
@@ -97,10 +97,11 @@ public class OSubscriber extends OutputSubscriber {
         return oep;
     }
 
-   
+
     /* (non-Javadoc)
      * @see org.universAAL.middleware.output.OutputSubscriber#adaptationParametersChanged(java.lang.String, java.lang.String, java.lang.Object)
      */
+    /** {@inheritDoc} */
     public void adaptationParametersChanged(String dialogID,
         String changedProp, Object newVal) {
         // Nothing; Adaptation parameters are processed with each output event
@@ -109,6 +110,7 @@ public class OSubscriber extends OutputSubscriber {
     /* (non-Javadoc)
      * @see org.universAAL.middleware.output.OutputSubscriber#communicationChannelBroken()
      */
+    /** {@inheritDoc} */
     public void communicationChannelBroken() {
         // TODO Auto-generated method stub
     }
@@ -116,7 +118,8 @@ public class OSubscriber extends OutputSubscriber {
     /* (non-Javadoc)
      * @see org.universAAL.middleware.output.OutputSubscriber#cutDialog(java.lang.String)
      */
-    public Resource cutDialog(String dialogID) {    
+    /** {@inheritDoc} */
+    public Resource cutDialog(String dialogID) {
         return Renderer.getInstance().getFormManagement().cutDialog(dialogID);
     }
 
@@ -129,7 +132,7 @@ public class OSubscriber extends OutputSubscriber {
     public void handleOutputEvent(OutputEvent event) {
         Renderer.getInstance().getFormManagement().addDialog(event);
     }
-   
+
     /**
      * When any user has authenticated, this method will change the event pattern
      * to receive only addressed user events.

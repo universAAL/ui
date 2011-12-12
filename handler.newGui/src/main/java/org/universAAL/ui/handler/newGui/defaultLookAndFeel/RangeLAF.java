@@ -20,15 +20,21 @@ import javax.swing.JComponent;
 import org.universAAL.middleware.io.rdf.Range;
 import org.universAAL.ui.handler.newGui.model.FormControl.RangeModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class RangeLAF extends RangeModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link Range} which to model.
+     */
     public RangeLAF(Range control) {
         super(control);
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.model.FormControl.RangeModel#getComponent()
-     */
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         JComponent ran = super.getComponent();
         ran.setFont(ColorLAF.getLabelFont());

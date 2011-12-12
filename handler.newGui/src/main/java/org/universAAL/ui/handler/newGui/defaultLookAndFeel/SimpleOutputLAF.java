@@ -27,12 +27,22 @@ import javax.swing.text.JTextComponent;
 import org.universAAL.middleware.io.rdf.SimpleOutput;
 import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link SimpleOutput} which to model.
+     */
     public SimpleOutputLAF(SimpleOutput control) {
         super(control);
-    
+
     }
+    
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         Object content = ((SimpleOutput)fc).getContent();
         JComponent comp = super.getComponent();
@@ -50,7 +60,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 return sp;
             }
             else {
-                JTextComponent tf= (JTextComponent) comp;
+                JTextComponent tf = (JTextComponent) comp;
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());

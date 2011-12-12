@@ -26,8 +26,8 @@ public class TextAreaLAF extends TextAreaModel {
 
     public TextAreaLAF(TextArea control) {
         super(control);
-         
-          
+
+
     }
     public JComponent getComponent() {
         String initialValue = (String) fc.getValue();
@@ -40,9 +40,9 @@ public class TextAreaLAF extends TextAreaModel {
         JScrollPane sp = new JScrollPane(ta);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
-       
+
         return sp;
-    
+
     }
 
 }

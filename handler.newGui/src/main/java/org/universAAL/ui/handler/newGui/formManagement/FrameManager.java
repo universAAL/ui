@@ -66,8 +66,5 @@ public class FrameManager {
      */
     public void disposeFrame() {
         model.finalizeForm();
-        if (frame != null) {
-            frame.dispose();
-        }
     }
 }

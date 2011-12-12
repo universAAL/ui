@@ -18,6 +18,7 @@
  */
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Input;
 import org.universAAL.ui.handler.newGui.model.Model;
 
@@ -25,12 +26,16 @@ import org.universAAL.ui.handler.newGui.model.Model;
  * Input Control is an abstract Class as such it should not be
  * Instantiated an so there is no rendering.
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Input
  */
 public abstract class InputModel extends Model
  {
-
+	/**
+	 * Constructor.
+	 * @param control
+	 *      the {@link Input} {@link FormControl} to model.
+	 */
     public InputModel(Input control) {
         super(control);
     }

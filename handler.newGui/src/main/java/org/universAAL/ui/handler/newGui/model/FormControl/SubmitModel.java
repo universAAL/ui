@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Input;
 import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.ui.handler.newGui.Renderer;
@@ -28,17 +29,27 @@ import org.universAAL.ui.handler.newGui.model.IconFactory;
 import org.universAAL.ui.handler.newGui.model.Model;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Submit
  */
 public class SubmitModel extends Model
 implements ActionListener {
 
+	/**
+	 * Constructor.
+	 * @param control
+	 *     the {@link FormControl} which to model.
+	 */
     public SubmitModel(Submit control) {
         super(control);
         needsLabel = false;
     }
 
+    /**
+     * {@inheritDoc}
+     * @return
+     *      a {@link JButton}
+     */
     public JComponent getComponent() {
         JButton s = new JButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()));
@@ -47,14 +58,21 @@ implements ActionListener {
         return s;
     }
 
+    /**
+     * a Submit is allways valid.
+     * @return <code>true</code>
+     */
     public boolean isValid(JComponent component) {
         //always valid
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void actionPerformed(ActionEvent e) {
         Input missing = ((Submit)fc).getMissingInputControl();
-        if (isValid((JComponent) e.getSource()) && missing==null) {        
+        if (isValid((JComponent) e.getSource()) && missing == null) {
             Renderer.getInstance().ipublisher.summit((Submit) fc);
             Renderer.getInstance().getFormManagement().closeCurrentDialog();
         }
@@ -64,7 +82,7 @@ implements ActionListener {
              *  advice the user about data not being valid
              */
         }
-    
+
     }
 
 }

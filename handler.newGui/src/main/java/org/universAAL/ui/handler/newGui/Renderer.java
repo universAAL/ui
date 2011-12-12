@@ -36,7 +36,7 @@ import org.universAAL.ui.handler.newGui.formManagement.SimpleFormManager;
 /**
  * Coordinator Class for Swing GUI Handler.
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
 public class Renderer extends Thread {
@@ -48,19 +48,19 @@ public class Renderer extends Thread {
      *  instances of the Swing GUI Handler, when there
      *  are more than 1 display.
      */
-    private static Renderer singleton=null;
+    private static Renderer singleton = null;
 
     /**
      * The specific {@link InputPublisher}
      * instance for Swing GUI Handler.
      */
-    public IPublisher ipublisher=null;
+    public IPublisher ipublisher = null;
 
     /**
      * The specific {@link OutputSubscriber}
      * instance for Swing GUI Handler.
      */
-    public OSubscriber osubscriber=null;
+    public OSubscriber osubscriber = null;
 
     /**
      * uAAL {@link ModuleContext} to make uAAL operations
@@ -83,7 +83,7 @@ public class Renderer extends Thread {
      * logged in.
      * @see Renderer#DEMO_MODE
      */
-    private static String DEFAULT_USER="saied";
+    private static String DEFAULT_USER = "saied";
 
     /**
      * The Key value for the demo mode configuration property.
@@ -93,15 +93,15 @@ public class Renderer extends Thread {
      * @see Renderer#fileProp
      * @see Renderer#DEFAULT_USER
      */
-    private static String DEMO_MODE="demo.mode";
+    private static String DEMO_MODE = "demo.mode";
 
     /**
      * The Key value for the location configuration property.
      * this location is used when publishing input events.
-     * Default: gui.location=Unknown
+     * Default: gui.location = Unknown
      * @see Renderer#fileProp
      */
-    private static String GUI_LOCATION="gui.location";
+    private static String GUI_LOCATION = "gui.location";
 
     /**
      * The Key value for the Form manager selection
@@ -112,7 +112,7 @@ public class Renderer extends Thread {
      * @see QueuedFormManager
      * @see SimpleFormManager
      */
-    private static String QUEUE_MODE="queued.forms";
+    private static String QUEUE_MODE = "queued.forms";
 
     /**
      * Directory for configuration files.
@@ -136,8 +136,8 @@ public class Renderer extends Thread {
      * @see Renderer#getInstance()
      */
     private Renderer() {
-        ipublisher=new IPublisher(Renderer.moduleContext);
-        osubscriber=new OSubscriber(Renderer.moduleContext);
+        ipublisher = new IPublisher(Renderer.moduleContext);
+        osubscriber = new OSubscriber(Renderer.moduleContext);
         loadProperties();
         ModelMapper.updateLAF();
         if (Boolean.parseBoolean(getProerty(QUEUE_MODE))) {
@@ -163,7 +163,7 @@ public class Renderer extends Thread {
          * Try to load from file, if not create file from defaults.
          */
         try {
-            fileProp.load(new FileInputStream(getHomeDir()+"/"+RENDERER_CONF));
+            fileProp.load(new FileInputStream(getHomeDir() + RENDERER_CONF));
         } catch (Exception e) {
             storeProperties();
         }
@@ -174,13 +174,13 @@ public class Renderer extends Thread {
      */
     private void storeProperties() {
         try {
-            fileProp.store(new FileOutputStream(getHomeDir()+RENDERER_CONF),
+            fileProp.store(new FileOutputStream(getHomeDir() + RENDERER_CONF),
                     "Configuration file for SWING Renderer");
         } catch (Exception e1) {
             File dir = new File(getHomeDir());
             if (!dir.exists()) {
                 dir.mkdir();
-                storeProperties();        
+                storeProperties();
             }
             moduleContext.logError(NO_SAVE, e1);
         }
@@ -201,8 +201,10 @@ public class Renderer extends Thread {
     }
 
     /**
-     * get the {@link Renderer#moduleContext}
+     * get the {@link ModuleContext}
      * @return
+     *    the module context.
+     * @see Renderer#moduleContext
      */
     public static ModuleContext getModuleContext() {
         return moduleContext;
@@ -211,6 +213,8 @@ public class Renderer extends Thread {
     /**
      * set the {@link Renderer#moduleContext}.
      * To be used only by Activator Class.
+     * @param moduleContext 
+     *     the {@link ModuleContext} to be setted.
      */
     public static void setModuleContext(ModuleContext moduleContext) {
         Renderer.moduleContext = moduleContext;
@@ -221,7 +225,7 @@ public class Renderer extends Thread {
      */
     public void run() {
         /*
-         * TODO
+         * XXX
          *     Does it really need to be a Thread?
          * TODO
          *     if login required
@@ -273,12 +277,12 @@ public class Renderer extends Thread {
      * @return {@link Renderer#fm}
      */
     public FormManager getFormManagement() {
-        return fm;        
+        return fm;
     }
 
     /**
-     * Gets the form being displayed right now
-     * @return
+     * Gets the form being displayed right now.
+     * @return the current {@link Form} being processed.
      */
     public Form getCurrentForm() {
         return fm.getCurrentDialog().getDialogForm();
@@ -287,7 +291,7 @@ public class Renderer extends Thread {
     /**
      * Get the logged in user, the one that is in theory
      * receiving and manipulating the dialogs.
-     * 
+     *
      * @return
      *         ontlogical representation of the user.
      */
@@ -318,9 +322,9 @@ public class Renderer extends Thread {
     public boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
         int i = 0;
-        while (i<imp.length && imp[i]!= impariment)
+        while (i < imp.length && imp[i] != impariment)
             i++;
-        return i!=imp.length;
+        return i != imp.length;
     }
 
     /**
@@ -340,7 +344,7 @@ public class Renderer extends Thread {
     public AbsLocation whereAmI() {
         /*
          *  Read Location from properties
-         *  TODO other location process?
+         *  XXX other location process?
          */
         return new Location(getProerty(GUI_LOCATION));
     }
@@ -352,12 +356,12 @@ public class Renderer extends Thread {
      *         Absolute path to configuration directory
      */
     public static void setHome(String absolutePath) {
-        Renderer.homeDir =absolutePath+"/";    
+        Renderer.homeDir = absolutePath + "/";
     }
 
     /**
      * Get the configuration directory
-     * @return
+     * @return the home directory (ends with "/")
      */
     public static String getHomeDir() {
         return homeDir;

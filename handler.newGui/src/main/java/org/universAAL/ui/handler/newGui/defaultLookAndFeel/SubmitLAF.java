@@ -21,22 +21,51 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
+/**
+ * @author pabril
+ * @author amedrano
+ *
+ */
 public class SubmitLAF extends SubmitModel {
-    
+
+    /**
+     * Constructor.
+     * @param control the {@link Submit} which to model.
+     */
     public SubmitLAF(Submit control) {
         super(control);
     }
 
+    /**
+     * Set a color behabiour to a button 
+     * @param button
+     *    the button which to add the behaviour
+     * @param border
+     *    a {@link Border} for the button in normal status
+     * @param normalF
+     *    the foreground colour for normal state
+     * @param normalB
+     *    the background colour for normal state
+     * @param enterF
+     *    the foreground colour for pressed state
+     * @param enterB
+     *    the background colour for pressed state
+     * @param clickF
+     *    the foreground colour for clicked state
+     * @param clickB
+     *    the background colour for clicked state
+     */
     static protected void setButtonBehaviour(JComponent button, Color border,
             Color normalF, Color normalB,
             Color enterF, Color enterB,
-            Color clickF, Color clickB){
+            Color clickF, Color clickB) {
         button.setBorder(new CompoundBorder
                 (BorderFactory.createLineBorder(border),
                         new EmptyBorder(10,10,10,10)));
@@ -47,7 +76,8 @@ public class SubmitLAF extends SubmitModel {
                 enterF, enterB,
                 clickF, clickB));
     }
-    
+
+    /** {@inheritDoc} */
     public JComponent getComponent() {
         Color normalF;
         Color normalB;
@@ -56,9 +86,9 @@ public class SubmitLAF extends SubmitModel {
         Color clickF;
         Color clickB;
         Color border;
-        
+
         JComponent button = super.getComponent();
-    
+
         border = ColorLAF.getborderLine();
         normalF = ColorLAF.getBackLetter();
         normalB = ColorLAF.getBackSystem();
@@ -66,7 +96,7 @@ public class SubmitLAF extends SubmitModel {
         enterB = ColorLAF.getOverSytem();
         clickF = ColorLAF.getSelectedLetter();
         clickB = ColorLAF.getBackSystem();
-        
+
         if (this.isInMainMenu()) {
             /*
              * System Buttons
@@ -89,7 +119,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getBackLetter();
-                clickB = ColorLAF.getOverSytem();       
+                clickB = ColorLAF.getOverSytem();
             }
             else {
                 /*
@@ -98,11 +128,11 @@ public class SubmitLAF extends SubmitModel {
                  */
                 border = ColorLAF.getborderLine();
                 normalF = ColorLAF.getBackLetter();
-                normalB =ColorLAF.getBackSystem();
+                normalB = ColorLAF.getBackSystem();
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getSelectedLetter();
-                clickB = ColorLAF.getBackSystem();           
+                clickB = ColorLAF.getBackSystem();
             }
         }
         else {
@@ -116,7 +146,7 @@ public class SubmitLAF extends SubmitModel {
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getBackLetter();
-                clickB = ColorLAF.getOverSytem();              
+                clickB = ColorLAF.getOverSytem();
             }
             if (this.isInIOGroup()) {
                 /*
@@ -124,11 +154,11 @@ public class SubmitLAF extends SubmitModel {
                  */
                 border = ColorLAF.getborderLine();
                 normalF = ColorLAF.getBackLetter();
-                normalB =ColorLAF.getBackSystem();
+                normalB = ColorLAF.getBackSystem();
                 enterF = ColorLAF.getBackLetter();
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getSelectedLetter();
-                clickB = ColorLAF.getBackSystem();           
+                clickB = ColorLAF.getBackSystem();
             }
         }
         setButtonBehaviour(button, border,
@@ -137,7 +167,7 @@ public class SubmitLAF extends SubmitModel {
                 clickF, clickB);
         return button;
     }
-    
+
     static protected class MyMouseAdatper extends MouseAdapter {
 
         private Color normalF;
@@ -147,7 +177,7 @@ public class SubmitLAF extends SubmitModel {
         private Color clickF;
         private Color clickB;
         private Color border;
-        
+
         public MyMouseAdatper(Color border,
                 Color normalF, Color normalB,
                 Color enterF, Color enterB,
@@ -160,7 +190,7 @@ public class SubmitLAF extends SubmitModel {
             this.clickF = clickF;
             this.clickB = clickB;
         }
-        
+
         public void mouseEntered(MouseEvent e) {
             JComponent src = (JComponent)e.getSource();
             src.setForeground(enterF);
@@ -175,7 +205,7 @@ public class SubmitLAF extends SubmitModel {
             src.setForeground(normalF);
             src.setBackground(normalB);
         }
-        
+
         public void mouseClicked(MouseEvent e) {
             JComponent src = (JComponent)e.getSource();
             src.setForeground(clickF);

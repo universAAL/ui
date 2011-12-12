@@ -17,36 +17,37 @@ package org.universAAL.ui.handler.newGui.model;
 
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Group;
 
 /**
  * Abstract Class for all Form Control Models.
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see FormControl
  */
 public abstract class Model {
 
     /**
-     * The IO root group identification
+     * The IO root group identification.
      * @see Group#STD_IO_CONTROLS
      */
     private static final String STD_IO_CONTROLS = "ioControlsGroup";
 
     /**
-     * The Submits root group identification
+     * The Submits root group identification.
      * @see Group#STD_SUBMITS
      */
     private static final String STD_SUBMITS = "submitsGroup";
 
     /**
-     * The Standard buttons root group identification
+     * The Standard buttons root group identification.
      * @see Group#STD_STD_BUTTONS
      */
     private static final String STD_STD_BUTTONS = "stdButtonsGroup";
 
     /**
-     * the {@link FormControl} for which this model represents
+     * the {@link FormControl} for which this model represents.
      */
     protected FormControl fc;
 
@@ -61,15 +62,16 @@ public abstract class Model {
      * tests if there is a need to render the Label of this
      * {@link FormControl}, as the representation might have already
      * included.
-     * @return {@link Model#needsLabel}
+     * @return whether it {@link Model#needsLabel} or not.
      */
     public boolean needsLabel() {
         return needsLabel;
     }
 
     /**
-     * Model constructor
+     * Model constructor.
      * @param control
+     * 		The RDF component which this Model represents.
      */
     public Model (FormControl control) {
         fc = control;
@@ -77,7 +79,8 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * Message type dialog
+     * Message type dialog.
+     * @return <code>true</code> if the {@link FormControl} is in a Message {@link Form}
      */
     public boolean isInMessage() {
         return fc.getFormObject().isMessage();
@@ -85,7 +88,8 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * Main Menu type dialog
+     * Main Menu type dialog.
+     * @return <code>true</code> if the {@link FormControl} is in a Main Menu {@link Form}
      */
     public boolean isInMainMenu() {
         return fc.getFormObject().isSystemMenu();
@@ -93,7 +97,8 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * Dialog type dialog
+     * Dialog type dialog.
+     * @return <code>true</code> if the {@link FormControl} is in a Dialog {@link Form}
      */
     public boolean isInDialog() {
         return fc.getFormObject().isStandardDialog();
@@ -101,7 +106,8 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * Subdialog type dialog
+     * Subdialog type dialog.
+     * @return <code>true</code> if the {@link FormControl} is in a Subdialog {@link Form}
      */
     public boolean isInSubDialog() {
         return fc.getFormObject().isSubdialog();
@@ -111,6 +117,7 @@ public abstract class Model {
      * Test whether a group ID is part of the group antecessors
      * of this {@link FormControl}.
      * @param grpID
+     * 		the Group ID to be tested as antecessor.
      * @return
      *         true if grpID is one of the antecessors.
      */
@@ -121,7 +128,7 @@ public abstract class Model {
         }
         else {
             g = fc.getParentGroup();
-        }    
+        }
         while (!g.isRootGroup()
                 && g.getLabel().getText() != grpID) {
             g = g.getParentGroup();
@@ -131,7 +138,9 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * standard buttons root group
+     * standard buttons root group.
+     * @return <code>true</code> if the {@link FormControl} is within the
+     *         standard buttons group
      */
     public boolean isInStandardGroup() {
         return findInAntecesors(STD_STD_BUTTONS);
@@ -139,7 +148,9 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * IO root group
+     * IO root group.
+     * @return <code>true</code> if the {@link FormControl} is within the
+     *         IO group
      */
     public boolean isInIOGroup() {
         return findInAntecesors(STD_IO_CONTROLS);
@@ -147,7 +158,9 @@ public abstract class Model {
 
     /**
      * test whether this {@link FormControl} is in a
-     * submit buttons root group
+     * submit buttons root group.
+     * @return <code>true</code> if the {@link FormControl} is within the
+     *         Submits group
      */
     public boolean isInSubmitGroup() {
         return findInAntecesors(STD_SUBMITS);
@@ -155,7 +168,7 @@ public abstract class Model {
 
     /**
      * Test if the {@link JComponent} information provided by
-     * the user is vaild according to the {@link FormControl}'s
+     * the user is valid according to the {@link FormControl}'s
      * definition.
      * @param component
      *         JComponent to test
@@ -166,7 +179,7 @@ public abstract class Model {
 
     /**
      * generate the {@link JComponent} that displays this
-     * {@link FormControl}'s information
+     * {@link FormControl}'s information.
      * @return
      *         a {@link JComponent} initialised with the model's
      * information,

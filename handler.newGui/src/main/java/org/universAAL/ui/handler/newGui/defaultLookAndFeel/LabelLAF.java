@@ -21,18 +21,23 @@ import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
+ * @author pabril
  *
  */
 public class LabelLAF extends LabelModel {
 
 
 
+    /**
+     * Constructor
+     * @param l the {@link Label} which to model.
+     */
     public LabelLAF(Label l) {
         super(l);
     }
 
-
+    /** {@inheritDoc} */
     public JLabel getComponent() {
         JLabel jl = super.getComponent();
         jl.setFont(ColorLAF.getLabelFont());

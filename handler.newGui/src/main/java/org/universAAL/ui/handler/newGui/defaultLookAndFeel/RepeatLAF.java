@@ -18,8 +18,16 @@ package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 import org.universAAL.middleware.io.rdf.Repeat;
 import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class RepeatLAF extends RepeatModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link Repeat} which to model.
+     */
     public RepeatLAF(Repeat control) {
         super(control);
     }

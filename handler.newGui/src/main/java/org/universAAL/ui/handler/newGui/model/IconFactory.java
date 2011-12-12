@@ -22,14 +22,15 @@ import javax.swing.ImageIcon;
  * Entry point for all icon URL.
  * implements the searching procedure for icon files.
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
 public class IconFactory {
 
     /**
      * search for the icon in different repositories, when
      * url is relative.
-     * @param url
+     * @param url 
+     * 			url of the resource from where to get the icon
      * @return
      *         the {@link ImageIcon} referenced by the URL
      *         null if url is empty, or the file is not found.

@@ -32,7 +32,7 @@ import org.universAAL.ui.handler.newGui.model.FormControl.GroupModel;
  * parent tree construction for subdialogs. And antecessor query
  * to check if a dialog is the parent tree of the form.
  *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Form
  */
 public abstract class FormModel {
@@ -111,6 +111,12 @@ public abstract class FormModel {
      * unregister from {@link FormModelMapper}.
      */
     public void finalizeForm() {
+    	/*
+    	 * FIXME this will unregister parent forms URIs
+    	 * making useless the registering and antecessor lookup.
+    	 * find where to unRegister (maybe in SubmitModel), or
+    	 * the map (FormModelMapper) will grow indefinitely!!!
+    	 */
         FormModelMapper.unRegister(this);
         terminateDialog();
     }
@@ -134,7 +140,7 @@ public abstract class FormModel {
      * {@link FormModel}.
      */
     public boolean isAntecessor(String uri) {
-        FormModel search=this;
+        FormModel search = this;
         while (search != null
                 && uri != null
                 && search.getForm().getDialogID()
@@ -214,7 +220,9 @@ public abstract class FormModel {
      */
     protected JPanel getIOPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
-        return levelForm!=null?levelForm.getIOPanel():null;
+        return levelForm != null ?
+        		levelForm.getIOPanel()
+        		: null;
     }
 
     /**
@@ -229,7 +237,9 @@ public abstract class FormModel {
      */
     protected JPanel getSubmitPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
-        return levelForm!=null?levelForm.getSubmitPanel():null;
+        return levelForm != null ?
+        		levelForm.getSubmitPanel()
+        		: null;
     }
 
     /**

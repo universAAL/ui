@@ -17,20 +17,32 @@ package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Output;
 import org.universAAL.ui.handler.newGui.model.Model;
 
 /**
- *
- * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+ * Output {@link FormControl}s only need to display information.
+ * 
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Output
  */
 public abstract class OutputModel extends Model {
-
+	
+	/**
+	 * Constructor.
+	 * @param control 
+	 *     the {@link Output} {@link FormControl} which to model.
+	 */
     public OutputModel(Output control) {
         super(control);
     }
 
+    /**
+     * all {@link Output} {@link FormControl}s are always valid,
+     * as the user is not allowed to change its status.
+     * @return <code>true</code>
+     */
     final public boolean isValid(JComponent component) {
         // All outputs are all ways valid!
         return true;

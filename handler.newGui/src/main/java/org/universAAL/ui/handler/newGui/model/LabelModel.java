@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import org.universAAL.middleware.io.rdf.Label;
  /**
   * A model for Labels.
-  * @author <a href="mailto:amedrano@lst.tfo.upm.es>amedrano</a>
+  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
   * @see Label
   */
 public class LabelModel {
@@ -33,7 +33,7 @@ public class LabelModel {
 
     /**
      * Model constructor.
-     * @param l
+     * @param l the {@link Label} to model.
      */
     public LabelModel(Label l) {
         label = l;
