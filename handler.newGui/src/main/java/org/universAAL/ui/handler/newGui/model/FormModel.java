@@ -111,12 +111,12 @@ public abstract class FormModel {
      * unregister from {@link FormModelMapper}.
      */
     public void finalizeForm() {
-    	/*
-    	 * FIXME this will unregister parent forms URIs
-    	 * making useless the registering and antecessor lookup.
-    	 * find where to unRegister (maybe in SubmitModel), or
-    	 * the map (FormModelMapper) will grow indefinitely!!!
-    	 */
+        /*
+         * FIXME this will unregister parent forms URIs
+         * making useless the registering and antecessor lookup.
+         * find where to unRegister (maybe in SubmitModel), or
+         * the map (FormModelMapper) will grow indefinitely!!!
+         */
         FormModelMapper.unRegister(this);
         terminateDialog();
     }
@@ -221,8 +221,8 @@ public abstract class FormModel {
     protected JPanel getIOPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
         return levelForm != null ?
-        		levelForm.getIOPanel()
-        		: null;
+                levelForm.getIOPanel()
+                : null;
     }
 
     /**
@@ -238,8 +238,8 @@ public abstract class FormModel {
     protected JPanel getSubmitPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
         return levelForm != null ?
-        		levelForm.getSubmitPanel()
-        		: null;
+                levelForm.getSubmitPanel()
+                : null;
     }
 
     /**

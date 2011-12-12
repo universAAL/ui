@@ -28,12 +28,12 @@ import org.universAAL.ui.handler.newGui.model.Model;
  * @see Output
  */
 public abstract class OutputModel extends Model {
-	
-	/**
-	 * Constructor.
-	 * @param control 
-	 *     the {@link Output} {@link FormControl} which to model.
-	 */
+    
+    /**
+     * Constructor.
+     * @param control 
+     *     the {@link Output} {@link FormControl} which to model.
+     */
     public OutputModel(Output control) {
         super(control);
     }

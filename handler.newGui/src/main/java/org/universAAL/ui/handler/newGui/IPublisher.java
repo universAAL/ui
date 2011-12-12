@@ -61,7 +61,7 @@ public class IPublisher extends InputPublisher {
     /**
      * Change the current User.
      * @param currentUser
-     * 	     the user to be the current user.
+     *          the user to be the current user.
      */
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;

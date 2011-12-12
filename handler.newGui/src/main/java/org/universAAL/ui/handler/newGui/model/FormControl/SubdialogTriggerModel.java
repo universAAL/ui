@@ -37,11 +37,11 @@ import org.universAAL.ui.handler.newGui.model.IconFactory;
 public class SubdialogTriggerModel extends SubmitModel
 implements ActionListener {
 
-	/**
-	 * Constructor.
-	 * @param control
-	 *     the {@link FormControl} which to model.
-	 */
+    /**
+     * Constructor.
+     * @param control
+     *     the {@link FormControl} which to model.
+     */
     public SubdialogTriggerModel(SubdialogTrigger control) {
         super(control);
     }
@@ -73,7 +73,7 @@ implements ActionListener {
     private boolean isSelected() {
         FormModel current = FormModelMapper
                 .getFromURI(Renderer.getInstance().getCurrentForm().getURI());
-        return current.isAntecessor(((SubdialogTrigger)fc).getID());
+        return current.isAntecessor(((SubdialogTrigger) fc).getID());
     }
 
     /**
@@ -87,7 +87,7 @@ implements ActionListener {
          *  TODO use needsSelection() in case of SubdialogTriggers in
          *  Repeat Tables, to check if the submitID is ready
          */
-	Renderer.getInstance().ipublisher.summit((Submit) fc);
+    Renderer.getInstance().ipublisher.summit((Submit) fc);
         //Renderer.getInstance().getFormManagement().closeCurrentDialog();
     }
 

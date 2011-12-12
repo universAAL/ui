@@ -23,13 +23,13 @@ package org.universAAL.ui.handler.newGui.model;
  *
  */
 public interface InitInterface {
-	/**
-	 * The procedure of installing the LAF.
-	 * Any actions needed to use the LAF package should be done
-	 * here.
-	 * <br>
-	 * For example initializing the UIManager.
-	 */
+    /**
+     * The procedure of installing the LAF.
+     * Any actions needed to use the LAF package should be done
+     * here.
+     * <br>
+     * For example initializing the UIManager.
+     */
     public void install();
     
     //XXX: need an uninstall?

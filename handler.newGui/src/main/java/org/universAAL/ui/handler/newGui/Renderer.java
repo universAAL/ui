@@ -157,7 +157,7 @@ public class Renderer extends Thread {
         fileProp = new Properties();
         fileProp.put(DEMO_MODE, "true");
         fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        fileProp.put(GUI_LOCATION,"Unkown");
+        fileProp.put(GUI_LOCATION, "Unkown");
         fileProp.put(QUEUE_MODE, "false");
         /*
          * Try to load from file, if not create file from defaults.

@@ -35,18 +35,18 @@ public class ColorLAF extends DefaultMetalTheme {
      * @return "uaal Default"
      */
     public String getName() {
-	return "uaal Default";
+    return "uaal Default";
     }
 
     private final ColorUIResource primary1 = new ColorUIResource(213, 237, 247);
     private final ColorUIResource primary2 = new ColorUIResource(238, 124, 38);
     private final ColorUIResource primary3 = new ColorUIResource(213, 237, 247);
 
-    private final ColorUIResource secondary1 = new ColorUIResource(213, 237,
-	    247);
+    private final ColorUIResource secondary1 = 
+            new ColorUIResource(213, 237, 247);
     private final ColorUIResource secondary2 = new ColorUIResource(30, 149, 192);
-    private final ColorUIResource secondary3 = new ColorUIResource(213, 237,
-	    247);
+    private final ColorUIResource secondary3 = 
+            new ColorUIResource(213, 237, 247);
     private final ColorUIResource black = new ColorUIResource(0, 0, 0);
     private final ColorUIResource white = new ColorUIResource(255, 255, 255);
 
@@ -62,104 +62,104 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color font = new Color(0, 0, 0);
 
     final private static int FONT_SIZE_BASE = 12;
-    final private static Font bold = new Font("Arial", Font.BOLD,
-	    FONT_SIZE_BASE + 4);
-    final private static Font plain = new Font("Arial", Font.PLAIN,
-	    FONT_SIZE_BASE);
-    final private static Font label = new Font("Arial", Font.PLAIN,
-	    FONT_SIZE_BASE - 2);
+    final private static Font bold = 
+            new Font("Arial", Font.BOLD, FONT_SIZE_BASE + 4);
+    final private static Font plain = 
+            new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
+    final private static Font label = 
+            new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
 
     /** {@inheritDoc} */
     protected ColorUIResource getPrimary1() {
-	return primary1;
+    return primary1;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getPrimary2() {
-	return primary2;
+    return primary2;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getPrimary3() {
-	return primary3;
+    return primary3;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getSecondary1() {
-	return secondary1;
+    return secondary1;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getSecondary2() {
-	return secondary2;
+    return secondary2;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getSecondary3() {
-	return secondary3;
+    return secondary3;
     }
 
     protected static Color getOrange() {
-	return orange;
+    return orange;
     }
 
     protected static Color getBackSystem() {
-	return BackSystem;
+    return BackSystem;
     }
 
     protected static Color getBackLetter() {
-	return BackLetter;
+    return BackLetter;
     }
 
     protected static Color getOverSytem() {
-	return OverSytem;
+    return OverSytem;
     }
 
     protected static Color getSelectedLetter() {
-	return SelectedLetter;
+    return SelectedLetter;
     }
 
     protected static Color getborderLine() {
-	return borderLine;
+    return borderLine;
     }
 
     protected static Color getBackMM() {
-	return BackMM;
+    return BackMM;
     }
 
     protected static Color getBackMML() {
-	return BackMML;
+    return BackMML;
     }
 
     protected static Color getborderLineMM() {
-	return borderLineMM;
+    return borderLineMM;
     }
 
     protected static Color getfont() {
-	return font;
+    return font;
     }
 
     protected static Font getbold() {
-	return bold;
+    return bold;
     }
 
     protected static Font getplain() {
-	return plain;
+    return plain;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getBlack() {
-	return black;
+    return black;
     }
 
     /** {@inheritDoc} */
     protected ColorUIResource getWhite() {
-	return white;
+    return white;
     }
 
     /** {@inheritDoc} */
     public FontUIResource getControlTextFont() {
-	return new FontUIResource(plain);
+    return new FontUIResource(plain);
     }
 
     /**
@@ -167,6 +167,6 @@ public class ColorLAF extends DefaultMetalTheme {
      * @return the {@link Font} to use in labels
      */
     public static Font getLabelFont() {
-	return label;
+    return label;
     }
 }

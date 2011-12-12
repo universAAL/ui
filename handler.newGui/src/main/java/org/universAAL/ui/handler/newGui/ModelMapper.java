@@ -55,7 +55,7 @@ public class ModelMapper {
      * @see ModelMapper#LAFPackageProperty
      */
     static final String DefaultLAFPackage =
-	    "org.universAAL.ui.handler.newGui.defaultLookAndFeel";
+        "org.universAAL.ui.handler.newGui.defaultLookAndFeel";
 
     /**
      * Suffix for all look and feel classes.
@@ -97,8 +97,8 @@ public class ModelMapper {
                     .newInstance(new Object[] { contructorParameter } );
         } catch (Exception e) {
             if (Renderer.getModuleContext() != null) {
-        	Renderer.getModuleContext().logError("Could not find Class: "
-        		+ LAFPackage + "." + getStringLAFClass(contructorParameter.getClass()), e);
+            Renderer.getModuleContext().logError("Could not find Class: "
+                + LAFPackage + "." + getStringLAFClass(contructorParameter.getClass()), e);
             }
             return null;
         }
@@ -141,8 +141,8 @@ public class ModelMapper {
         Object model = tryToLoadClass(
                 Renderer.getProerty(LAFPackageProperty), f);
         model = model != null ?
-        		model
-        		:tryToLoadClass(DefaultLAFPackage, f);
+                model
+                :tryToLoadClass(DefaultLAFPackage, f);
         return (FormModel) model;
     }
 
@@ -164,15 +164,15 @@ public class ModelMapper {
         if (model == null) {
             model = tryToLoadClass(DefaultLAFPackage, l);
         }
-        return (LabelModel)model;
+        return (LabelModel) model;
     }
 
     /**
      * locate the {@link LookAndFeel} class of the LAF package.
      * @param LAFPackage
-     * 			the full qualified name of the LAF package
+     *             the full qualified name of the LAF package
      * @return
-     * 			the initialization class of the LAF package 
+     *             the initialization class of the LAF package 
      */
     private static InitInterface getLookAndFeel(String LAFPackage) throws Exception {
             return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)
@@ -189,16 +189,16 @@ public class ModelMapper {
             getLookAndFeel(Renderer.getProerty(LAFPackageProperty)).install();
         } catch (Exception e) {
             if (Renderer.getModuleContext() != null) {
-        	Renderer.getModuleContext().logError("Unable to find "
-        		+ INIT_CLASS + " Class for selected LookAndFeel.Package",e);
+            Renderer.getModuleContext().logError("Unable to find "
+                + INIT_CLASS + " Class for selected LookAndFeel.Package", e);
             }
             try {
-        	getLookAndFeel(DefaultLAFPackage).install();
+            getLookAndFeel(DefaultLAFPackage).install();
             } catch (Exception e2) {
-        	if (Renderer.getModuleContext() != null) {
-        	    Renderer.getModuleContext().logError("Unable to find " 
-        		    + INIT_CLASS + " Class for Default LookAndFeel Package", e);
-        	}
+            if (Renderer.getModuleContext() != null) {
+                Renderer.getModuleContext().logError("Unable to find " 
+                    + INIT_CLASS + " Class for Default LookAndFeel Package", e);
+            }
             }
         }
     }

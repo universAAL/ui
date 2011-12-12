@@ -63,7 +63,7 @@ implements ChangeListener, CaretListener {
      */
     public JComponent getComponent() {
         Object initVal = fc.getValue();
-        int maxLength = ((InputField)fc).getMaxLength();
+        int maxLength = ((InputField) fc).getMaxLength();
 
         if (fc.isOfBooleanType()) {
             /*
@@ -73,7 +73,7 @@ implements ChangeListener, CaretListener {
             JCheckBox cb = new JCheckBox(fc.getLabel().getText(),
                     IconFactory.getIcon(fc.getLabel().getIconURL()));
             needsLabel = false;
-            cb.setSelected(((Boolean)initVal).booleanValue());
+            cb.setSelected(((Boolean) initVal).booleanValue());
             cb.addChangeListener(this);
             cb.setToolTipText(fc.getHelpString());
             cb.setName(fc.getURI());
@@ -129,7 +129,7 @@ implements ChangeListener, CaretListener {
          */
         if (isValid((JComponent) e.getSource())) {
             ((Input) fc).storeUserInput(
-                    Boolean.valueOf((((JCheckBox)e.getSource()).isSelected())));
+                    Boolean.valueOf((((JCheckBox) e.getSource()).isSelected())));
         }
     }
 
@@ -137,7 +137,7 @@ implements ChangeListener, CaretListener {
      * In put events will be published each time the user types
      * something in the text field.
      * @param e 
-     * 	    the {@link CaretEvent} to listen to.
+     *         the {@link CaretEvent} to listen to.
      */
     public void caretUpdate(CaretEvent e) {
         /*
@@ -147,11 +147,11 @@ implements ChangeListener, CaretListener {
             try {
                 if (!((InputField) fc).isSecret()) {
                     ((Input) fc).storeUserInput(
-                            ((JTextField)e.getSource()).getText());
+                            ((JTextField) e.getSource()).getText());
                 }
                 else {
                     ((Input) fc).storeUserInput(
-                            ((JPasswordField)e.getSource()).getPassword());
+                            ((JPasswordField) e.getSource()).getPassword());
                 }
             } catch (NullPointerException e1) {
                 ((Input) fc).storeUserInput("");

@@ -32,10 +32,10 @@ import org.universAAL.ui.handler.newGui.model.IconFactory;
  */
 public class SimpleOutputModel extends OutputModel {
 
-	/**
-	 * threshold for selecting between a {@link JTextArea} and
-	 * a {@link JTextField}
-	 */
+    /**
+     * threshold for selecting between a {@link JTextArea} and
+     * a {@link JTextField}
+     */
     protected static final int TOO_LONG = 20;
 
     /**
@@ -73,11 +73,11 @@ public class SimpleOutputModel extends OutputModel {
          *   if an ontology class do
          *       ??
          */
-        Object content = ((SimpleOutput)fc).getContent();
+        Object content = ((SimpleOutput) fc).getContent();
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
         // getTypeURI returns null
         if (content instanceof String) {
-            if (((String)content).length() >= TOO_LONG) {
+            if (((String) content).length() >= TOO_LONG) {
                 JTextArea ta = new JTextArea();
                 ta.setText((String) content);
                 ta.setEditable(false);
@@ -89,7 +89,7 @@ public class SimpleOutputModel extends OutputModel {
             }
             else {
                 JTextComponent tf = new JTextField();
-                tf.setText((String)content);
+                tf.setText((String) content);
                 tf.setEditable(false);
                 //tf.setEnabled(false);
                 tf.setToolTipText(fc.getHelpString());
@@ -102,7 +102,7 @@ public class SimpleOutputModel extends OutputModel {
             JCheckBox cb = new JCheckBox(fc.getLabel().getText(),
                     IconFactory.getIcon(fc.getLabel().getIconURL()));
             needsLabel = false;
-            cb.setSelected(((Boolean)content).booleanValue());
+            cb.setSelected(((Boolean) content).booleanValue());
             cb.setEnabled(false);
             cb.setToolTipText(fc.getHelpString());
             cb.setName(fc.getURI());

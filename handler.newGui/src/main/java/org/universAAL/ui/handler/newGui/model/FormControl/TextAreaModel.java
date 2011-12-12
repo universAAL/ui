@@ -33,11 +33,11 @@ import org.universAAL.middleware.io.rdf.TextArea;
 public class TextAreaModel extends InputModel
 implements CaretListener {
 
-	/**
-	 * Constructor.
-	 * @param control
-	 *      the {@link FormControl} which to model.
-	 */
+    /**
+     * Constructor.
+     * @param control
+     *      the {@link FormControl} which to model.
+     */
     public TextAreaModel(TextArea control) {
         super(control);
     }
@@ -74,8 +74,8 @@ implements CaretListener {
      */
     public void caretUpdate(CaretEvent e) {
         // update Model if valid
-    	if (isValid((JComponent) e.getSource())) {
-    		((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
-    	}
+        if (isValid((JComponent) e.getSource())) {
+            ((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
+        }
     }
 }

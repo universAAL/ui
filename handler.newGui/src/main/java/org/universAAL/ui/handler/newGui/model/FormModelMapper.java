@@ -33,7 +33,7 @@ public class FormModelMapper {
     /**
      * register a {@link FormModel}
      * @param fm 
-     * 		{@link FormModel} to register
+     *         {@link FormModel} to register
      */
     public static void register(FormModel fm) {
         formMap.put(fm.getForm().getDialogID(), fm);
@@ -42,9 +42,9 @@ public class FormModelMapper {
     /**
      * get a {@link FormModel} from a given formID.
      * @param formID
-     * 		Retrieve {@link FormModel} corresponding to this ID
+     *         Retrieve {@link FormModel} corresponding to this ID
      * @return
-     * 		the {@link FormModel} match
+     *         the {@link FormModel} match
      */
     public static FormModel getFromURI(String formID) {
         return (FormModel) formMap.get(formID);
@@ -54,9 +54,9 @@ public class FormModelMapper {
      * Test whether the formID's {@link FormModel} is
      * registered.
      * @param formID
-     * 			Form Id to be tested
+     *             Form Id to be tested
      * @return
-     * 			true if is registered
+     *             true if is registered
      */
     public static boolean isRegistered(String formID) {
         return formMap.containsKey(formID);
@@ -65,7 +65,7 @@ public class FormModelMapper {
     /**
      * Delete a {@link FormModel} from the map.
      * @param fm
-     * 		{@link FormModel} to be unregistered
+     *         {@link FormModel} to be unregistered
      */
     public static void unRegister(FormModel fm) {
         unRegister(fm.getForm().getURI());
@@ -75,7 +75,7 @@ public class FormModelMapper {
      * same as {@link FormModelMapper#unRegister(FormModel)},
      * but using the form's ID.
      * @param formID
-     * 		Id of the form to be unregistered
+     *         Id of the form to be unregistered
      */
     public static void unRegister(String formID) {
         formMap.remove(formID);

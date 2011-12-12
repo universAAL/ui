@@ -31,11 +31,11 @@ import org.universAAL.ui.handler.newGui.model.Model;
  */
 public abstract class InputModel extends Model
  {
-	/**
-	 * Constructor.
-	 * @param control
-	 *      the {@link Input} {@link FormControl} to model.
-	 */
+    /**
+     * Constructor.
+     * @param control
+     *      the {@link Input} {@link FormControl} to model.
+     */
     public InputModel(Input control) {
         super(control);
     }

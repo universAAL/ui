@@ -71,7 +71,7 @@ public abstract class Model {
     /**
      * Model constructor.
      * @param control
-     * 		The RDF component which this Model represents.
+     *         The RDF component which this Model represents.
      */
     public Model (FormControl control) {
         fc = control;
@@ -117,7 +117,7 @@ public abstract class Model {
      * Test whether a group ID is part of the group antecessors
      * of this {@link FormControl}.
      * @param grpID
-     * 		the Group ID to be tested as antecessor.
+     *         the Group ID to be tested as antecessor.
      * @return
      *         true if grpID is one of the antecessors.
      */
