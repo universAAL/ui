@@ -98,6 +98,7 @@ public class OPublisher extends OutputPublisher{
 	
 	public void publish(AbstractForm af) {
 		Form f = af.getDialog();
+		ISubscriber.inputMapper.put(f.getDialogID(), af);
 		publish(
 				new OutputEvent(user,
 						f,
