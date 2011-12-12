@@ -46,24 +46,24 @@ public class MediaObjectModel extends OutputModel {
      */
     public JComponent getComponent() {
         JLabel jl = new JLabel(fc.getLabel().getText());
-        Icon icon = IconFactory.getIcon(((MediaObject)fc).getContentURL());
+        Icon icon = IconFactory.getIcon(((MediaObject) fc).getContentURL());
         jl.setIcon(icon);
         jl.setName(fc.getURI());
-        int x,y;
-        x = ((MediaObject)fc).getResolutionPreferredX();
-        y = ((MediaObject)fc).getResolutionPreferredY();
+        int x, y;
+        x = ((MediaObject) fc).getResolutionPreferredX();
+        y = ((MediaObject) fc).getResolutionPreferredY();
         if ( x != 0    && y != 0) {
-            jl.setPreferredSize( new Dimension(x,y));
+            jl.setPreferredSize( new Dimension(x, y));
         }
-        x = ((MediaObject)fc).getResolutionMaxX();
-        y = ((MediaObject)fc).getResolutionMaxY();
+        x = ((MediaObject) fc).getResolutionMaxX();
+        y = ((MediaObject) fc).getResolutionMaxY();
         if ( x != 0    && y != 0) {
-            jl.setMaximumSize(new Dimension(x,y));
+            jl.setMaximumSize(new Dimension(x, y));
         }
-        x = ((MediaObject)fc).getResolutionMinX();
-        y = ((MediaObject)fc).getResolutionMinY();
+        x = ((MediaObject) fc).getResolutionMinX();
+        y = ((MediaObject) fc).getResolutionMinY();
         if ( x != 0    && y != 0) {
-            jl.setMinimumSize(new Dimension(x,y));
+            jl.setMinimumSize(new Dimension(x, y));
         }
         return jl;
     }

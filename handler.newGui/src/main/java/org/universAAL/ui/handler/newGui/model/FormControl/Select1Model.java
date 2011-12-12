@@ -37,11 +37,11 @@ import org.universAAL.middleware.io.rdf.Select1;
 public class Select1Model extends SelectModel
 implements  ActionListener {
 
-	/**
-	 * constructor.
-	 * @param control
-	 * 	    the {@link FormControl} which this model represents.
-	 */
+    /**
+     * constructor.
+     * @param control
+     *         the {@link FormControl} which this model represents.
+     */
     public Select1Model(Select1 control) {
         super(control);
     }
@@ -52,11 +52,11 @@ implements  ActionListener {
      */
     public JComponent getComponent() {
         //XXX add icons to component!
-        if (!((Select)fc).isMultilevel()) {
+        if (!((Select) fc).isMultilevel()) {
             Label[] items = ((Select1) fc).getChoices();
             JComboBox cb = new JComboBox(items);
             for (int i = 0; i < items.length; i++) {
-                if (((ChoiceItem)items[i]).getValue()
+                if (((ChoiceItem) items[i]).getValue()
                         == fc.getValue()) {
                     cb.setSelectedIndex(i);
                 }
@@ -87,7 +87,7 @@ implements  ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-        if (!((Select)fc).isMultilevel()) {
+        if (!((Select) fc).isMultilevel()) {
             int i = ((JComboBox) e.getSource()).getSelectedIndex();
             ((Select1) fc).storeUserInput(
                     ((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());

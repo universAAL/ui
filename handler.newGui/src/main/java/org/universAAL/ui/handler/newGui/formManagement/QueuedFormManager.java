@@ -63,12 +63,10 @@ public class QueuedFormManager implements FormManager {
      * 
      */
     public QueuedFormManager() {
-        dialogQueue = new PriorityQueue(QUEUE_MAX,new OutputEventPriorityComparator());
+        dialogQueue = new PriorityQueue(QUEUE_MAX, new OutputEventPriorityComparator());
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#addDialog(org.universAAL.middleware.output.OutputEvent)
-     */
+
     /** {@inheritDoc} */
     public void addDialog(OutputEvent oe) {
         /*
@@ -99,9 +97,6 @@ public class QueuedFormManager implements FormManager {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#getCurrentDialog()
-     */
     /** {@inheritDoc} */
     public OutputEvent getCurrentDialog() {
         return currentDialog;
@@ -113,7 +108,7 @@ public class QueuedFormManager implements FormManager {
      */
     private void closeCurrentDialogAndLoadNext() {
         if (dialogQueue.peek() != null
-                && !((OutputEvent)dialogQueue.peek()).getType()
+                && !((OutputEvent) dialogQueue.peek()).getType()
                 .equals(DialogType.message)
                 && currentDialog != null) {
             /*
@@ -146,12 +141,12 @@ public class QueuedFormManager implements FormManager {
             .ipublisher.requestMainMenu();
         }
         else {
-            if (((OutputEvent)dialogQueue.peek()).getType()
+            if (((OutputEvent) dialogQueue.peek()).getType()
                     .equals(DialogType.message)) {
                 /*
                  * if its a message, just render message
                  */
-                mFrame = new FrameManager(((OutputEvent)dialogQueue.poll())
+                mFrame = new FrameManager(((OutputEvent) dialogQueue.poll())
                         .getDialogForm());
             }
             else {
@@ -161,9 +156,6 @@ public class QueuedFormManager implements FormManager {
         }
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.dialogManagement.DialogManager#flush()
-     */
     /** {@inheritDoc} */
     public void flush() {
         // TODO Auto-generated method stub
@@ -176,7 +168,7 @@ public class QueuedFormManager implements FormManager {
      */
     public void closeCurrentDialog() {
         if (dialogQueue.peek() != null
-                && !((OutputEvent)dialogQueue.peek()).getType()
+                && !((OutputEvent) dialogQueue.peek()).getType()
                 .equals(DialogType.message)
                 && currentDialog != null) {
             /*
@@ -195,9 +187,6 @@ public class QueuedFormManager implements FormManager {
 
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.formManagement.FormManager#cutDialog(java.lang.String)
-     */
     /** {@inheritDoc} */
     public Resource cutDialog(String dialogID) {
         closeCurrentDialogAndLoadNext();

@@ -31,7 +31,7 @@ import org.universAAL.middleware.rdf.TypeMapper;
  * @see Repeat
  */
 public class RepeatModel extends GroupModel {
-	
+    
     /**
      * Constructor
      * @param control the {@link Repeat} which to model.
@@ -43,7 +43,7 @@ public class RepeatModel extends GroupModel {
     /**
      * get the java {@link Class} of the children.
      * @return
-     * 	    {@link Class} of the 1st child.
+     *         {@link Class} of the 1st child.
      */
     private Class getChildrenType() {
         FormControl[] children = ((Repeat) fc).getChildren();
@@ -53,8 +53,8 @@ public class RepeatModel extends GroupModel {
     /**
      * check if the {@link Repeat} {@link FormControl} models a table.
      * @return
-     * 	   <code>true</code> is it does model a table.
-     * 	   <code>false</code> otherwise.
+     *        <code>true</code> is it does model a table.
+     *        <code>false</code> otherwise.
      */
     private boolean isATable() {
         /*
@@ -70,7 +70,7 @@ public class RepeatModel extends GroupModel {
             Class last = child[0].getClass();
             while (i < child.length
                     && child[i].getClass() == last
-                    && complexity == ((Group)child[i]).getComplexity())
+                    && complexity == ((Group) child[i]).getComplexity())
                 i++;
             return i == child.length;
         }
@@ -86,10 +86,10 @@ public class RepeatModel extends GroupModel {
      */
     private FormControl[][] getTable() {
         FormControl[] rows = ((Group) fc).getChildren();
-        int cols = ((Group)rows[0]).getChildren().length;
+        int cols = ((Group) rows[0]).getChildren().length;
         FormControl[][] table = new FormControl[rows.length][cols];
         for (int r = 0; r < rows.length; r++) {
-            table[r] = ((Group)rows[r]).getChildren();
+            table[r] = ((Group) rows[r]).getChildren();
         }
         return table;
     }

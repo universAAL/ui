@@ -44,10 +44,10 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     
     /** {@inheritDoc} */
     public JComponent getComponent() {
-        Object content = ((SimpleOutput)fc).getContent();
+        Object content = ((SimpleOutput) fc).getContent();
         JComponent comp = super.getComponent();
         if (content instanceof String) {
-            if (((String)content).length() >= TOO_LONG) {
+            if (((String) content).length() >= TOO_LONG) {
                 JTextArea ta = (JTextArea) comp;
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
@@ -68,7 +68,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
             }
         }
         if (content instanceof Boolean) {
-            JCheckBox cb = (JCheckBox)comp;
+            JCheckBox cb = (JCheckBox) comp;
             return cb;
         }
         return comp;

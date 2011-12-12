@@ -38,7 +38,7 @@ import org.universAAL.ui.handler.newGui.model.Model;
  */
 public class GroupModel extends Model {
 
-	
+    
     /**
      * Constructor.
      * @param control the {@link Group} which to model.
@@ -58,9 +58,9 @@ public class GroupModel extends Model {
      * @return {@inheritDoc}
      * */
     public JComponent getComponent() {
-        LevelRating complexity = ((Group)fc).getComplexity();
+        LevelRating complexity = ((Group) fc).getComplexity();
         if (complexity == LevelRating.none
-        		|| ((Group) fc).isRootGroup()) {
+                || ((Group) fc).isRootGroup()) {
             return simplePannel();
         }
         if (complexity == LevelRating.low ) {
@@ -87,7 +87,7 @@ public class GroupModel extends Model {
     /**
      * create a simple panel with the children in it
      * @return
-     * 		a {@link JPanel} with all the group's children.
+     *         a {@link JPanel} with all the group's children.
      */
     protected JPanel simplePannel() {
         /*
@@ -109,7 +109,7 @@ public class GroupModel extends Model {
      * create a tabbed panel with diferent groups
      * in different pannels. 
      * @return
-     * 		a {@link JTabbedPane} with children groups
+     *         a {@link JTabbedPane} with children groups
      * as panels
      */
     protected JTabbedPane tabbedPanel() {
@@ -135,28 +135,28 @@ public class GroupModel extends Model {
     /**
      * check whether it is the submit root group.
      * @return
-     * 		true is it is.
+     *         true is it is.
      */
     public boolean isTheSubmitGroup() {
-        return ((Group)fc).isRootGroup() && isInSubmitGroup();
+        return ((Group) fc).isRootGroup() && isInSubmitGroup();
     }
 
     /**
      * check whether it is the system root group.
      * @return
-     * 		true is it is.
+     *         true is it is.
      */
     public boolean isTheMainGroup() {
-        return ((Group)fc).isRootGroup() && isInStandardGroup();
+        return ((Group) fc).isRootGroup() && isInStandardGroup();
     }
 
     /**
      * check whether it is the io root group.
      * @return
-     * 		true is it is.
+     *         true is it is.
      */
     public boolean isTheIOGroup() {
-        return ((Group)fc).isRootGroup() && isInIOGroup();
+        return ((Group) fc).isRootGroup() && isInIOGroup();
     }
 
     /**
@@ -164,9 +164,9 @@ public class GroupModel extends Model {
      * it will load the {@link JComponent} for a given {@link FormControl} 
      * which is a child of the current group.
      * @param fc
-     * 		the child from which to obtain it's model and {@link JComponent}
+     *         the child from which to obtain it's model and {@link JComponent}
      * @return
-     * 		the {@link JComponent} build by the {@link Model} of the child
+     *         the {@link JComponent} build by the {@link Model} of the child
      */
     private JComponent getComponentFrom(FormControl fc) {
 
@@ -178,9 +178,9 @@ public class GroupModel extends Model {
      * it will load the {@link JComponent} for a given {@link FormControl} 
      * which is a child of the current group, and add it to a {@link Container}.
      * @param fc
-     * 		the child from which to obtain it's model and {@link JComponent}
+     *         the child from which to obtain it's model and {@link JComponent}
      * @param c
-     * 		the {@link Container} to which to add the {@link JComponent}
+     *         the {@link Container} to which to add the {@link JComponent}
      */
     private void addComponentTo(FormControl fc, Container c) {
         Model m = ModelMapper.getModelFor(fc);

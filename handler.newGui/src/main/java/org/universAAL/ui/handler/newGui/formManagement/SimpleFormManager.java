@@ -69,7 +69,7 @@ public class SimpleFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public Resource cutDialog(String dialogID) {
-	closeCurrentDialog();
+    closeCurrentDialog();
         // TODO Auto-generated method stub, What to return?
         return null;
     }

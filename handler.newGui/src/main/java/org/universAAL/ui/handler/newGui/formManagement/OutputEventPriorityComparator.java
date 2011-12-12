@@ -32,19 +32,19 @@ public class OutputEventPriorityComparator implements Comparator {
     /* (non-Javadoc)
      * @see java.util.Comparator#compare(T, T)
      */
-	/** {@inheritDoc} */
+    /** {@inheritDoc} */
     public int compare(Object o1, Object o2) {
         LevelRating p1 = ((OutputEvent) o1).getDialogPriority();
         LevelRating p2 = ((OutputEvent) o2).getDialogPriority();
-        if (((OutputEvent)o1).getDialogForm().isSystemMenu()) {
+        if (((OutputEvent) o1).getDialogForm().isSystemMenu()) {
             return 1;
         }
-        if (((OutputEvent)o2).getDialogForm().isSystemMenu()) {
+        if (((OutputEvent) o2).getDialogForm().isSystemMenu()) {
             return -1;
         }
         return p1.greater(p2) ?
-        		-1
-        		: (p1.less(p2) ? 1 : 0);
+                -1
+                : (p1.less(p2) ? 1 : 0);
     }
 
 }

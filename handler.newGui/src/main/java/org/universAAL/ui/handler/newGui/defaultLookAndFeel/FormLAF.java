@@ -37,11 +37,11 @@ import org.universAAL.ui.handler.newGui.model.FormModel;
  */
 public class FormLAF extends FormModel  {
 
-	/**
-	 * internal accounting for the frame being displayed.
-	 */
-	private JFrame frame = null;
-	
+    /**
+     * internal accounting for the frame being displayed.
+     */
+    private JFrame frame = null;
+    
     /**
      * Constructor.
      * @param f
@@ -54,7 +54,7 @@ public class FormLAF extends FormModel  {
     /**
      * get the io panel wrapped in a scroll pane.
      * @return
-     * 	    the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
+     *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getIOPanelScroll() {
         JPanel ioPanel = super.getIOPanel();
@@ -72,11 +72,11 @@ public class FormLAF extends FormModel  {
     /**
      * get the submit panel wrapped in a scroll pane.
      * @return
-     * 	    the {@link FormModel#getSubmitPanel} wrapped in a {@link JScrollPane}.
+     *         the {@link FormModel#getSubmitPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getSubmitPanelScroll(int depth) {
         JPanel submit = super.getSubmitPanel(depth);
-        submit.setLayout(new BoxLayout(submit,BoxLayout.Y_AXIS));
+        submit.setLayout(new BoxLayout(submit, BoxLayout.Y_AXIS));
         return new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -85,7 +85,7 @@ public class FormLAF extends FormModel  {
     /**
      * get the system panel wrapped in a scroll pane.
      * @return
-     * 	    the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
+     *         the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getSystemPanelScroll() {
         return new JScrollPane(super.getSystemPanel(),
@@ -96,7 +96,7 @@ public class FormLAF extends FormModel  {
     /**
      * generate the header panel.
      * @return
-     * 	    a pannel with universAAL icon in it.
+     *         a pannel with universAAL icon in it.
      */
     protected JPanel getHeader() {
             JPanel header = new JPanel();
@@ -104,7 +104,7 @@ public class FormLAF extends FormModel  {
                     (getClass().getResource("/main/UniversAAl_logo.png")));
             JLabel logo = new JLabel(icon);
             header.add(logo);
-            return (JPanel)header;
+            return (JPanel) header;
         }
 
     /**
@@ -117,16 +117,16 @@ public class FormLAF extends FormModel  {
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
                     JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                     JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            frame.add(io,BorderLayout.CENTER);
-            frame.add(sub,BorderLayout.SOUTH);
+            frame.add(io, BorderLayout.CENTER);
+            frame.add(sub, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.pack();
         }
         if (form.isSystemMenu()) {
             frame = new JFrame(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
-            frame.add(getIOPanel(),BorderLayout.CENTER);
-            frame.add(getSystemPanelScroll(),BorderLayout.SOUTH);
+            frame.add(getIOPanel(), BorderLayout.CENTER);
+            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             //f.setUndecorated(true);
@@ -144,9 +144,9 @@ public class FormLAF extends FormModel  {
             JScrollPane io = getIOPanelScroll();
             JScrollPane sub = getSubmitPanelScroll(0);
             JScrollPane sys = getSystemPanelScroll();
-            frame.add(io,BorderLayout.CENTER);
-            frame.add(sub,BorderLayout.EAST);
-            frame.add(sys,BorderLayout.SOUTH);
+            frame.add(io, BorderLayout.CENTER);
+            frame.add(sub, BorderLayout.EAST);
+            frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             //f.setUndecorated(true);
@@ -158,16 +158,16 @@ public class FormLAF extends FormModel  {
             JScrollPane sub = getSubmitPanelScroll(0);
             JScrollPane sys = getSystemPanelScroll();
             JPanel subpanel = new JPanel(new BorderLayout());
-            subpanel.add(getIOPanelScroll(),BorderLayout.CENTER);
+            subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
             for (int i = super.getSubdialogLevel(); i > 1; i--) {
-        	subpanel.add(getSubmitPanel(i),BorderLayout.EAST);
-        	JPanel tempanel = new JPanel(new BorderLayout());
-        	tempanel.add(subpanel,BorderLayout.CENTER);
-        	subpanel = tempanel;
+            subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+            JPanel tempanel = new JPanel(new BorderLayout());
+            tempanel.add(subpanel, BorderLayout.CENTER);
+            subpanel = tempanel;
             }
-            frame.add(subpanel,BorderLayout.CENTER);
-            frame.add(sub,BorderLayout.EAST);
-            frame.add(sys,BorderLayout.SOUTH);
+            frame.add(subpanel, BorderLayout.CENTER);
+            frame.add(sub, BorderLayout.EAST);
+            frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             //f.setUndecorated(true);
@@ -178,8 +178,8 @@ public class FormLAF extends FormModel  {
 
     /** {@inheritDoc} */
     public void terminateDialog() {
-    	if(frame != null){
-    		frame.dispose();
-    	}
+        if(frame != null){
+            frame.dispose();
+        }
     }
 }

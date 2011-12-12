@@ -51,7 +51,7 @@ public class GroupLAF extends GroupModel {
             tb.setFont(ColorLAF.getplain());
             return tb;
         }
-        else if (!((Group)fc).isRootGroup()) {
+        else if (!((Group) fc).isRootGroup()) {
             /*
              * simple group control
              */
@@ -67,13 +67,13 @@ public class GroupLAF extends GroupModel {
             Border line = BorderFactory.createLineBorder(ColorLAF.getOrange());
             TitledBorder title;
             title = BorderFactory.createTitledBorder
-            		(line, label, 0, 0,
-            				ColorLAF.getbold(), ColorLAF.getborderLineMM());
+                    (line, label, 0, 0,
+                            ColorLAF.getbold(), ColorLAF.getborderLineMM());
             jgroup.setBorder(title);
             needsLabel = false;
             // XXX try add icon
         }
-        jgroup.setLayout(new BoxLayout(jgroup,BoxLayout.PAGE_AXIS));
+        jgroup.setLayout(new BoxLayout(jgroup, BoxLayout.PAGE_AXIS));
         return jgroup;
     }
 

@@ -31,50 +31,49 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 /**
  * @author pabril
  * @author amedrano
- *
+ * 
  */
 public class SubmitLAF extends SubmitModel {
 
     /**
      * Constructor.
-     * @param control the {@link Submit} which to model.
+     * 
+     * @param control
+     *            the {@link Submit} which to model.
      */
     public SubmitLAF(Submit control) {
         super(control);
     }
 
     /**
-     * Set a color behabiour to a button 
+     * Set a color behabiour to a button
+     * 
      * @param button
-     *    the button which to add the behaviour
+     *            the button which to add the behaviour
      * @param border
-     *    a {@link Border} for the button in normal status
+     *            a {@link Border} for the button in normal status
      * @param normalF
-     *    the foreground colour for normal state
+     *            the foreground colour for normal state
      * @param normalB
-     *    the background colour for normal state
+     *            the background colour for normal state
      * @param enterF
-     *    the foreground colour for pressed state
+     *            the foreground colour for pressed state
      * @param enterB
-     *    the background colour for pressed state
+     *            the background colour for pressed state
      * @param clickF
-     *    the foreground colour for clicked state
+     *            the foreground colour for clicked state
      * @param clickB
-     *    the background colour for clicked state
+     *            the background colour for clicked state
      */
     static protected void setButtonBehaviour(JComponent button, Color border,
-            Color normalF, Color normalB,
-            Color enterF, Color enterB,
+            Color normalF, Color normalB, Color enterF, Color enterB,
             Color clickF, Color clickB) {
-        button.setBorder(new CompoundBorder
-                (BorderFactory.createLineBorder(border),
-                        new EmptyBorder(10,10,10,10)));
+        button.setBorder(new CompoundBorder(BorderFactory
+                .createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
         button.setForeground(normalF);
         button.setBackground(normalB);
-        button.addMouseListener(new MyMouseAdatper(border,
-                normalF, normalB,
-                enterF, enterB,
-                clickF, clickB));
+        button.addMouseListener(new MyMouseAdatper(border, normalF, normalB,
+                enterF, enterB, clickF, clickB));
     }
 
     /** {@inheritDoc} */
@@ -120,11 +119,9 @@ public class SubmitLAF extends SubmitModel {
                 enterB = ColorLAF.getOverSytem();
                 clickF = ColorLAF.getBackLetter();
                 clickB = ColorLAF.getOverSytem();
-            }
-            else {
+            } else {
                 /*
                  * service buttons
-                 *
                  */
                 border = ColorLAF.getborderLine();
                 normalF = ColorLAF.getBackLetter();
@@ -134,8 +131,7 @@ public class SubmitLAF extends SubmitModel {
                 clickF = ColorLAF.getSelectedLetter();
                 clickB = ColorLAF.getBackSystem();
             }
-        }
-        else {
+        } else {
             if (this.isInStandardGroup()) {
                 /*
                  * all submits
@@ -161,9 +157,7 @@ public class SubmitLAF extends SubmitModel {
                 clickB = ColorLAF.getBackSystem();
             }
         }
-        setButtonBehaviour(button, border,
-                normalF, normalB,
-                enterF, enterB,
+        setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
                 clickF, clickB);
         return button;
     }
@@ -178,10 +172,8 @@ public class SubmitLAF extends SubmitModel {
         private Color clickB;
         private Color border;
 
-        public MyMouseAdatper(Color border,
-                Color normalF, Color normalB,
-                Color enterF, Color enterB,
-                Color clickF, Color clickB) {
+        public MyMouseAdatper(Color border, Color normalF, Color normalB,
+                Color enterF, Color enterB, Color clickF, Color clickB) {
             this.border = border;
             this.normalF = normalF;
             this.normalB = normalB;
@@ -192,22 +184,21 @@ public class SubmitLAF extends SubmitModel {
         }
 
         public void mouseEntered(MouseEvent e) {
-            JComponent src = (JComponent)e.getSource();
+            JComponent src = (JComponent) e.getSource();
             src.setForeground(enterF);
             src.setBackground(enterB);
         }
 
         public void mouseExited(MouseEvent e) {
-            JComponent src = (JComponent)e.getSource();
-            src.setBorder(new CompoundBorder
-                    (BorderFactory.createLineBorder(border),
-                            new EmptyBorder(10,10,10,10)));
+            JComponent src = (JComponent) e.getSource();
+            src.setBorder(new CompoundBorder(BorderFactory
+                    .createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
             src.setForeground(normalF);
             src.setBackground(normalB);
         }
 
         public void mouseClicked(MouseEvent e) {
-            JComponent src = (JComponent)e.getSource();
+            JComponent src = (JComponent) e.getSource();
             src.setForeground(clickF);
             src.setBackground(clickB);
         }

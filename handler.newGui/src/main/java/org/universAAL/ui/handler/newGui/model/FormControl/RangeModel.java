@@ -92,10 +92,10 @@ implements ChangeListener {
         int value;
         // Check UserInput Type is Integer!
         if (e.getSource() instanceof JSpinner) {
-            value = ((Integer)((JSpinner)e.getSource()).getValue()).intValue();
+            value = ((Integer) ((JSpinner) e.getSource()).getValue()).intValue();
         }
         else {
-            value = ((JSlider)e.getSource()).getValue();
+            value = ((JSlider) e.getSource()).getValue();
         }
         ((Range) fc).storeUserInput(new Integer(value));
     }

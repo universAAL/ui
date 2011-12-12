@@ -35,11 +35,11 @@ import org.universAAL.ui.handler.newGui.model.Model;
 public class SubmitModel extends Model
 implements ActionListener {
 
-	/**
-	 * Constructor.
-	 * @param control
-	 *     the {@link FormControl} which to model.
-	 */
+    /**
+     * Constructor.
+     * @param control
+     *     the {@link FormControl} which to model.
+     */
     public SubmitModel(Submit control) {
         super(control);
         needsLabel = false;
@@ -71,7 +71,7 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-        Input missing = ((Submit)fc).getMissingInputControl();
+        Input missing = ((Submit) fc).getMissingInputControl();
         if (isValid((JComponent) e.getSource()) && missing == null) {
             Renderer.getInstance().ipublisher.summit((Submit) fc);
             Renderer.getInstance().getFormManagement().closeCurrentDialog();

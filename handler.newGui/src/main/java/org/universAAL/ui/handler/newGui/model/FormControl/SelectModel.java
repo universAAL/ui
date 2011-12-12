@@ -33,45 +33,47 @@ import org.universAAL.middleware.io.rdf.ChoiceList;
 import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.middleware.io.rdf.Select;
+
 /**
- *
+ * 
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Select
  */
-public class SelectModel extends InputModel
-implements ListSelectionListener {
+public class SelectModel extends InputModel implements ListSelectionListener {
 
-	/**
-	 * Constructor.
-	 * @param control
-	 *     the {@link FormControl} which to model.
-	 */
+    /**
+     * Constructor.
+     * 
+     * @param control
+     *            the {@link FormControl} which to model.
+     */
     public SelectModel(Select control) {
         super(control);
     }
 
     /**
      * {@inheritDoc}
+     * 
      * @return either a {@link JList} or a {@link JTree}
      */
     public JComponent getComponent() {
-        //XXX add icons to component!
-        //TODO use getMaxCardinality and getMinCardinality to get the max and min #ofSelections
+        // XXX add icons to component!
+        // TODO use getMaxCardinality and getMinCardinality to get the max and
+        // min #ofSelections
         Label[] items = ((Select) fc).getChoices();
-        if (!((Select)fc).isMultilevel()) {
+        if (!((Select) fc).isMultilevel()) {
             /*
              * Not a tree, then it is a simple select list with multiple
              * selection power.
              */
             JList list = new JList(items);
             list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-            //list.setSelectedIndex(0);
+            // list.setSelectedIndex(0);
             // TODO the selected indexES should be defined in the RDF!
             list.addListSelectionListener(this);
             list.setName(fc.getURI());
             return list;
-        }
-        else {
+        } else {
             JTree jt = new JTree(new SelectionTreeModel());
             jt.setEditable(false);
             jt.setSelectionModel(new MultipleTreeSelectionModel());
@@ -94,28 +96,30 @@ implements ListSelectionListener {
      */
     public void valueChanged(ListSelectionEvent e) {
         // TODO Gather user input from tree
-        if (!((Select)fc).isMultilevel()) {
-            //TODO check the following is compatible with RDF
-            ((Select) fc).storeUserInput(((JList)e.getSource()).getSelectedIndices());
+        if (!((Select) fc).isMultilevel()) {
+            // TODO check the following is compatible with RDF
+            ((Select) fc).storeUserInput(((JList) e.getSource())
+                    .getSelectedIndices());
         }
     }
 
     /**
      * the {@link TreeModel} for generating a {@link JTree}.
+     * 
      * @author amedrano
-     *
+     * 
      */
     protected class SelectionTreeModel implements TreeModel {
 
-    	/**
-    	 * The root of the tree.
-    	 * it can be a single element or a group of 
-    	 * {@link ChoiceList}s.
-    	 */
+        /**
+         * The root of the tree. it can be a single element or a group of
+         * {@link ChoiceList}s.
+         */
         Label[] root;
 
         /**
          * find the root element.
+         * 
          * @return the root element
          */
         public Object getRoot() {
@@ -155,7 +159,7 @@ implements ListSelectionListener {
             else
                 return node instanceof ChoiceItem;
         }
-        
+
         /**
          * not used, trees should not be editable
          */
@@ -169,8 +173,7 @@ implements ListSelectionListener {
         public int getIndexOfChild(Object parent, Object child) {
             Label[] children = ((ChoiceList) parent).getChildren();
             int i = 0;
-            while (i < children.length
-                    && children[i] != child)
+            while (i < children.length && children[i] != child)
                 i++;
             return i;
         }
@@ -178,27 +181,30 @@ implements ListSelectionListener {
         /**
          * not used.
          */
-        public void addTreeModelListener(TreeModelListener l) { }
+        public void addTreeModelListener(TreeModelListener l) {
+        }
 
         /**
          * not used.
          */
-        public void removeTreeModelListener(TreeModelListener l) { }
+        public void removeTreeModelListener(TreeModelListener l) {
+        }
 
     }
 
     /**
-     * the selection model for the multple selection jtree. 
+     * the selection model for the multple selection jtree.
+     * 
      * @author amedrano
      */
     private class MultipleTreeSelectionModel extends DefaultTreeSelectionModel {
-    	/**
-    	 * serial version for {@link Serializable} objects.
-    	 */
+        /**
+         * serial version for {@link Serializable} objects.
+         */
         private static final long serialVersionUID = 1L;
         /*
-         * TODO Model the selection! and gather Tree input
-         *  use getMaxCardinality and getMinCardinality to get the max and min #ofSelections
+         * TODO Model the selection! and gather Tree input use getMaxCardinality
+         * and getMinCardinality to get the max and min #ofSelections
          */
     }
 }
