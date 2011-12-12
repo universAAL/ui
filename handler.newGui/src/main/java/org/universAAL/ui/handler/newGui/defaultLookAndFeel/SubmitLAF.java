@@ -32,13 +32,13 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 /**
  * @author pabril
  * @author amedrano
- * 
+ *
  */
 public class SubmitLAF extends SubmitModel {
 
     /**
      * Constructor.
-     * 
+     *
      * @param control
      *            the {@link Submit} which to model.
      */
@@ -48,7 +48,7 @@ public class SubmitLAF extends SubmitModel {
 
     /**
      * Set a color behabiour to a button
-     * 
+     *
      * @param button
      *            the button which to add the behaviour
      * @param border
@@ -66,7 +66,7 @@ public class SubmitLAF extends SubmitModel {
      * @param clickB
      *            the background colour for clicked state
      */
-    static protected void setButtonBehaviour(JComponent button, Color border,
+    protected static void setButtonBehaviour(JComponent button, Color border,
             Color normalF, Color normalB, Color enterF, Color enterB,
             Color clickF, Color clickB) {
         button.setBorder(new CompoundBorder(BorderFactory
@@ -81,7 +81,7 @@ public class SubmitLAF extends SubmitModel {
     public JComponent getComponent() {
     	return buttonDecorate(this, super.getComponent());
     }
-    
+
     protected static JComponent buttonDecorate(Model model, JComponent button) {
         Color normalF;
         Color normalB;
@@ -165,7 +165,7 @@ public class SubmitLAF extends SubmitModel {
         return button;
     }
 
-    static protected class MyMouseAdatper extends MouseAdapter {
+    protected static class MyMouseAdatper extends MouseAdapter {
 
         private Color normalF;
         private Color normalB;

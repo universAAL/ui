@@ -35,7 +35,7 @@ import org.universAAL.middleware.io.rdf.Label;
 import org.universAAL.middleware.io.rdf.Select;
 
 /**
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Select
  */
@@ -43,7 +43,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 
     /**
      * Constructor.
-     * 
+     *
      * @param control
      *            the {@link FormControl} which to model.
      */
@@ -53,7 +53,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @return either a {@link JList} or a {@link JTree}
      */
     public JComponent getComponent() {
@@ -105,9 +105,9 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 
     /**
      * the {@link TreeModel} for generating a {@link JTree}.
-     * 
+     *
      * @author amedrano
-     * 
+     *
      */
     protected class SelectionTreeModel implements TreeModel {
 
@@ -119,45 +119,53 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 
         /**
          * find the root element.
-         * 
+         *
          * @return the root element
          */
         public Object getRoot() {
             root = ((Select) fc).getChoices();
-            if (root.length == 1)
+            if (root.length == 1) {
                 return root[1];
-            else
+            }
+            else {
                 return root;
+            }
         }
 
         /**
          * {@inheritDoc}
          */
         public Object getChild(Object parent, int index) {
-            if (parent == root)
+            if (parent == root) {
                 return root[index];
-            else
+            }
+            else {
                 return ((ChoiceList) parent).getChildren()[index];
+            }
         }
 
         /**
          * {@inheritDoc}
          */
         public int getChildCount(Object parent) {
-            if (parent == root)
+            if (parent == root) {
                 return root.length;
-            else
+            }
+            else {
                 return ((ChoiceList) parent).getChildren().length;
+            }
         }
 
         /**
          * {@inheritDoc}
          */
         public boolean isLeaf(Object node) {
-            if (node == root)
+            if (node == root) {
                 return root.length == 0;
-            else
+            }
+            else {
                 return node instanceof ChoiceItem;
+            }
         }
 
         /**
@@ -173,8 +181,8 @@ public class SelectModel extends InputModel implements ListSelectionListener {
         public int getIndexOfChild(Object parent, Object child) {
             Label[] children = ((ChoiceList) parent).getChildren();
             int i = 0;
-            while (i < children.length && children[i] != child)
-                i++;
+            while (i < children.length && children[i] != child) 
+            { i++; }
             return i;
         }
 
@@ -194,7 +202,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 
     /**
      * the selection model for the multple selection jtree.
-     * 
+     *
      * @author amedrano
      */
     private class MultipleTreeSelectionModel extends DefaultTreeSelectionModel {

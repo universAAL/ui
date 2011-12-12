@@ -49,7 +49,7 @@ implements ActionListener {
     /**
      * {@inheritDoc}
      * @return
-     *     a {@link JToggleButton}, whose state is determined by the 
+     *     a {@link JToggleButton}, whose state is determined by the
      *     antecessor {@link Form}s.
      */
     public JComponent getComponent() {

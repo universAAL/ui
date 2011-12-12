@@ -39,7 +39,7 @@ import org.universAAL.ui.handler.newGui.formManagement.SimpleFormManager;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
-public class Renderer extends Thread {
+public final class Renderer extends Thread {
 
     /**
      * Singleton instance for the renderer.
@@ -213,7 +213,7 @@ public class Renderer extends Thread {
     /**
      * set the {@link Renderer#moduleContext}.
      * To be used only by Activator Class.
-     * @param moduleContext 
+     * @param moduleContext
      *     the {@link ModuleContext} to be setted.
      */
     public static void setModuleContext(ModuleContext moduleContext) {
@@ -322,8 +322,7 @@ public class Renderer extends Thread {
     public boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
         int i = 0;
-        while (i < imp.length && imp[i] != impariment)
-            i++;
+        while (i < imp.length && imp[i] != impariment) { i++; }
         return i != imp.length;
     }
 

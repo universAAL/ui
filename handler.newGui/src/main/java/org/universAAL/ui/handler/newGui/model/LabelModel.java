@@ -48,8 +48,9 @@ public class LabelModel {
     public JLabel getComponent() {
         JLabel jl = new JLabel(label.getText());
         Icon icon = IconFactory.getIcon(label.getIconURL());
-        if (icon != null)
+        if (icon != null) {
             jl.setIcon(icon);
+        }
         return jl;
     }
 

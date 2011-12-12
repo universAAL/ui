@@ -60,7 +60,7 @@ public class QueuedFormManager implements FormManager {
 
     /**
      * Default constructor.
-     * 
+     *
      */
     public QueuedFormManager() {
         dialogQueue = new PriorityQueue(QUEUE_MAX, new OutputEventPriorityComparator());

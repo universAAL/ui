@@ -33,7 +33,7 @@ import org.universAAL.ui.handler.newGui.model.FormModel;
  * The Look and Feel for Forms
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
- * @see FormModel 
+ * @see FormModel
  */
 public class FormLAF extends FormModel  {
 
@@ -41,7 +41,7 @@ public class FormLAF extends FormModel  {
      * internal accounting for the frame being displayed.
      */
     private JFrame frame = null;
-    
+
     /**
      * Constructor.
      * @param f

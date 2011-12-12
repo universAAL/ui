@@ -38,7 +38,7 @@ public class MediaObjectModel extends OutputModel {
         super(control);
     }
 
-    /** 
+    /**
      * The {@link JComponent} returned is a {@link JLabel}.
      * in future versions it may accommodate other components for
      * videos, audio and other media files.

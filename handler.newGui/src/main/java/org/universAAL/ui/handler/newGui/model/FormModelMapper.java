@@ -28,11 +28,11 @@ public class FormModelMapper {
     /**
      * The internal Map used
      */
-    static private TreeMap formMap = new TreeMap();
+    private static TreeMap formMap = new TreeMap();
 
     /**
      * register a {@link FormModel}
-     * @param fm 
+     * @param fm
      *         {@link FormModel} to register
      */
     public static void register(FormModel fm) {

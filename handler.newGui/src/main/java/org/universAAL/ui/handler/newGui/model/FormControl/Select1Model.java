@@ -45,7 +45,7 @@ implements  ActionListener {
     public Select1Model(Select1 control) {
         super(control);
     }
-    
+
     /**
      * {@inheritDoc}
      * @return either a {@link JTree} or a {@link JComboBox}
@@ -91,9 +91,9 @@ implements  ActionListener {
             int i = ((JComboBox) e.getSource()).getSelectedIndex();
             ((Select1) fc).storeUserInput(
                     ((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
-        } 
+        }
     }
-    
+
     /**
      * The selection model for, selecting only one element in a tree.
      * @author amedrano

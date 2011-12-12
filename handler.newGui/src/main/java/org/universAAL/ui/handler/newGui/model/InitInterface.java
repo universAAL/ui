@@ -17,7 +17,7 @@ package org.universAAL.ui.handler.newGui.model;
 
 /**
  * Interface for the entry point Class for any look and feel package.
- * 
+ *
  * the initialization class must be named Init
  * @author amedrano
  *
@@ -31,6 +31,6 @@ public interface InitInterface {
      * For example initializing the UIManager.
      */
     public void install();
-    
+
     //XXX: need an uninstall?
 }
