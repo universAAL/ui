@@ -37,7 +37,7 @@ public class TextAreaLAF extends TextAreaModel {
 
 
     }
-    
+
     /** {@inheritDoc} */
     public JComponent getComponent() {
         String initialValue = (String) fc.getValue();

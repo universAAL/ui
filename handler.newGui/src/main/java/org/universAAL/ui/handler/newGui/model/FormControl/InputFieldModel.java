@@ -84,12 +84,15 @@ implements ChangeListener, CaretListener {
              * the input requested is a normal text field
              */
             JTextComponent tf;
-            if (maxLength > 0)
+            if (maxLength > 0) {
                 tf = new JTextField(maxLength);
-            else
+            }
+            else {
                 tf = new JTextField();
-            if (initVal != null)
+            }
+            if (initVal != null) {
                 tf.setText(initVal.toString());
+            }
             tf.setToolTipText(fc.getHelpString());
             tf.addCaretListener(this);
             tf.setName(fc.getURI());
@@ -100,12 +103,15 @@ implements ChangeListener, CaretListener {
              * the input requested is a password field
              */
             JPasswordField pf;
-            if (maxLength > 0)
+            if (maxLength > 0) {
                 pf = new JPasswordField(maxLength);
-            else
+            }
+            else {
                 pf = new JPasswordField();
-            if (initVal != null)
+            }
+            if (initVal != null) {
                 pf.setText(initVal.toString());
+            }
             pf.setToolTipText(fc.getHelpString());
             pf.addCaretListener(this);
             pf.setName(fc.getURI());
@@ -136,7 +142,7 @@ implements ChangeListener, CaretListener {
     /**
      * In put events will be published each time the user types
      * something in the text field.
-     * @param e 
+     * @param e
      *         the {@link CaretEvent} to listen to.
      */
     public void caretUpdate(CaretEvent e) {

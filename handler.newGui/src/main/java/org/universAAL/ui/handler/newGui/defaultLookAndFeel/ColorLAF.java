@@ -24,13 +24,13 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 
 /**
  * Color and Font Theme for MetalTheme.
- * 
+ *
  * @author pabril
- * 
+ *
  */
 public class ColorLAF extends DefaultMetalTheme {
 
-    /** 
+    /**
      * Returns the name of the theme.
      * @return "uaal Default"
      */
@@ -42,10 +42,10 @@ public class ColorLAF extends DefaultMetalTheme {
     private final ColorUIResource primary2 = new ColorUIResource(238, 124, 38);
     private final ColorUIResource primary3 = new ColorUIResource(213, 237, 247);
 
-    private final ColorUIResource secondary1 = 
+    private final ColorUIResource secondary1 =
             new ColorUIResource(213, 237, 247);
     private final ColorUIResource secondary2 = new ColorUIResource(30, 149, 192);
-    private final ColorUIResource secondary3 = 
+    private final ColorUIResource secondary3 =
             new ColorUIResource(213, 237, 247);
     private final ColorUIResource black = new ColorUIResource(0, 0, 0);
     private final ColorUIResource white = new ColorUIResource(255, 255, 255);
@@ -62,11 +62,11 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color font = new Color(0, 0, 0);
 
     final private static int FONT_SIZE_BASE = 12;
-    final private static Font bold = 
+    final private static Font bold =
             new Font("Arial", Font.BOLD, FONT_SIZE_BASE + 4);
-    final private static Font plain = 
+    final private static Font plain =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
-    final private static Font label = 
+    final private static Font label =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
 
     /** {@inheritDoc} */

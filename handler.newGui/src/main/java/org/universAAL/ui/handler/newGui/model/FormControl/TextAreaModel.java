@@ -44,7 +44,7 @@ implements CaretListener {
 
     /**
      * {@inheritDoc}
-     * @return 
+     * @return
      *      a {@link JTextArea}.
      */
     public JComponent getComponent() {

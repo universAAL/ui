@@ -175,7 +175,7 @@ public abstract class Model {
      * @return
      *         true if the data has passed every restriction
      */
-    abstract public boolean isValid(JComponent component);
+    public abstract boolean isValid(JComponent component);
 
     /**
      * generate the {@link JComponent} that displays this
@@ -184,5 +184,5 @@ public abstract class Model {
      *         a {@link JComponent} initialised with the model's
      * information,
      */
-    abstract public JComponent getComponent();
+    public abstract JComponent getComponent();
 }

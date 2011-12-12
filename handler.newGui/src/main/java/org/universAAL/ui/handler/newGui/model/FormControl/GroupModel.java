@@ -38,7 +38,7 @@ import org.universAAL.ui.handler.newGui.model.Model;
  */
 public class GroupModel extends Model {
 
-    
+
     /**
      * Constructor.
      * @param control the {@link Group} which to model.
@@ -52,9 +52,9 @@ public class GroupModel extends Model {
      * <li> a {@link JPanel}
      * <li> a {@link JTabbedPane}
      * </ul>
-     * 
+     *
      *  depending on the complexity (and other factors) of the group
-     * 
+     *
      * @return {@inheritDoc}
      * */
     public JComponent getComponent() {
@@ -104,10 +104,10 @@ public class GroupModel extends Model {
         pane.setName(fc.getURI());
         return pane;
     }
-    
+
     /**
      * create a tabbed panel with diferent groups
-     * in different pannels. 
+     * in different pannels.
      * @return
      *         a {@link JTabbedPane} with children groups
      * as panels
@@ -131,7 +131,7 @@ public class GroupModel extends Model {
         tp.setName(fc.getURI());
         return tp;
     }
-    
+
     /**
      * check whether it is the submit root group.
      * @return
@@ -161,7 +161,7 @@ public class GroupModel extends Model {
 
     /**
      * Access to the Model mapper.
-     * it will load the {@link JComponent} for a given {@link FormControl} 
+     * it will load the {@link JComponent} for a given {@link FormControl}
      * which is a child of the current group.
      * @param fc
      *         the child from which to obtain it's model and {@link JComponent}
@@ -175,7 +175,7 @@ public class GroupModel extends Model {
 
     /**
      * Access to the Model mapper.
-     * it will load the {@link JComponent} for a given {@link FormControl} 
+     * it will load the {@link JComponent} for a given {@link FormControl}
      * which is a child of the current group, and add it to a {@link Container}.
      * @param fc
      *         the child from which to obtain it's model and {@link JComponent}

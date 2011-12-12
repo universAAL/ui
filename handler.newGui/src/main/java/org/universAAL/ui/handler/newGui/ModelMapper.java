@@ -172,7 +172,7 @@ public class ModelMapper {
      * @param LAFPackage
      *             the full qualified name of the LAF package
      * @return
-     *             the initialization class of the LAF package 
+     *             the initialization class of the LAF package
      */
     private static InitInterface getLookAndFeel(String LAFPackage) throws Exception {
             return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)
@@ -196,7 +196,7 @@ public class ModelMapper {
             getLookAndFeel(DefaultLAFPackage).install();
             } catch (Exception e2) {
             if (Renderer.getModuleContext() != null) {
-                Renderer.getModuleContext().logError("Unable to find " 
+                Renderer.getModuleContext().logError("Unable to find "
                     + INIT_CLASS + " Class for Default LookAndFeel Package", e);
             }
             }

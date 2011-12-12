@@ -74,7 +74,7 @@ implements ChangeListener {
             return slider;
         }
     }
-    
+
     /**
      * {@inheritDoc}
      */

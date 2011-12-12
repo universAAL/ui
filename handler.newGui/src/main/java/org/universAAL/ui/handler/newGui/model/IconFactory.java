@@ -29,16 +29,17 @@ public class IconFactory {
     /**
      * search for the icon in different repositories, when
      * url is relative.
-     * @param url 
+     * @param url
      *             url of the resource from where to get the icon
      * @return
      *         the {@link ImageIcon} referenced by the URL
      *         null if url is empty, or the file is not found.
      */
     public static Icon getIcon(String url) {
-        if (url != null && !url.isEmpty())
+        if (url != null && !url.isEmpty()) {
             // TODO implement search procedure
             return new ImageIcon(url);
+        }
         return null;
     }
 }

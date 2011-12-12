@@ -31,7 +31,7 @@ import org.universAAL.middleware.rdf.TypeMapper;
  * @see Repeat
  */
 public class RepeatModel extends GroupModel {
-    
+
     /**
      * Constructor
      * @param control the {@link Repeat} which to model.
@@ -39,7 +39,7 @@ public class RepeatModel extends GroupModel {
     public RepeatModel(Repeat control) {
         super(control);
     }
-    
+
     /**
      * get the java {@link Class} of the children.
      * @return
@@ -49,7 +49,7 @@ public class RepeatModel extends GroupModel {
         FormControl[] children = ((Repeat) fc).getChildren();
         return TypeMapper.getJavaClass(children[0].getTypeURI());
     }
-    
+
     /**
      * check if the {@link Repeat} {@link FormControl} models a table.
      * @return
@@ -71,11 +71,12 @@ public class RepeatModel extends GroupModel {
             while (i < child.length
                     && child[i].getClass() == last
                     && complexity == ((Group) child[i]).getComplexity())
-                i++;
+                { i++; }
             return i == child.length;
         }
-        else
+        else {
             return false;
+        }
     }
 
     /**
@@ -123,7 +124,7 @@ public class RepeatModel extends GroupModel {
             return table;
         }
         if (getChildrenType().equals(Group.class)) {
-            /* 
+            /*
              * children are Group, but not the same length
              * display a tabbedpane
              */

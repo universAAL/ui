@@ -41,7 +41,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
         super(control);
 
     }
-    
+
     /** {@inheritDoc} */
     public JComponent getComponent() {
         Object content = ((SimpleOutput) fc).getContent();

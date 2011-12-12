@@ -49,7 +49,7 @@ public class SimpleOutputModel extends OutputModel {
 
     /**
      * {@inheritDoc}
-     * @return 
+     * @return
      *     either a {@link JTextArea} or a {@link JTextField} if output is a {@link String}.
      *     or it can be a {@link JCheckBox} if the output is a {@link Boolean}.
      *     all of them are uneditable by the user.
@@ -64,7 +64,7 @@ public class SimpleOutputModel extends OutputModel {
          *      (disabled) textarea for long length
          *   if boolean use
          *      (disabled) checkbock
-         *   if Date 
+         *   if Date
          *       ??
          *   if number use
          *       ??
