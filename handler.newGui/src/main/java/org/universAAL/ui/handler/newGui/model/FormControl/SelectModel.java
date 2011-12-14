@@ -16,6 +16,8 @@
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
@@ -41,6 +43,10 @@ import org.universAAL.middleware.io.rdf.Select;
  */
 public class SelectModel extends InputModel implements ListSelectionListener {
 
+	/**
+	 * the selected items
+	 */
+	protected ArrayList selected;
     /**
      * Constructor.
      *
@@ -70,6 +76,12 @@ public class SelectModel extends InputModel implements ListSelectionListener {
             list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             // list.setSelectedIndex(0);
             // TODO the selected indexES should be defined in the RDF!
+            setSelected();
+            for (int i = 0; i < items.length; i++) {
+            	if (selected.contains(items[i])) {
+            		list.setSelectedIndex(i);
+            	}
+            }
             list.addListSelectionListener(this);
             list.setName(fc.getURI());
             return list;
@@ -77,13 +89,29 @@ public class SelectModel extends InputModel implements ListSelectionListener {
             JTree jt = new JTree(new SelectionTreeModel());
             jt.setEditable(false);
             jt.setSelectionModel(new MultipleTreeSelectionModel());
-
             jt.setName(fc.getURI());
             return jt;
         }
     }
 
-    /**
+    private void setSelected() {
+		Object val = ((Select) fc).getValue();
+		if (val instanceof List){
+			selected = new ArrayList((List) val);
+		}
+		else if (val instanceof Object[]){
+			selected = new ArrayList();
+			for (int i = 0; i < ((Object[]) val).length; i++){
+				selected.add(((Object[]) val)[i]);
+			}
+		}
+		else {
+			selected = new ArrayList();
+			selected.add(val);
+		}
+	}
+
+	/**
      * {@inheritDoc}
      */
     public boolean isValid(JComponent component) {
@@ -95,11 +123,14 @@ public class SelectModel extends InputModel implements ListSelectionListener {
      * {@inheritDoc}
      */
     public void valueChanged(ListSelectionEvent e) {
-        // TODO Gather user input from tree
         if (!((Select) fc).isMultilevel()) {
-            // TODO check the following is compatible with RDF
-            ((Select) fc).storeUserInput(((JList) e.getSource())
-                    .getSelectedIndices());
+        	int[] indexes = ((JList) e.getSource()).getSelectedIndices();
+        	Label[] items = ((Select) fc).getChoices();
+        	selected.removeAll(selected);
+        	for (int i = 0; i < indexes.length; i++) {
+				selected.add(items[indexes[i]]);
+			}
+            ((Select) fc).storeUserInput(selected);
         }
     }
 
