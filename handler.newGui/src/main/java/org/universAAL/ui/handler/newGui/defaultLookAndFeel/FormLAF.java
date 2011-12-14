@@ -160,10 +160,10 @@ public class FormLAF extends FormModel  {
             JPanel subpanel = new JPanel(new BorderLayout());
             subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
             for (int i = super.getSubdialogLevel(); i > 1; i--) {
-            subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
-            JPanel tempanel = new JPanel(new BorderLayout());
-            tempanel.add(subpanel, BorderLayout.CENTER);
-            subpanel = tempanel;
+            	subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+            	JPanel tempanel = new JPanel(new BorderLayout());
+            	tempanel.add(subpanel, BorderLayout.CENTER);
+            	subpanel = tempanel;
             }
             frame.add(subpanel, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.EAST);
