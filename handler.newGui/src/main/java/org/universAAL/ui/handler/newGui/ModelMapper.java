@@ -124,6 +124,7 @@ public class ModelMapper {
         if (model == null) {
             model = tryToLoadClass(DefaultLAFPackage, fc);
         }
+        // TODO if not found, try to find the model for superclass FormControl.
         return (Model) model;
     }
 
