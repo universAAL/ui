@@ -17,6 +17,11 @@ package ui.handler.newGui.test;
 
 import javax.swing.JFrame;
 
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.rdf.PropertyPath;
+import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.rdf.TypeMapper;
+import org.universAAL.middleware.owl.IntRestriction;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.InputField;
@@ -27,11 +32,6 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.middleware.owl.OrderingRestriction;
-import org.universAAL.middleware.owl.Restriction;
-import org.universAAL.middleware.rdf.PropertyPath;
-import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ui.handler.newGui.ModelMapper;
 import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.Init;
@@ -73,7 +73,7 @@ public class DialogMenu {
                         null,
                         false,
                         new String[] { "http://ontology.aal-persona.org/Tests.owl#input1" }),
-                        Restriction.getAllValuesRestrictionWithCardinality(
+                        MergedRestriction.getAllValuesRestrictionWithCardinality(
                                 "http://ontology.aal-persona.org/Tests.owl#input1",
                                 TypeMapper.getDatatypeURI(Boolean.class), 1, 1),
                 Boolean.TRUE);
@@ -85,10 +85,10 @@ public class DialogMenu {
                         null,
                         false,
                         new String[] { "http://ontology.aal-persona.org/Tests.owl#input2" }),
-                Restriction.getAllValuesRestrictionWithCardinality(
-                        "http://ontology.aal-persona.org/Tests.owl#input2",
-                        TypeMapper.getDatatypeURI(Boolean.class), 1, 1),
-                Boolean.FALSE);
+                        MergedRestriction.getAllValuesRestrictionWithCardinality(
+                        		"http://ontology.aal-persona.org/Tests.owl#input2",
+                        		TypeMapper.getDatatypeURI(Boolean.class), 1, 1),
+                        		Boolean.FALSE);
 
         new InputField(g1,
                 new Label("Input 3",""),
@@ -115,9 +115,9 @@ public class DialogMenu {
                         null,
                         false,
                         new String[] { "http://ontology.aal-persona.org/Tests.owl#input5" }),
-                OrderingRestriction.newOrderingRestriction(Integer.valueOf(12),
-                        Integer.valueOf(3), true, true,
-                        "http://ontology.aal-persona.org/Tests.owl#input5"),
+                        MergedRestriction
+                        .getAllValuesRestrictionWithCardinality("http://ontology.aal-persona.org/Tests.owl#input6", 
+                        		new IntRestriction(3, true, 12, true), 1, 1),
                 new Integer(5));
         new Range(
                 g2,
@@ -126,9 +126,9 @@ public class DialogMenu {
                         null,
                         false,
                         new String[] { "http://ontology.aal-persona.org/Tests.owl#input6" }),
-                OrderingRestriction.newOrderingRestriction(Integer.valueOf(100),
-                        Integer.valueOf(1), true, true,
-                        "http://ontology.aal-persona.org/Tests.owl#input6"),
+                        MergedRestriction
+                        .getAllValuesRestrictionWithCardinality("http://ontology.aal-persona.org/Tests.owl#input6", 
+                        		new IntRestriction(1, true, 100, true), 1, 1),
                 new Integer(50));
 
 

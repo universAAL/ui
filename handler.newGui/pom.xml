@@ -63,8 +63,8 @@
         </dependency>
         <dependency>
             <groupId>org.universAAL.middleware</groupId>
-            <artifactId>mw.bus.ui</artifactId>
-            <version>0.3.2-SNAPSHOT</version>
+            <artifactId>mw.bus.ui</artifactId>  
+			<version>0.3.3-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.universAAL.middleware</groupId>

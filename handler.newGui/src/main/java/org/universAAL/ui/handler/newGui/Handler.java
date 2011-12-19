@@ -1,11 +1,11 @@
 package org.universAAL.ui.handler.newGui;
 
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.owl.AllValuesFromRestriction;
 import org.universAAL.middleware.owl.Enumeration;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.sodapop.Publisher;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIRequest;
@@ -131,23 +131,23 @@ public class Handler extends UIHandler {
          * restrictions
          */
     	UIHandlerProfile oep = new UIHandlerProfile();
-        if (Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {
-            /*
-             * if enabled add the restrictions
-            
-            oep.addRestriction(MergedRestriction.getAllValuesRestriction(
-                    UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
-                            new AccessImpairment[] {
-                                    new HearingImpairment(LevelRating.low),
-                                    new HearingImpairment(LevelRating.middle),
-                                    new HearingImpairment(LevelRating.high),
-                                    new HearingImpairment(LevelRating.full),
-                                    new SightImpairment(LevelRating.low),
-                                    new PhysicalImpairment(LevelRating.low)})));
-        }
-        oep.addRestriction(Restriction.getFixedValueRestriction(
-                UIRequest.PROP_OUTPUT_MODALITY, Modality.gui)); */
-        }
-        return oep;
+    	if (Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {
+    		/*
+    		 * if enabled add the restrictions
+    		 */
+    		MergedRestriction mr = new MergedRestriction();
+    		mr.addRestriction(new AllValuesFromRestriction(UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, 
+    				new Enumeration(new AccessImpairment[] {
+							new HearingImpairment(LevelRating.low),
+							new HearingImpairment(LevelRating.middle),
+							new HearingImpairment(LevelRating.high),
+							new HearingImpairment(LevelRating.full),
+							new SightImpairment(LevelRating.low),
+							new PhysicalImpairment(LevelRating.low)})));
+    		oep.addRestriction(mr);
+    	}
+    	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+    			UIRequest.PROP_PRESENTATION_MODALITY, Modality.gui)); 
+    	return oep;
     }
 }
