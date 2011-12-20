@@ -48,6 +48,7 @@ public class GroupLAF extends GroupModel {
              * Tabbed group
              */
             JComponent tb = super.getComponent();
+            tb.getAccessibleContext();
             tb.setFont(ColorLAF.getplain());
             return tb;
         }
@@ -58,6 +59,7 @@ public class GroupLAF extends GroupModel {
             String label;
             if (fc.getLabel() != null) {
                 label = fc.getLabel().getText();
+                
 
             }
             else {

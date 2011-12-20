@@ -19,6 +19,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
 
+import javax.accessibility.AccessibleContext;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -57,6 +58,8 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getIOPanelScroll() {
+    	AccessibleContext ac;
+    
         JPanel ioPanel = super.getIOPanel();
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -102,7 +105,9 @@ public class FormLAF extends FormModel  {
             JPanel header = new JPanel();
             ImageIcon icon = new ImageIcon(
                     (getClass().getResource("/main/UniversAAl_logo.png")));
+            icon.setDescription("UniversAAL Logo Image");
             JLabel logo = new JLabel(icon);
+            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
             header.add(logo);
             return (JPanel) header;
         }
@@ -113,10 +118,13 @@ public class FormLAF extends FormModel  {
     public JFrame getFrame() {
         if (form.isMessage()) {
             frame = new JFrame(form.getTitle());
+            frame.getAccessibleContext().setAccessibleName(form.getTitle());
             JScrollPane io = getIOPanelScroll();
+            io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
                     JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                     JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -124,6 +132,7 @@ public class FormLAF extends FormModel  {
         }
         if (form.isSystemMenu()) {
             frame = new JFrame(form.getTitle());
+            frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             frame.add(getIOPanel(), BorderLayout.CENTER);
             frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
@@ -140,10 +149,14 @@ public class FormLAF extends FormModel  {
              *        then show like a popup.
              */
             frame = new JFrame(form.getTitle());
+            frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             JScrollPane io = getIOPanelScroll();
+            io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = getSubmitPanelScroll(0);
+            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
             JScrollPane sys = getSystemPanelScroll();
+            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.EAST);
             frame.add(sys, BorderLayout.SOUTH);
@@ -154,9 +167,12 @@ public class FormLAF extends FormModel  {
         }
         if (form.isSubdialog()) {
             frame = new JFrame(form.getTitle());
+            frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             JScrollPane sub = getSubmitPanelScroll(0);
+            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
             JScrollPane sys = getSystemPanelScroll();
+            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
             JPanel subpanel = new JPanel(new BorderLayout());
             subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
             for (int i = super.getSubdialogLevel(); i > 1; i--) {
