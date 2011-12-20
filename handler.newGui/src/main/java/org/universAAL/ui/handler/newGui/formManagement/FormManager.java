@@ -17,6 +17,7 @@ package org.universAAL.ui.handler.newGui.formManagement;
 
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.ui.handler.newGui.Handler;
 
 /**
  * Interface to implement Form management Logic
@@ -48,7 +49,7 @@ public interface FormManager {
     public void closeCurrentDialog();
 
     /**
-     * Callback for {@link OSubscriber#cutDialog(String)}
+     * Callback for {@link Handler#cutDialog(String)}
      * @param dialogID
      *         DialogURI to cut
      * @return
