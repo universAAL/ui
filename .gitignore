@@ -10,3 +10,7 @@ handler.web/.classpath
 handler.web/.project
 handler.web/.settings
 handler.web/target
+pom/.classpath
+pom/.project
+pom/.settings
+pom/target
