@@ -22,8 +22,8 @@
 			<artifactId>org.osgi.core</artifactId>
 		</dependency>
 		<dependency>
-				<groupId>org.universAAL.middleware</groupId>
-				<artifactId>mw.container.osgi</artifactId>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.container.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
@@ -54,6 +54,10 @@
 						<Export-Package>org.universAAL.ui.dm.mobile</Export-Package>
 					</instructions>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
