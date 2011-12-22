@@ -1,4 +1,5 @@
 * text=auto !eol
+dm.mobile/artifact.composite -text
 dm.mobile/pom.xml -text
 dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text
 dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/ISubscriber.java -text
@@ -16,6 +17,7 @@ dm/LICENSE-GPL-MYSQL -text
 dm/LICENSE-JGCL.txt -text
 dm/LICENSE.txt -text
 dm/NOTICE.txt -text
+dm/artifact.composite -text
 dm/documentation/dependencies[!!-~]visualization[!!-~]explanation.txt -text
 dm/documentation/ui.dm[!!-~]class[!!-~]diagram[!!-~]20.4.2011.png -text
 dm/documentation/ui.dm[!!-~]dependencies[!!-~]19.4.2011.png -text
@@ -40,6 +42,7 @@ handler.gui/LICENSE-Clearthought.txt -text
 handler.gui/LICENSE-JGCL.txt -text
 handler.gui/LICENSE.txt -text
 handler.gui/NOTICE.txt -text
+handler.gui/artifact.composite -text
 handler.gui/documentation/handler.gui[!!-~]class[!!-~]diagram[!!-~]20.4.2011.png -text
 handler.gui/documentation/handler.gui[!!-~]dependencies[!!-~]19.4.2011.png -text
 handler.gui/pom.xml -text
@@ -117,6 +120,7 @@ handler.web/LICENSE-JGCL.txt -text
 handler.web/LICENSE-MIT11-Bouncycastle.txt -text
 handler.web/LICENSE.txt -text
 handler.web/NOTICE.txt -text
+handler.web/artifact.composite -text
 handler.web/bin/.project -text
 handler.web/bin/LICENSE-BSD-Dojo.txt -text
 handler.web/bin/LICENSE-JGCL.txt -text

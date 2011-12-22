@@ -64,7 +64,7 @@
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
 		</dependency>
@@ -99,6 +99,10 @@
 						<Private-Package>org.universAAL.ui.handler.web</Private-Package>
 					</instructions>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
