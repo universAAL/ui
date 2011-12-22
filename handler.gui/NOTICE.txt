@@ -1,0 +1,43 @@
+PERSONA Graphic User Interface I/O Handler
+
+Copyright 2008-2010 SPIRIT, http://www.spirit-intl.com/
+SPIRIT S.A. E-BUSINESS AND COMMUNICATIONS ENGINEERING 
+
+I. Included Software
+
+Software developed within the PERSONA project is used as the initial version for further developments within the universAAL project.
+
+This product includes software developed by
+Vladium ("http://www.javaworld.com/columns/jw-qna-index.shtml" Vlad Roubtsov)
+Licensed under the Common Public License 1.0
+
+This product includes software developed by
+Clearthought (http://www.clearthought.info/)
+Licensed under The Clearthought Software License, Version 2.0 
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Junit (http://www.junit.org/).
+Licensed under Common Public License 1.0.
+
+This product uses software developed at
+Information-technology Promotion Agency, (http://www.ipa.go.jp/)
+& Precision Modeling Laboratory, Inc., (http://www.pml.co.jp/)
+Copyright 2000 Software Research Associates, Inc., Tokyo, Japan.
+Licensed under specific License.
+
+
+III. License Summary
+- Apache License 2.0
+- Common Public License 1.0
+- JGCL - Java Geometry Class Library
