@@ -84,7 +84,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import layout.TableLayout;
+import info.clearthought.layout.TableLayout;
 
 import org.universAAL.middleware.io.rdf.ChoiceItem;
 import org.universAAL.middleware.io.rdf.Form;
@@ -898,7 +898,7 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	GridBagConstraints layoutConstraints = new GridBagConstraints();
 	// layoutConstraints.insets = new Insets(5,5,5,5);
-	layoutConstraints.anchor = layoutConstraints.NORTHWEST;
+	layoutConstraints.anchor = GridBagConstraints.NORTHWEST;
 
 	gridBagLayout.setConstraints(pane, layoutConstraints);
 	pane.setLayout(gridBagLayout);
@@ -973,7 +973,7 @@ public class SwingRenderer extends JFrame implements ActionListener,
 		    GridBagConstraints gbc = new GridBagConstraints();
 		    gbc.gridx = col;
 		    gbc.gridy = row;
-		    gbc.anchor = gbc.NORTHWEST;
+		    gbc.anchor = GridBagConstraints.NORTHWEST;
 
 		    if (added[j] instanceof JPanel) {
 			Object o = ((JPanel) added[j])
