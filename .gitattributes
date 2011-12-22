@@ -1,8 +1,4 @@
 * text=auto !eol
-dm.mobile/.classpath -text svneol=unset#text/plain
-dm.mobile/.project -text svneol=unset#text/plain
-dm.mobile/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
-dm.mobile/.settings/org.eclipse.m2e.core.prefs -text svneol=unset#text/plain
 dm.mobile/pom.xml -text
 dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text
 dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/ISubscriber.java -text
