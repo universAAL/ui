@@ -1,1 +1,26 @@
 * text=auto !eol
+dm/EXCEPTIONS-CONNECTOR-J -text
+dm/LICENSE-BSD-Jena.txt -text
+dm/LICENSE-CPL-JUnit.txt -text
+dm/LICENSE-GPL-MYSQL -text
+dm/LICENSE-JGCL.txt -text
+dm/LICENSE.txt -text
+dm/NOTICE.txt -text
+dm/documentation/dependencies[!!-~]visualization[!!-~]explanation.txt -text
+dm/documentation/ui.dm[!!-~]class[!!-~]diagram[!!-~]20.4.2011.png -text
+dm/documentation/ui.dm[!!-~]dependencies[!!-~]19.4.2011.png -text
+dm/pom.xml -text
+dm/src/main/java/org/universAAL/ui/dm/Activator.java -text
+dm/src/main/java/org/universAAL/ui/dm/ContextSubscriber.java -text
+dm/src/main/java/org/universAAL/ui/dm/InputSubscriber.java -text
+dm/src/main/java/org/universAAL/ui/dm/MainMenu.java -text
+dm/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
+dm/src/main/java/org/universAAL/ui/dm/OutputPublisher.java -text
+dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
+dm/src/main/resources/org/universAAL/ui/dm/main_menu.txt -text
+dm/src/main/resources/org/universAAL/ui/dm/main_menu_de.txt -text
+dm/src/main/resources/org/universAAL/ui/dm/main_menu_en.txt -text
+dm/src/main/resources/org/universAAL/ui/dm/messages.properties -text
+dm/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
+dm/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
+dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
