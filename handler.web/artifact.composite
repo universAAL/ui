@@ -1,11 +1,9 @@
-#external libraries:
-scan-bundle:mvn:org.apache.felix/javax.servlet/1.0.0
 #uAAL Dependencies:
 scan-composite:mvn:org.universAAL.middleware/mw.container.osgi/1.0.0/composite
 scan-composite:mvn:org.universAAL.middleware/mw.bus.io/1.0.0/composite
 scan-composite:mvn:org.universAAL.middleware/mw.bus.service/1.0.0/composite
 scan-composite:mvn:org.universAAL.middleware/mw.bus.context/1.0.0/composite
 scan-composite:mvn:org.universAAL.ontology/ont.profile/1.0.0/composite
-scan-bundle:mvn:org.universAAL.remote-interoperability/ri.servicegateway/1.0.0
+scan-composite:mvn:org.universAAL.remote-interoperability/ri.servicegateway/1.0.0/composite
 ## Self:
 scan-bundle:mvn:org.universAAL.ui/ui.handler.web/1.0.0
