@@ -3,7 +3,7 @@
   <parent>
     <artifactId>ui.pom</artifactId>
     <groupId>org.universAAL.ui</groupId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
   <groupId>org.universAAL.ui.newGui</groupId>
