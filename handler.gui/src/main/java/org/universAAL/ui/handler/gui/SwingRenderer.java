@@ -84,7 +84,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import layout.TableLayout;
+import info.clearthought.layout.TableLayout;
 
 import org.universAAL.middleware.io.rdf.ChoiceItem;
 import org.universAAL.middleware.io.rdf.Form;
