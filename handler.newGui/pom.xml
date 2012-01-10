@@ -19,14 +19,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.universAAL.ui</groupId>
-        <artifactId>ui.pom</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+		<artifactId>ui.pom</artifactId>
+		<version>1.0.2-SNAPSHOT</version>
         <relativePath>../pom/pom.xml</relativePath>
     </parent>
     <artifactId>ui.handler.newGui</artifactId>
-    <version>1.0.1-SNAPSHOT-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Swing GUI Handler</name>
-    <description>As it should look</description>
     <packaging>bundle</packaging>
     <organization>
         <name>Universidad Politécnica de Madrid</name>
@@ -122,4 +121,5 @@
 		<url>${svn.base.url}handler.newGui</url>
 	</scm>
 	
+    <description>Swing based GUI Handler</description>
 </project>
