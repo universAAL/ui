@@ -30,6 +30,13 @@ ui.handler.gui/src/main/resources/img/doctor.gif -text
 ui.handler.gui/src/main/resources/img/header.jpg -text
 ui.handler.gui/src/main/resources/img/logo.jpg -text
 ui.handler.gui/src/main/resources/img/logo_persona.jpg -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Button_UCC.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Config_center_Button.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Health_button.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Help_Outdoor_Button.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Nutritional_Advisor_Button.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Personal_Agenda_Button.png -text
+ui.handler.gui/src/main/resources/img/mainMenuIcons/Personal_Safety_Button.png -text
 ui.handler.gui/src/main/resources/img/mainMenuIcons/agenda.jpg -text
 ui.handler.gui/src/main/resources/img/mainMenuIcons/nutritional.jpg -text
 ui.handler.gui/src/main/resources/img/nutritional/en/Thumbs.db -text

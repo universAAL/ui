@@ -1331,10 +1331,8 @@ public class SwingRenderer extends JFrame implements ActionListener,
 				Font f = new Font(rendererGuiConstants.getLabelFont(),
 						Font.BOLD, rendererGuiConstants.getLabelFontSize());
 
-				Border border = BorderFactory.createTitledBorder(BorderFactory
-						.createEtchedBorder(EtchedBorder.LOWERED), labelStr,
-						TitledBorder.CENTER, TitledBorder.BELOW_BOTTOM, f,
-						rendererGuiConstants.getLabelFontColor());
+				Border border = BorderFactory
+						.createEtchedBorder(EtchedBorder.LOWERED);
 				submit.setBorder(border);
 			}
 
