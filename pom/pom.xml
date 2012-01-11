@@ -18,7 +18,7 @@
 		<system>GForge - Tracker</system>
 		<url>
 			<![CDATA[http://forge.universaal.org/gf/project/uaal_ui/tracker/]]>
-    </url>
+    	</url>
 	</issueManagement>
 
 	<mailingLists />
@@ -30,6 +30,7 @@
 	</scm>
 
 	<dependencyManagement>
+
 		<dependencies>
 			<dependency>
 				<groupId>junit</groupId>
@@ -51,17 +52,27 @@
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
-				<artifactId>mw.container.osgi</artifactId>
+				<artifactId>mw.acl.bridge</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
-				<artifactId>mw.data.representation</artifactId>
+				<artifactId>mw.acl.interfaces</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
-				<artifactId>mw.bus.service</artifactId>
+				<artifactId>mw.acl.rosgi</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.acl.upnp</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.bus.context</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
@@ -71,7 +82,32 @@
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.middleware</groupId>
-				<artifactId>mw.bus.context</artifactId>
+				<artifactId>mw.bus.model</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.bus.service</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.container.osgi</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.container.xfaces</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.data.representation</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.data.serialization</artifactId>
 				<version>1.0.0</version>
 			</dependency>
 			<dependency>
@@ -84,7 +120,7 @@
 				<artifactId>ont.phWorld</artifactId>
 				<version>1.0.0</version>
 			</dependency>
-		</dependencies>		
+		</dependencies>
 	</dependencyManagement>
 
 	<repositories>
@@ -95,14 +131,16 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository><repository>
+		</repository>
+		<repository>
 			<id>uaal-snapshots</id>
 			<name>universAAL Snapshot Repositories</name>
 			<url>http://depot.universaal.org/maven-repo/snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
-		</repository><repository>
+		</repository>
+		<repository>
 			<id>uaal-thirdparty</id>
 			<name>universAAL ThirdParty Repositories</name>
 			<url>http://depot.universaal.org/maven-repo/thirdparty/</url>
@@ -275,30 +313,29 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>2.7</version>
-				<!-- Default Checkstyle configuration is the Sun Microsystems Definition. As defined in D2.3 -->
+				<!-- Default Checkstyle configuration is the Sun Microsystems Definition. 
+					As defined in D2.3 -->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>2.5</version>
 			</plugin>
-			<!--  
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.5.1</version>
-			</plugin>
-			-->
+			<!-- <plugin> 
+					<groupId>org.codehaus.mojo</groupId> 
+					<artifactId>cobertura-maven-plugin</artifactId> 
+					<version>2.5.1</version>
+				 </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
 				<version>2.3</version>
 			</plugin>
 			<plugin>
-	        	<groupId>org.codehaus.mojo</groupId>
-		        <artifactId>javancss-maven-plugin</artifactId>
-		        <version>2.0-beta-2</version>
-		      </plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javancss-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -370,4 +407,43 @@
 		<module>../dm.mobile</module>
 	</modules>
 
+	<profiles>
+		<profile>
+			<id>release</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>2.3.2</version>
+						<inherited>true</inherited>
+						<configuration>
+							<showWarnings>true</showWarnings>
+							<testSource>1.5</testSource>
+							<testTarget>1.5</testTarget>
+							<source>${maven.compile.source}</source>
+							<target>${maven.compile.target}</target>
+							<optimize>true</optimize>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.8</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
