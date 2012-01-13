@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
 
-import javax.accessibility.AccessibleContext;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -28,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 
 /**
@@ -58,8 +58,6 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getIOPanelScroll() {
-    	AccessibleContext ac;
-    
         JPanel ioPanel = super.getIOPanel();
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -141,7 +139,9 @@ public class FormLAF extends FormModel  {
             //f.setUndecorated(true);
             frame.pack();
         }
-        if (form.isStandardDialog()) {
+        if (form.isStandardDialog() || 
+        		(form.isSubdialog() && 
+        				! Boolean.parseBoolean(Renderer.getProerty(Renderer.NESTED_SUBDIALOGS)))) {
             /*
              *  some further LAF can be done here:
              *   if only submints (no sub dialogs)
@@ -162,10 +162,11 @@ public class FormLAF extends FormModel  {
             frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            //f.setUndecorated(true);
+            frame.setUndecorated(true);
             frame.pack();
         }
-        if (form.isSubdialog()) {
+       if (form.isSubdialog()&& 
+				Boolean.parseBoolean(Renderer.getProerty(Renderer.NESTED_SUBDIALOGS))) {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
@@ -186,7 +187,7 @@ public class FormLAF extends FormModel  {
             frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            //f.setUndecorated(true);
+            frame.setUndecorated(true);
             frame.pack();
         }
         return frame;

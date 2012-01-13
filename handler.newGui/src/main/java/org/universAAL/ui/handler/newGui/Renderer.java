@@ -29,6 +29,7 @@ import org.universAAL.middleware.output.OutputSubscriber;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.handler.newGui.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.newGui.formManagement.FormManager;
 import org.universAAL.ui.handler.newGui.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.newGui.formManagement.SimpleFormManager;
@@ -113,7 +114,6 @@ public final class Renderer extends Thread {
      * @see SimpleFormManager
      */
     private static String QUEUE_MODE = "queued.forms";
-
     /**
      * Directory for configuration files.
      */
@@ -128,6 +128,13 @@ public final class Renderer extends Thread {
      * Error message to display when unable to save property file
      */
     private static final String NO_SAVE = "Unable to save Property File";
+
+    /**
+     * The key value for configuration of subdialog rendering.
+     * Default: nested.subdialogs=false
+     * @see FormLAF#getFrame()
+     */
+    public static String NESTED_SUBDIALOGS = "nested.subdialogs";
 
     /**
      * Constructor, using Singleton pattern:
@@ -159,6 +166,7 @@ public final class Renderer extends Thread {
         fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
         fileProp.put(GUI_LOCATION, "Unkown");
         fileProp.put(QUEUE_MODE, "false");
+        fileProp.put(NESTED_SUBDIALOGS, "false");
         /*
          * Try to load from file, if not create file from defaults.
          */
