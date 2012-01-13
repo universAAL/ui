@@ -20,6 +20,7 @@ import javax.swing.LookAndFeel;
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Label;
+import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 import org.universAAL.ui.handler.newGui.model.InitInterface;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
@@ -123,8 +124,16 @@ public class ModelMapper {
                 Renderer.getProerty(LAFPackageProperty), fc);
         if (model == null) {
             model = tryToLoadClass(DefaultLAFPackage, fc);
+            if (model == null) {
+                // If not found, try to find the model for superclass FormControl.        
+            	Class parentC = fc.getClass().getSuperclass();
+        		// avoid looking for non-renderable FormControls
+            	if (parentC != FormControl.class) {
+            		FormControl parent = (FormControl) parentC.cast(fc);
+            		model = getModelFor(parent);
+            	}
+            }
         }
-        // TODO if not found, try to find the model for superclass FormControl.
         return (Model) model;
     }
 
