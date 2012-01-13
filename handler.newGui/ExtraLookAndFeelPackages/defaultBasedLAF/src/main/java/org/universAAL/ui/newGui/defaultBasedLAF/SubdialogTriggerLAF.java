@@ -15,13 +15,27 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.defaultBasedLAF;
 
+import javax.swing.JComponent;
+
 import org.universAAL.middleware.io.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link SubdialogTrigger} which to model.
+     */
     public SubdialogTriggerLAF(SubdialogTrigger control) {
         super(control);
     }
 
+    /** {@inheritDoc} */
+    public JComponent getComponent() {
+    	return SubmitLAF.buttonDecorate(this, super.getComponent());
+    }
 }

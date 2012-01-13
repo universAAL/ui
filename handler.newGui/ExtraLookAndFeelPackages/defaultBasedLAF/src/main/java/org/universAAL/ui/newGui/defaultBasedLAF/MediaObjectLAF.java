@@ -18,8 +18,16 @@ package org.universAAL.ui.newGui.defaultBasedLAF;
 import org.universAAL.middleware.io.rdf.MediaObject;
 import org.universAAL.ui.handler.newGui.model.FormControl.MediaObjectModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class MediaObjectLAF extends MediaObjectModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link MediaObject} which to model
+     */
     public MediaObjectLAF(MediaObject control) {
         super(control);
     }

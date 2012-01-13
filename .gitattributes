@@ -184,7 +184,6 @@ handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/univer
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Init.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LookAndFeel.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
@@ -194,6 +193,7 @@ handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/univer
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/package.html -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text
