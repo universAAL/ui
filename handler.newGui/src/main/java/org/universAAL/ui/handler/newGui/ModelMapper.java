@@ -20,7 +20,6 @@ import javax.swing.LookAndFeel;
 import org.universAAL.middleware.io.rdf.Form;
 import org.universAAL.middleware.io.rdf.FormControl;
 import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 import org.universAAL.ui.handler.newGui.model.InitInterface;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
