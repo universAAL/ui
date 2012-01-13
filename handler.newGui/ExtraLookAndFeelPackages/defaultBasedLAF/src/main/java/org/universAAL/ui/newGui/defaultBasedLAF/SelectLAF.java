@@ -21,17 +21,23 @@ import javax.swing.JScrollPane;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class SelectLAF extends SelectModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link Select} which to model.
+     */
     public SelectLAF(Select control) {
         super(control);
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.handler.newGui.model.FormControl.SelectModel#getComponent()
-     */
+    /** {@inheritDoc} */
     public JComponent getComponent() {
-        if (!((Select)fc).isMultilevel()) {
+        if (!((Select) fc).isMultilevel()) {
         return new JScrollPane(super.getComponent());
         }
         else {

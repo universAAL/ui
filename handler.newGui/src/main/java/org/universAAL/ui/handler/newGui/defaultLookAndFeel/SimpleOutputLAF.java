@@ -49,6 +49,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
                 JTextArea ta = (JTextArea) comp;
+                ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
                 ta.getAccessibleContext();
@@ -57,10 +58,12 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
                 ta.setForeground(ColorLAF.getfont());
                 JScrollPane sp = new JScrollPane(ta);
+                sp.getAccessibleContext();
                 return sp;
             }
             else {
                 JTextComponent tf = (JTextComponent) comp;
+                tf.getAccessibleContext().setAccessibleName(tf.getText());
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
@@ -69,6 +72,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
         }
         if (content instanceof Boolean) {
             JCheckBox cb = (JCheckBox) comp;
+            cb.getAccessibleContext().setAccessibleName(cb.getName());
             return cb;
         }
         return comp;

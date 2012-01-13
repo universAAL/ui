@@ -40,6 +40,7 @@ public class LabelLAF extends LabelModel {
     /** {@inheritDoc} */
     public JLabel getComponent() {
         JLabel jl = super.getComponent();
+        jl.getAccessibleContext().setAccessibleName(jl.getText());
         jl.setFont(ColorLAF.getLabelFont());
         jl.setForeground(ColorLAF.getborderLineMM());
         return jl;

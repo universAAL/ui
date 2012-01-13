@@ -69,6 +69,7 @@ public class SubmitLAF extends SubmitModel {
 	protected static void setButtonBehaviour(JComponent button, Color border,
 			Color normalF, Color normalB, Color enterF, Color enterB,
 			Color clickF, Color clickB) {
+		button.getAccessibleContext();
 		button.setBorder(new CompoundBorder(BorderFactory
 				.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
 		button.setForeground(normalF);

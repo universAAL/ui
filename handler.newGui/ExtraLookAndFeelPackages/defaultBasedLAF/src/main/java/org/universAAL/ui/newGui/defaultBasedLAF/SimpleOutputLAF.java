@@ -22,45 +22,34 @@ import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.ui.handler.newGui.model.IconFactory;
 import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
 
+/**
+ * @author pabril
+ *
+ */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
+    /**
+     * Constructor.
+     * @param control the {@link SimpleOutput} which to model.
+     */
     public SimpleOutputLAF(SimpleOutput control) {
         super(control);
 
     }
+
+    /** {@inheritDoc} */
     public JComponent getComponent() {
-        /*
-         *  TODO
-         *   Examine value type and select the best component
-         *   that represents it
-         *   if string use
-         *       (disabled) input field or label for short length
-         *      (disabled) textarea for long length
-         *   if boolean use
-         *      (disabled) checkbock
-         *   if number use
-         *       ??
-         *   if ?? use
-         *       progress bar
-         *   if an ontology class do
-         *       ??
-         */
-        Object content = ((SimpleOutput)fc).getContent();
-        //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
-        // getTypeURI returns null
+        Object content = ((SimpleOutput) fc).getContent();
+        JComponent comp = super.getComponent();
         if (content instanceof String) {
-            if (((String)content).length() >= TOO_LONG) {
-                JTextArea ta = new JTextArea(10, 15);
-                ta.setText((String) content);
-                ta.setEditable(false);
-                //ta.setEnabled(false);
+            if (((String) content).length() >= TOO_LONG) {
+                JTextArea ta = (JTextArea) comp;
+                ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
                 ta.getAccessibleContext();
@@ -68,36 +57,25 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
                 ta.setForeground(ColorLAF.getfont());
-                ta.setName(fc.getURI());
                 JScrollPane sp = new JScrollPane(ta);
+                sp.getAccessibleContext();
                 return sp;
             }
             else {
-                JTextComponent tf= new JTextField();
-                tf.setText((String)content);
-                tf.setEditable(false);
+                JTextComponent tf = (JTextComponent) comp;
+                tf.getAccessibleContext().setAccessibleName(tf.getText());
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
-                //tf.setEnabled(false);
-                tf.setToolTipText(fc.getHelpString());
-                tf.setName(fc.getURI());
-
                 return tf;
             }
         }
-        //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
         if (content instanceof Boolean) {
-            JCheckBox cb = new JCheckBox(fc.getLabel().getText(),
-                    IconFactory.getIcon(fc.getLabel().getIconURL()));
-            needsLabel=false;
-            cb.setSelected(((Boolean)content).booleanValue());
-            cb.setEnabled(false);
-            cb.setToolTipText(fc.getHelpString());
-            cb.setName(fc.getURI());
+            JCheckBox cb = (JCheckBox) comp;
+            cb.getAccessibleContext().setAccessibleName(cb.getName());
             return cb;
         }
-        return null;
+        return comp;
     }
 
 

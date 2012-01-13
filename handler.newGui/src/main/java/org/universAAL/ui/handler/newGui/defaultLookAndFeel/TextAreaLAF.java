@@ -43,11 +43,14 @@ public class TextAreaLAF extends TextAreaModel {
         String initialValue = (String) fc.getValue();
         JTextArea ta = new JTextArea(10, 15);
         ta.setText(initialValue);
+        ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
         ta.addCaretListener(this);
         ta.setName(fc.getURI());
         JScrollPane sp = new JScrollPane(ta);
+        sp.setFocusable(true);
+        sp.getAccessibleContext().setAccessibleName(initialValue);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
 

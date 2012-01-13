@@ -123,6 +123,15 @@ public class ModelMapper {
                 Renderer.getProerty(LAFPackageProperty), fc);
         if (model == null) {
             model = tryToLoadClass(DefaultLAFPackage, fc);
+            if (model == null) {
+                // If not found, try to find the model for superclass FormControl.        
+            	Class parentC = fc.getClass().getSuperclass();
+        		// avoid looking for non-renderable FormControls
+            	if (parentC != FormControl.class) {
+            		FormControl parent = (FormControl) parentC.cast(fc);
+            		model = getModelFor(parent);
+            	}
+            }
         }
         // TODO if not found, try to find the model for superclass FormControl.
         return (Model) model;
