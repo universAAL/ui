@@ -58,6 +58,7 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getIOPanelScroll() {
+    	/*
         JPanel ioPanel = super.getIOPanel();
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -67,6 +68,11 @@ public class FormLAF extends FormModel  {
         //        ioPanel.getPreferredSize().height)
                 ioPanel.getHeight()));
         //FIXME resize Layout+scroll
+         */
+    	JPanel ioPanel = super.getIOPanel();
+        JScrollPane sp = new JScrollPane(ioPanel,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         return sp;
     }
 
