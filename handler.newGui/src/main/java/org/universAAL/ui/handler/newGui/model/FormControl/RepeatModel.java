@@ -47,7 +47,10 @@ public class RepeatModel extends GroupModel {
      */
     private Class getChildrenType() {
         FormControl[] children = ((Repeat) fc).getChildren();
-        return TypeMapper.getJavaClass(children[0].getTypeURI());
+        if (children != null && children.length > 0) {
+        	return TypeMapper.getJavaClass(children[0].getTypeURI());
+        }
+        return null;
     }
 
     /**
