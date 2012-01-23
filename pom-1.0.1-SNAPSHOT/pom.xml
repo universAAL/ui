@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.universAAL</groupId>
+		<artifactId>uAAL.pom</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<groupId>org.universAAL.ui</groupId>
+	<artifactId>ui.pom</artifactId>
+	<version>1.0.2-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+	<name>universAAL UI Framework</name>
+	<description>The set of artefacts realizing the universAAL user interface.</description>
+	<properties>
+		<remoteOBR />
+		<!-- Default configuration for compiler source and target JVM -->
+		<maven.compile.source>1.5</maven.compile.source>
+		<maven.compile.target>1.5</maven.compile.target>
+		<gforge.project.name>uaal_ui</gforge.project.name>
+		<release.previous>0.3.0</release.previous>
+		<release.next>1.0.0</release.next>
+	</properties>
+
+	<modules>
+		<module>../dm</module>
+		<module>../handler.gui</module>
+		<module>../handler.web</module>
+		<module>../dm.mobile</module>
+		<module>../handler.newGui</module>
+	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.universAAL.middleware</groupId>
+				<artifactId>mw.pom</artifactId>
+				<version>1.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ontology</groupId>
+				<artifactId>ont.pom</artifactId>
+				<version>1.0.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
+				<artifactId>ui.dm</artifactId>
+				<version>(${release.previous} , ${release.next}]</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
+				<artifactId>ui.dm.mobile</artifactId>
+				<version>(${release.previous} , ${release.next}]</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
+				<artifactId>ui.handler.gui</artifactId>
+				<version>(${release.previous} , ${release.next}]</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
+				<artifactId>ui.handler.web</artifactId>
+				<version>(${release.previous} , ${release.next}]</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
+				<artifactId>ui.handler.newGui</artifactId>
+				<version>(${release.previous} , ${release.next}]</version>
+			</dependency>
+		</dependencies>		
+	</dependencyManagement>
+	
+	<scm>
+		<connection>${svn.base}/pom</connection>
+		<developerConnection>${svn.base}/pom</developerConnection>
+		<url>${svn.base.url}pom</url>
+	</scm>
+
+	<repositories>
+		<repository>
+			<id>uaal</id>
+			<name>universAAL Repositories</name>
+			<url>http://depot.universaal.org/maven-repo/releases/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<developers>
+		<developer>
+			<id>slenzi</id>
+			<email>stefano.lenzi@isti.cnr.it</email>
+			<name>Stefano Lenzi</name>
+			<roles>
+				<role>builder</role>
+				<role>developer</role>
+			</roles>
+			<timezone>CEST/CET</timezone>
+		</developer>
+		<developer>
+			<id>ffurfari</id>
+			<email>francesco.furfari@isti.cnr.it</email>
+			<name>Francesco Furfari</name>
+			<roles>
+				<role>builder</role>
+				<role>developer</role>
+			</roles>
+			<timezone>CEST/CET</timezone>
+		</developer>
+		<developer>
+			<id>saied</id>
+			<email>N/A</email>
+			<name>Saied Tazari</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>CEST/CET</timezone>
+		</developer>
+		<developer>
+			<id>mfreddi</id>
+			<email>matteo.freddi@consultant.vodafoneomnitel.it</email>
+			<name>Matteo Freddi </name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>CEST/CET</timezone>
+		</developer>
+	</developers>
+</project>
