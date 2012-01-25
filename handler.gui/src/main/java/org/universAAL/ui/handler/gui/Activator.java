@@ -29,11 +29,11 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceListener;
 import org.osgi.framework.ServiceReference;
-import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.rdf.TypeMapper;
+import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.User;
 
@@ -78,12 +78,13 @@ public class Activator implements BundleActivator, ServiceListener {
     /**
      * uAAL {@link ModuleContext}
      */
-    private static ModuleContext mcontext;
+    public static ModuleContext mcontext;
 
     /**
      * uAAL Configuration folder {@link BundleConfigHome}
      */
-    private static BundleConfigHome home;
+    private static final BundleConfigHome home = new BundleConfigHome(
+	    "ui.handler.gui");
 
     /**
      * Starting method of org.universAAl.ui.handler.gui bundle.
@@ -99,7 +100,6 @@ public class Activator implements BundleActivator, ServiceListener {
 	BundleContext[] bc = { context };
 	Activator.mcontext = uAALBundleContainer.THE_CONTAINER
 		.registerModule(bc);
-	Activator.home = new BundleConfigHome("ui.handler.gui");
 	String filter = "(objectclass=" + TypeMapper.class.getName() + ")";
 	context.addServiceListener(this, filter);
 	ServiceReference references[] = context.getServiceReferences(null,
@@ -115,32 +115,33 @@ public class Activator implements BundleActivator, ServiceListener {
 		// un-comment the following lines, if you want to test the
 		// handling of messages
 		//
-		/*
-		 * try { sleep(20000); } catch (Exception e) {}
-		 * org.persona.middleware.output.DefaultOutputPublisher op = new
-		 * org
-		 * .persona.middleware.output.DefaultOutputPublisher(context);
-		 * org.persona.middleware.dialog.Form f =
-		 * org.persona.middleware.dialog.Form.newMessage("Msg1",
-		 * "test message #1!");
-		 * org.persona.middleware.output.OutputEvent out = new
-		 * org.persona.middleware.output.OutputEvent(testUser, f, null,
-		 * java.util.Locale.ENGLISH,
-		 * org.persona.ontology.PrivacyLevel.insensible);
-		 * op.publish(out); try { sleep(10000); } catch (Exception e) {}
-		 * f = org.persona.middleware.dialog.Form.newMessage("Msg2",
-		 * "test message #2!"); out = new
-		 * org.persona.middleware.output.OutputEvent(testUser, f, null,
-		 * java.util.Locale.ENGLISH,
-		 * org.persona.ontology.PrivacyLevel.insensible);
-		 * op.publish(out); try { sleep(10000); } catch (Exception e) {}
-		 * f = org.persona.middleware.dialog.Form.newMessage("Msg3",
-		 * "test message #3!"); out = new
-		 * org.persona.middleware.output.OutputEvent(testUser, f, null,
-		 * java.util.Locale.ENGLISH,
-		 * org.persona.ontology.PrivacyLevel.insensible);
-		 * op.publish(out);
-		 */
+		// try { sleep(20000); } catch (Exception e) {}
+		// org.persona.middleware.output.DefaultUICaller op = new
+		// org.persona.middleware.output.DefaultUICaller(context);
+		// org.persona.middleware.dialog.Form f =
+		// org.persona.middleware.dialog.Form.newMessage("Msg1",
+		// "test message #1!");
+		// org.persona.middleware.output.UIRequest out = new
+		// org.persona.middleware.output.UIRequest(testUser, f, null,
+		// java.util.Locale.ENGLISH,
+		// org.persona.ontology.PrivacyLevel.insensible);
+		// op.publish(out);
+		// try { sleep(10000); } catch (Exception e) {}
+		// f = org.persona.middleware.dialog.Form.newMessage("Msg2",
+		// "test message #2!");
+		// out = new org.persona.middleware.output.UIRequest(testUser,
+		// f, null,
+		// java.util.Locale.ENGLISH,
+		// org.persona.ontology.PrivacyLevel.insensible);
+		// op.publish(out);
+		// try { sleep(10000); } catch (Exception e) {}
+		// f = org.persona.middleware.dialog.Form.newMessage("Msg3",
+		// "test message #3!");
+		// out = new org.persona.middleware.output.UIRequest(testUser,
+		// f, null,
+		// java.util.Locale.ENGLISH,
+		// org.persona.ontology.PrivacyLevel.insensible);
+		// op.publish(out);
 	    }
 	}.start();
     }
@@ -215,8 +216,7 @@ public class Activator implements BundleActivator, ServiceListener {
      */
     public static InputStream getConfFileAsStream(String name) {
 	try {
-	    mcontext.registerConfigFile(new Object[] { name });
-	    return Activator.home.getConfFileAsStream(name);
+	    return home.getConfFileAsStream(name);
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

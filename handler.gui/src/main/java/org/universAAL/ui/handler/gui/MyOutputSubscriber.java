@@ -20,11 +20,11 @@
 package org.universAAL.ui.handler.gui;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.output.OutputEvent;
-import org.universAAL.middleware.output.OutputEventPattern;
-import org.universAAL.middleware.output.OutputSubscriber;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.rdf.Form;
 
 /**
  * Subscriber Class to Output Bus.
@@ -34,12 +34,12 @@ import org.universAAL.middleware.rdf.Resource;
  * @author amedrano
  * 
  */
-public class MyOutputSubscriber extends OutputSubscriber {
+public class MyOutputSubscriber extends UIHandler {
 
     /**
      * Event managed at any given moment.
      */
-    protected OutputEvent currentOutputEvent = null;
+    protected UIRequest currentUIRequest = null;
 
     /**
      * Dialog id for the dialog currently handled.
@@ -64,7 +64,7 @@ public class MyOutputSubscriber extends OutputSubscriber {
      *            {@link GUIIOHandler} to which to link {@link SwingRenderer}
      */
     protected MyOutputSubscriber(ModuleContext context,
-	    OutputEventPattern initialSubscription, GUIIOHandler guiHandler) {
+	    UIHandlerProfile initialSubscription, GUIIOHandler guiHandler) {
 	super(context, initialSubscription);
 	renderer = new SwingRenderer(guiHandler);
     }
@@ -78,10 +78,10 @@ public class MyOutputSubscriber extends OutputSubscriber {
      * @param changedProp
      *            one of the following:
      *            <ul>
-     *            <li> {@link OutputEvent#PROP_SCREEN_RESOLUTION_MAX_X}
-     *            <li> {@link OutputEvent#PROP_SCREEN_RESOLUTION_MIN_X}
-     *            <li> {@link OutputEvent#PROP_SCREEN_RESOLUTION_MAX_Y}
-     *            <li> {@link OutputEvent#PROP_SCREEN_RESOLUTION_MIN_Y}
+     *            <li> {@link UIRequest#PROP_SCREEN_RESOLUTION_MAX_X}
+     *            <li> {@link UIRequest#PROP_SCREEN_RESOLUTION_MIN_X}
+     *            <li> {@link UIRequest#PROP_SCREEN_RESOLUTION_MAX_Y}
+     *            <li> {@link UIRequest#PROP_SCREEN_RESOLUTION_MIN_Y}
      *            </ul>
      * @param newVal
      *            the new value which the property should take
@@ -94,50 +94,45 @@ public class MyOutputSubscriber extends OutputSubscriber {
 	 */
 	synchronized (this) {
 	    if (dialogID.equals(this.dialogID)) {
-		if (OutputEvent.PROP_SCREEN_RESOLUTION_MAX_X
-			.equals(changedProp)
+		if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
 			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentOutputEvent
+			&& ((Integer) newVal).intValue() != currentUIRequest
 				.getScreenResolutionMaxX()) {
 		    // TODO: handle change of screenResolutionMaxX
 		    renderer.updateScreenResolution(((Integer) newVal)
 			    .intValue(), -1, -1, -1);
-		    currentOutputEvent
-			    .setScreenResolutionMaxX(((Integer) newVal)
-				    .intValue());
-		} else if (OutputEvent.PROP_SCREEN_RESOLUTION_MAX_Y
+		    currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
+			    .intValue());
+		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y
 			.equals(changedProp)
 			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentOutputEvent
+			&& ((Integer) newVal).intValue() != currentUIRequest
 				.getScreenResolutionMaxY()) {
 		    // TODO: handle change of screenResolutionMaxY
 		    renderer.updateScreenResolution(-1, ((Integer) newVal)
 			    .intValue(), -1, -1);
-		    currentOutputEvent
-			    .setScreenResolutionMaxY(((Integer) newVal)
-				    .intValue());
-		} else if (OutputEvent.PROP_SCREEN_RESOLUTION_MIN_X
+		    currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
+			    .intValue());
+		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_X
 			.equals(changedProp)
 			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentOutputEvent
+			&& ((Integer) newVal).intValue() != currentUIRequest
 				.getScreenResolutionMinX()) {
 		    // TODO: handle change of screenResolutionMinX
 		    renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
 			    .intValue(), -1);
-		    currentOutputEvent
-			    .setScreenResolutionMinX(((Integer) newVal)
-				    .intValue());
-		} else if (OutputEvent.PROP_SCREEN_RESOLUTION_MIN_Y
+		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+			    .intValue());
+		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y
 			.equals(changedProp)
 			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentOutputEvent
+			&& ((Integer) newVal).intValue() != currentUIRequest
 				.getScreenResolutionMinY()) {
 		    // TODO: handle change of screenResolutionMinY
 		    renderer.updateScreenResolution(-1, -1, -1,
 			    ((Integer) newVal).intValue());
-		    currentOutputEvent
-			    .setScreenResolutionMinX(((Integer) newVal)
-				    .intValue());
+		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+			    .intValue());
 		}
 	    }
 	}
@@ -161,8 +156,8 @@ public class MyOutputSubscriber extends OutputSubscriber {
 	synchronized (this) {
 	    if (dialogID.equals(this.dialogID)) {
 		renderer.finish();
-		Resource data = currentOutputEvent.getDialogForm().getData();
-		currentOutputEvent = null;
+		Resource data = currentUIRequest.getDialogForm().getData();
+		currentUIRequest = null;
 		return data;
 	    } else
 		return null;
@@ -176,21 +171,21 @@ public class MyOutputSubscriber extends OutputSubscriber {
      * 
      * @param event
      */
-    public void handleOutputEvent(OutputEvent event) {
+    public void handleUICall(UIRequest event) {
 	Form f = event.getDialogForm();
 	synchronized (this) {
-	    if (f.isMessage() && currentOutputEvent != null) {
+	    if (f.isMessage() && currentUIRequest != null) {
 		/*
 		 * the next line has only a local meaning for this class and is
 		 * used to remember the event object for a popup action for
 		 * later use
 		 */
-		f.setProperty(OutputEvent.MY_URI, event);
+		f.setProperty(UIRequest.MY_URI, event);
 		renderer.popMessage(f);
 	    } else {
-		if (currentOutputEvent != null)
+		if (currentUIRequest != null)
 		    renderer.finish();
-		currentOutputEvent = event;
+		currentUIRequest = event;
 		dialogID = f.getDialogID();
 		renderer.renderForm(f);
 	    }

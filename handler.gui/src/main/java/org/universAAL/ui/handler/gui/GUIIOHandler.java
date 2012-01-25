@@ -19,17 +19,13 @@
  */
 package org.universAAL.ui.handler.gui;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.input.DefaultInputPublisher;
-import org.universAAL.middleware.input.InputEvent;
-import org.universAAL.middleware.input.InputPublisher;
-import org.universAAL.middleware.io.owl.Modality;
-import org.universAAL.middleware.io.rdf.Submit;
-import org.universAAL.middleware.output.OutputEvent;
-import org.universAAL.middleware.output.OutputEventPattern;
-import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.middleware.ui.owl.Modality;
+import org.universAAL.middleware.ui.rdf.Submit;
 
 /**
  * Actual IO GUI Handler.
@@ -37,11 +33,6 @@ import org.universAAL.middleware.owl.Restriction;
  * Handles input and output events.
  */
 public class GUIIOHandler {
-    /**
-     * Logging object for debugging purposes.
-     */
-    private final static Logger log = LoggerFactory
-	    .getLogger(GUIIOHandler.class);
     /**
      * GUI RDF namespace
      */
@@ -51,12 +42,6 @@ public class GUIIOHandler {
      */
     private static final String OUTPUT_LIST_OF_USERS = GUI_NAMESPACE
 	    + "listOfUsers";
-
-    /**
-     * Publishes input events, collected form the gui, so the applications can
-     * subscribe and read the user's input.
-     */
-    private InputPublisher ip = null;
 
     /**
      * collects Output events, produced by applications, to update/prompt the
@@ -77,8 +62,7 @@ public class GUIIOHandler {
 
 	os = new MyOutputSubscriber(context, getOutputSubscriptionParams(),
 		this);
-	ip = new DefaultInputPublisher(context);
-	Login login = new Login(context, ip);
+	Login login = new Login(context, os);
     }
 
     /**
@@ -89,22 +73,21 @@ public class GUIIOHandler {
      *            the botton pressed
      */
     public void dialogFinished(Submit s) {
-	// for the next line, see the comment within handleOutputEvent() above
-	Object o = s.getFormObject().getProperty(OutputEvent.MY_URI);
-	if (o instanceof OutputEvent) {
+	// for the next line, see the comment within handleUIRequest() above
+	Object o = s.getFormObject().getProperty(UIRequest.MY_URI);
+	if (o instanceof UIRequest) {
 	    // a popup action is being finished
-	    os.dialogFinished(s, true);
-	    ip.publish(new InputEvent(((OutputEvent) o).getAddressedUser(),
-		    ((OutputEvent) o).getPresentationAbsLocation(), s));
+	    os.dialogFinished(new UIResponse(
+		    ((UIRequest) o).getAddressedUser(), ((UIRequest) o)
+			    .getPresentationLocation(), s));
 	} else {
-	    os.dialogFinished(s, false);
 	    synchronized (os) {
-		InputEvent ie = new InputEvent(os.currentOutputEvent
-			.getAddressedUser(), os.currentOutputEvent
-			.getPresentationAbsLocation(), s);
+		UIResponse ie = new UIResponse(os.currentUIRequest
+			.getAddressedUser(), os.currentUIRequest
+			.getPresentationLocation(), s);
 		if (s.getDialogID().equals(os.dialogID))
-		    os.currentOutputEvent = null;
-		ip.publish(ie);
+		    os.currentUIRequest = null;
+		os.dialogFinished(ie);
 	    }
 	}
     }
@@ -116,12 +99,12 @@ public class GUIIOHandler {
      * 
      * @return a pattern used to subscribe to the output bus.
      */
-    private OutputEventPattern getOutputSubscriptionParams() {
-	// I am interested in all events with following OutputEventPattern
+    private UIHandlerProfile getOutputSubscriptionParams() {
+	// I am interested in all events with following UIRequestPattern
 	// restrictions
-	OutputEventPattern oep = new OutputEventPattern();
+	UIHandlerProfile oep = new UIHandlerProfile();
 	// oep.addRestriction(Restriction.getAllValuesRestriction(
-	// OutputEvent.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
+	// UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
 	// new AccessImpairment[] {
 	// new HearingImpairment(LevelRating.low),
 	// new HearingImpairment(LevelRating.middle),
@@ -129,8 +112,8 @@ public class GUIIOHandler {
 	// new HearingImpairment(LevelRating.full),
 	// new SightImpairment(LevelRating.low),
 	// new PhysicalImpairment(LevelRating.low)})));
-	oep.addRestriction(Restriction.getFixedValueRestriction(
-		OutputEvent.PROP_OUTPUT_MODALITY, Modality.gui));
+	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+		UIRequest.PROP_PRESENTATION_MODALITY, Modality.gui));
 
 	return oep;
     }
