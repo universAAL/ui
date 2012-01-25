@@ -1,0 +1,8 @@
+The closed arrow head style is used to indicate inheritance. 
+The arrow points in the direction of the dependency.
+
+The open arrow head style illustrates other cases; 
+like: has param, references, calls, returns, accesses. 
+
+The number value on each line shows the number of dependencies 
+(both inheritance and other).
