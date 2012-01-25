@@ -25,13 +25,11 @@ package org.universAAL.ui.handler.gui;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import org.universAAL.middleware.rdf.TypeMapper;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Group;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.Repeat;
 import org.universAAL.middleware.rdf.PropertyPath;
-import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Repeat;
 
 /**
  * This class implements a multiple inheritance of {@link Repeat} and
@@ -92,18 +90,18 @@ public class RepeatTableModel extends AbstractTableModel {
      * @param col
      *            indicates column index
      */
-    public Class<?> getColumnClass(int col) {
-	String type = elems[col].getTypeURI();
-	if (type == null)
-	    return Object.class;
-	Class<?> c = ManagedIndividual.getRegisteredClass(type);
-	if (c == null) {
-	    c = TypeMapper.getJavaClass(type);
-	    if (c == null)
-		return Object.class;
-	}
-	return c;
-    }
+    // public Class<?> getColumnClass(int col) {
+    // String type = elems[col].getTypeURI();
+    // if (type == null)
+    // return Object.class;
+    // Class<?> c = ManagedIndividual.getRegisteredClass(type);
+    // if (c == null) {
+    // c = TypeMapper.getJavaClass(type);
+    // if (c == null)
+    // return Object.class;
+    // }
+    // return c;
+    // }
 
     /*
      * (non-Javadoc)

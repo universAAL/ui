@@ -149,7 +149,6 @@ public class RendererGuiConstants {
     private static final boolean FULLSCREEN = true;
 
     private String formLayoutPrototype;
-    private boolean generalPropertiesRed = false;
 
     /*
      * Getters and Setters for System-wise Variables
@@ -580,6 +579,7 @@ public class RendererGuiConstants {
     }
 
     private Properties readProperties(String propertiesFileName) {
+	Properties p = new Properties();
 	try {
 	    /*
 	     * File propertiesFile = new File(propertiesFileName); if
@@ -590,17 +590,15 @@ public class RendererGuiConstants {
 	     * System.out.println("ERROR in Gui.Handler: File not found! " +
 	     * propertiesFileName); return null; }
 	     */
-	    Properties p = new Properties();
 	    p.load(Activator.getConfFileAsStream(propertiesFileName));
-	    return p;
 
 	} catch (IOException e) {
 	    System.out.println(e.getMessage());
 	    System.out
 		    .println("ERROR in Gui.Handler: unable to load properties! "
 			    + propertiesFileName);
-	    return null;
 	}
+	return p;
     }
 
     /**
@@ -859,7 +857,6 @@ public class RendererGuiConstants {
 
 		String messagesFile = layoutProperties.getProperty(
 			"General.GuiMessages", GUI_MESSAGES_FILENAME);
-
 		Properties messageProperties = readProperties(messagesFile);
 		if (messageProperties == null)
 		    messageProperties = new Properties();

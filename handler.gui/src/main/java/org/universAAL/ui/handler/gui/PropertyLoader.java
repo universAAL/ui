@@ -20,12 +20,10 @@
 package org.universAAL.ui.handler.gui;
 
 import java.io.InputStream;
-import java.util.List;
+import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
-
-import java.util.Enumeration;
 
 /**
  * Load Properties from a .property file.

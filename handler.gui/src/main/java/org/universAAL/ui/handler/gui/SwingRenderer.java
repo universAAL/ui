@@ -19,6 +19,8 @@
  */
 package org.universAAL.ui.handler.gui;
 
+import info.clearthought.layout.TableLayout;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -56,6 +58,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -84,23 +87,23 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
-import info.clearthought.layout.TableLayout;
-
-import org.universAAL.middleware.io.rdf.ChoiceItem;
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Group;
-import org.universAAL.middleware.io.rdf.InputField;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.MediaObject;
-import org.universAAL.middleware.io.rdf.Range;
-import org.universAAL.middleware.io.rdf.Repeat;
-import org.universAAL.middleware.io.rdf.Select;
-import org.universAAL.middleware.io.rdf.Select1;
-import org.universAAL.middleware.io.rdf.SimpleOutput;
-import org.universAAL.middleware.io.rdf.Submit;
-import org.universAAL.middleware.io.rdf.TextArea;
+import org.universAAL.middleware.container.utils.StringUtils;
 import org.universAAL.middleware.rdf.TypeMapper;
+import org.universAAL.middleware.ui.rdf.ChoiceItem;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.middleware.ui.rdf.InputField;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.middleware.ui.rdf.Range;
+import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.Select;
+import org.universAAL.middleware.ui.rdf.Select1;
+import org.universAAL.middleware.ui.rdf.SimpleOutput;
+import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.TextArea;
 
 /**
  * Main Java swing worker. manages all rendering and events for java swing. This
@@ -146,6 +149,7 @@ public class SwingRenderer extends JFrame implements ActionListener,
     private JList list;
     private String listValue = "";
     private String mainContainer = "";
+    private boolean ignoreEvent = false;
 
     // Administrate Panels and Controls
     private Hashtable<FormControl, JComponent> ctrlMap = new Hashtable<FormControl, JComponent>();
@@ -222,19 +226,25 @@ public class SwingRenderer extends JFrame implements ActionListener,
     }
 
     private synchronized void checkInput(JComponent src) {
+	if (ignoreEvent) {
+	    ignoreEvent = false;
+	    return;
+	}
+
 	Object o = src.getClientProperty(PERSONA_FORM_CONTROL);
 	if (o instanceof InputField) {
 	    Object value = null;
 	    if (src instanceof JCheckBox)
 		value = new Boolean(((JCheckBox) src).isSelected());
-	    else if (src instanceof JTextField)
-		/*
-		 * value = Activator.getTypeMapper().getJavaInstance(
-		 * ((JTextField) src).getText(), ((InputField) o).getTypeURI());
-		 */
-		value = TypeMapper.getJavaInstance(
-			((JTextField) src).getText(), ((InputField) o)
-				.getTypeURI());
+	    else if (src instanceof JTextField) {
+		try {
+		    value = TypeMapper.getJavaInstance(((JTextField) src)
+			    .getText(), ((InputField) o).getTypeURI());
+		} catch (Exception e) {
+		    highlightError(src);
+		    return;
+		}
+	    }
 	    if (!((InputField) o).storeUserInput(value))
 		highlightError(src);
 	} else if (o instanceof Select1) {
@@ -481,12 +491,22 @@ public class SwingRenderer extends JFrame implements ActionListener,
     }
 
     private void highlightError(JComponent jcomp) {
+	ignoreEvent = true;
 	Object label = jcomp.getClientProperty(PERSONA_ASSOCIATED_LABEL);
+	Object o = jcomp.getClientProperty(PERSONA_FORM_CONTROL);
 	if (label instanceof JLabel)
 	    ((JLabel) label).setForeground(Color.RED);
 	else if (label instanceof TitledBorder)
 	    ((TitledBorder) label).setTitleColor(Color.RED);
 	jcomp.requestFocus(true);
+
+	if (o instanceof Input) {
+	    String msg = ((Input) o).getAlertString();
+	    if (StringUtils.isNullOrEmpty(msg))
+		msg = "Please retry!";
+	    JOptionPane.showMessageDialog(this, msg, "Wrong input...",
+		    JOptionPane.ERROR_MESSAGE);
+	}
     }
 
     /**
@@ -656,7 +676,6 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	// panel.setLocation((dim.width/2)-(optionPanel.getWidth()/2),
 	// (dim.height/2)-(optionPanel.getHeight()/2));
 	repaintIcons(optionPanel);
-
     }
 
     /**
@@ -671,7 +690,6 @@ public class SwingRenderer extends JFrame implements ActionListener,
 	    this.ioh = ioh;
 	    this.fr = fr;
 	    this.s = s;
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -744,11 +762,10 @@ public class SwingRenderer extends JFrame implements ActionListener,
 		(f.isSystemMenu()) ? "1, 2, 2, 2" : "1, 2, 1, 2");
 
 	if (rendererGuiConstants.isFullScreen()) {
-		this.setExtendedState(MAXIMIZED_BOTH);
-		this.setUndecorated(true);
-	}
-	else
-		this.setSize(800, 600);
+	    this.setExtendedState(MAXIMIZED_BOTH);
+	    this.setUndecorated(true);
+	} else
+	    this.setSize(800, 600);
 
 	Runnable redrawContainer = new Runnable() {
 	    public void run() {
