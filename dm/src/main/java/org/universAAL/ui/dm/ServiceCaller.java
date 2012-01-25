@@ -47,7 +47,7 @@ public class ServiceCaller extends
      */
     @Override
     public void handleResponse(String reqID, ServiceResponse response) {
-	LogUtils.logInfo(Activator.getBundleContext(), ServiceCaller.class,
+	LogUtils.logInfo(Activator.getModuleContext(), ServiceCaller.class,
 		"handleResponse",
 		new Object[] { "Reply to ", reqID, " received: ",
 			response.getCallStatus().getLocalName() }, null);

@@ -24,11 +24,11 @@ import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 
-import org.universAAL.middleware.io.rdf.Group;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.Submit;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.ServiceRequest;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Submit;
 
 /**
  * A set of main menus. The main menu of the Dialog Manager represents a list of

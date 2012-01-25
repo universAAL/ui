@@ -61,10 +61,9 @@ dm/documentation/ui.dm[!!-~]dependencies[!!-~]19.4.2011.png -text
 dm/pom.xml -text
 dm/src/main/java/org/universAAL/ui/dm/Activator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ContextSubscriber.java -text
-dm/src/main/java/org/universAAL/ui/dm/InputSubscriber.java -text
+dm/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
 dm/src/main/java/org/universAAL/ui/dm/MainMenu.java -text
 dm/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
-dm/src/main/java/org/universAAL/ui/dm/OutputPublisher.java -text
 dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 dm/src/main/resources/org/universAAL/ui/dm/main_menu.txt -text
 dm/src/main/resources/org/universAAL/ui/dm/main_menu_de.txt -text
