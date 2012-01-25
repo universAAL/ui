@@ -33,7 +33,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
-import org.universAAL.middleware.owl.Restriction;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.service.ServiceRequest;
 
 import com.hp.hpl.jena.db.DBConnection;
@@ -83,20 +83,20 @@ public class ContextSubscriber extends
 			String aux = extractURI(rs.getString(1));
 			if (aux != null)
 			    cep
-				    .addRestriction(Restriction
+				    .addRestriction(MergedRestriction
 					    .getFixedValueRestriction(
 						    ContextEvent.PROP_RDF_SUBJECT,
 						    aux));
 			aux = extractURI(rs.getString(2));
 			if (aux != null)
 			    cep
-				    .addRestriction(Restriction
+				    .addRestriction(MergedRestriction
 					    .getAllValuesRestriction(
 						    ContextEvent.PROP_RDF_SUBJECT,
 						    aux));
 			aux = extractURI(rs.getString(3));
 			if (aux != null)
-			    cep.addRestriction(Restriction
+			    cep.addRestriction(MergedRestriction
 				    .getFixedValueRestriction(
 					    ContextEvent.PROP_RDF_PREDICATE,
 					    aux));
@@ -105,15 +105,16 @@ public class ContextSubscriber extends
 		    addNewRegParams(regParams
 			    .toArray(new ContextEventPattern[regParams.size()]));
 		} catch (SQLException e) {
-		    LogUtils.logWarn(Activator.getBundleContext(),
+		    LogUtils.logWarn(Activator.getModuleContext(),
 			    ContextSubscriber.class, "init", null, e);
+
 		} finally {
 		    closeResultSet(rs);
 		}
 	    }
 	    conn.close();
 	} catch (Exception e) {
-	    LogUtils.logError(Activator.getBundleContext(),
+	    LogUtils.logError(Activator.getModuleContext(),
 		    ContextSubscriber.class, "init", null, e);
 	}
     }
@@ -130,7 +131,7 @@ public class ContextSubscriber extends
 	    rs.close();
 	    stmt.close();
 	} catch (SQLException e) {
-	    LogUtils.logWarn(Activator.getBundleContext(),
+	    LogUtils.logWarn(Activator.getModuleContext(),
 		    ContextSubscriber.class, "closeResultSet", null, e);
 	}
     }
@@ -236,8 +237,8 @@ public class ContextSubscriber extends
 		    if (o instanceof ServiceRequest)
 			LogUtils
 				.logInfo(
-					Activator.getBundleContext(),
-					ContextSubscriber.class,
+					Activator.getModuleContext(),
+					getClass(),
 					"handleContextEvent",
 					new Object[] { "Context-aware service call proceeded with success!" },
 					null);
@@ -246,8 +247,8 @@ public class ContextSubscriber extends
 		    else
 			LogUtils
 				.logWarn(
-					Activator.getBundleContext(),
-					ContextSubscriber.class,
+					Activator.getModuleContext(),
+					getClass(),
 					"handleContextEvent",
 					new Object[] {
 						"could not create the service request ",
@@ -257,7 +258,7 @@ public class ContextSubscriber extends
 	    }
 	    conn.close();
 	} catch (Exception e) {
-	    LogUtils.logWarn(Activator.getBundleContext(),
+	    LogUtils.logWarn(Activator.getModuleContext(),
 		    ContextSubscriber.class, "handleContextEvent", null, e);
 	}
     }
@@ -280,7 +281,7 @@ public class ContextSubscriber extends
 		throw new SQLException("ResultSet is null!");
 	    return rs;
 	} catch (SQLException e) {
-	    LogUtils.logWarn(Activator.getBundleContext(),
+	    LogUtils.logWarn(Activator.getModuleContext(),
 		    ContextSubscriber.class, "select", new Object[] {
 			    "SQL exception: 'select(", sql, ")' - " }, e);
 	    try {
@@ -288,8 +289,8 @@ public class ContextSubscriber extends
 	    } catch (Exception e1) {
 		LogUtils
 			.logWarn(
-				Activator.getBundleContext(),
-				ContextSubscriber.class,
+				Activator.getModuleContext(),
+				getClass(),
 				"select",
 				new Object[] { "Exception while closing statement - " },
 				e1);

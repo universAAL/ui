@@ -32,13 +32,14 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.Messages;
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.io.owl.AccessImpairment;
-import org.universAAL.middleware.io.owl.Gender;
-import org.universAAL.middleware.io.owl.Modality;
-import org.universAAL.middleware.io.owl.PrivacyLevel;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
+import org.universAAL.middleware.ui.UICaller;
+import org.universAAL.middleware.ui.owl.AccessImpairment;
+import org.universAAL.middleware.ui.owl.Gender;
+import org.universAAL.middleware.ui.owl.Modality;
+import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.ontology.profile.ElderlyProfile;
 import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.HealthProfile;
@@ -58,14 +59,12 @@ import com.hp.hpl.jena.rdf.model.Model;
 public class Activator extends Thread implements BundleActivator {
 
     private static ModuleContext context = null;
-    private static BundleContext bundleContext = null;
     static final Logger logger = LoggerFactory.getLogger(Activator.class);
     private static JenaConverter jenaConverter = null;
     private static MessageContentSerializer serializer = null;
 
     private static ContextSubscriber contextSubscriber = null;
-    private static InputSubscriber inputSubscriber = null;
-    private static OutputPublisher outputPublisher = null;
+    private static UICaller outputPublisher = null;
     private static ServiceCaller serviceCaller = null;
 
     /**
@@ -103,7 +102,7 @@ public class Activator extends Thread implements BundleActivator {
      * 
      * @return The bundle context.
      */
-    static ModuleContext getBundleContext() {
+    static ModuleContext getModuleContext() {
 	return context;
     }
 
@@ -147,31 +146,12 @@ public class Activator extends Thread implements BundleActivator {
     }
 
     /**
-     * Get the input subscriber which handles input events from the input bus.
-     * 
-     * @return The input subscriber.
-     */
-    static InputSubscriber getInputSubscriber() {
-	return inputSubscriber;
-    }
-
-    /**
      * Get the model converter for accessing the database.
      * 
      * @return The model converter.
      */
     static JenaConverter getModelConverter() {
 	return jenaConverter;
-    }
-
-    /**
-     * Get output publisher which handles dialogs and messages and interacts
-     * with the output bus.
-     * 
-     * @return The output publisher.
-     */
-    static OutputPublisher getOutputPublisher() {
-	return outputPublisher;
     }
 
     /**
@@ -236,14 +216,12 @@ public class Activator extends Thread implements BundleActivator {
      * @param pr
      */
     private static void insert(Resource pr) {
-	System.err.println("dm Activator insert to db test ElderlyUser: " + pr);
 	try {
 	    DBConnection conn = getConnection();
 	    if (conn.containsModel(JENA_MODEL_NAME)) {
 		ModelRDB CHModel = ModelRDB.open(conn, JENA_MODEL_NAME);
 		Model m = jenaConverter.toJenaResource(pr).getModel();
-		// System.out.println("jena model m: "+m.toString());
-		// m.write(System.out, "RDF/XML-ABBREV");
+		m.write(System.out, "RDF/XML-ABBREV");
 		// CHModel.difference(m).write(System.out, "RDF/XML-ABBREV");
 		CHModel.setDoDuplicateCheck(true);
 		CHModel.add(m);
@@ -251,8 +229,7 @@ public class Activator extends Thread implements BundleActivator {
 	    }
 	    conn.close();
 	} catch (Exception e) {
-	    LogUtils.logWarn(Activator.context, Activator.class, "insert",
-		    null, e);
+	    LogUtils.logWarn(context, Activator.class, "insert", null, e);
 	}
     }
 
@@ -284,66 +261,36 @@ public class Activator extends Thread implements BundleActivator {
      */
     public void run() {
 	try {
-	    messages = new Messages(bundleContext.getBundle().getSymbolicName());
+	    messages = new Messages(context.getID());
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
-			    Activator.context,
-			    Activator.class,
-			    "start",
+			    context,
+			    getClass(),
+			    "run",
 			    new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
 			    e);
 	    return;
 	}
 
 	contextSubscriber = new ContextSubscriber(context);
-	// it is important to instantiate the input subscriber before the output
-	// publisher
-	inputSubscriber = new InputSubscriber(context);
-	// loadTestData();
-	outputPublisher = new OutputPublisher(context);
+	outputPublisher = new DialogManagerImpl(context);
 	serviceCaller = new ServiceCaller(context);
-	// changeTestData();
     }
 
-    // static void changeTestData() {
-    // Resource b = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
-    // "boiler1");
-    // b.addType("http://ontology.persona.ratio.it/DummyServiceProvider.owl#Boiler",
-    // true);
-    // Location pl = new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX +
-    // "livingRoom");
-    // b.setProperty(PhysicalThing.PROP_PHYSICAL_LOCATION, pl);
-    // insert(b);
-    // Temperature t = new Temperature();
-    // t.setValue(21);
-    // pl.setTargetTemperature(t);
-    // new DefaultContextPublisher(context, null).publish(new ContextEvent(pl,
-    // Location.PROP_TARGET_TEMPERATURE));
-    // }
     /**
      * Method for OSGi bundle: start this bundle.
      */
     public void start(BundleContext context) throws Exception {
 	Activator.context = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
-	Activator.bundleContext = context;
 	ServiceReference sref = context
 		.getServiceReference(MessageContentSerializer.class.getName());
 	serializer = (sref == null) ? null : (MessageContentSerializer) context
 		.getService(sref);
-
-	/*
-	 * test block ServiceReference references[] = context
-	 * .getServiceReferences(null, null); for (int i = 0; references != null
-	 * && i < references.length; i++) System.out.println("reference[" + i +
-	 * "].toString: " + references[i].toString());
-	 */
-
-	ServiceReference sref2 = context
-		.getServiceReference(JenaConverter.class.getName());
-	jenaConverter = (sref2 == null) ? null : (JenaConverter) context
-		.getService(sref2);
+	sref = context.getServiceReference(JenaConverter.class.getName());
+	jenaConverter = (sref == null) ? null : (JenaConverter) context
+		.getService(sref);
 	start();
     }
 
