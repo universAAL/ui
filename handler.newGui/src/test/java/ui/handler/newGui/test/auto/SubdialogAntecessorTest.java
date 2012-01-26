@@ -17,6 +17,9 @@ package ui.handler.newGui.test.auto;
 
 import junit.framework.TestCase;
 
+import org.universAAL.middleware.owl.DataRepOntology;
+import org.universAAL.middleware.owl.OntologyManagement;
+import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.newGui.model.FormModelMapper;
@@ -31,6 +34,9 @@ public class SubdialogAntecessorTest extends TestCase {
     Form root, d1, d2, d11, d12, d111;
 
     public void setUp() {
+	OntologyManagement.getInstance().register(new DataRepOntology());
+	OntologyManagement.getInstance().register(new UIBusOntology());
+	
         root = Form.newDialog("root", (String) null);
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
         d2 = Form.newSubdialog("Dialog 2", root.getDialogID());
