@@ -25,6 +25,17 @@ dm-1.0.1-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/messages.properties -t
 dm-1.0.1-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 dm-1.0.1-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
 dm-1.0.1-SNAPSHOT/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
+dm.mobile-1.0.1-SNAPSHOT/artifact.composite -text
+dm.mobile-1.0.1-SNAPSHOT/pom.xml -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/ISubscriber.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MainMenu.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MenuNode.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/OPublisher.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/SCaller.java -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages.properties -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages_de.properties -text
+dm.mobile-1.0.1-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages_en.properties -text
 handler.gui-1.0.1-SNAPSHOT/.checkstyle -text
 handler.gui-1.0.1-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
 handler.gui-1.0.1-SNAPSHOT/LICENSE-Clearthought.txt -text
