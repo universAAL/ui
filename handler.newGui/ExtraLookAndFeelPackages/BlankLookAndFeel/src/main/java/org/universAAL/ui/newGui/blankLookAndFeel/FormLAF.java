@@ -21,7 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 
 /**

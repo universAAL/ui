@@ -25,7 +25,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.Model;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 

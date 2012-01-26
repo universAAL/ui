@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.TextArea;
+import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.ui.handler.newGui.model.FormControl.TextAreaModel;
 
 public class TextAreaLAF extends TextAreaModel {

@@ -19,10 +19,10 @@ import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Group;
-import org.universAAL.middleware.io.rdf.Input;
-import org.universAAL.middleware.io.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.TypeMapper;
 

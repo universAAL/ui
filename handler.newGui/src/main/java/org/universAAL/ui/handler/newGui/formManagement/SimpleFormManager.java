@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.formManagement;
 
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.rdf.Resource;
 
 /**
@@ -28,9 +28,9 @@ import org.universAAL.middleware.rdf.Resource;
 public class SimpleFormManager implements FormManager {
 
     /**
-     * the current {@link OutputEvent} being processed
+     * the current {@link UIRequest} being processed
      */
-    private OutputEvent currentForm = null;
+    private UIRequest currentForm = null;
 
     /**
      * The {@link FrameManager} corresponding to the
@@ -39,14 +39,14 @@ public class SimpleFormManager implements FormManager {
     private FrameManager frame;
 
     /** {@inheritDoc} */
-    public void addDialog(OutputEvent oe) {
+    public void addDialog(UIRequest oe) {
             closeCurrentDialog();
             currentForm = oe;
             frame = new FrameManager(currentForm.getDialogForm());
     }
 
     /** {@inheritDoc} */
-    public OutputEvent getCurrentDialog() {
+    public UIRequest getCurrentDialog() {
         return currentForm;
     }
 

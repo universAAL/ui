@@ -176,10 +176,8 @@ handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/unive
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SubmitLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/TextAreaLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
-handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Init.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
@@ -203,9 +201,8 @@ handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/servi
 handler.newGui/LICENSE.txt -text svneol=unset#text/plain
 handler.newGui/artifact.composite -text
 handler.newGui/pom.xml -text
-handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/IPublisher.java -text
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/Handler.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/ModelMapper.java -text svneol=unset#text/plain
-handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/OSubscriber.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/Renderer.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/ColorLAF.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/FormLAF.java -text svneol=unset#text/plain
@@ -225,9 +222,9 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/package.html -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FormManager.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FrameManager.java -text svneol=unset#text/plain
-handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/OutputEventPriorityComparator.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/QueuedFormManager.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/SimpleFormManager.java -text svneol=unset#text/plain
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/formManagement/package.html -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/GroupModel.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/InputFieldModel.java -text

@@ -17,18 +17,18 @@ package org.universAAL.ui.handler.newGui.formManagement;
 
 import java.util.PriorityQueue;
 
-import org.universAAL.middleware.io.owl.DialogType;
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.owl.DialogType;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.ui.handler.newGui.Renderer;
 
 /**
- * This {@link FormManager} queues the {@link OutputEvent}s in a
+ * This {@link FormManager} queues the {@link UIRequest}s in a
  * priority queue according to the dialog's priority. And displays
- * the most prioritarial {@link OutputEvent}.
+ * the most prioritarial {@link UIRequest}.
  * Message type dialogs don't enter the priority queue.
  * @author amedrano
- * @see OutputEventPriorityComparator
+ * @see UIRequestPriorityComparator
  */
 public class QueuedFormManager implements FormManager {
 
@@ -38,15 +38,15 @@ public class QueuedFormManager implements FormManager {
     public static final int QUEUE_MAX = 20;
 
     /**
-     * the priority queue of {@link OutputEvent}s
+     * the priority queue of {@link UIRequest}s
      */
     private PriorityQueue dialogQueue;
 
     /**
-     * the current {@link OutputEvent} being
+     * the current {@link UIRequest} being
      * displayed
      */
-    private OutputEvent currentDialog;
+    private UIRequest currentDialog;
 
     /**
      * the {@link FrameManager} for the current dialog
@@ -63,12 +63,12 @@ public class QueuedFormManager implements FormManager {
      *
      */
     public QueuedFormManager() {
-        dialogQueue = new PriorityQueue(QUEUE_MAX, new OutputEventPriorityComparator());
+        dialogQueue = new PriorityQueue(QUEUE_MAX, new UIRequestPriorityComparator());
     }
 
 
     /** {@inheritDoc} */
-    public void addDialog(OutputEvent oe) {
+    public void addDialog(UIRequest oe) {
         /*
          *   check if its the same as the current dialog
          *       if so then update current dialog? => IgnoreEvent!
@@ -98,7 +98,7 @@ public class QueuedFormManager implements FormManager {
     }
 
     /** {@inheritDoc} */
-    public OutputEvent getCurrentDialog() {
+    public UIRequest getCurrentDialog() {
         return currentDialog;
     }
 
@@ -108,7 +108,7 @@ public class QueuedFormManager implements FormManager {
      */
     private void closeCurrentDialogAndLoadNext() {
         if (dialogQueue.peek() != null
-                && !((OutputEvent) dialogQueue.peek()).getType()
+                && !((UIRequest) dialogQueue.peek()).getType()
                 .equals(DialogType.message)
                 && currentDialog != null) {
             /*
@@ -138,19 +138,19 @@ public class QueuedFormManager implements FormManager {
              * dialog queue empty request main menu!
              */
             Renderer.getInstance()
-            .ipublisher.requestMainMenu();
+            .handler.requestMainMenu();
         }
         else {
-            if (((OutputEvent) dialogQueue.peek()).getType()
+            if (((UIRequest) dialogQueue.peek()).getType()
                     .equals(DialogType.message)) {
                 /*
                  * if its a message, just render message
                  */
-                mFrame = new FrameManager(((OutputEvent) dialogQueue.poll())
+                mFrame = new FrameManager(((UIRequest) dialogQueue.poll())
                         .getDialogForm());
             }
             else {
-                currentDialog = (OutputEvent) dialogQueue.poll();
+                currentDialog = (UIRequest) dialogQueue.poll();
                 dFrame = new FrameManager(currentDialog.getDialogForm());
             }
         }
@@ -168,7 +168,7 @@ public class QueuedFormManager implements FormManager {
      */
     public void closeCurrentDialog() {
         if (dialogQueue.peek() != null
-                && !((OutputEvent) dialogQueue.peek()).getType()
+                && !((UIRequest) dialogQueue.peek()).getType()
                 .equals(DialogType.message)
                 && currentDialog != null) {
             /*

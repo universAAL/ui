@@ -17,7 +17,7 @@ package ui.handler.newGui.test.auto;
 
 import junit.framework.TestCase;
 
-import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.newGui.model.FormModelMapper;
 

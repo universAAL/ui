@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModel;
 
 public class RepeatLAF extends RepeatModel {

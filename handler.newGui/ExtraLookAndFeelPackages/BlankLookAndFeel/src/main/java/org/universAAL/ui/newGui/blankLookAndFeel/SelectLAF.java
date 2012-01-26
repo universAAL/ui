@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.Select;
+import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
 
 public class SelectLAF extends SelectModel {

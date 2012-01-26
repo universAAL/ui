@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.Range;
+import org.universAAL.middleware.ui.rdf.Range;
 import org.universAAL.ui.handler.newGui.model.FormControl.RangeModel;
 
 public class RangeLAF extends RangeModel {

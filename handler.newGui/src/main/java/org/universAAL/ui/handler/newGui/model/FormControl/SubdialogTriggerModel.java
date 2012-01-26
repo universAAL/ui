@@ -21,10 +21,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JToggleButton;
 
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.SubdialogTrigger;
-import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 import org.universAAL.ui.handler.newGui.model.FormModelMapper;
@@ -87,7 +87,7 @@ implements ActionListener {
          *  TODO use needsSelection() in case of SubdialogTriggers in
          *  Repeat Tables, to check if the submitID is ready
          */
-    Renderer.getInstance().ipublisher.summit((Submit) fc);
+    Renderer.getInstance().handler.summit((Submit) fc);
         //Renderer.getInstance().getFormManagement().closeCurrentDialog();
     }
 

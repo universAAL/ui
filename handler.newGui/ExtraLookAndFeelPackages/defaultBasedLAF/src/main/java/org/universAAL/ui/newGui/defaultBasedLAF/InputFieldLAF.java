@@ -17,7 +17,7 @@ package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.InputField;
+import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel;
 
 /**

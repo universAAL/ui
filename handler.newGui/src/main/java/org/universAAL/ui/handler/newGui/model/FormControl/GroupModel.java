@@ -23,8 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Group;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.ui.handler.newGui.ModelMapper;
 import org.universAAL.ui.handler.newGui.model.IconFactory;

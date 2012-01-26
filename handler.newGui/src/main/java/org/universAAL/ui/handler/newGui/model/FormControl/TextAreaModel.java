@@ -23,8 +23,8 @@ import javax.swing.JTextArea;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.TextArea;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.TextArea;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>

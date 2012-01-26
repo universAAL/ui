@@ -15,9 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.formManagement;
 
-import org.universAAL.middleware.output.OutputEvent;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.ui.handler.newGui.OSubscriber;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.ui.handler.newGui.Handler;
 
 /**
  * Interface to implement Form management Logic
@@ -33,15 +33,15 @@ public interface FormManager {
      * at the very same instant that it is received or it should wait for
      * more important dialogs to terminate.
      * @param oe
-     *         {@link OutputEvent} that includes the dialog to show
+     *         {@link UIRequest} that includes the dialog to show
      */
-    public void addDialog(OutputEvent oe);
+    public void addDialog(UIRequest oe);
 
     /**
      * get the Dialog Being currently displayed.
-     * @return the {@link OutputEvent} currently being displayed
+     * @return the {@link UIRequest} currently being displayed
      */
-    public OutputEvent getCurrentDialog();
+    public UIRequest getCurrentDialog();
 
     /**
      * close the current dialog
@@ -49,7 +49,7 @@ public interface FormManager {
     public void closeCurrentDialog();
 
     /**
-     * Callback for {@link OSubscriber#cutDialog(String)}
+     * Callback for {@link Handler#cutDialog(String)}
      * @param dialogID
      *         DialogURI to cut
      * @return

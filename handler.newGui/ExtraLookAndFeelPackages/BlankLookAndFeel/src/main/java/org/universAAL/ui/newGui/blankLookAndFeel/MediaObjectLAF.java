@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.MediaObject;
+import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.newGui.model.FormControl.MediaObjectModel;
 
 public class MediaObjectLAF extends MediaObjectModel {

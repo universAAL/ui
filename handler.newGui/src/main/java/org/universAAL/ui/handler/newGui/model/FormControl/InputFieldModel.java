@@ -28,8 +28,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.JTextComponent;
 
-import org.universAAL.middleware.io.rdf.Input;
-import org.universAAL.middleware.io.rdf.InputField;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
 
 /**

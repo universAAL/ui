@@ -21,12 +21,11 @@ import java.io.FileOutputStream;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.input.InputPublisher;
-import org.universAAL.middleware.io.owl.AccessImpairment;
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.output.OutputEvent;
-import org.universAAL.middleware.output.OutputSubscriber;
 import org.universAAL.middleware.owl.supply.AbsLocation;
+import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.owl.AccessImpairment;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.FormLAF;
@@ -52,16 +51,11 @@ public final class Renderer extends Thread {
     private static Renderer singleton = null;
 
     /**
-     * The specific {@link InputPublisher}
+     * The specific {@link UIHandler}
      * instance for Swing GUI Handler.
      */
-    public IPublisher ipublisher = null;
+    public Handler handler = null;
 
-    /**
-     * The specific {@link OutputSubscriber}
-     * instance for Swing GUI Handler.
-     */
-    public OSubscriber osubscriber = null;
 
     /**
      * uAAL {@link ModuleContext} to make uAAL operations
@@ -143,8 +137,7 @@ public final class Renderer extends Thread {
      * @see Renderer#getInstance()
      */
     private Renderer() {
-        ipublisher = new IPublisher(Renderer.moduleContext);
-        osubscriber = new OSubscriber(Renderer.moduleContext);
+        handler = new Handler(Renderer.moduleContext);
         loadProperties();
         ModelMapper.updateLAF();
         if (Boolean.parseBoolean(getProerty(QUEUE_MODE))) {
@@ -254,8 +247,7 @@ public final class Renderer extends Thread {
          *  should there be some feedback to the application - DM?
          */
         fm.flush();
-        ipublisher.close();
-        osubscriber.close();
+        handler.close();
         /*
          * Save property file
          */
@@ -304,7 +296,7 @@ public final class Renderer extends Thread {
      *         ontlogical representation of the user.
      */
     public User getCurrentUser() {
-        return ipublisher.getCurrentUser();
+        return handler.getCurrentUser();
     }
 
     /**
@@ -312,9 +304,8 @@ public final class Renderer extends Thread {
      * @param user
      */
     void setCurrentUser(User user) {
-        ipublisher.setCurrentUser(user);
-        osubscriber.userAuthenticated(user);
-        ipublisher.requestMainMenu();
+        handler.setCurrentUser(user);
+        handler.requestMainMenu();
     }
 
     /**
@@ -325,7 +316,7 @@ public final class Renderer extends Thread {
      * @return
      *         true is impairment is present in the current Dialog event.
      * @see AccessImpairment
-     * @see OutputEvent
+     * @see UIRequest
      */
     public boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();

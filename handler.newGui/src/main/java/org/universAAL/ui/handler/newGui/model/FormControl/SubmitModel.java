@@ -21,9 +21,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Input;
-import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
 import org.universAAL.ui.handler.newGui.model.Model;
@@ -73,7 +73,7 @@ implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Input missing = ((Submit) fc).getMissingInputControl();
         if (isValid((JComponent) e.getSource()) && missing == null) {
-            Renderer.getInstance().ipublisher.summit((Submit) fc);
+            Renderer.getInstance().handler.summit((Submit) fc);
             Renderer.getInstance().getFormManagement().closeCurrentDialog();
         }
         else {

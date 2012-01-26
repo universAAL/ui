@@ -19,7 +19,7 @@ import java.awt.Color;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
 public class SubmitLAF extends SubmitModel {

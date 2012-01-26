@@ -18,7 +18,7 @@ package org.universAAL.ui.handler.newGui.model;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
-import org.universAAL.middleware.io.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Label;
  /**
   * A model for Labels.
   * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>

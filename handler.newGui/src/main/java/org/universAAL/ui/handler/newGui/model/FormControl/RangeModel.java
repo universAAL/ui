@@ -26,7 +26,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.universAAL.middleware.io.rdf.Range;
+import org.universAAL.middleware.ui.rdf.Range;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>

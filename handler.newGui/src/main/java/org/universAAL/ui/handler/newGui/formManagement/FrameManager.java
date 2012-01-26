@@ -17,7 +17,7 @@ package org.universAAL.ui.handler.newGui.formManagement;
 
 import javax.swing.JFrame;
 
-import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.newGui.ModelMapper;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 

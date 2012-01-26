@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.newGui.model.FormControl.GroupModel;
 
 public class GroupLAF extends GroupModel {
