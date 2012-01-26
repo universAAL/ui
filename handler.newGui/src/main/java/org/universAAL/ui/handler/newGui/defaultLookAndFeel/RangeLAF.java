@@ -17,7 +17,7 @@ package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.Range;
+import org.universAAL.middleware.ui.rdf.Range;
 import org.universAAL.ui.handler.newGui.model.FormControl.RangeModel;
 
 /**

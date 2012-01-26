@@ -17,7 +17,7 @@ package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import javax.swing.JLabel;
 
-import org.universAAL.middleware.io.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
 
 /**

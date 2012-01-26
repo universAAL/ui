@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
 
 public class SubdialogTriggerLAF extends SubdialogTriggerModel {

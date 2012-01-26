@@ -18,8 +18,8 @@
  */
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Input;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.newGui.model.Model;
 
 /**

@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.blankLookAndFeel;
 
-import org.universAAL.middleware.io.rdf.SimpleOutput;
+import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
 
 public class SimpleOutputLAF extends SimpleOutputModel {

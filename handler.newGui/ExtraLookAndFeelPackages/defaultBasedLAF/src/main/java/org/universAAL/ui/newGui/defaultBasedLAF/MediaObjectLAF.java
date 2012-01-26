@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.defaultBasedLAF;
 
-import org.universAAL.middleware.io.rdf.MediaObject;
+import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.newGui.model.FormControl.MediaObjectModel;
 
 /**

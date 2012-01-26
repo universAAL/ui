@@ -30,11 +30,11 @@ import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import org.universAAL.middleware.io.rdf.ChoiceItem;
-import org.universAAL.middleware.io.rdf.ChoiceList;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.Select;
+import org.universAAL.middleware.ui.rdf.ChoiceItem;
+import org.universAAL.middleware.ui.rdf.ChoiceList;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Select;
 
 /**
  *

@@ -15,11 +15,11 @@
  ******************************************************************************/
 package ui.handler.newGui.test;
 import javax.swing.JFrame;
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.Group;
-import org.universAAL.middleware.io.rdf.InputField;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.Submit;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.InputField;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.ui.handler.newGui.ModelMapper;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.Init;

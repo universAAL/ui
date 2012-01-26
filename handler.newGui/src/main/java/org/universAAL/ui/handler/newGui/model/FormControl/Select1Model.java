@@ -23,11 +23,11 @@ import javax.swing.JComponent;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeSelectionModel;
 
-import org.universAAL.middleware.io.rdf.ChoiceItem;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.Select;
-import org.universAAL.middleware.io.rdf.Select1;
+import org.universAAL.middleware.ui.rdf.ChoiceItem;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Select;
+import org.universAAL.middleware.ui.rdf.Select1;
 
 /**
  *

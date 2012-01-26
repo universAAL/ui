@@ -17,7 +17,7 @@ package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
 
 /**

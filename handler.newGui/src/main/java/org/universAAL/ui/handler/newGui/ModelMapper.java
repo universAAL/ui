@@ -17,16 +17,16 @@ package org.universAAL.ui.handler.newGui;
 
 import javax.swing.LookAndFeel;
 
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 import org.universAAL.ui.handler.newGui.model.InitInterface;
 import org.universAAL.ui.handler.newGui.model.LabelModel;
 import org.universAAL.ui.handler.newGui.model.Model;
 
 /**
- * It will map org.universAAL.middleware.io.rdf classes to
+ * It will map org.universAAL.middleware.ui.rdf classes to
  * a Model component.
  *
  * This class will be used by the created components to nest
@@ -133,6 +133,7 @@ public class ModelMapper {
             	}
             }
         }
+        // TODO if not found, try to find the model for superclass FormControl.
         return (Model) model;
     }
 

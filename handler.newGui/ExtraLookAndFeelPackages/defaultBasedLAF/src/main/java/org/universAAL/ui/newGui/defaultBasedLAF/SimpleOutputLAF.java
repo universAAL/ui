@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
-import org.universAAL.middleware.io.rdf.SimpleOutput;
+import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
 
 /**

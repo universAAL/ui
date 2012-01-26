@@ -17,8 +17,8 @@ package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Output;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Output;
 import org.universAAL.ui.handler.newGui.model.Model;
 
 /**

@@ -17,29 +17,29 @@ package org.universAAL.ui.handler.newGui.formManagement;
 
 import java.util.Comparator;
 
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.owl.supply.LevelRating;
 
 /**
- * Comparator for {@link OutputEvent}s.
+ * Comparator for {@link UIRequest}s.
  *
  * Compares the priority of events to implement the priority queue
- * of {@link OutputEvent}s
+ * of {@link UIRequest}s
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
-public class OutputEventPriorityComparator implements Comparator {
+public class UIRequestPriorityComparator implements Comparator {
 
     /* (non-Javadoc)
      * @see java.util.Comparator#compare(T, T)
      */
     /** {@inheritDoc} */
     public int compare(Object o1, Object o2) {
-        LevelRating p1 = ((OutputEvent) o1).getDialogPriority();
-        LevelRating p2 = ((OutputEvent) o2).getDialogPriority();
-        if (((OutputEvent) o1).getDialogForm().isSystemMenu()) {
+        LevelRating p1 = ((UIRequest) o1).getDialogPriority();
+        LevelRating p2 = ((UIRequest) o2).getDialogPriority();
+        if (((UIRequest) o1).getDialogForm().isSystemMenu()) {
             return 1;
         }
-        if (((OutputEvent) o2).getDialogForm().isSystemMenu()) {
+        if (((UIRequest) o2).getDialogForm().isSystemMenu()) {
             return -1;
         }
         return p1.greater(p2) ?

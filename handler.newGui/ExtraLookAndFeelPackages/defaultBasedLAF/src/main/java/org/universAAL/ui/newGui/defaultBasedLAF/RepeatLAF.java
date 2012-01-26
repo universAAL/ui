@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.newGui.defaultBasedLAF;
 
-import org.universAAL.middleware.io.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModel;
 
 /**

@@ -17,9 +17,9 @@ package org.universAAL.ui.handler.newGui.model;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.io.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
 
 /**
  * Abstract Class for all Form Control Models.

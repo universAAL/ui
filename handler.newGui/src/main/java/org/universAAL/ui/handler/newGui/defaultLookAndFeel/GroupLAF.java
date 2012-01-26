@@ -22,7 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import org.universAAL.middleware.io.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.newGui.model.FormControl.GroupModel;
 
 /**
