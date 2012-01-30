@@ -22,6 +22,10 @@ handler.newGui-1.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/.project
 handler.newGui-1.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/.settings
 handler.newGui-1.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/target
 handler.newGui-1.0.1-SNAPSHOT/target
+handler.web-1.0.1-SNAPSHOT/.classpath
+handler.web-1.0.1-SNAPSHOT/.project
+handler.web-1.0.1-SNAPSHOT/.settings
+handler.web-1.0.1-SNAPSHOT/target
 pom-1.0.1-SNAPSHOT/.classpath
 pom-1.0.1-SNAPSHOT/.project
 pom-1.0.1-SNAPSHOT/.settings
