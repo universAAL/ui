@@ -18,6 +18,8 @@ package org.universAAL.ui.handler.newGui.model;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.universAAL.ui.handler.newGui.ResourceMapper;
+
 /**
  * Entry point for all icon URL.
  * implements the searching procedure for icon files.
@@ -37,8 +39,7 @@ public class IconFactory {
      */
     public static Icon getIcon(String url) {
         if (url != null && !url.isEmpty()) {
-            // TODO implement search procedure
-            return new ImageIcon(url);
+            return new ImageIcon(ResourceMapper.search(url));
         }
         return null;
     }

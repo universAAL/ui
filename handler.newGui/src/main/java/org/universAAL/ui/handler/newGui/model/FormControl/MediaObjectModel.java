@@ -71,7 +71,7 @@ public class MediaObjectModel extends OutputModel {
     /*
      *  XXX:
      *   Media Type parser for images, audio, (or video)
-     *   URL Parser: know where to locate the resource
+     *   URL Parser: know where to locate the resource (DONE)
      *           - in jar
      *           - in file system
      *           - in config dir
