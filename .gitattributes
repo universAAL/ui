@@ -204,6 +204,7 @@ handler.newGui/pom.xml -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/Handler.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/ModelMapper.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/Renderer.java -text
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/ResourceMapper.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/ColorLAF.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/FormLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/GroupLAF.java -text svneol=unset#text/plain
@@ -250,17 +251,18 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/package.html
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/osgi/Activator.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/osgi/package.html -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/package.html -text svneol=unset#text/plain
+handler.newGui/src/main/resources/icons/services/Health_button.png -text
+handler.newGui/src/main/resources/icons/services/Nutritional_Advisor_Button.png -text
+handler.newGui/src/main/resources/icons/services/Personal_Agenda_Button.png -text
+handler.newGui/src/main/resources/icons/services/Personal_Safety_Button.png -text
 handler.newGui/src/main/resources/main/Button_UCC_Sm.png -text
 handler.newGui/src/main/resources/main/Footer.png -text
 handler.newGui/src/main/resources/main/Invisible_Button.png -text
 handler.newGui/src/main/resources/main/UniversAAl_logo.png -text
-handler.newGui/src/main/resources/services/Health_button.png -text
-handler.newGui/src/main/resources/services/Nutritional_Advisor_Button.png -text
-handler.newGui/src/main/resources/services/Personal_Agenda_Button.png -text
-handler.newGui/src/main/resources/services/Personal_Safety_Button.png -text
 handler.newGui/src/test/java/ui/handler/newGui/test/DialogMenu.java -text
 handler.newGui/src/test/java/ui/handler/newGui/test/LoginMenu.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/SystemMenu.java -text svneol=unset#text/plain
+handler.newGui/src/test/java/ui/handler/newGui/test/auto/ResourceMapperTest.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/auto/SubdialogAntecessorTest.java -text svneol=unset#text/plain
 handler.newGui/src/test/main/resources/main/Button_UCC_Sm.png -text
 handler.newGui/src/test/main/resources/main/Footer.png -text
