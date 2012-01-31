@@ -57,6 +57,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<!-- Remove the following when every thing is adapted 
+			to new Profile ontology (1.0.2-SNAPSHOT) 
+			and the Required ontologies are developed -->
+			<dependency>
+				<groupId>org.universAAL.ontology</groupId>
+				<artifactId>ont.profile</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.dm</artifactId>
