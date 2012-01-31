@@ -26,14 +26,22 @@ import junit.framework.TestCase;
 public class ResourceMapperTest extends TestCase {
 	
 	public void testResource1() {
-		assertTrue(ResourceMapper.search("services/Health_button.png") != null);
+		assertNotNull(ResourceMapper.search("services/Health_button.png"));
 	}
 
 	public void testResource2() {
-		assertTrue(ResourceMapper.search("Health_button.png") == null);
+		assertNull(ResourceMapper.search("Health_button.png"));
 	}
 	
 	public void testResource3() {
-		assertTrue(ResourceMapper.search("icons/services/Health_button.png") == null);
+		assertNull(ResourceMapper.search("icons/services/Health_button.png"));
+	}
+	
+	public void testRemoteResource1() {
+		assertNotNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w.png"));
+	}
+	
+	public void testRemoteResource2() {
+		assertNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w"));
 	}
 }

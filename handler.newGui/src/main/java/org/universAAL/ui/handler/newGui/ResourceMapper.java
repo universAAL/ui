@@ -16,8 +16,10 @@
 package org.universAAL.ui.handler.newGui;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 /**
  * Find the resources referenced by urls;
@@ -30,7 +32,7 @@ public class ResourceMapper {
 	 * The folders where the resources should be allocated, whether it is in the confDir or
 	 * in the resources (inside the JAR)
 	 */
-	static String[] resourceFolders = {"cache/", "images/", "resources/", "icons/"};
+	static String[] resourceFolders = {"icons/", "images/", "resources/"};
 	
 	/**
 	 * Searches for the specified url in the config directory and JAR resources
@@ -44,8 +46,12 @@ public class ResourceMapper {
 		URL resource;
 		try {
 			resource = new URL(url);
-			// XXX: check if exists, and implement Cache
-			return resource;
+			if (existsURL(resource)) {
+				return resource;
+			}
+			else {
+				return null;
+			}
 		} catch (MalformedURLException e) {
 			resource = searchFolder(url);
 			if (resource != null) {
@@ -56,6 +62,23 @@ public class ResourceMapper {
 			}
 		}
 				
+	}
+	
+	/**
+	 * Check that the resource pointed by the URL really exists
+	 * @param url
+	 * @return
+	 */
+	static private boolean existsURL(URL url) {
+		URLConnection con;
+		try {
+			con = url.openConnection();
+			con.connect();
+			con.getInputStream();
+			return true;
+		} catch (IOException e) {
+			return false;
+		}
 	}
 	
 	/**
