@@ -22,8 +22,6 @@
 		<maven.compile.source>1.5</maven.compile.source>
 		<maven.compile.target>1.5</maven.compile.target>
 		<gforge.project.name>uaal_ui</gforge.project.name>
-		<release.previous>1.0.0</release.previous>
-		<release.next>1.1.0</release.next>
 	</properties>
 
 	<modules>
@@ -68,27 +66,27 @@
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.dm</artifactId>
-				<version>(${release.previous} , ${release.next}]</version>
+				<version>1.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.dm.mobile</artifactId>
-				<version>(${release.previous} , ${release.next}]</version>
+				<version>1.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.handler.gui</artifactId>
-				<version>(${release.previous} , ${release.next}]</version>
+				<version>1.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.handler.web</artifactId>
-				<version>(${release.previous} , ${release.next}]</version>
+				<version>1.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.handler.newGui</artifactId>
-				<version>(${release.previous} , ${release.next}]</version>
+				<version>1.0.2-SNAPSHOT</version>
 			</dependency>
 		</dependencies>		
 	</dependencyManagement>
