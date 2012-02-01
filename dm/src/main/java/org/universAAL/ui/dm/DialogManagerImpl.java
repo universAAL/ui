@@ -54,8 +54,8 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.phThing.PhysicalThing;
-import org.universAAL.ontology.profile.ElderlyProfile;
-import org.universAAL.ontology.profile.ElderlyUser;
+import org.universAAL.ontology.profile.AssistedPersonProfile;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.HealthProfile;
 import org.universAAL.ontology.profile.PersonalPreferenceProfile;
 import org.universAAL.ontology.profile.User;
@@ -76,6 +76,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * {@link org.universAAL.middleware.ui.DialogManager}.
  * 
  * @author mtazari
+ * @author eandgrg
  */
 /*
  * TODO: Some code improvements (in addition to the TODOs in the code):
@@ -97,6 +98,7 @@ import com.hp.hpl.jena.rdf.model.Model;
  * - What exactly is the difference between suspended and waiting dialogs?
  * Shouldn't suspended dialogs be shown in the list of pending dialogs?
  */
+
 public class DialogManagerImpl extends UICaller implements DialogManager {
 
     /**
@@ -267,9 +269,9 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ep <").append(AssistedPersonProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("         <").append(AssistedPersonProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
@@ -368,15 +370,15 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		    root = mc.getJenaRootResource(m);
 		}
 		Resource pr = mc.toPersonaResource(root);
-		if (pr instanceof ElderlyUser) {
-		    ElderlyUser eu = (ElderlyUser) pr;
+		if (pr instanceof AssistedPerson) {
+		    AssistedPerson eu = (AssistedPerson) pr;
 		    UserProfile up = eu.getProfile();
-		    if (up instanceof ElderlyProfile) {
-			HealthProfile hp = ((ElderlyProfile) up)
+		    if (up instanceof AssistedPersonProfile) {
+			HealthProfile hp = ((AssistedPersonProfile) up)
 				.getHealthProfile();
 			if (hp != null)
 			    event.setImpairments(hp.getDisability());
-			PersonalPreferenceProfile ppp = ((ElderlyProfile) up)
+			PersonalPreferenceProfile ppp = ((AssistedPersonProfile) up)
 				.getPersonalPreferenceProfile();
 			if (ppp != null) {
 			    PrivacyLevel pl = event.getDialogPrivacyLevel();
@@ -498,14 +500,14 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
     }
 
     /**
-     * This method is called by the output bus and determines whether a dialog
-     * can be shown directly (e.g. by comparing the dialogs priority with the
+     * This method is called by the UI bus and determines whether a dialog can
+     * be shown directly (e.g. by comparing the dialogs priority with the
      * priority of a dialog that is currently shown). Additionally, it adds
      * adaptation parameters.
      * 
      * @see org.universAAL.middleware.ui.DialogManager#checkNewDialog(UIRequest)
      * @param event
-     *            The output event containing a dialog.
+     *            The UI request containing a dialog.
      * @return true, if the dialog can be shown directly.
      */
     public boolean checkNewDialog(UIRequest event) {
@@ -876,6 +878,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	}
     }
 
+
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
 	return Activator.getString("UICaller.noPendingMessages").equals(
 		msgContent)
@@ -965,10 +968,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
     }
 
     /**
-     * Show the main menu.
-     * 
-     * @param u
-     *            The user.
+     * @see org.universAAL.middleware.ui.DialogManager#getMainMenu(Resource,
+     *      AbsLocation)
      */
     public void getMainMenu(Resource u, AbsLocation loginLocation) {
 	if (u == null) {
