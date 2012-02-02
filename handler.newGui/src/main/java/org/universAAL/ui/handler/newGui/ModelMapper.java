@@ -81,26 +81,26 @@ public class ModelMapper {
      * using Java reflection try to load the LAF class of a given component.
      * @param LAFPackage
      *         the selected LAFPackage full qualified name
-     * @param contructorParameter
+     * @param constructorParameter
      *         the parameter passed to the constructor, also the component for which
      *     the LAF class is loaded.
      * @return
      *         the LAF Class,
      *         null if it could not be found
      */
-    private static Object tryToLoadClass(String LAFPackage, Object contructorParameter) {
+    private static Object tryToLoadClass(String LAFPackage, Object constructorParameter) {
         /*
          * "Magic Mirror on the wall,
          *  who is the fairest one of all?"
          */
         try {
-            return Class.forName(LAFPackage + "." + getStringLAFClass(contructorParameter.getClass()))
-                    .getConstructor(new Class[] { contructorParameter.getClass() } )
-                    .newInstance(new Object[] { contructorParameter } );
+            return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParameter.getClass()))
+                    .getConstructor(new Class[] { constructorParameter.getClass() } )
+                    .newInstance(new Object[] { constructorParameter } );
         } catch (Exception e) {
             if (Renderer.getModuleContext() != null) {
             Renderer.getModuleContext().logError("Could not find Class: "
-                + LAFPackage + "." + getStringLAFClass(contructorParameter.getClass()), e);
+                + LAFPackage + "." + getStringLAFClass(constructorParameter.getClass()), e);
             }
             return null;
         }
@@ -126,10 +126,14 @@ public class ModelMapper {
             if (model == null) {
                 // If not found, try to find the model for superclass FormControl.        
             	Class parentC = fc.getClass().getSuperclass();
+            	System.err.println("parent: " + parentC.getName());
         		// avoid looking for non-renderable FormControls
             	if (parentC != FormControl.class) {
-            		FormControl parent = (FormControl) parentC.cast(fc);
-            		model = getModelFor(parent);
+            	    	/*
+            	    	 * FIXME when recursion is done the same class (not the parent) 
+            	    	 * will be used, thus entering in an infinite loop!
+            	    	 */
+            		return getModelFor((FormControl) parentC.cast(fc));
             	}
             }
         }
