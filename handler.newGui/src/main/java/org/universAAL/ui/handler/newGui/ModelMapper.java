@@ -89,18 +89,34 @@ public class ModelMapper {
      *         null if it could not be found
      */
     private static Object tryToLoadClass(String LAFPackage, Object constructorParameter) {
+        return tryToLoadClass(LAFPackage, constructorParameter, constructorParameter.getClass());
+    }
+    
+    /**
+     * Same as {@link ModelMapper#tryToLoadClass(String, Object)} but with class resolved.
+     * using Java reflection try to load the LAF class of a given component.
+     * @param LAFPackage
+     *         the selected LAFPackage full qualified name
+     * @param constructorParameter
+     *         the parameter passed to the constructor, also the component for which
+     *     the LAF class is loaded.
+     * @return
+     *         the LAF Class,
+     *         null if it could not be found
+     */
+    private static Object tryToLoadClass(String LAFPackage, Object constructorParameter, Class constructorParamClass) {
         /*
          * "Magic Mirror on the wall,
          *  who is the fairest one of all?"
          */
         try {
-            return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParameter.getClass()))
-                    .getConstructor(new Class[] { constructorParameter.getClass() } )
+            return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParamClass))
+                    .getConstructor(new Class[] { constructorParamClass } )
                     .newInstance(new Object[] { constructorParameter } );
         } catch (Exception e) {
             if (Renderer.getModuleContext() != null) {
             Renderer.getModuleContext().logError("Could not find Class: "
-                + LAFPackage + "." + getStringLAFClass(constructorParameter.getClass()), e);
+                + LAFPackage + "." + getStringLAFClass(constructorParamClass), e);
             }
             return null;
         }
@@ -114,33 +130,40 @@ public class ModelMapper {
      *         the found LAF extension for the component.
      */
     public static Model getModelFor(FormControl fc) {
-        /*
+        return getModelFor(fc, fc.getClass());
+    }
+    
+    /**
+     * Used as Immersion Mechanism for {@link ModelMapper#getModelFor(FormControl)}
+     * get {@link Model} for a given {@link FormControl}.
+     * @param fc
+     *         the {@link FormControl} for which the model is required
+     * @return
+     *         the found LAF extension for the component.
+     */
+    private static Model getModelFor (FormControl fc, Class fcClass){
+	/*
          * look for the component corresponding to fc
          * This should be the L&F extension
          * if could not be found, use defaultLAF
          */
         Object model = tryToLoadClass(
-                Renderer.getProerty(LAFPackageProperty), fc);
+                Renderer.getProerty(LAFPackageProperty), fc, fcClass);
         if (model == null) {
-            model = tryToLoadClass(DefaultLAFPackage, fc);
+            model = tryToLoadClass(DefaultLAFPackage, fc, fcClass);
             if (model == null) {
                 // If not found, try to find the model for superclass FormControl.        
             	Class parentC = fc.getClass().getSuperclass();
-            	System.err.println("parent: " + parentC.getName());
         		// avoid looking for non-renderable FormControls
             	if (parentC != FormControl.class) {
-            	    	/*
-            	    	 * FIXME when recursion is done the same class (not the parent) 
-            	    	 * will be used, thus entering in an infinite loop!
-            	    	 */
-            		return getModelFor((FormControl) parentC.cast(fc));
+            		return getModelFor(fc, parentC);
             	}
             }
         }
         // TODO if not found, try to find the model for superclass FormControl.
         return (Model) model;
     }
-
+    
     /**
      * get {@link FormModel} for a given {@link Form}.
      * @param f
