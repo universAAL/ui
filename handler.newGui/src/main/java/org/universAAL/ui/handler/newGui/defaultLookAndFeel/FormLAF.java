@@ -27,7 +27,6 @@ import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.newGui.Renderer;
-import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 
 /**
