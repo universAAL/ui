@@ -31,6 +31,7 @@ import org.universAAL.ui.handler.newGui.defaultLookAndFeel.SimpleOutputLAF;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfGroup;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfSimpleOutput;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfSimpleOutputLAF;
+import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfTestExtensionOfGroup;
 
 import junit.framework.TestCase;
 
@@ -74,5 +75,9 @@ public class ModelMapperTest extends TestCase{
     public void testNonExistingFormControlExtension(){
 	TestExtensionOfGroup teog = new TestExtensionOfGroup();
 	assertTrue(ModelMapper.getModelFor(teog) instanceof GroupLAF);
+    }
+    public void testHierarchicalNonExistingFormControlExtension(){
+	TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
+	assertTrue(ModelMapper.getModelFor(teteog) instanceof GroupLAF);
     }
 }
