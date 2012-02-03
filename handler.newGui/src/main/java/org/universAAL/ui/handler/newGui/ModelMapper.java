@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui;
 
-import javax.swing.LookAndFeel;
-
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
@@ -77,29 +75,16 @@ public class ModelMapper {
         return p[p.length-1] + LAFSuffix;
     }
 
-    /**
-     * using Java reflection try to load the LAF class of a given component.
-     * @param LAFPackage
-     *         the selected LAFPackage full qualified name
-     * @param constructorParameter
-     *         the parameter passed to the constructor, also the component for which
-     *     the LAF class is loaded.
-     * @return
-     *         the LAF Class,
-     *         null if it could not be found
-     */
-    private static Object tryToLoadClass(String LAFPackage, Object constructorParameter) {
-        return tryToLoadClass(LAFPackage, constructorParameter, constructorParameter.getClass());
-    }
     
     /**
-     * Same as {@link ModelMapper#tryToLoadClass(String, Object)} but with class resolved.
-     * using Java reflection try to load the LAF class of a given component.
+     * Using Java reflection try to load the LAF class of a given component.
      * @param LAFPackage
      *         the selected LAFPackage full qualified name
      * @param constructorParameter
      *         the parameter passed to the constructor, also the component for which
      *     the LAF class is loaded.
+     * @param constructorParamClass
+     * 			the specific class of the constructorParameter
      * @return
      *         the LAF Class,
      *         null if it could not be found
@@ -123,6 +108,43 @@ public class ModelMapper {
     }
 
     /**
+	 * Used as Immersion Mechanism for {@link ModelMapper#getModelFor(FormControl)},
+	 *  {@link ModelMapper#getModelFor(Form)}, and {@link ModelMapper#getModelFor(Label)}.
+	 * get {@link Model} or {@link FormModel} or {@link LabelModel} 
+	 * for a given {@link FormControl} or {@link Form} or {@link Label} respectively.
+	 * @param refObj
+	 *         the {@link FormControl}, or {@link Form} or {@link Label} for which the model is required
+	 * @param refObjClass
+	 * 		   the specific class of the refObj.         
+	 * @return
+	 *         the found LAF extension for the component.
+	 */
+	private static Object getModelFor (Object refObj, Class refObjClass){
+	/*
+	     * look for the component corresponding to refObj
+	     * This should be the L&F extension
+	     * if could not be found, use defaultLAF
+	     */
+	    Object model = tryToLoadClass(
+	            Renderer.getProerty(LAFPackageProperty), refObj, refObjClass);
+	    if (model == null) {
+	        model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
+	        if (model == null) {
+	            // If not found, try to find the model for superclass.        
+	        	Class parentC = refObjClass.getSuperclass();
+	    		// avoid looking for non-renderable FormControls
+	        	if (parentC != FormControl.class 
+	        			&& parentC != Form.class
+	        			&& parentC != Label.class
+	        			&& parentC != Object.class ) {
+	        		return getModelFor(refObj, parentC);
+	        	}
+	        }
+	    }
+	    return  model;
+	}
+
+	/**
      * get {@link Model} for a given {@link FormControl}.
      * @param fc
      *         the {@link FormControl} for which the model is required
@@ -130,38 +152,7 @@ public class ModelMapper {
      *         the found LAF extension for the component.
      */
     public static Model getModelFor(FormControl fc) {
-        return getModelFor(fc, fc.getClass());
-    }
-    
-    /**
-     * Used as Immersion Mechanism for {@link ModelMapper#getModelFor(FormControl)}
-     * get {@link Model} for a given {@link FormControl}.
-     * @param fc
-     *         the {@link FormControl} for which the model is required
-     * @return
-     *         the found LAF extension for the component.
-     */
-    private static Model getModelFor (FormControl fc, Class fcClass){
-	/*
-         * look for the component corresponding to fc
-         * This should be the L&F extension
-         * if could not be found, use defaultLAF
-         */
-        Object model = tryToLoadClass(
-                Renderer.getProerty(LAFPackageProperty), fc, fcClass);
-        if (model == null) {
-            model = tryToLoadClass(DefaultLAFPackage, fc, fcClass);
-            if (model == null) {
-                // If not found, try to find the model for superclass FormControl.        
-            	Class parentC = fcClass.getSuperclass();
-        		// avoid looking for non-renderable FormControls
-            	if (parentC != FormControl.class) {
-            		return getModelFor(fc, parentC);
-            	}
-            }
-        }
-        // TODO if not found, try to find the model for superclass FormControl.
-        return (Model) model;
+        return (Model) getModelFor(fc, fc.getClass());
     }
     
     /**
@@ -172,18 +163,10 @@ public class ModelMapper {
      *         the found LAF extension for the component.
      */
     public static FormModel getModelFor(Form f) {
-        /*
-         * look for the Frame corresponding to f
-         * This should be the L&F extension
-         * if could not be found, use defaultLAF
-         */
-        Object model = tryToLoadClass(
-                Renderer.getProerty(LAFPackageProperty), f);
-        model = model != null ?
-                model
-                :tryToLoadClass(DefaultLAFPackage, f);
-        return (FormModel) model;
+      return (FormModel) getModelFor(f, f.getClass());
     }
+    
+
 
     /**
      * get {@link LabelModel} for a given {@link Label}.
@@ -193,17 +176,7 @@ public class ModelMapper {
      *         the found LAF extension for the component.
      */
     public static LabelModel getModelFor(Label l) {
-        /*
-         * look for the Label corresponding to l
-         * This should be the L&F extension
-         * if could not be found, use defaultLAF
-         */
-        Object model = tryToLoadClass(
-                Renderer.getProerty(LAFPackageProperty), l);
-        if (model == null) {
-            model = tryToLoadClass(DefaultLAFPackage, l);
-        }
-        return (LabelModel) model;
+        return (LabelModel) getModelFor(l, l.getClass());
     }
 
     /**

@@ -15,6 +15,8 @@
  ******************************************************************************/
 package ui.handler.newGui.test.auto;
 
+import junit.framework.TestCase;
+
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.Resource;
@@ -33,51 +35,116 @@ import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfSimple
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfSimpleOutputLAF;
 import org.universAAL.ui.handler.newGui.defaultLookAndFeel.TestExtensionOfTestExtensionOfGroup;
 
-import junit.framework.TestCase;
-
 /**
  * testing the main component of the Handler
+ * 
  * @author amedrano
- *
+ * 
  */
-public class ModelMapperTest extends TestCase{
-    
-    Form root;
-    
-    public void setUp() {
-	OntologyManagement.getInstance().register(new DataRepOntology());
-	OntologyManagement.getInstance().register(new UIBusOntology());
-	
-        root = Form.newDialog("root", new Resource());
-	Label l = new Label("some Label", null);
-	new SimpleOutput(root.getIOControls(), l, null, "simple Text Output");
-    }
+public class ModelMapperTest extends TestCase {
 
-    public void testForm(){
-        assertTrue(ModelMapper.getModelFor(root) instanceof FormLAF);
-    }
+	Form root;
 
-    public void testLabel(){
-	Label l = root.getIOControls().getChildren()[0].getLabel();
-	assertTrue(ModelMapper.getModelFor(l) instanceof LabelLAF);
-    }
-    
-    public void testExistingDefaultFormControl(){
-	FormControl fc = (FormControl) root.getIOControls().getChildren()[0];
-	assertTrue(ModelMapper.getModelFor(fc) instanceof SimpleOutputLAF);
-    }
-    
-    public void testExistingFormControlExtension(){
-	TestExtensionOfSimpleOutput teoso = new TestExtensionOfSimpleOutput();
-	assertTrue(ModelMapper.getModelFor(teoso) instanceof TestExtensionOfSimpleOutputLAF);
-    }
-    
-    public void testNonExistingFormControlExtension(){
-	TestExtensionOfGroup teog = new TestExtensionOfGroup();
-	assertTrue(ModelMapper.getModelFor(teog) instanceof GroupLAF);
-    }
-    public void testHierarchicalNonExistingFormControlExtension(){
-	TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
-	assertTrue(ModelMapper.getModelFor(teteog) instanceof GroupLAF);
-    }
+	public void setUp() {
+		OntologyManagement.getInstance().register(new DataRepOntology());
+		OntologyManagement.getInstance().register(new UIBusOntology());
+
+		root = Form.newDialog("root", new Resource());
+		Label l = new Label("some Label", null);
+		new SimpleOutput(root.getIOControls(), l, null, "simple Text Output");
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link Form} it will return the component that renders it:
+	 * {@link FormLAF}
+	 */
+	public void testForm() {
+		assertTrue(ModelMapper.getModelFor(root) instanceof FormLAF);
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link Label} it will return the component that renders it:
+	 * {@link LabelLAF}
+	 */
+	public void testLabel() {
+		Label l = root.getIOControls().getChildren()[0].getLabel();
+		assertTrue(ModelMapper.getModelFor(l) instanceof LabelLAF);
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link FormControl}, included in the default UI RDF set,
+	 * it will return the component that renders it. <br>
+	 * In this test {@link SimpleOutput} -> {@link SimpleOutputLAF}
+	 */
+	public void testExistingDefaultFormControl() {
+		FormControl fc = (FormControl) root.getIOControls().getChildren()[0];
+		assertTrue(ModelMapper.getModelFor(fc) instanceof SimpleOutputLAF);
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
+	 * there is a component that will render it, it will return that component. <br>
+	 * In this test {@link SimpleOutput} -> {@link SimpleOutputLAF}
+	 */
+	public void testExistingFormControlExtension() {
+		TestExtensionOfSimpleOutput teoso = new TestExtensionOfSimpleOutput();
+		assertTrue(ModelMapper.getModelFor(teoso) instanceof TestExtensionOfSimpleOutputLAF);
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
+	 * there is no component that will render it, it will return the first in component the parent linage that 
+	 * is capable of rendering it. <br>
+	 * In this test {@link TestExtensionOfGroup} -> {@link GroupLAF}
+	 * @see ModelMapperTest#testHierarchicalNonExistingFormControlExtension()
+	 */
+	public void testNonExistingFormControlExtension() {
+		TestExtensionOfGroup teog = new TestExtensionOfGroup();
+		assertTrue(ModelMapper.getModelFor(teog) instanceof GroupLAF);
+	}
+
+	/**
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
+	 * an extension of the UI RDF, and there is no component that will render
+	 * it, it will return the first in component the parent linage that is
+	 * capable of rendering it. <br>
+	 * In this test {@link TestExtensionOfTestExtensionOfGroup} ->
+	 * {@link GroupLAF}
+	 * <table border="1">
+	 * <tr>
+	 * <th>Provided Class type</th>
+	 * <th>Parent of Provided Class</th>
+	 * <th>Renderer Class</th>
+	 * <th>Is Present?</th>
+	 * <th>Final Renderer Class Returned</th>
+	 * </tr>
+	 * <tr>
+	 * <td>Group</td>
+	 * <td>FormControl</td>
+	 * <td>GroupLAF</td>
+	 * <td>YES</td>
+	 * <td>GroupLAF</td>
+	 * </tr>
+	 * <tr>
+	 * <td>TestExtensionOfGroup</td>
+	 * <td>Group</td>
+	 * <td>TestExtensionOf<span style=3D'display:none'>GroupLAF</span></td>
+	 * <td>NO</td>
+	 * <td>GroupLAF</td>
+	 * </tr>
+	 * <tr>
+	 * <td>TestExtensionOfTestExtensionOfGroup</td>
+	 * <td>TestExtensionOfGroup</td>
+	 * <td>TestExtensionOfTestExtensionOfGroupLAF</td>
+	 * <td>NO</td>
+	 * <td>GroupLAF</td>
+	 * <td></td>
+	 * </tr>
+	 * </table>
+	 * 
+	 */
+	public void testHierarchicalNonExistingFormControlExtension() {
+		TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
+		assertTrue(ModelMapper.getModelFor(teteog) instanceof GroupLAF);
+	}
 }
