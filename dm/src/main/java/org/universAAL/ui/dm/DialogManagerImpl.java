@@ -54,8 +54,8 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.phThing.PhysicalThing;
-import org.universAAL.ontology.profile.AssistedPersonProfile;
-import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.ElderlyProfile;
+import org.universAAL.ontology.profile.ElderlyUser;
 import org.universAAL.ontology.profile.HealthProfile;
 import org.universAAL.ontology.profile.PersonalPreferenceProfile;
 import org.universAAL.ontology.profile.User;
@@ -269,9 +269,9 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ep <").append(AssistedPersonProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("         <").append(AssistedPersonProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
@@ -370,15 +370,15 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		    root = mc.getJenaRootResource(m);
 		}
 		Resource pr = mc.toPersonaResource(root);
-		if (pr instanceof AssistedPerson) {
-		    AssistedPerson eu = (AssistedPerson) pr;
+		if (pr instanceof ElderlyUser) {
+		    ElderlyUser eu = (ElderlyUser) pr;
 		    UserProfile up = eu.getProfile();
-		    if (up instanceof AssistedPersonProfile) {
-			HealthProfile hp = ((AssistedPersonProfile) up)
+		    if (up instanceof ElderlyProfile) {
+			HealthProfile hp = ((ElderlyProfile) up)
 				.getHealthProfile();
 			if (hp != null)
 			    event.setImpairments(hp.getDisability());
-			PersonalPreferenceProfile ppp = ((AssistedPersonProfile) up)
+			PersonalPreferenceProfile ppp = ((ElderlyProfile) up)
 				.getPersonalPreferenceProfile();
 			if (ppp != null) {
 			    PrivacyLevel pl = event.getDialogPrivacyLevel();
