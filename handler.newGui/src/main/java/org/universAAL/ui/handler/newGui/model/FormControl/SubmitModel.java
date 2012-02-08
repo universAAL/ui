@@ -50,11 +50,10 @@ implements ActionListener {
      * @return
      *      a {@link JButton}
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         JButton s = new JButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()));
         s.addActionListener(this);
-        s.setName(fc.getURI());
         return s;
     }
 
@@ -76,12 +75,12 @@ implements ActionListener {
             Renderer.getInstance().handler.summit((Submit) fc);
             Renderer.getInstance().getFormManagement().closeCurrentDialog();
         }
-        else {
+        //else {
             /*
              *  TODO Check rest of model(each class)!
              *  advice the user about data not being valid
              */
-        }
+        //}
 
     }
 

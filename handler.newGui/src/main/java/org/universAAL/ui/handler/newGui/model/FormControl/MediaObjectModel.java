@@ -44,7 +44,7 @@ public class MediaObjectModel extends OutputModel {
      * videos, audio and other media files.
      * @return {@inheritDoc}
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         JLabel jl = new JLabel(fc.getLabel().getText());
         Icon icon = IconFactory.getIcon(((MediaObject) fc).getContentURL());
         jl.setIcon(icon);

@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
@@ -99,7 +100,7 @@ public class RepeatModel extends GroupModel {
     }
 
     /** {@inheritDoc}*/
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         /*
          *  TODO
          *  Check for complexity and take decision
@@ -122,9 +123,7 @@ public class RepeatModel extends GroupModel {
              * check:
              * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
              */
-            JTable table = new JTable(new RepeatTableModel());
-            table.setName(fc.getURI());
-            return table;
+            return new JTable(new RepeatTableModel());
         }
         if (getChildrenType().equals(Group.class)) {
             /*
@@ -133,8 +132,20 @@ public class RepeatModel extends GroupModel {
              */
             return tabbedPanel();
         }
-
-        return super.getComponent();
+        
+        return super.getNewComponent();
+    }
+    
+    /**
+     * Overriding update from {@link GroupModel}
+     */
+    protected void update() {
+    	if (jc instanceof JTabbedPane) {
+    		updateTabbedPanel();
+    	}
+    	//space for proper constructions of RepeatModel
+    	
+    	super.upate();
     }
 
     class RepeatTableModel extends AbstractTableModel {

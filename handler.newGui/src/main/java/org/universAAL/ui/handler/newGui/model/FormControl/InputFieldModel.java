@@ -61,7 +61,7 @@ implements ChangeListener, CaretListener {
      * </ul>
      * @return {@inheritDoc}
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         Object initVal = fc.getValue();
         int maxLength = ((InputField) fc).getMaxLength();
 

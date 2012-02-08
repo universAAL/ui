@@ -59,6 +59,11 @@ public abstract class Model {
     protected boolean needsLabel = true;
 
     /**
+     * The {@link JComponent} being generated.
+     */
+	protected JComponent jc;
+
+    /**
      * tests if there is a need to render the Label of this
      * {@link FormControl}, as the representation might have already
      * included.
@@ -177,12 +182,36 @@ public abstract class Model {
      */
     public abstract boolean isValid(JComponent component);
 
+    
     /**
+     * Returns the {@link JComponent}, and updates representing this {@link FormControl}.
+     * If it isn't already created, it generates it.
+     * @return
+     * 		a {@link JComponent} Representing model's
+     * information,
+     */
+    public JComponent getComponent() {
+    	if (jc == null) {
+    		jc = getNewComponent();
+    	}
+    	upate();
+    	return jc;   	
+    };
+    
+    protected void upate() {
+		jc.setName(fc.getURI());
+		jc.setToolTipText(fc.getHintString());
+		/*
+		 * TODO: how to show Help ?
+		 */
+	}
+
+	/**
      * generate the {@link JComponent} that displays this
      * {@link FormControl}'s information.
      * @return
      *         a {@link JComponent} initialised with the model's
      * information,
      */
-    public abstract JComponent getComponent();
+    public abstract JComponent getNewComponent();
 }

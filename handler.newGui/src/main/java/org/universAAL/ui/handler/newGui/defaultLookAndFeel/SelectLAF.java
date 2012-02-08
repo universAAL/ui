@@ -36,12 +36,12 @@ public class SelectLAF extends SelectModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         if (!((Select) fc).isMultilevel()) {
-        return new JScrollPane(super.getComponent());
+        return new JScrollPane(super.getNewComponent());
         }
         else {
-            return super.getComponent();
+            return super.getNewComponent();
         }
     }
 

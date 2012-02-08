@@ -35,7 +35,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-    	return SubmitLAF.buttonDecorate(this, super.getComponent());
+    public JComponent getNewComponent() {
+    	return SubmitLAF.buttonDecorate(this, super.getNewComponent());
     }
 }

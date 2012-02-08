@@ -57,7 +57,7 @@ public class GroupModel extends Model {
      *
      * @return {@inheritDoc}
      * */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         LevelRating complexity = ((Group) fc).getComplexity();
         if (complexity == LevelRating.none
                 || ((Group) fc).isRootGroup()) {
@@ -80,7 +80,7 @@ public class GroupModel extends Model {
 
     /** {@inheritDoc}*/
     public boolean isValid(JComponent component) {
-        // Always valid
+        // TODO: only valid if ALL elements are valid!
         return true;
     }
 
@@ -90,21 +90,28 @@ public class GroupModel extends Model {
      *         a {@link JPanel} with all the group's children.
      */
     protected JPanel simplePannel() {
+        JPanel pane = new JPanel();
+        return pane;
+    }
+    
+    /**
+     * Update a simple panel with the children in it
+     */
+    protected void updateSimplePanel() {
         /*
          * a Simple Group containing FormControls
          * or one of the main Groups
          * go into simple panes
          */
-        JPanel pane = new JPanel();
-        pane.setName(fc.getURI());
+    	JPanel pane = (JPanel) jc;
+    	pane.setName(fc.getURI());
+    	pane.removeAll();
         FormControl[] children = ((Group) fc).getChildren();
         for (int i = 0; i < children.length; i++) {
             addComponentTo(children[i], pane);
         }
-        pane.setName(fc.getURI());
-        return pane;
     }
-
+    
     /**
      * create a tabbed panel with diferent groups
      * in different pannels.
@@ -114,7 +121,17 @@ public class GroupModel extends Model {
      */
     protected JTabbedPane tabbedPanel() {
         JTabbedPane tp = new JTabbedPane();
-        FormControl[] children = ((Group) fc).getChildren();
+        return tp;
+    }
+    
+    /**
+     * Update a tabbed panel with diferent groups
+     * in different pannels.
+     */
+    protected void updateTabbedPanel() {
+    	JTabbedPane tp = (JTabbedPane) jc;
+    	tp.removeAll();
+    	FormControl[] children = ((Group) fc).getChildren();
         JPanel pane;
         for (int i = 0; i < children.length; i++) {
             if (children[i] instanceof Group) {
@@ -128,10 +145,21 @@ public class GroupModel extends Model {
                     IconFactory.getIcon(children[i].getLabel().getIconURL()),
                     pane);
         }
-        tp.setName(fc.getURI());
-        return tp;
     }
 
+    /**
+     * Override of Update, so it updates correctly the {@link GroupModel}
+     */
+    protected void update() {
+    	if (jc instanceof JPanel) {
+    		updateSimplePanel();
+    	}
+    	if (jc instanceof JTabbedPane) {
+    		updateTabbedPanel();
+    	}
+    	super.upate();
+    }
+    
     /**
      * check whether it is the submit root group.
      * @return

@@ -54,7 +54,7 @@ public class SimpleOutputModel extends OutputModel {
      *     or it can be a {@link JCheckBox} if the output is a {@link Boolean}.
      *     all of them are uneditable by the user.
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         /*
          *  TODO
          *   Examine value type and select the best component
@@ -72,6 +72,17 @@ public class SimpleOutputModel extends OutputModel {
          *       progress bar
          *   if an ontology class do
          *       ??
+         *       
+         *   Primitive Types are:
+         *   Boolean
+		 *   XMLGregorianCalendar
+		 *   Double
+		 *   Duration
+		 *   Float
+		 *   Integer
+		 *   Locale
+		 *   Long
+		 *   String
          */
         Object content = ((SimpleOutput) fc).getContent();
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {

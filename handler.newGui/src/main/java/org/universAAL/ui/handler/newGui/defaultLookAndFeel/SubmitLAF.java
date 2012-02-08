@@ -79,8 +79,8 @@ public class SubmitLAF extends SubmitModel {
 	}
 
 	/** {@inheritDoc} */
-	public JComponent getComponent() {
-		return buttonDecorate(this, super.getComponent());
+	public JComponent getNewComponent() {
+		return buttonDecorate(this, super.getNewComponent());
 	}
 
 	protected static JComponent buttonDecorate(Model model, JComponent button) {

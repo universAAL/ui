@@ -43,9 +43,9 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         Object content = ((SimpleOutput) fc).getContent();
-        JComponent comp = super.getComponent();
+        JComponent comp = super.getNewComponent();
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
                 JTextArea ta = (JTextArea) comp;

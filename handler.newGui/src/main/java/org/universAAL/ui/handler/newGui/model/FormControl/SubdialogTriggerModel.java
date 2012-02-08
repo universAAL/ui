@@ -52,7 +52,7 @@ implements ActionListener {
      *     a {@link JToggleButton}, whose state is determined by the
      *     antecessor {@link Form}s.
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         JToggleButton tb = new JToggleButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()),
                 isSelected());

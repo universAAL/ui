@@ -50,7 +50,7 @@ implements  ActionListener {
      * {@inheritDoc}
      * @return either a {@link JTree} or a {@link JComboBox}
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         //XXX add icons to component!
         if (!((Select) fc).isMultilevel()) {
             Label[] items = ((Select1) fc).getChoices();

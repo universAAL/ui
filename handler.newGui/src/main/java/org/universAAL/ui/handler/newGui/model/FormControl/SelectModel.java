@@ -62,7 +62,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
      *
      * @return either a {@link JList} or a {@link JTree}
      */
-    public JComponent getComponent() {
+    public JComponent getNewComponent() {
         // XXX add icons to component!
         // TODO use getMaxCardinality and getMinCardinality to get the max and
         // min #ofSelections

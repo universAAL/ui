@@ -41,13 +41,13 @@ public class GroupLAF extends GroupModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-        JComponent jgroup  = super.getComponent();
+    public JComponent getNewComponent() {
+        JComponent jgroup  = super.getNewComponent();
         if (jgroup instanceof JTabbedPane) {
             /*
              * Tabbed group
              */
-            JComponent tb = super.getComponent();
+            JComponent tb = super.getNewComponent();
             tb.getAccessibleContext();
             tb.setFont(ColorLAF.getplain());
             return tb;
