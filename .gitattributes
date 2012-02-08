@@ -43,7 +43,6 @@ full.form.tester/src/main/java/org/universAAL/ui/full/test/SCallee.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/forms/A1Main.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/osgi/Activator.java -text
 full.form.tester/src/test/java/org/universAAL/ui/proof/ScanTest.java -text
-handler.gui/.checkstyle -text
 handler.gui/LICENSE-CPL-JUnit.txt -text
 handler.gui/LICENSE-Clearthought.txt -text
 handler.gui/LICENSE-JGCL.txt -text
