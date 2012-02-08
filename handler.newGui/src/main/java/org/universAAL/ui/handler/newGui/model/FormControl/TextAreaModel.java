@@ -47,17 +47,23 @@ implements CaretListener {
      * @return
      *      a {@link JTextArea}.
      */
-    public JComponent getComponent() {
-        String initialValue = (String) fc.getValue();
+    public JComponent getNewComponent() {
         JTextArea ta = new JTextArea();
-        ta.setText(initialValue);
-        ta.setLineWrap(true);
-        ta.setWrapStyleWord(true);
         ta.addCaretListener(this);
-        ta.setName(fc.getURI());
         return ta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    protected void update() {
+    	JTextArea ta = (JTextArea) jc;
+        ta.setText((String) fc.getValue());
+        ta.setLineWrap(true);
+        ta.setWrapStyleWord(true);
+        super.upate();
+    }
+    
     /**
      * {@inheritDoc}
      */

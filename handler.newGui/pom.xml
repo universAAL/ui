@@ -24,7 +24,7 @@
         <relativePath>../pom/pom.xml</relativePath>
     </parent>
     <artifactId>ui.handler.newGui</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.3-SNAPSHOT</version>
     <name>Swing GUI Handler</name>
     <packaging>bundle</packaging>
     <organization>

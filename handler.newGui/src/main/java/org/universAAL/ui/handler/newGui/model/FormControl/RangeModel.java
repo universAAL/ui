@@ -35,7 +35,26 @@ import org.universAAL.middleware.ui.rdf.Range;
 public class RangeModel extends InputModel
 implements ChangeListener {
 
+	/**
+	 * Threshold where to decide if it should be rendenred as {@link JSpinner} or
+	 * as {@link JSlider}.
+	 */
     private static final int SPINNER_SLIDER_THRESHOLD = 25;
+    
+    /**
+     * Minimum value by the model.
+     */
+	private int mnValue;
+	
+	/**
+     * Maximum value by the model.
+     */
+	private int mxValue;
+	
+	/**
+     * Actual value by the model.
+     */
+	private int initValue;
 
     /**
      * Constructor.
@@ -43,6 +62,11 @@ implements ChangeListener {
      */
     public RangeModel(Range control) {
         super(control);
+        Comparable min_Value = ((Range) fc).getMinValue();
+        mnValue = ((Integer) min_Value).intValue();
+        Comparable max_Value = ((Range) fc).getMaxValue();
+        mxValue = ((Integer) max_Value).intValue();
+        initValue = ((Integer) fc.getValue()).intValue();
     }
 
     /**
@@ -50,31 +74,26 @@ implements ChangeListener {
      * is less than a threshold, or it can also be {@link JSlider}.
      * @return {@inheritDoc}
      */
-    public JComponent getComponent() {
-        Comparable min_Value = ((Range) fc).getMinValue();
-        int mnValue = ((Integer) min_Value).intValue();
-        Comparable max_Value = ((Range) fc).getMaxValue();
-        int mxValue = ((Integer) max_Value).intValue();
-        int initValue = ((Integer) fc.getValue()).intValue();
-
+    public JComponent getNewComponent() {
         if ((mxValue - mnValue) < SPINNER_SLIDER_THRESHOLD) {
-            SpinnerModel sModel = new SpinnerNumberModel(initValue,
-                    mnValue,
-                    mxValue,
-                    ((Range) fc).getStep().intValue());
-            JSpinner spinner = new JSpinner(sModel);
+            JSpinner spinner = new JSpinner(getSpinnerModel());
             spinner.addChangeListener(this);
-            spinner.setName(fc.getURI());
             return spinner;
         }
         else {
             JSlider slider = new JSlider(mnValue, mxValue, initValue);
             slider.addChangeListener(this);
-            slider.setName(fc.getURI());
             return slider;
         }
     }
-
+    
+    private SpinnerModel getSpinnerModel() {
+        return new SpinnerNumberModel(initValue,
+                mnValue,
+                mxValue,
+                ((Range) fc).getStep().intValue());
+    }
+    
     /**
      * {@inheritDoc}
      */

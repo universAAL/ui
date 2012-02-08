@@ -36,8 +36,8 @@ public class InputFieldLAF extends InputFieldModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-        JComponent inf = super.getComponent();
+    public JComponent getNewComponent() {
+        JComponent inf = super.getNewComponent();
         inf.setFont(ColorLAF.getplain());
         return inf;
     }

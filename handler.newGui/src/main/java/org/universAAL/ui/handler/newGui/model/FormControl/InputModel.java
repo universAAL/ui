@@ -39,5 +39,20 @@ public abstract class InputModel extends Model
     public InputModel(Input control) {
         super(control);
     }
+    
+    /**
+     * Check if the {@link Input} of Mandatory completion.
+     * @return
+     * 		true if user must complete, false otherwise.
+     */
+    public boolean isMandatory() {
+    	return ((Input)fc).isMandatory();
+    }
 
+    /**
+     * Get Alert string, to show to user if she/he has forgotten this {@link Input}
+     */
+    public String getAlertString() {
+    	return ((Input)fc).getAlertString();
+    }
 }
