@@ -73,6 +73,25 @@ public class SelectModel extends InputModel implements ListSelectionListener {
              * selection power.
              */
             JList list = new JList(items);
+            list.addListSelectionListener(this);
+            return list;
+        } else {
+            JTree jt = new JTree(new SelectionTreeModel());
+            return jt;
+        }
+    }
+    
+    /**
+     * Update the selections
+     */
+    protected void update() {
+    	Label[] items = ((Select) fc).getChoices();
+        if (!((Select) fc).isMultilevel()) {
+            /*
+             * Not a tree, then it is a simple select list with multiple
+             * selection power.
+             */
+            JList list = (JList) jc;
             list.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             // list.setSelectedIndex(0);
             // TODO the selected indexES should be defined in the RDF!
@@ -83,15 +102,12 @@ public class SelectModel extends InputModel implements ListSelectionListener {
             	}
             }
             list.addListSelectionListener(this);
-            list.setName(fc.getURI());
-            return list;
         } else {
-            JTree jt = new JTree(new SelectionTreeModel());
+            JTree jt = (JTree) jc;
             jt.setEditable(false);
             jt.setSelectionModel(new MultipleTreeSelectionModel());
-            jt.setName(fc.getURI());
-            return jt;
         }
+        super.update();
     }
 
     private void setSelected() {

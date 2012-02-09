@@ -157,7 +157,7 @@ public class GroupModel extends Model {
     	if (jc instanceof JTabbedPane) {
     		updateTabbedPanel();
     	}
-    	super.upate();
+    	super.update();
     }
     
     /**

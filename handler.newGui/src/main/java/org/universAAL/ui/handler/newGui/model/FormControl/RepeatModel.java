@@ -145,7 +145,7 @@ public class RepeatModel extends GroupModel {
     	}
     	//space for proper constructions of RepeatModel
     	
-    	super.upate();
+    	super.update();
     }
 
     class RepeatTableModel extends AbstractTableModel {

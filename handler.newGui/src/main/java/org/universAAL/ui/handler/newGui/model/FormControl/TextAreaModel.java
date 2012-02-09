@@ -61,7 +61,7 @@ implements CaretListener {
         ta.setText((String) fc.getValue());
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        super.upate();
+        super.update();
     }
     
     /**

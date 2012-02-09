@@ -87,6 +87,10 @@ implements ChangeListener {
         }
     }
     
+    /**
+     * Create a {@link SpinnerModel} based on the values obtained from model
+     * @return
+     */
     private SpinnerModel getSpinnerModel() {
         return new SpinnerNumberModel(initValue,
                 mnValue,

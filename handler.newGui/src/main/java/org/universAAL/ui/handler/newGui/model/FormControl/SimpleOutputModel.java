@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.model.FormControl;
 
+import java.util.Locale;
+
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
@@ -89,37 +91,79 @@ public class SimpleOutputModel extends OutputModel {
         // getTypeURI returns null
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
-                JTextArea ta = new JTextArea();
+                return new JTextArea();
+            }
+            else {
+                return new JTextField();
+            }
+        }
+        //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
+        if (content instanceof Boolean) {
+            needsLabel = false;
+            return new JCheckBox(fc.getLabel().getText(),
+                    IconFactory.getIcon(fc.getLabel().getIconURL()));
+        }
+		//if (inFi.getValue() instanceof XMLGregorianCalendar) {}
+		//if (inFi.getValue() instanceof Duration) {}
+/*			if (inFi.getValue() instanceof Integer 
+				|| inFi.getValue() instanceof Long) {
+			
+		}
+		if (inFi.getValue() instanceof Float
+				|| inFi.getValue() instanceof Double) {
+			
+		}*/
+		if (content instanceof Locale) {
+			return new JTextField();
+		}
+        return null;
+    }
+    
+    /**
+     * Updating the {@link JComponent} with info
+     */
+    protected void update() {
+    	Object content = ((SimpleOutput) fc).getContent();
+        //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
+        // getTypeURI returns null
+        if (content instanceof String) {
+            if (((String) content).length() >= TOO_LONG) {
+                JTextArea ta = (JTextArea) jc;
                 ta.setText((String) content);
                 ta.setEditable(false);
                 //ta.setEnabled(false);
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
-                ta.setName(fc.getURI());
-                return ta;
             }
             else {
-                JTextComponent tf = new JTextField();
+                JTextComponent tf = (JTextComponent) jc;
                 tf.setText((String) content);
                 tf.setEditable(false);
                 //tf.setEnabled(false);
-                tf.setToolTipText(fc.getHelpString());
-                tf.setName(fc.getURI());
-                return tf;
             }
         }
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
         if (content instanceof Boolean) {
-            JCheckBox cb = new JCheckBox(fc.getLabel().getText(),
-                    IconFactory.getIcon(fc.getLabel().getIconURL()));
-            needsLabel = false;
+            JCheckBox cb = (JCheckBox) jc;
             cb.setSelected(((Boolean) content).booleanValue());
             cb.setEnabled(false);
-            cb.setToolTipText(fc.getHelpString());
-            cb.setName(fc.getURI());
-            return cb;
         }
-        return null;
+		//if (inFi.getValue() instanceof XMLGregorianCalendar) {}
+		//if (inFi.getValue() instanceof Duration) {}
+/*			if (inFi.getValue() instanceof Integer 
+				|| inFi.getValue() instanceof Long) {
+			
+		}
+		if (inFi.getValue() instanceof Float
+				|| inFi.getValue() instanceof Double) {
+			
+		}*/
+		if (content instanceof Locale) {
+			JTextField tf = (JTextField) jc;
+			tf.setText(((Locale) content).getDisplayLanguage());
+			tf.setEditable(false);
+		}
+        super.update();
     }
 
 }

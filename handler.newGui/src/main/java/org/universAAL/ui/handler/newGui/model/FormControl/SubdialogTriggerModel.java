@@ -57,13 +57,20 @@ implements ActionListener {
                 IconFactory.getIcon(fc.getLabel().getIconURL()),
                 isSelected());
         tb.addActionListener(this);
-        tb.setName(fc.getURI());
-        /*
-         *  set as pressed when displaying the dialog it triggers
-         */
+
         return tb;
     }
 
+    /**
+     * Update the {@link JComponent}
+     */
+/*    
+     protected void update() {
+        //TODO set as pressed when displaying the dialog it triggers
+    	super.update();
+    }
+*/
+    
     /**
      * Checks that the current dialog is a successor of the dialog this
      * {@link SubdialogTrigger} triggers
