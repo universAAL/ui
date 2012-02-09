@@ -44,28 +44,35 @@ public class MediaObjectModel extends OutputModel {
      * videos, audio and other media files.
      * @return {@inheritDoc}
      */
-    public JComponent getNewComponent() {
-        JLabel jl = new JLabel(fc.getLabel().getText());
-        Icon icon = IconFactory.getIcon(((MediaObject) fc).getContentURL());
+    public JComponent getNewComponent() {        
+        return new JLabel(fc.getLabel().getText());
+    }
+    
+    /**
+     * Updating the {@link JLabel}
+     */
+    protected void update(){
+	JLabel jl = (JLabel) jc;
+	MediaObject mo = (MediaObject) fc;
+        Icon icon = IconFactory.getIcon(mo.getContentURL());
         jl.setIcon(icon);
         jl.setName(fc.getURI());
         int x, y;
-        x = ((MediaObject) fc).getResolutionPreferredX();
-        y = ((MediaObject) fc).getResolutionPreferredY();
+        x = mo.getResolutionPreferredX();
+        y = mo.getResolutionPreferredY();
         if ( x != 0    && y != 0) {
             jl.setPreferredSize( new Dimension(x, y));
         }
-        x = ((MediaObject) fc).getResolutionMaxX();
-        y = ((MediaObject) fc).getResolutionMaxY();
+        x = mo.getResolutionMaxX();
+        y = mo.getResolutionMaxY();
         if ( x != 0    && y != 0) {
             jl.setMaximumSize(new Dimension(x, y));
         }
-        x = ((MediaObject) fc).getResolutionMinX();
-        y = ((MediaObject) fc).getResolutionMinY();
+        x = mo.getResolutionMinX();
+        y = mo.getResolutionMinY();
         if ( x != 0    && y != 0) {
             jl.setMinimumSize(new Dimension(x, y));
         }
-        return jl;
     }
 
     /*
