@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
-import javax.swing.JComponent;
-
 import org.universAAL.middleware.ui.rdf.Range;
 import org.universAAL.ui.handler.newGui.model.FormControl.RangeModel;
 
@@ -35,11 +33,10 @@ public class RangeLAF extends RangeModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-        JComponent ran = super.getNewComponent();
-        ran.setFont(ColorLAF.getLabelFont());
-        ran.setForeground(ColorLAF.getborderLineMM());
-        return ran;
+    public void update() {
+	super.update();
+        jc.setFont(ColorLAF.getLabelFont());
+        jc.setForeground(ColorLAF.getborderLineMM());
     }
 
 

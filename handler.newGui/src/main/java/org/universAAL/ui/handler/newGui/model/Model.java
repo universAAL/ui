@@ -199,8 +199,10 @@ public abstract class Model {
     };
     
     protected void update() {
+	if (jc != null) {
 		jc.setName(fc.getURI());
 		jc.setToolTipText(fc.getHintString());
+	}
 		/*
 		 * TODO: how to show Help ?
 		 */

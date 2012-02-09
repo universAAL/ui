@@ -19,7 +19,6 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
@@ -43,12 +42,12 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
+    public void update() {
+	super.update();
         Object content = ((SimpleOutput) fc).getContent();
-        JComponent comp = super.getNewComponent();
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
-                JTextArea ta = (JTextArea) comp;
+                JTextArea ta = (JTextArea) jc;
                 ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
@@ -59,23 +58,19 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setForeground(ColorLAF.getfont());
                 JScrollPane sp = new JScrollPane(ta);
                 sp.getAccessibleContext();
-                return sp;
             }
             else {
-                JTextComponent tf = (JTextComponent) comp;
+                JTextComponent tf = (JTextComponent) jc;
                 tf.getAccessibleContext().setAccessibleName(tf.getText());
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
-                return tf;
             }
         }
         if (content instanceof Boolean) {
-            JCheckBox cb = (JCheckBox) comp;
+            JCheckBox cb = (JCheckBox) jc;
             cb.getAccessibleContext().setAccessibleName(cb.getName());
-            return cb;
         }
-        return comp;
     }
 
 

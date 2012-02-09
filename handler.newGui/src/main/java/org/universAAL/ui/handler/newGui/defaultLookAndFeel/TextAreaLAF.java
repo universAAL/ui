@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
-import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -29,6 +28,11 @@ import org.universAAL.ui.handler.newGui.model.FormControl.TextAreaModel;
 public class TextAreaLAF extends TextAreaModel {
 
     /**
+     * {@link JScrollPane} around the {@link JTextArea};
+     */
+    JScrollPane sp;
+    
+    /**
      * Constructor.
      * @param control the {@link TextArea} which to model.
      */
@@ -39,23 +43,20 @@ public class TextAreaLAF extends TextAreaModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
+    public void update() {
+	super.update();
         String initialValue = (String) fc.getValue();
-        JTextArea ta = new JTextArea(10, 15);
-        ta.setText(initialValue);
+        JTextArea ta = (JTextArea) jc;
+        ta.setRows(10);
+        ta.setColumns(15);
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        ta.addCaretListener(this);
-        ta.setName(fc.getURI());
-        JScrollPane sp = new JScrollPane(ta);
+        sp = new JScrollPane(ta);
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
-
-        return sp;
-
     }
 
 }

@@ -59,8 +59,6 @@ implements CaretListener {
     protected void update() {
     	JTextArea ta = (JTextArea) jc;
         ta.setText((String) fc.getValue());
-        ta.setLineWrap(true);
-        ta.setWrapStyleWord(true);
         super.update();
     }
     

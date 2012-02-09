@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
-import javax.swing.JComponent;
-
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel;
 
@@ -36,10 +34,11 @@ public class InputFieldLAF extends InputFieldModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-        JComponent inf = super.getNewComponent();
-        inf.setFont(ColorLAF.getplain());
-        return inf;
+    public void update() {
+	if (jc != null){
+	    super.update();
+	    jc.setFont(ColorLAF.getplain());
+	}
     }
 
 
