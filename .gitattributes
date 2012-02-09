@@ -228,6 +228,7 @@ handler.newGui/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel
 handler.newGui/src/test/java/ui/handler/newGui/test/DialogMenu.java -text
 handler.newGui/src/test/java/ui/handler/newGui/test/LoginMenu.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/SystemMenu.java -text svneol=unset#text/plain
+handler.newGui/src/test/java/ui/handler/newGui/test/auto/DefaultLAFConstructorTest.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/auto/ModelMapperTest.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/auto/ResourceMapperTest.java -text svneol=unset#text/plain
 handler.newGui/src/test/java/ui/handler/newGui/test/auto/SubdialogAntecessorTest.java -text svneol=unset#text/plain
