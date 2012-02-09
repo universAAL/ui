@@ -19,11 +19,13 @@ import java.util.Locale;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
 
@@ -51,10 +53,24 @@ public class SimpleOutputModel extends OutputModel {
 
     /**
      * {@inheritDoc}
-     * @return
-     *     either a {@link JTextArea} or a {@link JTextField} if output is a {@link String}.
-     *     or it can be a {@link JCheckBox} if the output is a {@link Boolean}.
-     *     all of them are uneditable by the user.
+     * @return     
+     * the representation for {@link SimpleOutput} can either be
+     * <ul>
+     * <li>a {@link JCheckBox} if the {@link SimpleOutput#getContent()} is a boolean
+     * type
+     * <li>a {@link JTextField} if the {@link SimpleOutput#getContent()} is a String
+     * and it is not {@link SimpleOutputModel#TOO_LONG}
+     * <li>a {@link JTextArea} if the {@link SimpleOutput#getContent()} is
+     * String and it is {@link SimpleOutputModel#TOO_LONG}
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a XMLGregorianCalendar
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a Duration
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a Integer
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a Long
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a Float
+     * <li>a ?? if the {@link SimpleOutput#getContent()} is a Double
+     * <li>a {@link JTextField} if the {@link SimpleOutput#getContent()} is a Locale
+     * </ul>
+     * all of them are uneditable by the user.
      */
     public JComponent getNewComponent() {
         /*
