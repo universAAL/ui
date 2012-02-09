@@ -194,11 +194,11 @@ public abstract class Model {
     	if (jc == null) {
     		jc = getNewComponent();
     	}
-    	upate();
+    	update();
     	return jc;   	
     };
     
-    protected void upate() {
+    protected void update() {
 		jc.setName(fc.getURI());
 		jc.setToolTipText(fc.getHintString());
 		/*

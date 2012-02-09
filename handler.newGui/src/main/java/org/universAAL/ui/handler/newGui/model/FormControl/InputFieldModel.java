@@ -161,7 +161,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 		if (jc instanceof JComboBox) {
 			((JComboBox)jc).setSelectedItem(initVal);
 		}
-		super.upate();
+		super.update();
 	}
 
 	/** {@inheritDoc} */

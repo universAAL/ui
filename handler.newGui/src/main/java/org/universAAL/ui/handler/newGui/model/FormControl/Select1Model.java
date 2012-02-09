@@ -51,10 +51,25 @@ implements  ActionListener {
      * @return either a {@link JTree} or a {@link JComboBox}
      */
     public JComponent getNewComponent() {
-        //XXX add icons to component!
         if (!((Select) fc).isMultilevel()) {
             Label[] items = ((Select1) fc).getChoices();
-            JComboBox cb = new JComboBox(items);
+            JComboBox cb = new JComboBox(items);            
+            cb.addActionListener(this);
+            return cb;
+        } else {
+            JTree jt = new JTree(new SelectionTreeModel());
+            return jt;
+        }
+    }
+
+    /**
+     * Update the {@link JComponent}
+     */
+    protected void update() {
+    	//XXX add icons to component!
+        if (!((Select) fc).isMultilevel()) {
+            Label[] items = ((Select1) fc).getChoices();
+            JComboBox cb = (JComboBox) jc;
             for (int i = 0; i < items.length; i++) {
                 if (((ChoiceItem) items[i]).getValue()
                         == fc.getValue()) {
@@ -62,19 +77,14 @@ implements  ActionListener {
                 }
             }
             cb.setEditable(true);
-            cb.addActionListener(this);
-            cb.setName(fc.getURI());
-            return cb;
         } else {
-            JTree jt = new JTree(new SelectionTreeModel());
+            JTree jt = (JTree) jc;
             jt.setEditable(false);
             jt.setSelectionModel(new SingleTreeSelectionModel());
-
-            jt.setName(fc.getURI());
         }
-        return null;
+        super.update();
     }
-
+    
     /**
      * {@inheritDoc}
      */
