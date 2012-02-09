@@ -15,7 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
-import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Select;
@@ -28,6 +28,11 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
 public class SelectLAF extends SelectModel {
 
     /**
+     * {@link JScrollPane} around the {@link JList}
+     */
+    JScrollPane sp = null;
+    
+    /**
      * Constructor.
      * @param control the {@link Select} which to model.
      */
@@ -36,12 +41,11 @@ public class SelectLAF extends SelectModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-        if (!((Select) fc).isMultilevel()) {
-        return new JScrollPane(super.getNewComponent());
-        }
-        else {
-            return super.getNewComponent();
+    public void update() {
+	super.update();
+        if (!((Select) fc).isMultilevel()
+        	&& sp == null) {
+        sp = new JScrollPane(jc);
         }
     }
 

@@ -23,8 +23,9 @@ import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.newGui.model.IconFactory;
+
 /**
- *
+ * 
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see MediaObject
  */
@@ -32,63 +33,63 @@ public class MediaObjectModel extends OutputModel {
 
     /**
      * Constructor.
-     * @param control the {@link MediaObject} which to model.
+     * 
+     * @param control
+     *            the {@link MediaObject} which to model.
      */
     public MediaObjectModel(MediaObject control) {
-        super(control);
+	super(control);
     }
 
     /**
-     * The {@link JComponent} returned is a {@link JLabel}.
-     * in future versions it may accommodate other components for
-     * videos, audio and other media files.
+     * The {@link JComponent} returned is a {@link JLabel}. in future versions
+     * it may accommodate other components for videos, audio and other media
+     * files.
+     * 
      * @return {@inheritDoc}
      */
-    public JComponent getNewComponent() {        
-        return new JLabel(fc.getLabel().getText());
+    public JComponent getNewComponent() {
+	return new JLabel(fc.getLabel().getText());
     }
-    
+
     /**
      * Updating the {@link JLabel}
      */
-    protected void update(){
-	JLabel jl = (JLabel) jc;
+    protected void update() {
+
 	MediaObject mo = (MediaObject) fc;
-        Icon icon = IconFactory.getIcon(mo.getContentURL());
-        jl.setIcon(icon);
-        jl.setName(fc.getURI());
-        int x, y;
-        x = mo.getResolutionPreferredX();
-        y = mo.getResolutionPreferredY();
-        if ( x != 0    && y != 0) {
-            jl.setPreferredSize( new Dimension(x, y));
-        }
-        x = mo.getResolutionMaxX();
-        y = mo.getResolutionMaxY();
-        if ( x != 0    && y != 0) {
-            jl.setMaximumSize(new Dimension(x, y));
-        }
-        x = mo.getResolutionMinX();
-        y = mo.getResolutionMinY();
-        if ( x != 0    && y != 0) {
-            jl.setMinimumSize(new Dimension(x, y));
-        }
+	if (mo.getContentType().startsWith("image")) {
+	    JLabel jl = (JLabel) jc;
+	    Icon icon = IconFactory.getIcon(mo.getContentURL());
+	    jl.setIcon(icon);
+	    jl.setName(fc.getURI());
+	    int x, y;
+	    x = mo.getResolutionPreferredX();
+	    y = mo.getResolutionPreferredY();
+	    if (x != 0 && y != 0) {
+		jl.setPreferredSize(new Dimension(x, y));
+	    }
+	    x = mo.getResolutionMaxX();
+	    y = mo.getResolutionMaxY();
+	    if (x != 0 && y != 0) {
+		jl.setMaximumSize(new Dimension(x, y));
+	    }
+	    x = mo.getResolutionMinX();
+	    y = mo.getResolutionMinY();
+	    if (x != 0 && y != 0) {
+		jl.setMinimumSize(new Dimension(x, y));
+	    }
+	}
     }
 
     /*
-     *  XXX:
-     *   Media Type parser for images, audio, (or video)
-     *   URL Parser: know where to locate the resource (DONE)
-     *           - in jar
-     *           - in file system
-     *           - in config dir
-     *           - in remote repo (like http)
-     *           - other cases? use VFS..
-     *   Media Cache : once located resources store and index them in
-     *    config dir for faster location.
-     *
-     *    Use Locator and cache for the other Icons (using IconFactory)
-     *
+     * XXX: Media Type for images, audio, video) URL Parser: know
+     * where to locate the resource (DONE) - in jar - in file system - in config
+     * dir - in remote repo (like http) - other cases? use VFS.. Media Cache :
+     * once located resources store and index them in config dir for faster
+     * location.
+     * 
+     * Use Locator and cache for the other Icons (using IconFactory)
      */
 
 }
