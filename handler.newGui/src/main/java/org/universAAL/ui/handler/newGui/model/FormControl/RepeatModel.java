@@ -17,23 +17,25 @@ package org.universAAL.ui.handler.newGui.model.FormControl;
 
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 
-import org.universAAL.middleware.ui.rdf.FormControl;
-import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.middleware.ui.rdf.Input;
-import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.TypeMapper;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Repeat;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Repeat
  */
 public class RepeatModel extends GroupModel {
+	
+	/**
+	 * Place holder for tables
+	 */
+    private RepeatModelTable table;
 
-    /**
+	/**
      * Constructor
      * @param control the {@link Repeat} which to model.
      */
@@ -83,21 +85,7 @@ public class RepeatModel extends GroupModel {
         }
     }
 
-    /**
-     * pre: isATable()
-     * @param col
-     * @return
-     * @see RepeatModel#isATable()
-     */
-    private FormControl[][] getTable() {
-        FormControl[] rows = ((Group) fc).getChildren();
-        int cols = ((Group) rows[0]).getChildren().length;
-        FormControl[][] table = new FormControl[rows.length][cols];
-        for (int r = 0; r < rows.length; r++) {
-            table[r] = ((Group) rows[r]).getChildren();
-        }
-        return table;
-    }
+
 
     /** {@inheritDoc}*/
     public JComponent getNewComponent() {
@@ -108,22 +96,8 @@ public class RepeatModel extends GroupModel {
          *  Check for Group children and render JTabbedPane
          */
         if (isATable()) {
-            /* TODO
-             * Representation of a table
-             ********************************************
-             * use:
-             *  boolean         listAcceptsNewEntries()
-             *  boolean         listEntriesDeletable()
-             *  boolean         listEntriesEditable()
-             *  int             getSelectionIndex()
-             *  FormControl     getSearchableField() (add a listener to this component)
-             * to configure the table accordingly!!
-             */
-            /*
-             * check:
-             * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
-             */
-            return new JTable(new RepeatTableModel());
+        	table = new RepeatModelTable((Repeat) fc);
+            return table.getNewComponent();
         }
         if (getChildrenType().equals(Group.class)) {
             /*
@@ -143,58 +117,9 @@ public class RepeatModel extends GroupModel {
     	if (jc instanceof JTabbedPane) {
     		updateTabbedPanel();
     	}
-    	//space for proper constructions of RepeatModel
-    	
+    	else {
+    		table.update();
+    	}    	
     	super.update();
-    }
-
-    class RepeatTableModel extends AbstractTableModel {
-
-        /**
-         *
-         */
-        private static final long serialVersionUID = 8263449027626068414L;
-        private FormControl[][] table;
-
-        public RepeatTableModel() {
-            table = getTable();
-        }
-
-        public int getRowCount() {
-            return table.length;
-        }
-
-        public int getColumnCount() {
-            return table[0].length;
-        }
-
-        public String getColumnName(int columnIndex) {
-            return table[0][columnIndex].getLabel().getText();
-        }
-
-        public Class getColumnClass(int columnIndex) {
-            Class colClass = table[0][columnIndex].getValue().getClass();
-            for (int i = 1; i < getRowCount();i++) {
-                while (!colClass.isAssignableFrom(table[i][columnIndex].getValue().getClass())) {
-                    //not a subclass (or equal) of colClass
-                    colClass = colClass.getSuperclass();
-                }
-            }
-            return null;
-        }
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return (table[rowIndex][columnIndex] instanceof Input)
-                    && ((Repeat) fc).listEntriesDeletable();
-        }
-
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            return table[rowIndex][columnIndex].getValue();
-        }
-
-        public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-            ((Input) table[rowIndex][columnIndex]).storeUserInput(aValue);
-            //TODO Check Validity!
-        }
     }
 }
