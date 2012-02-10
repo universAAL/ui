@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
+import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -33,6 +34,11 @@ public class SelectLAF extends SelectModel {
     JScrollPane sp = null;
     
     /**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+    
+    /**
      * Constructor.
      * @param control the {@link Select} which to model.
      */
@@ -40,14 +46,21 @@ public class SelectLAF extends SelectModel {
         super(control);
     }
 
+   
     /** {@inheritDoc} */
-    public void update() {
-	super.update();
-        if (!((Select) fc).isMultilevel()
-        	&& sp == null) {
-        sp = new JScrollPane(jc);
-        }
-    }
+	public JComponent getNewComponent() {
+		ejc = super.getNewComponent();
+		 if (!((Select) fc).isMultilevel()
+		        	&& sp == null) {
+		        sp = new JScrollPane(ejc);
+		  }
+		 return sp;
+	}
 
+	/** {@inheritDoc} */
+    protected void update() {
+		jc = (JComponent) (jc == sp? ejc:jc);
+    	super.update();
+    }
 
 }

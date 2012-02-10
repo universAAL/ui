@@ -19,6 +19,7 @@ import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
@@ -32,6 +33,16 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
+	/**
+	 * Added Scroll pane to contain TextArea
+	 */
+	JScrollPane sp;
+	
+	/**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+	
     /**
      * Constructor.
      * @param control the {@link SimpleOutput} which to model.
@@ -42,11 +53,25 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     }
 
     /** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		Object content = ((SimpleOutput) fc).getContent();
+		JComponent sjc = super.getNewComponent();
+		ejc = sjc;
+		if (content instanceof String) {
+            if (((String) content).length() >= TOO_LONG) {
+                sp = new JScrollPane(sjc);
+                sjc = sp;
+            }
+		}
+		return sjc;
+	}
+
+	/** {@inheritDoc} */
     public void update() {
-	super.update();
         Object content = ((SimpleOutput) fc).getContent();
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
+            	jc = (JComponent) (jc == sp? ejc:jc);
                 JTextArea ta = (JTextArea) jc;
                 ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setLineWrap(true);
@@ -56,7 +81,6 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
                 ta.setForeground(ColorLAF.getfont());
-                JScrollPane sp = new JScrollPane(ta);
                 sp.getAccessibleContext();
             }
             else {
@@ -71,6 +95,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
             JCheckBox cb = (JCheckBox) jc;
             cb.getAccessibleContext().setAccessibleName(cb.getName());
         }
+    	super.update();
     }
 
 

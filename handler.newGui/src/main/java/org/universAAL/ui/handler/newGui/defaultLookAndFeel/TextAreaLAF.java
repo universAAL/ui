@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
+import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -33,6 +34,11 @@ public class TextAreaLAF extends TextAreaModel {
     JScrollPane sp;
     
     /**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+    
+    /**
      * Constructor.
      * @param control the {@link TextArea} which to model.
      */
@@ -41,9 +47,10 @@ public class TextAreaLAF extends TextAreaModel {
 
 
     }
-
+    
     /** {@inheritDoc} */
     public void update() {
+		jc = (JComponent) (jc == sp? ejc:jc);
 	super.update();
         String initialValue = (String) fc.getValue();
         JTextArea ta = (JTextArea) jc;
@@ -52,11 +59,20 @@ public class TextAreaLAF extends TextAreaModel {
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        sp = new JScrollPane(ta);
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
     }
+
+
+
+
+    /** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		ejc =super.getNewComponent();
+		sp = new JScrollPane(ejc);
+		return sp;
+	}
 
 }
