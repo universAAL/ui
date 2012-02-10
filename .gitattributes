@@ -196,6 +196,7 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/OutputModel.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RangeModel.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModel.java -text
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModelTable.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/Select1Model.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SelectModel.java -text
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SimpleOutputModel.java -text
