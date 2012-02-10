@@ -86,7 +86,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
      */
     protected void update() {
     	Label[] items = ((Select) fc).getChoices();
-        if (!((Select) fc).isMultilevel()) {
+        if (jc instanceof JList) {
             /*
              * Not a tree, then it is a simple select list with multiple
              * selection power.
@@ -102,7 +102,8 @@ public class SelectModel extends InputModel implements ListSelectionListener {
             	}
             }
             list.addListSelectionListener(this);
-        } else {
+        }
+        if (jc instanceof JTree) {
             JTree jt = (JTree) jc;
             jt.setEditable(false);
             jt.setSelectionModel(new MultipleTreeSelectionModel());

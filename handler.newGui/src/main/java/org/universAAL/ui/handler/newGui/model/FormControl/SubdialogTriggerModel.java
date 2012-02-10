@@ -78,9 +78,14 @@ implements ActionListener {
      *         true is it should be selected
      */
     private boolean isSelected() {
-        FormModel current = FormModelMapper
-                .getFromURI(Renderer.getInstance().getCurrentForm().getURI());
-        return current.isAntecessor(((SubdialogTrigger) fc).getID());
+    	if (Renderer.getInstance() != null) {
+    		FormModel current = FormModelMapper
+    				.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
+    		return current.isAntecessor(((SubdialogTrigger) fc).getID());
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     /**
