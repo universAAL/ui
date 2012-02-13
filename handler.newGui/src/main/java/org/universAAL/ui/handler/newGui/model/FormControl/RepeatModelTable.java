@@ -42,7 +42,7 @@ public class RepeatModelTable extends RepeatModel {
 	/**
 	 * The table component
 	 */
-	private JTable tableComponent;
+	protected JTable tableComponent;
 
 	/**
 	 * Constructor
@@ -103,14 +103,13 @@ public class RepeatModelTable extends RepeatModel {
 		}
 		if (r.listEntriesEditable()) {
 			buttonPanel.add(new UpTableButton());
-			buttonPanel.add(new DeleteTableButton());
+			buttonPanel.add(new DownTableButton());
 		}
 
 		JPanel pannelWithAll = new JPanel();
 		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		pannelWithAll.add(scrollPane);
 		pannelWithAll.add(buttonPanel);
-
 		return pannelWithAll;
 	}
 
@@ -120,7 +119,7 @@ public class RepeatModelTable extends RepeatModel {
 
 	}
 
-	class RepeatTableModel extends AbstractTableModel {
+	public class RepeatTableModel extends AbstractTableModel {
 
 		/**
 		 *
@@ -174,7 +173,7 @@ public class RepeatModelTable extends RepeatModel {
 	 * Class representing the Add button for Tables.
 	 * @author amedrano
 	 */
-	class AddTableButton extends JButton implements ActionListener {
+	public class AddTableButton extends JButton implements ActionListener {
 
 		/**
 		 * Java Serializer Variable
@@ -187,8 +186,7 @@ public class RepeatModelTable extends RepeatModel {
 		public AddTableButton() {
 			super();
 			this.addActionListener(this);
-			// TODO: Add Icon
-			this.setText("+");
+			this.setName(fc.getURI()+"_Add");
 		}
 
 		/** {@inheritDoc}*/
@@ -202,7 +200,7 @@ public class RepeatModelTable extends RepeatModel {
 	 * Class representing the Delete button for Tables.
 	 * @author amedrano
 	 */
-	class DeleteTableButton extends JButton implements ActionListener {
+	public class DeleteTableButton extends JButton implements ActionListener {
 
 		/**
 		 * Java Serializer Variable
@@ -216,8 +214,7 @@ public class RepeatModelTable extends RepeatModel {
 		public DeleteTableButton() {
 			super();
 			this.addActionListener(this);
-			// TODO: Add Icon
-			this.setText("-");
+			this.setName(fc.getURI()+"_Delete");
 		}
 		
 		/** {@inheritDoc}*/
@@ -236,7 +233,7 @@ public class RepeatModelTable extends RepeatModel {
 	 * Class representing the Up button for Tables.
 	 * @author amedrano
 	 */
-	class UpTableButton extends JButton implements ActionListener {
+	public class UpTableButton extends JButton implements ActionListener {
 
 		/**
 		 * Java Serializer Variable
@@ -250,8 +247,7 @@ public class RepeatModelTable extends RepeatModel {
 		public UpTableButton() {
 			super();
 			this.addActionListener(this);
-			// TODO: Add Icon
-			this.setText("^");
+			this.setName(fc.getURI()+"_Up");
 		}
 		
 		/** {@inheritDoc}*/
@@ -269,7 +265,7 @@ public class RepeatModelTable extends RepeatModel {
 	 * Class representing the Down button for Tables.
 	 * @author amedrano
 	 */
-	class DownTableButton extends JButton implements ActionListener {
+	public class DownTableButton extends JButton implements ActionListener {
 
 		/**
 		 * Java Serializer Variable
@@ -283,8 +279,7 @@ public class RepeatModelTable extends RepeatModel {
 		public DownTableButton() {
 			super();
 			this.addActionListener(this);
-			// TODO: Add Icon
-			this.setText("v");
+			this.setName(fc.getURI()+"_Down");
 		}
 		
 		/** {@inheritDoc}*/

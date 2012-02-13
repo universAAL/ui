@@ -176,6 +176,7 @@ handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/MediaObjectLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RangeLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatLAF.java -text svneol=unset#text/plain
+handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatModelTableLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Select1LAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SelectLAF.java -text svneol=unset#text/plain
 handler.newGui/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SimpleOutputLAF.java -text svneol=unset#text/plain

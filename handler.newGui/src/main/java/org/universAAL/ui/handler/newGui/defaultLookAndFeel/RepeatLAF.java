@@ -15,6 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.newGui.defaultLookAndFeel;
 
+import javax.swing.JComponent;
+
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModel;
 
@@ -30,6 +33,29 @@ public class RepeatLAF extends RepeatModel {
      */
     public RepeatLAF(Repeat control) {
         super(control);
+    }
+    
+    /** {@inheritDoc}*/
+    public JComponent getNewComponent() {
+        /*
+         *  TODO
+         *  Check for complexity and take decision
+         *  Check for multilevel and take decision
+         *  Check for Group children and render JTabbedPane
+         */
+        if (isATable()) {
+        	table = new RepeatModelTableLAF((Repeat) fc);
+            return table.getNewComponent();
+        }
+        if (getChildrenType().equals(Group.class)) {
+            /*
+             * children are Group, but not the same length
+             * display a tabbedpane
+             */
+            return tabbedPanel();
+        }
+        
+        return super.getNewComponent();
     }
 
 }

@@ -33,7 +33,7 @@ public class RepeatModel extends GroupModel {
 	/**
 	 * Place holder for tables
 	 */
-    private RepeatModelTable table;
+    protected RepeatModelTable table;
 
 	/**
      * Constructor
@@ -48,7 +48,7 @@ public class RepeatModel extends GroupModel {
      * @return
      *         {@link Class} of the 1st child.
      */
-    private Class getChildrenType() {
+    protected Class getChildrenType() {
         FormControl[] children = ((Repeat) fc).getChildren();
         if (children != null && children.length > 0) {
         	return TypeMapper.getJavaClass(children[0].getTypeURI());
@@ -62,7 +62,7 @@ public class RepeatModel extends GroupModel {
      *        <code>true</code> is it does model a table.
      *        <code>false</code> otherwise.
      */
-    private boolean isATable() {
+    protected boolean isATable() {
         /*
          * Check that the children type is Group,
          * that the length of all children (Groups) are the same,
