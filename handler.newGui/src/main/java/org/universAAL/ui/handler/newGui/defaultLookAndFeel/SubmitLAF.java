@@ -66,7 +66,7 @@ public class SubmitLAF extends SubmitModel {
 	 * @param clickB
 	 *            the background colour for clicked state
 	 */
-	protected static void setButtonBehaviour(JComponent button, Color border,
+	public static void setButtonBehaviour(JComponent button, Color border,
 			Color normalF, Color normalB, Color enterF, Color enterB,
 			Color clickF, Color clickB) {
 		button.getAccessibleContext();
