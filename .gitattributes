@@ -37,8 +37,7 @@ dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
 full.form.tester/LICENSE.txt -text svneol=unset#text/plain
 full.form.tester/pom.xml -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/AbstractForm.java -text
-full.form.tester/src/main/java/org/universAAL/ui/full/test/ISubscriber.java -text
-full.form.tester/src/main/java/org/universAAL/ui/full/test/OPublisher.java -text
+full.form.tester/src/main/java/org/universAAL/ui/full/test/MyUICaller.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/SCallee.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/forms/A1Main.java -text
 full.form.tester/src/main/java/org/universAAL/ui/full/test/osgi/Activator.java -text

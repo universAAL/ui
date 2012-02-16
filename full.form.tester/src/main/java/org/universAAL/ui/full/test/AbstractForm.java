@@ -15,39 +15,34 @@
  ******************************************************************************/
 package org.universAAL.ui.full.test;
 
-import org.universAAL.middleware.input.InputEvent;
-import org.universAAL.middleware.io.rdf.Form;
+import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.middleware.ui.rdf.Form;
 
 /**
  * @author amedrano
- *
+ * 
  */
 public interface AbstractForm {
-	/*
-	protected void listenTo(String DialogID){
-		Activator.ninput.registerUI(DialogID,this);
-	}
-	*/
-	/**
-	 * The construction of the Form
-	 * @return
-	 */
-	public Form getDialog();
-	
-	/**
-	 * The string that will appear in the subdialog trigger for the Form
-	 * @return
-	 */
-	public String getSubDialogTriggerDisplay();
-	
-	/**
-	 * Handle the input event for the generated Dialog
-	 * @param ie
-	 */
-	public void handleEvent(InputEvent ie);
-	/*
-	public void handleEvent(InputEvent ie) {
-		Activator.ninput.unresgisterUI(ie.getDialogID());
-	}
-	*/
+
+    /**
+     * The construction of the Form
+     * 
+     * @return
+     */
+    public Form getDialog();
+
+    /**
+     * The string that will appear in the subdialog trigger for the Form
+     * 
+     * @return
+     */
+    public String getSubDialogTriggerDisplay();
+
+    /**
+     * Handle the input event for the generated Dialog
+     * 
+     * @param ie
+     */
+    public void handleUIResponse(UIResponse ie);
+
 }

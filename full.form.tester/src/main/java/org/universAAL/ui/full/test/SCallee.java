@@ -31,75 +31,88 @@ import org.universAAL.ui.full.test.forms.A1Main;
 import org.universAAL.ui.full.test.osgi.Activator;
 
 public class SCallee extends ServiceCallee {
-	private static final ServiceResponse failure = new ServiceResponse(
-			CallStatus.serviceSpecificFailure);
-	private final static Logger log = LoggerFactory.getLogger(SCallee.class);
-	private static final String SERVICE_ID = "http://ontology.universAAL.org/Tests.owl#startUI";
+    private static final ServiceResponse failure = new ServiceResponse(
+	    CallStatus.serviceSpecificFailure);
+    private final static Logger log = LoggerFactory.getLogger(SCallee.class);
+    private static final String SERVICE_ID = "http://ontology.universAAL.org/Tests.owl#startUI";
 
-	public SCallee(ModuleContext context) {
-		super(context, getProfiles());
+    public SCallee(ModuleContext context) {
+	super(context, getProfiles());
+    }
+
+    protected SCallee(ModuleContext context, ServiceProfile[] realizedServices) {
+	super(context, realizedServices);
+	log.debug("Registered the SCallee");
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.middleware.service.ServiceCallee#communicationChannelBroken
+     * ()
+     */
+    public void communicationChannelBroken() {
+	// TODO Auto-generated method stub
+
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
+     * .middleware.service.ServiceCall)
+     */
+    public ServiceResponse handleCall(ServiceCall call) {
+	log.debug("Received call");
+	User user = null;
+	if (call == null) {
+	    failure
+		    .addOutput(new ProcessOutput(
+			    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+			    "Null call!?!"));
+	    log.error("Null call");
+	    return failure;
 	}
 
-	protected SCallee(ModuleContext context, ServiceProfile[] realizedServices) {
-		super(context, realizedServices);
-		log.debug("Registered the SCallee");
+	String operation = call.getProcessURI();
+	if (operation == null) {
+	    failure.addOutput(new ProcessOutput(
+		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+		    "Null operation!?!"));
+	    log.error("Null op");
+	    return failure;
 	}
 
-	public void communicationChannelBroken() {
-		// TODO Auto-generated method stub
-
+	if (operation.startsWith(SERVICE_ID)) {
+	    log.debug("Start UI op");
+	    Object inputUser = call
+		    .getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
+	    if ((inputUser == null) || !(inputUser instanceof User)) {
+		failure.addOutput(new ProcessOutput(
+			ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
+			"Invalid User Input!"));
+		log.debug("No user");
+		return failure;
+	    } else {
+		user = (User) inputUser;
+	    }
+	    log.debug("Show dialog from call");
+	    Activator.uiCaller.setUser(user);
+	    Activator.uiCaller.mapAndSendUIRequest(new A1Main());
+	    ServiceResponse response = new ServiceResponse(CallStatus.succeeded);
+	    return response;
 	}
+	log.debug("finished");
+	return null;
+    }
 
-	public ServiceResponse handleCall(ServiceCall call) {
-		log.debug("Received call");
-		User user = null;
-		if (call == null) {
-			failure
-					.addOutput(new ProcessOutput(
-							ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-							"Null call!?!"));
-			log.error("Null call");
-			return failure;
-		}
-
-		String operation = call.getProcessURI();
-		if (operation == null) {
-			failure.addOutput(new ProcessOutput(
-					ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-					"Null operation!?!"));
-			log.error("Null op");
-			return failure;
-		}
-
-		if (operation
-				.startsWith(SERVICE_ID)) {
-			log.debug("Start UI op");
-			Object inputUser = call
-					.getProperty(ServiceRequest.PROP_uAAL_INVOLVED_HUMAN_USER);
-			if ((inputUser == null) || !(inputUser instanceof User)) {
-				failure.addOutput(new ProcessOutput(
-						ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-						"Invalid User Input!"));
-				log.debug("No user");
-				return failure;
-			} else {
-				user = (User) inputUser;
-			}
-			log.debug("Show dialog from call");
-			Activator.noutput.setUser(user);
-			Activator.noutput.publish(new A1Main());
-			ServiceResponse response = new ServiceResponse(CallStatus.succeeded);
-			return response;
-		}
-		log.debug("finished");
-		return null;
-	}
-
-	static ServiceProfile[] getProfiles() {
-		ServiceProfile prof = InitialServiceDialog.createInitialDialogProfile(
-				"http://ontology.universAAL.org/Tests.owl#IORDF",
-				"http://www.upm.es", "Full User Interface Forms tests",
-				SERVICE_ID);
-		return new ServiceProfile[] { prof };
-	}
+    static ServiceProfile[] getProfiles() {
+	ServiceProfile prof = InitialServiceDialog.createInitialDialogProfile(
+		"http://ontology.universAAL.org/Tests.owl#IORDF",
+		"http://www.upm.es", "Full User Interface Forms tests",
+		SERVICE_ID);
+	return new ServiceProfile[] { prof };
+    }
 }

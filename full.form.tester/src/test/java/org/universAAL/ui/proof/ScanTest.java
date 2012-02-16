@@ -17,13 +17,13 @@ package org.universAAL.ui.proof;
 
 import java.io.IOException;
 
-import org.universAAL.ui.full.test.ISubscriber;
+import org.universAAL.ui.full.test.MyUICaller;
 
 public class ScanTest {
 
 	public static void main(String[] args) {
 		try {
-			String[] a = ISubscriber.getClassNamesFromPackage();
+			String[] a = MyUICaller.getClassNamesFromPackage();
 			for (int i=0; i< a.length; i++)
 				System.out.println(a[i]);
 		} catch (IOException e) {

@@ -18,92 +18,101 @@ package org.universAAL.ui.full.test.forms;
 import java.io.IOException;
 import java.util.Locale;
 
-import org.universAAL.middleware.input.InputEvent;
-import org.universAAL.middleware.io.owl.PrivacyLevel;
-import org.universAAL.middleware.io.rdf.Form;
-import org.universAAL.middleware.io.rdf.Label;
-import org.universAAL.middleware.io.rdf.SubdialogTrigger;
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.middleware.ui.owl.PrivacyLevel;
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.ui.full.test.AbstractForm;
-import org.universAAL.ui.full.test.ISubscriber;
+import org.universAAL.ui.full.test.MyUICaller;
 import org.universAAL.ui.full.test.osgi.Activator;
 
 /**
  * @author amedrano
- *
+ * 
+ */
+/**
+ * @author eandgrg
+ * 
  */
 public class A1Main implements AbstractForm {
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.full.test.InputListener#getDialog()
-	 */
-	public Form getDialog() {
-		Form f = Form.newDialog("universAAL Handler Certification Test", (String) null);
-		addSubDialogTriggers(f);
-		//listenTo(f.getDialogID());
-		//TODO add text in IOControls
-		return f;
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.universAAL.ui.full.test.InputListener#getDialog()
+     */
+    public Form getDialog() {
+	Form f = Form.newDialog("universAAL Handler Certification Test",
+		(String) null);
+	addSubDialogTriggers(f);
+	// listenTo(f.getDialogID());
+	// TODO add text in IOControls
+	return f;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.full.test.InputListener#handleEvent(org.universAAL.middleware.input.InputEvent)
-	 */
-	public void handleEvent(InputEvent ie) {
-		//super.handleEvent(ie);
-		String[] cNames=null;
-		try {
-			 cNames = ISubscriber.getClassNamesFromPackage();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (cNames!= null) {
-			int i = 0;
-			while (i < cNames.length
-					&& !cNames[i].equals(ie.getSubmissionID()))
-					i++;
-			if (i!=cNames.length) {
-				/*
-				 *  a submit has been pressed
-				 *  Generate and publish an output event
-				 */
-				OutputEvent e = new OutputEvent(ie.getUser(),
-						ISubscriber.getAbstractForm(cNames[i]).getDialog(),
-						LevelRating.low,
-						Locale.ENGLISH,
-						PrivacyLevel.insensible);
-				Activator.noutput.publish(e);
-			}
-		}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.full.test.AbstractForm#handleUIResponse(org.universAAL
+     * .middleware.ui.UIResponse)
+     */
+    public void handleUIResponse(UIResponse ie) {
+	// super.handleEvent(ie);
+	String[] cNames = null;
+	try {
+	    cNames = MyUICaller.getClassNamesFromPackage();
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
+	if (cNames != null) {
+	    int i = 0;
+	    while (i < cNames.length && !cNames[i].equals(ie.getSubmissionID()))
+		i++;
+	    if (i != cNames.length) {
+		// a submit has been pressed Generate and send ui request
+		UIRequest e = new UIRequest(ie.getUser(), MyUICaller
+			.getAbstractForm(cNames[i]).getDialog(),
+			LevelRating.low, Locale.ENGLISH,
+			PrivacyLevel.insensible);
+		Activator.uiCaller.sendUIRequest(e);
+	    }
+	}
+    }
 
-	public String getSubDialogTriggerDisplay() {
-		return "Main";
-	}
-	
-	static public void addSubDialogTriggers(Form f) {
-		String[] cNames=null;
-		try {
-			 cNames = ISubscriber.getClassNamesFromPackage();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (cNames!= null) {
-			for (int i = 0; i<cNames.length;i++) {
-				addSubDialogTrigger(f, cNames[i]);
-			}
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.full.test.AbstractForm#getSubDialogTriggerDisplay()
+     */
+    public String getSubDialogTriggerDisplay() {
+	return "Main";
+    }
 
-	static private void addSubDialogTrigger(Form f,  String cName) {
-			new SubdialogTrigger(f.getSubmits(), 
-				new Label(ISubscriber.getAbstractForm(cName)
-						.getSubDialogTriggerDisplay(), null),
-				cName);		
+    static public void addSubDialogTriggers(Form f) {
+	String[] cNames = null;
+	try {
+	    cNames = MyUICaller.getClassNamesFromPackage();
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
+	if (cNames != null) {
+	    for (int i = 0; i < cNames.length; i++) {
+		addSubDialogTrigger(f, cNames[i]);
+	    }
+	}
+    }
 
+    static private void addSubDialogTrigger(Form f, String cName) {
+	new SubdialogTrigger(f.getSubmits(), new Label(MyUICaller
+		.getAbstractForm(cName).getSubDialogTriggerDisplay(), null),
+		cName);
+    }
 
 }
-

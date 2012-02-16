@@ -19,11 +19,11 @@
 	<parent>
 		<artifactId>ui.pom</artifactId>
 		<groupId>org.universAAL.ui</groupId>
-		<version>1.0.0</version>
-		<relativePath>../pom</relativePath>
+		<version>1.0.2-SNAPSHOT</version>
+		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
 	<artifactId>full.form.tester</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>bundle</packaging>
 	<name>Full uAAL IO Tester</name>
 	<description>test all forms, form controls and possibilities offered by the IO RDF</description>
@@ -41,18 +41,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.io</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
+			<artifactId>mw.bus.ui</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.service</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
-			<version>0.3.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
