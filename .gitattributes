@@ -241,7 +241,11 @@ handler.newGui/src/test/main/resources/services/Health_button.png -text
 handler.newGui/src/test/main/resources/services/Nutritional_Advisor_Button.png -text
 handler.newGui/src/test/main/resources/services/Personal_Agenda_Button.png -text
 handler.newGui/src/test/main/resources/services/Personal_Safety_Button.png -text
+handler.sms/.settings/org.eclipse.jdt.core.prefs -text
+handler.sms/.settings/org.maven.ide.eclipse.prefs -text
+handler.sms/LICENSE -text
 handler.sms/configurationFiles/ui.handler.sms/account.properties -text
+handler.sms/pom.xml -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
