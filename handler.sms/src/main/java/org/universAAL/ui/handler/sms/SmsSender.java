@@ -69,7 +69,7 @@ public class SmsSender {
 			    new Object[] { "Configuration file for sms handler not found > using default values " },
 			    null);
 	}
-	username = prop.getProperty("user", "universAAL");
+	username = prop.getProperty("user", "uAAL");
 	password = prop.getProperty("pass", "universaal");
 	server = prop.getProperty("server",
 		"http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0");
