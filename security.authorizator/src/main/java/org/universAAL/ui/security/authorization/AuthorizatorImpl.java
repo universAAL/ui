@@ -96,6 +96,9 @@ public class AuthorizatorImpl implements IAuthorizator {
 	    return false;
     }
 
+    public boolean returnAuthorizedTrueForTesting(){
+	return true;
+    }
     
     public String getAllowedUserURI(){
 	return userURI;
