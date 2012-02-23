@@ -1182,3 +1182,8 @@ handler.web/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web/src/main/resources/webhandler/img/persona_logo.jpg -text
 handler.web/src/main/resources/webhandler/img/universAAL_logo.jpg -text
 pom/pom.xml -text
+security.authorizator/LICENSE.txt -text
+security.authorizator/pom.xml -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/AuthorizatorImpl.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/IAuthorizator.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/osgi/Activator.java -text
