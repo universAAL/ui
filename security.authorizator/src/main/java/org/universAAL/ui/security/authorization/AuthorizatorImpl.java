@@ -27,6 +27,7 @@ import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.profile.Profile;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.profile.service.ProfilingService;
 import org.universAAL.samples.service.utils.Arg;
@@ -48,16 +49,29 @@ public class AuthorizatorImpl implements IAuthorizator {
 
     private ServiceCaller caller;
     private String userURI = null;
+
     public AuthorizatorImpl(ModuleContext mcontext) {
 	this.mcontext = mcontext;
 	caller = new DefaultServiceCaller(mcontext);
     }
 
-    /* (non-Javadoc)
-     * @see org.universAAL.ui.security.authorization.IAuthorizator#checkUserAuthorization(java.lang.String, java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.security.authorization.IAuthorizator#checkUserAuthorization
+     * (java.lang.String, java.lang.String)
+     */
+
+    // 
+    //FIXME after ontology handling between CHE and Profiling is
+    // corrected (now Profile is not correctly returned; insted User is
+    // returned).
+    /**
+     * Now (for the mockup behaviour) this method always returns -----TRUE
      */
     public boolean isAuthorized(String user, String PWD) {
-	
+
 	User userreceived = null;
 	UserProfile profilereceived = null;
 	UserIDProfile idreceived = null;
@@ -80,7 +94,8 @@ public class AuthorizatorImpl implements IAuthorizator {
 	}
 	resp = caller.call(SimpleEditor.requestGet(ProfilingService.MY_URI,
 		Path.start(ProfilingService.PROP_CONTROLS).to(
-			Profilable.PROP_HAS_PROFILE).path, Arg
+			Profilable.PROP_HAS_PROFILE).to(
+			Profile.PROP_HAS_SUB_PROFILE).path, Arg
 			.in(new UserIDProfile(profilereceived.getSubProfile()
 				.getURI())), Arg.out(OUTPUT_GETSUBPROFILE)));
 	if (resp.getCallStatus() == CallStatus.succeeded) {
@@ -93,14 +108,16 @@ public class AuthorizatorImpl implements IAuthorizator {
 	if (storedUsername.equals(user) && storedPassword.equals(PWD))
 	    return true;
 	else
-	    return false;
+	    // return false;
+	    //FIXME after above mention issue is resolved
+	    return true;
     }
 
-    public boolean returnAuthorizedTrueForTesting(){
-	return true;
-    }
-    
-    public String getAllowedUserURI(){
+    /**
+     * 
+     * @return URI of the user
+     */
+    public String getAllowedUserURI() {
 	return userURI;
     }
 
