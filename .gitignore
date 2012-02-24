@@ -30,3 +30,7 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+security.authorizator/.classpath
+security.authorizator/.project
+security.authorizator/.settings
+security.authorizator/target
