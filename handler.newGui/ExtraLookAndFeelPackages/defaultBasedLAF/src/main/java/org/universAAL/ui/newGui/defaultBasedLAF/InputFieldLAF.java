@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
-
-import javax.swing.JComponent;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.newGui.model.FormControl.InputFieldModel;
@@ -36,10 +34,11 @@ public class InputFieldLAF extends InputFieldModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-        JComponent inf = super.getComponent();
-        inf.setFont(ColorLAF.getplain());
-        return inf;
+    public void update() {
+	if (jc != null){
+	    super.update();
+	    jc.setFont(ColorLAF.getplain());
+	}
     }
 
 

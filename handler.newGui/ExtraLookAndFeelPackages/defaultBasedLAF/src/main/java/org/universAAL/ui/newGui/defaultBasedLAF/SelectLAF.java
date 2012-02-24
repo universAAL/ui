@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Select;
@@ -28,6 +29,16 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
 public class SelectLAF extends SelectModel {
 
     /**
+     * {@link JScrollPane} around the {@link JList}
+     */
+    JScrollPane sp = null;
+    
+    /**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+    
+    /**
      * Constructor.
      * @param control the {@link Select} which to model.
      */
@@ -35,15 +46,21 @@ public class SelectLAF extends SelectModel {
         super(control);
     }
 
+   
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-        if (!((Select) fc).isMultilevel()) {
-        return new JScrollPane(super.getComponent());
-        }
-        else {
-            return super.getComponent();
-        }
-    }
+	public JComponent getNewComponent() {
+		ejc = super.getNewComponent();
+		 if (!((Select) fc).isMultilevel()
+		        	&& sp == null) {
+		        sp = new JScrollPane(ejc);
+		  }
+		 return sp;
+	}
 
+	/** {@inheritDoc} */
+    protected void update() {
+		jc = (JComponent) (jc == sp? ejc:jc);
+    	super.update();
+    }
 
 }

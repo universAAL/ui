@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import javax.swing.JComponent;
 
@@ -35,7 +35,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-    	return SubmitLAF.buttonDecorate(this, super.getComponent());
+    public JComponent getNewComponent() {
+    	return SubmitLAF.buttonDecorate(this, super.getNewComponent());
     }
 }

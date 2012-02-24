@@ -13,10 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Frame;
 
 import javax.swing.BoxLayout;
@@ -27,7 +26,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.Renderer;
 import org.universAAL.ui.handler.newGui.model.FormModel;
 

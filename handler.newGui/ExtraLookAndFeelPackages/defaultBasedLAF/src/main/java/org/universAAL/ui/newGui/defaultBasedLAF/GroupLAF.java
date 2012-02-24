@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -41,16 +40,14 @@ public class GroupLAF extends GroupModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
-        JComponent jgroup  = super.getComponent();
-        if (jgroup instanceof JTabbedPane) {
+    public void update() {
+	super.update();
+        if (jc instanceof JTabbedPane) {
             /*
              * Tabbed group
              */
-            JComponent tb = super.getComponent();
-            tb.getAccessibleContext();
-            tb.setFont(ColorLAF.getplain());
-            return tb;
+            jc.getAccessibleContext();
+            jc.setFont(ColorLAF.getplain());
         }
         else if (!((Group) fc).isRootGroup()) {
             /*
@@ -59,8 +56,6 @@ public class GroupLAF extends GroupModel {
             String label;
             if (fc.getLabel() != null) {
                 label = fc.getLabel().getText();
-                
-
             }
             else {
                 label = "";
@@ -71,12 +66,11 @@ public class GroupLAF extends GroupModel {
             title = BorderFactory.createTitledBorder
                     (line, label, 0, 0,
                             ColorLAF.getbold(), ColorLAF.getborderLineMM());
-            jgroup.setBorder(title);
+            jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
         }
-        jgroup.setLayout(new BoxLayout(jgroup, BoxLayout.PAGE_AXIS));
-        return jgroup;
+        jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
     }
 
 

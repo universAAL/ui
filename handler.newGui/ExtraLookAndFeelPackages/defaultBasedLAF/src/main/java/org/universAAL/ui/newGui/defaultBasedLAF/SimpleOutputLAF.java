@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import java.awt.Dimension;
 
@@ -33,6 +33,16 @@ import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
+	/**
+	 * Added Scroll pane to contain TextArea
+	 */
+	JScrollPane sp;
+	
+	/**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+	
     /**
      * Constructor.
      * @param control the {@link SimpleOutput} which to model.
@@ -43,12 +53,26 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getComponent() {
+	public JComponent getNewComponent() {
+		Object content = ((SimpleOutput) fc).getContent();
+		JComponent sjc = super.getNewComponent();
+		ejc = sjc;
+		if (content instanceof String) {
+            if (((String) content).length() >= TOO_LONG) {
+                sp = new JScrollPane(sjc);
+                sjc = sp;
+            }
+		}
+		return sjc;
+	}
+
+	/** {@inheritDoc} */
+    public void update() {
         Object content = ((SimpleOutput) fc).getContent();
-        JComponent comp = super.getComponent();
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
-                JTextArea ta = (JTextArea) comp;
+            	jc = (JComponent) (jc == sp? ejc:jc);
+                JTextArea ta = (JTextArea) jc;
                 ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
@@ -57,25 +81,21 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
                 ta.setForeground(ColorLAF.getfont());
-                JScrollPane sp = new JScrollPane(ta);
                 sp.getAccessibleContext();
-                return sp;
             }
             else {
-                JTextComponent tf = (JTextComponent) comp;
+                JTextComponent tf = (JTextComponent) jc;
                 tf.getAccessibleContext().setAccessibleName(tf.getText());
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
-                return tf;
             }
         }
         if (content instanceof Boolean) {
-            JCheckBox cb = (JCheckBox) comp;
+            JCheckBox cb = (JCheckBox) jc;
             cb.getAccessibleContext().setAccessibleName(cb.getName());
-            return cb;
         }
-        return comp;
+    	super.update();
     }
 
 
