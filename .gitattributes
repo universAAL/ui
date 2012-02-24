@@ -129,13 +129,16 @@ handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/unive
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SubmitLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/TextAreaLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/ColorLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Init.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
+handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatModelTableLAF.java -text
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain

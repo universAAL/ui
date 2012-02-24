@@ -7,17 +7,30 @@
     <version>1.0.2-SNAPSHOT</version>
     <relativePath>../../pom/pom.xml</relativePath>
   </parent>
+  
   <groupId>org.universAAL.ui.newGui</groupId>
   <artifactId>defaultBasedLAF</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.3-SNAPSHOT</version>
 
   <dependencies>
       <dependency>
           <groupId>org.universAAL.ui</groupId>
           <artifactId>ui.handler.newGui</artifactId>
-          <version>1.0.2-SNAPSHOT</version>
       </dependency>
   </dependencies>
+  
+  <developers>
+    <developer>
+      <id>amedrano</id>
+      <name>Alejandro Medrano</name>
+      <email>amedrano@lst.tfo.upm.es</email>
+      <roles>
+        <role>builder</role>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
 
      <licenses>
         <license>

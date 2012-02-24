@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
@@ -29,6 +29,16 @@ import org.universAAL.ui.handler.newGui.model.FormControl.TextAreaModel;
 public class TextAreaLAF extends TextAreaModel {
 
     /**
+     * {@link JScrollPane} around the {@link JTextArea};
+     */
+    JScrollPane sp;
+    
+    /**
+	 * Enveloped {@link JComponent}
+	 */
+	JComponent ejc;
+    
+    /**
      * Constructor.
      * @param control the {@link TextArea} which to model.
      */
@@ -37,25 +47,32 @@ public class TextAreaLAF extends TextAreaModel {
 
 
     }
-
+    
     /** {@inheritDoc} */
-    public JComponent getComponent() {
+    public void update() {
+		jc = (JComponent) (jc == sp? ejc:jc);
+	super.update();
         String initialValue = (String) fc.getValue();
-        JTextArea ta = new JTextArea(10, 15);
-        ta.setText(initialValue);
+        JTextArea ta = (JTextArea) jc;
+        ta.setRows(10);
+        ta.setColumns(15);
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        ta.addCaretListener(this);
-        ta.setName(fc.getURI());
-        JScrollPane sp = new JScrollPane(ta);
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
-
-        return sp;
-
     }
+
+
+
+
+    /** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		ejc =super.getNewComponent();
+		sp = new JScrollPane(ejc);
+		return sp;
+	}
 
 }

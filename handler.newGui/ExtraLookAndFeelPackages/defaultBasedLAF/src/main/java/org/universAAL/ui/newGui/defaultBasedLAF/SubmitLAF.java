@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.defaultBasedLAF;
+packageorg.universAAL.ui.newGui.defaultBasedLAFl;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -26,7 +26,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.handler.newGui.model.Model;
 import org.universAAL.ui.handler.newGui.model.Model;
 import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
@@ -67,7 +66,7 @@ public class SubmitLAF extends SubmitModel {
 	 * @param clickB
 	 *            the background colour for clicked state
 	 */
-	protected static void setButtonBehaviour(JComponent button, Color border,
+	public static void setButtonBehaviour(JComponent button, Color border,
 			Color normalF, Color normalB, Color enterF, Color enterB,
 			Color clickF, Color clickB) {
 		button.getAccessibleContext();
@@ -80,8 +79,8 @@ public class SubmitLAF extends SubmitModel {
 	}
 
 	/** {@inheritDoc} */
-	public JComponent getComponent() {
-		return buttonDecorate(this, super.getComponent());
+	public JComponent getNewComponent() {
+		return buttonDecorate(this, super.getNewComponent());
 	}
 
 	protected static JComponent buttonDecorate(Model model, JComponent button) {
