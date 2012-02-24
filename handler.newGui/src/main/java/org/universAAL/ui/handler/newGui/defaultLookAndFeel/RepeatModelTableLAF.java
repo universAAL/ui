@@ -25,9 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
-import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModelTable;
-import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
 
 /**
  * @author amedrano
