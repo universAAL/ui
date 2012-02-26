@@ -22,6 +22,9 @@ handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/.project
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/.settings
 handler.newGui/ExtraLookAndFeelPackages/defaultBasedLAF/target
 handler.newGui/target
+handler.sms/.classpath
+handler.sms/.project
+handler.sms/target
 handler.web/.classpath
 handler.web/.project
 handler.web/.settings
