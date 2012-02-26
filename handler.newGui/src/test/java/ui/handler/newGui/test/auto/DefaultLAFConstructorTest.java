@@ -19,8 +19,8 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
-import org.universAAL.middleware.owl.BoundingValueRestriction;
 import org.universAAL.middleware.owl.DataRepOntology;
+import org.universAAL.middleware.owl.IntRestriction;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.PropertyPath;
@@ -134,10 +134,9 @@ public class DefaultLAFConstructorTest extends TestCase{
                 f.getIOControls(),
                 l,
                 getPath("Range1"),
-                new MergedRestriction(getPath("Range1").getThePath()[0]).addRestriction(
-            			new BoundingValueRestriction(getPath("Range1").getThePath()[0],
-            				Integer.valueOf(3), true,
-            				Integer.valueOf(12), true)),
+                MergedRestriction.getAllValuesRestriction(getPath("Range1").getThePath()[0],
+                	new IntRestriction(Integer.valueOf(3), true,
+    				Integer.valueOf(12), true)),
                 Integer.valueOf(5));
 	new RangeLAF(r).getComponent();
     }
@@ -146,10 +145,9 @@ public class DefaultLAFConstructorTest extends TestCase{
 		f.getIOControls(),
 		l,
 		getPath("Range2"),
-		new MergedRestriction(getPath("Range2").getThePath()[0]).addRestriction(
-			new BoundingValueRestriction(getPath("Range2").getThePath()[0],
-				Integer.valueOf(1), true,
-				Integer.valueOf(100), true)),
+                MergedRestriction.getAllValuesRestriction(getPath("Range2").getThePath()[0],
+                	new IntRestriction(Integer.valueOf(1), true,
+    				Integer.valueOf(100), true)),
 		Integer.valueOf(50));
 	new RangeLAF(r).getComponent();
     }
