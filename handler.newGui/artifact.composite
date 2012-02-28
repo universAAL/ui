@@ -1,6 +1,0 @@
-#uAAL Dependencies:
-scan-composite:mvn:org.universAAL.middleware/mw.container.osgi/1.0.1-SNAPSHOT/composite
-scan-composite:mvn:org.universAAL.middleware/mw.bus.ui/1.0.1-SNAPSHOT/composite
-scan-composite:mvn:org.universAAL.ontology/ont.profile/1.0.1-SNAPSHOT/composite
-## Self:
-scan-bundle:mvn:org.universAAL.ui/ui.handler.newGui/1.0.3-SNAPSHOT-SNAPSHOT
