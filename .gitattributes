@@ -347,6 +347,130 @@ handler.newGui-1.0.2-SNAPSHOT/src/test/main/resources/services/Health_button.png
 handler.newGui-1.0.2-SNAPSHOT/src/test/main/resources/services/Nutritional_Advisor_Button.png -text
 handler.newGui-1.0.2-SNAPSHOT/src/test/main/resources/services/Personal_Agenda_Button.png -text
 handler.newGui-1.0.2-SNAPSHOT/src/test/main/resources/services/Personal_Safety_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/pom.xml -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/FormLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/GroupLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/Init.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/InputFieldLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/LabelLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/LookAndFell.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/MediaObjectLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/RangeLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/RepeatLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/Select1LAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SelectLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SimpleOutputLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SubdialogTriggerLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/SubmitLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/BlankLookAndFeel/src/main/java/org/universAAL/ui/newGui/blankLookAndFeel/TextAreaLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/ColorLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Init.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/RepeatModelTableLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/newGui/defaultBasedLAF/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/UniversAAl_logo.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Health_button.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/LICENSE.txt -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/artifact.composite -text
+handler.newGui-1.0.3-SNAPSHOT/pom.xml -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/Handler.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/ModelMapper.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/Renderer.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/ResourceMapper.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/ColorLAF.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/FormLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/GroupLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Init.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/InputFieldLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/LabelLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/MediaObjectLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RangeLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatModelTableLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Select1LAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SelectLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SimpleOutputLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SubmitLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TextAreaLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FormManager.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FrameManager.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/QueuedFormManager.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/SimpleFormManager.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/formManagement/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/GroupModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/InputFieldModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/InputModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/MediaObjectModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/OutputModel.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RangeModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModelTable.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/Select1Model.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SelectModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SimpleOutputModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SubdialogTriggerModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SubmitModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/TextAreaModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormModel.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/FormModelMapper.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/IconFactory.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/InitInterface.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/LabelModel.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/Model.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/model/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/osgi/Activator.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/osgi/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/handler/newGui/package.html -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/icons/services/Health_button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/icons/services/Nutritional_Advisor_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/icons/services/Personal_Agenda_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/icons/services/Personal_Safety_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/main/Button_UCC_Sm.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/main/Footer.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/main/Invisible_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/main/resources/main/UniversAAl_logo.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfGroup.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfSimpleOutput.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfTestExtensionOfGroup.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/DialogMenu.java -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/LoginMenu.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/SystemMenu.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/auto/DefaultLAFConstructorTest.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/auto/ModelMapperTest.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/auto/ResourceMapperTest.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/java/ui/handler/newGui/test/auto/SubdialogAntecessorTest.java -text svneol=unset#text/plain
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/main/Button_UCC_Sm.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/main/Footer.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/main/Invisible_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/main/UniversAAl_logo.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/services/Health_button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/services/Nutritional_Advisor_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/services/Personal_Agenda_Button.png -text
+handler.newGui-1.0.3-SNAPSHOT/src/test/main/resources/services/Personal_Safety_Button.png -text
 handler.web-1.0.1-SNAPSHOT/LICENSE-BSD-Dojo.txt -text
 handler.web-1.0.1-SNAPSHOT/LICENSE-JGCL.txt -text
 handler.web-1.0.1-SNAPSHOT/LICENSE-MIT11-Bouncycastle.txt -text
