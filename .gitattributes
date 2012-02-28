@@ -79,58 +79,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/se
 handler.gui.swing/LICENSE.txt -text svneol=unset#text/plain
 handler.gui.swing/artifact.composite -text
 handler.gui.swing/pom.xml -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/Handler.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/ModelMapper.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/Renderer.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/ResourceMapper.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/ColorLAF.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/FormLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/GroupLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Init.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/InputFieldLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/LabelLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/MediaObjectLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RangeLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/RepeatModelTableLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/Select1LAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SelectLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SimpleOutputLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SubdialogTriggerLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/SubmitLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TextAreaLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/package.html -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FormManager.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/FrameManager.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/QueuedFormManager.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/SimpleFormManager.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/formManagement/package.html -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/GroupModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/InputFieldModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/InputModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/MediaObjectModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/OutputModel.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RangeModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/RepeatModelTable.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/Select1Model.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SelectModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SimpleOutputModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SubdialogTriggerModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/SubmitModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/TextAreaModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormControl/package.html -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormModel.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/FormModelMapper.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/IconFactory.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/InitInterface.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/LabelModel.java -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/Model.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/model/package.html -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/osgi/Activator.java -text
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/osgi/package.html -text svneol=unset#text/plain
-handler.gui.swing/src/main/java/org/universAAL/ui/handler/newGui/package.html -text svneol=unset#text/plain
 handler.gui.swing/src/main/resources/icons/services/Health_button.png -text
 handler.gui.swing/src/main/resources/icons/services/Nutritional_Advisor_Button.png -text
 handler.gui.swing/src/main/resources/icons/services/Personal_Agenda_Button.png -text
@@ -139,17 +87,6 @@ handler.gui.swing/src/main/resources/main/Button_UCC_Sm.png -text
 handler.gui.swing/src/main/resources/main/Footer.png -text
 handler.gui.swing/src/main/resources/main/Invisible_Button.png -text
 handler.gui.swing/src/main/resources/main/UniversAAl_logo.png -text
-handler.gui.swing/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfGroup.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfSimpleOutput.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/org/universAAL/ui/handler/newGui/defaultLookAndFeel/TestExtensionOfTestExtensionOfGroup.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/DialogMenu.java -text
-handler.gui.swing/src/test/java/ui/handler/newGui/test/LoginMenu.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/SystemMenu.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/auto/DefaultLAFConstructorTest.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/auto/ModelMapperTest.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/auto/ResourceMapperTest.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/newGui/test/auto/SubdialogAntecessorTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/main/resources/main/Button_UCC_Sm.png -text
 handler.gui.swing/src/test/main/resources/main/Footer.png -text
 handler.gui.swing/src/test/main/resources/main/Invisible_Button.png -text
