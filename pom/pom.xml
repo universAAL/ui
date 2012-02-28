@@ -30,7 +30,7 @@
 		<module>../handler.web</module>
 		<module>../handler.sms</module>
 		<module>../dm.mobile</module>
-		<module>../handler.newGui</module>
+		<module>../handler.gui.swing</module>
 	</modules>
 
 	<dependencyManagement>
@@ -86,8 +86,8 @@
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
-				<artifactId>ui.handler.newGui</artifactId>
-				<version>1.0.2-SNAPSHOT</version>
+				<artifactId>ui.handler.gui.swing</artifactId>
+				<version>1.0.4-SNAPSHOT</version>
 			</dependency>
 		</dependencies>		
 	</dependencyManagement>
