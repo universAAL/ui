@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2011 Universidad Politécnica de Madrid
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+ 
+    http://www.apache.org/licenses/LICENSE-2.0
+ 
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.universAAL.ui</groupId>
+		<artifactId>ui.pom</artifactId>
+		<version>1.0.2-SNAPSHOT</version>
+        <relativePath>../pom/pom.xml</relativePath>
+    </parent>
+    <artifactId>ui.handler.gui.swing</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+    <name>Swing GUI Handler</name>
+    <packaging>bundle</packaging>
+    <organization>
+        <name>Universidad Politécnica de Madrid</name>
+        <url>http://www.upm.es</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alejandro Medrano</name>
+            <email>amedrano@lst.tfo.upm.es</email>
+            <organization>UPM</organization>
+            <organizationUrl>http://www.upm.es</organizationUrl>
+            <timezone>GTM+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.osgi.core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.universAAL.middleware</groupId>
+            <artifactId>mw.bus.ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.universAAL.middleware</groupId>
+            <artifactId>mw.data.representation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.universAAL.ontology</groupId>
+            <artifactId>ont.profile</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.universAAL.ontology</groupId>
+            <artifactId>ont.impairment</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.universAAL.middleware</groupId>
+            <artifactId>mw.container.osgi</artifactId>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <!-- Default configuration for compiler source and target JVM -->
+        <maven.compile.source>1.3</maven.compile.source>
+        <maven.compile.target>1.3</maven.compile.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>       
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Name>${project.name}</Bundle-Name>
+                        <Bundle-Activator>org.universAAL.ui.handler.gui.swing.osgi.Activator</Bundle-Activator>
+                        <Bundle-Description>${project.description}</Bundle-Description>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Private-Package>org.universAAL.ui.handler.gui.swing.osgi,
+                            org.universAAL.ui.handler.gui.swing.formManagement,
+                            org.universAAL.ui.handler.gui.swing.dialogManagement</Private-Package>
+                        <Export-Package>org.universAAL.ui.handler.gui.swing,
+                            org.universAAL.ui.handler.gui.swing.defaultLookAndFeel,
+                            org.universAAL.ui.handler.gui.swing.model,
+                            org.universAAL.ui.handler.gui.swing.model.FormControl</Export-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+			</plugin>
+        </plugins>
+    </build>
+    
+    <scm>
+		<connection>${svn.base}/handler.newGui</connection>
+		<developerConnection>${svn.base}/handler.newGui</developerConnection>
+		<url>${svn.base.url}handler.newGui</url>
+	</scm>
+	
+    <description>Swing based GUI Handler</description>
+</project>
