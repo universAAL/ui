@@ -25,21 +25,26 @@
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.service</artifactId>
 		</dependency>
-		<dependency>
+				<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.universAAL.ontology</groupId>
-			<artifactId>ont.profile.userid</artifactId>
 			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.universAAL.samples</groupId>
-			<artifactId>service.utils</artifactId>
-			<version>0.3.0-SNAPSHOT</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.universAAL.ontology</groupId>-->
+<!--			<artifactId>ont.profile</artifactId>-->
+<!--			<version>1.0.2-SNAPSHOT</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.universAAL.ontology</groupId>-->
+<!--			<artifactId>ont.profile.userid</artifactId>-->
+<!--			<version>1.0.1-SNAPSHOT</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.universAAL.samples</groupId>-->
+<!--			<artifactId>service.utils</artifactId>-->
+<!--			<version>0.3.0-SNAPSHOT</version>-->
+<!--		</dependency>-->
 	</dependencies>
 	<build>
 		<plugins>
