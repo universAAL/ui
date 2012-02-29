@@ -23,8 +23,8 @@ package org.universAAL.ui.handler.web;
 
 import java.util.Hashtable;
 
-import org.universAAL.middleware.io.rdf.FormControl;
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.UIRequest;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
@@ -32,25 +32,25 @@ import org.universAAL.middleware.output.OutputEvent;
  */
 public class WebIOSession {
 
-	private OutputEvent currenOutput;
-	private Hashtable<String, FormControl> currentFormAssociation;
+    private UIRequest currentUIRequest;
+    private Hashtable<String, FormControl> currentFormAssociation;
 
-	public Hashtable<String, FormControl> getCurrentFormAssociation() {
-		return currentFormAssociation;
-	}
+    public Hashtable<String, FormControl> getCurrentFormAssociation() {
+	return currentFormAssociation;
+    }
 
-	public void setCurrentFormAssociation(
-			Hashtable<String, FormControl> currentFormAssociation) {
-		this.currentFormAssociation = currentFormAssociation;
-	}
+    public void setCurrentFormAssociation(
+	    Hashtable<String, FormControl> currentFormAssociation) {
+	this.currentFormAssociation = currentFormAssociation;
+    }
 
-	public OutputEvent getCurrentOutputEvent() {
-		return currenOutput;
-	}
+    public UIRequest getCurrentUIRequest() {
+	return currentUIRequest;
+    }
 
-	public void setCurrentOutputEvent(OutputEvent o) {
-		this.currenOutput = o;
+    public void setCurrentUIRequest(UIRequest req) {
+	this.currentUIRequest = req;
 
-	}
+    }
 
 }
