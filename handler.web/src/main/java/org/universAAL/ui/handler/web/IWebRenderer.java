@@ -23,21 +23,21 @@ package org.universAAL.ui.handler.web;
 
 import java.util.Hashtable;
 
-import org.universAAL.middleware.output.OutputEvent;
+import org.universAAL.middleware.ui.UIRequest;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
  * 
  */
-public interface IWebHandler {
-	public void updateScreenResolution(int max_x, int max_y, int min_x,
-			int min_y);
+public interface IWebRenderer {
+    public void updateScreenResolution(int max_x, int max_y, int min_x,
+	    int min_y);
 
-	public void finish(String user);
+    public void finish(String user);
 
-	Hashtable<String, Boolean> getWaitingInputs();
+    Hashtable<String, Boolean> getWaitingInputs();
 
-	Hashtable<String, OutputEvent> getReadyOutputs();
+    Hashtable<String, UIRequest> getReadyOutputs();
 
-	Hashtable<String, WebIOSession> getUserSessions();
+    Hashtable<String, WebIOSession> getUserSessions();
 }
