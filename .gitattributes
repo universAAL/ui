@@ -30,7 +30,6 @@ dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 dm/src/main/resources/org/universAAL/ui/dm/main_menu.txt -text
 dm/src/main/resources/org/universAAL/ui/dm/main_menu_de.txt -text
 dm/src/main/resources/org/universAAL/ui/dm/main_menu_en.txt -text
-dm/src/main/resources/org/universAAL/ui/dm/messages.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 dm/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
 dm/ui.dm[!!-~]dependencies[!!-~]18.4.2011.jpg -text
