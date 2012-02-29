@@ -10,6 +10,7 @@
 	<artifactId>ui.handler.sms</artifactId>
 	<packaging>bundle</packaging>
 	<version>1.0.2-SNAPSHOT</version>
+	<name>SMS Handler</name>
 	<description>UI Handler that sends application output as SMS</description>
 
 	<dependencies>
