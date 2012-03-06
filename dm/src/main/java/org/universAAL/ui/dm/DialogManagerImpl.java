@@ -270,19 +270,20 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	StringBuffer sb = new StringBuffer(1024);
 	sb
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-	sb.append("       <").append(Profilable.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+	sb
+		.append("       <").append(Profilable.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?ep <").append(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("         <").append(HealthProfileOntology.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ppp <").append(InteractionPreferencesProfile.PROP__I_N_T_E_R_A_C_T_I_O_N__M_O_D_A_L_I_T_Y).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ppp <").append(InteractionPreferencesProfile.PROP_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(InteractionPreferencesProfile.PROP__P_R_I_V_A_C_Y__L_E_V_E_L_S__M_A_P_P_E_D__T_O__I_N_S_E_N_S_I_B_L_E).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(InteractionPreferencesProfile.PROP__P_R_I_V_A_C_Y__L_E_V_E_L_S__M_A_P_P_E_D__T_O__P_E_R_S_O_N_A_L).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(InteractionPreferencesProfile.PROP__V_O_I_C_E__G_E_N_D_E_R).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?hp <").append(HealthProfile.PROP_HAS_DISABILITY).append("> ?imps .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("     ?ipls list:member ?ipl .\n"); //$NON-NLS-1$
@@ -377,38 +378,44 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		    AssistedPerson eu = (AssistedPerson) pr;
 		    UserProfile up = eu.getProfile();
 		    if (up instanceof AssistedPersonProfile) {
-			HealthProfile hp = (HealthProfile) ((AssistedPersonProfile) up).getProperty(HealthProfileOntology.PROP_HEALTH_PROFILE);
+			HealthProfile hp = (HealthProfile) ((AssistedPersonProfile) up)
+				.getProperty(HealthProfileOntology.PROP_HEALTH_PROFILE);
 			if (hp != null)
 			    event.setImpairments(hp.getDisability());
-			InteractionPreferencesProfile ppp = (InteractionPreferencesProfile) ((AssistedPersonProfile) up).getProperty(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE);
+			InteractionPreferencesProfile ppp = (InteractionPreferencesProfile) ((AssistedPersonProfile) up)
+				.getProperty(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE);
 			if (ppp != null) {
 			    PrivacyLevel pl = event.getDialogPrivacyLevel();
 			    if (pl != PrivacyLevel.insensible
 				    && pl != PrivacyLevel.personal) {
 				boolean missing = true;
-//				PrivacyLevel[] pls = ppp.getPRIVACY_LEVELS_MAPPED_TO_INSENSIBLE();
-//				if (pls != null)
-//				    for (PrivacyLevel l : pls)
-//					if (pl == l) {
-//					    missing = false;
-//					    pl = PrivacyLevel.insensible;
-//					}
+				// PrivacyLevel[] pls =
+				// ppp.getPRIVACY_LEVELS_MAPPED_TO_INSENSIBLE();
+				// if (pls != null)
+				// for (PrivacyLevel l : pls)
+				// if (pl == l) {
+				// missing = false;
+				// pl = PrivacyLevel.insensible;
+				// }
 				if (missing)
 				    pl = PrivacyLevel.personal;
 				event.setPrivacyMapping(pl);
 			    }
-//			    event.setPresentationModality(ppp
-//				    .getXactionModality());
-			    event.setScreenResolutionMaxX(Integer.parseInt(ppp.getINSENSIBLE_MAX_RESOLUTION_X()));
-			    event.setScreenResolutionMaxY(Integer.parseInt(ppp.getINSENSIBLE_MAX_RESOLUTION_Y()));
+			    event.setPresentationModality(ppp
+				    .getInteractionModality());
+			    event.setScreenResolutionMaxX(ppp
+				    .getInsensibleMaxResolutionX());
+			    event.setScreenResolutionMaxY(ppp
+				    .getInsensibleMaxResolutionY());
+			    event.setScreenResolutionMinX(ppp
+				    .getPersonalMinResolutionX());
+			    event.setScreenResolutionMinY(ppp
+				    .getPersonalMinResolutionY());
+			    event.setVoiceGender(ppp.getVoiceGender());
 			    event
-				    .setScreenResolutionMinX(Integer.parseInt(ppp.getPERSONAL_MIN_RESOLUTION_X()));
-			    event
-				    .setScreenResolutionMinY(Integer.parseInt(ppp.getPERSONAL_MIN_RESOLUTION_Y()));
-//			    event.setVoiceGender(ppp.getVOICE_GENDER());
-			    event
-				    .setVoiceLevel(((pl == PrivacyLevel.insensible) ? Integer.parseInt(ppp.getINSENSIBLE_VOLUME_LEVEL())
-					    : Integer.parseInt(ppp.getPERSONAL_VOLUME_LEVEL())));
+				    .setVoiceLevel(((pl == PrivacyLevel.insensible) ? ppp
+					    .getInsensibleVolumeLevel()
+					    : ppp.getPersonalVolumeLevel()));
 			}
 		    }
 		    event.setPresentationLocation(eu.getLocation());
@@ -872,7 +879,6 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	    }
 	}
     }
-
 
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
 	return Activator.getString("UICaller.noPendingMessages").equals(
