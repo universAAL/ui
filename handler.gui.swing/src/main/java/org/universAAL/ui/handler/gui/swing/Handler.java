@@ -28,9 +28,9 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ontology.profile.HearingImpairment;
-import org.universAAL.ontology.profile.PhysicalImpairment;
-import org.universAAL.ontology.profile.SightImpairment;
+import org.universAAL.ontology.impairment.HearingImpairment;
+import org.universAAL.ontology.impairment.PhysicalImpairment;
+import org.universAAL.ontology.impairment.SightImpairment;
 import org.universAAL.ontology.profile.User;
 
 public class Handler extends UIHandler {
