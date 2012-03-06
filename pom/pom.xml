@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>org.universAAL</groupId>
 		<artifactId>uAAL.pom</artifactId>
@@ -56,12 +56,19 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-			<!-- Remove the following when every thing is adapted 
-			to new Profile ontology (1.0.2-SNAPSHOT) 
-			and the Required ontologies are developed -->
 			<dependency>
 				<groupId>org.universAAL.ontology</groupId>
 				<artifactId>ont.profile</artifactId>
+				<version>1.0.2-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ontology</groupId>
+				<artifactId>ont.profile.userid</artifactId>
+				<version>1.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ontology</groupId>
+				<artifactId>ont.profile.uipreferences</artifactId>
 				<version>1.0.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
@@ -89,9 +96,9 @@
 				<artifactId>ui.handler.gui.swing</artifactId>
 				<version>1.0.4-SNAPSHOT</version>
 			</dependency>
-		</dependencies>		
+		</dependencies>
 	</dependencyManagement>
-	
+
 	<scm>
 		<connection>${svn.base}/pom</connection>
 		<developerConnection>${svn.base}/pom</developerConnection>
@@ -108,45 +115,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-	<developers>
-		<developer>
-			<id>slenzi</id>
-			<email>stefano.lenzi@isti.cnr.it</email>
-			<name>Stefano Lenzi</name>
-			<roles>
-				<role>builder</role>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-		<developer>
-			<id>ffurfari</id>
-			<email>francesco.furfari@isti.cnr.it</email>
-			<name>Francesco Furfari</name>
-			<roles>
-				<role>builder</role>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-		<developer>
-			<id>saied</id>
-			<email>N/A</email>
-			<name>Saied Tazari</name>
-			<roles>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-		<developer>
-			<id>mfreddi</id>
-			<email>matteo.freddi@consultant.vodafoneomnitel.it</email>
-			<name>Matteo Freddi </name>
-			<roles>
-				<role>developer</role>
-			</roles>
-			<timezone>CEST/CET</timezone>
-		</developer>
-	</developers>
 </project>
