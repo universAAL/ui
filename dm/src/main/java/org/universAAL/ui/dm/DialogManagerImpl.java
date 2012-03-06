@@ -389,14 +389,14 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 			    if (pl != PrivacyLevel.insensible
 				    && pl != PrivacyLevel.personal) {
 				boolean missing = true;
-				// PrivacyLevel[] pls =
-				// ppp.getPRIVACY_LEVELS_MAPPED_TO_INSENSIBLE();
-				// if (pls != null)
-				// for (PrivacyLevel l : pls)
-				// if (pl == l) {
-				// missing = false;
-				// pl = PrivacyLevel.insensible;
-				// }
+				PrivacyLevel[] pls = ppp
+					.getPrivacyLevelsMappedToInsensible();
+				if (pls != null)
+				    for (PrivacyLevel l : pls)
+					if (pl == l) {
+					    missing = false;
+					    pl = PrivacyLevel.insensible;
+					}
 				if (missing)
 				    pl = PrivacyLevel.personal;
 				event.setPrivacyMapping(pl);
