@@ -25,13 +25,13 @@ import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
 
-//import org.universAAL.middleware.ui.owl.AccessImpairment;
-//import org.universAAL.middleware.owl.AllValuesFromRestriction;
-//import org.universAAL.middleware.owl.Enumeration;
-//import org.universAAL.middleware.owl.supply.LevelRating;
-//import org.universAAL.ontology.profile.HearingImpairment;
-//import org.universAAL.ontology.profile.PhysicalImpairment;
-//import org.universAAL.ontology.profile.SightImpairment;
+import org.universAAL.middleware.ui.owl.AccessImpairment;
+import org.universAAL.middleware.owl.AllValuesFromRestriction;
+import org.universAAL.middleware.owl.Enumeration;
+import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.ontology.impairment.HearingImpairment;
+import org.universAAL.ontology.impairment.PhysicalImpairment;
+import org.universAAL.ontology.impairment.SightImpairment;
 
 /**
  * SMS UI Handler. Handles dialogs containing sms message and a number to send
@@ -60,17 +60,17 @@ public class SmsUIHandler extends UIHandler {
 	 */
 	UIHandlerProfile oep = new UIHandlerProfile();
 
-	// MergedRestriction mr = new MergedRestriction();
-	// mr.addRestriction(new AllValuesFromRestriction(
-	// UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
-	// new AccessImpairment[] {
-	// new HearingImpairment(LevelRating.low),
-	// new HearingImpairment(LevelRating.middle),
-	// new HearingImpairment(LevelRating.high),
-	// new HearingImpairment(LevelRating.full),
-	// new SightImpairment(LevelRating.low),
-	// new PhysicalImpairment(LevelRating.low) })));
-	// oep.addRestriction(mr);
+	MergedRestriction mr = new MergedRestriction();
+	mr.addRestriction(new AllValuesFromRestriction(
+		UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
+			new AccessImpairment[] {
+				new HearingImpairment(LevelRating.low),
+				new HearingImpairment(LevelRating.middle),
+				new HearingImpairment(LevelRating.high),
+				new HearingImpairment(LevelRating.full),
+				new SightImpairment(LevelRating.low),
+				new PhysicalImpairment(LevelRating.low) })));
+	oep.addRestriction(mr);
 
 	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
 		UIRequest.PROP_PRESENTATION_MODALITY, Modality.sms));

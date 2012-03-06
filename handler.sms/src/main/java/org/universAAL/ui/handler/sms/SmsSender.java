@@ -40,11 +40,10 @@ import org.universAAL.ui.handler.sms.osgi.Activator;
  */
 public class SmsSender {
 
-    private static final File confHome = new File(
-	    new BundleConfigHome("ui.handler.sms").getAbsolutePath());
+    private static final File confHome = new File(new BundleConfigHome(
+	    "ui.handler.sms").getAbsolutePath());
     private String username;
     private String password;
-    private String account;
     private String server;
     private boolean doSend;
 
@@ -102,8 +101,7 @@ public class SmsSender {
 	StringBuffer output = new StringBuffer();
 	for (int i = 0; i < chars.length; i++) {
 	    next = Integer.toHexString((int) chars[i]);
-	    // Unfortunately, toHexString doesn't pad with zeroes, so we have
-	    // to.
+	    // Unfortunately, toHexString doesn't pad with zeroes, so:
 	    for (int j = 0; j < (4 - next.length()); j++) {
 		output.append("0");
 	    }
