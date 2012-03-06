@@ -187,26 +187,35 @@ public class Activator extends Thread implements BundleActivator {
      *            The name of the user.
      */
     static void loadTestData(String uri, String name) {
-	UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE+name+"idprofile");
+	UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
+		+ "idprofile");
 	uip.setUSERNAME(name);
-	AssistedPersonProfile ep = new AssistedPersonProfile(ProfileOntology.NAMESPACE+name+"profile");
+	AssistedPersonProfile ep = new AssistedPersonProfile(
+		ProfileOntology.NAMESPACE + name + "profile");
 	ep.setProperty(UserIDProfileOntology.PROP_ID_PROFILE, uip);
-	HealthProfile hp = new HealthProfile(ProfileOntology.NAMESPACE+name+"healthprofile");
+	HealthProfile hp = new HealthProfile(ProfileOntology.NAMESPACE + name
+		+ "healthprofile");
 	hp.setDisability(new AccessImpairment[] { new HearingImpairment(
 		LevelRating.middle) });
 	ep.setProperty(HealthProfileOntology.PROP_HEALTH_PROFILE, hp);
-	InteractionPreferencesProfile ppp = new InteractionPreferencesProfile(ProfileOntology.NAMESPACE+name+"profile");
-	ppp.setINSENSIBLE_MAX_RESOLUTION_X("1024");
-	ppp.setINSENSIBLE_MAX_RESOLUTION_Y("768");
-	ppp.setINSENSIBLE_VOLUME_LEVEL("85");
-	ppp.setPERSONAL_MIN_RESOLUTION_X("176");
-	ppp.setPERSONAL_MIN_RESOLUTION_Y("320");
-	ppp.setPERSONAL_VOLUME_LEVEL("60");
-	ppp.setPRIVACY_LEVELS_MAPPED_TO_INSENSIBLE("new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly }");
-	ppp.setPRIVACY_LEVELS_MAPPED_TO_PERSONAL("new PrivacyLevel[] {PrivacyLevel.intimatesOnly, PrivacyLevel.homeMatesOnly }");
-	ppp.setVOICE_GENDER("Gender.female");
-//	ppp.setXactionModality(Modality.gui);
-	ep.setProperty(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE,ppp);
+	InteractionPreferencesProfile ppp = new InteractionPreferencesProfile(
+		ProfileOntology.NAMESPACE + name + "profile");
+	ppp.setInsensibleMaxResolutionX(1024);
+	ppp.setInsensibleMaxResolutionX(768);
+	ppp.setInsensibleVolumeLevel(85);
+	ppp.setPersonalMinResolutionX(176);
+	ppp.setPersonalMinResolutionY(320);
+	ppp.setPersonalVolumeLevel(60);
+	ppp
+		.setPrivacyLevelsMappedToInsensible(new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly });
+	ppp.setPrivacyLevelsMappedToPersonal(new PrivacyLevel[] {
+		PrivacyLevel.intimatesOnly, PrivacyLevel.homeMatesOnly });
+	ppp.setVoiceGender(Gender.female);
+	ppp.setInteractionModality(Modality.gui);
+	ep
+		.setProperty(
+			UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE,
+			ppp);
 	AssistedPerson eu = new AssistedPerson(uri);
 	eu.setProfile(ep);
 	insert(eu);
