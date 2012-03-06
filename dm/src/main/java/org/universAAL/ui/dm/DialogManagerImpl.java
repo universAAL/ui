@@ -57,6 +57,7 @@ import org.universAAL.ontology.HealthProfileOntology;
 import org.universAAL.ontology.phThing.PhysicalThing;
 import org.universAAL.ontology.profile.AssistedPersonProfile;
 import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.health.HealthProfile;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
@@ -269,7 +270,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	StringBuffer sb = new StringBuffer(1024);
 	sb
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-	sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+	sb.append("       <").append(Profilable.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?ep <").append(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
@@ -376,46 +377,38 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		    AssistedPerson eu = (AssistedPerson) pr;
 		    UserProfile up = eu.getProfile();
 		    if (up instanceof AssistedPersonProfile) {
-			HealthProfile hp = ((AssistedPersonProfile) up)
-				.getHealthProfile();
+			HealthProfile hp = (HealthProfile) ((AssistedPersonProfile) up).getProperty(HealthProfileOntology.PROP_HEALTH_PROFILE);
 			if (hp != null)
 			    event.setImpairments(hp.getDisability());
-			InteractionPreferencesProfile ppp = ((AssistedPersonProfile) up)
-				.getPersonalPreferenceProfile();
+			InteractionPreferencesProfile ppp = (InteractionPreferencesProfile) ((AssistedPersonProfile) up).getProperty(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE);
 			if (ppp != null) {
 			    PrivacyLevel pl = event.getDialogPrivacyLevel();
 			    if (pl != PrivacyLevel.insensible
 				    && pl != PrivacyLevel.personal) {
 				boolean missing = true;
-				PrivacyLevel[] pls = ppp
-					.getPLsMappedToInsensible();
-				if (pls != null)
-				    for (PrivacyLevel l : pls)
-					if (pl == l) {
-					    missing = false;
-					    pl = PrivacyLevel.insensible;
-					}
+//				PrivacyLevel[] pls = ppp.getPRIVACY_LEVELS_MAPPED_TO_INSENSIBLE();
+//				if (pls != null)
+//				    for (PrivacyLevel l : pls)
+//					if (pl == l) {
+//					    missing = false;
+//					    pl = PrivacyLevel.insensible;
+//					}
 				if (missing)
 				    pl = PrivacyLevel.personal;
 				event.setPrivacyMapping(pl);
 			    }
-			    event.setPresentationModality(ppp
-				    .getXactionModality());
-			    event.setScreenResolutionMaxX(ppp
-				    .getInsensibleMaxX());
-			    event.setScreenResolutionMaxY(ppp
-				    .getInsensibleMaxY());
+//			    event.setPresentationModality(ppp
+//				    .getXactionModality());
+			    event.setScreenResolutionMaxX(Integer.parseInt(ppp.getINSENSIBLE_MAX_RESOLUTION_X()));
+			    event.setScreenResolutionMaxY(Integer.parseInt(ppp.getINSENSIBLE_MAX_RESOLUTION_Y()));
 			    event
-				    .setScreenResolutionMinX(ppp
-					    .getPersonalMinX());
+				    .setScreenResolutionMinX(Integer.parseInt(ppp.getPERSONAL_MIN_RESOLUTION_X()));
 			    event
-				    .setScreenResolutionMinY(ppp
-					    .getPersonalMinY());
-			    event.setVoiceGender(ppp.getVoiceGender());
+				    .setScreenResolutionMinY(Integer.parseInt(ppp.getPERSONAL_MIN_RESOLUTION_Y()));
+//			    event.setVoiceGender(ppp.getVOICE_GENDER());
 			    event
-				    .setVoiceLevel(((pl == PrivacyLevel.insensible) ? ppp
-					    .getInsensibleVolumeLevel()
-					    : ppp.getPersonalVolumeLevel()));
+				    .setVoiceLevel(((pl == PrivacyLevel.insensible) ? Integer.parseInt(ppp.getINSENSIBLE_VOLUME_LEVEL())
+					    : Integer.parseInt(ppp.getPERSONAL_VOLUME_LEVEL())));
 			}
 		    }
 		    event.setPresentationLocation(eu.getLocation());
