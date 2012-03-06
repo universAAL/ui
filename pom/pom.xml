@@ -73,6 +73,11 @@
 			</dependency>
 			<dependency>
 				<groupId>org.universAAL.ui</groupId>
+				<artifactId>security.authorizator</artifactId>
+				<version>1.0.2-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.universAAL.ui</groupId>
 				<artifactId>ui.dm</artifactId>
 				<version>1.0.2-SNAPSHOT</version>
 			</dependency>
