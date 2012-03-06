@@ -26,15 +26,15 @@ import org.universAAL.middleware.service.ServiceCaller;
 import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.util.Constants;
-//import org.universAAL.ontology.profile.Profilable;
+import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.Profile;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.profile.service.ProfilingService;
+import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
 //import org.universAAL.samples.service.utils.Arg;
 //import org.universAAL.samples.service.utils.Path;
 //import org.universAAL.samples.service.utils.mid.SimpleEditor;
-//import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
 
 public class AuthorizatorImpl implements IAuthorizator {
 
