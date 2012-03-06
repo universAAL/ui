@@ -53,13 +53,15 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.util.Constants;
+import org.universAAL.ontology.HealthProfileOntology;
 import org.universAAL.ontology.phThing.PhysicalThing;
-import org.universAAL.ontology.profile.ElderlyProfile;
-import org.universAAL.ontology.profile.ElderlyUser;
-import org.universAAL.ontology.profile.HealthProfile;
-import org.universAAL.ontology.profile.PersonalPreferenceProfile;
+import org.universAAL.ontology.profile.AssistedPersonProfile;
+import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.health.HealthProfile;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
@@ -269,17 +271,17 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ep <").append(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("         <").append(HealthProfileOntology.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ppp <").append(InteractionPreferencesProfile.PROP__I_N_T_E_R_A_C_T_I_O_N__M_O_D_A_L_I_T_Y).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP__P_R_I_V_A_C_Y__L_E_V_E_L_S__M_A_P_P_E_D__T_O__I_N_S_E_N_S_I_B_L_E).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP__P_R_I_V_A_C_Y__L_E_V_E_L_S__M_A_P_P_E_D__T_O__P_E_R_S_O_N_A_L).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP__V_O_I_C_E__G_E_N_D_E_R).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?hp <").append(HealthProfile.PROP_HAS_DISABILITY).append("> ?imps .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("     ?ipls list:member ?ipl .\n"); //$NON-NLS-1$
@@ -370,15 +372,15 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		    root = mc.getJenaRootResource(m);
 		}
 		Resource pr = mc.toPersonaResource(root);
-		if (pr instanceof ElderlyUser) {
-		    ElderlyUser eu = (ElderlyUser) pr;
+		if (pr instanceof AssistedPerson) {
+		    AssistedPerson eu = (AssistedPerson) pr;
 		    UserProfile up = eu.getProfile();
-		    if (up instanceof ElderlyProfile) {
-			HealthProfile hp = ((ElderlyProfile) up)
+		    if (up instanceof AssistedPersonProfile) {
+			HealthProfile hp = ((AssistedPersonProfile) up)
 				.getHealthProfile();
 			if (hp != null)
 			    event.setImpairments(hp.getDisability());
-			PersonalPreferenceProfile ppp = ((ElderlyProfile) up)
+			InteractionPreferencesProfile ppp = ((AssistedPersonProfile) up)
 				.getPersonalPreferenceProfile();
 			if (ppp != null) {
 			    PrivacyLevel pl = event.getDialogPrivacyLevel();
@@ -979,7 +981,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	}
 
 	Form f = Form.newSystemMenu(Activator
-		.getString("UICaller.personaMainMenu"));
+		.getString("UICaller.universAALMainMenu"));
 	Group main = f.getIOControls();
 	MainMenu.getMenuInstance(u).addMenuRepresentation(main);
 	Group g = new Group(main, new Label(Activator

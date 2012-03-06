@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.universAAL.ui</groupId>
@@ -7,7 +8,7 @@
 		<version>1.0.2-SNAPSHOT</version>
 		<relativePath>../pom/pom.xml</relativePath>
 	</parent>
-	
+
 	<packaging>bundle</packaging>
 	<artifactId>ui.dm</artifactId>
 	<version>1.0.2-SNAPSHOT</version>
@@ -23,7 +24,7 @@
 		<url><![CDATA[
     http://www.igd.fraunhofer.de/
     ]]></url>
-	</organization> 
+	</organization>
 
 	<licenses>
 		<license>
@@ -72,10 +73,26 @@
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.profile</artifactId>
+			<version>1.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.profile.health</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.impairment</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
 			<artifactId>ont.phWorld</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.ontology</groupId>
+			<artifactId>ont.profile.uipreferences</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -99,6 +116,40 @@
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Export-Package></Export-Package>
 						<Private-Package>org.universAAL.ui.dm</Private-Package>
+						<Import-Package>
+							com.hp.hpl.jena.db,
+							com.hp.hpl.jena.db.impl,
+							com.hp.hpl.jena.query,
+							com.hp.hpl.jena.rdf.model,
+<!--
+								org.apache.xerces.util,
+							-->
+							com.mysql.jdbc.jdbc2.optional,
+							javax.sql,
+							javax.xml.datatype,
+							org.osgi.framework,
+							org.slf4j,
+							org.universAAL.context.conversion.jena,
+							org.universAAL.middleware.container,
+							org.universAAL.middleware.container.osgi,
+							org.universAAL.middleware.container.osgi.util,
+							org.universAAL.middleware.container.utils,
+							org.universAAL.middleware.context,
+							org.universAAL.middleware.ui,
+							org.universAAL.middleware.ui.owl,
+							org.universAAL.middleware.ui.rdf,
+							org.universAAL.middleware.owl,
+							org.universAAL.middleware.owl.supply,
+							org.universAAL.middleware.rdf,
+							org.universAAL.middleware.service,
+							org.universAAL.middleware.service.owl,
+							org.universAAL.middleware.sodapop.msg,
+							org.universAAL.middleware.util,
+							org.universAAL.ontology.location,
+							org.universAAL.ontology.phThing,
+							org.universAAL.ontology.profile,
+							com.mysql.jdbc
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
