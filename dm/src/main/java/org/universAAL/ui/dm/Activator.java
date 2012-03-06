@@ -40,11 +40,10 @@ import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.owl.Gender;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
-import org.universAAL.ontology.profile.ElderlyProfile;
-import org.universAAL.ontology.profile.ElderlyUser;
-import org.universAAL.ontology.profile.HealthProfile;
-import org.universAAL.ontology.profile.HearingImpairment;
-import org.universAAL.ontology.profile.PersonalPreferenceProfile;
+import org.universAAL.ontology.profile.AssistedPersonProfile;
+import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.health.HealthProfile;
+import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.profile.UserIdentificationProfile;
 
 import com.hp.hpl.jena.db.DBConnection;
@@ -185,13 +184,13 @@ public class Activator extends Thread implements BundleActivator {
     static void loadTestData(String uri, String name) {
 	UserIdentificationProfile uip = new UserIdentificationProfile();
 	uip.setName(name);
-	ElderlyProfile ep = new ElderlyProfile();
+	AssistedPersonProfile ep = new AssistedPersonProfile();
 	ep.setUserIdentificationProfile(uip);
 	HealthProfile hp = new HealthProfile();
 	hp.setDisability(new AccessImpairment[] { new HearingImpairment(
 		LevelRating.middle) });
 	ep.setHealthProfile(hp);
-	PersonalPreferenceProfile ppp = new PersonalPreferenceProfile();
+	org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile ppp = new InteractionPreferencesProfile();
 	ppp.setInsensibleMaxX(1024);
 	ppp.setInsensibleMaxY(768);
 	ppp.setInsensibleVolumeLevel(85);
@@ -204,8 +203,8 @@ public class Activator extends Thread implements BundleActivator {
 		PrivacyLevel.intimatesOnly, PrivacyLevel.homeMatesOnly });
 	ppp.setVoiceGender(Gender.female);
 	ppp.setXactionModality(Modality.gui);
-	ep.setPersonalPreferenceProfile(ppp);
-	ElderlyUser eu = new ElderlyUser(uri);
+	ep.setInteractionPreferencesProfile(ppp);
+	AssistedPerson eu = new AssistedPerson(uri);
 	eu.setProfile(ep);
 	insert(eu);
     }

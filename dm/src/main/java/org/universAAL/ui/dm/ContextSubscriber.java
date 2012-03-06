@@ -75,6 +75,9 @@ public class ContextSubscriber extends
 	    ResultSet rs = select(
 		    "SELECT ind_subj, ind_subj_type, ind_pred FROM ca_service_req;",
 		    conn);
+	    LogUtils.logInfo(Activator.getModuleContext(), getClass(),
+		    "result set", new Object[] { rs },
+		    null);
 	    if (rs != null) {
 		ArrayList<ContextEventPattern> regParams = new ArrayList<ContextEventPattern>();
 		try {
