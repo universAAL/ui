@@ -150,7 +150,11 @@
 							org.universAAL.ontology.location,
 							org.universAAL.ontology.phThing,
 							org.universAAL.ontology.profile,
-							com.mysql.jdbc
+							com.mysql.jdbc,
+							org.universAAL.ontology.impairment,
+							org.universAAL.ontology.profile.health,
+							org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl,
+							org.universaal.ontology.useridprofileontology.owl
 						</Import-Package>
 					</instructions>
 				</configuration>
