@@ -45,9 +45,10 @@ import org.universAAL.middleware.service.ServiceResponse;
 import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.profile.ElderlyUser;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.service.ProfilingService;
+import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
 
 /**
  * Display and retrieve Login Information.
@@ -117,7 +118,7 @@ public class Login extends JFrame implements ActionListener {
      * @param user
      *            User login data
      */
-    private void showMainGUI(User user) {
+    private void showMainGUI(AssistedPerson user) {
 	Activator.user = user;
 	ip.userLoggedIn(user, null);
     }
@@ -142,7 +143,7 @@ public class Login extends JFrame implements ActionListener {
 	    // database!)
 	    // For now: just initialize the test user
 	    // User user = allowedCredentials(username, password);
-	    ElderlyUser user = new ElderlyUser(
+	    AssistedPerson user = new AssistedPerson(
 		    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
 
 	    if (user != null) {
@@ -219,17 +220,17 @@ public class Login extends JFrame implements ActionListener {
 		new ProfilingService(null), null);
 
 	MergedRestriction resUsername = MergedRestriction
-		.getFixedValueRestriction(User.PROP_USERNAME, user);
+		.getFixedValueRestriction(UserIDProfile.PROP_USERNAME, user);
 	MergedRestriction resPassword = MergedRestriction
-		.getFixedValueRestriction(User.PROP_PASSWORD, pass);
+		.getFixedValueRestriction(UserIDProfile.PROP_PASSWORD, pass);
 	getUserByCredentials.getRequestedService().addInstanceLevelRestriction(
 		resUsername,
 		new String[] { ProfilingService.PROP_CONTROLS,
-			User.PROP_USERNAME });
+			UserIDProfile.PROP_USERNAME });
 	getUserByCredentials.getRequestedService().addInstanceLevelRestriction(
 		resPassword,
 		new String[] { ProfilingService.PROP_CONTROLS,
-			User.PROP_PASSWORD });
+			UserIDProfile.PROP_PASSWORD });
 
 	ProcessOutput outUser = new ProcessOutput(OUTPUT_USER);
 	PropertyPath ppUser = new PropertyPath(null, true,

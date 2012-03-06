@@ -34,7 +34,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.profile.ElderlyUser;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
 
 /**
@@ -57,17 +57,17 @@ public class Activator implements BundleActivator, ServiceListener {
     public static int drawNum = 0;
 
     /**
-     * Registered ElderlyUser. For testing proposes it is fixed to "saied"
+     * Registered AssistedPerson. For testing proposes it is fixed to "saied"
      * 
      * @see Activator#user
      */
-    static final ElderlyUser testUser = new ElderlyUser(
+    static final AssistedPerson testUser = new AssistedPerson(
 	    Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied");
 
     /**
      * Registered user. End user, the one who is actually using the GUI
      */
-    public static User user = null;
+    public static AssistedPerson user = null;
 
     /**
      * OSGi BundleContext. used to keep track of anything going on inside the
