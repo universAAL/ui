@@ -53,11 +53,14 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.util.Constants;
+import org.universAAL.ontology.HealthProfileOntology;
 import org.universAAL.ontology.phThing.PhysicalThing;
-import org.universAAL.ontology.profile.ElderlyProfile;
-import org.universAAL.ontology.profile.ElderlyUser;
-import org.universAAL.ontology.profile.HealthProfile;
-import org.universAAL.ontology.profile.PersonalPreferenceProfile;
+import org.universAAL.ontology.profile.AssistedPersonProfile;
+import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.Profilable;
+import org.universAAL.ontology.profile.health.HealthProfile;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
 
@@ -258,19 +261,19 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	StringBuffer sb = new StringBuffer(1024);
 	sb
 		.append("> <").append(PhysicalThing.PROP_PHYSICAL_LOCATION).append("> ?loc ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
-	sb.append("       <").append(User.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+	sb.append("       <").append(Profilable.PROP_HAS_PROFILE).append("> ?ep .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ep <").append(ElderlyProfile.PROP_PERS_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ep <").append(UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE).append("> ?ppp ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("         <").append(ElderlyProfile.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("         <").append(HealthProfileOntology.PROP_HEALTH_PROFILE).append("> ?hp .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("     ?ppp <").append(PersonalPreferenceProfile.PROP_D_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("     ?ppp <").append(InteractionPreferencesProfile.PROP_INTERACTION_MODALITY).append("> ?mod ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_PRIVACY_LEVELS_MAPPED_TO_INSENSIBLE).append("> ?ipls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_PRIVACY_LEVELS_MAPPED_TO_PERSONAL).append("> ?ppls ;\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
-		.append("          <").append(PersonalPreferenceProfile.PROP_D_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		.append("          <").append(InteractionPreferencesProfile.PROP_VOICE_GENDER).append("> ?vg .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb
 		.append("     ?hp <").append(HealthProfile.PROP_HAS_DISABILITY).append("> ?imps .\n"); //$NON-NLS-1$ //$NON-NLS-2$
 	sb.append("     ?ipls list:member ?ipl .\n"); //$NON-NLS-1$

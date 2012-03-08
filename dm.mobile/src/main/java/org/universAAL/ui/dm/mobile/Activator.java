@@ -37,12 +37,16 @@ import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.owl.Gender;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
-import org.universAAL.ontology.profile.ElderlyProfile;
-import org.universAAL.ontology.profile.ElderlyUser;
-import org.universAAL.ontology.profile.HealthProfile;
-import org.universAAL.ontology.profile.HearingImpairment;
-import org.universAAL.ontology.profile.PersonalPreferenceProfile;
-import org.universAAL.ontology.profile.UserIdentificationProfile;
+import org.universAAL.ontology.HealthProfileOntology;
+import org.universAAL.ontology.ProfileOntology;
+import org.universAAL.ontology.profile.AssistedPersonProfile;
+import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.health.HealthProfile;
+import org.universAAL.ontology.impairment.HearingImpairment;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
+import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
+import org.universaal.ontology.useridprofileontology.owl.UserIDProfileOntology;
 
 /**
  * The bundle activator.
@@ -63,31 +67,7 @@ public class Activator extends Thread implements BundleActivator {
      */
     private static Messages messages;
 
-    /**
-     * URL of the database.
-     */
-    static final String JENA_DB_URL = System.getProperty(
-	    "org.persona.platform.jena_db.url",
-	    "jdbc:mysql://localhost:3306/persona_aal_space");
-
-    /**
-     * User name for accessing the database.
-     */
-    static final String JENA_DB_USER = System.getProperty(
-	    "org.persona.platform.ui.dm.db_user", "ui_dm");
-
-    /**
-     * Password for accessing the database.
-     */
-    static final String JENA_DB_PASSWORD = System.getProperty(
-	    "org.persona.platform.ui.dm.db_passwd", "ui_dm");
-
-    /**
-     * Model name of the database.
-     */
-    static final String JENA_MODEL_NAME = System.getProperty(
-	    "org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
-
+    
     /**
      * Get the bundle context
      * 
@@ -128,29 +108,36 @@ public class Activator extends Thread implements BundleActivator {
      *            The name of the user.
      */
     static void loadTestData(String uri, String name) {
-	UserIdentificationProfile uip = new UserIdentificationProfile();
-	uip.setName(name);
-	ElderlyProfile ep = new ElderlyProfile();
-	ep.setUserIdentificationProfile(uip);
-	HealthProfile hp = new HealthProfile();
+UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
+		+ "idprofile");
+	uip.setUSERNAME(name);
+	AssistedPersonProfile ep = new AssistedPersonProfile(
+		ProfileOntology.NAMESPACE + name + "profile");
+	ep.setProperty(UserIDProfileOntology.PROP_ID_PROFILE, uip);
+	HealthProfile hp = new HealthProfile(ProfileOntology.NAMESPACE + name
+		+ "healthprofile");
 	hp.setDisability(new AccessImpairment[] { new HearingImpairment(
 		LevelRating.middle) });
-	ep.setHealthProfile(hp);
-	PersonalPreferenceProfile ppp = new PersonalPreferenceProfile();
-	ppp.setInsensibleMaxX(1024);
-	ppp.setInsensibleMaxY(768);
+	ep.setProperty(HealthProfileOntology.PROP_HEALTH_PROFILE, hp);
+	InteractionPreferencesProfile ppp = new InteractionPreferencesProfile(
+		ProfileOntology.NAMESPACE + name + "profile");
+	ppp.setInsensibleMaxResolutionX(1024);
+	ppp.setInsensibleMaxResolutionX(768);
 	ppp.setInsensibleVolumeLevel(85);
-	ppp.setPersonalMinX(176);
-	ppp.setPersonalMinY(320);
+	ppp.setPersonalMinResolutionX(176);
+	ppp.setPersonalMinResolutionY(320);
 	ppp.setPersonalVolumeLevel(60);
 	ppp
-		.setPLsMappedToInsensible(new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly });
-	ppp.setPLsMappedToPersonal(new PrivacyLevel[] {
+		.setPrivacyLevelsMappedToInsensible(new PrivacyLevel[] { PrivacyLevel.knownPeopleOnly });
+	ppp.setPrivacyLevelsMappedToPersonal(new PrivacyLevel[] {
 		PrivacyLevel.intimatesOnly, PrivacyLevel.homeMatesOnly });
 	ppp.setVoiceGender(Gender.female);
-	ppp.setXactionModality(Modality.gui);
-	ep.setPersonalPreferenceProfile(ppp);
-	ElderlyUser eu = new ElderlyUser(uri);
+	ppp.setInteractionModality(Modality.gui);
+	ep
+		.setProperty(
+			UIPreferencesProfileOntology.PROP_INTERACTION_PREF_PROFILE,
+			ppp);
+	AssistedPerson eu = new AssistedPerson(uri);
 	eu.setProfile(ep);
     }
 
