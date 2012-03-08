@@ -15,7 +15,6 @@
 	<name>Dialog Manager</name>
 	<description>The component providing the UniversAAL system menu, handling context-free user input, and managing system reactivity.</description>
 	<inceptionYear>2008</inceptionYear>
-	<url />
 
 	<organization>
 		<name><![CDATA[
@@ -65,6 +64,10 @@
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
 			<artifactId>mw.bus.ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.middleware</groupId>
+			<artifactId>mw.bus.service</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
