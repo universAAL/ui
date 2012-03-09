@@ -141,7 +141,7 @@ public class FormLAF extends FormModel  {
             frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            //f.setUndecorated(true);
+            frame.setUndecorated(true);
             frame.pack();
         }
         if (form.isStandardDialog() || 
