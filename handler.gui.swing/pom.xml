@@ -116,6 +116,13 @@
                     </instructions>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<configuration>
+					<skipAttach>false</skipAttach>
+				</configuration>
+		   </plugin>
         </plugins>
     </build>
     
