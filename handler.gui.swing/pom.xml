@@ -111,6 +111,7 @@
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel,
                             org.universAAL.ui.handler.gui.swing.model,
                             org.universAAL.ui.handler.gui.swing.model.FormControl</Export-Package>
+                        <Import-Package>org.universAAL.middleware.owl,*</Import-Package>
                         <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
                 </configuration>
