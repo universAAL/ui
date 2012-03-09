@@ -58,21 +58,6 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.universAAL.ontology</groupId>
-				<artifactId>ont.profile</artifactId>
-				<version>1.0.2-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>org.universAAL.ontology</groupId>
-				<artifactId>ont.profile.userid</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
-				<groupId>org.universAAL.ontology</groupId>
-				<artifactId>ont.profile.uipreferences</artifactId>
-				<version>1.0.1-SNAPSHOT</version>
-			</dependency>
-			<dependency>
 				<groupId>org.universAAL.ui</groupId>
 				<artifactId>security.authorizator</artifactId>
 				<version>1.0.2-SNAPSHOT</version>
