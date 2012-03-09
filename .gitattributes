@@ -77,7 +77,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/se
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
 handler.gui.swing/LICENSE.txt -text svneol=unset#text/plain
-handler.gui.swing/artifact_manual.composite -text
 handler.gui.swing/pom.xml -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/ModelMapper.java -text
