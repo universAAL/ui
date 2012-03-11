@@ -1050,3 +1050,11 @@ security.authorizator/src/main/java/org/universAAL/ui/security/authorization/Aut
 security.authorizator/src/main/java/org/universAAL/ui/security/authorization/IAuthorizator.java -text
 security.authorizator/src/main/java/org/universAAL/ui/security/osgi/Activator.java -text
 security.authorizator/src/test/java/org/universAAL/ui/security/authorization/test/ArtifactIntegrationTest.java -text
+ui.handler.sms/.settings/org.eclipse.jdt.core.prefs -text
+ui.handler.sms/.settings/org.maven.ide.eclipse.prefs -text
+ui.handler.sms/LICENSE -text
+ui.handler.sms/configurationFiles/ui.handler.sms/account.properties -text
+ui.handler.sms/pom.xml -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
