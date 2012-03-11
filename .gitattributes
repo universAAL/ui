@@ -1,2 +1,8 @@
 * text=auto !eol
 pom/pom.xml -text
+security.authorizator/LICENSE.txt -text
+security.authorizator/pom.xml -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/AuthorizatorImpl.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/IAuthorizator.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/osgi/Activator.java -text
+security.authorizator/src/test/java/org/universAAL/ui/security/authorization/test/ArtifactIntegrationTest.java -text
