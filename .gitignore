@@ -54,3 +54,7 @@ pom-1.0.1-SNAPSHOT/.classpath
 pom-1.0.1-SNAPSHOT/.project
 pom-1.0.1-SNAPSHOT/.settings
 pom-1.0.1-SNAPSHOT/target
+ui.pom-1.0.2-SNAPSHOT/.classpath
+ui.pom-1.0.2-SNAPSHOT/.project
+ui.pom-1.0.2-SNAPSHOT/.settings
+ui.pom-1.0.2-SNAPSHOT/target

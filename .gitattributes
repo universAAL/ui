@@ -1412,3 +1412,4 @@ handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/persona_logo.jpg -text
 handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/universAAL_logo.jpg -text
 pom-1.0.1-SNAPSHOT/pom.xml -text
+ui.pom-1.0.2-SNAPSHOT/pom.xml -text
