@@ -6,6 +6,10 @@ handler.gui/.classpath
 handler.gui/.project
 handler.gui/.settings
 handler.gui/target
+handler.web/.classpath
+handler.web/.project
+handler.web/.settings
+handler.web/target
 pom/.classpath
 pom/.project
 pom/.settings
