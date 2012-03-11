@@ -1412,6 +1412,12 @@ handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/pers3mini.ico -text
 handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/persona_logo.jpg -text
 handler.web-1.0.1-SNAPSHOT/src/main/resources/webhandler/img/universAAL_logo.jpg -text
 pom-1.0.1-SNAPSHOT/pom.xml -text
+security.authorizator-1.0.2-SNAPSHOT/LICENSE.txt -text
+security.authorizator-1.0.2-SNAPSHOT/pom.xml -text
+security.authorizator-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/security/authorization/AuthorizatorImpl.java -text
+security.authorizator-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/security/authorization/IAuthorizator.java -text
+security.authorizator-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/security/osgi/Activator.java -text
+security.authorizator-1.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/security/authorization/test/ArtifactIntegrationTest.java -text
 ui.dm-1.0.2-SNAPSHOT/EXCEPTIONS-CONNECTOR-J -text
 ui.dm-1.0.2-SNAPSHOT/LICENSE-BSD-Jena.txt -text
 ui.dm-1.0.2-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
