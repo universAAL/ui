@@ -1436,6 +1436,17 @@ ui.dm-1.0.2-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/main_menu_en.txt -t
 ui.dm-1.0.2-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/messages_de.properties -text
 ui.dm-1.0.2-SNAPSHOT/src/main/resources/org/universAAL/ui/dm/messages_en.properties -text
 ui.dm-1.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/dm/test/ArtifactIntegrationTest.java -text
+ui.dm.mobile-1.0.2-SNAPSHOT/artifact_manual.composite -text
+ui.dm.mobile-1.0.2-SNAPSHOT/pom.xml -text
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text svneol=unset#text/plain
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/DialogManagerImpl.java -text svneol=unset#text/plain
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MainMenu.java -text svneol=unset#text/plain
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MenuNode.java -text svneol=unset#text/plain
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/ServiceCaller.java -text svneol=unset#text/plain
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages.properties -text
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages_de.properties -text
+ui.dm.mobile-1.0.2-SNAPSHOT/src/main/resources/org/persona/platform/ui/dm/messages_en.properties -text
+ui.dm.mobile-1.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/dm/mobile/test/ArtifactIntegrationTest.java -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-Clearthought.txt -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-JGCL.txt -text
