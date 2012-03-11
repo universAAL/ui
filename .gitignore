@@ -2,6 +2,10 @@ dm/.classpath
 dm/.project
 dm/.settings
 dm/target
+handler.gui/.classpath
+handler.gui/.project
+handler.gui/.settings
+handler.gui/target
 pom/.classpath
 pom/.project
 pom/.settings
