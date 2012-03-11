@@ -1,4 +1,15 @@
 * text=auto !eol
+dm.mobile/artifact_manual.composite -text
+dm.mobile/pom.xml -text
+dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text svneol=unset#text/plain
+dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/DialogManagerImpl.java -text svneol=unset#text/plain
+dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/MainMenu.java -text svneol=unset#text/plain
+dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/MenuNode.java -text svneol=unset#text/plain
+dm.mobile/src/main/java/org/universAAL/ui/dm/mobile/ServiceCaller.java -text svneol=unset#text/plain
+dm.mobile/src/main/resources/org/persona/platform/ui/dm/messages.properties -text
+dm.mobile/src/main/resources/org/persona/platform/ui/dm/messages_de.properties -text
+dm.mobile/src/main/resources/org/persona/platform/ui/dm/messages_en.properties -text
+dm.mobile/src/test/java/org/universAAL/ui/dm/mobile/test/ArtifactIntegrationTest.java -text
 dm/EXCEPTIONS-CONNECTOR-J -text
 dm/LICENSE-BSD-Jena.txt -text
 dm/LICENSE-CPL-JUnit.txt -text
