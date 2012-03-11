@@ -1515,6 +1515,14 @@ ui.handler.gui-1.0.2-SNAPSHOT/src/main/resources/img/sound.gif -text
 ui.handler.gui-1.0.2-SNAPSHOT/src/main/resources/lib/TableLayout.jar -text
 ui.handler.gui-1.0.2-SNAPSHOT/src/main/resources/lib/pom.xml -text svneol=unset#text/plain
 ui.handler.gui-1.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/test/ArtifactIntegrationTest.java -text
+ui.handler.sms-1.0.2-SNAPSHOT/.settings/org.eclipse.jdt.core.prefs -text
+ui.handler.sms-1.0.2-SNAPSHOT/.settings/org.maven.ide.eclipse.prefs -text
+ui.handler.sms-1.0.2-SNAPSHOT/LICENSE -text
+ui.handler.sms-1.0.2-SNAPSHOT/configurationFiles/ui.handler.sms/account.properties -text
+ui.handler.sms-1.0.2-SNAPSHOT/pom.xml -text
+ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
+ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
+ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-BSD-Dojo.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-JGCL.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-MIT11-Bouncycastle.txt -text
