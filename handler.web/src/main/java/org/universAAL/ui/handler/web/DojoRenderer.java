@@ -37,7 +37,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.rdf.Form;
@@ -53,19 +55,11 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UIHandlerProfile;
-import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.profile.User;
-
 import org.universAAL.ri.servicegateway.GatewayPort;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
- * 
- */
-/**
  * @author eandgrg
  * 
  */
@@ -512,19 +506,19 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	UIResponse event;
 	UIRequest o;
 	WebIOSession ses = new WebIOSession();
-log.info("web handler, doPost: request-> "+req);
+	log.info("web handler, doPost: request-> " + req);
 	// BEGIN AUTHENTICATION BLOCK
 	// Check if user is authorized
-	 if (!handleAuthorization(req, resp)) {
-	 log.info("Received unauthorized HTTP request");
-	 return;
-	 }
-	 String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
-	 String userURI = userURIs.get(userAndPass[0]);
+	if (!handleAuthorization(req, resp)) {
+	    log.info("Received unauthorized HTTP request");
+	    return;
+	}
+	String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
+	String userURI = userURIs.get(userAndPass[0]);
 	// END AUTHENTICATION BLOCK, this block can be replaced by below
 	// hardcoded line/user for e.g. testing purposes
-//	String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-//		+ "Userkostas";
+	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+	// + "Userkostas";
 
 	log.info("Received HTTP request from user {} ", userURI);
 	// Check if it is the first time
@@ -533,13 +527,15 @@ log.info("web handler, doPost: request-> "+req);
 	    log.info("Starting interaction and session with {} ", userURI);
 	    userSessions.put(userURI, ses);
 
-	    //FIXME was in version with IO bus:
-	   // event = new InputEvent(new User(userURI), null, InputEvent.uAAL_MAIN_MENU_REQUEST);
-	   // o = publish(event, Boolean.TRUE);
-	    
-	    //above 2 rows replaced with this one when moving to UI bus, check??
-	    o=(UIRequest) readyOutputs.remove(userURI);
-	  
+	    // FIXME was in version with IO bus:
+	    // event = new InputEvent(new User(userURI), null,
+	    // InputEvent.uAAL_MAIN_MENU_REQUEST);
+	    // o = publish(event, Boolean.TRUE);
+
+	    // above 2 rows replaced with this one when moving to UI bus,
+	    // check??
+	    o = (UIRequest) readyOutputs.remove(userURI);
+
 	    os.userLoggedIn(new User(userURI), null);
 	    ses.setCurrentUIRequest(o);
 	} else {
@@ -619,9 +615,15 @@ log.info("web handler, doPost: request-> "+req);
 	StringBuilder html = new StringBuilder();
 	String line;
 	// Build the html
-	Hashtable<String, FormControl> assoc = new Hashtable<String, FormControl>();// This
-	// hashtable will replace the old one containing the past input
-	Form f = o.getDialogForm();
+	Hashtable<String, FormControl> assoc = new Hashtable<String, FormControl>();
+	// This hashtable will replace the old one containing the past input
+
+	Form f = null;
+	if (o == null)
+	    f = getNoUICallerNotificationForm();
+	else
+	    f = o.getDialogForm();
+
 	while ((line = reader.readLine()) != null) {
 	    if (line.contains("<!-- Page title -->")) {
 		line = f.getTitle();
@@ -661,8 +663,12 @@ log.info("web handler, doPost: request-> "+req);
 	log.info("Rendered HTML response page");
     }
 
-    /* (non-Javadoc)
-     * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
+     * , javax.servlet.http.HttpServletResponse)
      */
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
 	    throws ServletException, IOException {
@@ -736,4 +742,16 @@ log.info("web handler, doPost: request-> "+req);
 	return this.waitingInputs;
     }
 
+    /**
+     * 
+     * @return notification that no Form is given by the application for this
+     *         handler to render
+     */
+    Form getNoUICallerNotificationForm() {
+	Form f = Form.newDialog("No UI Provider", (String) null);
+
+	new SimpleOutput(f.getIOControls(), null, null,
+		"There is no application offering remote access in the current configuration!");
+	return f;
+    }
 }

@@ -562,18 +562,15 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	StringBuilder html = new StringBuilder();
 	String line;
 	// Build the html
-	Hashtable<String, FormControl> assoc = new Hashtable<String, FormControl>();// This
-	// hashtable
-	// will
-	// replace
-	// the
-	// old
-	// one
-	// containing
-	// the
-	// past
-	// input
-	Form f = o.getDialogForm();
+	Hashtable<String, FormControl> assoc = new Hashtable<String, FormControl>();
+	// This hashtable will replace the old one containing the past input
+
+	Form f = null;
+	if (o == null)
+	    f = getNoUICallerNotificationForm();
+	else
+	    f = o.getDialogForm();
+
 	while ((line = reader.readLine()) != null) {
 	    if (line.contains("<!-- Page title -->")) {
 		line = "<title>" + f.getTitle() + "</title>";
@@ -688,4 +685,16 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return this.waitingInputs;
     }
 
+    /**
+     * 
+     * @return notification that no Form is given by the application for this
+     *         handler to render
+     */
+    Form getNoUICallerNotificationForm() {
+	Form f = Form.newDialog("No UI Provider", (String) null);
+
+	new SimpleOutput(f.getIOControls(), null, null,
+		"There is no application offering remote access in the current configuration!");
+	return f;
+    }
 }
