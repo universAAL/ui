@@ -27,6 +27,7 @@ import java.util.Locale;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.codehaus.plexus.personality.plexus.lifecycle.phase.Suspendable;
 import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -59,7 +60,6 @@ import org.universAAL.ontology.profile.AssistedPersonProfile;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.health.HealthProfile;
-import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
 import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
@@ -786,8 +786,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
     }
 
     /**
-     * Get a suspended dialog. Removes the dialog from {@link suspendedDialogs}
-     * and adds it to {@link runningDialogs}
+     * Get a suspended dialog. Removes the dialog from {@link DialogManagerImpl#suspendedDialogs}
+     * and adds it to {@link DialogManagerImpl#runningDialogs}
      * 
      * @param dialogID
      *            ID of the dialog.
@@ -890,8 +890,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
     /**
      * This method is called when an event on the input bus occurs indicating
      * that a dialog was aborted. It removes the dialog from the list (it
-     * searches the lists {@link runningDialogs}, {@link suspendedDialogs}, and
-     * {@link waitingDialogs}) and unsubscribes from input bus.
+     * searches the lists {@link DialogManagerImpl#runningDialogs}, {@link DialogManagerImpl#suspendedDialogs}, and
+     * {@link DialogManagerImpl#waitingDialogs}) and unsubscribes from input bus.
      * 
      * @param dialogID
      */
