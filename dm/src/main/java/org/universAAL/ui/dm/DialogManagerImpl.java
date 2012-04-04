@@ -27,7 +27,6 @@ import java.util.Locale;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.Suspendable;
 import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
