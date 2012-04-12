@@ -95,6 +95,7 @@ public class Handler extends UIHandler {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
         userAuthenticated(currentUser);
+        userLoggedIn(currentUser, Renderer.getInstance().whereAmI());
     }
     
     /**
@@ -146,7 +147,7 @@ public class Handler extends UIHandler {
          * restrictions
          */
     	UIHandlerProfile oep = new UIHandlerProfile();
-    	if (!Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {
+    	if (Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {
     		/*
     		 * if enabled add the restrictions
     		 */
