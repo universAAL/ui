@@ -137,15 +137,19 @@ public final class Renderer extends Thread {
      * @see Renderer#getInstance()
      */
     private Renderer() {
+	moduleContext.logDebug("starting Handler", null);
         handler = new Handler(Renderer.moduleContext);
+        moduleContext.logDebug("loading properties", null);
         loadProperties();
-        ModelMapper.updateLAF();
+        moduleContext.logDebug("selecting Form Manager", null);
         if (Boolean.parseBoolean(getProerty(QUEUE_MODE))) {
             fm = new QueuedFormManager();
         }
         else {
             fm = new SimpleFormManager();
         }
+        moduleContext.logDebug("loading LAF", null);
+        ModelMapper.updateLAF();
     }
 
     /**
