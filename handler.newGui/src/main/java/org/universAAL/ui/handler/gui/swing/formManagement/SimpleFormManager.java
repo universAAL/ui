@@ -64,7 +64,9 @@ public class SimpleFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public void flush() {
-        frame.disposeFrame();
+    	if (frame != null) {
+    		frame.disposeFrame();
+    	}
     }
 
     /** {@inheritDoc} */
