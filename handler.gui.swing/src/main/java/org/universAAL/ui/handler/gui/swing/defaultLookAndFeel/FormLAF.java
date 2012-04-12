@@ -17,6 +17,7 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -195,6 +196,10 @@ public class FormLAF extends FormModel  {
             frame.setUndecorated(true);
             frame.pack();
         }
+	Toolkit tk = Toolkit.getDefaultToolkit();  
+	int xSize = ((int) tk.getScreenSize().getWidth());  
+	int ySize = ((int) tk.getScreenSize().getHeight());   
+	frame.setSize(xSize,ySize);
         return frame;
     }
 
