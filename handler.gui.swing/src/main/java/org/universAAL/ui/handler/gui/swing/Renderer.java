@@ -28,8 +28,8 @@ import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
+import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
 
@@ -102,12 +102,13 @@ public final class Renderer extends Thread {
      * The Key value for the Form manager selection
      * configuration property.
      * this will select between the available {@link FormManager}s
-     * Default: queued.forms=false
+     * Default: queued.forms=org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager
      * @see Renderer#fm
      * @see QueuedFormManager
      * @see SimpleFormManager
+     * @see HierarchicalFromManager
      */
-    private static String QUEUE_MODE = "queued.forms";
+    private static String FORM_MANAGEMENT = "queued.forms";
     /**
      * Directory for configuration files.
      */
@@ -124,30 +125,22 @@ public final class Renderer extends Thread {
     private static final String NO_SAVE = "Unable to save Property File";
 
     /**
-     * The key value for configuration of subdialog rendering.
-     * Default: nested.subdialogs=false
-     * @see FormLAF#getFrame()
-     */
-    public static String NESTED_SUBDIALOGS = "nested.subdialogs";
-
-    /**
      * Constructor, using Singleton pattern:
      * only Renderer Class can create an instance,
      * to help contribute to the singleton pattern.
      * @see Renderer#getInstance()
      */
     private Renderer() {
-	moduleContext.logDebug("starting Handler", null);
+    	moduleContext.logDebug("starting Handler", null);
         handler = new Handler(Renderer.moduleContext);
         moduleContext.logDebug("loading properties", null);
         loadProperties();
         moduleContext.logDebug("selecting Form Manager", null);
-        if (Boolean.parseBoolean(getProerty(QUEUE_MODE))) {
-            fm = new QueuedFormManager();
-        }
-        else {
-            fm = new SimpleFormManager();
-        }
+        try {
+			fm = (FormManager) Class.forName(getProerty(FORM_MANAGEMENT)).newInstance();
+		} catch (Exception e) {
+			fm = new SimpleFormManager();
+		}
         moduleContext.logDebug("loading LAF", null);
         ModelMapper.updateLAF();
     }
@@ -162,8 +155,7 @@ public final class Renderer extends Thread {
         fileProp.put(DEMO_MODE, "true");
         fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
         fileProp.put(GUI_LOCATION, "Unkown");
-        fileProp.put(QUEUE_MODE, "false");
-        fileProp.put(NESTED_SUBDIALOGS, "false");
+        fileProp.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
         /*
          * Try to load from file, if not create file from defaults.
          */
@@ -309,7 +301,6 @@ public final class Renderer extends Thread {
      */
     void setCurrentUser(User user) {
         handler.setCurrentUser(user);
-        handler.requestMainMenu();
     }
 
     /**

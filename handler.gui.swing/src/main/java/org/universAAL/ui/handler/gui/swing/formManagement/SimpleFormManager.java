@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.formManagement;
 
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.rdf.Resource;
 
 /**
@@ -56,8 +57,6 @@ public class SimpleFormManager implements FormManager {
         if (frame != null) {
             frame.disposeFrame();
         }
-        //FormModelMapper.unRegister(
-        //        currentForm.getDialogForm().getURI());
         currentForm = null;
     }
 
@@ -75,5 +74,9 @@ public class SimpleFormManager implements FormManager {
         // TODO Auto-generated method stub, What to return?
         return null;
     }
+
+	public Form getParentOf(String formURI) {
+		return null;
+	}
 
 }

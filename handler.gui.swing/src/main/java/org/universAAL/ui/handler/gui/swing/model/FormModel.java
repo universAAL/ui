@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.handler.gui.swing.ModelMapper;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
@@ -80,8 +82,14 @@ public abstract class FormModel {
      */
     protected FormModel(Form f) {
         form = f;
-        if (form.isSubdialog()) {
-            parent = FormModelMapper.getFromURI(form.getParentDialogURI());
+        if (form.isSubdialog()) { 
+            Form parentForm = Renderer.getInstance().getFormManagement().getParentOf(form.getDialogID());
+            if (parentForm != null) {
+            	parent = ModelMapper.getModelFor(parentForm);
+            }
+            else {
+            	parent = null;
+            }
             subDialogLevel = parent.subDialogLevel + 1;
         }
         else {
@@ -89,7 +97,6 @@ public abstract class FormModel {
             parent = null;
             //FormModelMapper.flush();
         }
-        FormModelMapper.register(this);
     }
 
     /**
@@ -117,7 +124,6 @@ public abstract class FormModel {
          * find where to unRegister (maybe in SubmitModel), or
          * the map (FormModelMapper) will grow indefinitely!!!
          */
-        FormModelMapper.unRegister(this);
         terminateDialog();
     }
 

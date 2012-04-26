@@ -27,7 +27,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -145,9 +144,7 @@ public class FormLAF extends FormModel  {
             frame.setUndecorated(true);
             frame.pack();
         }
-        if (form.isStandardDialog() || 
-        		(form.isSubdialog() && 
-        				! Boolean.parseBoolean(Renderer.getProerty(Renderer.NESTED_SUBDIALOGS)))) {
+        if (form.isStandardDialog() ) {
             /*
              *  some further LAF can be done here:
              *   if only submints (no sub dialogs)
@@ -171,8 +168,7 @@ public class FormLAF extends FormModel  {
             frame.setUndecorated(true);
             frame.pack();
         }
-       if (form.isSubdialog()&& 
-				Boolean.parseBoolean(Renderer.getProerty(Renderer.NESTED_SUBDIALOGS))) {
+       if (form.isSubdialog()) {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);

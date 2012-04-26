@@ -25,9 +25,9 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
-import org.universAAL.ui.handler.gui.swing.model.FormModelMapper;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 /**
@@ -79,8 +79,10 @@ implements ActionListener {
      */
     private boolean isSelected() {
     	if (Renderer.getInstance() != null) {
-    		FormModel current = FormModelMapper
-    				.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
+    	//	FormModel current = FormModelMapper
+    	//			.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
+    		FormModel current = ModelMapper.getModelFor(
+    				Renderer.getInstance().getFormManagement().getCurrentDialog().getDialogForm());
     		return current.isAntecessor(((SubdialogTrigger) fc).getID());
     	}
     	else {

@@ -17,10 +17,10 @@ package org.universAAL.ui.handler.gui.swing.formManagement;
 
 import java.util.PriorityQueue;
 
-import org.universAAL.middleware.ui.owl.DialogType;
-import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.owl.DialogType;
+import org.universAAL.middleware.ui.rdf.Form;
 
 /**
  * This {@link FormManager} queues the {@link UIRequest}s in a
@@ -133,14 +133,7 @@ public class QueuedFormManager implements FormManager {
      * menu dialog.
      */
     private void renderNextDialog() {
-        if (dialogQueue.peek() == null) {
-            /*
-             * dialog queue empty request main menu!
-             */
-            Renderer.getInstance()
-            .handler.requestMainMenu();
-        }
-        else {
+        if (dialogQueue.peek() != null)  {
             if (((UIRequest) dialogQueue.peek()).getType()
                     .equals(DialogType.message)) {
                 /*
@@ -193,5 +186,10 @@ public class QueuedFormManager implements FormManager {
         // TODO what to return?
         return null;
     }
+
+    /** {@inheritDoc} */
+	public Form getParentOf(String formURI) {
+		return null;
+	}
 
 }
