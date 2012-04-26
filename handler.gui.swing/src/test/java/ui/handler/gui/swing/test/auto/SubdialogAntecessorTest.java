@@ -15,42 +15,52 @@
  ******************************************************************************/
 package ui.handler.gui.swing.test.auto;
 
+import java.util.Locale;
+
 import junit.framework.TestCase;
 
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
+import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ontology.ProfileOntology;
+import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
-import org.universAAL.ui.handler.gui.swing.model.FormModelMapper;
+import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
+import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
 
 /**
  * Test the framework for locating form antecessors.
  * @author amedrano
  *
  */
-public class SubdialogAntecessorTest extends TestCase {
+/*public class SubdialogAntecessorTest extends TestCase {
 
     Form root, d1, d2, d11, d12, d111;
 
     public void setUp() {
-	OntologyManagement.getInstance().register(new DataRepOntology());
-	OntologyManagement.getInstance().register(new UIBusOntology());
-	
+    	OntologyManagement.getInstance().register(new DataRepOntology());
+    	OntologyManagement.getInstance().register(new UIBusOntology());
+    	OntologyManagement.getInstance().register(new ProfileOntology());
+    	FormManager fm = new HierarchicalFromManager();
+    	
         root = Form.newDialog("root", new Resource());
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
         d2 = Form.newSubdialog("Dialog 2", root.getDialogID());
         d11 = Form.newSubdialog("Dialog 1.1", d1.getDialogID());
         d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
         d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
-
-        new FormLAF(root);
-        new FormLAF(d1);
-        new FormLAF(d11);
-        new FormLAF(d12);
-        new FormLAF(d111);
-        new FormLAF(d1);;
+        User u = new User("saied");
+        fm.addDialog(new UIRequest(u, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm.addDialog(new UIRequest(u, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm.addDialog(new UIRequest(u, d2, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm.addDialog(new UIRequest(u, d11, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm.addDialog(new UIRequest(u, d12, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm.addDialog(new UIRequest(u, d111, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
     }
 
     public void testAnt1() {
@@ -74,12 +84,5 @@ public class SubdialogAntecessorTest extends TestCase {
     public void testAnt7() {
         assertFalse(new FormLAF(d111).isAntecessor(d12.getDialogID()));
     }
-    public void testFMM1() {
-        new FormLAF(d111).finalizeForm();
-        assertFalse(FormModelMapper.isRegistered(d111.getDialogID()));
-    }
 
-    public void tearDown() {
-        FormModelMapper.flush();
-    }
-}
+}*/

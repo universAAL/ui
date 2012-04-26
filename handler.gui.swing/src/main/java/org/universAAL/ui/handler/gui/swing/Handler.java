@@ -38,7 +38,6 @@ public class Handler extends UIHandler {
 	protected Handler(ModuleContext context,
 			UIHandlerProfile initialSubscription) {
 		super(context, initialSubscription);
-		// TODO Auto-generated constructor stub
 	}
 
 	Handler (ModuleContext context){
@@ -127,12 +126,6 @@ public class Handler extends UIHandler {
                         submit));
     }
 
-    /**
-     * Shortcut to request Main menu for current user.
-     */
-    public void requestMainMenu() {
-    	//FIXME Call the request Main Menu!!
-    }
     
     /**
      * States the pattern of interesting output events, for the handler.

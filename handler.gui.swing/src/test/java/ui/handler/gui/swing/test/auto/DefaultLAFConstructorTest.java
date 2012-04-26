@@ -213,14 +213,14 @@ public class DefaultLAFConstructorTest extends TestCase{
 		new SimpleOutputLAF(so).getComponent();
 	}
 
-	public void testSubdialogTrigger(){
+/*	public void testSubdialogTrigger(){
 		Form subD = Form.newSubdialog("subdialog", f.getDialogID());
 		new FormLAF(f);
 		new FormLAF(subD);
 		SubdialogTrigger st = new SubdialogTrigger(f.getSubmits(), l, subD.getDialogID());
 		new SubdialogTriggerLAF(st).getComponent();
 	}
-
+*/
 	public void testSubmit(){
 		Submit s = new Submit(f.getSubmits(), l, "");
 		new SubmitLAF(s).getComponent();
