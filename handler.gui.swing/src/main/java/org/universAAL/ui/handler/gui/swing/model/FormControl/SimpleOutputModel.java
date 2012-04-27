@@ -25,6 +25,7 @@ import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 /**
@@ -45,8 +46,8 @@ public class SimpleOutputModel extends OutputModel {
      * @param control
      *       the {@link FormControl} which to model.
      */
-    public SimpleOutputModel(SimpleOutput control) {
-        super(control);
+    public SimpleOutputModel(SimpleOutput control, Renderer render) {
+        super(control, render);
     }
 
     /**

@@ -21,6 +21,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.DialogType;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * This {@link FormManager} queues the {@link UIRequest}s in a
@@ -58,6 +59,11 @@ public class QueuedFormManager implements FormManager {
      */
     private FrameManager mFrame;
 
+	/**
+	 * the {@link Renderer} reference
+	 */
+	private Renderer render;
+	
     /**
      * Default constructor.
      *
@@ -140,11 +146,11 @@ public class QueuedFormManager implements FormManager {
                  * if its a message, just render message
                  */
                 mFrame = new FrameManager(((UIRequest) dialogQueue.poll())
-                        .getDialogForm());
+                        .getDialogForm(), render.getModelMapper());
             }
             else {
                 currentDialog = (UIRequest) dialogQueue.poll();
-                dFrame = new FrameManager(currentDialog.getDialogForm());
+                dFrame = new FrameManager(currentDialog.getDialogForm(),render.getModelMapper());
             }
         }
     }
@@ -190,6 +196,11 @@ public class QueuedFormManager implements FormManager {
     /** {@inheritDoc} */
 	public Form getParentOf(String formURI) {
 		return null;
+	}
+
+
+	public void setRenderer(Renderer renderer) {
+		render = renderer;
 	}
 
 }

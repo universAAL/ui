@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
 
 /**
@@ -31,8 +32,8 @@ public class RepeatLAF extends RepeatModel {
      * Constructor.
      * @param control the {@link Repeat} which to model.
      */
-    public RepeatLAF(Repeat control) {
-        super(control);
+    public RepeatLAF(Repeat control, Renderer render) {
+        super(control, render);
     }
     
     /** {@inheritDoc}*/
@@ -44,7 +45,7 @@ public class RepeatLAF extends RepeatModel {
          *  Check for Group children and render JTabbedPane
          */
         if (isATable()) {
-        	table = new RepeatModelTableLAF((Repeat) fc);
+        	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
             return table.getNewComponent();
         }
         if (getChildrenType().equals(Group.class)) {

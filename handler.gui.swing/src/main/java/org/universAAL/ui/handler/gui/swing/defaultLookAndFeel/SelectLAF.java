@@ -20,6 +20,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Select;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
 
 /**
@@ -42,8 +43,8 @@ public class SelectLAF extends SelectModel {
      * Constructor.
      * @param control the {@link Select} which to model.
      */
-    public SelectLAF(Select control) {
-        super(control);
+    public SelectLAF(Select control, Renderer render) {
+        super(control, render);
     }
 
    

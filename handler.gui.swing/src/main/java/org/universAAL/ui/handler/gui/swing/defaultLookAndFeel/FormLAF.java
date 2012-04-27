@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -47,8 +48,8 @@ public class FormLAF extends FormModel  {
      * @param f
      *     {@link Form} which to model.
      */
-    public FormLAF(Form f) {
-        super(f);
+    public FormLAF(Form f, Renderer render) {
+        super(f, render);
     }
 
     /**

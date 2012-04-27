@@ -25,7 +25,6 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
@@ -42,8 +41,8 @@ implements ActionListener {
      * @param control
      *     the {@link FormControl} which to model.
      */
-    public SubdialogTriggerModel(SubdialogTrigger control) {
-        super(control);
+    public SubdialogTriggerModel(SubdialogTrigger control, Renderer render) {
+        super(control, render);
     }
 
     /**
@@ -78,11 +77,11 @@ implements ActionListener {
      *         true is it should be selected
      */
     private boolean isSelected() {
-    	if (Renderer.getInstance() != null) {
+    	if (getRenderer() != null) {
     	//	FormModel current = FormModelMapper
     	//			.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
-    		FormModel current = ModelMapper.getModelFor(
-    				Renderer.getInstance().getFormManagement().getCurrentDialog().getDialogForm());
+    		FormModel current = getRenderer().getModelMapper().getModelFor(
+    				getRenderer().getFormManagement().getCurrentDialog().getDialogForm());
     		return current.isAntecessor(((SubdialogTrigger) fc).getID());
     	}
     	else {
@@ -101,7 +100,7 @@ implements ActionListener {
          *  TODO use needsSelection() in case of SubdialogTriggers in
          *  Repeat Tables, to check if the submitID is ready
          */
-    Renderer.getInstance().handler.summit((Submit) fc);
+    getRenderer().getHandler().summit((Submit) fc);
         //Renderer.getInstance().getFormManagement().closeCurrentDialog();
     }
 

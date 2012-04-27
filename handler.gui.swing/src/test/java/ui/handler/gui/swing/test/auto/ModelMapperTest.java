@@ -26,6 +26,8 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.LabelLAF;
@@ -44,6 +46,8 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.TestExtensionOfTes
 public class ModelMapperTest extends TestCase {
 
 	Form root;
+	ModelMapper mp;
+	Renderer testRenderer;
 
 	public void setUp() {
 		OntologyManagement.getInstance().register(new DataRepOntology());
@@ -52,6 +56,8 @@ public class ModelMapperTest extends TestCase {
 		root = Form.newDialog("root", new Resource());
 		Label l = new Label("some Label", null);
 		new SimpleOutput(root.getIOControls(), l, null, "simple Text Output");
+		testRenderer = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
+		mp = testRenderer.getModelMapper();
 	}
 
 	/**
@@ -59,7 +65,7 @@ public class ModelMapperTest extends TestCase {
 	 * {@link FormLAF}
 	 */
 	public void testForm() {
-		assertTrue(ModelMapper.getModelFor(root) instanceof FormLAF);
+		assertTrue(mp.getModelFor(root) instanceof FormLAF);
 	}
 
 	/**
@@ -68,7 +74,7 @@ public class ModelMapperTest extends TestCase {
 	 */
 	public void testLabel() {
 		Label l = root.getIOControls().getChildren()[0].getLabel();
-		assertTrue(ModelMapper.getModelFor(l) instanceof LabelLAF);
+		assertTrue(mp.getModelFor(l) instanceof LabelLAF);
 	}
 
 	/**
@@ -78,7 +84,7 @@ public class ModelMapperTest extends TestCase {
 	 */
 	public void testExistingDefaultFormControl() {
 		FormControl fc = (FormControl) root.getIOControls().getChildren()[0];
-		assertTrue(ModelMapper.getModelFor(fc) instanceof SimpleOutputLAF);
+		assertTrue(mp.getModelFor(fc) instanceof SimpleOutputLAF);
 	}
 
 	/**
@@ -88,7 +94,7 @@ public class ModelMapperTest extends TestCase {
 	 */
 	public void testExistingFormControlExtension() {
 		TestExtensionOfSimpleOutput teoso = new TestExtensionOfSimpleOutput();
-		assertTrue(ModelMapper.getModelFor(teoso) instanceof TestExtensionOfSimpleOutputLAF);
+		assertTrue(mp.getModelFor(teoso) instanceof TestExtensionOfSimpleOutputLAF);
 	}
 
 	/**
@@ -100,7 +106,7 @@ public class ModelMapperTest extends TestCase {
 	 */
 	public void testNonExistingFormControlExtension() {
 		TestExtensionOfGroup teog = new TestExtensionOfGroup();
-		assertTrue(ModelMapper.getModelFor(teog) instanceof GroupLAF);
+		assertTrue(mp.getModelFor(teog) instanceof GroupLAF);
 	}
 
 	/**
@@ -145,6 +151,6 @@ public class ModelMapperTest extends TestCase {
 	 */
 	public void testHierarchicalNonExistingFormControlExtension() {
 		TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
-		assertTrue(ModelMapper.getModelFor(teteog) instanceof GroupLAF);
+		assertTrue(mp.getModelFor(teteog) instanceof GroupLAF);
 	}
 }

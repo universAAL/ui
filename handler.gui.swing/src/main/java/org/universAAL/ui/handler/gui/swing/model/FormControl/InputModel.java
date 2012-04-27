@@ -20,6 +20,7 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
@@ -36,8 +37,8 @@ public abstract class InputModel extends Model
      * @param control
      *      the {@link Input} {@link FormControl} to model.
      */
-    public InputModel(Input control) {
-        super(control);
+    public InputModel(Input control, Renderer render) {
+        super(control, render);
     }
     
     /**

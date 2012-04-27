@@ -25,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
@@ -47,8 +48,8 @@ public class SimpleOutputLAF extends SimpleOutputModel {
      * Constructor.
      * @param control the {@link SimpleOutput} which to model.
      */
-    public SimpleOutputLAF(SimpleOutput control) {
-        super(control);
+    public SimpleOutputLAF(SimpleOutput control, Renderer render) {
+        super(control, render);
 
     }
 

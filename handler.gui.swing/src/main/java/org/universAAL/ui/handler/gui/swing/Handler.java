@@ -35,13 +35,25 @@ import org.universAAL.ontology.profile.User;
 
 public class Handler extends UIHandler {
 
+	/**
+	 * internal constructor
+	 * @param context
+	 * @param initialSubscription
+	 */
 	protected Handler(ModuleContext context,
 			UIHandlerProfile initialSubscription) {
 		super(context, initialSubscription);
 	}
 
-	Handler (ModuleContext context){
-		super(context, getPermanentSubscriptions());
+	private Renderer render;
+	/**
+	 * constructor for Handler
+	 * @param renderer
+	 * 	the {@link Renderer} to associate with
+	 */
+	Handler (Renderer renderer){
+		super(renderer.getModuleContext(), getPermanentSubscriptions());
+		render = renderer;
 	}
 	
 	/**
@@ -63,7 +75,7 @@ public class Handler extends UIHandler {
 
 	/** {@ inheritDoc}*/
 	public Resource cutDialog(String dialogID) {
-		return Renderer.getInstance().getFormManagement().cutDialog(dialogID);
+		return render.getFormManagement().cutDialog(dialogID);
 	}
 
 	/**
@@ -73,7 +85,7 @@ public class Handler extends UIHandler {
      * the user's circumstances.
      */
     public void handleUICall(UIRequest event) {
-        Renderer.getInstance().getFormManagement().addDialog(event);
+        render.getFormManagement().addDialog(event);
     }
 
     /**
@@ -94,7 +106,7 @@ public class Handler extends UIHandler {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
         userAuthenticated(currentUser);
-        userLoggedIn(currentUser, Renderer.getInstance().whereAmI());
+        userLoggedIn(currentUser, render.whereAmI());
     }
     
     /**
@@ -122,7 +134,7 @@ public class Handler extends UIHandler {
         dialogFinished(
                 new UIResponse(
                         currentUser,
-                        Renderer.getInstance().whereAmI(),
+                        render.whereAmI(),
                         submit));
     }
 

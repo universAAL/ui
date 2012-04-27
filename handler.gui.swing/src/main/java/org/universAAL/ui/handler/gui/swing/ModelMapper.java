@@ -61,8 +61,18 @@ public class ModelMapper {
      * Suffix for all look and feel classes.
      */
     private static String LAFSuffix = "LAF";
-
+    
     /**
+     * Renderer instance
+     */
+    private Renderer render;
+
+    public ModelMapper(Renderer renderer) {
+		render = renderer;
+	}
+
+
+	/**
      * construct the name of the LAF class for the component.
      * @param c
      *         the component for which the LAF class name is constructed
@@ -89,18 +99,18 @@ public class ModelMapper {
      *         the LAF Class,
      *         null if it could not be found
      */
-    private static Object tryToLoadClass(String LAFPackage, Object constructorParameter, Class constructorParamClass) {
+    private Object tryToLoadClass(String LAFPackage, Object constructorParameter, Class constructorParamClass) {
         /*
          * "Magic Mirror on the wall,
          *  who is the fairest one of all?"
          */
         try {
             return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParamClass))
-                    .getConstructor(new Class[] { constructorParamClass } )
-                    .newInstance(new Object[] { constructorParameter } );
+                    .getConstructor(new Class[] { constructorParamClass, Renderer.class } )
+                    .newInstance(new Object[] { constructorParameter, render } );
         } catch (Exception e) {
-            if (Renderer.getModuleContext() != null) {
-            Renderer.getModuleContext().logError("Could not find Class: "
+            if (render.getModuleContext() != null) {
+            render.getModuleContext().logError("Could not find Class: "
                 + LAFPackage + "." + getStringLAFClass(constructorParamClass), e);
             }
             return null;
@@ -119,7 +129,7 @@ public class ModelMapper {
 	 * @return
 	 *         the found LAF extension for the component.
 	 */
-	private static Object getModelFor (Object refObj, Class refObjClass){
+	private Object getModelFor (Object refObj, Class refObjClass){
 	/*
 	     * look for the component corresponding to refObj
 	     * This should be the L&F extension
@@ -151,7 +161,7 @@ public class ModelMapper {
      * @return
      *         the found LAF extension for the component.
      */
-    public static Model getModelFor(FormControl fc) {
+    public Model getModelFor(FormControl fc) {
         return (Model) getModelFor(fc, fc.getClass());
     }
     
@@ -162,7 +172,7 @@ public class ModelMapper {
      * @return
      *         the found LAF extension for the component.
      */
-    public static FormModel getModelFor(Form f) {
+    public  FormModel getModelFor(Form f) {
       return (FormModel) getModelFor(f, f.getClass());
     }
     
@@ -175,7 +185,7 @@ public class ModelMapper {
      * @return
      *         the found LAF extension for the component.
      */
-    public static LabelModel getModelFor(Label l) {
+    public LabelModel getModelFor(Label l) {
         return (LabelModel) getModelFor(l, l.getClass());
     }
 
@@ -186,7 +196,7 @@ public class ModelMapper {
      * @return
      *             the initialization class of the LAF package
      */
-    private static InitInterface getLookAndFeel(String LAFPackage) throws Exception {
+    private InitInterface getLookAndFeel(String LAFPackage) throws Exception {
             return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)
             .getConstructor(null)
             .newInstance(null);
@@ -196,19 +206,19 @@ public class ModelMapper {
      * Initialize the selected L&F extension.
      * If could not be found, defaultLAF is used.
      */
-    public static void updateLAF() {
+    public void updateLAF() {
         try {
             getLookAndFeel(Renderer.getProerty(LAFPackageProperty)).install();
         } catch (Exception e) {
-            if (Renderer.getModuleContext() != null) {
-            Renderer.getModuleContext().logError("Unable to find "
+            if (render.getModuleContext() != null) {
+            	render.getModuleContext().logError("Unable to find "
                 + INIT_CLASS + " Class for selected LookAndFeel.Package", e);
             }
             try {
             getLookAndFeel(DefaultLAFPackage).install();
             } catch (Exception e2) {
-            if (Renderer.getModuleContext() != null) {
-                Renderer.getModuleContext().logError("Unable to find "
+            if (render.getModuleContext() != null) {
+            	render.getModuleContext().logError("Unable to find "
                     + INIT_CLASS + " Class for Default LookAndFeel Package", e);
             }
             }

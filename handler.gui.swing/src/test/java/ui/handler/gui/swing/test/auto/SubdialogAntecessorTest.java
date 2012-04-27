@@ -29,24 +29,27 @@ import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.ProfileOntology;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
-import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
+
 
 /**
  * Test the framework for locating form antecessors.
  * @author amedrano
  *
- */
-/*public class SubdialogAntecessorTest extends TestCase {
+ *//*
+public class SubdialogAntecessorTest extends TestCase {
 
     Form root, d1, d2, d11, d12, d111;
-
+    Renderer testRender;
+    
     public void setUp() {
     	OntologyManagement.getInstance().register(new DataRepOntology());
     	OntologyManagement.getInstance().register(new UIBusOntology());
     	OntologyManagement.getInstance().register(new ProfileOntology());
-    	FormManager fm = new HierarchicalFromManager();
+    	testRender = new TestRenderer(TestRenderer.HIERARCHICAL_MANAGER);
     	
         root = Form.newDialog("root", new Resource());
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
@@ -55,6 +58,8 @@ import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManage
         d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
         d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
         User u = new User("saied");
+        
+        FormManager fm = testRender.getFormManagement();
         fm.addDialog(new UIRequest(u, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
         fm.addDialog(new UIRequest(u, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
         fm.addDialog(new UIRequest(u, d2, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
@@ -64,25 +69,26 @@ import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManage
     }
 
     public void testAnt1() {
-        assertTrue(new FormLAF(d1).isAntecessor(root.getDialogID()));
+        assertTrue(new FormLAF(d1, testRender).isAntecessor(root.getDialogID()));
     }
     public void testAnt2() {
-        assertTrue(new FormLAF(d11).isAntecessor(root.getDialogID()));
+        assertTrue(new FormLAF(d11, testRender).isAntecessor(root.getDialogID()));
     }
     public void testAnt3() {
-        assertTrue(new FormLAF(d111).isAntecessor(root.getDialogID()));
+        assertTrue(new FormLAF(d111, testRender).isAntecessor(root.getDialogID()));
     }
     public void testAnt4() {
-        assertTrue(new FormLAF(d111).isAntecessor(d11.getDialogID()));
+        assertTrue(new FormLAF(d111, testRender).isAntecessor(d11.getDialogID()));
     }
     public void testAnt5() {
-        assertTrue(new FormLAF(d111).isAntecessor(d1.getDialogID()));
+        assertTrue(new FormLAF(d111, testRender).isAntecessor(d1.getDialogID()));
     }
     public void testAnt6() {
-        assertFalse(new FormLAF(d1).isAntecessor(d2.getDialogID()));
+        assertFalse(new FormLAF(d1, testRender).isAntecessor(d2.getDialogID()));
     }
     public void testAnt7() {
-        assertFalse(new FormLAF(d111).isAntecessor(d12.getDialogID()));
+        assertFalse(new FormLAF(d111, testRender).isAntecessor(d12.getDialogID()));
     }
 
-}*/
+}
+*/

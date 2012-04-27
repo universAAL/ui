@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
 
 /**
@@ -28,8 +29,8 @@ public class MediaObjectLAF extends MediaObjectModel {
      * Constructor.
      * @param control the {@link MediaObject} which to model
      */
-    public MediaObjectLAF(MediaObject control) {
-        super(control);
+    public MediaObjectLAF(MediaObject control, Renderer render) {
+        super(control, render);
     }
 
 }

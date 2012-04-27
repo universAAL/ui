@@ -23,6 +23,7 @@ import java.util.TreeMap;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * 	Hierarchical management of dialogs. 
@@ -50,16 +51,21 @@ public class HierarchicalFromManager implements FormManager {
 	 * The frame Manager
 	 */
 	private FrameManager frame;
+
+	/**
+	 * the {@link Renderer} reference
+	 */
+	private Renderer render;
 	
 	/** {@inheritDoc} */
 	public void addDialog(UIRequest oe) {
 		currentForm = oe;
 		Form f = currentForm.getDialogForm();
-        frame = new FrameManager(f);
         formMap.put(f.getURI(), f);
         if (f.getParentDialogURI() != null) {
         	tree.putChild(f.getParentDialogURI(), f.getURI());
         }
+        frame = new FrameManager(f, render.getModelMapper());
 	}
 
 	/** {@inheritDoc} */
@@ -130,5 +136,9 @@ public class HierarchicalFromManager implements FormManager {
 			return (Set) get(key);
 		}
 		
+	}
+
+	public void setRenderer(Renderer renderer) {
+		render = renderer;		
 	}
 }

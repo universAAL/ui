@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SimpleOutputLAF;
 
 
@@ -27,8 +28,8 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SimpleOutputLAF;
  */
 public class TestExtensionOfSimpleOutputLAF extends SimpleOutputLAF {
 
-    public TestExtensionOfSimpleOutputLAF(TestExtensionOfSimpleOutput control) {
-	super(control);
+    public TestExtensionOfSimpleOutputLAF(TestExtensionOfSimpleOutput control, Renderer render) {
+	super(control, render);
 	// TODO Auto-generated constructor stub
     }
 
