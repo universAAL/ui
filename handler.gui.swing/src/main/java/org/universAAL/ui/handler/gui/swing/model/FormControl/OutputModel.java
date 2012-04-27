@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Output;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
@@ -34,8 +35,8 @@ public abstract class OutputModel extends Model {
      * @param control
      *     the {@link Output} {@link FormControl} which to model.
      */
-    public OutputModel(Output control) {
-        super(control);
+    public OutputModel(Output control, Renderer render) {
+        super(control, render);
     }
 
     /**

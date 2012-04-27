@@ -35,6 +35,7 @@ import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.InputField;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 /**
@@ -53,8 +54,8 @@ public class InputFieldModel extends InputModel implements ChangeListener,
      * @param control
      *            de {@link InputField} which to model.
      */
-    public InputFieldModel(InputField control) {
-	super(control);
+    public InputFieldModel(InputField control, Renderer render) {
+	super(control, render);
     }
 
     /**

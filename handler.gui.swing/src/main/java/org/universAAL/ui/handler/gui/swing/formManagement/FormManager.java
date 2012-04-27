@@ -19,6 +19,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Handler;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * Interface to implement Form management Logic
@@ -26,7 +27,6 @@ import org.universAAL.ui.handler.gui.swing.Handler;
  *
  */
 public interface FormManager {
-
 
     /**
      * Callback for incoming dialogs.
@@ -65,7 +65,18 @@ public interface FormManager {
     public void flush();
     
     /**
-     * 
+     * get the parent {@link Form} of a given formURI
+     * @param formURI
+     * 	the URI of the child {@link Form}
+     * @return
+     * 	the parent of the child {@link Form}
      */
     public Form getParentOf(String formURI);
+    
+    /**
+     * Associate a {@link Renderer} to the {@link FormManager}
+     * @param renderer
+     * 	the {@link Renderer} to associate with
+     */
+    public void setRenderer(Renderer renderer);
 }

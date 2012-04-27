@@ -138,6 +138,7 @@ handler.gui.swing/src/main/resources/main/Button_UCC_Sm.png -text
 handler.gui.swing/src/main/resources/main/Footer.png -text
 handler.gui.swing/src/main/resources/main/Invisible_Button.png -text
 handler.gui.swing/src/main/resources/main/UniversAAl_logo.png -text
+handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/TestRenderer.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfGroup.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutput.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text

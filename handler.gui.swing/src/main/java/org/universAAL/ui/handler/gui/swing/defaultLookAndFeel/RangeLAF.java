@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import org.universAAL.middleware.ui.rdf.Range;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel;
 
 /**
@@ -28,8 +29,8 @@ public class RangeLAF extends RangeModel {
      * Constructor.
      * @param control the {@link Range} which to model.
      */
-    public RangeLAF(Range control) {
-        super(control);
+    public RangeLAF(Range control, Renderer render) {
+        super(control, render);
     }
 
     /** {@inheritDoc} */

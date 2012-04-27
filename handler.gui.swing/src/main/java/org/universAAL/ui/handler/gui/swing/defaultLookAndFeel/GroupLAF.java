@@ -22,6 +22,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -35,8 +36,8 @@ public class GroupLAF extends GroupModel {
      * Constructor.
      * @param control the {@link Group} which to model
      */
-    public GroupLAF(Group control) {
-        super(control);
+    public GroupLAF(Group control, Renderer render) {
+        super(control, render);
     }
 
     /** {@inheritDoc} */

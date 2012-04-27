@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.formManagement;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * This {@link FormManager} is the simplest form of form management
@@ -39,11 +40,16 @@ public class SimpleFormManager implements FormManager {
      */
     private FrameManager frame;
 
+	/**
+	 * the {@link Renderer} reference
+	 */
+	private Renderer render;
+    
     /** {@inheritDoc} */
     public void addDialog(UIRequest oe) {
             closeCurrentDialog();
             currentForm = oe;
-            frame = new FrameManager(currentForm.getDialogForm());
+            frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
     }
 
     /** {@inheritDoc} */
@@ -77,6 +83,10 @@ public class SimpleFormManager implements FormManager {
 
 	public Form getParentOf(String formURI) {
 		return null;
+	}
+
+	public void setRenderer(Renderer renderer) {
+		render = renderer;
 	}
 
 }

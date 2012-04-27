@@ -46,8 +46,8 @@ public class FrameManager {
      * @param f
      *         {@link Form} to be rendered
      */
-    public FrameManager(Form f) {
-        model = ModelMapper.getModelFor(f);
+    public FrameManager(Form f, ModelMapper mp) {
+        model = mp.getModelFor(f);
         frame = model.getFrame();
         if (frame != null) {
             frame.setVisible(true);

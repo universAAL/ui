@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerModel;
 
 /**
@@ -30,8 +31,8 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
      * Constructor.
      * @param control the {@link SubdialogTrigger} which to model.
      */
-    public SubdialogTriggerLAF(SubdialogTrigger control) {
-        super(control);
+    public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
+        super(control, render);
     }
 
     /** {@inheritDoc} */

@@ -20,7 +20,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
@@ -49,6 +48,11 @@ public abstract class FormModel {
      */
     private FormModel parent;
 
+    /**
+     * the {@link Renderer} instance to which this {@link FormModel} is associated to
+     */
+    private Renderer render;
+    
     /**
      * The depth level of the dialog.
      * if it not a SubDialog then the depth
@@ -79,23 +83,26 @@ public abstract class FormModel {
      * be retrieved by successors.
      * @param f
      *     The {@link Form} for which the model is constructed.
+     * @param renderer TODO
      */
-    protected FormModel(Form f) {
+    protected FormModel(Form f, Renderer renderer) {
         form = f;
+        render = renderer;
         if (form.isSubdialog()) { 
-            Form parentForm = Renderer.getInstance().getFormManagement().getParentOf(form.getDialogID());
+            Form parentForm = getRenderer().getFormManagement().getParentOf(form.getDialogID());
             if (parentForm != null) {
-            	parent = ModelMapper.getModelFor(parentForm);
+            	parent = getRenderer().getModelMapper().getModelFor(parentForm);
+            	subDialogLevel = parent.subDialogLevel + 1;
             }
             else {
             	parent = null;
+            	subDialogLevel = 0;
             }
-            subDialogLevel = parent.subDialogLevel + 1;
+            
         }
         else {
             subDialogLevel = 0;
             parent = null;
-            //FormModelMapper.flush();
         }
     }
 
@@ -163,7 +170,7 @@ public abstract class FormModel {
      * {@link Form#getIOControls()} group.
      */
     protected JPanel getIOPanel() {
-        JComponent jio = new GroupModel(form.getIOControls()).getComponent();
+        JComponent jio = new GroupModel(form.getIOControls(), getRenderer()).getComponent();
         jio.setName(IO_NAME);
         return (JPanel) jio;
     }
@@ -175,7 +182,7 @@ public abstract class FormModel {
      * {@link Form#getStandardButtons()} group.
      */
     protected JPanel getSystemPanel() {
-        JComponent jsys = new GroupModel(form.getStandardButtons()).getComponent();
+        JComponent jsys = new GroupModel(form.getStandardButtons(), getRenderer()).getComponent();
         jsys.setName(SYS_NAME);
         return (JPanel) jsys;
     }
@@ -187,7 +194,7 @@ public abstract class FormModel {
      * {@link Form#getSubmits()} group.
      */
     protected JPanel getSubmitPanel() {
-        JComponent jstd = new GroupModel(form.getSubmits()).getComponent();
+        JComponent jstd = new GroupModel(form.getSubmits(), getRenderer()).getComponent();
         jstd.setName(SUB_NAME);
         return (JPanel) jstd;
     }
@@ -256,6 +263,15 @@ public abstract class FormModel {
      */
     public int getSubdialogLevel() {
         return subDialogLevel;
+    }
+    
+    /**
+     * get the {@link Renderer} associated to this {@link FormModel}
+     * @return
+     * 		the {@link Renderer}
+     */
+    public Renderer getRenderer() {
+    	return render;
     }
 }
 

@@ -25,6 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
@@ -36,8 +37,8 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	/**
 	 * @param control
 	 */
-	public RepeatModelTableLAF(Repeat control) {
-		super(control);
+	public RepeatModelTableLAF(Repeat control, Renderer render) {
+		super(control, render);
 	}
 	
 	/** {@inheritDoc}*/

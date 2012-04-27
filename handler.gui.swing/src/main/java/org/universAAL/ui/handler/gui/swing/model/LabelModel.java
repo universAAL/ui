@@ -19,6 +19,7 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.ui.handler.gui.swing.Renderer;
  /**
   * A model for Labels.
   * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -32,11 +33,18 @@ public class LabelModel {
     private Label label;
 
     /**
+     * The reference to the {@link Renderer} 
+     */
+    private Renderer render;
+    
+    /**
      * Model constructor.
      * @param l the {@link Label} to model.
+     * @param renderer TODO
      */
-    public LabelModel(Label l) {
+    public LabelModel(Label l, Renderer renderer) {
         label = l;
+        render = renderer;
     }
 
     /**
@@ -67,4 +75,12 @@ public class LabelModel {
                 || (url != null && !url.isEmpty());
     }
 
+    /**
+     * get the {@link Renderer} associated to this {@link LabelModel}
+     * @return
+     * 	the {@link Renderer}
+     */
+    public Renderer getRenderer() {
+    	return render;
+    }
 }

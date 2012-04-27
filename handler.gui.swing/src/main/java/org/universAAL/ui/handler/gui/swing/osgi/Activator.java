@@ -38,17 +38,17 @@ public class Activator implements BundleActivator {
      */
     public BundleConfigHome home = null;
 
-    private Renderer render;
+    public static Renderer render;
 
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
         Activator.context = context;
         home = new BundleConfigHome(context.getBundle().getSymbolicName());
         BundleContext[] bc = { context };
-        Renderer.setModuleContext(uAALBundleContainer.THE_CONTAINER
-                .registerModule(bc));
         Renderer.setHome(home.getAbsolutePath());
-        render = Renderer.getInstance();
+        render = new Renderer(uAALBundleContainer.THE_CONTAINER
+                .registerModule(bc));
+        render.start();
     }
 
     /** {@inheritDoc} */

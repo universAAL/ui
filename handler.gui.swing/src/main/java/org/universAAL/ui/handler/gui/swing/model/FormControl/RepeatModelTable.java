@@ -30,6 +30,7 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * Helper Class just to render RepeatTables.
@@ -48,8 +49,8 @@ public class RepeatModelTable extends RepeatModel {
 	 * Constructor
 	 * @param control
 	 */
-	public RepeatModelTable(Repeat control) {
-		super(control);
+	public RepeatModelTable(Repeat control, Renderer render) {
+		super(control, render);
 		// TODO Auto-generated constructor stub
 	}
 

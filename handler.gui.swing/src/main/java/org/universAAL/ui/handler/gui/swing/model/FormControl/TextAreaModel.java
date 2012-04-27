@@ -25,6 +25,7 @@ import javax.swing.event.CaretListener;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -38,8 +39,8 @@ implements CaretListener {
      * @param control
      *      the {@link FormControl} which to model.
      */
-    public TextAreaModel(TextArea control) {
-        super(control);
+    public TextAreaModel(TextArea control, Renderer render) {
+        super(control, render);
     }
 
     /**

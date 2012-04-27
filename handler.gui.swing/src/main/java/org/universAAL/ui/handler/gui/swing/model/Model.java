@@ -20,6 +20,7 @@ import javax.swing.JComponent;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * Abstract Class for all Form Control Models.
@@ -62,6 +63,11 @@ public abstract class Model {
      * The {@link JComponent} being generated.
      */
 	protected JComponent jc;
+	
+	/**
+	 * The {@link Renderer} instance
+	 */
+	private Renderer render;
 
     /**
      * tests if there is a need to render the Label of this
@@ -77,8 +83,9 @@ public abstract class Model {
      * Model constructor.
      * @param control
      *         The RDF component which this Model represents.
+     * @param renderer TODO
      */
-    public Model (FormControl control) {
+    public Model (FormControl control, Renderer renderer) {
         fc = control;
     }
 
@@ -216,4 +223,13 @@ public abstract class Model {
      * information,
      */
     public abstract JComponent getNewComponent();
+    
+    /**
+     * Get the {@link Renderer} instance to which this {@link Model} is associated to
+     * @return
+     * 		the {@link Renderer}
+     */
+    public Renderer getRenderer() {
+    	return render;
+    }
 }

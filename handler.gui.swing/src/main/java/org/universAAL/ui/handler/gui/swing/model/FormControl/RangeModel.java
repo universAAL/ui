@@ -27,6 +27,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.universAAL.middleware.ui.rdf.Range;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -60,8 +61,8 @@ implements ChangeListener {
      * Constructor.
      * @param control the {@link Range} which to model.
      */
-    public RangeModel(Range control) {
-        super(control);
+    public RangeModel(Range control, Renderer render) {
+        super(control, render);
         Comparable min_Value = ((Range) fc).getMinValue();
         mnValue = ((Integer) min_Value).intValue();
         Comparable max_Value = ((Range) fc).getMaxValue();

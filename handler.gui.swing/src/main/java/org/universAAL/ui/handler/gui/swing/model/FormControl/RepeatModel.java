@@ -23,6 +23,7 @@ import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -39,8 +40,8 @@ public class RepeatModel extends GroupModel {
      * Constructor
      * @param control the {@link Repeat} which to model.
      */
-    public RepeatModel(Repeat control) {
-        super(control);
+    public RepeatModel(Repeat control, Renderer render) {
+        super(control, render);
     }
 
     /**
@@ -96,7 +97,7 @@ public class RepeatModel extends GroupModel {
          *  Check for Group children and render JTabbedPane
          */
         if (isATable()) {
-        	table = new RepeatModelTable((Repeat) fc);
+        	table = new RepeatModelTable((Repeat) fc, getRenderer());
             return table.getNewComponent();
         }
         if (getChildrenType().equals(Group.class)) {

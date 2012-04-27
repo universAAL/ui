@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.ChoiceList;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  *
@@ -53,8 +54,8 @@ public class SelectModel extends InputModel implements ListSelectionListener {
      * @param control
      *            the {@link FormControl} which to model.
      */
-    public SelectModel(Select control) {
-        super(control);
+    public SelectModel(Select control, Renderer render) {
+        super(control, render);
     }
 
     /**

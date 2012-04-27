@@ -40,8 +40,8 @@ implements ActionListener {
      * @param control
      *     the {@link FormControl} which to model.
      */
-    public SubmitModel(Submit control) {
-        super(control);
+    public SubmitModel(Submit control, Renderer render) {
+        super(control, render);
         needsLabel = false;
     }
 
@@ -72,8 +72,8 @@ implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Input missing = ((Submit) fc).getMissingInputControl();
         if (isValid((JComponent) e.getSource()) && missing == null) {
-            Renderer.getInstance().handler.summit((Submit) fc);
-            Renderer.getInstance().getFormManagement().closeCurrentDialog();
+            getRenderer().getHandler().summit((Submit) fc);
+            getRenderer().getFormManagement().closeCurrentDialog();
         }
         //else {
             /*

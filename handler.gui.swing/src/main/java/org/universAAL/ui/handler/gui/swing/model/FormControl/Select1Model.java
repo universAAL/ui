@@ -28,6 +28,7 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  *
@@ -42,8 +43,8 @@ implements  ActionListener {
      * @param control
      *         the {@link FormControl} which this model represents.
      */
-    public Select1Model(Select1 control) {
-        super(control);
+    public Select1Model(Select1 control, Renderer render) {
+        super(control, render);
     }
 
     /**

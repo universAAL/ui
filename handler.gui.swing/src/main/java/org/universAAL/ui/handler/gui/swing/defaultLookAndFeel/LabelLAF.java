@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 
 /**
@@ -33,8 +34,8 @@ public class LabelLAF extends LabelModel {
      * Constructor
      * @param l the {@link Label} which to model.
      */
-    public LabelLAF(Label l) {
-        super(l);
+    public LabelLAF(Label l, Renderer render) {
+        super(l, render);
     }
 
     /** {@inheritDoc} */

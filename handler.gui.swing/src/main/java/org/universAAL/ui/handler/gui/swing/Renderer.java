@@ -39,46 +39,42 @@ import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
-public final class Renderer extends Thread {
-
-    /**
-     * Singleton instance for the renderer.
-     *
-     *  as future feature we may want to have several
-     *  instances of the Swing GUI Handler, when there
-     *  are more than 1 display.
-     */
-    private static Renderer singleton = null;
+public class Renderer extends Thread {
 
     /**
      * The specific {@link UIHandler}
      * instance for Swing GUI Handler.
      */
-    public Handler handler = null;
+	protected Handler handler = null;
 
 
     /**
      * uAAL {@link ModuleContext} to make uAAL operations
      */
-    static ModuleContext moduleContext = null;
+    protected ModuleContext moduleContext = null;
 
     /**
      * The configuration properties read from the file.
      */
-    private static Properties fileProp;
+    protected static Properties fileProp;
 
     /**
      * Form Logic Manager. it will decide
      * which Form to show when.
      */
-    private FormManager fm;
+    protected FormManager fm;
 
+    /**
+     * 
+     */
+    protected ModelMapper modelMapper = null;
+    
     /**
      * Default User, for when there is no user
      * logged in.
      * @see Renderer#DEMO_MODE
      */
-    private static String DEFAULT_USER = "saied";
+    protected static String DEFAULT_USER = "saied";
 
     /**
      * The Key value for the demo mode configuration property.
@@ -88,7 +84,7 @@ public final class Renderer extends Thread {
      * @see Renderer#fileProp
      * @see Renderer#DEFAULT_USER
      */
-    private static String DEMO_MODE = "demo.mode";
+    protected static String DEMO_MODE = "demo.mode";
 
     /**
      * The Key value for the location configuration property.
@@ -96,7 +92,7 @@ public final class Renderer extends Thread {
      * Default: gui.location = Unknown
      * @see Renderer#fileProp
      */
-    private static String GUI_LOCATION = "gui.location";
+    protected static String GUI_LOCATION = "gui.location";
 
     /**
      * The Key value for the Form manager selection
@@ -108,41 +104,56 @@ public final class Renderer extends Thread {
      * @see SimpleFormManager
      * @see HierarchicalFromManager
      */
-    private static String FORM_MANAGEMENT = "queued.forms";
+    protected static String FORM_MANAGEMENT = "queued.forms";
     /**
      * Directory for configuration files.
      */
-    private static String homeDir = "./";
+    protected static String homeDir = "./";
 
     /**
      * FileName for the main configuration File
      */
-    private static String RENDERER_CONF = "renderer.properties";
+    protected static String RENDERER_CONF = "renderer.properties";
 
     /**
      * Error message to display when unable to save property file
      */
-    private static final String NO_SAVE = "Unable to save Property File";
+    protected static final String NO_SAVE = "Unable to save Property File";
 
+    /**
+     * Constructor, to only be used by test clases.
+     */
+    protected Renderer() {
+    	super();
+    }
+    
     /**
      * Constructor, using Singleton pattern:
      * only Renderer Class can create an instance,
      * to help contribute to the singleton pattern.
      * @see Renderer#getInstance()
      */
-    private Renderer() {
+    public Renderer(ModuleContext mc) {
+    	moduleContext = mc;
     	moduleContext.logDebug("starting Handler", null);
-        handler = new Handler(Renderer.moduleContext);
+        handler = new Handler(this);
         moduleContext.logDebug("loading properties", null);
         loadProperties();
+        moduleContext.logDebug("Initialising ModelMapper", null);
+        modelMapper = new ModelMapper(this);
         moduleContext.logDebug("selecting Form Manager", null);
-        try {
-			fm = (FormManager) Class.forName(getProerty(FORM_MANAGEMENT)).newInstance();
+        loadFormManager(getProerty(FORM_MANAGEMENT));
+        moduleContext.logDebug("loading LAF", null);
+        modelMapper.updateLAF();
+    }
+    
+    protected void loadFormManager(String FormManagerClassName) {
+    	try {
+			fm = (FormManager) Class.forName(FormManagerClassName).newInstance();
+			fm.setRenderer(this);
 		} catch (Exception e) {
 			fm = new SimpleFormManager();
 		}
-        moduleContext.logDebug("loading LAF", null);
-        ModelMapper.updateLAF();
     }
 
     /**
@@ -150,7 +161,7 @@ public final class Renderer extends Thread {
      * default for those which are not defined.
      * @see Renderer#fileProp
      */
-    private void loadProperties() {
+    protected void loadProperties() {
         fileProp = new Properties();
         fileProp.put(DEMO_MODE, "true");
         fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
@@ -184,39 +195,15 @@ public final class Renderer extends Thread {
     }
 
     /**
-     * Access method to the singleton Object
-     * @return
-     *         singleton instance
-     */
-    public static Renderer getInstance() {
-        if (singleton == null
-                && moduleContext != null) {
-            singleton = new Renderer();
-            singleton.start();
-        }
-        return singleton;
-    }
-
-    /**
      * get the {@link ModuleContext}
      * @return
      *    the module context.
      * @see Renderer#moduleContext
      */
-    public static ModuleContext getModuleContext() {
+    public ModuleContext getModuleContext() {
         return moduleContext;
     }
-
-    /**
-     * set the {@link Renderer#moduleContext}.
-     * To be used only by Activator Class.
-     * @param moduleContext
-     *     the {@link ModuleContext} to be setted.
-     */
-    public static void setModuleContext(ModuleContext moduleContext) {
-        Renderer.moduleContext = moduleContext;
-    }
-
+    
     /**
      * Main, Top Level Renderer Logic.
      */
@@ -358,5 +345,22 @@ public final class Renderer extends Thread {
      */
     public static String getHomeDir() {
         return homeDir;
+    }
+    
+    /**
+     * Returns the ModelMapper that automatically assigns this Renderer to the Models
+     * @return
+     */
+    public ModelMapper getModelMapper() {
+    	return modelMapper;
+    }
+    
+    /**
+     * get the {@link Handler} of this {@link Renderer}
+     * @return
+     * the {@link Handler}
+     */
+    public Handler getHandler() {
+    	return handler;
     }
 }

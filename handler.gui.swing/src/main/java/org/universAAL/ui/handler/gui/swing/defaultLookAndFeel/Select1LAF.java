@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import org.universAAL.middleware.ui.rdf.Select1;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
 
 /**
@@ -28,8 +29,8 @@ public class Select1LAF extends Select1Model {
      * Constructor.
      * @param control the {@link Select1} which to model.
      */
-    public Select1LAF(Select1 control) {
-        super(control);
+    public Select1LAF(Select1 control, Renderer render) {
+        super(control, render);
     }
 
 }

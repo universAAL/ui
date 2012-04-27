@@ -22,6 +22,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 /**
@@ -37,8 +38,8 @@ public class MediaObjectModel extends OutputModel {
      * @param control
      *            the {@link MediaObject} which to model.
      */
-    public MediaObjectModel(MediaObject control) {
-	super(control);
+    public MediaObjectModel(MediaObject control,Renderer render) {
+    	super(control, render);
     }
 
     /**

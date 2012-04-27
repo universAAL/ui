@@ -20,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel;
 
 /**
@@ -42,8 +43,8 @@ public class TextAreaLAF extends TextAreaModel {
      * Constructor.
      * @param control the {@link TextArea} which to model.
      */
-    public TextAreaLAF(TextArea control) {
-        super(control);
+    public TextAreaLAF(TextArea control, Renderer render) {
+        super(control, render);
 
 
     }

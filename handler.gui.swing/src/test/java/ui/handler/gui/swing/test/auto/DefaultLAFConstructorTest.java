@@ -35,10 +35,10 @@ import org.universAAL.middleware.ui.rdf.Range;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.InputFieldLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.LabelLAF;
@@ -47,7 +47,6 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RangeLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Select1LAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SelectLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SimpleOutputLAF;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubdialogTriggerLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubmitLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.TextAreaLAF;
 
@@ -59,6 +58,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 
 	Form f;
 	Label l;
+	Renderer testRender;
 
 	private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
 
@@ -75,6 +75,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");
+		testRender = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
 	}
 
 	public void testGroup(){
@@ -83,7 +84,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 				getPath("group1"), 
 				null, 
 				null);
-		new GroupLAF(g).getComponent();	
+		new GroupLAF(g, testRender).getComponent();	
 	}
 
 	public void testInputField1(){
@@ -92,7 +93,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 				getPath("InputF1"),
 				null,
 				null);
-		new InputFieldLAF(i).getComponent();
+		new InputFieldLAF(i, testRender).getComponent();
 	}
 	public void testInputField2(){
 		InputField i = new InputField(f.getIOControls(),
@@ -100,7 +101,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 				getPath("InputF2"),
 				null,
 				new String (""));
-		new InputFieldLAF(i).getComponent();
+		new InputFieldLAF(i, testRender).getComponent();
 	}
 	public void testInputField3(){
 		InputField i = new InputField(f.getIOControls(),
@@ -109,7 +110,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 				null,
 				new String("lala"));
 		i.setSecret();
-		new InputFieldLAF(i).getComponent();
+		new InputFieldLAF(i, testRender).getComponent();
 	}
 	public void testInputField4(){
 		InputField i = new InputField(f.getIOControls(),
@@ -117,16 +118,17 @@ public class DefaultLAFConstructorTest extends TestCase{
 				getPath("InputF4"),
 				null,
 				new Locale("en"));
-		new InputFieldLAF(i).getComponent();
+		new InputFieldLAF(i, testRender).getComponent();
 	}
 
 	public void testLabel(){
-		new LabelLAF(l).getComponent();
+		new LabelLAF(l, testRender).getComponent();
 	}
 
 	public void testMediaObject(){
 		new MediaObjectLAF(
-				new MediaObject(f.getIOControls(), l, "image/png", "services/Health_Button.png"));
+				new MediaObject(f.getIOControls(), l, "image/png", "services/Health_Button.png")
+				, testRender);
 	}
 
 	public void testRange1(){
@@ -138,7 +140,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 						new IntRestriction(Integer.valueOf(3), true,
 								Integer.valueOf(12), true)),
 								Integer.valueOf(5));
-		new RangeLAF(r).getComponent();
+		new RangeLAF(r, testRender).getComponent();
 	}
 	public void testRange2(){
 		Range r = new Range(
@@ -149,7 +151,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 						new IntRestriction(Integer.valueOf(1), true,
 								Integer.valueOf(100), true)),
 								Integer.valueOf(50));
-		new RangeLAF(r).getComponent();
+		new RangeLAF(r, testRender).getComponent();
 	}
 
 	public void testRepeat(){
@@ -159,7 +161,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 	public void testSelect1(){
 		Select1 s1 = new Select1(f.getIOControls(), l, getPath("Select1"), null, "Opt2");
 		s1.generateChoices(new String[] { "Opt1", "Opt2", "Opt3" });
-		new Select1LAF(s1).getComponent();
+		new Select1LAF(s1, testRender).getComponent();
 	}
 
 	public void testSelect(){
@@ -172,7 +174,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 				Integer.valueOf(8),
 				Integer.valueOf(10),
 				Integer.valueOf(12)});
-		new SelectLAF(s).getNewComponent();
+		new SelectLAF(s, testRender).getNewComponent();
 	}
 	public void testSelectBis(){
 		Select s = new Select(f.getIOControls(), l, getPath("Select"), null,
@@ -185,32 +187,32 @@ public class DefaultLAFConstructorTest extends TestCase{
 				Integer.valueOf(8),
 				Integer.valueOf(10),
 				Integer.valueOf(12)});
-		new SelectLAF(s).getNewComponent();
+		new SelectLAF(s, testRender).getNewComponent();
 	}
 
 	public void testSimpleOutput1(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "");
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 	public void testSimpleOutput2(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Boolean.TRUE);
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 	public void testSimpleOutput3(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "hello world");
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 	public void testSimpleOutput4(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Locale.ENGLISH);
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 	public void testSimpleOutput5(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Integer.valueOf(5));
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 	public void testSimpleOutput6(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, LONG_TEXT);
-		new SimpleOutputLAF(so).getComponent();
+		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 
 /*	public void testSubdialogTrigger(){
@@ -223,23 +225,23 @@ public class DefaultLAFConstructorTest extends TestCase{
 */
 	public void testSubmit(){
 		Submit s = new Submit(f.getSubmits(), l, "");
-		new SubmitLAF(s).getComponent();
+		new SubmitLAF(s, testRender).getComponent();
 	}
 
 	public void testTextArea(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, null);
-		new TextAreaLAF(ta).getComponent();
+		new TextAreaLAF(ta, testRender).getComponent();
 	}
 	public void testTextArea1(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "");
-		new TextAreaLAF(ta).getComponent();
+		new TextAreaLAF(ta, testRender).getComponent();
 	}
 	public void testTextArea2(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "some text");
-		new TextAreaLAF(ta).getComponent();
+		new TextAreaLAF(ta, testRender).getComponent();
 	}
 	public void testTextArea3(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, LONG_TEXT);
-		new TextAreaLAF(ta).getComponent();
+		new TextAreaLAF(ta, testRender).getComponent();
 	}
 }

@@ -6,6 +6,7 @@ dm/.classpath
 dm/.project
 dm/.settings
 dm/target
+handler.gui.swing/*.log
 handler.gui.swing/.classpath
 handler.gui.swing/.project
 handler.gui.swing/.settings

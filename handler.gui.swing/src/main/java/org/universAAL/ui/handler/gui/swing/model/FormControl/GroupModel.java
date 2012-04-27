@@ -23,10 +23,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.middleware.owl.supply.LevelRating;
-import org.universAAL.ui.handler.gui.swing.ModelMapper;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.Model;
@@ -43,8 +43,8 @@ public class GroupModel extends Model {
      * Constructor.
      * @param control the {@link Group} which to model.
      */
-    public GroupModel(Group control) {
-        super(control);
+    public GroupModel(Group control, Renderer render) {
+        super(control, render);
     }
 
     /** The {@link JComponent} returned may be either
@@ -59,8 +59,8 @@ public class GroupModel extends Model {
      * */
     public JComponent getNewComponent() {
         LevelRating complexity = ((Group) fc).getComplexity();
-        if (complexity == LevelRating.none
-                || ((Group) fc).isRootGroup()) {
+        if (((Group) fc).isRootGroup()
+                || complexity == LevelRating.none) {
             return simplePannel();
         }
         if (complexity == LevelRating.low ) {
@@ -198,7 +198,7 @@ public class GroupModel extends Model {
      */
     private JComponent getComponentFrom(FormControl fc) {
 
-        return ModelMapper.getModelFor(fc).getComponent();
+        return getRenderer().getModelMapper().getModelFor(fc).getComponent();
     }
 
     /**
@@ -211,11 +211,11 @@ public class GroupModel extends Model {
      *         the {@link Container} to which to add the {@link JComponent}
      */
     private void addComponentTo(FormControl fc, Container c) {
-        Model m = ModelMapper.getModelFor(fc);
+        Model m = getRenderer().getModelMapper().getModelFor(fc);
         JComponent jc = m.getComponent();
         if (jc != null  ) {
             if (fc.getLabel() != null) {
-                LabelModel label = ModelMapper.getModelFor(fc.getLabel());
+                LabelModel label = getRenderer().getModelMapper().getModelFor(fc.getLabel());
                 if (label.hasInfo() && m.needsLabel()) {
                     JLabel l = label.getComponent();
                     l.setLabelFor(jc);
