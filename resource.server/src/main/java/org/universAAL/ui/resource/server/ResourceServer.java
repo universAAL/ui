@@ -73,7 +73,9 @@ public class ResourceServer extends HttpServlet {
     // see possible MIME types here:
     // http://www.iana.org/assignments/media-types/index.html
     /**
-     * Determine mime type of the resource.
+     * Determine mime type of the resource. If resource type is not recognized
+     * (between gif, png, jpg, jpeg, xml, au, aa3, aac, aif, al, mp4, mpeg) null
+     * is returned.
      * 
      * @param name
      *            resoruce name
@@ -136,6 +138,15 @@ public class ResourceServer extends HttpServlet {
 
 	String reqURI = req.getRequestURI();
 
+	// if nothing is passed for URI
+	if (reqURI.length() == Activator.URI.length()) {
+	    resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+	    LogUtils.logInfo(moduleContext, this.getClass(), "doGet/Post",
+		    new Object[] { "Request URI is null." }, null);
+	    return;
+	}
+
 	// e.g. if reqURI is "/resources/button.png" then we need to remove
 	// "/resources/" to get "button.png"
 	String requestedResource = reqURI.substring(Activator.URI.length() + 1);
@@ -157,20 +168,20 @@ public class ResourceServer extends HttpServlet {
 	    return;
 	}
 
-	// String mimeType = getServletContext().getMimeType(requestedResource);
-
 	String mimeType = getMimeType(requestedResource);
 
 	if (mimeType == null) {
 	    LogUtils.logInfo(moduleContext, this.getClass(), "doGet/Post",
-		    new Object[] { "Could not get MIME type of {}",
+		    new Object[] { "Could not get MIME type of: ",
 			    requestedResource }, null);
-	    // resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 	    mimeType = "unrecognized";
 	}
 
 	// Set content type
 	resp.setContentType(mimeType);
+
+	// Set content status
+	resp.setStatus(HttpServletResponse.SC_OK);
 
 	String pathToRequestedResource = null;
 
@@ -179,42 +190,43 @@ public class ResourceServer extends HttpServlet {
 	    pathToRequestedResource = PATH_TO_RESOURCES
 		    + System.getProperty("file.separator") + requestedResource;
 	}
-	try {
-	    // Obtain resource
-	    File file = new File(pathToRequestedResource);
 
-	    // Set content size
-	    resp.setContentLength((int) file.length());
+	// Obtain resource
+	File file = new File(pathToRequestedResource);
 
-	    // Open the file
-	    FileInputStream in = new FileInputStream(file);
-
-	    // open output stream
-	    OutputStream out = resp.getOutputStream();
-
-	    // Copy the contents of the file to the output stream
-	    byte[] buf = new byte[1024];
-	    int count = 0;
-	    while ((count = in.read(buf)) >= 0) {
-		out.write(buf, 0, count);
-	    }
-
-	    LogUtils.logInfo(moduleContext, this.getClass(), "doGet/Post",
-		    new Object[] { "Following resource sent: ",
-			    pathToRequestedResource }, null);
-	    in.close();
-	    out.close();
-	} catch (FileNotFoundException e) {
-
+	// if requested file does not exist return error
+	if (!file.exists()) {
 	    LogUtils.logError(moduleContext, this.getClass(), "doGet/Post",
 		    new Object[] { "Requested file not found: ",
-			    pathToRequestedResource }, e);
+			    pathToRequestedResource }, null);
 
-	    // set not FOUND status and change content type to text
+	    // set not FOUND status and delete content type
 	    resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-	    resp.setContentType("text/plain");
-
+	    resp.setContentType(null);
+	    return;
 	}
+	// Set content size
+	resp.setContentLength((int) file.length());
+
+	// Open the file
+	FileInputStream in = new FileInputStream(file);
+
+	// open output stream
+	OutputStream out = resp.getOutputStream();
+
+	// Copy the contents of the file to the output stream
+	byte[] buf = new byte[1024];
+	int count = 0;
+	while ((count = in.read(buf)) >= 0) {
+	    out.write(buf, 0, count);
+	}
+
+	LogUtils.logInfo(moduleContext, this.getClass(), "doGet/Post",
+		new Object[] { "Following resource sent: ",
+			pathToRequestedResource }, null);
+	in.close();
+	out.close();
+
     }
 
 }
