@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceEvent;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
@@ -147,19 +148,21 @@ public class Activator implements BundleActivator {
      * org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.
      * ServiceEvent)
      */
-    // public void serviceChanged(ServiceEvent event) {
-    // String objectClass = ((String[]) event.getServiceReference()
-    // .getProperty("objectClass"))[0];
-    // LogUtils.logInfo(mcontext, this.getClass(), "serviceChanged",
-    // new Object[] { "Service change event occurred for : {}",
-    // objectClass }, null);
-    // if (event.getType() == ServiceEvent.REGISTERED) {
-    // doRegister();
-    // } else if (event.getType() == ServiceEvent.UNREGISTERING) {
-    // doUnregister();
-    // } else if (event.getType() == ServiceEvent.MODIFIED) {
-    // doUnregister();
-    // doRegister();
-    // }
-    // }
+    public void serviceChanged(ServiceEvent event) {
+	String objectClass = ((String[]) event.getServiceReference()
+		.getProperty("objectClass"))[0];
+
+	LogUtils.logInfo(mcontext, this.getClass(), "serviceChanged",
+		new Object[] { "Service change event occurred for : {}",
+			objectClass }, null);
+
+	if (event.getType() == ServiceEvent.REGISTERED) {
+	    doRegister();
+	} else if (event.getType() == ServiceEvent.UNREGISTERING) {
+	    doUnregister();
+	} else if (event.getType() == ServiceEvent.MODIFIED) {
+	    doUnregister();
+	    doRegister();
+	}
+    }
 }
