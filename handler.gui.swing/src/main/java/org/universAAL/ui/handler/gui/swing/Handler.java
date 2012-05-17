@@ -32,20 +32,36 @@ import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
 import org.universAAL.ontology.profile.User;
-
+/**
+ * Main uAAL interfacing class.
+ * The {@link Handler} is responsible of interfacing with universAAL, it will handle
+ *  the UICalls by delegating to the {@link Renderer}, and it will also provide a method
+ *  to submit the user input.
+ *  
+ *  @see UIHandler
+ *  @see Renderer
+ *  
+ * 	@author amedrano
+ *
+ */
 public class Handler extends UIHandler {
 
 	/**
 	 * internal constructor
 	 * @param context
 	 * @param initialSubscription
+	 * see UIHandler
 	 */
 	protected Handler(ModuleContext context,
 			UIHandlerProfile initialSubscription) {
 		super(context, initialSubscription);
 	}
 
+	/**
+	 * reference to the associated {@link Renderer}
+	 */
 	private Renderer render;
+	
 	/**
 	 * constructor for Handler
 	 * @param renderer
@@ -62,12 +78,14 @@ public class Handler extends UIHandler {
     private User currentUser = null;
 
 
+	/** {@ inheritDoc}	 */
 	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		// TODO Auto-generated method stub
 
 	}
 
+	/** {@ inheritDoc}	 */
 	public void communicationChannelBroken() {
 		// TODO Auto-generated method stub
 
@@ -79,17 +97,17 @@ public class Handler extends UIHandler {
 	}
 
 	/**
-     * Handle output events.
-     * this callback method will trigger the rendering process for the event.
+     * Handle {@link UIRequest}.
+     * this callback method will trigger the rendering process for the {@link UIRequest}.
      * It will also extract important information, so the handler can adapt to
      * the user's circumstances.
      */
-    public void handleUICall(UIRequest event) {
-        render.getFormManagement().addDialog(event);
+    public void handleUICall(UIRequest req) {
+        render.getFormManagement().addDialog(req);
     }
 
     /**
-     * get the current user that is inputing information
+     * Get the current user that is inputing information
      * @return
      *     the current user.
      */
@@ -110,10 +128,10 @@ public class Handler extends UIHandler {
     }
     
     /**
-     * When any user has authenticated, this method will change the event pattern
-     * to receive only addressed user events.
+     * When any user has authenticated, this method will change the request pattern
+     * to receive only addressed {@link UIRequest}.
      * @param user
-     *         user for whom the events should be addressed to.
+     *         user for whom the {@link UIRequest} should be addressed to.
      */
     private void userAuthenticated(User user) {
         /*
@@ -121,14 +139,14 @@ public class Handler extends UIHandler {
          *     request for main menu
          */
         UIHandlerProfile oep = new UIHandlerProfile();
-        //oep.addRestriction(Restriction.getFixedValueRestriction(UIRequest.PROP_ADDRESSED_USER, user));
+        oep.addRestriction(MergedRestriction.getFixedValueRestriction(UIRequest.PROP_ADDRESSED_USER, user));
         this.addNewRegParams(oep);
     }
 
     /**
-     * Shortcut to send input events related to Submit Buttons
+     * Shortcut to send {@link UIResponse} related to Submit Buttons
      * @param submit
-     *       the {@link Submit} button model.
+     *       the {@link Submit} button model pressed.
      */
     public void summit(Submit submit) {
         dialogFinished(
@@ -148,8 +166,8 @@ public class Handler extends UIHandler {
      */
     private static UIHandlerProfile getPermanentSubscriptions() {
         /*
-         * I am interested in all events with following UIRequestPattern
-         * restrictions
+         * Handler is interested in all UIRequests with following UIRequestPattern
+         * restrictions:
          */
     	UIHandlerProfile oep = new UIHandlerProfile();
     	if (Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {

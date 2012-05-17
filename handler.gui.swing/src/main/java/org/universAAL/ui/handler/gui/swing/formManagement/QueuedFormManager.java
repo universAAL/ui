@@ -77,7 +77,7 @@ public class QueuedFormManager implements FormManager {
     public void addDialog(UIRequest oe) {
         /*
          *   check if its the same as the current dialog
-         *       if so then update current dialog? => IgnoreEvent!
+         *       if so then update current dialog? => IgnoreRequest!
          *   check the dialog has more priority than current dialog
          *       if so, save and terminate current dialog, save to priority queue
          *            and display new dialog

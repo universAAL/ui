@@ -25,7 +25,7 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
  * It will map org.universAAL.middleware.ui.rdf classes to
- * a Model component.
+ * a {@link Model} component.
  *
  * This class will be used by the created components to nest
  * the rest of the form representation.
@@ -67,6 +67,11 @@ public class ModelMapper {
      */
     private Renderer render;
 
+    /**
+     * The main Constructor
+     * @param renderer
+     * 		the {@link Renderer} to be associated with
+     */
     public ModelMapper(Renderer renderer) {
 		render = renderer;
 	}

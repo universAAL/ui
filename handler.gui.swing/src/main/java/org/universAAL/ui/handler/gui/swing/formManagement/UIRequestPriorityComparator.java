@@ -23,7 +23,7 @@ import org.universAAL.middleware.owl.supply.LevelRating;
 /**
  * Comparator for {@link UIRequest}s.
  *
- * Compares the priority of events to implement the priority queue
+ * Compares the priority of {@link UIRequest}s to implement the priority queue
  * of {@link UIRequest}s
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */

@@ -169,7 +169,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
     }
 
     /**
-     * when a checkbox is pressed there will be a input event published.
+     * When a checkbox is pressed the input will be stored.
      * 
      * @param e
      *            the {@link ChangeEvent} to listen to.
@@ -185,7 +185,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
     }
 
     /**
-     * Input events will be published each time the user types something in the
+     * Input will be stored each time the user types something in the
      * text field.
      * 
      * @param e
@@ -211,7 +211,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
     }
 
     /**
-     * Input events will be published each time the user changes the status of
+     * Input will be stored each time the user changes the status of
      * an Input
      */
     public void actionPerformed(ActionEvent e) {

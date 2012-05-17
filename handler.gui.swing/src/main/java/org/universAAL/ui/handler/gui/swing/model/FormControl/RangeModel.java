@@ -109,7 +109,7 @@ implements ChangeListener {
     }
 
     /**
-     * when a range is change, it will produce an input event
+     * When a range is change, the input will be stored
      * {@inheritDoc}
      */
     public void stateChanged(ChangeEvent e) {
