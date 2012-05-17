@@ -24,6 +24,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.location.Location;
@@ -32,9 +33,16 @@ import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
+import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
  * Coordinator Class for Swing GUI Handler.
+ * 
+ * It will provide all of the needed properties and constants for all other classes, 
+ * as well as acting as placeholder for all the needed classes to work. 
+ * 
+ * This placeholding and mutual reference (between contained and container classes) enables
+ * the renderer to be loaded more than once per instance.
  *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
@@ -65,7 +73,8 @@ public class Renderer extends Thread {
     protected FormManager fm;
 
     /**
-     * 
+     *  The {@link ModelMapper} in order to find the correct
+     *  {@link Model} for each rdf class.
      */
     protected ModelMapper modelMapper = null;
     
@@ -88,7 +97,7 @@ public class Renderer extends Thread {
 
     /**
      * The Key value for the location configuration property.
-     * this location is used when publishing input events.
+     * this location is used when publishing {@link UIResponse}s.
      * Default: gui.location = Unknown
      * @see Renderer#fileProp
      */
@@ -296,7 +305,7 @@ public class Renderer extends Thread {
      * @param impariment
      *         the {@link AccessImpairment} to be checked
      * @return
-     *         true is impairment is present in the current Dialog event.
+     *         true is impairment is present in the current Dialog Request.
      * @see AccessImpairment
      * @see UIRequest
      */

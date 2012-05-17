@@ -95,8 +95,8 @@ implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         /*
          *  This will produce a rendering of a sub-dialog form!
-         *  It produces the same event as a submit and the
-         *  Dialog it triggers comes in an output event.
+         *  It produces the same response as a submit and the
+         *  Dialog it triggers comes in another UIRequest.
          *  TODO use needsSelection() in case of SubdialogTriggers in
          *  Repeat Tables, to check if the submitID is ready
          */
