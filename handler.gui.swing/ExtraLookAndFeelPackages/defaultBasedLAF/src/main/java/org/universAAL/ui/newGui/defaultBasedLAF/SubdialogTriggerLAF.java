@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
-import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerModel;
 
 /**
  * @author pabril

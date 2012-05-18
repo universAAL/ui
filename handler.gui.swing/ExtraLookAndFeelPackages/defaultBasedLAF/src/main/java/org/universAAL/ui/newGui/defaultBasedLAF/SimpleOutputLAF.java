@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import java.awt.Dimension;
 
@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
  * @author pabril

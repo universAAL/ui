@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
-import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
 
 /**
  * @author pabril

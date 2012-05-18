@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
+import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -26,8 +27,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.handler.newGui.Renderer;
-import org.universAAL.ui.handler.newGui.model.FormModel;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * The Look and Feel for Forms
@@ -141,7 +142,7 @@ public class FormLAF extends FormModel  {
             frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            //f.setUndecorated(true);
+            frame.setUndecorated(true);
             frame.pack();
         }
         if (form.isStandardDialog() || 
@@ -195,6 +196,10 @@ public class FormLAF extends FormModel  {
             frame.setUndecorated(true);
             frame.pack();
         }
+	Toolkit tk = Toolkit.getDefaultToolkit();  
+	int xSize = ((int) tk.getScreenSize().getWidth());  
+	int ySize = ((int) tk.getScreenSize().getHeight());   
+	frame.setSize(xSize,ySize);
         return frame;
     }
 

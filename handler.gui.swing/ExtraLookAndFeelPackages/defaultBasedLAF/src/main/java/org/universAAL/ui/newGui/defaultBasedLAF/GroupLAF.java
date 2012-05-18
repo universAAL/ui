@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.newGui.defaultBasedLAF;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -22,7 +22,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.ui.handler.newGui.model.FormControl.GroupModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * @author pabril
