@@ -13,15 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.blankLookAndFeel;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
-import javax.swing.plaf.metal.MetalLookAndFeel;
+import org.universAAL.middleware.ui.rdf.Range;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel;
 
-public class LookAndFell extends MetalLookAndFeel {
+/**
+ * @author pabril
+ *
+ */
+public class RangeLAF extends RangeModel {
 
     /**
-     *
+     * Constructor.
+     * @param control the {@link Range} which to model.
      */
-    private static final long serialVersionUID = 1L;
+    public RangeLAF(Range control, Renderer render) {
+        super(control, render);
+    }
+
+    /** {@inheritDoc} */
+    public void update() {
+	super.update();
+        jc.setFont(ColorLAF.getLabelFont());
+        jc.setForeground(ColorLAF.getborderLineMM());
+    }
+
 
 }

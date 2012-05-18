@@ -13,15 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.blankLookAndFeel;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
-import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
-import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
+import org.universAAL.middleware.ui.rdf.InputField;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
 
-public class SubdialogTriggerLAF extends SubdialogTriggerModel {
+/**
+ * @author pabril
+ *
+ */
+public class InputFieldLAF extends InputFieldModel {
 
-    public SubdialogTriggerLAF(SubdialogTrigger control) {
-        super(control);
+
+    /**
+     * Constructor
+     * @param control the {@link InputField} which to model.
+     */
+    public InputFieldLAF(InputField control, Renderer render) {
+        super(control, render);
     }
+
+    /** {@inheritDoc} */
+    public void update() {
+	if (jc != null){
+	    super.update();
+	    jc.setFont(ColorLAF.getplain());
+	}
+    }
+
 
 }

@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Select;
-import org.universAAL.ui.handler.newGui.model.FormControl.SelectModel;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
 
 /**
  * @author pabril
@@ -42,8 +43,8 @@ public class SelectLAF extends SelectModel {
      * Constructor.
      * @param control the {@link Select} which to model.
      */
-    public SelectLAF(Select control) {
-        super(control);
+    public SelectLAF(Select control, Renderer render) {
+        super(control, render);
     }
 
    

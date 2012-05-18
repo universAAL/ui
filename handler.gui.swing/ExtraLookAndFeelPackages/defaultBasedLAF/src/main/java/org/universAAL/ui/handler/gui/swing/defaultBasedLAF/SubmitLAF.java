@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -26,8 +26,10 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.handler.newGui.model.Model;
-import org.universAAL.ui.handler.newGui.model.FormControl.SubmitModel;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.Model;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
  * @author pabril
@@ -42,8 +44,8 @@ public class SubmitLAF extends SubmitModel {
 	 * @param control
 	 *            the {@link Submit} which to model.
 	 */
-	public SubmitLAF(Submit control) {
-		super(control);
+	public SubmitLAF(Submit control, Renderer render) {
+		super(control, render);
 	}
 
 	/**

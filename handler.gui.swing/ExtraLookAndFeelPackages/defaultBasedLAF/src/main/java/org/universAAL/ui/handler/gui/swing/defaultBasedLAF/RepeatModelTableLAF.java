@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
 import java.awt.Color;
 
@@ -25,7 +25,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
-import org.universAAL.ui.handler.newGui.model.FormControl.RepeatModelTable;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.SubmitLAF;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
  * @author amedrano
@@ -36,8 +39,8 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	/**
 	 * @param control
 	 */
-	public RepeatModelTableLAF(Repeat control) {
-		super(control);
+	public RepeatModelTableLAF(Repeat control, Renderer render) {
+		super(control, render);
 	}
 	
 	/** {@inheritDoc}*/

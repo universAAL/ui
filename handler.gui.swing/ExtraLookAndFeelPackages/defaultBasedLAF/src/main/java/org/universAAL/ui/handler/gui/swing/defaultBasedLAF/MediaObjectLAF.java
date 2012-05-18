@@ -13,23 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
-import org.universAAL.middleware.ui.rdf.Select1;
-import org.universAAL.ui.handler.newGui.model.FormControl.Select1Model;
+import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
 
 /**
  * @author pabril
  *
  */
-public class Select1LAF extends Select1Model {
+public class MediaObjectLAF extends MediaObjectModel {
 
     /**
      * Constructor.
-     * @param control the {@link Select1} which to model.
+     * @param control the {@link MediaObject} which to model
      */
-    public Select1LAF(Select1 control) {
-        super(control);
+    public MediaObjectLAF(MediaObject control, Renderer render) {
+        super(control, render);
     }
 
 }

@@ -13,29 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
-import javax.swing.JComponent;
+import javax.swing.JLabel;
 
-import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
-import org.universAAL.ui.handler.newGui.model.FormControl.SubdialogTriggerModel;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 
 /**
+ * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
  *
  */
-public class SubdialogTriggerLAF extends SubdialogTriggerModel {
+public class LabelLAF extends LabelModel {
+
+
 
     /**
-     * Constructor.
-     * @param control the {@link SubdialogTrigger} which to model.
+     * Constructor
+     * @param l the {@link Label} which to model.
      */
-    public SubdialogTriggerLAF(SubdialogTrigger control) {
-        super(control);
+    public LabelLAF(Label l, Renderer render) {
+        super(l, render);
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-    	return SubmitLAF.buttonDecorate(this, super.getNewComponent());
+    public JLabel getComponent() {
+        JLabel jl = super.getComponent();
+        jl.getAccessibleContext().setAccessibleName(jl.getText());
+        jl.setFont(ColorLAF.getLabelFont());
+        jl.setForeground(ColorLAF.getborderLineMM());
+        return jl;
     }
+
+
 }

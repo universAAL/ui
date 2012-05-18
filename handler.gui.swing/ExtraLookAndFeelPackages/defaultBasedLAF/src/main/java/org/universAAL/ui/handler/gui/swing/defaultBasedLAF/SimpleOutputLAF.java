@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-packageorg.universAAL.ui.newGui.defaultBasedLAFl;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
 import java.awt.Dimension;
 
@@ -25,7 +25,9 @@ import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
 
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.ui.handler.newGui.model.FormControl.SimpleOutputModel;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
  * @author pabril
@@ -47,8 +49,8 @@ public class SimpleOutputLAF extends SimpleOutputModel {
      * Constructor.
      * @param control the {@link SimpleOutput} which to model.
      */
-    public SimpleOutputLAF(SimpleOutput control) {
-        super(control);
+    public SimpleOutputLAF(SimpleOutput control, Renderer render) {
+        super(control, render);
 
     }
 
