@@ -13,19 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.newGui.blankLookAndFeel;
+package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
-import org.universAAL.middleware.ui.rdf.Label;
-import org.universAAL.ui.handler.newGui.model.LabelModel;
+import org.universAAL.middleware.ui.rdf.Select1;
+import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
 
 /**
- * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
+ * @author pabril
  *
  */
-public class LabelLAF extends LabelModel {
+public class Select1LAF extends Select1Model {
 
-    public LabelLAF(Label l) {
-        super(l);
+    /**
+     * Constructor.
+     * @param control the {@link Select1} which to model.
+     */
+    public Select1LAF(Select1 control, Renderer render) {
+        super(control, render);
     }
 
 }

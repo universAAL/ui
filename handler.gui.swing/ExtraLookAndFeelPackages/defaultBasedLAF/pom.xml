@@ -4,18 +4,19 @@
   <parent>
     <artifactId>ui.pom</artifactId>
     <groupId>org.universAAL.ui</groupId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
     <relativePath>../../pom/pom.xml</relativePath>
   </parent>
   
-  <groupId>org.universAAL.ui.newGui</groupId>
+  <groupId>org.universAAL.ui.gui.swing</groupId>
   <artifactId>defaultBasedLAF</artifactId>
-  <version>1.0.3-SNAPSHOT</version>
+  <version>1.1.1-SNAPSHOT</version>
 
   <dependencies>
       <dependency>
           <groupId>org.universAAL.ui</groupId>
-          <artifactId>ui.handler.newGui</artifactId>
+          <artifactId>ui.handler.gui.swing</artifactId>
+          <version>1.1.2-SNAPSHOT</version>
       </dependency>
   </dependencies>
   
