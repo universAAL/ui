@@ -4,7 +4,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
-import org.universAAL.ui.handler.newGui.model.InitInterface;
+import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
  * the initialization class.
