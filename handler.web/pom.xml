@@ -85,7 +85,7 @@
       <artifactId>ont.profile</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.universAAL.remote-interoperability</groupId>
+      <groupId>org.universAAL.remote</groupId>
       <artifactId>ri.servicegateway</artifactId>
     </dependency>
   </dependencies>
