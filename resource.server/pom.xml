@@ -35,14 +35,14 @@
 	<!--    <url>${svn.base.url}resource.server</url>-->
 	<!--  </scm>-->
 	<dependencies>
-		<!--		<dependency>-->
-		<!--			<groupId>junit</groupId>-->
-		<!--			<artifactId>junit</artifactId>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.universAAL.support</groupId>-->
-		<!--			<artifactId>itests</artifactId>-->
-		<!--		</dependency>-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.universAAL.support</groupId>
+			<artifactId>itests</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.osgi.core</artifactId>
@@ -57,33 +57,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!--		<dependency>-->
-		<!--			<groupId>org.apache.felix</groupId>-->
-		<!--			<artifactId>javax.servlet</artifactId>-->
-		<!--			<version>1.0.0</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>javax.servlet</groupId>-->
-		<!--			<artifactId>servlet-api</artifactId>-->
-		<!--			<version>2.5</version>-->
-		<!--			<scope>provided</scope>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.ops4j.pax.web</groupId>-->
-		<!--			<artifactId>pax-web-api</artifactId>-->
-		<!--			<version>1.0.3</version>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.ops4j.pax.web</groupId>-->
-		<!--			<artifactId>pax-web-jetty-bundle</artifactId>-->
-		<!--			<version>1.0.3</version>-->
-		<!--		</dependency>-->
-		<!--		<dependency>-->
-		<!--			<groupId>org.ops4j.pax.web</groupId>-->
-		<!--			<artifactId>pax-web-spi</artifactId>-->
-		<!--			<version>1.0.3</version>-->
-		<!--		</dependency>-->
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.http.jetty</artifactId>
@@ -106,7 +79,6 @@
 						<Bundle-Activator>org.universAAL.ui.resource.server.Activator</Bundle-Activator>
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-
 						<Private-Package>org.universAAL.ui.resource.server</Private-Package>
 					</instructions>
 				</configuration>

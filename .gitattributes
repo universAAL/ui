@@ -1166,6 +1166,7 @@ resource.server/pom.xml -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
 resource.server/src/main/resources/www/tst.txt -text
+resource.server/src/test/java/org/universAAL/ui/resource/server/test/ResourceServerTest.java -text
 resource.server/target/apidocs/allclasses-frame.html -text
 resource.server/target/apidocs/allclasses-noframe.html -text
 resource.server/target/apidocs/constant-values.html -text
