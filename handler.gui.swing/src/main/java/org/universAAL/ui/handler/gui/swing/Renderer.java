@@ -159,10 +159,10 @@ public class Renderer extends Thread {
     protected void loadFormManager(String FormManagerClassName) {
     	try {
 			fm = (FormManager) Class.forName(FormManagerClassName).newInstance();
-			fm.setRenderer(this);
 		} catch (Exception e) {
 			fm = new SimpleFormManager();
 		}
+		fm.setRenderer(this);
     }
 
     /**

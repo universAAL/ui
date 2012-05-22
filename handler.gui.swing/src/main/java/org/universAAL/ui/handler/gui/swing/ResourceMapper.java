@@ -92,7 +92,8 @@ public class ResourceMapper {
 		int i = 0;
 		URL file = null;
 		while (i<resourceFolders.length &&
-				checkFolder(resourceFolders[i]+url) == null) {
+				file == null) {
+			file = checkFolder(resourceFolders[i]+url);
 			i++;
 		}
 		return file;
