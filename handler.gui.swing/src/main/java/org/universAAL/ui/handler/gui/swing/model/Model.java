@@ -87,6 +87,7 @@ public abstract class Model {
      */
     public Model (FormControl control, Renderer renderer) {
         fc = control;
+        render = renderer;
     }
 
     /**

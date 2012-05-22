@@ -50,7 +50,7 @@ public class MediaObjectModel extends OutputModel {
      * @return {@inheritDoc}
      */
     public JComponent getNewComponent() {
-	return new JLabel(fc.getLabel().getText());
+    	return new JLabel(fc.getLabel().getText());
     }
 
     /**
@@ -62,7 +62,9 @@ public class MediaObjectModel extends OutputModel {
 	if (mo.getContentType().startsWith("image")) {
 	    JLabel jl = (JLabel) jc;
 	    Icon icon = IconFactory.getIcon(mo.getContentURL());
-	    jl.setIcon(icon);
+	    if (icon != null) {
+	    	jl.setIcon(icon);
+	    }
 	    jl.setName(fc.getURI());
 	    int x, y;
 	    x = mo.getResolutionPreferredX();
