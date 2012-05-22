@@ -58,15 +58,6 @@ public class Activator implements BundleActivator {
 
 	BundleContext[] bc = { context };
 	mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
-	//
-	// new Thread() {
-	// public void run() {
-	// // Activator.context.registerService(ResourceServer.class
-	// // .getName(), resourceServer, null);
-	// doRegister();
-	// }
-	// }.start();
-
 	doRegister();
     }
 
