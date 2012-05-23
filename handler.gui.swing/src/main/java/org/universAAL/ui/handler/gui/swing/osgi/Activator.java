@@ -17,6 +17,7 @@ package org.universAAL.ui.handler.gui.swing.osgi;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -31,7 +32,7 @@ public class Activator implements BundleActivator {
     /**
      * the {@link BundleContext} for the handler.newGui bundle
      */
-    public static BundleContext context = null;
+    public static ModuleContext context = null;
 
     /**
      * the home directory where to store the config files.
@@ -42,12 +43,12 @@ public class Activator implements BundleActivator {
 
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
-        Activator.context = context;
         home = new BundleConfigHome(context.getBundle().getSymbolicName());
         BundleContext[] bc = { context };
+        Activator.context = uAALBundleContainer.THE_CONTAINER
+                .registerModule(bc);
         Renderer.setHome(home.getAbsolutePath());
-        render = new Renderer(uAALBundleContainer.THE_CONTAINER
-                .registerModule(bc));
+        render = new Renderer(Activator.context);
         render.start();
     }
 
@@ -56,4 +57,14 @@ public class Activator implements BundleActivator {
         render.finish();
     }
 
+    public static void logDebug(String text, Throwable e) {
+    	if (Activator.context != null) {
+    		Activator.context.logDebug(text, e);
+    	}
+    	else {
+    		System.err.println("[Debug]" + text);
+    		System.err.print(e);
+    	}
+    }
+    
 }
