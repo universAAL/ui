@@ -21,6 +21,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
+
 /**
  * Find the resources referenced by urls;
  * @author amedrano
@@ -53,11 +55,13 @@ public class ResourceMapper {
 				return null;
 			}
 		} catch (MalformedURLException e) {
+			Activator.logDebug("Looking for " + url + " in folders", null);
 			resource = searchFolder(url);
 			if (resource != null) {
 				return resource;
 			}
 			else {
+				Activator.logDebug("Looking for " + url + " in resources", null);
 				return searchResources(url);
 			}
 		}
@@ -109,10 +113,12 @@ public class ResourceMapper {
 	static private URL checkFolder(String url) {
 		URL urlFile;
 		try {
-			urlFile = new URL("file://" + Renderer.getHomeDir() + url);
+			urlFile = new URL("file://" + Renderer.getHomeDir().replace('\\', '/') + url.replace('\\', '/'));
 
 			File resourceFile = new File(urlFile.getFile());
+			//Activator.logDebug("Looking for: " + urlFile.toString() + ".", null);
 			if (resourceFile.exists()) {
+				//Activator.logDebug("Found.", null);
 				return urlFile;
 			}
 			else {
@@ -137,6 +143,7 @@ public class ResourceMapper {
 		URL resource = null;
 		while (i<resourceFolders.length &&
 				resource == null) {
+			//Activator.logDebug("looking for resources: " + resourceFolders[i] + url, null);
 			resource = ResourceMapper.class.getClassLoader()
 					.getResource(resourceFolders[i] + url);
 			i++;

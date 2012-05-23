@@ -63,7 +63,9 @@ public class MediaObjectModel extends OutputModel {
 	    JLabel jl = (JLabel) jc;
 	    Icon icon = IconFactory.getIcon(mo.getContentURL());
 	    if (icon != null) {
-	    	jl.setIcon(icon);
+	    	getRenderer().getModuleContext().logDebug("Rendering icon", null);
+	    	//jl.setIcon(icon);
+	    	jc = new JLabel(icon);
 	    }
 	    jl.setName(fc.getURI());
 	    int x, y;

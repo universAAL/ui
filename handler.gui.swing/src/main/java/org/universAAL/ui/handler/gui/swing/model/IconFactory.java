@@ -15,10 +15,13 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
+import java.net.URL;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Entry point for all icon URL.
@@ -39,7 +42,17 @@ public class IconFactory {
      */
     public static Icon getIcon(String url) {
         if (url != null && !url.isEmpty()) {
-            return new ImageIcon(ResourceMapper.search(url));
+            try {
+            	URL ur = ResourceMapper.search(url);
+            	if (ur.getProtocol().equals("file")) {
+            		return new ImageIcon(ur.getPath());
+            	}
+            	else {
+            		return new ImageIcon(ur);
+            	}
+			} catch (Exception e) {
+				Activator.logDebug("unable to load Image:" + url, e);
+			}
         }
         return null;
     }
