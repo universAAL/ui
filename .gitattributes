@@ -60,11 +60,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/se
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.classpath -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.project -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.settings/org.eclipse.core.resources.prefs -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.settings/org.eclipse.jdt.core.prefs -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.settings/org.eclipse.m2e.core.prefs -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/pom.xml -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/ColorLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/FormLAF.java -text svneol=unset#text/plain
