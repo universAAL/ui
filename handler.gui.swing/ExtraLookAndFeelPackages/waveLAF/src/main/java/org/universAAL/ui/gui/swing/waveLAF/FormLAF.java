@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.gui.swing.waveLAF.support.LineSeparator;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
@@ -107,12 +108,13 @@ public class FormLAF extends FormModel  {
      */
     protected JPanel getHeader() {
             JPanel header = new JPanel();
-            ImageIcon icon = new ImageIcon(
-                    (getClass().getResource("/main/UniversAAl_logo.png")));
-            icon.setDescription("UniversAAL Logo Image");
-            JLabel logo = new JLabel(icon);
-            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-            header.add(logo);
+//             ImageIcon icon = new ImageIcon(
+//                     (getClass().getResource("/main/resources/UniversAAl_logo.png")));
+//            icon.setDescription("UniversAAL Logo Image");
+//             JLabel logo = new JLabel(icon);
+//            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
+//             header.add(logo);
+            header.add(new LineSeparator());
             return (JPanel) header;
         }
 
