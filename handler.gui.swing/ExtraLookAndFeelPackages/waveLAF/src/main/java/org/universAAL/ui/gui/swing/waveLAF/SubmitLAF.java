@@ -20,13 +20,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ComponentUI;
 
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ui.gui.swing.waveLAF.support.ButtonUI;
+import org.universAAL.ui.gui.swing.waveLAF.support.LAFButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
@@ -81,44 +86,26 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		return buttonDecorate(this, super.getNewComponent());
+		LAFButton s = new LAFButton(fc.getLabel().getText(),
+                IconFactory.getIcon(fc.getLabel().getIconURL()));
+        s.addActionListener(this);
+		return buttonDecorate(this, s);
 	}
 
 	protected static JComponent buttonDecorate(Model model, JComponent button) {
-		Color normalF;
-		Color normalB;
-		Color enterF;
-		Color enterB;
-		Color clickF;
-		Color clickB;
-		Color border;
-
+		
 		if (model.isInStandardGroup()) {
 			/*
 			 * System Buttons
 			 */
-			border = ColorLAF.getborderLineMM();
-			normalF = ColorLAF.getBackMML();
-			normalB = ColorLAF.getBackMM();
-			enterF = ColorLAF.getBackLetter();
-			enterB = ColorLAF.getOverSytem();
-			clickF = ColorLAF.getBackLetter();
-			clickB = ColorLAF.getOverSytem();
 		}
 		else {
 			/*
 			 * buttons inside IO
 			 */
-			border = ColorLAF.getborderLine();
-			normalF = ColorLAF.getBackLetter();
-			normalB = ColorLAF.getBackSystem();
-			enterF = ColorLAF.getBackLetter();
-			enterB = ColorLAF.getOverSytem();
-			clickF = ColorLAF.getSelectedLetter();
-			clickB = ColorLAF.getBackSystem();
 		}
-		setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
-				clickF, clickB);
+		//setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
+		//		clickF, clickB);
 		return button;
 	}
 

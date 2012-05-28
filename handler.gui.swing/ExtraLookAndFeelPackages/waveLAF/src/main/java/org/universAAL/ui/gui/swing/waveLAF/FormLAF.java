@@ -108,13 +108,13 @@ public class FormLAF extends FormModel  {
      */
     protected JPanel getHeader() {
             JPanel header = new JPanel();
-//             ImageIcon icon = new ImageIcon(
-//                     (getClass().getResource("/main/resources/UniversAAl_logo.png")));
-//            icon.setDescription("UniversAAL Logo Image");
-//             JLabel logo = new JLabel(icon);
-//            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-//             header.add(logo);
-            header.add(new LineSeparator());
+             ImageIcon icon = new ImageIcon(
+                     (getClass().getResource("/images/UniversAAl_logo.png")));
+            icon.setDescription("UniversAAL Logo Image");
+             JLabel logo = new JLabel(icon);
+            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
+             header.add(logo);
+           // header.add(new LineSeparator());
             return (JPanel) header;
         }
 
