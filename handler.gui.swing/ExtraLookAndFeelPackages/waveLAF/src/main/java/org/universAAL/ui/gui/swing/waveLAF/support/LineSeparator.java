@@ -9,6 +9,7 @@ public class LineSeparator extends JComponent {
     protected BufferedImage image;
 
     public LineSeparator() {
+    	super();
         this.image = (BufferedImage) UIHelper.loadImage("blue_separator.jpg");
     }
 
