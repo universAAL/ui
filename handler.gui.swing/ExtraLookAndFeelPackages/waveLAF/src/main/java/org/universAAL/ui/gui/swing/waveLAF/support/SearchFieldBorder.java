@@ -25,7 +25,7 @@ public class SearchFieldBorder implements Border {
 	private BufferedImage lens;
 
 	public SearchFieldBorder() {
-		lens = (BufferedImage) UIHelper.loadImage("lens.png");
+		 
 	}
 
 	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {

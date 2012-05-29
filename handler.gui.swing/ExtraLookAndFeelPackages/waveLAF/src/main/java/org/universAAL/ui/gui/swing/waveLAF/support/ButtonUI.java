@@ -40,7 +40,7 @@ public class ButtonUI extends MetalButtonUI {
     }
 
     protected Color getSelectColor() {
-        return new Color(55, 142, 143);
+        return new Color(213, 237, 247);
     }
 
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
@@ -72,7 +72,7 @@ public class ButtonUI extends MetalButtonUI {
 	                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	                g2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
 	                
-	                CubicCurve2D curve = new CubicCurve2D.Double(0, height, 4, -2, width - 4, height + 2, width, 0);
+	                CubicCurve2D curve = new CubicCurve2D.Double(0, height, 5, -3, width - 5, height + 3, width, 0);
 	                GeneralPath path = new GeneralPath(curve);
 	                path.lineTo(width, height);
 	                path.lineTo(0, height);
@@ -86,18 +86,18 @@ public class ButtonUI extends MetalButtonUI {
 	                Paint p;
 	
 	                if (b.getModel().isEnabled()) {
-	                    p = new GradientPaint(0, 0, new Color(55, 142, 143), 0, height, new Color(220, 255, 124));
+	                    p = new GradientPaint(0, 0, new Color(213, 237, 247), 0, height, new Color(169,231,255));
 	                    g2.setPaint(p);
 	                } else {
-	                    g2.setColor(new Color(245, 245, 245));
+	                    g2.setColor(new Color(169,231,255));
 	                }
 	                g2.fill(area);
 	
 	                if (b.getModel().isEnabled()) {
-	                    p = new GradientPaint(0, 0, new Color(55, 142, 143), 0, height, new Color(193, 232, 145));
+	                    p = new GradientPaint(0, 0, new Color(213, 237, 247), 0, height, new Color(169,231,255));
 	                    g2.setPaint(p);
 	                } else {
-	                    g2.setColor(new Color(227, 227, 227));
+	                    g2.setColor(new Color(169,231,255));
 	                }
 	                g2.fill(path);
 	
@@ -116,7 +116,7 @@ public class ButtonUI extends MetalButtonUI {
     // refer to Plastic's license (looks.dev.java.net)
 
 	private static class WaveButtonBorder extends AbstractBorder implements UIResource {
-        protected static final Insets INSETS = new Insets(2, 2, 2, 2);
+        protected static final Insets INSETS = new Insets(3, 3, 3, 3);
 
 	    public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 	        AbstractButton button = (AbstractButton) c;
@@ -156,7 +156,7 @@ public class ButtonUI extends MetalButtonUI {
 	        drawPlainButtonBorder(g, x, y, w, h);
 	        Color darkColor = 
 	                translucentColor(MetalLookAndFeel.getControlDarkShadow(),
-	                                 128);
+	                                 138);
 	        Color lightColor =
 	                translucentColor(MetalLookAndFeel.getControlHighlight(),
 	                                 80);
@@ -178,7 +178,7 @@ public class ButtonUI extends MetalButtonUI {
 	    private void drawFocusedButtonBorder(Graphics g, int x, int y, int w, int h) {
 	        drawPlainButtonBorder(g, x, y, w, h);
 	        drawInnerButtonDecoration(g, x, y, w, h,
-	                new Color(102, 153, 51));
+	                new Color(169,231,255));
 	    }
 
 		private void drawRect(Graphics g, int x, int y, int w, int h) {
@@ -246,9 +246,9 @@ public class ButtonUI extends MetalButtonUI {
 	            int x, int y, int w, int h,
 	            Color baseColor) {
 	                
-	            Color lightColor  = translucentColor(baseColor,  90);
-	            Color mediumColor = translucentColor(baseColor, 120);
-	            Color darkColor   = translucentColor(baseColor, 200);
+	            Color lightColor  = translucentColor(baseColor,  80);
+	            Color mediumColor = translucentColor(baseColor, 130);
+	            Color darkColor   = translucentColor(baseColor, 220);
 
 	            g.translate(x, y);
 	            g.setColor(lightColor);

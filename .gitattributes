@@ -88,6 +88,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ShadowBorder.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/UIHelper.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/package.html -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/Banner.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/UniversAAl_logo.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/blue.jpg -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/blue_separator.jpg -text

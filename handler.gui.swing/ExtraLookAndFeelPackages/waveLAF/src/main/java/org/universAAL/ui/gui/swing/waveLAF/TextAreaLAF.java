@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import org.universAAL.ui.gui.swing.waveLAF.support.SearchFieldBorder;
+
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -55,6 +57,7 @@ public class TextAreaLAF extends TextAreaModel {
 	super.update();
         String initialValue = (String) fc.getValue();
         JTextArea ta = (JTextArea) jc;
+        ta.setBorder(new SearchFieldBorder());
         ta.setRows(10);
         ta.setColumns(15);
         ta.getAccessibleContext().setAccessibleName(initialValue);
