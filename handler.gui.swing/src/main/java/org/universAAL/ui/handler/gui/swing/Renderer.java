@@ -27,6 +27,7 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
@@ -83,7 +84,7 @@ public class Renderer extends Thread {
      * logged in.
      * @see Renderer#DEMO_MODE
      */
-    protected static String DEFAULT_USER = "saied";
+    protected static final String DEFAULT_USER = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied";
 
     /**
      * The Key value for the demo mode configuration property.
@@ -93,7 +94,7 @@ public class Renderer extends Thread {
      * @see Renderer#fileProp
      * @see Renderer#DEFAULT_USER
      */
-    protected static String DEMO_MODE = "demo.mode";
+    protected static final String DEMO_MODE = "demo.mode";
 
     /**
      * The Key value for the location configuration property.
@@ -101,7 +102,7 @@ public class Renderer extends Thread {
      * Default: gui.location = Unknown
      * @see Renderer#fileProp
      */
-    protected static String GUI_LOCATION = "gui.location";
+    protected static final String GUI_LOCATION = "gui.location";
 
     /**
      * The Key value for the Form manager selection
@@ -113,7 +114,7 @@ public class Renderer extends Thread {
      * @see SimpleFormManager
      * @see HierarchicalFromManager
      */
-    protected static String FORM_MANAGEMENT = "queued.forms";
+    protected static final String FORM_MANAGEMENT = "queued.forms";
     /**
      * Directory for configuration files.
      */
@@ -122,7 +123,7 @@ public class Renderer extends Thread {
     /**
      * FileName for the main configuration File
      */
-    protected static String RENDERER_CONF = "renderer.properties";
+    protected static final String RENDERER_CONF = "renderer.properties";
 
     /**
      * Error message to display when unable to save property file
