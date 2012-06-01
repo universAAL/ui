@@ -55,6 +55,8 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.middleware.util.Constants;
+import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ri.servicegateway.GatewayPort;
 
@@ -94,9 +96,10 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	UIHandlerProfile oep = new UIHandlerProfile();
 	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
 		UIRequest.PROP_PRESENTATION_MODALITY, Modality.web));
-	// oep.addRestriction(MergedRestriction.getFixedValueRestriction(
-	// UIRequest.PROP_PRESENTATION_LOCATION, new
-	// PLocation(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+"Internet")));
+	oep.addRestriction(MergedRestriction
+			.getFixedValueRestriction(UIRequest.PROP_PRESENTATION_LOCATION,
+				new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+					+ "Internet")));
 	return oep;
     }
 
@@ -503,7 +506,6 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	    throws ServletException, IOException {
-	UIResponse event;
 	UIRequest o;
 	WebIOSession ses = new WebIOSession();
 	log.info("web handler, doPost: request-> " + req);
@@ -518,7 +520,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	// END AUTHENTICATION BLOCK, this block can be replaced by below
 	// hardcoded line/user for e.g. testing purposes
 	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-	// + "Userkostas";
+	// + "remoteUser";
 
 	log.info("Received HTTP request from user {} ", userURI);
 	// Check if it is the first time
@@ -532,11 +534,11 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    // InputEvent.uAAL_MAIN_MENU_REQUEST);
 	    // o = publish(event, Boolean.TRUE);
 
-	    // above 2 rows replaced with this one when moving to UI bus,
-	    // check??
+	    //added instead above 2 rows when movin to UI bus
+	    //important that following 2 rows are not switched
+	    os.userLoggedIn(new User(userURI), null);
 	    o = (UIRequest) readyOutputs.remove(userURI);
 
-	    os.userLoggedIn(new User(userURI), null);
 	    ses.setCurrentUIRequest(o);
 	} else {
 	    ses = (WebIOSession) userSessions.get(userURI);
@@ -710,7 +712,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		    .getAddressedUser(), ((UIRequest) o)
 		    .getPresentationLocation(), s);
 	    os.dialogFinished(uiResp);
-	    return this.publish(uiResp, Boolean.TRUE);
+	    return this.publish(uiResp, Boolean.FALSE);
 	} else {
 	    synchronized (os) {
 		UIResponse ie = new UIResponse(
@@ -722,6 +724,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		if (s.getDialogID().equals(os.dialogID))
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
+		os.dialogFinished(ie);
 		return this.publish(ie, Boolean.FALSE);
 	    }
 	}
