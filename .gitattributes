@@ -409,6 +409,9 @@ handler.web/src/main/resources/webhandler/dojoroot/dijit/form/CurrencyTextBox.js
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/DateTextBox.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/FilteringSelect.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/Form.js -text
+handler.web/src/main/resources/webhandler/dojoroot/dijit/form/HorizontalRule.js -text
+handler.web/src/main/resources/webhandler/dojoroot/dijit/form/HorizontalRuleLabels.js -text
+handler.web/src/main/resources/webhandler/dojoroot/dijit/form/HorizontalSlider.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/MultiSelect.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/NumberSpinner.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/form/NumberTextBox.js -text

@@ -54,7 +54,9 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ri.servicegateway.GatewayPort;
 
@@ -95,6 +97,10 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	UIHandlerProfile oep = new UIHandlerProfile();
 	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
 		UIRequest.PROP_PRESENTATION_MODALITY, Modality.web));
+	oep.addRestriction(MergedRestriction
+			.getFixedValueRestriction(UIRequest.PROP_PRESENTATION_LOCATION,
+				new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+					+ "Internet")));
 	return oep;
     }
 
@@ -456,18 +462,24 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	    throws ServletException, IOException {
-	UIResponse event;
-	UIRequest o;
+
+    UIRequest o;
 	WebIOSession ses = new WebIOSession();
 
+	log.info("web handler, doPost: request-> " + req);
+	// BEGIN AUTHENTICATION BLOCK
 	// Check if user is authorized
 	if (!handleAuthorization(req, resp)) {
 	    log.info("Received unauthorized HTTP request");
 	    return;
 	}
-	// --Input processing--
-	String[] userPass = getUserAndPass(req.getHeader("Authorization"));
-	String userURI = userURIs.get(userPass[0]);
+	String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
+	String userURI = userURIs.get(userAndPass[0]);
+	// END AUTHENTICATION BLOCK, this block can be replaced by below
+	// hardcoded line/user for e.g. testing purposes
+	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+	// + "remoteUser";
+
 	log.info("Received HTTP request from user {} ", userURI);
 	// Check if it is the first time
 	if (!userSessions.containsKey(userURI)) {
@@ -480,10 +492,11 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    // InputEvent.uAAL_MAIN_MENU_REQUEST);
 	    // o = publish(event, Boolean.TRUE);
 
-	    // above 2 rows replaced with this one when moving to UI bus,
-	    // check??
-	    o = (UIRequest) readyOutputs.remove(userURI);
+	    //added instead above 2 rows when movin to UI bus
+	    //important that following 2 rows are not switched
 	    os.userLoggedIn(new User(userURI), null);
+	    o = (UIRequest) readyOutputs.remove(userURI);
+	    
 	    ses.setCurrentUIRequest(o);
 	} else {
 	    ses = (WebIOSession) userSessions.get(userURI);
@@ -653,7 +666,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		    .getAddressedUser(), ((UIRequest) o)
 		    .getPresentationLocation(), s);
 	    os.dialogFinished(uiResp);
-	    return this.publish(uiResp, Boolean.TRUE);
+	    return this.publish(uiResp, Boolean.FALSE);
 	} else {
 	    synchronized (os) {
 		UIResponse ie = new UIResponse(
@@ -665,6 +678,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		if (s.getDialogID().equals(os.dialogID))
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
+		os.dialogFinished(ie);
 		return this.publish(ie, Boolean.FALSE);
 	    }
 	}

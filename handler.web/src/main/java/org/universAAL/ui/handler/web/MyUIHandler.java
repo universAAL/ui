@@ -148,6 +148,8 @@ public class MyUIHandler extends UIHandler {
     public void handleUICall(UIRequest uiRequest) {
 	String user = ((User) uiRequest.getAddressedUser()).getURI();
 	log.info("Received UIRequest for user {} ", user);
+	//uncomment this log if you want to see whole UIRequest
+	//log.info("handleUICall: uiRequest.toStringRecursive(): " + uiRequest.toStringRecursive());
 	synchronized (renderer.getWaitingInputs()) {
 	    Boolean first = (Boolean) renderer.getWaitingInputs().remove(user);
 	    log.debug("-------FIRST: {}", first);
