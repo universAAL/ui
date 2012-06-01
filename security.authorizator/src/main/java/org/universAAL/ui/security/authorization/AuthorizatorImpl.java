@@ -32,6 +32,7 @@ import org.universAAL.ontology.profile.Profile;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.profile.service.ProfilingService;
 import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
+
 //import org.universAAL.samples.service.utils.Arg;
 //import org.universAAL.samples.service.utils.Path;
 //import org.universAAL.samples.service.utils.mid.SimpleEditor;
@@ -64,54 +65,57 @@ public class AuthorizatorImpl implements IAuthorizator {
      * (java.lang.String, java.lang.String)
      */
 
+    private String user = null;
+
     // 
-    //FIXME after ontology handling between CHE and Profiling is
+    // FIXME after ontology handling between CHE and Profiling is
     // corrected (now Profile is not correctly returned; insted User is
     // returned).
     /**
      * Now (for the mockup behaviour) this method always returns -----TRUE
      */
-    public boolean isAuthorized(String user, String PWD) {
+    public boolean isAuthorized(String userName, String PWD) {
+	user = userName;
 
-//	User userreceived = null;
-//	UserProfile profilereceived = null;
-//	UserIDProfile idreceived = null;
-//	ServiceResponse resp = caller.call(SimpleEditor.requestGet(
-//		ProfilingService.MY_URI, Path
-//			.start(ProfilingService.PROP_CONTROLS).path, Arg
-//			.in(new User(user)), Arg.out(OUTPUT_USER)));
-//	if (resp.getCallStatus() == CallStatus.succeeded) {
-//	    userreceived = (User) getReturnValue(resp.getOutputs(), OUTPUT_USER);
-//	    userURI = userreceived.getProfile().getURI();
-//	}
-//	resp = caller.call(SimpleEditor.requestGet(ProfilingService.MY_URI,
-//		Path.start(ProfilingService.PROP_CONTROLS).to(
-//			Profilable.PROP_HAS_PROFILE).path, Arg
-//			.in(new UserProfile(userURI)), Arg
-//			.out(OUTPUT_GETPROFILE)));
-//	if (resp.getCallStatus() == CallStatus.succeeded) {
-//	    profilereceived = (UserProfile) getReturnValue(resp.getOutputs(),
-//		    OUTPUT_GETPROFILE);
-//	}
-//	resp = caller.call(SimpleEditor.requestGet(ProfilingService.MY_URI,
-//		Path.start(ProfilingService.PROP_CONTROLS).to(
-//			Profilable.PROP_HAS_PROFILE).to(
-//			Profile.PROP_HAS_SUB_PROFILE).path, Arg
-//			.in(new UserIDProfile(profilereceived.getSubProfile()
-//				.getURI())), Arg.out(OUTPUT_GETSUBPROFILE)));
-//	if (resp.getCallStatus() == CallStatus.succeeded) {
-//	    idreceived = (UserIDProfile) getReturnValue(resp.getOutputs(),
-//		    OUTPUT_GETSUBPROFILE);
-//	}
-//	String storedPassword = idreceived.getPASSWORD();
-//	String storedUsername = idreceived.getUSERNAME();
-//
-//	if (storedUsername.equals(user) && storedPassword.equals(PWD))
-//	    return true;
-//	else
-	    // return false;
-	    //FIXME after above mention issue is resolved
-	    return true;
+	// User userreceived = null;
+	// UserProfile profilereceived = null;
+	// UserIDProfile idreceived = null;
+	// ServiceResponse resp = caller.call(SimpleEditor.requestGet(
+	// ProfilingService.MY_URI, Path
+	// .start(ProfilingService.PROP_CONTROLS).path, Arg
+	// .in(new User(user)), Arg.out(OUTPUT_USER)));
+	// if (resp.getCallStatus() == CallStatus.succeeded) {
+	// userreceived = (User) getReturnValue(resp.getOutputs(), OUTPUT_USER);
+	// userURI = userreceived.getProfile().getURI();
+	// }
+	// resp = caller.call(SimpleEditor.requestGet(ProfilingService.MY_URI,
+	// Path.start(ProfilingService.PROP_CONTROLS).to(
+	// Profilable.PROP_HAS_PROFILE).path, Arg
+	// .in(new UserProfile(userURI)), Arg
+	// .out(OUTPUT_GETPROFILE)));
+	// if (resp.getCallStatus() == CallStatus.succeeded) {
+	// profilereceived = (UserProfile) getReturnValue(resp.getOutputs(),
+	// OUTPUT_GETPROFILE);
+	// }
+	// resp = caller.call(SimpleEditor.requestGet(ProfilingService.MY_URI,
+	// Path.start(ProfilingService.PROP_CONTROLS).to(
+	// Profilable.PROP_HAS_PROFILE).to(
+	// Profile.PROP_HAS_SUB_PROFILE).path, Arg
+	// .in(new UserIDProfile(profilereceived.getSubProfile()
+	// .getURI())), Arg.out(OUTPUT_GETSUBPROFILE)));
+	// if (resp.getCallStatus() == CallStatus.succeeded) {
+	// idreceived = (UserIDProfile) getReturnValue(resp.getOutputs(),
+	// OUTPUT_GETSUBPROFILE);
+	// }
+	// String storedPassword = idreceived.getPASSWORD();
+	// String storedUsername = idreceived.getUSERNAME();
+	//
+	// if (storedUsername.equals(user) && storedPassword.equals(PWD))
+	// return true;
+	// else
+	// return false;
+	// FIXME after above mention issue is resolved
+	return true;
     }
 
     /**
@@ -119,11 +123,17 @@ public class AuthorizatorImpl implements IAuthorizator {
      * @return URI of the user
      */
     public String getAllowedUserURI() {
-	if (userURI== null)
-	    //for testing purposes 
-	    //return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+ "Userkostas";
-	    return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+ "saied";
-	return userURI;
+	// FIXME update after mockup is not used (with below line)
+	// return userURI;
+	// for testing purposes
+
+	// if no username is given put remoteUser
+	if (user == null || user.isEmpty())
+	    return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "remoteUser";
+
+	// otherwise return given user
+	return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user;
+
     }
 
     // public String checkUserAuthorization(String user, String pass) {
