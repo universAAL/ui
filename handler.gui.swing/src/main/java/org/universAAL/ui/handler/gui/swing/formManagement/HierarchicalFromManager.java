@@ -65,9 +65,9 @@ public class HierarchicalFromManager implements FormManager {
         if (f.getParentDialogURI() != null) {
         	tree.putChild(f.getParentDialogURI(), f.getURI());
         }
-        frame = new FrameManager(f, render.getModelMapper());
+        renderFrame(f);
 	}
-
+	
 	/** {@inheritDoc} */
 	public UIRequest getCurrentDialog() {
 		return currentForm;
@@ -76,9 +76,7 @@ public class HierarchicalFromManager implements FormManager {
 	/** {@inheritDoc} */
 	public void closeCurrentDialog() {
 		deleteAllChildrenOf(currentForm.getDialogID());
-		if (frame != null) {
-            frame.disposeFrame();
-        }
+		disposeFrame();
         currentForm = null;
 	}
 
@@ -112,9 +110,7 @@ public class HierarchicalFromManager implements FormManager {
 
 	/** {@inheritDoc} */
 	public void flush() {
-		if (frame != null) {
-    		frame.disposeFrame();
-    	}
+		disposeFrame();
 		formMap.clear();
 		tree.clear();
 	}
@@ -140,5 +136,15 @@ public class HierarchicalFromManager implements FormManager {
 
 	public void setRenderer(Renderer renderer) {
 		render = renderer;		
+	}
+	
+	protected void renderFrame(Form f) {
+		frame = new FrameManager(f, render.getModelMapper());		
+	}
+
+	protected void disposeFrame(){
+		if (frame != null) {
+            frame.disposeFrame();
+        }
 	}
 }
