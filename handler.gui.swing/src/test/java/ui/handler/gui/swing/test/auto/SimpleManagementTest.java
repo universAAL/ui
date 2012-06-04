@@ -40,53 +40,48 @@ import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
  * @author amedrano
  *
  */
-public class SubdialogAntecessorTest extends TestCase {
+public class SimpleManagementTest extends TestCase {
 
-    Form root, d1, d2, d11, d12, d111;
+    Form root, d1;
     Renderer testRender;
+	private FormManager fm;
+	private User user;
     
     public void setUp() {
     	OntologyManagement.getInstance().register(new DataRepOntology());
     	OntologyManagement.getInstance().register(new UIBusOntology());
     	OntologyManagement.getInstance().register(new ProfileOntology());
-    	testRender = new TestFMRenderer(TestFMRenderer.HIERARCHICAL_MANAGER);
+    	testRender = new TestFMRenderer(TestFMRenderer.SIMPLE_MANAGER);
         root = Form.newDialog("root", new Resource());
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
-        d2 = Form.newSubdialog("Dialog 2", root.getDialogID());
-        d11 = Form.newSubdialog("Dialog 1.1", d1.getDialogID());
-        d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
-        d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
-        User u = new User("saied");
+        user = new User("saied");
         
-        FormManager fm = testRender.getFormManagement();
-        fm.addDialog(new UIRequest(u, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d2, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d11, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d12, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d111, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        fm = testRender.getFormManagement();
     }
 
-    public void testAnt1() {
-        assertTrue(new FormLAF(d1, testRender).isAntecessor(root.getDialogID()));
+    public void testSimp1(){
+    	assertNull(fm.getCurrentDialog());
     }
-    public void testAnt2() {
-        assertTrue(new FormLAF(d11, testRender).isAntecessor(root.getDialogID()));
-    }
-    public void testAnt3() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(root.getDialogID()));
-    }
-    public void testAnt4() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(d11.getDialogID()));
-    }
-    public void testAnt5() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(d1.getDialogID()));
-    }
-    public void testAnt6() {
-        assertFalse(new FormLAF(d1, testRender).isAntecessor(d2.getDialogID()));
-    }
-    public void testAnt7() {
-        assertFalse(new FormLAF(d111, testRender).isAntecessor(d12.getDialogID()));
+    
+    public void testSimp2(){
+    	fm.addDialog(new UIRequest(user, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+    	assertTrue(fm.getCurrentDialog().getDialogForm() == root);
+    	assertNull(fm.getParentOf(root.getDialogID()));
     }
 
+    public void testSimp3(){
+        fm.addDialog(new UIRequest(user, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+        assertTrue(fm.getCurrentDialog().getDialogForm() == d1);
+    	assertNull(fm.getParentOf(d1.getDialogID()));
+    }
+    
+    public void testSimp4(){
+    	fm.closeCurrentDialog();
+    	assertNull(fm.getCurrentDialog());
+    }
+    
+    public void tearDown(){
+    	fm.flush();
+    }
+    
 }

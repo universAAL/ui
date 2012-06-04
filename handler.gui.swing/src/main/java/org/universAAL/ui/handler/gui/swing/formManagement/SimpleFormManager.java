@@ -49,7 +49,7 @@ public class SimpleFormManager implements FormManager {
     public void addDialog(UIRequest oe) {
             closeCurrentDialog();
             currentForm = oe;
-            frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
+            renderFrame();
     }
 
     /** {@inheritDoc} */
@@ -60,18 +60,14 @@ public class SimpleFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public void closeCurrentDialog() {
-        if (frame != null) {
-            frame.disposeFrame();
-        }
+        disposeFrame();
         currentForm = null;
     }
 
 
     /** {@inheritDoc} */
     public void flush() {
-    	if (frame != null) {
-    		frame.disposeFrame();
-    	}
+    	disposeFrame();
     }
 
     /** {@inheritDoc} */
@@ -89,4 +85,14 @@ public class SimpleFormManager implements FormManager {
 		render = renderer;
 	}
 
+	protected void renderFrame() {
+		frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
+	}
+	
+	protected void disposeFrame(){
+		if (frame != null) {
+    		frame.disposeFrame();
+    	}
+	}
+	
 }
