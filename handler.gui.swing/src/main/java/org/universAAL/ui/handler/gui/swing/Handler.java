@@ -138,7 +138,7 @@ public class Handler extends UIHandler {
          *     AddRestriction to subscription, receive only user related dialogs
          *     request for main menu
          */
-        UIHandlerProfile oep = new UIHandlerProfile();
+        UIHandlerProfile oep = getPermanentSubscriptions();
         oep.addRestriction(MergedRestriction.getFixedValueRestriction(UIRequest.PROP_ADDRESSED_USER, user));
         this.addNewRegParams(oep);
     }

@@ -190,7 +190,7 @@ public class Renderer extends Thread {
     /**
      * Save the current properties in the file
      */
-    private void storeProperties() {
+    protected void storeProperties() {
         try {
             fileProp.store(new FileOutputStream(getHomeDir() + RENDERER_CONF),
                     "Configuration file for SWING Renderer");
