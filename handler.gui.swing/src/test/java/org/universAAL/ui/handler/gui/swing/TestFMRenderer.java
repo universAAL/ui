@@ -31,4 +31,11 @@ public class TestFMRenderer extends Renderer {
 		loadFormManager(formManagerClass);
         modelMapper.updateLAF();
 	}
+
+	/** 
+	 * Tests should not store anything!
+	 * @see org.universAAL.ui.handler.gui.swing.Renderer#storeProperties()
+	 */
+	protected void storeProperties() {	}
+	
 }
