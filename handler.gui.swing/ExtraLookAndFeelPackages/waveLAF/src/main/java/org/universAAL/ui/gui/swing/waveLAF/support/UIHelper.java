@@ -16,7 +16,7 @@ public class UIHelper {
         tokenizer.nextToken();
         String suffix = tokenizer.nextToken();
         
-        InputStream resourceStream = UIHelper.class.getResourceAsStream("/images/" + url);
+        InputStream resourceStream = UIHelper.class.getResourceAsStream(url);
         ImageInputStream imageStream;
         try {
             imageStream = ImageIO.createImageInputStream(resourceStream);

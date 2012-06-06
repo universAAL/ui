@@ -15,19 +15,25 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+
+
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.CompoundBorder;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.gui.swing.waveLAF.support.LineSeparator;
+import org.universAAL.ui.gui.swing.waveLAF.support.*;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
@@ -38,7 +44,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
  * @see FormModel
  */
 public class FormLAF extends FormModel  {
-
+	   private static final Color GRAY = new Color(224, 224, 224);
     /**
      * internal accounting for the frame being displayed.
      */
@@ -71,10 +77,11 @@ public class FormLAF extends FormModel  {
         //FIXME resize Layout+scroll
          */
     	JPanel ioPanel = super.getIOPanel();
+    	
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        return sp;
+        return  sp;
     }
 
     /**
@@ -113,9 +120,11 @@ public class FormLAF extends FormModel  {
             icon.setDescription("UniversAAL Logo Image");
              JLabel logo = new JLabel(icon);
             logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-             header.add(logo);
-           // header.add(new LineSeparator());
-            return (JPanel) header;
+            JComponent nuevo=new LineSeparator(); 
+            header.add(logo);
+            header.add(nuevo);
+        
+             return (JPanel) header;
         }
 
     /**
@@ -125,7 +134,9 @@ public class FormLAF extends FormModel  {
         if (form.isMessage()) {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            JScrollPane io = getIOPanelScroll();
+            
+             JScrollPane io = getIOPanelScroll();
+      
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
                     JScrollPane.VERTICAL_SCROLLBAR_NEVER,
@@ -157,7 +168,9 @@ public class FormLAF extends FormModel  {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
+           
             JScrollPane io = getIOPanelScroll();
+           
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = getSubmitPanelScroll(0);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
@@ -181,6 +194,9 @@ public class FormLAF extends FormModel  {
             sys.getAccessibleContext().setAccessibleName(SYS_NAME);
             JPanel subpanel = new JPanel(new BorderLayout());
             subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
+            
+            subpanel.setBorder(new CompoundBorder(new ColorBorder(GRAY, 0, 12, 0, 12),
+					  new ShadowBorder()));
             for (int i = super.getSubdialogLevel(); i > 1; i--) {
             	subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
             	JPanel tempanel = new JPanel(new BorderLayout());
@@ -195,10 +211,17 @@ public class FormLAF extends FormModel  {
             frame.setUndecorated(true);
             frame.pack();
         }
-	Toolkit tk = Toolkit.getDefaultToolkit();  
-	int xSize = ((int) tk.getScreenSize().getWidth());  
-	int ySize = ((int) tk.getScreenSize().getHeight());   
-	frame.setSize(xSize,ySize);
+ //  frame.setSize(1024, 780);
+   Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();  
+   Dimension window = frame.getSize();   
+	    
+	//Toolkit tk = Toolkit.getDefaultToolkit();  
+	//int xSize = ((int) tk.getScreenSize().getWidth());  
+	//int ySize = ((int) tk.getScreenSize().getHeight());   
+	//frame.setSize(xSize,ySize);
+	frame.setLocation(
+            (screen.width - window.width) / 2,
+            (screen.height - window.height) / 2);
         return frame;
     }
 
