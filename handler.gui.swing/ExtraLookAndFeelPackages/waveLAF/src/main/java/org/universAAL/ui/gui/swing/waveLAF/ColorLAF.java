@@ -43,10 +43,10 @@ public class ColorLAF extends DefaultMetalTheme {
     private final ColorUIResource primary3 = new ColorUIResource(224, 224, 224);
 
     private final ColorUIResource secondary1 =
-            new ColorUIResource(255, 255, 255);
-    private final ColorUIResource secondary2 = new ColorUIResource(255, 255, 255);
+            new ColorUIResource(246, 252, 255);
+    private final ColorUIResource secondary2 = new ColorUIResource(246, 252, 255);
     private final ColorUIResource secondary3 =
-            new ColorUIResource(255, 255, 255);
+            new ColorUIResource(246, 252, 255);
     private final ColorUIResource black = new ColorUIResource(0, 0, 0);
     private final ColorUIResource white = new ColorUIResource(255, 255, 255);
 

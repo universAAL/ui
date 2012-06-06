@@ -3,6 +3,6 @@ import java.awt.image.BufferedImage;
 
 public class GraySeparator extends LineSeparator {
     public GraySeparator() {
-        this.image = (BufferedImage) UIHelper.loadImage("wave_gray.png");
+        this.image = (BufferedImage) UIHelper.loadImage("/images/wave_gray.png");
     }
 }
