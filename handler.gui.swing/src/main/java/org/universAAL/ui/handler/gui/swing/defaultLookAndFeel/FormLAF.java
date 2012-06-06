@@ -144,6 +144,7 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
         if (form.isStandardDialog() ) {
             /*
@@ -168,6 +169,7 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
        if (form.isSubdialog()) {
             frame = new JFrame(form.getTitle());
@@ -192,12 +194,16 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
-	Toolkit tk = Toolkit.getDefaultToolkit();  
-	int xSize = ((int) tk.getScreenSize().getWidth());  
-	int ySize = ((int) tk.getScreenSize().getHeight());   
-	frame.setSize(xSize,ySize);
         return frame;
+    }
+    
+    private void setFullScreen(){
+    	Toolkit tk = Toolkit.getDefaultToolkit();  
+    	int xSize = ((int) tk.getScreenSize().getWidth());  
+    	int ySize = ((int) tk.getScreenSize().getHeight());   
+    	frame.setSize(xSize,ySize);
     }
 
     /** {@inheritDoc} */
