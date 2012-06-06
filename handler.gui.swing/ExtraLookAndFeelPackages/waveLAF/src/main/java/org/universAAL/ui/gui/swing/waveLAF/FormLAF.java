@@ -15,11 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
@@ -33,7 +30,9 @@ import javax.swing.JScrollPane;
 import javax.swing.border.CompoundBorder;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.gui.swing.waveLAF.support.*;
+import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
+import org.universAAL.ui.gui.swing.waveLAF.support.LineSeparator;
+import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
@@ -157,6 +156,7 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
         if (form.isStandardDialog() ) {
             /*
@@ -183,6 +183,7 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
        if (form.isSubdialog()) {
             frame = new JFrame(form.getTitle());
@@ -210,19 +211,18 @@ public class FormLAF extends FormModel  {
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
             frame.pack();
+            setFullScreen();
         }
- //  frame.setSize(1024, 780);
-   Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();  
-   Dimension window = frame.getSize();   
-	    
-	//Toolkit tk = Toolkit.getDefaultToolkit();  
-	//int xSize = ((int) tk.getScreenSize().getWidth());  
-	//int ySize = ((int) tk.getScreenSize().getHeight());   
-	//frame.setSize(xSize,ySize);
-	frame.setLocation(
-            (screen.width - window.width) / 2,
-            (screen.height - window.height) / 2);
         return frame;
+    }
+    
+    private void setFullScreen(){
+    	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+//    	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();  
+//   		Dimension window = frame.getSize(); 
+//   		frame.setLocation(
+//            (screen.width - window.width) / 2,
+//            (screen.height - window.height) / 2);	
     }
 
     /** {@inheritDoc} */
