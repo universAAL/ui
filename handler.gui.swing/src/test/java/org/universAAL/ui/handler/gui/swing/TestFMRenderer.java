@@ -29,7 +29,7 @@ public class TestFMRenderer extends Renderer {
 		loadProperties();
 		modelMapper = new ModelMapper(this);
 		loadFormManager(formManagerClass);
-        modelMapper.updateLAF();
+        modelMapper.initializeLAF();
 	}
 
 	/** 

@@ -34,11 +34,14 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
  */
 public class RepeatModelTableLAF extends RepeatModelTable {
 
+	private ColorLAF color;
+
 	/**
 	 * @param control
 	 */
 	public RepeatModelTableLAF(Repeat control, Renderer render) {
 		super(control, render);
+		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
 	
 	/** {@inheritDoc}*/
@@ -84,13 +87,13 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	}
 	
 	private void setButtonColors(JButton button) {
-		Color border = ColorLAF.getborderLine();
-		Color normalF = ColorLAF.getBackLetter();
-		Color normalB = ColorLAF.getBackSystem();
-		Color enterF = ColorLAF.getBackLetter();
-		Color enterB = ColorLAF.getOverSytem();
-		Color clickF = ColorLAF.getSelectedLetter();
-		Color clickB = ColorLAF.getBackSystem();
+		Color border = color.getborderLine();
+		Color normalF = color.getBackLetter();
+		Color normalB = color.getBackSystem();
+		Color enterF = color.getBackLetter();
+		Color enterB = color.getOverSytem();
+		Color clickF = color.getSelectedLetter();
+		Color clickB = color.getBackSystem();
 		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
 		clickF, clickB);
 	}

@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
+import org.universAAL.ui.handler.gui.swing.Renderer;
+
 /**
  * Interface for the entry point Class for any look and feel package.
  *
@@ -29,8 +31,9 @@ public interface InitInterface {
      * here.
      * <br>
      * For example initializing the UIManager.
+     * @param render TODO
      */
-    public void install();
+    public void install(Renderer render);
 
     //XXX: need an uninstall?
 }
