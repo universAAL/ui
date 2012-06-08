@@ -33,6 +33,7 @@ public class TestRenderer extends Renderer {
         loadProperties();
         modelMapper = new ModelMapper(this);
         loadFormManager(FromManager);
+        initLAF = modelMapper.initializeLAF();
 	}
 	
 	/**
@@ -46,5 +47,6 @@ public class TestRenderer extends Renderer {
         fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
         fileProp.put(GUI_LOCATION, "Unkown");
     }
+
    
 }

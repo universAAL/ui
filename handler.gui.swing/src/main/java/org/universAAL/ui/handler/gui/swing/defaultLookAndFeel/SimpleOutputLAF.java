@@ -43,6 +43,8 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
+
+	private ColorLAF color;
 	
     /**
      * Constructor.
@@ -50,7 +52,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
      */
     public SimpleOutputLAF(SimpleOutput control, Renderer render) {
         super(control, render);
-
+        color = ((Init) render.getInitLAF()).getColorLAF();
     }
 
     /** {@inheritDoc} */
@@ -78,18 +80,18 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
                 ta.getAccessibleContext();
-                ta.setFont(ColorLAF.getplain());
+                ta.setFont(color.getplain());
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-                ta.setForeground(ColorLAF.getfont());
+                ta.setForeground(color.getfont());
                 sp.getAccessibleContext();
             }
             else {
                 JTextComponent tf = (JTextComponent) jc;
                 tf.getAccessibleContext().setAccessibleName(tf.getText());
-                tf.setFont(ColorLAF.getplain());
+                tf.setFont(color.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
-                tf.setForeground(ColorLAF.getBackMM());
+                tf.setForeground(color.getBackMM());
             }
         }
         if (content instanceof Boolean) {

@@ -34,6 +34,7 @@ import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
+import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
@@ -78,6 +79,13 @@ public class Renderer extends Thread {
      *  {@link Model} for each rdf class.
      */
     protected ModelMapper modelMapper = null;
+
+
+	/**
+	 * Maintenance of the instance created when initialising the LAF,
+	 *  so it can be accessed by LAF components through the renderer.
+	 */
+	protected InitInterface initLAF;
     
     /**
      * Default User, for when there is no user
@@ -154,7 +162,7 @@ public class Renderer extends Thread {
         moduleContext.logDebug("selecting Form Manager", null);
         loadFormManager(getProerty(FORM_MANAGEMENT));
         moduleContext.logDebug("loading LAF", null);
-        modelMapper.updateLAF();
+        initLAF = modelMapper.initializeLAF();
     }
     
     protected void loadFormManager(String FormManagerClassName) {
@@ -373,4 +381,12 @@ public class Renderer extends Thread {
     public Handler getHandler() {
     	return handler;
     }
+
+	/**
+	 * get the Initial instance when the LAF was loaded.
+	 * @return the initLAF
+	 */
+	public InitInterface getInitLAF() {
+		return initLAF;
+	}
 }

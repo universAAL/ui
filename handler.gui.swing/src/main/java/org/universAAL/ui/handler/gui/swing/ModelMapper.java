@@ -210,17 +210,21 @@ public class ModelMapper {
     /**
      * Initialize the selected L&F extension.
      * If could not be found, defaultLAF is used.
+     * @return TODO
      */
-    public void updateLAF() {
+    public InitInterface initializeLAF() {
+    	InitInterface ii = null;
         try {
-            getLookAndFeel(Renderer.getProerty(LAFPackageProperty)).install();
+           ii =  getLookAndFeel(Renderer.getProerty(LAFPackageProperty));
+           ii.install(render);
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
             	render.getModuleContext().logError("Unable to find "
                 + INIT_CLASS + " Class for selected LookAndFeel.Package", e);
             }
             try {
-            getLookAndFeel(DefaultLAFPackage).install();
+            ii = getLookAndFeel(DefaultLAFPackage);
+            ii.install(render);
             } catch (Exception e2) {
             if (render.getModuleContext() != null) {
             	render.getModuleContext().logError("Unable to find "
@@ -228,5 +232,6 @@ public class ModelMapper {
             }
             }
         }
+        return ii;
     }
 }
