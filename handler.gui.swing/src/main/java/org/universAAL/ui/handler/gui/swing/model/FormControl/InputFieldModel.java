@@ -97,14 +97,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 	    /*
 	     * the input requested is a normal text field
 	     */
-	    JTextComponent tf;
-	    if (maxLength > 0) {
-		tf = new JTextField(maxLength);
-	    } else {
-		tf = new JTextField();
-	    }
-	    tf.addCaretListener(this);
-	    return tf;
+	    return normalTextField(maxLength);
 	}
 	if (inFi.getValue() instanceof String && inFi.isSecret()) {
 	    /*
@@ -135,7 +128,27 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 	    lcb.addActionListener(this);
 	    return lcb;
 	}
-	return null;
+	
+	// TODO: USING text field as default, this needs to be discussed.
+	return normalTextField(maxLength);
+    }
+    
+    /**
+     * defines a normal textfield given a maximum length.
+     * @param maxLength
+     * 		the maximum length of the text field.
+     * @return
+     * 		a JTextComponent that is listened by this model.
+     */
+    private JComponent normalTextField(int maxLength){
+	JTextComponent tf;
+	    if (maxLength > 0) {
+		tf = new JTextField(maxLength);
+	    } else {
+		tf = new JTextField();
+	    }
+	    tf.addCaretListener(this);
+	    return tf;
     }
 
     /**

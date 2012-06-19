@@ -70,7 +70,8 @@ public class RepeatModel extends GroupModel {
          * And that all the Groups do not contain more groups.
          * XXX check the type for each column is consistent.
          */
-        if (getChildrenType().equals(Group.class)) {
+        if (getChildrenType() != null 
+        	&& getChildrenType().equals(Group.class)) {
             FormControl[] child = ((Repeat) fc).getChildren();
             int i = 0;
             LevelRating complexity = LevelRating.none;

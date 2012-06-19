@@ -135,7 +135,19 @@ public class GroupModel extends Model {
         JPanel pane;
         for (int i = 0; i < children.length; i++) {
             if (children[i] instanceof Group) {
-                pane = (JPanel) getComponentFrom(children[i]);
+                JComponent childComponent = getComponentFrom(children[i]);
+                if (childComponent instanceof JPanel) {
+                    pane = (JPanel) childComponent;
+                }
+                if (childComponent instanceof JTabbedPane){
+                    pane = new JPanel();
+                    pane.add(childComponent);
+                    // TODO: test if the above needs more
+                }
+                else{
+                    pane = new JPanel();
+                }
+                
             }
             else {
                 pane = new JPanel(false);
