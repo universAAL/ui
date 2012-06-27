@@ -887,7 +887,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	}
 
 	Form f = Form.newSystemMenu(Activator
-		.getString("UICaller.personaMainMenu"));
+		.getString("UICaller.universAALMainMenu"));
 	Group main = f.getIOControls();
 	MainMenu.getMenuInstance(u).addMenuRepresentation(main);
 	Group g = new Group(main, new Label(Activator
