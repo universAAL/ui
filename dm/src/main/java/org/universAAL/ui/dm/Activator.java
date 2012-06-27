@@ -2,6 +2,8 @@
 	Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
 	
+	2010-2012 Ericsson Nikola Tesla d.d., www.ericsson.com/hr
+	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
 	
@@ -25,8 +27,6 @@ import java.sql.DriverManager;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.context.conversion.jena.JenaConverter;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
@@ -59,16 +59,26 @@ import com.hp.hpl.jena.rdf.model.Model;
  * The bundle activator.
  * 
  * @author mtazari
+ * @author eandgrg
  */
 public class Activator extends Thread implements BundleActivator {
 
-    private static ModuleContext context = null;
-    static final Logger logger = LoggerFactory.getLogger(Activator.class);
+    /**  */
+    private static ModuleContext mContext = null;
+    
+    /**  */
     private static JenaConverter jenaConverter = null;
+    
+    /**  */
     private static MessageContentSerializer serializer = null;
 
+    /**  */
     private static ContextSubscriber contextSubscriber = null;
-    private static UICaller outputPublisher = null;
+    
+    /**  */
+    private static UICaller uiCaller = null;
+    
+    /**  */
     private static ServiceCaller serviceCaller = null;
 
     /**
@@ -102,12 +112,12 @@ public class Activator extends Thread implements BundleActivator {
 	    "org.persona.platform.jena_db.model_name", "PERSONA_AAL_Space");
 
     /**
-     * Get the bundle context
-     * 
-     * @return The bundle context.
+     * Get the bundle mContext.
+     *
+     * @return The bundle mContext.
      */
     static ModuleContext getModuleContext() {
-	return context;
+	return mContext;
     }
 
     /**
@@ -128,22 +138,32 @@ public class Activator extends Thread implements BundleActivator {
 	     * For some reason above construction did not work correctly.
 	     */
 	    con = new DBConnection(conn, "MySQL");
-	    // logger.info("DM connection to: " + JENA_DB_URL + " opened.");
+	    LogUtils
+	    .logInfo(
+		    mContext,
+		    Activator.class,
+		    "getAllCalendarsService",
+		    new Object[] { "DM connected to database!" },
+		    null);
 	} catch (Exception e) {
-	    logger
-		    .error(
-			    "Exception in DM while trying to get connection to database: {} ",
+	    LogUtils
+		    .logError(
+			    mContext,
+			    Activator.class,
+			    "getAllCalendarsService",
+			    new Object[] { "Exception in DM while trying to get connection to database!" },
 			    e);
+
 	}
 
 	return con;
     }
 
     /**
-     * Get the context subscriber which is responsible for realizing system
+     * Get the mContext subscriber which is responsible for realizing system
      * reactivity.
      * 
-     * @return The context subscriber.
+     * @return The mContext subscriber.
      */
     static ContextSubscriber getContextSubscriber() {
 	return contextSubscriber;
@@ -240,7 +260,7 @@ public class Activator extends Thread implements BundleActivator {
 	    }
 	    conn.close();
 	} catch (Exception e) {
-	    LogUtils.logWarn(context, Activator.class, "insert", null, e);
+	    LogUtils.logWarn(mContext, Activator.class, "insert", null, e);
 	}
     }
 
@@ -272,11 +292,11 @@ public class Activator extends Thread implements BundleActivator {
      */
     public void run() {
 	try {
-	    messages = new Messages(context.getID());
+	    messages = new Messages(mContext.getID());
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
-			    context,
+			    mContext,
 			    getClass(),
 			    "run",
 			    new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
@@ -284,16 +304,17 @@ public class Activator extends Thread implements BundleActivator {
 	    return;
 	}
 
-	contextSubscriber = new ContextSubscriber(context);
-	outputPublisher = new DialogManagerImpl(context);
-	serviceCaller = new ServiceCaller(context);
+	contextSubscriber = new ContextSubscriber(mContext);
+	uiCaller = new DialogManagerImpl(mContext);
+	serviceCaller = new ServiceCaller(mContext);
     }
 
-    /**
-     * Method for OSGi bundle: start this bundle.
+
+    /* (non-Javadoc)
+     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
      */
     public void start(BundleContext context) throws Exception {
-	Activator.context = uAALBundleContainer.THE_CONTAINER
+	Activator.mContext = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
 	ServiceReference sref = context
 		.getServiceReference(MessageContentSerializer.class.getName());
@@ -303,12 +324,17 @@ public class Activator extends Thread implements BundleActivator {
 	jenaConverter = (sref == null) ? null : (JenaConverter) context
 		.getService(sref);
 	start();
+	
+	LogUtils.logInfo(mContext, this.getClass(), "start",
+		new Object[] { "DM started." }, null);
     }
 
-    /**
-     * Method for OSGi bundle: stop this bundle.
+
+    /* (non-Javadoc)
+     * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
     public void stop(BundleContext arg0) throws Exception {
-	// TODO Auto-generated method stub
+	LogUtils.logInfo(mContext, this.getClass(), "stop",
+		new Object[] { "DM stopped." }, null);
     }
 }

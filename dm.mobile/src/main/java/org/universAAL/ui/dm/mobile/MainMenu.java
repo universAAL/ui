@@ -19,11 +19,14 @@
  */
 package org.universAAL.ui.dm.mobile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.ServiceRequest;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -52,6 +55,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
  * 
  * @author mtazari
  * @author cstockloew
+ * @author eandgrg
  */
 public class MainMenu {
 
@@ -133,17 +137,45 @@ public class MainMenu {
 	// 1. list of labels (multiple labels for hierarchical menus)
 	// 2. vendor
 	// 3. service class
+	InputStream in = null;
 	try {
-	    InputStream in = Activator.getConfFileReader().getConfFileAsStream(
-		    "main_menu_" + thisUser + lang + ".txt");
-	    // if (in == null)
-	    // in = MainMenu.class.getResourceAsStream("main_menu.txt");
 
-	    byte[] buf = new byte[2048];
-	    int n = 0, s = 0;
-	    String[] line = new String[3];
-	    String rest = "";
-	    int col = 0;
+	    in = Activator.getConfFileReader().getConfFileAsStream(
+		    "main_menu_" + thisUser + "_" + lang + ".txt");
+
+	} catch (IOException e) {
+
+	    try {
+		in = Activator.getConfFileReader().getConfFileAsStream(
+			"main_menu_" + thisUser + ".txt");
+		
+
+		    LogUtils.logWarn(Activator.getModuleContext(), getClass(),
+			    "constructMenu", new Object[] { "main_menu_" + thisUser
+				    + "_" + lang + ".txt does not exist so: main_menu_"
+				    + thisUser + ".txt was loaded instead!!" }, e);
+	    } catch (Exception e1) {
+		LogUtils
+			.logError(
+				Activator.getModuleContext(),
+				getClass(),
+				"constructMenu",
+				new Object[] { "main_menu_"
+					+ thisUser
+					+ ".txt does not exist also so Main menu for logged user has to be made before running again!" },
+				e1);
+		throw new RuntimeException(e1.getMessage());
+
+	    }
+
+	}
+
+	byte[] buf = new byte[2048];
+	int n = 0, s = 0;
+	String[] line = new String[3];
+	String rest = "";
+	int col = 0;
+	try {
 	    while ((n = in.read(buf)) > -1) {
 		for (int i = 0;; i++)
 		    if (i == n) {
@@ -168,8 +200,16 @@ public class MainMenu {
 		    }
 		s = 0;
 	    }
-	} catch (Exception e) {
-	    throw new RuntimeException(e.getMessage());
+	} catch (IOException e) {
+	    LogUtils
+		    .logError(
+			    Activator.getModuleContext(),
+			    getClass(),
+			    "constructMenu",
+			    new Object[] { "main_menu_"
+				    + thisUser
+				    + ".txt does not exist also so Main menu for logged user has to be made before running again!" },
+			    e);
 	}
 
 	// create the menu according to the entries from the config file
@@ -319,7 +359,7 @@ public class MainMenu {
 	if (u == null)
 	    return "";
 	String ln = u.getLocalName();
-	return (ln == null) ? "" : ln + "_";
+	return (ln == null) ? "" : ln;
     }
 
     // private synchronized void update(MenuNode selection) {

@@ -2,6 +2,8 @@
 	Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
 	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
 	
+	2010-2012 Ericsson Nikola Tesla d.d., www.ericsson.com/hr
+	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
 	
@@ -19,18 +21,14 @@
  */
 package org.universAAL.ui.dm.mobile;
 
-
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.Messages;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.LevelRating;
-import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.owl.AccessImpairment;
@@ -52,14 +50,20 @@ import org.universaal.ontology.useridprofileontology.owl.UserIDProfileOntology;
  * The bundle activator.
  * 
  * @author mtazari
+ * @author eandgrg
  */
 public class Activator extends Thread implements BundleActivator {
 
-    private static ModuleContext context = null;
-    static final Logger logger = LoggerFactory.getLogger(Activator.class);
+    /**  */
+    private static ModuleContext mcontext = null;
+    
+    /**  */
     private static MessageContentSerializer serializer = null;
 
-    private static UICaller outputPublisher = null;
+    /**  */
+    private static UICaller uiCaller = null;
+    
+    /**  */
     private static ServiceCaller serviceCaller = null;
 
     /**
@@ -67,17 +71,14 @@ public class Activator extends Thread implements BundleActivator {
      */
     private static Messages messages;
 
-    
     /**
-     * Get the bundle context
-     * 
-     * @return The bundle context.
+     * Get the bundle mcontext.
+     *
+     * @return The bundle mcontext.
      */
     static ModuleContext getModuleContext() {
-	return context;
+	return mcontext;
     }
-
-
 
     /**
      * Get the message serializer which can be used to (de-)serialize RDF
@@ -108,7 +109,7 @@ public class Activator extends Thread implements BundleActivator {
      *            The name of the user.
      */
     static void loadTestData(String uri, String name) {
-UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
+	UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
 		+ "idprofile");
 	uip.setUSERNAME(name);
 	AssistedPersonProfile ep = new AssistedPersonProfile(
@@ -141,7 +142,6 @@ UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
 	eu.setProfile(ep);
     }
 
-
     /**
      * Get a string from the configuration file.
      * 
@@ -170,11 +170,11 @@ UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
      */
     public void run() {
 	try {
-	    messages = new Messages(context.getID());
+	    messages = new Messages(mcontext.getID());
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
-			    context,
+			    mcontext,
 			    getClass(),
 			    "run",
 			    new Object[] { "Cannot initialize Dialog Manager externalized strings!" },
@@ -182,27 +182,33 @@ UserIDProfile uip = new UserIDProfile(ProfileOntology.NAMESPACE + name
 	    return;
 	}
 
-	outputPublisher = new DialogManagerImpl(context);
-	serviceCaller = new ServiceCaller(context);
+	uiCaller = new DialogManagerImpl(mcontext);
+	serviceCaller = new ServiceCaller(mcontext);
     }
 
-    /**
-     * Method for OSGi bundle: start this bundle.
+ 
+    /* (non-Javadoc)
+     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
      */
     public void start(BundleContext context) throws Exception {
-	Activator.context = uAALBundleContainer.THE_CONTAINER
+	mcontext = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
 	ServiceReference sref = context
 		.getServiceReference(MessageContentSerializer.class.getName());
 	serializer = (sref == null) ? null : (MessageContentSerializer) context
 		.getService(sref);
 	start();
+
+	LogUtils.logInfo(mcontext, this.getClass(), "start",
+		new Object[] { "DM started." }, null);
     }
 
-    /**
-     * Method for OSGi bundle: stop this bundle.
+
+    /* (non-Javadoc)
+     * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
     public void stop(BundleContext arg0) throws Exception {
-	// TODO Auto-generated method stub
+	LogUtils.logInfo(mcontext, this.getClass(), "stop",
+		new Object[] { "DM stopped." }, null);
     }
 }
