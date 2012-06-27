@@ -253,8 +253,6 @@ handler.gui/src/main/resources/img/sound.gif -text
 handler.gui/src/main/resources/lib/TableLayout.jar -text
 handler.gui/src/main/resources/lib/pom.xml -text svneol=unset#text/plain
 handler.gui/src/test/java/org/universAAL/ui/handler/gui/test/ArtifactIntegrationTest.java -text
-handler.sms/.settings/org.eclipse.jdt.core.prefs -text
-handler.sms/.settings/org.maven.ide.eclipse.prefs -text
 handler.sms/LICENSE -text
 handler.sms/configurationFiles/ui.handler.sms/account.properties -text
 handler.sms/pom.xml -text
