@@ -146,7 +146,11 @@ public class MyUIHandler extends UIHandler {
      * .ui.UIRequest)
      */
     public void handleUICall(UIRequest uiRequest) {
-	String user = ((User) uiRequest.getAddressedUser()).getURI();
+	//String user = ((User) uiRequest.getAddressedUser()).getURI();
+	//avoid casting to User since in new prof ont User is not parent class for Assisted Person
+	
+	String user = uiRequest.getAddressedUser().getURI();
+	
 	log.info("Received UIRequest for user {} ", user);
 	//uncomment this log if you want to see whole UIRequest
 	//log.info("handleUICall: uiRequest.toStringRecursive(): " + uiRequest.toStringRecursive());
