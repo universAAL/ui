@@ -115,7 +115,7 @@ public class ModelMapper {
                     .newInstance(new Object[] { constructorParameter, render } );
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
-            render.getModuleContext().logError("Could not find Class: "
+            render.getModuleContext().logError(this.getClass().getName() +":", "Could not find Class: "
                 + LAFPackage + "." + getStringLAFClass(constructorParamClass), e);
             }
             return null;
@@ -219,7 +219,7 @@ public class ModelMapper {
            ii.install(render);
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
-            	render.getModuleContext().logError("Unable to find "
+            	render.getModuleContext().logError(this.getClass().getName() +":","Unable to find "
                 + INIT_CLASS + " Class for selected LookAndFeel.Package", e);
             }
             try {
@@ -227,7 +227,7 @@ public class ModelMapper {
             ii.install(render);
             } catch (Exception e2) {
             if (render.getModuleContext() != null) {
-            	render.getModuleContext().logError("Unable to find "
+            	render.getModuleContext().logError(this.getClass().getName() +":","Unable to find "
                     + INIT_CLASS + " Class for Default LookAndFeel Package", e);
             }
             }

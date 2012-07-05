@@ -59,7 +59,7 @@ public class Activator implements BundleActivator {
 
     public static void logDebug(String text, Throwable e) {
     	if (Activator.context != null) {
-    		Activator.context.logDebug(text, e);
+    		Activator.context.logDebug("org.universAAL.ui.handler.gui.swing.osgi.Activator",text, e);
     	}
     	else {
     		System.err.println("[Debug]" + text);

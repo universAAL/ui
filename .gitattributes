@@ -166,8 +166,8 @@ handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/DefaultLAFConstructorTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ModelMapperTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
-handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SimpleManagementTest.java -text svneol=unset#text/plain
-handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecessorTest.java -text
+handler.gui.swing/tempMoved[!!-~]from[!!-~]swing.test.auto/SimpleManagementTest.java -text svneol=unset#text/plain
+handler.gui.swing/tempMoved[!!-~]from[!!-~]swing.test.auto/SubdialogAntecessorTest.java -text
 handler.gui/LICENSE-CPL-JUnit.txt -text
 handler.gui/LICENSE-Clearthought.txt -text
 handler.gui/LICENSE-JGCL.txt -text
@@ -1204,7 +1204,7 @@ resource.server/pom.xml -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
 resource.server/src/main/resources/www/tst.txt -text
-resource.server/src/test/java/org/universAAL/ui/resource/server/test/ResourceServerTest.java -text
+resource.server/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
 resource.server/target/apidocs/allclasses-frame.html -text
 resource.server/target/apidocs/allclasses-noframe.html -text
 resource.server/target/apidocs/constant-values.html -text

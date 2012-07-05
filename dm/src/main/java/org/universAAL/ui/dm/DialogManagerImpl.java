@@ -60,8 +60,8 @@ import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.health.HealthProfile;
 import org.universAAL.ontology.profile.UserProfile;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
@@ -375,7 +375,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		Resource pr = mc.toPersonaResource(root);
 		if (pr instanceof AssistedPerson) {
 		    AssistedPerson eu = (AssistedPerson) pr;
-		    UserProfile up = eu.getProfile();
+		    UserProfile up = eu.getUserProfile();
 		    if (up instanceof AssistedPersonProfile) {
 			HealthProfile hp = (HealthProfile) ((AssistedPersonProfile) up)
 				.getProperty(HealthProfileOntology.PROP_HEALTH_PROFILE);

@@ -153,15 +153,15 @@ public class Renderer extends Thread {
      */
     public Renderer(ModuleContext mc) {
     	moduleContext = mc;
-    	moduleContext.logDebug("starting Handler", null);
+    	moduleContext.logDebug(this.getClass().getName() +":","starting Handler", null);
         handler = new Handler(this);
-        moduleContext.logDebug("loading properties", null);
+        moduleContext.logDebug(this.getClass().getName() +":","loading properties", null);
         loadProperties();
-        moduleContext.logDebug("Initialising ModelMapper", null);
+        moduleContext.logDebug(this.getClass().getName() +":","Initialising ModelMapper", null);
         modelMapper = new ModelMapper(this);
-        moduleContext.logDebug("selecting Form Manager", null);
+        moduleContext.logDebug(this.getClass().getName() +":","selecting Form Manager", null);
         loadFormManager(getProerty(FORM_MANAGEMENT));
-        moduleContext.logDebug("loading LAF", null);
+        moduleContext.logDebug(this.getClass().getName() +":","loading LAF", null);
         initLAF = modelMapper.initializeLAF();
     }
     
@@ -208,7 +208,7 @@ public class Renderer extends Thread {
                 dir.mkdir();
                 storeProperties();
             }
-            moduleContext.logError(NO_SAVE, e1);
+            moduleContext.logError(this.getClass().getName() +":",NO_SAVE, e1);
         }
     }
 

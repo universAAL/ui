@@ -5,11 +5,11 @@
   <parent>
     <artifactId>ui.pom</artifactId>
     <groupId>org.universAAL.ui</groupId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.2-SNAPSHOT</version>
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.handler.gui</artifactId>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.1.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>UI handler GUI</name>
   <description>Demonstrates a GUI UI handler</description>
@@ -66,15 +66,15 @@
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.bus.ui</artifactId>
+      <artifactId>mw.bus.ui.osgi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.bus.service</artifactId>
+      <artifactId>mw.bus.service.osgi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.data.representation</artifactId>
+      <artifactId>mw.data.representation.osgi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
