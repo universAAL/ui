@@ -59,8 +59,8 @@ import org.universAAL.ontology.profile.AssistedPersonProfile;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.health.HealthProfile;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
 
@@ -331,7 +331,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private void addAdaptationParams(UIRequest event, String queryStr) {
 	    LogUtils.logInfo(Activator.getModuleContext(), getClass(),
-		    "addAdaptationParams NOT supported by DM.MOBILE", null,null); //$NON-NLS-1$ //$NON-NLS-2$
+		    "addAdaptationParams NOT supported by DM.MOBILE. Modality always GUI!!!!!!!!!", null,null); //$NON-NLS-1$ //$NON-NLS-2$
 	    event.setPresentationModality(Modality.gui);
     }
 

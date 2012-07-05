@@ -37,11 +37,11 @@ public class ResourceMapperTest extends TestCase {
 		assertNull(ResourceMapper.search("icons/services/Health_button.png"));
 	}
 	
-	public void testRemoteResource1() {
-		assertNotNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w.png"));
-	}
-	
-	public void testRemoteResource2() {
-		assertNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w"));
-	}
+//	public void testRemoteResource1() {
+//		assertNotNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w.png"));
+//	}
+//	
+//	public void testRemoteResource2() {
+//		assertNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w"));
+//	}
 }

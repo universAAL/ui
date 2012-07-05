@@ -46,10 +46,10 @@ import org.universAAL.ontology.profile.AssistedPersonProfile;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.health.HealthProfile;
 import org.universAAL.ontology.impairment.HearingImpairment;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
-import org.universaal.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
-import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
-import org.universaal.ontology.useridprofileontology.owl.UserIDProfileOntology;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
+import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
+import org.universAAL.ontology.useridprofileontology.owl.UserIDProfile;
+import org.universAAL.ontology.useridprofileontology.owl.UserIDProfileOntology;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
