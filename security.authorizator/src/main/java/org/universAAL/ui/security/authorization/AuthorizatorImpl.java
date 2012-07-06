@@ -31,7 +31,6 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.Profile;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.profile.service.ProfilingService;
-import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
 
 //import org.universAAL.samples.service.utils.Arg;
 //import org.universAAL.samples.service.utils.Path;
