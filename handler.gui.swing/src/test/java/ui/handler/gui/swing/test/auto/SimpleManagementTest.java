@@ -28,7 +28,11 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.ProfileOntology;
+import org.universAAL.ontology.location.LocationOntology;
+import org.universAAL.ontology.phThing.PhThingOntology;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.shape.ShapeOntology;
+import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestFMRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
@@ -50,6 +54,10 @@ public class SimpleManagementTest extends TestCase {
     public void setUp() {
     	OntologyManagement.getInstance().register(new DataRepOntology());
     	OntologyManagement.getInstance().register(new UIBusOntology());
+        OntologyManagement.getInstance().register(new LocationOntology());
+        OntologyManagement.getInstance().register(new ShapeOntology());
+        OntologyManagement.getInstance().register(new PhThingOntology());
+        OntologyManagement.getInstance().register(new SpaceOntology());
     	OntologyManagement.getInstance().register(new ProfileOntology());
     	testRender = new TestFMRenderer(TestFMRenderer.SIMPLE_MANAGER);
         root = Form.newDialog("root", new Resource());
