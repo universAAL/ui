@@ -28,6 +28,7 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.ProfileOntology;
+import org.universAAL.ontology.VCardOntology;
 import org.universAAL.ontology.location.LocationOntology;
 import org.universAAL.ontology.phThing.PhThingOntology;
 import org.universAAL.ontology.profile.User;
@@ -58,6 +59,7 @@ public class SimpleManagementTest extends TestCase {
         OntologyManagement.getInstance().register(new ShapeOntology());
         OntologyManagement.getInstance().register(new PhThingOntology());
         OntologyManagement.getInstance().register(new SpaceOntology());
+        OntologyManagement.getInstance().register(new VCardOntology());
     	OntologyManagement.getInstance().register(new ProfileOntology());
     	testRender = new TestFMRenderer(TestFMRenderer.SIMPLE_MANAGER);
         root = Form.newDialog("root", new Resource());
