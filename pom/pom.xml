@@ -37,7 +37,6 @@
 	</build>
 	<modules>
 		<module>../dm</module>
-		<module>../handler.gui</module>
 		<module>../handler.web</module>
 		<module>../handler.sms</module>
 		<module>../dm.mobile</module>
