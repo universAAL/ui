@@ -48,7 +48,7 @@ import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.service.ProfilingService;
-import org.universaal.ontology.useridprofileontology.owl.UserIDProfile;
+import org.universAAL.ontology.useridprofileontology.owl.UserIDProfile;
 
 /**
  * Display and retrieve Login Information.
