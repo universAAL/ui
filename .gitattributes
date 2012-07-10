@@ -78,3 +78,9 @@ handler.gui/src/main/resources/img/sound.gif -text
 handler.gui/src/main/resources/lib/TableLayout.jar -text
 handler.gui/src/main/resources/lib/pom.xml -text svneol=unset#text/plain
 handler.gui/src/test/java/org/universAAL/ui/handler/gui/test/ArtifactIntegrationTest.java -text
+security.authorizator/LICENSE.txt -text
+security.authorizator/pom.xml -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/AuthorizatorImpl.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/authorization/IAuthorizator.java -text
+security.authorizator/src/main/java/org/universAAL/ui/security/osgi/Activator.java -text
+security.authorizator/src/test/java/org/universAAL/ui/security/authorization/test/ArtifactIntegrationTest.java -text

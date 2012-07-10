@@ -2,3 +2,7 @@ handler.gui/.classpath
 handler.gui/.project
 handler.gui/.settings
 handler.gui/target
+security.authorizator/.classpath
+security.authorizator/.project
+security.authorizator/.settings
+security.authorizator/target
