@@ -13,7 +13,7 @@
 	<version>1.1.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>universAAL UI Framework</name>
-	<description>The set of artefacts realizing the universAAL user interface.</description>
+	<description>The set of artefacts realizing the universAAL user interaction management framework.</description>
 	<scm>
 		<connection>${svn.base}/pom</connection>
 		<developerConnection>${svn.base}/pom</developerConnection>
@@ -36,7 +36,6 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>../security.authorizator</module>
 		<module>../dm</module>
 		<module>../handler.gui</module>
 		<module>../handler.web</module>
