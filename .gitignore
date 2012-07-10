@@ -19,10 +19,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.project
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.settings
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/target
 handler.gui.swing/target
-handler.gui/.classpath
-handler.gui/.project
-handler.gui/.settings
-handler.gui/target
 handler.sms/.classpath
 handler.sms/.project
 handler.sms/target
@@ -34,7 +30,3 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
-security.authorizator/.classpath
-security.authorizator/.project
-security.authorizator/.settings
-security.authorizator/target
