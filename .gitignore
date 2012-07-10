@@ -1,10 +1,12 @@
 dm.mobile/.classpath
 dm.mobile/.project
 dm.mobile/.settings
+dm.mobile/bin
 dm.mobile/target
 dm/.classpath
 dm/.project
 dm/.settings
+dm/bin
 dm/target
 handler.gui.swing/*.log
 handler.gui.swing/.classpath
@@ -18,6 +20,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.classpath
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.project
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/.settings
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/target
+handler.gui.swing/bin
 handler.gui.swing/target
 handler.sms/.classpath
 handler.sms/.project
@@ -25,8 +28,10 @@ handler.sms/target
 handler.web/.classpath
 handler.web/.project
 handler.web/.settings
+handler.web/bin
 handler.web/target
 pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+resource.server/bin
