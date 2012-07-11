@@ -53,15 +53,15 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.ontology.HealthProfileOntology;
 import org.universAAL.ontology.phThing.PhysicalThing;
 import org.universAAL.ontology.profile.AssistedPersonProfile;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Profilable;
 import org.universAAL.ontology.profile.health.HealthProfile;
+import org.universAAL.ontology.profile.health.HealthProfileOntology;
 import org.universAAL.ontology.profile.UserProfile;
-import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.InteractionPreferencesProfile;
-import org.universAAL.ontology.profile.uipreferences.uipreferencesprofile.owl.UIPreferencesProfileOntology;
+import org.universAAL.ontology.profile.uipreferences.InteractionPreferencesProfile;
+import org.universAAL.ontology.profile.uipreferences.UIPreferencesProfileOntology;
 
 import com.hp.hpl.jena.db.DBConnection;
 import com.hp.hpl.jena.db.ModelRDB;
