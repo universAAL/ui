@@ -24,6 +24,8 @@ handler.gui.swing/bin
 handler.gui.swing/target
 handler.sms/.classpath
 handler.sms/.project
+handler.sms/.settings
+handler.sms/bin
 handler.sms/target
 handler.web/.classpath
 handler.web/.project
