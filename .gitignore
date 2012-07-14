@@ -90,6 +90,11 @@ ui.handler.gui.swing-1.0.4-SNAPSHOT/target
 ui.handler.sms-1.0.2-SNAPSHOT/.classpath
 ui.handler.sms-1.0.2-SNAPSHOT/.project
 ui.handler.sms-1.0.2-SNAPSHOT/target
+ui.handler.sms-1.1.2-SNAPSHOT/.classpath
+ui.handler.sms-1.1.2-SNAPSHOT/.project
+ui.handler.sms-1.1.2-SNAPSHOT/.settings
+ui.handler.sms-1.1.2-SNAPSHOT/bin
+ui.handler.sms-1.1.2-SNAPSHOT/target
 ui.handler.web-1.0.2-SNAPSHOT/.classpath
 ui.handler.web-1.0.2-SNAPSHOT/.project
 ui.handler.web-1.0.2-SNAPSHOT/.settings

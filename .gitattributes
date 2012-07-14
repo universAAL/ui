@@ -1674,6 +1674,12 @@ ui.handler.sms-1.0.2-SNAPSHOT/pom.xml -text
 ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
 ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
 ui.handler.sms-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
+ui.handler.sms-1.1.2-SNAPSHOT/LICENSE -text
+ui.handler.sms-1.1.2-SNAPSHOT/configurationFiles/ui.handler.sms/account.properties -text
+ui.handler.sms-1.1.2-SNAPSHOT/pom.xml -text
+ui.handler.sms-1.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
+ui.handler.sms-1.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
+ui.handler.sms-1.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-BSD-Dojo.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-JGCL.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-MIT11-Bouncycastle.txt -text
