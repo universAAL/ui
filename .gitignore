@@ -131,3 +131,8 @@ ui.pom-1.1.2-SNAPSHOT/.classpath
 ui.pom-1.1.2-SNAPSHOT/.project
 ui.pom-1.1.2-SNAPSHOT/.settings
 ui.pom-1.1.2-SNAPSHOT/target
+ui.resource.server-1.1.2-SNAPSHOT/.classpath
+ui.resource.server-1.1.2-SNAPSHOT/.project
+ui.resource.server-1.1.2-SNAPSHOT/.settings
+ui.resource.server-1.1.2-SNAPSHOT/bin
+ui.resource.server-1.1.2-SNAPSHOT/target
