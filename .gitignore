@@ -36,3 +36,8 @@ ui.handler.sms/.project
 ui.handler.sms/.settings
 ui.handler.sms/bin
 ui.handler.sms/target
+ui.resource.server/.classpath
+ui.resource.server/.project
+ui.resource.server/.settings
+ui.resource.server/bin
+ui.resource.server/target

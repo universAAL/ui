@@ -1120,3 +1120,9 @@ ui.handler.sms/pom.xml -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
+ui.resource.server/LICENSE.txt -text
+ui.resource.server/pom.xml -text
+ui.resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
+ui.resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
+ui.resource.server/src/main/resources/www/tst.txt -text
+ui.resource.server/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
