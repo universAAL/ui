@@ -2597,3 +2597,4 @@ ui.handler.web-1.0.2-SNAPSHOT/src/main/resources/webhandler/img/persona_logo.jpg
 ui.handler.web-1.0.2-SNAPSHOT/src/main/resources/webhandler/img/universAAL_logo.jpg -text
 ui.handler.web-1.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/handler/web/test/ArtifactIntegrationTest.java -text
 ui.pom-1.0.2-SNAPSHOT/pom.xml -text
+ui.pom-1.1.2-SNAPSHOT/pom.xml -text
