@@ -1,0 +1,8 @@
+#uAAL Dependencies:
+scan-composite:mvn:org.universAAL.context/ctxt.jena.converter/1.0.2-SNAPSHOT/composite
+scan-composite:mvn:org.universAAL.middleware/mw.bus.ui/1.0.1-SNAPSHOT/composite
+scan-composite:mvn:org.universAAL.middleware/mw.bus.context/1.0.1-SNAPSHOT/composite
+scan-composite:mvn:org.universAAL.ontology/ont.phWorld/1.0.1-SNAPSHOT/composite
+scan-composite:mvn:org.universAAL.ontology/ont.profile/1.0.1-SNAPSHOT/composite
+## Self:
+scan-bundle:mvn:org.universAAL.ui/ui.dm/1.0.2-SNAPSHOT
