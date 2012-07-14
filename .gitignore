@@ -12,3 +12,8 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+ui.handler.sms/.classpath
+ui.handler.sms/.project
+ui.handler.sms/.settings
+ui.handler.sms/bin
+ui.handler.sms/target
