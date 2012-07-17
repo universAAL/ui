@@ -37,8 +37,8 @@
     </developer>
   </developers>
   <scm>
-    <connection>${svn.base}/handler.newGui</connection>
-    <developerConnection>${svn.base}/handler.newGui</developerConnection>
+    <connection>${svn.base}/handler.gui.swing</connection>
+    <developerConnection>${svn.base}/handler.gui.swing</developerConnection>
     <url>${svn.base.url}handler.newGui</url>
   </scm>
   <build>
