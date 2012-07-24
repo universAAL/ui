@@ -141,7 +141,7 @@ public class ModelMapper {
 	     * if could not be found, use defaultLAF
 	     */
 	    Object model = tryToLoadClass(
-	            Renderer.getProerty(LAFPackageProperty), refObj, refObjClass);
+	            Renderer.getProperty(LAFPackageProperty), refObj, refObjClass);
 	    if (model == null) {
 	        model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
 	        if (model == null) {
@@ -215,7 +215,7 @@ public class ModelMapper {
     public InitInterface initializeLAF() {
     	InitInterface ii = null;
         try {
-           ii =  getLookAndFeel(Renderer.getProerty(LAFPackageProperty));
+           ii =  getLookAndFeel(Renderer.getProperty(LAFPackageProperty));
            ii.install(render);
         } catch (Exception e) {
             if (render.getModuleContext() != null) {

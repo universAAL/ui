@@ -160,7 +160,7 @@ public class Renderer extends Thread {
         moduleContext.logDebug(this.getClass().getName() +":","Initialising ModelMapper", null);
         modelMapper = new ModelMapper(this);
         moduleContext.logDebug(this.getClass().getName() +":","selecting Form Manager", null);
-        loadFormManager(getProerty(FORM_MANAGEMENT));
+        loadFormManager(getProperty(FORM_MANAGEMENT));
         moduleContext.logDebug(this.getClass().getName() +":","loading LAF", null);
         initLAF = modelMapper.initializeLAF();
     }
@@ -263,7 +263,7 @@ public class Renderer extends Thread {
      *         String Value of the property
      * @see Renderer#fileProp
      */
-    public static String getProerty(String string) {
+    public static String getProperty(String string) {
         try {
             return (String) fileProp.get(string);
         } catch (Exception e) {
@@ -344,7 +344,7 @@ public class Renderer extends Thread {
          *  Read Location from properties
          *  XXX other location process?
          */
-        return new Location(getProerty(GUI_LOCATION));
+        return new Location(getProperty(GUI_LOCATION));
     }
 
     /**

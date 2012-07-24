@@ -170,7 +170,7 @@ public class Handler extends UIHandler {
          * restrictions:
          */
     	UIHandlerProfile oep = new UIHandlerProfile();
-    	if (Boolean.parseBoolean(Renderer.getProerty("demo.mode"))) {
+    	if (Boolean.parseBoolean(Renderer.getProperty("demo.mode"))) {
     		/*
     		 * if enabled add the restrictions
     		 */
