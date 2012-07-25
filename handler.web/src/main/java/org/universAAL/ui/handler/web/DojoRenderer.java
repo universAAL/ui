@@ -4,6 +4,8 @@
 	Avanzadas - Grupo Tecnologias para la Salud y el 
 	Bienestar (TSB)
 	
+	2010-2012 Ericsson Nikola Tesla d.d., www.ericsson.com/hr
+	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
 	
@@ -34,9 +36,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIRequest;
@@ -73,21 +74,21 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     public static final String UNIVERSAAL_PANEL_COLUMNS = "urn:org.universAAL.dialog:PanelColumns";
     public static final String title = "universAAL-Web-Dojo-UIHandler";
 
-    private MyUIHandler os;
+    private MyUIHandler myUIHandler;
 
     private Hashtable<String, Boolean> waitingInputs;
     private Hashtable<String, UIRequest> readyOutputs;
     private Hashtable<String, WebIOSession> userSessions;
-
-    private final static Logger log = LoggerFactory
-	    .getLogger(DojoRenderer.class);
+    
+    private ModuleContext mContext; 
 
     public DojoRenderer(ModuleContext mcontext) {
 	super();
+	mContext=mcontext;
 	waitingInputs = new Hashtable<String, Boolean>();
 	readyOutputs = new Hashtable<String, UIRequest>();
 	userSessions = new Hashtable<String, WebIOSession>();
-	os = new MyUIHandler(mcontext, getOutputSubscriptionParams(), this);
+	myUIHandler = new MyUIHandler(mcontext, getOutputSubscriptionParams(), this);
     }
 
     private UIHandlerProfile getOutputSubscriptionParams() {
@@ -106,7 +107,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     public void finish(String userURI) {
 	this.userSessions.remove(userURI);
 	this.userURIs.remove(userURI);
-	log.info("Finished user session for {} ", userURI);
+	LogUtils.logInfo(mContext, this.getClass(), "finish",
+		new Object[] { "Finished user session for " +userURI }, null);
     }
 
     void popMessage(Form f) {
@@ -508,11 +510,14 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    throws ServletException, IOException {
 	UIRequest o;
 	WebIOSession ses = new WebIOSession();
-	log.info("web handler, doPost: request-> " + req);
-	// BEGIN AUTHENTICATION BLOCK
+	LogUtils.logInfo(mContext, this.getClass(), "doPost",
+		new Object[] { "received HTTP Servlet Request " +req }, null);
+		// BEGIN AUTHENTICATION BLOCK
 	// Check if user is authorized
 	if (!handleAuthorization(req, resp)) {
-	    log.info("Received unauthorized HTTP request");
+	    LogUtils.logInfo(mContext, this.getClass(), "doPost",
+			new Object[] { "Received unauthorized HTTP request!"}, null);
+	    
 	    return;
 	}
 	String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
@@ -521,12 +526,14 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	// hardcoded line/user for e.g. testing purposes
 	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 	// + "remoteUser";
-
-	log.info("Received HTTP request from user {} ", userURI);
-	// Check if it is the first time
+	LogUtils.logInfo(mContext, this.getClass(), "doPost",
+		new Object[] { "Received HTTP request from user: "+ userURI}, null);
+    // Check if it is the first time
 	if (!userSessions.containsKey(userURI)) {
 	    // Start and request main menu
-	    log.info("Starting interaction and session with {} ", userURI);
+	    LogUtils.logInfo(mContext, this.getClass(), "doPost",
+			new Object[] { "Starting interaction and session with user: "+ userURI}, null);
+	    
 	    userSessions.put(userURI, ses);
 
 	    // FIXME was in version with IO bus:
@@ -536,7 +543,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
 	    //added instead above 2 rows when movin to UI bus
 	    //important that following 2 rows are not switched
-	    os.userLoggedIn(new User(userURI), null);
+	    myUIHandler.userLoggedIn(new User(userURI), null);
 	    o = (UIRequest) readyOutputs.remove(userURI);
 
 	    ses.setCurrentUIRequest(o);
@@ -662,7 +669,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	resp.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 	resp.setContentType("text/html");
 	out.println(html.toString());
-	log.info("Rendered HTML response page");
+	LogUtils.logInfo(mContext, this.getClass(), "doPost",
+		new Object[] { "HTML response page rendered."}, null);
     }
 
     /*
@@ -682,17 +690,21 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	synchronized (waitingInputs) {
 	    String user = ((User) event.getUser()).getURI();
 	    waitingInputs.put(user, first);
-	    log.info("Making UIRequest for user {} ", user);
-
+	    LogUtils.logInfo(mContext, this.getClass(), "publish",
+			new Object[] { "Making UIRequest for user: "+ user}, null);
+	    
 	    while (o == null) {
 		try {
-		    log.info("Waiting for Outputs");
+		    LogUtils.logInfo(mContext, this.getClass(), "publish",
+				new Object[] { "Waiting for Outputs.."}, null);
 		    waitingInputs.wait();
 		    o = (UIRequest) readyOutputs.remove(user);
-		    log.info("Got Output");
+		    LogUtils.logInfo(mContext, this.getClass(), "publish",
+				new Object[] { "Got outputs."}, null);
 		} catch (InterruptedException e) {
-		    log.error("Exception while waiting for Outputs: {} ", e);
-		    e.printStackTrace();
+		    LogUtils.logError(mContext, this.getClass(), "publish",
+				new Object[] { "Exception while waiting for Outputs"}, e);
+		    	
 		}
 	    }
 	}
@@ -700,7 +712,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     }
 
     public UIRequest dialogFinished(Submit s, String userURI) {
-	log.info("User {} pressed a button", userURI);
+	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
+		new Object[] { "User "+ userURI + " pressed a button."}, null);
+   	
 	if (s == null)
 	    return this.userSessions.get(userURI).getCurrentUIRequest();
 	// for the next line, see the comment within handleUIRequest() above
@@ -711,20 +725,20 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    UIResponse uiResp = new UIResponse(((UIRequest) o)
 		    .getAddressedUser(), ((UIRequest) o)
 		    .getPresentationLocation(), s);
-	    os.dialogFinished(uiResp);
+	    myUIHandler.dialogFinished(uiResp);
 	    return this.publish(uiResp, Boolean.FALSE);
 	} else {
-	    synchronized (os) {
+	    synchronized (myUIHandler) {
 		UIResponse ie = new UIResponse(
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest().getAddressedUser(),
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest()
 				.getPresentationLocation(), s);
-		if (s.getDialogID().equals(os.dialogID))
+		if (s.getDialogID().equals(myUIHandler.dialogID))
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
-		os.dialogFinished(ie);
+		myUIHandler.dialogFinished(ie);
 		return this.publish(ie, Boolean.FALSE);
 	    }
 	}
