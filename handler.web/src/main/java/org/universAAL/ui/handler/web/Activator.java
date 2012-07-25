@@ -4,6 +4,8 @@
 	Avanzadas - Grupo Tecnologias para la Salud y el 
 	Bienestar (TSB)
 	
+	2010-2012 Ericsson Nikola Tesla d.d., www.ericsson.com/hr
+	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
 	
