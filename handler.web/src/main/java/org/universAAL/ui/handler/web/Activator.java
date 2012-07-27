@@ -42,6 +42,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
  */
 public class Activator implements BundleActivator, ServiceListener {
 
+    /**  */
     private static TypeMapper tm = null;
 
     /** the {@link BundleContext}. */
@@ -50,9 +51,9 @@ public class Activator implements BundleActivator, ServiceListener {
     /** The mcontext. {@link ModuleContext} */
     private static ModuleContext mcontext;
 
-    /**
-     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
-     *      )
+ 
+    /* (non-Javadoc)
+     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
      */
     public void start(BundleContext context) throws Exception {
 	LogUtils.logInfo(Activator.mcontext, this.getClass(), "start",
@@ -87,7 +88,8 @@ public class Activator implements BundleActivator, ServiceListener {
 		new Object[] { "Web UI Handler started." }, null);
     }
 
-    /**
+ 
+    /* (non-Javadoc)
      * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
     public void stop(BundleContext arg0) throws Exception {
@@ -95,7 +97,8 @@ public class Activator implements BundleActivator, ServiceListener {
 		new Object[] { "Web UI Handler stopped." }, null);
     }
 
-    /**
+
+    /* (non-Javadoc)
      * @see org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.ServiceEvent)
      */
     public void serviceChanged(ServiceEvent event) {

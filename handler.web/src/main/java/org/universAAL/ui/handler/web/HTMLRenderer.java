@@ -67,17 +67,18 @@ import org.universAAL.ri.servicegateway.GatewayPort;
 public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 
     private static final long serialVersionUID = -4986118000986648808L;
-    public static final String UNIVERSAAL_ASSOCIATED_LABEL = "urn:org.universAAL.dialog:AssociatedLabel";
-    public static final String UNIVERSAAL_CLOCK_THREAD = "urn:org.universAAL.dialog:TheClockThread";
-    public static final String UNIVERSAAL_FORM_CONTROL = "urn:org.universAAL.dialog:FormControl";
-    public static final String UNIVERSAAL_PANEL_COLUMNS = "urn:org.universAAL.dialog:PanelColumns";
-    public static final String title = "universAAL-Web-HTML-UIHandler";
-
+//    public static final String UNIVERSAAL_ASSOCIATED_LABEL = "urn:org.universAAL.dialog:AssociatedLabel";
+//    public static final String UNIVERSAAL_CLOCK_THREAD = "urn:org.universAAL.dialog:TheClockThread";
+//    public static final String UNIVERSAAL_FORM_CONTROL = "urn:org.universAAL.dialog:FormControl";
+//    public static final String UNIVERSAAL_PANEL_COLUMNS = "urn:org.universAAL.dialog:PanelColumns";
+    public static final String RENDERER_NAME = "universAAL-Web-HTML-UIHandler";
+   
+ 
     private MyUIHandler myUIHandler;
 
     private Hashtable<String, Boolean> waitingInputs;
-    private Hashtable<String, UIRequest> readyOutputs;
-    private Hashtable<String, WebIOSession> userSessions;
+    private Hashtable<String, UIRequest> readyOutputs; //userUri, UIRequest
+    private Hashtable<String, WebIOSession> userSessions; //user, web session
 
     
     private ModuleContext mContext; 
@@ -109,7 +110,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	this.userSessions.remove(userURI);
 	this.userURIs.remove(userURI);
 	LogUtils.logInfo(mContext, this.getClass(), "finish",
-		new Object[] { "Finished user session for " +userURI }, null);
+		new Object[] { "Finished user session for userURI:" +userURI}, null);
     }
 
     void popMessage(Form f) {
@@ -711,6 +712,13 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     @Override
     public Hashtable<String, Boolean> getWaitingInputs() {
 	return this.waitingInputs;
+    }
+    
+    /* (non-Javadoc)
+     * @see org.universAAL.ui.handler.web.IWebRenderer#getRendererName()
+     */
+    public String getRendererName() {
+        return RENDERER_NAME;
     }
 
     /**
