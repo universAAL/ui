@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
  *
@@ -47,9 +48,15 @@ public class Activator implements BundleActivator {
         BundleContext[] bc = { context };
         Activator.context = uAALBundleContainer.THE_CONTAINER
                 .registerModule(bc);
-        Renderer.setHome(home.getAbsolutePath());
-        render = new Renderer(Activator.context);
-        render.start();
+        // Vadim - put renderer creation in a separate thread,
+        // see a discussion here - http://forge.universaal.org/gf/project/uaal_ui/forum/?_forum_action=ForumMessageBrowse&thread_id=91&action=ForumBrowse&forum_id=89
+    	(new Thread() { 
+    		public void run(){
+		    Renderer.setHome(home.getAbsolutePath());
+		    render = new Renderer(Activator.context);
+		    render.start();
+		}
+	    }).start();
     }
 
     /** {@inheritDoc} */
