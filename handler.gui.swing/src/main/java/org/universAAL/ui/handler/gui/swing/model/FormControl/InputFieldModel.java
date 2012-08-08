@@ -145,7 +145,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 	    if (maxLength > 0) {
 		tf = new JTextField(maxLength);
 	    } else {
-		tf = new JTextField();
+		tf = new JTextField(7);
 	    }
 	    tf.addCaretListener(this);
 	    return tf;
