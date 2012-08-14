@@ -40,9 +40,9 @@ import org.universAAL.ontology.profile.User;
  * 
  */
 public class MyUIHandler extends UIHandler {
-    
-    //contains dialogIDs as keys and users as values
-    private Hashtable<String, String> userDialogIDs = new Hashtable<String, String>();
+    // contains dialogIDs as keys and users as values
+    Hashtable<String, String> userDialogIDs = new Hashtable<String, String>();
+    // FIXME this is always NULL!!!!
     String dialogID = null;
     private IWebRenderer renderer = null;
 
@@ -75,8 +75,8 @@ public class MyUIHandler extends UIHandler {
 	synchronized (this) {
 	    if (this.userDialogIDs.containsKey(dialogID)) {
 		UIRequest currentUIRequest = ((WebIOSession) renderer
-			.getUserSessions().get(
-				this.userDialogIDs.get(dialogID)))
+			.getUserSessions()
+			.get(this.userDialogIDs.get(dialogID)))
 			.getCurrentUIRequest();
 		if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
 			&& newVal instanceof Integer
@@ -133,10 +133,10 @@ public class MyUIHandler extends UIHandler {
 	synchronized (this) {
 	    if (this.userDialogIDs.containsKey(dialogID)) {
 		UIRequest currentUIRequest = ((WebIOSession) renderer
-			.getUserSessions().get(
-				 this.userDialogIDs.get(dialogID)))
+			.getUserSessions()
+			.get(this.userDialogIDs.get(dialogID)))
 			.getCurrentUIRequest();
-		renderer.finish((String)(this.userDialogIDs.get(dialogID)));
+		renderer.finish((String) (this.userDialogIDs.get(dialogID)));
 		Resource data = currentUIRequest.getDialogForm().getData();
 		currentUIRequest = null;
 		return data;
@@ -157,16 +157,17 @@ public class MyUIHandler extends UIHandler {
 	// avoid casting to User since in new prof ont User is not parent class
 	// for Assisted Person
 
-	String user = ((User)uiRequest.getAddressedUser()).getURI();
+	String user = ((User) uiRequest.getAddressedUser()).getURI();
 	LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
-		new Object[] { "Received UIRequest for user {} ", user }, null);
-
-	// uncomment this log if you want to see whole UIRequest
+		new Object[] { "Received UIRequest for user: " + user
+			+ " and is of type: " + uiRequest.getDialogType() },
+		null);
+	// FIXME uncomment this log if you want to see whole UIRequest
 	// LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
 	// new Object[] { "uiRequest.toStringRecursive(): " +
 	// uiRequest.toStringRecursive() }, null);
 
-	//new comment: when new UIRequest comes lock the waiting inputs
+	// new comment: when new UIRequest comes lock the waiting inputs
 	synchronized (renderer.getWaitingInputs()) {
 	    Boolean first = (Boolean) renderer.getWaitingInputs().remove(user);
 	    LogUtils.logDebug(mContext, this.getClass(), "handleUICall",
@@ -215,14 +216,19 @@ public class MyUIHandler extends UIHandler {
 			// MAINMENU
 			this.userDialogIDs.put(uiRequest.getDialogID(), user);
 			renderer.getWaitingInputs().notifyAll();
-		    }
+		    } else {
 
-		    LogUtils.logDebug(mContext, this.getClass(),
-			    "handleUICall",
-			    new Object[] { "Received dialog is System Menu: "
-				    + uiRequest.getDialogType() }, null);
-		    // log.debug("-------IS sysMenu -> {}", uiRequest
-		    // .getDialogType());
+			LogUtils
+				.logDebug(
+					mContext,
+					this.getClass(),
+					"handleUICall",
+					new Object[] { "Received dialog is System Menu: "
+						+ uiRequest.getDialogType() },
+					null);
+			// log.debug("-------IS sysMenu -> {}", uiRequest
+			// .getDialogType());
+		    }
 		}
 	    } else {
 		LogUtils.logDebug(mContext, this.getClass(), "handleUICall",

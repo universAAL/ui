@@ -93,7 +93,7 @@ public class Activator implements BundleActivator, ServiceListener {
      * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
     public void stop(BundleContext arg0) throws Exception {
-	LogUtils.logInfo(Activator.mcontext, this.getClass(), "start",
+	LogUtils.logInfo(Activator.mcontext, this.getClass(), "stop",
 		new Object[] { "Web UI Handler stopped." }, null);
     }
 
