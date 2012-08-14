@@ -1112,12 +1112,10 @@ handler.web/src/main/resources/webhandler/dojoroot/dojo/rpc/JsonpService.js -tex
 handler.web/src/main/resources/webhandler/dojoroot/dojo/rpc/RpcService.js -text
 handler.web/src/main/resources/webhandler/dojoroot/dojo/string.js -text
 handler.web/src/main/resources/webhandler/htmlbase.html -text
-handler.web/src/main/resources/webhandler/img/bt_white2.gif -text
-handler.web/src/main/resources/webhandler/img/bt_white3.gif -text
-handler.web/src/main/resources/webhandler/img/pers3mini.ico -text
-handler.web/src/main/resources/webhandler/img/persona_logo.jpg -text
+handler.web/src/main/resources/webhandler/img/home_icon_small.png -text
 handler.web/src/main/resources/webhandler/img/uaal64x32.ico -text
-handler.web/src/main/resources/webhandler/img/universAAL_logo.jpg -text
+handler.web/src/main/resources/webhandler/img/universAAL_logo.png -text
+handler.web/src/main/resources/webhandler/img/universaal-logo-white.png -text
 handler.web/src/test/java/org/universAAL/ui/handler/web/test/ArtifactIntegrationTest.java -text
 pom/pom.xml -text
 resource.server/LICENSE.txt -text
