@@ -26,7 +26,9 @@ public class LineSeparator extends JComponent{
 //    }
     @Override
     public Dimension getMaximumSize() {
-        return new Dimension(Integer.MAX_VALUE, image.getHeight());
+    	
+        return new Dimension(this.getParent().getWidth(), //Integer.MAX_VALUE
+        		image.getHeight());
         
     }
     public void paintComponent(Graphics g) {
