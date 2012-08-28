@@ -29,23 +29,23 @@ dm/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
 dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 dm/src/test/java/org/universAAL/ui/dm/test/ArtifactIntegrationTest.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/GroupLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Init.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/InputFieldLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/LabelLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/MediaObjectLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RangeLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatModelTableLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Select1LAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SelectLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SimpleOutputLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubdialogTriggerLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubmitLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/TextAreaLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/package.html -text
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Init.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text

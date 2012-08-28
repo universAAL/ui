@@ -61,12 +61,12 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color borderLineMM = new Color(102, 111, 127);
     final private static Color font = new Color(0, 0, 0);
 
-    final private static int FONT_SIZE_BASE = 12;
-    final private static Font bold =
+    private int FONT_SIZE_BASE = 20;
+    private Font bold =
             new Font("Arial", Font.BOLD, FONT_SIZE_BASE + 4);
-    final private static Font plain =
+    private Font plain =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
-    final private static Font label =
+    private Font label =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
 
     /** {@inheritDoc} */
@@ -99,51 +99,51 @@ public class ColorLAF extends DefaultMetalTheme {
     return secondary3;
     }
 
-    protected static Color getOrange() {
+    protected Color getOrange() {
     return orange;
     }
 
-    protected static Color getBackSystem() {
+    protected Color getBackSystem() {
     return BackSystem;
     }
 
-    protected static Color getBackLetter() {
+    protected Color getBackLetter() {
     return BackLetter;
     }
 
-    protected static Color getOverSytem() {
+    protected Color getOverSytem() {
     return OverSytem;
     }
 
-    protected static Color getSelectedLetter() {
+    protected Color getSelectedLetter() {
     return SelectedLetter;
     }
 
-    protected static Color getborderLine() {
+    protected Color getborderLine() {
     return borderLine;
     }
 
-    protected static Color getBackMM() {
+    protected Color getBackMM() {
     return BackMM;
     }
 
-    protected static Color getBackMML() {
+    protected Color getBackMML() {
     return BackMML;
     }
 
-    protected static Color getborderLineMM() {
+    protected Color getborderLineMM() {
     return borderLineMM;
     }
 
-    protected static Color getfont() {
+    protected Color getfont() {
     return font;
     }
 
-    protected static Font getbold() {
+    protected Font getbold() {
     return bold;
     }
 
-    protected static Font getplain() {
+    protected Font getplain() {
     return plain;
     }
 
@@ -166,7 +166,7 @@ public class ColorLAF extends DefaultMetalTheme {
      * get the font for any label.
      * @return the {@link Font} to use in labels
      */
-    public static Font getLabelFont() {
+    public Font getLabelFont() {
     return label;
     }
 }
