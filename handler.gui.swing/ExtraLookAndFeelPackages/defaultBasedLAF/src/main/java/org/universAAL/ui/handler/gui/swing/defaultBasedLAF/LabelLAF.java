@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 
 /**
@@ -31,20 +30,23 @@ public class LabelLAF extends LabelModel {
 
 
 
-    /**
+	private ColorLAF color;
+
+	/**
      * Constructor
      * @param l the {@link Label} which to model.
      */
     public LabelLAF(Label l, Renderer render) {
         super(l, render);
+        color = ((Init) render.getInitLAF()).getColorLAF();
     }
 
     /** {@inheritDoc} */
     public JLabel getComponent() {
         JLabel jl = super.getComponent();
         jl.getAccessibleContext().setAccessibleName(jl.getText());
-        jl.setFont(ColorLAF.getLabelFont());
-        jl.setForeground(ColorLAF.getborderLineMM());
+        jl.setFont(color.getLabelFont());
+        jl.setForeground(color.getborderLineMM());
         return jl;
     }
 

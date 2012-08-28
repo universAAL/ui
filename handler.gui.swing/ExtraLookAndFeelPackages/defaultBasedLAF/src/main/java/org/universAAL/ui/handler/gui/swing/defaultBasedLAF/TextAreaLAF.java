@@ -21,7 +21,6 @@ import javax.swing.JTextArea;
 
 import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel;
 
 /**
@@ -39,6 +38,8 @@ public class TextAreaLAF extends TextAreaModel {
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
+
+	private ColorLAF color;
     
     /**
      * Constructor.
@@ -46,8 +47,7 @@ public class TextAreaLAF extends TextAreaModel {
      */
     public TextAreaLAF(TextArea control, Renderer render) {
         super(control, render);
-
-
+        color = ((Init) render.getInitLAF()).getColorLAF();
     }
     
     /** {@inheritDoc} */
@@ -63,8 +63,8 @@ public class TextAreaLAF extends TextAreaModel {
         ta.setWrapStyleWord(true);
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
-        ta.setFont(ColorLAF.getplain());
-        ta.setForeground(ColorLAF.getfont());
+        ta.setFont(color.getplain());
+        ta.setForeground(color.getfont());
     }
 
 

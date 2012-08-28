@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.gui.swing.defaultBasedLAF;
 
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
 
 /**
@@ -27,19 +26,22 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
 public class InputFieldLAF extends InputFieldModel {
 
 
-    /**
+	private ColorLAF color;
+
+	/**
      * Constructor
      * @param control the {@link InputField} which to model.
      */
     public InputFieldLAF(InputField control, Renderer render) {
         super(control, render);
+        color = ((Init) render.getInitLAF()).getColorLAF();
     }
 
     /** {@inheritDoc} */
     public void update() {
 	if (jc != null){
 	    super.update();
-	    jc.setFont(ColorLAF.getplain());
+	    jc.setFont(color.getplain());
 	}
     }
 

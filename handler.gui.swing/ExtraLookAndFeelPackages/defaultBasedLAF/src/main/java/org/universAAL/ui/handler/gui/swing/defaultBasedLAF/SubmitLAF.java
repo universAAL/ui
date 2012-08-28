@@ -27,7 +27,6 @@ import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
@@ -82,10 +81,10 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		return buttonDecorate(this, super.getNewComponent());
+		return buttonDecorate(this, super.getNewComponent(), ((Init)getRenderer().getInitLAF()).getColorLAF());
 	}
 
-	protected static JComponent buttonDecorate(Model model, JComponent button) {
+	protected static JComponent buttonDecorate(Model model, JComponent button, ColorLAF color) {
 		Color normalF;
 		Color normalB;
 		Color enterF;
@@ -98,25 +97,25 @@ public class SubmitLAF extends SubmitModel {
 			/*
 			 * System Buttons
 			 */
-			border = ColorLAF.getborderLineMM();
-			normalF = ColorLAF.getBackMML();
-			normalB = ColorLAF.getBackMM();
-			enterF = ColorLAF.getBackLetter();
-			enterB = ColorLAF.getOverSytem();
-			clickF = ColorLAF.getBackLetter();
-			clickB = ColorLAF.getOverSytem();
+			border = color.getborderLineMM();
+			normalF = color.getBackMML();
+			normalB = color.getBackMM();
+			enterF = color.getBackLetter();
+			enterB = color.getOverSytem();
+			clickF = color.getBackLetter();
+			clickB = color.getOverSytem();
 		}
 		else {
 			/*
 			 * buttons inside IO
 			 */
-			border = ColorLAF.getborderLine();
-			normalF = ColorLAF.getBackLetter();
-			normalB = ColorLAF.getBackSystem();
-			enterF = ColorLAF.getBackLetter();
-			enterB = ColorLAF.getOverSytem();
-			clickF = ColorLAF.getSelectedLetter();
-			clickB = ColorLAF.getBackSystem();
+			border = color.getborderLine();
+			normalF = color.getBackLetter();
+			normalB = color.getBackSystem();
+			enterF = color.getBackLetter();
+			enterB = color.getOverSytem();
+			clickF = color.getSelectedLetter();
+			clickB = color.getBackSystem();
 		}
 		setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
 				clickF, clickB);

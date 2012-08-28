@@ -23,7 +23,6 @@ import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultBasedLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -32,13 +31,15 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
  */
 public class GroupLAF extends GroupModel {
 
+	private ColorLAF color;
 
-    /**
+	/**
      * Constructor.
      * @param control the {@link Group} which to model
      */
     public GroupLAF(Group control, Renderer render) {
         super(control, render);
+        color = ((Init) render.getInitLAF()).getColorLAF();
     }
 
     /** {@inheritDoc} */
@@ -49,7 +50,7 @@ public class GroupLAF extends GroupModel {
              * Tabbed group
              */
             jc.getAccessibleContext();
-            jc.setFont(ColorLAF.getplain());
+            jc.setFont(color.getplain());
         }
         else if (!((Group) fc).isRootGroup()) {
             /*
@@ -63,11 +64,12 @@ public class GroupLAF extends GroupModel {
                 label = "";
             }
             //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-            Border line = BorderFactory.createLineBorder(ColorLAF.getOrange());
+            Border line = BorderFactory.createLineBorder(color.getOrange());
             TitledBorder title;
             title = BorderFactory.createTitledBorder
                     (line, label, 0, 0,
-                            ColorLAF.getbold(), ColorLAF.getborderLineMM());
+                    		color.getbold(),
+                    		color.getborderLineMM());
             jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
