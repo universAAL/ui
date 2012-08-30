@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
+import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -35,5 +36,19 @@ public interface InitInterface {
      */
     public void install(Renderer render);
 
-    //XXX: need an uninstall?
+    /**
+     * The procedure of uninstalling the LAF.
+     * Any actions needed to stop using the LAF package, and leave the swing system as default should be done
+     * here.
+     * <br>
+     * For example reestablishing the UIManager.
+     * @param render TODO
+     */
+    public void uninstall();
+    
+    /**
+     * When a user logs in this method is called. This enables the LAF package to adapt colours and sizes to the user's specific impairments.
+     * @param usr The user that just logged in.
+     */
+    public void userLogIn(User usr);
 }

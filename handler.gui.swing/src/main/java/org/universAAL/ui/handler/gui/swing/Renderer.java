@@ -247,6 +247,7 @@ public class Renderer extends Thread {
         /*
          *  should there be some feedback to the application - DM?
          */
+        initLAF.uninstall();
         fm.flush();
         handler.close();
         /*
@@ -306,6 +307,7 @@ public class Renderer extends Thread {
      */
     void setCurrentUser(User user) {
         handler.setCurrentUser(user);
+        initLAF.userLogIn(user);
     }
 
     /**
