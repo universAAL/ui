@@ -22,7 +22,6 @@ import javax.swing.JPanel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * Model for Forms, all {@link FormLAF} should extend this class
@@ -170,7 +169,8 @@ public abstract class FormModel {
      * {@link Form#getIOControls()} group.
      */
     protected JPanel getIOPanel() {
-        JComponent jio = new GroupModel(form.getIOControls(), getRenderer()).getComponent();
+        //JComponent jio = new GroupModel(form.getIOControls(), getRenderer()).getComponent();
+    	JComponent jio = getRenderer().getModelMapper().getModelFor(form.getIOControls()).getComponent();
         jio.setName(IO_NAME);
         return (JPanel) jio;
     }
@@ -182,7 +182,8 @@ public abstract class FormModel {
      * {@link Form#getStandardButtons()} group.
      */
     protected JPanel getSystemPanel() {
-        JComponent jsys = new GroupModel(form.getStandardButtons(), getRenderer()).getComponent();
+        //JComponent jsys = new GroupModel(form.getStandardButtons(), getRenderer()).getComponent();
+    	JComponent jsys = getRenderer().getModelMapper().getModelFor(form.getStandardButtons()).getComponent();
         jsys.setName(SYS_NAME);
         return (JPanel) jsys;
     }
@@ -194,7 +195,8 @@ public abstract class FormModel {
      * {@link Form#getSubmits()} group.
      */
     protected JPanel getSubmitPanel() {
-        JComponent jstd = new GroupModel(form.getSubmits(), getRenderer()).getComponent();
+        //JComponent jstd = new GroupModel(form.getSubmits(), getRenderer()).getComponent();
+    	JComponent jstd = getRenderer().getModelMapper().getModelFor(form.getSubmits()).getComponent();
         jstd.setName(SUB_NAME);
         return (JPanel) jstd;
     }
