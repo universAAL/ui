@@ -74,6 +74,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ButtonUI.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ColorBorder.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/GradientLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/GraySeparator.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/LAFButton.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/LAFPanel.java -text
