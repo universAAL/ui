@@ -17,6 +17,7 @@ package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
@@ -32,7 +33,6 @@ import javax.swing.border.CompoundBorder;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
-import org.universAAL.ui.gui.swing.waveLAF.support.LineSeparator;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
@@ -76,8 +76,7 @@ public class FormLAF extends FormModel  {
                 ioPanel.getHeight()));
         //FIXME resize Layout+scroll
          */
-    	JPanel ioPanel =  new GradientLAF();
-    		ioPanel=super.getIOPanel();
+    	JPanel ioPanel = super.getIOPanel();
     	
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -91,8 +90,7 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getSubmitPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getSubmitPanelScroll(int depth) {
-        JPanel submit = new GradientLAF(); 
-        	submit=super.getSubmitPanel(depth);
+        JPanel submit = super.getSubmitPanel(depth);
         submit.setLayout(new BoxLayout(submit, BoxLayout.Y_AXIS));
         return new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -105,6 +103,8 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
      */
     protected JScrollPane getSystemPanelScroll() {
+    	JPanel system = super.getSystemPanel();
+        system.setLayout(new BoxLayout(system, BoxLayout.X_AXIS));
         return new JScrollPane(super.getSystemPanel(),
                 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -122,9 +122,9 @@ public class FormLAF extends FormModel  {
             icon.setDescription("UniversAAL Logo Image");
              JLabel logo = new JLabel(icon);
             logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-            JComponent nuevo=new GradientLAF(); 
+            //JComponent nuevo=new GradientLAF(); 
             header.add(logo);
-            header.add(nuevo);
+            //header.add(nuevo);
         
              return (JPanel) header;
         }
