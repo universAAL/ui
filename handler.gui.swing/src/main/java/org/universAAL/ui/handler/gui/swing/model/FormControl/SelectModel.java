@@ -144,7 +144,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
         if (!((Select) fc).isMultilevel()) {
         	int[] indexes = ((JList) e.getSource()).getSelectedIndices();
         	Label[] items = ((Select) fc).getChoices();
-        	selected.removeAll(selected);
+        	selected.clear();
         	for (int i = 0; i < indexes.length; i++) {
 				selected.add(items[indexes[i]]);
 			}

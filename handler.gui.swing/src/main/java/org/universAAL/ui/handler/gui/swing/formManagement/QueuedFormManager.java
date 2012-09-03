@@ -114,8 +114,8 @@ public class QueuedFormManager implements FormManager {
      */
     private void closeCurrentDialogAndLoadNext() {
         if (dialogQueue.peek() != null
-                && !((UIRequest) dialogQueue.peek()).getType()
-                .equals(DialogType.message)
+                && ((UIRequest) dialogQueue.peek()).getDialogType()
+                != DialogType.message
                 && currentDialog != null) {
             /*
              * if next dialog is not a message
@@ -140,8 +140,8 @@ public class QueuedFormManager implements FormManager {
      */
     private void renderNextDialog() {
         if (dialogQueue.peek() != null)  {
-            if (((UIRequest) dialogQueue.peek()).getType()
-                    .equals(DialogType.message)) {
+            if (((UIRequest) dialogQueue.peek()).getDialogType() 
+            		==DialogType.message ) {
                 /*
                  * if its a message, just render message
                  */
@@ -167,8 +167,8 @@ public class QueuedFormManager implements FormManager {
      */
     public void closeCurrentDialog() {
         if (dialogQueue.peek() != null
-                && !((UIRequest) dialogQueue.peek()).getType()
-                .equals(DialogType.message)
+                && ((UIRequest) dialogQueue.peek()).getDialogType()
+                != DialogType.message
                 && currentDialog != null) {
             /*
              * if next dialog is not a message

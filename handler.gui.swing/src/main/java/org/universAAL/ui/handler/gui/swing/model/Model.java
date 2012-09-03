@@ -143,7 +143,7 @@ public abstract class Model {
             g = fc.getParentGroup();
         }
         while (!g.isRootGroup()
-                && g.getLabel().getText() != grpID) {
+                && !g.getLabel().getText().equals(grpID)) {
             g = g.getParentGroup();
         }
         return g.getLabel().getText().equals(grpID);

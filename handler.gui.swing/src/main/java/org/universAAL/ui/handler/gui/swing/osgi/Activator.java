@@ -28,19 +28,19 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
-public class Activator implements BundleActivator {
+public final class Activator implements BundleActivator {
 
     /**
      * the {@link BundleContext} for the handler.newGui bundle
      */
-    public static ModuleContext context = null;
+    static ModuleContext context = null;
 
     /**
      * the home directory where to store the config files.
      */
     public BundleConfigHome home = null;
 
-    public static Renderer render;
+    static Renderer render;
 
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {

@@ -17,7 +17,9 @@ package org.universAAL.ui.handler.gui.swing;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
@@ -66,7 +68,7 @@ public class Renderer extends Thread {
     /**
      * The configuration properties read from the file.
      */
-    protected static Properties fileProp;
+    protected Properties fileProp;
 
     /**
      * Form Logic Manager. it will decide
@@ -126,7 +128,7 @@ public class Renderer extends Thread {
     /**
      * Directory for configuration files.
      */
-    protected static String homeDir = "./";
+    protected static String homeDir = "./"; // TODO: obtain config files/dir from Module context
 
     /**
      * FileName for the main configuration File
@@ -188,28 +190,41 @@ public class Renderer extends Thread {
         /*
          * Try to load from file, if not create file from defaults.
          */
-        try {
-            fileProp.load(new FileInputStream(getHomeDir() + RENDERER_CONF));
-        } catch (Exception e) {
-            storeProperties();
-        }
+        	FileInputStream fis;
+			try {
+				fis = new FileInputStream(getHomeDir() + RENDERER_CONF);
+				fileProp.load(fis);
+				fis.close();
+			} catch (FileNotFoundException e) {
+				storeProperties();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
     }
 
     /**
      * Save the current properties in the file
      */
     protected void storeProperties() {
-        try {
-            fileProp.store(new FileOutputStream(getHomeDir() + RENDERER_CONF),
-                    "Configuration file for SWING Renderer");
-        } catch (Exception e1) {
-            File dir = new File(getHomeDir());
-            if (!dir.exists()) {
-                dir.mkdir();
-                storeProperties();
-            }
-            moduleContext.logError(this.getClass().getName() +":",NO_SAVE, e1);
-        }
+
+        	FileOutputStream fos;
+			try {
+				fos = new FileOutputStream(getHomeDir() + RENDERER_CONF);
+				fileProp.store( fos,
+				        "Configuration file for SWING Renderer");
+				fos.close();
+			} catch (FileNotFoundException e1) {
+				File dir = new File(getHomeDir());
+	            if (!dir.exists()) {
+	                dir.mkdir();
+	                storeProperties();
+	            }
+	            moduleContext.logError(this.getClass().getName() +":",NO_SAVE, e1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
     }
 
     /**
@@ -264,7 +279,7 @@ public class Renderer extends Thread {
      *         String Value of the property
      * @see Renderer#fileProp
      */
-    public static String getProperty(String string) {
+    public String getProperty(String string) {
         try {
             return (String) fileProp.get(string);
         } catch (Exception e) {
@@ -356,7 +371,7 @@ public class Renderer extends Thread {
      *         Absolute path to configuration directory
      */
     public static void setHome(String absolutePath) {
-        Renderer.homeDir = absolutePath + "/";
+        homeDir = absolutePath + "/";
     }
 
     /**
