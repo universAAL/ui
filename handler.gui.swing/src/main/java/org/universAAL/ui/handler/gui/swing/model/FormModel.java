@@ -62,17 +62,17 @@ public abstract class FormModel {
     /**
      * the name set to IO panel
      */
-    public static String IO_NAME = "Interaction";
+    public static final String IO_NAME = "Interaction";
 
     /**
      * the name set to Submits panel
      */
-    public static String SUB_NAME = "Submits";
+    public static final String SUB_NAME = "Submits";
 
     /**
      * the name set to System buttons panel
      */
-    public static String SYS_NAME = "System";
+    public static final String SYS_NAME = "System";
 
     /**
      * Constructor for a given {@link Form}.
@@ -155,8 +155,8 @@ public abstract class FormModel {
         FormModel search = this;
         while (search != null
                 && uri != null
-                && search.getForm().getDialogID()
-                != uri) {
+                && !search.getForm().getDialogID()
+                	.equals(uri)) {
             search = search.parent;
         }
         return search != null;

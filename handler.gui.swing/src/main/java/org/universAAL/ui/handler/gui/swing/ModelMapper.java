@@ -37,7 +37,7 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
-public class ModelMapper {
+public final class ModelMapper {
     /**
      * The configuration property key for the
      * look and feel package.
@@ -141,7 +141,7 @@ public class ModelMapper {
 	     * if could not be found, use defaultLAF
 	     */
 	    Object model = tryToLoadClass(
-	            Renderer.getProperty(LAFPackageProperty), refObj, refObjClass);
+	            render.getProperty(LAFPackageProperty), refObj, refObjClass);
 	    if (model == null) {
 	        model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
 	        if (model == null) {
@@ -215,7 +215,7 @@ public class ModelMapper {
     public InitInterface initializeLAF() {
     	InitInterface ii = null;
         try {
-           ii =  getLookAndFeel(Renderer.getProperty(LAFPackageProperty));
+           ii =  getLookAndFeel(render.getProperty(LAFPackageProperty));
            ii.install(render);
         } catch (Exception e) {
             if (render.getModuleContext() != null) {

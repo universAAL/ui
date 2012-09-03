@@ -28,7 +28,7 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
  * @author pabril
  *
  */
-public class ColorLAF extends DefaultMetalTheme {
+public final class ColorLAF extends DefaultMetalTheme {
 
     /**
      * Returns the name of the theme.

@@ -44,7 +44,7 @@ import org.universAAL.ontology.profile.User;
  * 	@author amedrano
  *
  */
-public class Handler extends UIHandler {
+public final class Handler extends UIHandler {
 
 	/**
 	 * internal constructor
@@ -68,7 +68,8 @@ public class Handler extends UIHandler {
 	 * 	the {@link Renderer} to associate with
 	 */
 	Handler (Renderer renderer){
-		super(renderer.getModuleContext(), getPermanentSubscriptions());
+		super(renderer.getModuleContext(),
+				getPermanentSubscriptions(Boolean.parseBoolean(renderer.getProperty(Renderer.DEMO_MODE))));
 		render = renderer;
 	}
 	
@@ -138,7 +139,8 @@ public class Handler extends UIHandler {
          *     AddRestriction to subscription, receive only user related dialogs
          *     request for main menu
          */
-        UIHandlerProfile oep = getPermanentSubscriptions();
+        UIHandlerProfile oep = getPermanentSubscriptions(
+        		Boolean.parseBoolean(render.getProperty(Renderer.DEMO_MODE)));
         oep.addRestriction(MergedRestriction.getFixedValueRestriction(UIRequest.PROP_ADDRESSED_USER, user));
         this.addNewRegParams(oep);
     }
@@ -163,14 +165,16 @@ public class Handler extends UIHandler {
      * used to create the pattern needed for {@link Handler}.
      *
      * @return a pattern used to subscribe to the output bus.
+     * @param demo set demo mode or not.
+     * 
      */
-    private static UIHandlerProfile getPermanentSubscriptions() {
+    private static UIHandlerProfile getPermanentSubscriptions(boolean demo) {
         /*
          * Handler is interested in all UIRequests with following UIRequestPattern
          * restrictions:
          */
     	UIHandlerProfile oep = new UIHandlerProfile();
-    	if (Boolean.parseBoolean(Renderer.getProperty("demo.mode"))) {
+    	if (demo) {
     		/*
     		 * if enabled add the restrictions
     		 */
