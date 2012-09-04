@@ -128,7 +128,7 @@ public class Renderer extends Thread {
     /**
      * Directory for configuration files.
      */
-    protected static String homeDir = "./"; // TODO: obtain config files/dir from Module context
+    private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
 
     /**
      * FileName for the main configuration File
