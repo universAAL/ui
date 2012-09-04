@@ -27,55 +27,52 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class GroupLAF extends GroupModel {
 
 	private ColorLAF color;
 
 	/**
-     * Constructor.
-     * @param control the {@link Group} which to model
-     */
-    public GroupLAF(Group control, Renderer render) {
-        super(control, render);
-        color = ((Init) render.getInitLAF()).getColorLAF();
-    }
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Group} which to model
+	 */
+	public GroupLAF(Group control, Renderer render) {
+		super(control, render);
+		color = ((Init) render.getInitLAF()).getColorLAF();
+	}
 
-    /** {@inheritDoc} */
-    public void update() {
-	super.update();
-        if (jc instanceof JTabbedPane) {
-            /*
-             * Tabbed group
-             */
-            jc.getAccessibleContext();
-            jc.setFont(color.getplain());
-        }
-        else if (!((Group) fc).isRootGroup()) {
-            /*
-             * simple group control
-             */
-            String label;
-            if (fc.getLabel() != null) {
-                label = fc.getLabel().getText();
-            }
-            else {
-                label = "";
-            }
-            //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-            Border line = BorderFactory.createLineBorder(color.getOrange());
-            TitledBorder title;
-            title = BorderFactory.createTitledBorder
-                    (line, label, 0, 0,
-                    		color.getbold(),
-                    		color.getborderLineMM());
-            jc.setBorder(title);
-            needsLabel = false;
-            // XXX try add icon
-            jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
-        }
-    }
-
+	/** {@inheritDoc} */
+	public void update() {
+		super.update();
+		if (jc instanceof JTabbedPane) {
+			/*
+			 * Tabbed group
+			 */
+			jc.getAccessibleContext();
+			jc.setFont(color.getplain());
+		} else if (!((Group) fc).isRootGroup()) {
+			/*
+			 * simple group control
+			 */
+			String label;
+			if (fc.getLabel() != null) {
+				label = fc.getLabel().getText();
+			} else {
+				label = "";
+			}
+			// Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
+			Border line = BorderFactory.createLineBorder(color.getOrange());
+			TitledBorder title;
+			title = BorderFactory.createTitledBorder(line, label, 0, 0,
+					color.getbold(), color.getborderLineMM());
+			jc.setBorder(title);
+			needsLabel = false;
+			// XXX try add icon
+			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+		}
+	}
 
 }

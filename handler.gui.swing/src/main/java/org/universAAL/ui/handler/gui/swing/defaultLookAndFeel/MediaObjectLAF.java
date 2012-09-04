@@ -21,16 +21,18 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class MediaObjectLAF extends MediaObjectModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link MediaObject} which to model
-     */
-    public MediaObjectLAF(MediaObject control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link MediaObject} which to model
+	 */
+	public MediaObjectLAF(MediaObject control, Renderer render) {
+		super(control, render);
+	}
 
 }

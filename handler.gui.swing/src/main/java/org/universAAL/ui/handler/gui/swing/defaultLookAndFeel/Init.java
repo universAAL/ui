@@ -10,28 +10,29 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
  * the initialization class.
+ * 
  * @author amedrano
  */
 public class Init implements InitInterface {
 
-    private ColorLAF color;
+	private ColorLAF color;
 
 	/** {@inheritDoc} */
-    public void install(Renderer render) {
-    	color = new ColorLAF();
-        MetalLookAndFeel.setCurrentTheme(color);
-        try {
-            UIManager.setLookAndFeel(new MetalLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public ColorLAF getColorLAF(){
-    	return color;
-    }
+	public void install(Renderer render) {
+		color = new ColorLAF();
+		MetalLookAndFeel.setCurrentTheme(color);
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+	}
 
-    /** {@inheritDoc} */
+	public ColorLAF getColorLAF() {
+		return color;
+	}
+
+	/** {@inheritDoc} */
 	public void uninstall() {
 		try {
 			UIManager.setLookAndFeel(new MetalLookAndFeel());
@@ -43,7 +44,7 @@ public class Init implements InitInterface {
 	/** {@inheritDoc} */
 	public void userLogIn(User usr) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -23,14 +23,14 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * Manage a single {@link JFrame} corresponding to a
- * {@link Form}
+ * {@link Form}.
  *
  * @author amedrano
  */
 public class FrameManager {
 
     /**
-     * The frame being displayed
+     * The frame being displayed.
      */
     private JFrame frame;
 
@@ -45,6 +45,7 @@ public class FrameManager {
      * Sets the actual rendering of the {@link Form} in motion
      * @param f
      *         {@link Form} to be rendered
+     * @param mp the mapper to use for locating classes
      */
     public FrameManager(Form f, ModelMapper mp) {
         model = mp.getModelFor(f);
@@ -61,7 +62,7 @@ public class FrameManager {
     }
 
     /**
-     * close the Frame and command the finalization of the form
+     * close the Frame and command the finalization of the form.
      * @see FormModel#finalizeForm()
      */
     public void disposeFrame() {

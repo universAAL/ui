@@ -30,7 +30,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
@@ -38,68 +38,68 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 	 * Added Scroll pane to contain TextArea
 	 */
 	JScrollPane sp;
-	
+
 	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
 
 	private ColorLAF color;
-	
-    /**
-     * Constructor.
-     * @param control the {@link SimpleOutput} which to model.
-     */
-    public SimpleOutputLAF(SimpleOutput control, Renderer render) {
-        super(control, render);
-        color = ((Init) render.getInitLAF()).getColorLAF();
-    }
 
-    /** {@inheritDoc} */
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link SimpleOutput} which to model.
+	 */
+	public SimpleOutputLAF(SimpleOutput control, Renderer render) {
+		super(control, render);
+		color = ((Init) render.getInitLAF()).getColorLAF();
+	}
+
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		Object content = ((SimpleOutput) fc).getContent();
 		JComponent sjc = super.getNewComponent();
 		ejc = sjc;
 		if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-                sp = new JScrollPane(sjc);
-                sjc = sp;
-            }
+			if (((String) content).length() >= TOO_LONG) {
+				sp = new JScrollPane(sjc);
+				sjc = sp;
+			}
 		}
 		return sjc;
 	}
 
 	/** {@inheritDoc} */
-    public void update() {
-        Object content = ((SimpleOutput) fc).getContent();
-        if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-            	jc = (JComponent) (jc == sp? ejc:jc);
-                JTextArea ta = (JTextArea) jc;
-                ta.getAccessibleContext().setAccessibleName(ta.getName());
-                ta.setLineWrap(true);
-                ta.setWrapStyleWord(true);
-                ta.getAccessibleContext();
-                ta.setFont(color.getplain());
-                ta.setLineWrap(true);
-                ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-                ta.setForeground(color.getfont());
-                sp.getAccessibleContext();
-            }
-            else {
-                JTextComponent tf = (JTextComponent) jc;
-                tf.getAccessibleContext().setAccessibleName(tf.getText());
-                tf.setFont(color.getplain());
-                tf.setPreferredSize(new Dimension(150, 30));
-                tf.setForeground(color.getBackMM());
-            }
-        }
-        if (content instanceof Boolean) {
-            JCheckBox cb = (JCheckBox) jc;
-            cb.getAccessibleContext().setAccessibleName(cb.getName());
-        }
-    	super.update();
-    }
-
+	public void update() {
+		Object content = ((SimpleOutput) fc).getContent();
+		if (content instanceof String) {
+			if (((String) content).length() >= TOO_LONG) {
+				jc = (JComponent) (jc == sp ? ejc : jc);
+				JTextArea ta = (JTextArea) jc;
+				ta.getAccessibleContext().setAccessibleName(ta.getName());
+				ta.setLineWrap(true);
+				ta.setWrapStyleWord(true);
+				ta.getAccessibleContext();
+				ta.setFont(color.getplain());
+				ta.setLineWrap(true);
+				ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+				ta.setForeground(color.getfont());
+				sp.getAccessibleContext();
+			} else {
+				JTextComponent tf = (JTextComponent) jc;
+				tf.getAccessibleContext().setAccessibleName(tf.getText());
+				tf.setFont(color.getplain());
+				tf.setPreferredSize(new Dimension(150, 30));
+				tf.setForeground(color.getBackMM());
+			}
+		}
+		if (content instanceof Boolean) {
+			JCheckBox cb = (JCheckBox) jc;
+			cb.getAccessibleContext().setAccessibleName(cb.getName());
+		}
+		super.update();
+	}
 
 }

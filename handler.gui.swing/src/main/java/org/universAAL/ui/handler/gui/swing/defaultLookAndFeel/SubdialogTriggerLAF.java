@@ -23,20 +23,23 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerMod
 
 /**
  * @author pabril
- *
+ * 
  */
 public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link SubdialogTrigger} which to model.
-     */
-    public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link SubdialogTrigger} which to model.
+	 */
+	public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
+		super(control, render);
+	}
 
-    /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-    	return SubmitLAF.buttonDecorate(this, super.getNewComponent(), ((Init) getRenderer().getInitLAF()).getColorLAF());
-    }
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		return SubmitLAF.buttonDecorate(this, super.getNewComponent(),
+				((Init) getRenderer().getInitLAF()).getColorLAF());
+	}
 }

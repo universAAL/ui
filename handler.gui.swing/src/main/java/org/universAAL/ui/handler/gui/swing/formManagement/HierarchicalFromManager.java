@@ -27,8 +27,9 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * 	Hierarchical management of dialogs. 
- *  This Manager will enable the access to parent dialogs in order to offer the possibility 
- *  of displaying elements of a subdialog's parent, such as it's submits.
+ *  This Manager will enable the access to parent dialogs 
+ *  in order to offer the possibility of displaying elements
+ *  of a subdialog's parent, such as it's submits.
  * 
  * @author amedrano
  *
@@ -36,29 +37,32 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 public class HierarchicalFromManager implements FormManager {
 
 	/**
-     * The internal Map used to map URIs to Forms
+     * The internal Map used to map URIs to Forms.
      */
     private TreeMap formMap = new TreeMap();
     
+    /**
+     * the {@link Form} tree
+     */
     private FormTree tree = new FormTree();
     
 	/**
-	 * the currentForm being displayed
+	 * the currentForm being displayed.
 	 */
 	private UIRequest currentForm;
 	
 	/**
-	 * The frame Manager
+	 * The frame Manager.
 	 */
 	private FrameManager frame;
 
 	/**
-	 * the {@link Renderer} reference
+	 * the {@link Renderer} reference.
 	 */
 	private Renderer render;
 	
 	/** {@inheritDoc} */
-	public void addDialog(UIRequest oe) {
+	public final void addDialog(final UIRequest oe) {
 		currentForm = oe;
 		Form f = currentForm.getDialogForm();
         formMap.put(f.getURI(), f);
@@ -69,23 +73,23 @@ public class HierarchicalFromManager implements FormManager {
 	}
 	
 	/** {@inheritDoc} */
-	public UIRequest getCurrentDialog() {
+	public final UIRequest getCurrentDialog() {
 		return currentForm;
 	}
 
 	/** {@inheritDoc} */
-	public void closeCurrentDialog() {
+	public final void closeCurrentDialog() {
 		deleteAllChildrenOf(currentForm.getDialogID());
 		disposeFrame();
         currentForm = null;
 	}
 
 	/**
-	 * deletes all subdialogs of a given dialod ID
-	 * @param dialogID
+	 * deletes all subdialogs of a given dialod ID.
+	 * @param dialogID the parent dialog to delete
 	 */
-	private void deleteAllChildrenOf(String dialogID) {
-		if (tree.containsKey(dialogID)){
+	private void deleteAllChildrenOf(final String dialogID) {
+		if (tree.containsKey(dialogID)) {
 			Set children = tree.getChildren(dialogID);
 			for (Iterator iterator = children.iterator(); iterator.hasNext();) {
 				Object child = (Object) iterator.next();
@@ -97,7 +101,7 @@ public class HierarchicalFromManager implements FormManager {
 	}
 
 	/** {@inheritDoc} */
-	public Resource cutDialog(String dialogID) {
+	public final Resource cutDialog(final String dialogID) {
 		Resource r = (Resource) formMap.get(dialogID);
 		if (currentForm.getDialogID().equals(dialogID)) {
 			closeCurrentDialog();
@@ -109,39 +113,66 @@ public class HierarchicalFromManager implements FormManager {
 	}
 
 	/** {@inheritDoc} */
-	public void flush() {
+	public final void flush() {
 		disposeFrame();
 		formMap.clear();
 		tree.clear();
 	}
 
+	/** {@inheritDoc} */
 	public Form getParentOf(String formURI) {
 		Form f = (Form) formMap.get(formURI);
 		return (Form) formMap.get(f.getParentDialogURI());
 	}
 
+	/**
+	 * Model of Form Hierarchy.
+	 * @author amedrano
+	 *
+	 */
 	private class FormTree extends TreeMap{
+		/**
+		 * Serial ID.
+		 */
 		private static final long serialVersionUID = 1L;
+		/**
+		 * Add a child to a form.
+		 * @param key the formID 
+		 * @param child the {@link Form}
+		 */
 		void putChild(String key, Object child) {
 			if (!containsKey(key)) {
-				put(key,new HashSet());
+				put(key, new HashSet());
 			}
 			((HashSet)get(key)).add(child);
 		}
+		/**
+		 * get the children of a {@link Form}.
+		 * @param key the FormId
+		 * @return The {@link Set} of children for the form
+		 */
 		Set getChildren(String key) {
 			return (Set) get(key);
 		}
 		
 	}
 
+	/** {@inheritDoc} */
 	public void setRenderer(Renderer renderer) {
 		render = renderer;		
 	}
 	
+	/**
+	 * Render the frame.
+	 * @param f the {@link Form} to be rendered
+	 */
 	protected void renderFrame(Form f) {
 		frame = new FrameManager(f, render.getModelMapper());		
 	}
 
+	/**
+	 * close current frame.
+	 */
 	protected void disposeFrame(){
 		if (frame != null) {
             frame.disposeFrame();

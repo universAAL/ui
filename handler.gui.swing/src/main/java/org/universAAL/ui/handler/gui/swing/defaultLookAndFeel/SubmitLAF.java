@@ -33,13 +33,13 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 /**
  * @author pabril
  * @author amedrano
- *
+ * 
  */
 public class SubmitLAF extends SubmitModel {
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param control
 	 *            the {@link Submit} which to model.
 	 */
@@ -49,7 +49,7 @@ public class SubmitLAF extends SubmitModel {
 
 	/**
 	 * Set a color behabiour to a button
-	 *
+	 * 
 	 * @param button
 	 *            the button which to add the behaviour
 	 * @param border
@@ -81,10 +81,12 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		return buttonDecorate(this, super.getNewComponent(), ((Init)getRenderer().getInitLAF()).getColorLAF());
+		return buttonDecorate(this, super.getNewComponent(),
+				((Init) getRenderer().getInitLAF()).getColorLAF());
 	}
 
-	protected static JComponent buttonDecorate(Model model, JComponent button, ColorLAF color) {
+	protected static JComponent buttonDecorate(Model model, JComponent button,
+			ColorLAF color) {
 		Color normalF;
 		Color normalB;
 		Color enterF;
@@ -104,8 +106,7 @@ public class SubmitLAF extends SubmitModel {
 			enterB = color.getOverSytem();
 			clickF = color.getBackLetter();
 			clickB = color.getOverSytem();
-		}
-		else {
+		} else {
 			/*
 			 * buttons inside IO
 			 */

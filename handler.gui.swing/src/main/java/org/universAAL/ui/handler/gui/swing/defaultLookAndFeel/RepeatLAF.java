@@ -24,39 +24,38 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class RepeatLAF extends RepeatModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link Repeat} which to model.
-     */
-    public RepeatLAF(Repeat control, Renderer render) {
-        super(control, render);
-    }
-    
-    /** {@inheritDoc}*/
-    public JComponent getNewComponent() {
-        /*
-         *  TODO
-         *  Check for complexity and take decision
-         *  Check for multilevel and take decision
-         *  Check for Group children and render JTabbedPane
-         */
-        if (isATable()) {
-        	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
-            return table.getNewComponent();
-        }
-        if (getChildrenType().equals(Group.class)) {
-            /*
-             * children are Group, but not the same length
-             * display a tabbedpane
-             */
-            return tabbedPanel();
-        }
-        
-        return super.getNewComponent();
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Repeat} which to model.
+	 */
+	public RepeatLAF(Repeat control, Renderer render) {
+		super(control, render);
+	}
+
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		/*
+		 * TODO Check for complexity and take decision Check for multilevel and
+		 * take decision Check for Group children and render JTabbedPane
+		 */
+		if (isATable()) {
+			table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
+			return table.getNewComponent();
+		}
+		if (getChildrenType().equals(Group.class)) {
+			/*
+			 * children are Group, but not the same length display a tabbedpane
+			 */
+			return tabbedPanel();
+		}
+
+		return super.getNewComponent();
+	}
 
 }
