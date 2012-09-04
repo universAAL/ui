@@ -24,7 +24,7 @@ import java.net.URLConnection;
 import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
- * Find the resources referenced by urls;
+ * Find the resources referenced by urls.
  * @author amedrano
  *
  */
@@ -32,12 +32,17 @@ public class ResourceMapper {
 
 	/**
 	 * The folders where the resources should be allocated, whether it is in the confDir or
-	 * in the resources (inside the JAR)
+	 * in the resources (inside the JAR).
 	 */
-	static String[] resourceFolders = {"icons/", "images/", "resources/"};
+	private static String[] resourceFolders = {"icons/", "images/", "resources/"};
 	
 	/**
-	 * Searches for the specified url in the config directory and JAR resources
+	 * Utility class. no instance allowed.
+	 */
+	private ResourceMapper() {}
+	
+	/**
+	 * Searches for the specified url in the config directory and JAR resources.
 	 * @param url
 	 * 			relative url of the resource to find
 	 * @return
@@ -69,9 +74,9 @@ public class ResourceMapper {
 	}
 	
 	/**
-	 * Check that the resource pointed by the URL really exists
-	 * @param url
-	 * @return
+	 * Check that the resource pointed by the URL really exists.
+	 * @param url the URL to be checked
+	 * @return true is the URL can be accessed
 	 */
 	static private boolean existsURL(URL url) {
 		URLConnection con;
@@ -104,7 +109,7 @@ public class ResourceMapper {
 	}
 	
 	/**
-	 * check whether the specified url exists or not
+	 * check whether the specified url exists or not.
 	 * @param url
 	 * 		the url to test.
 	 * @return

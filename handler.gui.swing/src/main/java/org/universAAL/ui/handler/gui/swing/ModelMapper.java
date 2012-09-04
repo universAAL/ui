@@ -63,12 +63,12 @@ public final class ModelMapper {
     private static String LAFSuffix = "LAF";
     
     /**
-     * Renderer instance
+     * Renderer instance.
      */
     private Renderer render;
 
     /**
-     * The main Constructor
+     * The main Constructor.
      * @param renderer
      * 		the {@link Renderer} to be associated with
      */
@@ -200,6 +200,7 @@ public final class ModelMapper {
      *             the full qualified name of the LAF package
      * @return
      *             the initialization class of the LAF package
+     * @throws Exception when the Class is not found.
      */
     private InitInterface getLookAndFeel(String LAFPackage) throws Exception {
             return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)

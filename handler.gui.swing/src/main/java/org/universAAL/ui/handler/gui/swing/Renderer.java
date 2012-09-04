@@ -57,13 +57,13 @@ public class Renderer extends Thread {
      * The specific {@link UIHandler}
      * instance for Swing GUI Handler.
      */
-	protected Handler handler = null;
+	private Handler handler = null;
 
 
     /**
-     * uAAL {@link ModuleContext} to make uAAL operations
+     * uAAL {@link ModuleContext} to make uAAL operations.
      */
-    protected ModuleContext moduleContext = null;
+    private ModuleContext moduleContext = null;
 
     /**
      * The configuration properties read from the file.
@@ -74,7 +74,7 @@ public class Renderer extends Thread {
      * Form Logic Manager. it will decide
      * which Form to show when.
      */
-    protected FormManager fm;
+    private FormManager fm;
 
     /**
      *  The {@link ModelMapper} in order to find the correct
@@ -131,12 +131,12 @@ public class Renderer extends Thread {
     private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
 
     /**
-     * FileName for the main configuration File
+     * FileName for the main configuration File.
      */
     protected static final String RENDERER_CONF = "renderer.properties";
 
     /**
-     * Error message to display when unable to save property file
+     * Error message to display when unable to save property file.
      */
     protected static final String NO_SAVE = "Unable to save Property File";
 
@@ -152,6 +152,7 @@ public class Renderer extends Thread {
      * only Renderer Class can create an instance,
      * to help contribute to the singleton pattern.
      * @see Renderer#getInstance()
+     * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
      */
     public Renderer(ModuleContext mc) {
     	moduleContext = mc;
@@ -167,7 +168,11 @@ public class Renderer extends Thread {
         initLAF = modelMapper.initializeLAF();
     }
     
-    protected void loadFormManager(String FormManagerClassName) {
+    /**
+     * Load the {@link FormManager} from name (to be configured in properties file).
+     * @param FormManagerClassName the name of the {@link FormManager} to be loaded, if not found {@link SimpleFormManager} will be loaded.
+     */
+    protected final void loadFormManager(String FormManagerClassName) {
     	try {
 			fm = (FormManager) Class.forName(FormManagerClassName).newInstance();
 		} catch (Exception e) {
@@ -203,7 +208,7 @@ public class Renderer extends Thread {
     }
 
     /**
-     * Save the current properties in the file
+     * Save the current properties in the file.
      */
     protected void storeProperties() {
 
@@ -228,12 +233,12 @@ public class Renderer extends Thread {
     }
 
     /**
-     * get the {@link ModuleContext}
+     * get the {@link ModuleContext}.
      * @return
      *    the module context.
      * @see Renderer#moduleContext
      */
-    public ModuleContext getModuleContext() {
+    public final ModuleContext getModuleContext() {
         return moduleContext;
     }
     
@@ -279,7 +284,7 @@ public class Renderer extends Thread {
      *         String Value of the property
      * @see Renderer#fileProp
      */
-    public String getProperty(String string) {
+    public final String getProperty(String string) {
         try {
             return (String) fileProp.get(string);
         } catch (Exception e) {
@@ -301,7 +306,7 @@ public class Renderer extends Thread {
      * Gets the form being displayed right now.
      * @return the current {@link Form} being processed.
      */
-    public Form getCurrentForm() {
+    public final Form getCurrentForm() {
         return fm.getCurrentDialog().getDialogForm();
     }
 
@@ -312,15 +317,15 @@ public class Renderer extends Thread {
      * @return
      *         ontlogical representation of the user.
      */
-    public User getCurrentUser() {
+    public final User getCurrentUser() {
         return handler.getCurrentUser();
     }
 
     /**
      * Set the user that has just authenticated.
-     * @param user
+     * @param user the user that has just logged in
      */
-    void setCurrentUser(User user) {
+    final void setCurrentUser(User user) {
         handler.setCurrentUser(user);
         initLAF.userLogIn(user);
     }
@@ -335,7 +340,7 @@ public class Renderer extends Thread {
      * @see AccessImpairment
      * @see UIRequest
      */
-    public boolean hasImpairment(AccessImpairment impariment) {
+    public final boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
         int i = 0;
         while (i < imp.length && imp[i] != impariment) { i++; }
@@ -343,11 +348,11 @@ public class Renderer extends Thread {
     }
 
     /**
-     * Get the Language that should be used
+     * Get the Language that should be used.
      * @return
      *         the two-letter representation of the language-
      */
-    public String getLanguage() {
+    public final String getLanguage() {
         return fm.getCurrentDialog().getDialogLanguage().getDisplayVariant();
     }
 
@@ -356,7 +361,7 @@ public class Renderer extends Thread {
      * @return
      *         location of the handler's display
      */
-    public AbsLocation whereAmI() {
+    public final AbsLocation whereAmI() {
         /*
          *  Read Location from properties
          *  XXX other location process?
@@ -366,7 +371,7 @@ public class Renderer extends Thread {
 
     /**
      * Only to be called by container activator.
-     * Initialize the configuration home path
+     * Initialize the configuration home path.
      * @param absolutePath
      *         Absolute path to configuration directory
      */
@@ -375,7 +380,7 @@ public class Renderer extends Thread {
     }
 
     /**
-     * Get the configuration directory
+     * Get the configuration directory.
      * @return the home directory (ends with "/")
      */
     public static String getHomeDir() {
@@ -383,19 +388,18 @@ public class Renderer extends Thread {
     }
     
     /**
-     * Returns the ModelMapper that automatically assigns this Renderer to the Models
+     * Returns the ModelMapper that automatically assigns this Renderer to the Models.
      * @return
      */
-    public ModelMapper getModelMapper() {
+    public final ModelMapper getModelMapper() {
     	return modelMapper;
     }
     
     /**
-     * get the {@link Handler} of this {@link Renderer}
-     * @return
-     * the {@link Handler}
+     * get the {@link Handler} of this {@link Renderer}.
+     * @return the {@link Handler}
      */
-    public Handler getHandler() {
+    public final Handler getHandler() {
     	return handler;
     }
 
@@ -403,7 +407,7 @@ public class Renderer extends Thread {
 	 * get the Initial instance when the LAF was loaded.
 	 * @return the initLAF
 	 */
-	public InitInterface getInitLAF() {
+	public final InitInterface getInitLAF() {
 		return initLAF;
 	}
 }

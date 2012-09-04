@@ -47,9 +47,9 @@ import org.universAAL.ontology.profile.User;
 public final class Handler extends UIHandler {
 
 	/**
-	 * internal constructor
-	 * @param context
-	 * @param initialSubscription
+	 * internal constructor.
+	 * @param context the {@link ModuleContext} to be able to implement an {@link UIHandler}
+	 * @param initialSubscription The Subscription parameters that dictate to which {@link UIRequest}s the handler responds to
 	 * see UIHandler
 	 */
 	protected Handler(ModuleContext context,
@@ -58,12 +58,12 @@ public final class Handler extends UIHandler {
 	}
 
 	/**
-	 * reference to the associated {@link Renderer}
+	 * reference to the associated {@link Renderer}.
 	 */
 	private Renderer render;
 	
 	/**
-	 * constructor for Handler
+	 * constructor for Handler.
 	 * @param renderer
 	 * 	the {@link Renderer} to associate with
 	 */
@@ -79,7 +79,7 @@ public final class Handler extends UIHandler {
     private User currentUser = null;
 
 
-	/** {@ inheritDoc}	 */
+    /** {@ inheritDoc}	 */
 	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		// TODO Auto-generated method stub
@@ -108,7 +108,7 @@ public final class Handler extends UIHandler {
     }
 
     /**
-     * Get the current user that is inputing information
+     * Get the current user that is inputing information.
      * @return
      *     the current user.
      */
@@ -146,7 +146,7 @@ public final class Handler extends UIHandler {
     }
 
     /**
-     * Shortcut to send {@link UIResponse} related to Submit Buttons
+     * Shortcut to send {@link UIResponse} related to Submit Buttons.
      * @param submit
      *       the {@link Submit} button model pressed.
      */
