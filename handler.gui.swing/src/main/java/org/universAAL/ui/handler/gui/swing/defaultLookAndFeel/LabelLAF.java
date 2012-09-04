@@ -24,31 +24,30 @@ import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
- *
+ * 
  */
 public class LabelLAF extends LabelModel {
-
-
 
 	private ColorLAF color;
 
 	/**
-     * Constructor
-     * @param l the {@link Label} which to model.
-     */
-    public LabelLAF(Label l, Renderer render) {
-        super(l, render);
-        color = ((Init) render.getInitLAF()).getColorLAF();
-    }
+	 * Constructor
+	 * 
+	 * @param l
+	 *            the {@link Label} which to model.
+	 */
+	public LabelLAF(Label l, Renderer render) {
+		super(l, render);
+		color = ((Init) render.getInitLAF()).getColorLAF();
+	}
 
-    /** {@inheritDoc} */
-    public JLabel getComponent() {
-        JLabel jl = super.getComponent();
-        jl.getAccessibleContext().setAccessibleName(jl.getText());
-        jl.setFont(color.getLabelFont());
-        jl.setForeground(color.getborderLineMM());
-        return jl;
-    }
-
+	/** {@inheritDoc} */
+	public JLabel getComponent() {
+		JLabel jl = super.getComponent();
+		jl.getAccessibleContext().setAccessibleName(jl.getText());
+		jl.setFont(color.getLabelFont());
+		jl.setForeground(color.getborderLineMM());
+		return jl;
+	}
 
 }

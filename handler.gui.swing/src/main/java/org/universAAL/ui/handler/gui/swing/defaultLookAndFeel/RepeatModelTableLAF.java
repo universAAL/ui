@@ -30,7 +30,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
  * @author amedrano
- *
+ * 
  */
 public class RepeatModelTableLAF extends RepeatModelTable {
 
@@ -43,18 +43,17 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		super(control, render);
 		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
-	
-	/** {@inheritDoc}*/
-	public JComponent getNewComponent() {
-		Repeat r = (Repeat)fc;
 
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		Repeat r = (Repeat) fc;
 
 		tableComponent = new JTable(new RepeatTableModel());
 		JScrollPane scrollPane = new JScrollPane(tableComponent);
 		tableComponent.setFillsViewportHeight(true);
-		
+
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		JButton b;
 		if (r.listAcceptsNewEntries()) {
 			b = new AddTableButton();
@@ -80,12 +79,12 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		}
 
 		JPanel pannelWithAll = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		pannelWithAll.add(scrollPane);
 		pannelWithAll.add(buttonPanel);
 		return pannelWithAll;
 	}
-	
+
 	private void setButtonColors(JButton button) {
 		Color border = color.getborderLine();
 		Color normalF = color.getBackLetter();
@@ -94,7 +93,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		Color enterB = color.getOverSytem();
 		Color clickF = color.getSelectedLetter();
 		Color clickB = color.getBackSystem();
-		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
-		clickF, clickB);
+		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF,
+				enterB, clickF, clickB);
 	}
 }

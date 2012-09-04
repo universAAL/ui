@@ -25,43 +25,43 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class SelectLAF extends SelectModel {
 
-    /**
-     * {@link JScrollPane} around the {@link JList}
-     */
-    JScrollPane sp = null;
-    
-    /**
+	/**
+	 * {@link JScrollPane} around the {@link JList}
+	 */
+	JScrollPane sp = null;
+
+	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
-    
-    /**
-     * Constructor.
-     * @param control the {@link Select} which to model.
-     */
-    public SelectLAF(Select control, Renderer render) {
-        super(control, render);
-    }
 
-   
-    /** {@inheritDoc} */
-	public JComponent getNewComponent() {
-		ejc = super.getNewComponent();
-		 if (!((Select) fc).isMultilevel()
-		        	&& sp == null) {
-		        sp = new JScrollPane(ejc);
-		  }
-		 return sp;
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Select} which to model.
+	 */
+	public SelectLAF(Select control, Renderer render) {
+		super(control, render);
 	}
 
 	/** {@inheritDoc} */
-    protected void update() {
-		jc = (JComponent) (jc == sp? ejc:jc);
-    	super.update();
-    }
+	public JComponent getNewComponent() {
+		ejc = super.getNewComponent();
+		if (!((Select) fc).isMultilevel() && sp == null) {
+			sp = new JScrollPane(ejc);
+		}
+		return sp;
+	}
+
+	/** {@inheritDoc} */
+	protected void update() {
+		jc = (JComponent) (jc == sp ? ejc : jc);
+		super.update();
+	}
 
 }

@@ -28,6 +28,7 @@ dm/src/main/java/org/universAAL/ui/dm/MainMenu.java -text
 dm/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
 dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 dm/src/test/java/org/universAAL/ui/dm/test/ArtifactIntegrationTest.java -text
+handler.gui.swing/.checkstyle -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain

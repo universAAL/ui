@@ -21,16 +21,18 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class Select1LAF extends Select1Model {
 
-    /**
-     * Constructor.
-     * @param control the {@link Select1} which to model.
-     */
-    public Select1LAF(Select1 control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Select1} which to model.
+	 */
+	public Select1LAF(Select1 control, Renderer render) {
+		super(control, render);
+	}
 
 }

@@ -22,7 +22,7 @@ import org.universAAL.ui.handler.gui.swing.Handler;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
- * Interface to implement Form management Logic
+ * Interface to implement Form management Logic.
  * @author amedrano
  *
  */
@@ -36,47 +36,47 @@ public interface FormManager {
      * @param oe
      *         {@link UIRequest} that includes the dialog to show
      */
-    public void addDialog(UIRequest oe);
+    void addDialog(UIRequest oe);
 
     /**
      * get the Dialog Being currently displayed.
      * @return the {@link UIRequest} currently being displayed
      */
-    public UIRequest getCurrentDialog();
+    UIRequest getCurrentDialog();
 
     /**
-     * close the current dialog
+     * close the current dialog.
      */
-    public void closeCurrentDialog();
+     void closeCurrentDialog();
 
     /**
-     * Callback for {@link Handler#cutDialog(String)}
+     * Callback for {@link Handler#cutDialog(String)}.
      * @param dialogID
      *         DialogURI to cut
      * @return
      *         result of the operation
      */
-    public Resource cutDialog(String dialogID);
+    Resource cutDialog(String dialogID);
 
     /**
      * to be called when the handler finishes.
      * it should close all dialogs, and pending dialogs.
      */
-    public void flush();
+    void flush();
     
     /**
-     * get the parent {@link Form} of a given formURI
+     * get the parent {@link Form} of a given formURI.
      * @param formURI
      * 	the URI of the child {@link Form}
      * @return
      * 	the parent of the child {@link Form}
      */
-    public Form getParentOf(String formURI);
+    Form getParentOf(String formURI);
     
     /**
-     * Associate a {@link Renderer} to the {@link FormManager}
+     * Associate a {@link Renderer} to the {@link FormManager}.
      * @param renderer
      * 	the {@link Renderer} to associate with
      */
-    public void setRenderer(Renderer renderer);
+    void setRenderer(Renderer renderer);
 }
