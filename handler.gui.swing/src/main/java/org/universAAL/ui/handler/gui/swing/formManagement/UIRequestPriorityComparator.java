@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.formManagement;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import org.universAAL.middleware.ui.UIRequest;
@@ -27,9 +28,14 @@ import org.universAAL.middleware.owl.supply.LevelRating;
  * of {@link UIRequest}s
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
-public class UIRequestPriorityComparator implements Comparator {
+public class UIRequestPriorityComparator implements Comparator, Serializable {
 
-    /* (non-Javadoc)
+	/**
+	 * the Serial ID
+	 */
+	private static final long serialVersionUID = -678271257438349873L;
+
+	/* (non-Javadoc)
      * @see java.util.Comparator#compare(T, T)
      */
     /** {@inheritDoc} */
