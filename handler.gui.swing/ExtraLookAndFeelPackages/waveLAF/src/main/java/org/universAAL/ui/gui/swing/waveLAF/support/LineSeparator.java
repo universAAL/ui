@@ -2,15 +2,7 @@ package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
-import java.awt.Rectangle;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JComponent;
 
 public class LineSeparator extends JComponent{

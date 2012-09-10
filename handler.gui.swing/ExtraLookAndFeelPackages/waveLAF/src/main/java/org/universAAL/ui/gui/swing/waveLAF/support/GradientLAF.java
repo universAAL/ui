@@ -1,13 +1,12 @@
 package org.universAAL.ui.gui.swing.waveLAF.support;
 
 import java.awt.Color;
-
-import javax.swing.JPanel;
-
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
+import javax.swing.JPanel;
 
 /**
  * 

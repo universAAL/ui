@@ -17,13 +17,11 @@ package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -91,7 +89,6 @@ public class FormLAF extends FormModel  {
      */
     protected JScrollPane getSubmitPanelScroll(int depth) {
         JPanel submit = super.getSubmitPanel(depth);
-        submit.setLayout(new BoxLayout(submit, BoxLayout.Y_AXIS));
         return new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
