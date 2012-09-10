@@ -20,9 +20,9 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.CompoundBorder;
-import javax.swing.plaf.basic.BasicBorders;
 import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.UIResource;
+import javax.swing.plaf.basic.BasicBorders;
 import javax.swing.plaf.metal.MetalButtonUI;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 

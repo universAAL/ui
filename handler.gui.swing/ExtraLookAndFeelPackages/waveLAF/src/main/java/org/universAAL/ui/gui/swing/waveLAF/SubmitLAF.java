@@ -16,19 +16,17 @@
 package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ComponentUI;
 
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.gui.swing.waveLAF.support.ButtonUI;
 import org.universAAL.ui.gui.swing.waveLAF.support.LAFButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
@@ -103,6 +101,11 @@ public class SubmitLAF extends SubmitModel {
 			/*
 			 * buttons inside IO
 			 */
+		}
+		if (model.isInSubmitGroup()) {
+			button.setMaximumSize(
+					new Dimension(Integer.MAX_VALUE,
+							button.getPreferredSize().height));
 		}
 		//setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
 		//		clickF, clickB);

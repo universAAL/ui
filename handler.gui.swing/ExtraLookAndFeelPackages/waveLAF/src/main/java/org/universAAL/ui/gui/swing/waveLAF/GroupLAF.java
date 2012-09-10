@@ -22,7 +22,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -89,6 +88,9 @@ public class GroupLAF extends GroupModel {
             // XXX try add icon
             jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
         }
+        else if (this.isTheSubmitGroup()){
+			jc.setLayout(new BoxLayout(jc, BoxLayout.Y_AXIS));
+		}
     }
 
 
