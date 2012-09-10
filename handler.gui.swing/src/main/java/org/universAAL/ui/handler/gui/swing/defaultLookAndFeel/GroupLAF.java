@@ -15,12 +15,17 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import java.awt.Component;
+import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
@@ -53,7 +58,8 @@ public class GroupLAF extends GroupModel {
 			 */
 			jc.getAccessibleContext();
 			jc.setFont(color.getplain());
-		} else if (!((Group) fc).isRootGroup()) {
+		} 
+		else if (!((Group) fc).isRootGroup()) {
 			/*
 			 * simple group control
 			 */
@@ -72,6 +78,15 @@ public class GroupLAF extends GroupModel {
 			needsLabel = false;
 			// XXX try add icon
 			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+		}
+		else if (this.isTheSubmitGroup()){
+			jc.setLayout(new BoxLayout(jc, BoxLayout.Y_AXIS));
+			Component[] comps = jc.getComponents();
+			for (int i = 0; i <comps.length; i++) {
+				comps[i].setMaximumSize(
+						new Dimension(Integer.MAX_VALUE,
+								comps[i].getPreferredSize().height));
+			}
 		}
 	}
 
