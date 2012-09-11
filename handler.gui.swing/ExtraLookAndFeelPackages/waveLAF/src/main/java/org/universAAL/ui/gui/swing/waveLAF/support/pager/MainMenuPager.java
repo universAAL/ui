@@ -91,8 +91,6 @@ public class MainMenuPager extends GradientLAF {
 		JPanel lastPage = (JPanel) pages.getComponent(pages.getComponentCount()-1);
 		lastPage.add(arg0);
 		lastPage.revalidate();
-		//this.revalidate();
-		//lastPage.repaint();
 		return arg0;
 	}
 	

@@ -15,6 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.formManagement;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.rdf.Resource;
@@ -93,6 +96,14 @@ public class SimpleFormManager implements FormManager {
 		if (frame != null) {
     		frame.disposeFrame();
     	}
+	}
+
+	public Collection getAllDialogs() {
+		ArrayList l = new ArrayList();
+		if (currentForm != null) {
+			l.add(currentForm);
+		}
+		return l;
 	}
 	
 }
