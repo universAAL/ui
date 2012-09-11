@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.formManagement;
 
+import java.util.Collection;
+
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
@@ -79,4 +81,10 @@ public interface FormManager {
      * 	the {@link Renderer} to associate with
      */
     void setRenderer(Renderer renderer);
+    
+    /**
+     * Consult all the added dialogs that are not closed yet.
+     * @return a Collection of {@link UIRequest}s
+     */
+    Collection getAllDialogs();
 }

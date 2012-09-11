@@ -133,8 +133,10 @@ public class FormLAF extends FormModel  {
      * render the frame for the {@link Form}.
      */
     public JFrame getFrame() {
-        if (form.isMessage()) {
+    	if (frame == null) {
             frame = new JFrame(form.getTitle());
+    	}
+        if (form.isMessage()) {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             
              JScrollPane io = (JScrollPane) getIOPanelScroll();
@@ -150,7 +152,6 @@ public class FormLAF extends FormModel  {
             frame.pack();
         }
         if (form.isSystemMenu()) {
-            frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             frame.add(getIOPanel(), BorderLayout.CENTER);
@@ -168,7 +169,6 @@ public class FormLAF extends FormModel  {
              *     and <4 (and priority hi?)
              *        then show like a popup.
              */
-            frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
            
@@ -189,7 +189,6 @@ public class FormLAF extends FormModel  {
             setFullScreen();
         }
        if (form.isSubdialog()) {
-            frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             JScrollPane sub = getSubmitPanelScroll(0);
@@ -230,8 +229,6 @@ public class FormLAF extends FormModel  {
 
     /** {@inheritDoc} */
     public void terminateDialog() {
-        if(frame != null){
-            frame.dispose();
-        }
+       frame.removeAll();
     }
 }

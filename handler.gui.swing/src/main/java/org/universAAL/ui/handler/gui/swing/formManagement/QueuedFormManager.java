@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.formManagement;
 
+import java.util.Collection;
 import java.util.PriorityQueue;
 
 import org.universAAL.middleware.rdf.Resource;
@@ -31,7 +32,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author amedrano
  * @see UIRequestPriorityComparator
  */
-public class QueuedFormManager implements FormManager {
+public final class QueuedFormManager implements FormManager {
 
     /**
      * Maximum # dialogs to be queued
@@ -201,6 +202,11 @@ public class QueuedFormManager implements FormManager {
 
 	public void setRenderer(Renderer renderer) {
 		render = renderer;
+	}
+
+
+	public Collection getAllDialogs() {
+		return dialogQueue;
 	}
 
 }
