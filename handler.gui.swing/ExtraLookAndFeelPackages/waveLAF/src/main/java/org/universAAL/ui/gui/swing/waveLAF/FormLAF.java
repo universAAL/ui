@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,6 +33,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
+import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
@@ -62,7 +64,7 @@ public class FormLAF extends FormModel  {
      * @return
      *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
-    protected JScrollPane getIOPanelScroll() {
+    protected JComponent getIOPanelScroll() {
     	/*
         JPanel ioPanel = super.getIOPanel();
         JScrollPane sp = new JScrollPane(ioPanel,
@@ -74,6 +76,7 @@ public class FormLAF extends FormModel  {
                 ioPanel.getHeight()));
         //FIXME resize Layout+scroll
          */
+    	
     	JPanel ioPanel = super.getIOPanel();
     	
         JScrollPane sp = new JScrollPane(ioPanel,
@@ -134,7 +137,7 @@ public class FormLAF extends FormModel  {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             
-             JScrollPane io = getIOPanelScroll();
+             JScrollPane io = (JScrollPane) getIOPanelScroll();
       
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
@@ -169,7 +172,7 @@ public class FormLAF extends FormModel  {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
            
-            JScrollPane io = getIOPanelScroll();
+            JScrollPane io = (JScrollPane) getIOPanelScroll();
            
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = getSubmitPanelScroll(0);

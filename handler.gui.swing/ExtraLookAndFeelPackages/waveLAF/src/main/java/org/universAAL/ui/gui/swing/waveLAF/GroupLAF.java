@@ -24,6 +24,7 @@ import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
+import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
@@ -46,7 +47,11 @@ public class GroupLAF extends GroupModel {
     
     /** {@inheritDoc} */
     public JComponent getNewComponent() {
-        if (((Group) fc).isRootGroup()) {
+    	if (this.isTheIOGroup() 
+        		&& this.isInMainMenu()) {
+        	return new MainMenuPager();
+        }
+    	else if (((Group) fc).isRootGroup()) {
         	return new GradientLAF();
         }
         else {
