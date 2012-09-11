@@ -84,6 +84,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ShadowBorder.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/UIHelper.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/pager/MainMenuPager.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/pager/Page.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/Banner.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/UniversAAl_logo.png -text
@@ -97,6 +98,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wav
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_shadow_right.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_squares.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_wave_gray.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
 handler.gui.swing/LICENSE.txt -text svneol=unset#text/plain
 handler.gui.swing/pom.xml -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text

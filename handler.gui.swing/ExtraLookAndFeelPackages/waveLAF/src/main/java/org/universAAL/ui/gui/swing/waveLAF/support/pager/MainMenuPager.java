@@ -1,15 +1,19 @@
 package org.universAAL.ui.gui.swing.waveLAF.support.pager;
 
-import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JRadioButton;
+
+import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 
 public class MainMenuPager extends GradientLAF {
 
@@ -25,8 +29,10 @@ public class MainMenuPager extends GradientLAF {
 	private int space = 5;
 	
 	private ArrayList<Component> comps = new ArrayList<Component>();
-	
-	private JPanel kikerPanel;
+
+	private JPanel pages;
+
+	private BookMarker bm;
 	
 	
 	/**
@@ -35,40 +41,115 @@ public class MainMenuPager extends GradientLAF {
 	public MainMenuPager() {
 		setLayout(new BorderLayout(0, 0));
 		
+		bm = new BookMarker();
+		add(bm,BorderLayout.SOUTH);
+		
 		// these buttons can be customized
 		JButton btnPrev = new JButton("<-");
 		add(btnPrev, BorderLayout.WEST);
-		//TODO: add press callback
+		btnPrev.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout) pages.getLayout();
+				cl.previous(pages);
+				currentPage = (currentPage - 1) % pages.getComponentCount();
+				if (currentPage < 0) {
+					currentPage = pages.getComponentCount() -1;
+				}
+				bm.update();
+			}
+		});
 		
 		JButton btnNext = new JButton("->");
 		add(btnNext, BorderLayout.EAST);
-		//TODO: add press callback
+		btnNext.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				CardLayout cl = (CardLayout) pages.getLayout();
+				cl.next(pages);		
+				currentPage = (currentPage + 1) % pages.getComponentCount();
+				bm.update();
+			}
+		});
 		
-		kikerPanel = new JPanel();
-		add(kikerPanel, BorderLayout.CENTER);
-		kikerPanel.setLayout(new GridLayout(noRows, noCols, space, space));
-		kikerPanel.setOpaque(false);
+		pages = new JPanel();
+		add(pages, BorderLayout.CENTER);
+		pages.setLayout(new CardLayout(space, space));
+		pages.setOpaque(false);
+		
+		pages.addContainerListener(bm);
 	}
 
 
 	@Override
 	public Component add(Component arg0) {
+		if (comps.size() % (noCols * noRows) == 0) {
+			JPanel page = new Page(noRows, noCols, space);
+			pages.add(page, Integer.toString(pages.getComponentCount()));
+		}
 		comps.add(arg0);
+		JPanel lastPage = (JPanel) pages.getComponent(pages.getComponentCount()-1);
+		lastPage.add(arg0);
+		lastPage.revalidate();
+		//this.revalidate();
+		//lastPage.repaint();
 		return arg0;
 	}
-
-
+	
 	@Override
-	public void paint(Graphics g) {
-		int firstOfPage = currentPage*noCols*noRows;
-		int endOfPage = firstOfPage + (noCols*noRows) -1;
-		int realEndOfPage = endOfPage >= comps.size()? comps.size() -1: endOfPage;
-		List<Component> page = comps.subList(firstOfPage, realEndOfPage);
-		kikerPanel.removeAll();
-		for (Component c : page) {
-			kikerPanel.add(c);
+	public void removeAll() {
+		comps.clear();
+		pages.removeAll();
+		currentPage = 0;
+	}
+
+	class BookMarker extends JPanel implements ContainerListener{
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public BookMarker() {
+			this.setOpaque(false);
 		}
-		super.paint(g);
+		
+		public void componentAdded(ContainerEvent e) {
+			update();
+			
+		}
+
+		public void componentRemoved(ContainerEvent e) {
+			update();			
+		}
+		
+		public void update() {
+			this.removeAll();
+			for (int i = 0; i < pages.getComponentCount(); i++) {
+				JRadioButton jrb = new JRadioButton();
+				// TODO beatyfy radiobuttons
+				add(jrb);
+				jrb.setOpaque(false);
+				jrb.setName(Integer.toString(i));
+				if (i == currentPage) {
+					jrb.setSelected(true);
+					jrb.setEnabled(false);
+				}
+				else {
+					jrb.addActionListener(new ActionListener() {
+
+						public void actionPerformed(ActionEvent e) {
+							CardLayout cl = (CardLayout) pages.getLayout();
+							String name = ((JRadioButton)e.getSource()).getName();
+							cl.show(pages, name);
+							currentPage = Integer.parseInt(name);
+							bm.update();
+						}
+					});
+				}
+			}
+		}
+		
 	}
 
 }
