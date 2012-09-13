@@ -4,7 +4,7 @@
   <parent>
     <artifactId>ui.pom</artifactId>
     <groupId>org.universAAL.ui</groupId>
-    <version>1.2.0</version>
+    <version>1.2.1-SNAPSHOT</version>
     <relativePath>../../pom/pom.xml</relativePath>
   </parent>
   
@@ -16,17 +16,16 @@
       <dependency>
           <groupId>org.universAAL.ui</groupId>
           <artifactId>ui.handler.gui.swing</artifactId>
-          <version>1.2.0</version>
+          <version>1.2.1-SNAPSHOT</version>
       </dependency>
   </dependencies>
   
   <developers>
     <developer>
-      <id>amedrano</id>
-      <name>Alejandro Medrano</name>
-      <email>amedrano@lst.tfo.upm.es</email>
+      <id>alfiva</id>
+      <name>Alvaro Fides</name>
+      <email>alfiva@itaca.upv.es</email>
       <roles>
-        <role>builder</role>
         <role>developer</role>
       </roles>
       <timezone>CEST/CET</timezone>
