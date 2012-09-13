@@ -31,6 +31,25 @@
       </roles>
       <timezone>CEST/CET</timezone>
     </developer>
+    <developer>
+      <id>pabril</id>
+      <name>Patricia Abril</name>
+      <email>pabril@lst.tfo.upm.es</email>
+      <roles>
+        <role>developer</role>
+        <role>designer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+    <developer>
+      <id>cdiaz</id>
+      <name>Camila Diaz</name>
+      <email>cdiaz@lst.tfo.upm.es</email>
+      <roles>
+        <role>designer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
   </developers>
 
      <licenses>
