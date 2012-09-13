@@ -18,6 +18,7 @@ public class MainMenuPagerTest extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtButtonTitle;
 	private MainMenuPager pager;
+	private JButton btnRemoveAll;
 
 	/**
 	 * Launch the application.
@@ -53,12 +54,21 @@ public class MainMenuPagerTest extends JFrame {
 		contentPane.add(pager, BorderLayout.CENTER);
 		
 		txtButtonTitle = new JTextField();
-		txtButtonTitle.setText("button Title");
+		txtButtonTitle.setText("Title");
 		panel.add(txtButtonTitle);
 		txtButtonTitle.setColumns(10);
 		
 		JButton btnAdd = new JButton("Add");
 		panel.add(btnAdd);
+		
+		btnRemoveAll = new JButton("Remove ALL");
+		btnRemoveAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pager.removeAll();
+				pager.revalidate();
+			}
+		});
+		panel.add(btnRemoveAll);
 		btnAdd.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {

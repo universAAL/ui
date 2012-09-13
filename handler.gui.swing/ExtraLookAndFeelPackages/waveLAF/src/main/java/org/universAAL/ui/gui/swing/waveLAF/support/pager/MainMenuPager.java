@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 public class MainMenuPager extends GradientLAF {
 
@@ -39,6 +41,18 @@ public class MainMenuPager extends GradientLAF {
 	 * Create the panel.
 	 */
 	public MainMenuPager() {
+		addMouseWheelListener(new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				if (pages.getComponentCount() > 0) {
+					currentPage = (currentPage + e.getWheelRotation()) % pages.getComponentCount();
+					if (currentPage < 0) {
+						currentPage = pages.getComponentCount() + currentPage;
+					}
+					((CardLayout) pages.getLayout()).show(pages, Integer.toString(currentPage));
+					bm.update();
+				}
+			}
+		});
 		setLayout(new BorderLayout(0, 0));
 		
 		bm = new BookMarker();
