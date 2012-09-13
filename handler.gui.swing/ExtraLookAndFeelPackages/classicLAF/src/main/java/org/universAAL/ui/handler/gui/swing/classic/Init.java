@@ -4,6 +4,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
+import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
@@ -29,5 +30,15 @@ public class Init implements InitInterface {
     public ColorLAF getColorLAF(){
     	return color;
     }
+
+	public void uninstall() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void userLogIn(User usr) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
