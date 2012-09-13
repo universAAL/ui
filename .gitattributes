@@ -29,6 +29,33 @@ dm/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
 dm/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 dm/src/test/java/org/universAAL/ui/dm/test/ArtifactIntegrationTest.java -text
 handler.gui.swing/.checkstyle -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/pom.xml -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/FormLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/Init.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/Select1LAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SimpleOutputLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/package.html -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/Invisible_Button.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_bright.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_dark.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_white_bright.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uaal.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Health_button.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Agenda_Button.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Safety_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
