@@ -44,6 +44,7 @@ public class LabelLAF extends LabelModel {
         jl.getAccessibleContext().setAccessibleName(jl.getText());
         jl.setFont(ColorLAF.getLabelFont());
         jl.setForeground(ColorLAF.getborderLineMM());
+        jl.setOpaque(false);
         return jl;
     }
 
