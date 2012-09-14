@@ -78,9 +78,9 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
 	    if(url!=null){
 		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
 	    }else{
-		((AbstractButton) e.getComponent()).setIcon(ColorLAF.button_normal);
-		((AbstractButton) e.getComponent()).setPressedIcon(ColorLAF.button_pressed);
-		((AbstractButton) e.getComponent()).setRolloverIcon(ColorLAF.button_focused);
+//		((AbstractButton) e.getComponent()).setIcon(ColorLAF.button_normal);
+//		((AbstractButton) e.getComponent()).setPressedIcon(ColorLAF.button_pressed);
+//		((AbstractButton) e.getComponent()).setRolloverIcon(ColorLAF.button_focused);
 		int width=((AbstractButton) e.getComponent()).getWidth();//ZERO UNTIL .pack()
 		int height=((AbstractButton) e.getComponent()).getHeight();
 		if(width>0 && height>0){
