@@ -23,15 +23,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
-import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
-import java.awt.event.MouseWheelListener;
-import java.awt.event.MouseWheelEvent;
 
 /**
  * A Jcomponent that will display components in {@link Page}s. 
@@ -42,7 +41,7 @@ import java.awt.event.MouseWheelEvent;
  * @author amedrano
  *
  */
-public class MainMenuPager extends GradientLAF {
+public class MainMenuPager extends JPanel {
 
 	/**
 	 * 
@@ -66,6 +65,7 @@ public class MainMenuPager extends GradientLAF {
 	 * Create the panel.
 	 */
 	public MainMenuPager() {
+		setOpaque(false);
 		addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {
 				if (pages.getComponentCount() > 0) {
@@ -74,7 +74,7 @@ public class MainMenuPager extends GradientLAF {
 						currentPage = pages.getComponentCount() + currentPage;
 					}
 					((CardLayout) pages.getLayout()).show(pages, Integer.toString(currentPage));
-					bm.update();
+					bm.update(currentPage);
 				}
 			}
 		});
@@ -89,13 +89,15 @@ public class MainMenuPager extends GradientLAF {
 		btnPrev.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) pages.getLayout();
-				cl.previous(pages);
-				currentPage = (currentPage - 1) % pages.getComponentCount();
-				if (currentPage < 0) {
-					currentPage = pages.getComponentCount() -1;
+				if (pages.getComponentCount() > 0 ) {
+					CardLayout cl = (CardLayout) pages.getLayout();
+					cl.previous(pages);
+					currentPage = (currentPage - 1) % pages.getComponentCount();
+					if (currentPage < 0) {
+						currentPage = pages.getComponentCount() -1;
+					}
+					bm.update(currentPage);
 				}
-				bm.update();
 			}
 		});
 		
@@ -104,10 +106,12 @@ public class MainMenuPager extends GradientLAF {
 		btnNext.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				CardLayout cl = (CardLayout) pages.getLayout();
-				cl.next(pages);		
-				currentPage = (currentPage + 1) % pages.getComponentCount();
-				bm.update();
+				if (pages.getComponentCount() > 0 ) {
+					CardLayout cl = (CardLayout) pages.getLayout();
+					cl.next(pages);		
+					currentPage = (currentPage + 1) % pages.getComponentCount();
+					bm.update(currentPage);
+				}
 			}
 		});
 		
@@ -146,11 +150,13 @@ public class MainMenuPager extends GradientLAF {
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
+		private ButtonGroup bg;
+		private JRadioButton[] buttons;
 
 		public BookMarker() {
 			this.setOpaque(false);
 		}
-		
+
 		public void componentAdded(ContainerEvent e) {
 			update();
 			
@@ -162,29 +168,31 @@ public class MainMenuPager extends GradientLAF {
 		
 		public void update() {
 			this.removeAll();
+			bg = new ButtonGroup();
+			buttons = new JRadioButton[pages.getComponentCount()];
 			for (int i = 0; i < pages.getComponentCount(); i++) {
-				JRadioButton jrb = new JRadioButton();
+				buttons[i] = new JRadioButton();
 				// TODO beatyfy radiobuttons
-				add(jrb);
-				jrb.setOpaque(false);
-				jrb.setName(Integer.toString(i));
-				if (i == currentPage) {
-					jrb.setSelected(true);
-					jrb.setEnabled(false);
-				}
-				else {
-					jrb.addActionListener(new ActionListener() {
+				add(buttons[i]);
+				bg.add(buttons[i]);
+				buttons[i].setOpaque(false);
+				buttons[i].setName(Integer.toString(i));
+				buttons[i].addActionListener(new ActionListener() {
 
-						public void actionPerformed(ActionEvent e) {
-							CardLayout cl = (CardLayout) pages.getLayout();
-							String name = ((JRadioButton)e.getSource()).getName();
-							cl.show(pages, name);
-							currentPage = Integer.parseInt(name);
-							bm.update();
-						}
-					});
-				}
+					public void actionPerformed(ActionEvent e) {
+						CardLayout cl = (CardLayout) pages.getLayout();
+						String name = ((JRadioButton)e.getSource()).getName();
+						cl.show(pages, name);
+						currentPage = Integer.parseInt(name);
+						bm.update(currentPage);
+					}
+				});
 			}
+			update(currentPage);
+		}
+		
+		public void update(int currentPage) {
+			buttons[currentPage].setSelected(true);
 		}
 		
 	}
