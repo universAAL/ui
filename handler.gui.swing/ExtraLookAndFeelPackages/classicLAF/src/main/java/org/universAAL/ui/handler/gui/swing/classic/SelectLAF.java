@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -62,6 +63,7 @@ public class SelectLAF extends SelectModel {
     protected void update() {
 		jc = (JComponent) (jc == sp? ejc:jc);
     	super.update();
+    	jc.setBorder(BorderFactory.createEtchedBorder(ColorLAF.WHITE_DARK,ColorLAF.WHITE_MEDIUM));
     }
 
 }

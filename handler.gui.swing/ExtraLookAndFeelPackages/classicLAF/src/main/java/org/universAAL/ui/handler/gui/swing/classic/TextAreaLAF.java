@@ -59,7 +59,7 @@ public class TextAreaLAF extends TextAreaModel {
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        ta.setBorder(BorderFactory.createEtchedBorder(ColorLAF.WHITE_MEDIUM,ColorLAF.WHITE_DARK));
+        ta.setBorder(BorderFactory.createEtchedBorder(ColorLAF.WHITE_DARK,ColorLAF.WHITE_MEDIUM));
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
     }
