@@ -85,6 +85,7 @@ public class FormLAF extends FormModel  {
     	sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
     	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
         sp.setOpaque(false);
+        //sp.setBorder(null);
         sp.getViewport().setOpaque(false);
         return  sp;
     }
@@ -101,6 +102,7 @@ public class FormLAF extends FormModel  {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         sp.setOpaque(false);
+        sp.setBorder(null);
         sp.getViewport().setOpaque(false);
         return sp;
     }
@@ -118,8 +120,8 @@ public class FormLAF extends FormModel  {
                 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         sp.setOpaque(false);
+        sp.setBorder(null);
         sp.getViewport().setOpaque(false);
-        //TODO set transparent borders
         return sp;
     }
 
