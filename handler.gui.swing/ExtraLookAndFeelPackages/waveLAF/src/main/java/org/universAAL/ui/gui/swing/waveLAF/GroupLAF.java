@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.waveLAF;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -52,7 +53,9 @@ public class GroupLAF extends GroupModel {
         	return new MainMenuPager();
         }
     	else if (((Group) fc).isRootGroup()) {
-        	return new GradientLAF();
+    		JPanel p = new JPanel();
+    		p.setOpaque(false);
+        	return p;
         }
         else {
         	return super.getNewComponent();

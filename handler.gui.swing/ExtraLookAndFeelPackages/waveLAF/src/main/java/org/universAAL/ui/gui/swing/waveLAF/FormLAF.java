@@ -17,6 +17,7 @@ package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
@@ -33,7 +34,6 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
-import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
@@ -78,10 +78,14 @@ public class FormLAF extends FormModel  {
          */
     	
     	JPanel ioPanel = super.getIOPanel();
-    	
+    	ioPanel.setOpaque(false);
         JScrollPane sp = new JScrollPane(ioPanel,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    	sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
+    	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
+        sp.setOpaque(false);
+        sp.getViewport().setOpaque(false);
         return  sp;
     }
 
@@ -92,9 +96,13 @@ public class FormLAF extends FormModel  {
      */
     protected JScrollPane getSubmitPanelScroll(int depth) {
         JPanel submit = super.getSubmitPanel(depth);
-        return new JScrollPane(submit,
+        submit.setOpaque(false);
+        JScrollPane sp = new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setOpaque(false);
+        sp.getViewport().setOpaque(false);
+        return sp;
     }
 
     /**
@@ -105,9 +113,14 @@ public class FormLAF extends FormModel  {
     protected JScrollPane getSystemPanelScroll() {
     	JPanel system = super.getSystemPanel();
         system.setLayout(new BoxLayout(system, BoxLayout.X_AXIS));
-        return new JScrollPane(super.getSystemPanel(),
+        system.setOpaque(false);
+        JScrollPane sp = new JScrollPane(super.getSystemPanel(),
                 JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sp.setOpaque(false);
+        sp.getViewport().setOpaque(false);
+        //TODO set transparent borders
+        return sp;
     }
 
     /**
@@ -116,26 +129,31 @@ public class FormLAF extends FormModel  {
      *         a pannel with universAAL icon in it.
      */
     protected JPanel getHeader() {
-            JPanel header = new GradientLAF();
-             ImageIcon icon = new ImageIcon(
-                     (getClass().getResource("/images/Banner.png")));
-            icon.setDescription("UniversAAL Logo Image");
-             JLabel logo = new JLabel(icon);
-            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-            //JComponent nuevo=new GradientLAF(); 
-            header.add(logo);
-            //header.add(nuevo);
-        
-             return (JPanel) header;
-        }
+    	JPanel header = new JPanel();//new GradientLAF();
+    	header.setOpaque(false);
+    	ImageIcon icon = new ImageIcon(
+    			(getClass().getResource("/images/Banner.png")));
+    	icon.setDescription("UniversAAL Logo Image");
+    	JLabel logo = new JLabel(icon);
+    	logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
+    	//JComponent nuevo=new GradientLAF(); 
+    	header.add(logo);
+    	//header.add(nuevo);
+
+    	return (JPanel) header;
+    }
 
     /**
      * render the frame for the {@link Form}.
      */
     public JFrame getFrame() {
     	if (frame == null) {
-            frame = new JFrame(form.getTitle());
+            frame = new JFrame();
+            JPanel content = new GradientLAF();
+            content.setLayout(new BorderLayout());
+            frame.setContentPane(content);
     	}
+    	frame.setTitle(form.getTitle());
         if (form.isMessage()) {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             
@@ -229,6 +247,10 @@ public class FormLAF extends FormModel  {
 
     /** {@inheritDoc} */
     public void terminateDialog() {
-       frame.removeAll();
+    	if (frame != null) {
+    		frame.dispose();
+    		frame = null;
+    	}
+       //frame.getContentPane().removeAll();
     }
 }
