@@ -15,7 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -98,6 +102,12 @@ public class GroupLAF extends GroupModel {
         }
         else if (this.isTheSubmitGroup()){
 			jc.setLayout(new BoxLayout(jc, BoxLayout.Y_AXIS));
+			Component[] c = jc.getComponents();
+			jc.removeAll();
+			for (int i = 0; i < c.length; i++) {
+				jc.add(c[i]);
+				jc.add(Box.createVerticalStrut(5));
+			}
 		}
     }
 

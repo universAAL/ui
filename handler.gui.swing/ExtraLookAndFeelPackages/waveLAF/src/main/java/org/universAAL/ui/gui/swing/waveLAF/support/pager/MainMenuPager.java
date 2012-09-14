@@ -31,6 +31,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicArrowButton;
 
 /**
  * A Jcomponent that will display components in {@link Page}s. 
@@ -84,7 +86,7 @@ public class MainMenuPager extends JPanel {
 		add(bm,BorderLayout.SOUTH);
 		
 		// these buttons can be customized
-		JButton btnPrev = new JButton("<-");
+		JButton btnPrev = new BasicArrowButton(SwingConstants.WEST);//new JButton("<-");
 		add(btnPrev, BorderLayout.WEST);
 		btnPrev.addActionListener(new ActionListener() {
 			
@@ -101,7 +103,7 @@ public class MainMenuPager extends JPanel {
 			}
 		});
 		
-		JButton btnNext = new JButton("->");
+		JButton btnNext = new BasicArrowButton(SwingConstants.EAST); //new JButton("->");
 		add(btnNext, BorderLayout.EAST);
 		btnNext.addActionListener(new ActionListener() {
 			
