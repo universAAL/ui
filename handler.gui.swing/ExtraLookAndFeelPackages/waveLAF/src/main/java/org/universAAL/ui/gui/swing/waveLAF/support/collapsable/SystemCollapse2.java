@@ -1,22 +1,21 @@
 package org.universAAL.ui.gui.swing.waveLAF.support.collapsable;
 
-import javax.swing.JComponent;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
-
-import org.jdesktop.swingx.JXCollapsiblePane;
-import javax.swing.JToggleButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.Color;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
+import org.jdesktop.swingx.JXCollapsiblePane;
 
 public class SystemCollapse2 extends JPanel implements ComponentListener {
 
@@ -27,11 +26,14 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 	private JXCollapsiblePane collapsablePanel;
 	private JButton tglbtnSystem;
 	private JPanel systemPanel;
+	private Color backgroundColor;
 
 	/**
 	 * Create the panel.
 	 */
 	public SystemCollapse2() {
+		backgroundColor = new Color(204, 204, 204);
+		
 		setOpaque(false);
 		setLayout(new BorderLayout(0, 0));
 		
@@ -43,7 +45,7 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 		add(panel, BorderLayout.NORTH);
 		
 		tglbtnSystem = new TriangularButton();
-		tglbtnSystem.setForeground(new Color(204, 204, 204));
+		tglbtnSystem.setForeground(backgroundColor);
 		tglbtnSystem.setBorder(null);
 		tglbtnSystem.setOpaque(false);
 		tglbtnSystem.addActionListener(new ActionListener() {
@@ -64,13 +66,14 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 		collapsablePanel.setCollapsed(true);
 		
 		systemPanel = new JPanel();
-		systemPanel.setBackground(new Color(204, 204, 204));
+		systemPanel.setBackground(backgroundColor);
 		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JScrollPane scrollPane = new JScrollPane(systemPanel);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBorder(null);
+		//scrollPane.setPreferredSize(systemPanel.getSize());
 		collapsablePanel.getContentPane().add(scrollPane);
 		systemPanel.addComponentListener(this);
 	}
@@ -109,6 +112,24 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 
 	public void componentHidden(ComponentEvent e) {
 		resizeTriangle();
+	}
+
+
+
+	/**
+	 * @return the backgroundColor
+	 */
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+
+
+	/**
+	 * @param backgroundColor the backgroundColor to set
+	 */
+	public void setBackgroundColor(Color backgroundColor) {
+		this.backgroundColor = backgroundColor;
 	}
 
 }
