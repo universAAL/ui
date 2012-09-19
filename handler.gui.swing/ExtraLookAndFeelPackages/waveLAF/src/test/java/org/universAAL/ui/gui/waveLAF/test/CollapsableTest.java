@@ -55,6 +55,7 @@ public class CollapsableTest extends JFrame {
 //		collapsable.setMinimumSize(new Dimension(0, 8));
 //		collapsable.setLayout(new FlowLayout());
 //		collapsable.setBackground(Color.RED);
+		((SystemCollapse2) collapsable).setBackgroundColor(Color.red);
 		
 		contentPane.add(collapsable, BorderLayout.SOUTH);
 		
