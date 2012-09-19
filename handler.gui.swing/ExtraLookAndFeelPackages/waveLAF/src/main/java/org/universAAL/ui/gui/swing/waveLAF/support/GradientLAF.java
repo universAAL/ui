@@ -33,19 +33,28 @@ public class GradientLAF extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Color color1 = new Color(255, 255, 255);
-	private Color color2 = new Color(0, 0, 0);
+	private Color color1 = new Color(0xd2, 0xd2, 0xd2);
+	private Color color2 = new Color(0xff, 0xff, 0xff);
 
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g.create();
+		
 		Rectangle clip = g2.getClipBounds();
 		float x = getWidth();
 		float y = getHeight();
-		g2.setPaint(new GradientPaint(0.0f, 0.0f, color1.darker(), getWidth(),
-				getHeight(), color2.darker()));
+		int half = clip.height / 2;
+//		g2.setPaint(new GradientPaint(x/2, 0, color1, x/2,
+//				y /2, color2));
+//		g2.fillRect(clip.x, clip.y, clip.width, half);
+		//g2.setPaint(new GradientPaint(x/2, y/2, color2, x/2,
+		//		y, color1));
+		//g2.fillRect(clip.x, clip.y + half, clip.width, half);
+		g2.setPaint(new GradientPaint(x/2, 0, color1, x/2,
+				y , color2));
 		g2.fillRect(clip.x, clip.y, clip.width, clip.height);
 	}
+	
 
 	public Color getColor1() {
 		return color1;
