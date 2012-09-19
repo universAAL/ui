@@ -11,14 +11,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
+import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse;
+import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse2;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import java.awt.Color;
 
 public class CollapsableTest extends JFrame {
 
 	private JPanel contentPane;
-	private JXCollapsiblePane collapsable;
+	private JPanel collapsable;
 
 	/**
 	 * Launch the application.
@@ -42,17 +44,17 @@ public class CollapsableTest extends JFrame {
 	public CollapsableTest() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane = new GradientLAF();
+		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		//collapsable = new SystemCollapse();
-		collapsable = new JXCollapsiblePane();
-		collapsable.setScrollableTracksViewportHeight(false);
-		collapsable.setMinimumSize(new Dimension(0, 8));
-		collapsable.setLayout(new FlowLayout());
-		collapsable.setBackground(Color.RED);
+		collapsable = new SystemCollapse2();
+//		collapsable = new JXCollapsiblePane();
+//		collapsable.setScrollableTracksViewportHeight(false);
+//		collapsable.setMinimumSize(new Dimension(0, 8));
+//		collapsable.setLayout(new FlowLayout());
+//		collapsable.setBackground(Color.RED);
 		
 		contentPane.add(collapsable, BorderLayout.SOUTH);
 		

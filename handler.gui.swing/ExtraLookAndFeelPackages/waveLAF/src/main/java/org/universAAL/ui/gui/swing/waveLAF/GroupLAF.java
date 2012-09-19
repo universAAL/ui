@@ -16,7 +16,6 @@
 package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.Component;
-import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -28,7 +27,7 @@ import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
+import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse2;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
@@ -56,6 +55,9 @@ public class GroupLAF extends GroupModel {
         		&& this.isInMainMenu()) {
         	return new MainMenuPager();
         }
+    	else if (this.isTheMainGroup()) {
+    		return new SystemCollapse2();
+    	}
     	else if (((Group) fc).isRootGroup()) {
     		JPanel p = new JPanel();
     		p.setOpaque(false);

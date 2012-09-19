@@ -112,18 +112,18 @@ public class FormLAF extends FormModel  {
      * @return
      *         the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
      */
-    protected JScrollPane getSystemPanelScroll() {
-    	JPanel system = super.getSystemPanel();
-        system.setLayout(new BoxLayout(system, BoxLayout.X_AXIS));
-        system.setOpaque(false);
-        JScrollPane sp = new JScrollPane(super.getSystemPanel(),
-                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        sp.setOpaque(false);
-        sp.setBorder(null);
-        sp.getViewport().setOpaque(false);
-        return sp;
-    }
+//    protected  getSystemPanelScroll() {
+//    	JPanel system = super.getSystemPanel();
+//        system.setLayout(new BoxLayout(system, BoxLayout.X_AXIS));
+//        system.setOpaque(false);
+//        JScrollPane sp = new JScrollPane(super.getSystemPanel(),
+//                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+//                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+//        sp.setOpaque(false);
+//        sp.setBorder(null);
+//        sp.getViewport().setOpaque(false);
+//        return sp;
+//    }
 
     /**
      * generate the header panel.
@@ -175,7 +175,8 @@ public class FormLAF extends FormModel  {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             frame.add(getHeader(), BorderLayout.NORTH);
             frame.add(getIOPanel(), BorderLayout.CENTER);
-            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
+//            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
+            frame.add(getSystemPanel(), BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame.setExtendedState(Frame.MAXIMIZED_BOTH);
             frame.setUndecorated(true);
@@ -197,7 +198,8 @@ public class FormLAF extends FormModel  {
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = getSubmitPanelScroll(0);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            JScrollPane sys = getSystemPanelScroll();
+//            JScrollPane sys = getSystemPanelScroll();
+            JPanel sys = getSystemPanel();
             sys.getAccessibleContext().setAccessibleName(SYS_NAME);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.EAST);
@@ -213,7 +215,8 @@ public class FormLAF extends FormModel  {
             frame.add(getHeader(), BorderLayout.NORTH);
             JScrollPane sub = getSubmitPanelScroll(0);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            JScrollPane sys = getSystemPanelScroll();
+//            JScrollPane sys = getSystemPanelScroll();
+            JPanel sys = getSystemPanel();
             sys.getAccessibleContext().setAccessibleName(SYS_NAME);
             JPanel subpanel = new JPanel(new BorderLayout());
             subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
