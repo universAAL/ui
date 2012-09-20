@@ -275,5 +275,21 @@ public abstract class FormModel {
     public Renderer getRenderer() {
     	return render;
     }
+    
+    /**
+     * Get the list of all parent form titles 
+     * @return an array of titles, the first one being the farthest ancestor
+     * 	and the last being the current form's title.
+     */
+    public String[] getTitlePath() {
+    	int i = this.subDialogLevel;
+    	String[] path = new String[i +1];
+    	FormModel current = this;
+    	while (current != null) {
+    		path[i--] = current.getForm().getTitle();
+    		current = current.parent;
+    	}
+    	return path;
+    }
 }
 
