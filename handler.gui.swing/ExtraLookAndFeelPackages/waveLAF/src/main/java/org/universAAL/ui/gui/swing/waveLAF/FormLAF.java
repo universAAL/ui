@@ -18,11 +18,10 @@ package org.universAAL.ui.gui.swing.waveLAF;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +32,7 @@ import javax.swing.border.CompoundBorder;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
+import org.universAAL.ui.gui.swing.waveLAF.support.MyScrolPaneLayout;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
@@ -101,29 +101,13 @@ public class FormLAF extends FormModel  {
         JScrollPane sp = new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setLayout(new MyScrolPaneLayout());
         sp.setOpaque(false);
         sp.setBorder(null);
         sp.getViewport().setOpaque(false);
         return sp;
     }
 
-    /**
-     * get the system panel wrapped in a scroll pane.
-     * @return
-     *         the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
-     */
-//    protected  getSystemPanelScroll() {
-//    	JPanel system = super.getSystemPanel();
-//        system.setLayout(new BoxLayout(system, BoxLayout.X_AXIS));
-//        system.setOpaque(false);
-//        JScrollPane sp = new JScrollPane(super.getSystemPanel(),
-//                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-//                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-//        sp.setOpaque(false);
-//        sp.setBorder(null);
-//        sp.getViewport().setOpaque(false);
-//        return sp;
-//    }
 
     /**
      * generate the header panel.
@@ -133,15 +117,23 @@ public class FormLAF extends FormModel  {
     protected JPanel getHeader() {
     	JPanel header = new JPanel();//new GradientLAF();
     	header.setOpaque(false);
-    	ImageIcon icon = new ImageIcon(
-    			(getClass().getResource("/images/Banner.png")));
-    	icon.setDescription("UniversAAL Logo Image");
-    	JLabel logo = new JLabel(icon);
-    	logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
+//    	ImageIcon icon = new ImageIcon(
+//    			(getClass().getResource("/images/Banner.png")));
+//    	icon.setDescription("UniversAAL Logo Image");
+//    	JLabel logo = new JLabel(icon);
+//    	logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
     	//JComponent nuevo=new GradientLAF(); 
-    	header.add(logo);
+//    	header.add(logo);
     	//header.add(nuevo);
-
+    	JLabel route = new JLabel();
+    	route.setFont(new Font("Arial", Font.PLAIN, 30));
+    	String[] path = getTitlePath();
+    	String r = "";
+    	for (int i = 0; i < path.length; i++) {
+			r += " / "+ path[i];
+		}
+    	route.setText(r);
+    	header.add(route);
     	return (JPanel) header;
     }
 
