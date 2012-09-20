@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
+import org.universAAL.ui.gui.swing.waveLAF.support.MyScrolPaneLayout;
 
 public class SystemCollapse2 extends JPanel implements ComponentListener {
 
@@ -70,6 +71,7 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JScrollPane scrollPane = new JScrollPane(systemPanel);
+		scrollPane.setLayout(new MyScrolPaneLayout());
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBorder(null);
