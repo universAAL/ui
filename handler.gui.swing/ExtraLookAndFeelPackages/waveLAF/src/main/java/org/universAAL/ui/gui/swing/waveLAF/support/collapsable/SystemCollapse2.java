@@ -16,7 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
-import org.universAAL.ui.gui.swing.waveLAF.support.MyScrolPaneLayout;
+import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 
 public class SystemCollapse2 extends JPanel implements ComponentListener {
 
@@ -33,7 +34,7 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 	 * Create the panel.
 	 */
 	public SystemCollapse2() {
-		backgroundColor = new Color(204, 204, 204);
+		backgroundColor = ColorLAF.getSystemBarBackground();
 		
 		setOpaque(false);
 		setLayout(new BorderLayout(0, 0));
@@ -68,10 +69,10 @@ public class SystemCollapse2 extends JPanel implements ComponentListener {
 		
 		systemPanel = new JPanel();
 		systemPanel.setBackground(backgroundColor);
-		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE));
 		
 		JScrollPane scrollPane = new JScrollPane(systemPanel);
-		scrollPane.setLayout(new MyScrolPaneLayout());
+		scrollPane.setLayout(new BorderedScrolPaneLayout());
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBorder(null);

@@ -35,7 +35,7 @@ public class ColorLAF extends DefaultMetalTheme {
      * @return "uaal Default"
      */
     public String getName() {
-    return "uaal Default";
+    return "uaal Wave";
     }
 
     private final ColorUIResource primary1 = new ColorUIResource(255, 255, 247);
@@ -50,6 +50,7 @@ public class ColorLAF extends DefaultMetalTheme {
     private final ColorUIResource black = new ColorUIResource(0, 0, 0);
     private final ColorUIResource white = new ColorUIResource(255, 255, 255);
 
+
     final private static Color orange = new Color(255, 124, 38);
     final private static Color BackSystem = new Color(213, 237, 247);
     final private static Color BackLetter = new Color(0, 0, 0);
@@ -60,6 +61,9 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color BackMML = new Color(213, 237, 247);
     final private static Color borderLineMM = new Color(169,231,255);
     final private static Color font = new Color(255, 255, 255);
+	final private static Color DialogGradiendBackground1 = new Color(0xf0, 0xf0, 0xf0);
+	final private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
+	final private static Color SystemBarBackground = new Color(204, 204, 204);
 
     final private static int FONT_SIZE_BASE = 16;
     final private static Font bold =
@@ -68,6 +72,8 @@ public class ColorLAF extends DefaultMetalTheme {
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
     final private static Font label =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
+    
+    final public static int SEPARATOR_SPACE = 10; 
 
     /** {@inheritDoc} */
     protected ColorUIResource getPrimary1() {
@@ -99,51 +105,51 @@ public class ColorLAF extends DefaultMetalTheme {
     return secondary3;
     }
 
-    protected static Color getOrange() {
+    public static Color getOrange() {
     return orange;
     }
 
-    protected static Color getBackSystem() {
+    public static Color getBackSystem() {
     return BackSystem;
     }
 
-    protected static Color getBackLetter() {
+    public static Color getBackLetter() {
     return BackLetter;
     }
 
-    protected static Color getOverSytem() {
+    public static Color getOverSytem() {
     return OverSytem;
     }
 
-    protected static Color getSelectedLetter() {
+    public static Color getSelectedLetter() {
     return SelectedLetter;
     }
 
-    protected static Color getborderLine() {
+    public static Color getborderLine() {
     return borderLine;
     }
 
-    protected static Color getBackMM() {
+    public static Color getBackMM() {
     return BackMM;
     }
 
-    protected static Color getBackMML() {
+    public static Color getBackMML() {
     return BackMML;
     }
 
-    protected static Color getborderLineMM() {
+    public static Color getborderLineMM() {
     return borderLineMM;
     }
 
-    protected static Color getfont() {
+    public static Color getfont() {
     return font;
     }
 
-    protected static Font getbold() {
+    public static Font getbold() {
     return bold;
     }
 
-    protected static Font getplain() {
+    public static Font getplain() {
     return plain;
     }
 
@@ -169,4 +175,16 @@ public class ColorLAF extends DefaultMetalTheme {
     public static Font getLabelFont() {
     return label;
     }
+
+	public static Color getDialogGradiendBackground1() {
+		return DialogGradiendBackground1;
+	}
+
+	public static Color getDialogGradiendBackground2() {
+		return DialogGradiendBackground2;
+	}
+
+	public static Color getSystemBarBackground() {
+		return SystemBarBackground;
+	}
 }

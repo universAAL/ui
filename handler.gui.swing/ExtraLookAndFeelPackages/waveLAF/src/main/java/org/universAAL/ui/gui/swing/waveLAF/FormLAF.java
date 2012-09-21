@@ -32,9 +32,9 @@ import javax.swing.border.CompoundBorder;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
-import org.universAAL.ui.gui.swing.waveLAF.support.MyScrolPaneLayout;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -101,7 +101,7 @@ public class FormLAF extends FormModel  {
         JScrollPane sp = new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        sp.setLayout(new MyScrolPaneLayout());
+        sp.setLayout(new BorderedScrolPaneLayout());
         sp.setOpaque(false);
         sp.setBorder(null);
         sp.getViewport().setOpaque(false);
