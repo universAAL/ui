@@ -165,7 +165,7 @@ public class FormLAF extends FormModel  {
         }
         if (form.isSystemMenu()) {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
+//            frame.add(getHeader(), BorderLayout.NORTH);
             frame.add(getIOPanel(), BorderLayout.CENTER);
 //            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
             frame.add(getSystemPanel(), BorderLayout.SOUTH);
