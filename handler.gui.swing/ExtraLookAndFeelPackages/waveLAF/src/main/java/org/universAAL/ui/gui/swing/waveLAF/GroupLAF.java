@@ -30,6 +30,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse2;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -103,13 +104,9 @@ public class GroupLAF extends GroupModel {
             jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
         }
         else if (this.isTheSubmitGroup()){
-			jc.setLayout(new BoxLayout(jc, BoxLayout.Y_AXIS));
-			Component[] c = jc.getComponents();
-			jc.removeAll();
-			for (int i = 0; i < c.length; i++) {
-				jc.add(c[i]);
-				jc.add(Box.createVerticalStrut(5));
-			}
+        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
+        	vfl.setMaximizeOtherDimension(true);
+			jc.setLayout(vfl);
 		}
     }
 
