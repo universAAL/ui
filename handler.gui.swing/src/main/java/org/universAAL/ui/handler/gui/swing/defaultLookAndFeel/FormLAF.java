@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -85,9 +86,11 @@ public class FormLAF extends FormModel {
 	 */
 	protected JScrollPane getSubmitPanelScroll(int depth) {
 		JPanel submit = super.getSubmitPanel(depth);
-		return new JScrollPane(submit,
+		JScrollPane sp = new JScrollPane(submit,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		sp.setLayout(new BorderedScrolPaneLayout());
+		return sp;
 	}
 
 	/**
@@ -97,9 +100,11 @@ public class FormLAF extends FormModel {
 	 *         {@link JScrollPane}.
 	 */
 	protected JScrollPane getSystemPanelScroll() {
-		return new JScrollPane(super.getSystemPanel(),
+		JScrollPane sp =new JScrollPane(super.getSystemPanel(),
 				JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				sp.setLayout(new BorderedScrolPaneLayout());
+		return sp;
 	}
 
 	/**
