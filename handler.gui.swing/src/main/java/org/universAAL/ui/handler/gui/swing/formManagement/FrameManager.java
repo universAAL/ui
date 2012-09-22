@@ -30,11 +30,6 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
 public class FrameManager {
 
     /**
-     * The frame being displayed.
-     */
-    private JFrame frame;
-
-    /**
      * the {@link Form} for which {@link FrameManager#frame}
      * corresponds to.
      */
@@ -49,10 +44,7 @@ public class FrameManager {
      */
     public FrameManager(Form f, ModelMapper mp) {
         model = mp.getModelFor(f);
-        frame = model.getFrame();
-        if (frame != null) {
-            frame.setVisible(true);
-        }
+        model.showForm();
         /*
          *  TODO add a close action
          *  closing = log off

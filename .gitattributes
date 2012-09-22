@@ -142,6 +142,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/LabelLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/BorderedScrolPaneLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Login.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/MediaObjectLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RangeLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatLAF.java -text

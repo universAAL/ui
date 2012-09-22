@@ -16,7 +16,6 @@
 package org.universAAL.ui.handler.gui.swing.model;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Form;
@@ -106,12 +105,10 @@ public abstract class FormModel {
     }
 
     /**
-     * Construct the Frame that displays the {@link Form}
-     * @return
-     *     a {@link JFrame} that contains all the panels and
-     * components of the {@link Form}
+     * Construct the Frame that displays the {@link Form} and 
+     * make it visible
      */
-    public abstract JFrame getFrame();
+    public abstract void showForm();
 
     /**
      * Terminate the dialog, closing the frame, and any
