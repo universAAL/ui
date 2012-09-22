@@ -41,4 +41,9 @@ public class Init implements InitInterface {
 		
 	}
 
+	public void showLoginScreen() {
+	    // TODO Auto-generated method stub
+	    
+	}
+
 }
