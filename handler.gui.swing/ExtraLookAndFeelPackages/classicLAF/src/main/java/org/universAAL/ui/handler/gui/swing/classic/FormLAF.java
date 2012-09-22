@@ -127,7 +127,7 @@ public class FormLAF extends FormModel  {
     /**
      * render the frame for the {@link Form}.
      */
-    public JFrame getFrame() {
+    public void showForm() {
         if (form.isMessage()) {
             frame = new JFrame(form.getTitle());
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
@@ -204,7 +204,7 @@ public class FormLAF extends FormModel  {
             frame.pack();
             setFullScreen();
         }
-        return frame;
+       frame.setVisible(true);
     }
     
     private void setFullScreen(){

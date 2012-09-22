@@ -246,17 +246,14 @@ public class Renderer extends Thread {
      * Main, Top Level Renderer Logic.
      */
     public void run() {
-        /*
-         * XXX
-         *     Does it really need to be a Thread?
-         * TODO
-         *     if login required
-         *      Display Login Form (with which L&F?)
-         *      authenticate user
-         *  create user instance
-         */
-        User u = new User(DEFAULT_USER);
-        setCurrentUser(u);
+
+	if (Boolean.parseBoolean(getProperty(DEMO_MODE))){
+	    User u = new User(DEFAULT_USER);
+	    setCurrentUser(u);
+	}
+	else {
+	    getInitLAF().showLoginScreen();
+	}
     }
 
     /**
@@ -403,11 +400,34 @@ public class Renderer extends Thread {
     	return handler;
     }
 
-	/**
-	 * get the Initial instance when the LAF was loaded.
-	 * @return the initLAF
-	 */
-	public final InitInterface getInitLAF() {
-		return initLAF;
-	}
+    /**
+     * get the Initial instance when the LAF was loaded.
+     * @return the initLAF
+     */
+    public final InitInterface getInitLAF() {
+	return initLAF;
+    }
+    
+    
+    /**
+     * Check if a user-password pair is resgistered.
+     * If it is this method will set the current user, 
+     * and initiate the handler business.
+     * @param user userID trying to authenticate
+     * @param password password of the user.
+     * @return true only if the user is properly authenticated,
+     * 	false otherwise.
+     */
+    public final boolean authenticate(final String user, final String password){
+	// TODO: implement user authentication mechanism
+	new Thread(){
+
+	    public void run() {
+		User u = new User(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user);
+		handler.setCurrentUser(u);		
+	    }
+	    
+	}.start();
+	return true;
+    }
 }

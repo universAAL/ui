@@ -126,6 +126,7 @@ public final class Handler extends UIHandler {
         this.currentUser = currentUser;
         userAuthenticated(currentUser);
         userLoggedIn(currentUser, render.whereAmI());
+        render.getInitLAF().userLogIn(currentUser);
     }
     
     /**

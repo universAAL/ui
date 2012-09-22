@@ -32,7 +32,7 @@ public interface InitInterface {
      * here.
      * <br>
      * For example initializing the UIManager.
-     * @param render TODO
+     * @param render 
      */
     public void install(Renderer render);
 
@@ -42,7 +42,7 @@ public interface InitInterface {
      * here.
      * <br>
      * For example reestablishing the UIManager.
-     * @param render TODO
+     * @param render 
      */
     public void uninstall();
     
@@ -51,4 +51,15 @@ public interface InitInterface {
      * @param usr The user that just logged in.
      */
     public void userLogIn(User usr);
+    
+    /**
+     * Show the Login dialog.
+     * this method then must call {@link Renderer#authenticate(String, String)} to
+     * complete the login process.
+     * NOTE: no need to self call {@link InitInterface#userLogIn(User)}, 
+     * 	that is handled by {@link Renderer#authenticate(String, String)} 
+     * NOTE2: if {@link Renderer#authenticate(String, String)} fails no recall
+     * 	this method is done, this method should manage failed attempts.
+     */
+    public void showLoginScreen();
 }
