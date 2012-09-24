@@ -88,7 +88,7 @@ public final class Handler extends UIHandler {
 
 	/** {@ inheritDoc}	 */
 	public void communicationChannelBroken() {
-		// TODO Auto-generated method stub
+		// TODO notify user with message
 
 	}
 
@@ -127,6 +127,22 @@ public final class Handler extends UIHandler {
         userAuthenticated(currentUser);
         userLoggedIn(currentUser, render.whereAmI());
         render.getInitLAF().userLogIn(currentUser);
+    }
+    
+    /**
+     * The current User has logged off, 
+     * re adapt handler to this situation.
+     */
+    public void unSetCurrentUser() {
+	if (currentUser != null){
+	    UIHandlerProfile oep = new UIHandlerProfile();
+	    oep.addRestriction(MergedRestriction
+		    .getFixedValueRestriction(
+			    UIRequest.PROP_ADDRESSED_USER,
+			    currentUser));
+	    this.removeMatchingRegParams(oep);
+	    this.currentUser=null;
+	}
     }
     
     /**

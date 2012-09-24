@@ -249,7 +249,7 @@ public class Renderer extends Thread {
 
 	if (Boolean.parseBoolean(getProperty(DEMO_MODE))){
 	    User u = new User(DEFAULT_USER);
-	    setCurrentUser(u);
+	    logInUser(u);
 	}
 	else {
 	    getInitLAF().showLoginScreen();
@@ -322,9 +322,16 @@ public class Renderer extends Thread {
      * Set the user that has just authenticated.
      * @param user the user that has just logged in
      */
-    final void setCurrentUser(User user) {
+    final void logInUser(User user) {
         handler.setCurrentUser(user);
         initLAF.userLogIn(user);
+    }
+    
+    /**
+     * The user is requesting a logOff.
+     */
+    public final void logOffCurrentUser(){
+	handler.unSetCurrentUser();
     }
 
     /**
