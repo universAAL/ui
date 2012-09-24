@@ -21,9 +21,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Toolkit;
+import java.beans.PropertyVetoException;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,7 +50,7 @@ public class FormLAF extends FormModel  {
     /**
      * internal accounting for the frame being displayed.
      */
-    private JFrame frame = null;
+    private JInternalFrame frame = null;
 
     /**
      * Constructor.
@@ -142,11 +144,12 @@ public class FormLAF extends FormModel  {
      */
     public void showForm() {
     	if (frame == null) {
-            frame = new JFrame();
+            frame = new JInternalFrame();
             JPanel content = new GradientLAF();
             content.setLayout(new BorderLayout());
             frame.setContentPane(content);
     	}
+    	Init.getInstance(getRenderer()).getDesktop().add(frame);
     	frame.setTitle(form.getTitle());
         if (form.isMessage()) {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
@@ -158,9 +161,13 @@ public class FormLAF extends FormModel  {
                     JScrollPane.VERTICAL_SCROLLBAR_NEVER,
                     JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+            sub.setLayout(new BorderedScrolPaneLayout());
+            sub.setOpaque(false);
+            sub.setBorder(null);
+            sub.getViewport().setOpaque(false);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
             frame.pack();
         }
         if (form.isSystemMenu()) {
@@ -169,9 +176,15 @@ public class FormLAF extends FormModel  {
             frame.add(getIOPanel(), BorderLayout.CENTER);
 //            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
             frame.add(getSystemPanel(), BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
+            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+//            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+            try {
+		frame.setMaximum(true);
+	    } catch (PropertyVetoException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+//            frame.setUndecorated(true);
             frame.pack();
             setFullScreen();
         }
@@ -197,8 +210,12 @@ public class FormLAF extends FormModel  {
             frame.add(sub, BorderLayout.EAST);
             frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
+            try {
+		frame.setMaximum(true);
+	    } catch (PropertyVetoException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
             frame.pack();
             setFullScreen();
         }
@@ -225,8 +242,12 @@ public class FormLAF extends FormModel  {
             frame.add(sub, BorderLayout.EAST);
             frame.add(sys, BorderLayout.SOUTH);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
+            try {
+		frame.setMaximum(true);
+	    } catch (PropertyVetoException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
             frame.pack();
             setFullScreen();
         }
