@@ -103,7 +103,8 @@ public class GroupLAF extends GroupModel {
             // XXX try add icon
             jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
         }
-        else if (this.isTheSubmitGroup()){
+        else if (this.isTheSubmitGroup()
+        	&& !this.isInMessage()){
         	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
