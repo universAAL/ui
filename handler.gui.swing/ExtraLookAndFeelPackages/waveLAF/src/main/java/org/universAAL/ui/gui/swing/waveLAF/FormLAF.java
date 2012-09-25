@@ -19,13 +19,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Toolkit;
-import java.beans.PropertyVetoException;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,7 +29,6 @@ import javax.swing.border.CompoundBorder;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
-import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
@@ -50,7 +45,7 @@ public class FormLAF extends FormModel  {
     /**
      * internal accounting for the frame being displayed.
      */
-    private JInternalFrame frame = null;
+    private JPanel frame = null;
 
     /**
      * Constructor.
@@ -144,13 +139,15 @@ public class FormLAF extends FormModel  {
      */
     public void showForm() {
     	if (frame == null) {
-            frame = new JInternalFrame();
-            JPanel content = new GradientLAF();
-            content.setLayout(new BorderLayout());
-            frame.setContentPane(content);
+            frame = new JPanel();
+            frame.setLayout(new BorderLayout());
+//            JPanel content = new GradientLAF();
+//            content.setLayout(new BorderLayout());
+            //frame.setContentPane(content);
     	}
     	Init.getInstance(getRenderer()).getDesktop().add(frame);
-    	frame.setTitle(form.getTitle());
+    	//frame.setTitle(form.getTitle());
+    	// TODO: message is not a panel but an internal frame!!
         if (form.isMessage()) {
             frame.getAccessibleContext().setAccessibleName(form.getTitle());
             
@@ -167,107 +164,86 @@ public class FormLAF extends FormModel  {
             sub.getViewport().setOpaque(false);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-            frame.pack();
         }
-        if (form.isSystemMenu()) {
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-//            frame.add(getHeader(), BorderLayout.NORTH);
-            frame.add(getIOPanel(), BorderLayout.CENTER);
-//            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
-            frame.add(getSystemPanel(), BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-//            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            try {
-		frame.setMaximum(true);
-	    } catch (PropertyVetoException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-//            frame.setUndecorated(true);
-            frame.pack();
-            setFullScreen();
+        else {
+        	if (form.isSystemMenu()) {
+        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
+        		//            frame.add(getHeader(), BorderLayout.NORTH);
+        		frame.add(getIOPanel(), BorderLayout.CENTER);
+        		frame.add(getSystemPanel(), BorderLayout.SOUTH);
+        	}
+        	if (form.isStandardDialog() ) {
+        		/*
+        		 *  some further LAF can be done here:
+        		 *   if only submints (no sub dialogs)
+        		 *     and <4 (and priority hi?)
+        		 *        then show like a popup.
+        		 */
+        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
+        		frame.add(getHeader(), BorderLayout.NORTH);
+
+        		JScrollPane io = (JScrollPane) getIOPanelScroll();
+
+        		io.getAccessibleContext().setAccessibleName(IO_NAME);
+        		JScrollPane sub = getSubmitPanelScroll(0);
+        		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+        		JPanel sys = getSystemPanel();
+        		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+        		frame.add(io, BorderLayout.CENTER);
+        		frame.add(sub, BorderLayout.EAST);
+        		frame.add(sys, BorderLayout.SOUTH);
+        	}
+        	if (form.isSubdialog()) {
+        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
+        		frame.add(getHeader(), BorderLayout.NORTH);
+        		JScrollPane sub = getSubmitPanelScroll(0);
+        		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+        		JPanel sys = getSystemPanel();
+        		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+        		JPanel subpanel = new JPanel(new BorderLayout());
+        		subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
+
+        		subpanel.setBorder(new CompoundBorder(new ColorBorder(GRAY, 0, 12, 0, 12),
+        				new ShadowBorder()));
+        		for (int i = super.getSubdialogLevel(); i > 1; i--) {
+        			subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+        			JPanel tempanel = new JPanel(new BorderLayout());
+        			tempanel.add(subpanel, BorderLayout.CENTER);
+        			subpanel = tempanel;
+        		}
+        		frame.add(subpanel, BorderLayout.CENTER);
+        		frame.add(sub, BorderLayout.EAST);
+        		frame.add(sys, BorderLayout.SOUTH); 
+        	}
+        	
+        	// ALL non-message dialgos are maximized
+//        	frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+//        	frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+//        	try {
+//        		frame.setMaximum(true);
+//        	} catch (PropertyVetoException e) {
+//        		// TODO Auto-generated catch block
+//        		e.printStackTrace();
+//        	}
+//        	frame.setUndecorated(true);
+//        	frame.pack();
+    		setFullScreen();
+    		Init.getInstance(getRenderer()).getDesktop().revalidate();
         }
-        if (form.isStandardDialog() ) {
-            /*
-             *  some further LAF can be done here:
-             *   if only submints (no sub dialogs)
-             *     and <4 (and priority hi?)
-             *        then show like a popup.
-             */
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
-           
-            JScrollPane io = (JScrollPane) getIOPanelScroll();
-           
-            io.getAccessibleContext().setAccessibleName(IO_NAME);
-            JScrollPane sub = getSubmitPanelScroll(0);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-//            JScrollPane sys = getSystemPanelScroll();
-            JPanel sys = getSystemPanel();
-            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-            frame.add(io, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.EAST);
-            frame.add(sys, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            try {
-		frame.setMaximum(true);
-	    } catch (PropertyVetoException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-            frame.pack();
-            setFullScreen();
-        }
-       if (form.isSubdialog()) {
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
-            JScrollPane sub = getSubmitPanelScroll(0);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-//            JScrollPane sys = getSystemPanelScroll();
-            JPanel sys = getSystemPanel();
-            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-            JPanel subpanel = new JPanel(new BorderLayout());
-            subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
-            
-            subpanel.setBorder(new CompoundBorder(new ColorBorder(GRAY, 0, 12, 0, 12),
-					  new ShadowBorder()));
-            for (int i = super.getSubdialogLevel(); i > 1; i--) {
-            	subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
-            	JPanel tempanel = new JPanel(new BorderLayout());
-            	tempanel.add(subpanel, BorderLayout.CENTER);
-            	subpanel = tempanel;
-            }
-            frame.add(subpanel, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.EAST);
-            frame.add(sys, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            try {
-		frame.setMaximum(true);
-	    } catch (PropertyVetoException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-            frame.pack();
-            setFullScreen();
-        }
-       frame.setVisible(true);
+        frame.setVisible(true);
     }
     
     private void setFullScreen(){
     	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-//    	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();  
-//   		Dimension window = frame.getSize(); 
-//   		frame.setLocation(
-//            (screen.width - window.width) / 2,
-//            (screen.height - window.height) / 2);	
     }
 
     /** {@inheritDoc} */
     public void terminateDialog() {
     	if (frame != null) {
-    		frame.dispose();
+//    		frame.dispose();
+    		Init.getInstance(getRenderer()).getDesktop().remove(frame);
     		frame = null;
+    		Init.getInstance(getRenderer()).getDesktop().revalidate();
     	}
        //frame.getContentPane().removeAll();
     }
