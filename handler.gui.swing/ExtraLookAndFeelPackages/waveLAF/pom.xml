@@ -5,7 +5,7 @@
     <artifactId>ui.pom</artifactId>
     <groupId>org.universAAL.ui</groupId>
     <version>1.2.1-SNAPSHOT</version>
-    <relativePath>../../pom/pom.xml</relativePath>
+    <relativePath>../../../pom</relativePath>
   </parent>
   
   <groupId>org.universAAL.ui</groupId>
