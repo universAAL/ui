@@ -30,7 +30,9 @@ public class UAALTray {
     public UAALTray(Renderer render) {
 	this.render = render;
 	if (SystemTray.isSupported()) {
-	    Image image = Toolkit.getDefaultToolkit().getImage("tray.gif");
+		//TODO Change icon
+	    Image image = Toolkit.getDefaultToolkit()
+	    		.getImage(getClass().getResource("/images/lens.png"));
 	    trayIcon = new TrayIcon(image, "Tray Demo", getMenu());
 	    trayIcon.setImageAutoSize(true);
 
