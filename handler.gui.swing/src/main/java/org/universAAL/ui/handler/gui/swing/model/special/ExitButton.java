@@ -37,9 +37,7 @@ public class ExitButton implements ActionListener {
 		this.render = render;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
+	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
 		render.logOffCurrentUser();
 	}
