@@ -331,7 +331,8 @@ public class Renderer extends Thread {
      * The user is requesting a logOff.
      */
     public final void logOffCurrentUser(){
-	handler.unSetCurrentUser();
+    	getInitLAF().userLogOff(getCurrentUser());
+    	handler.unSetCurrentUser();
     }
 
     /**

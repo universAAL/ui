@@ -49,12 +49,20 @@ public class Init implements InitInterface {
 	// TODO Auto-generated method stub
 
     }
-
+    
+    /** {@inheritDoc} */
+	public void userLogOff(User usr) {
+		// TODO Auto-generated method stub
+		
+	}
+	
     /** {@inheritDoc} */
     public void showLoginScreen() {
 	JFrame login = new Login(render);
 	login.pack();
 	login.setVisible(true);
     }
+
+
 
 }
