@@ -27,6 +27,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
+import org.universAAL.ui.handler.gui.swing.model.special.ExitButton;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -54,6 +55,10 @@ implements ActionListener {
         JButton s = new JButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()));
         s.addActionListener(this);
+        String SubmitID = ((Submit)fc).getID();
+        if (SubmitID.equals(ExitButton.SUBMIT_ID)) {
+        	s.addActionListener(new ExitButton(getRenderer()));
+        }
         return s;
     }
 
