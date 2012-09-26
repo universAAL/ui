@@ -217,16 +217,6 @@ public class FormLAF extends FormModel  {
         	}
         	
         	// ALL non-message dialgos are maximized
-//        	frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-//        	frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-//        	try {
-//        		frame.setMaximum(true);
-//        	} catch (PropertyVetoException e) {
-//        		// TODO Auto-generated catch block
-//        		e.printStackTrace();
-//        	}
-//        	frame.setUndecorated(true);
-//        	frame.pack();
     		setFullScreen();
     		Init.getInstance(getRenderer()).getDesktop().revalidate();
         }

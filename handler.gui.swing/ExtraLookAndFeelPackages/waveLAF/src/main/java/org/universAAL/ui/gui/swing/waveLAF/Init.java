@@ -67,10 +67,14 @@ public class Init implements InitInterface {
 		// TODO Auto-generated method stub
 		tray.update();
 	}
+	
+	public void userLogOff(User usr) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void showLoginScreen() {
 	    // TODO Auto-generated method stub
-	    
 	}
 	
 	public JDesktopPane getDesktop() {
