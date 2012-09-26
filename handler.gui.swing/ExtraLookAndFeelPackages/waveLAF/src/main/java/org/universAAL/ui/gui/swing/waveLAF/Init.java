@@ -23,6 +23,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
+import org.jdesktop.swingx.JXLoginPane;
+import org.jdesktop.swingx.auth.LoginService;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.gui.swing.waveLAF.support.UAALTray;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -38,9 +40,11 @@ public class Init implements InitInterface {
     private UAALTray tray;
     private JDesktopPane desktop;
     private JFrame frame;
+    private Renderer render;
 
 	/** {@inheritDoc} */
     public void install(Renderer render) {
+    	this.render = render;
     	color = new ColorLAF();
         MetalLookAndFeel.setCurrentTheme(color);
         try {
@@ -57,24 +61,28 @@ public class Init implements InitInterface {
     }
 
 	public void uninstall() {
-		// TODO Auto-generated method stub
 	    tray.dispose();
 	    desktop.setVisible(false);
 	    frame.dispose();
 	}
 
 	public void userLogIn(User usr) {
-		// TODO Auto-generated method stub
+		if (!frame.isVisible()) {
+			frame.setVisible(true);
+		}
 		tray.update();
 	}
 	
 	public void userLogOff(User usr) {
-		// TODO Auto-generated method stub
-		
+		frame.setVisible(false);		
 	}
 
 	public void showLoginScreen() {
-	    // TODO Auto-generated method stub
+		if (!frame.isVisible()) {
+			frame.setVisible(true);
+		}
+		JXLoginPane lp = new JXLoginPane(new RendererLoginService());
+		JXLoginPane.showLoginDialog(frame, lp);
 	}
 	
 	public JDesktopPane getDesktop() {
@@ -97,4 +105,14 @@ public class Init implements InitInterface {
 	    return (Init) render.getInitLAF();
 	}
 
+	
+	private class RendererLoginService extends LoginService {
+
+		@Override
+		public boolean authenticate(String arg0, char[] arg1, String arg2)
+				throws Exception {
+			return render.authenticate(arg0, new String(arg1));
+		}
+		
+	}
 }
