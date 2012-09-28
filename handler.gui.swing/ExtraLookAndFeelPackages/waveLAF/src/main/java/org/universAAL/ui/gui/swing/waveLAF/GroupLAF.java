@@ -15,10 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
-import java.awt.Component;
-
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
