@@ -101,6 +101,8 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/SubmitLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/TextAreaLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/package.html -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/specialButtons/uCCButton.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/specialButtons/uStoreButton.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ButtonUI.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ColorBorder.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/GradientLAF.java -text
@@ -127,6 +129,8 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wav
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_shadow_right.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_squares.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/wave_wave_gray.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/junit/TestRenderer.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/junit/WaveLAFConstructorTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/CollapsableTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
 handler.gui.swing/LICENSE.txt -text svneol=unset#text/plain

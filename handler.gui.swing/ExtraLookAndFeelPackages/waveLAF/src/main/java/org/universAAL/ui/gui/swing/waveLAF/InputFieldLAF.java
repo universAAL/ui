@@ -57,7 +57,7 @@ public class InputFieldLAF extends InputFieldModel {
 					.toGregorianCalendar().getTime();
 			return new JXDatePicker(d);
 		}
-		return super.getComponent();
+		return super.getNewComponent();
 	}
 
 
