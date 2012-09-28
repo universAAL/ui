@@ -28,6 +28,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.special.ExitButton;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -54,15 +55,34 @@ implements ActionListener {
     public JComponent getNewComponent() {
         JButton s = new JButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()));
-        s.addActionListener(this);
-        String SubmitID = ((Submit)fc).getID();
-        if (SubmitID.equals(ExitButton.SUBMIT_ID)) {
-        	s.addActionListener(new ExitButton(getRenderer()));
-        }
         return s;
     }
 
-    /**
+    /** {@inheritDoc} */
+	protected void update() {
+		super.update();
+		ActionListener[] als = ((JButton)jc).getActionListeners();
+		boolean hasExitListener = false;
+		boolean hasSubmitListener = false;
+		for (int i = 0; i < als.length; i++) {
+			if (als[i].getClass().equals(this.getClass())) {
+				hasSubmitListener = true;
+			}
+			if (als[i].getClass().equals(ExitButton.class)) {
+				hasExitListener = true;
+			}
+		}
+		if (!hasSubmitListener) {
+			((JButton)jc).addActionListener(this);
+		}
+		if (!hasExitListener
+				 && ((Submit)fc).getID().equals(ExitButton.SUBMIT_ID)) {
+			((JButton)jc).removeActionListener(this);
+			((JButton)jc).addActionListener(new ExitButton((Submit)fc,getRenderer()));
+		}
+	}
+
+	/**
      * a Submit is allways valid.
      * @return <code>true</code>
      */
