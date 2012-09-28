@@ -75,6 +75,7 @@ public class Init implements InitInterface {
 	
 	public void userLogOff(User usr) {
 		tray.update();
+		getDesktop().removeAll();
 		frame.setVisible(false);		
 	}
 

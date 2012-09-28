@@ -22,12 +22,13 @@ import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.JComponent;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.CompoundBorder;
 
-import org.jdesktop.swingx.JXPanel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
@@ -48,6 +49,7 @@ public class FormLAF extends FormModel  {
      * internal accounting for the frame being displayed.
      */
     private GradientLAF frame = null;
+	private JInternalFrame messageFrame;
 
     /**
      * Constructor.
@@ -166,6 +168,16 @@ public class FormLAF extends FormModel  {
             sub.getViewport().setOpaque(false);
             frame.add(io, BorderLayout.CENTER);
             frame.add(sub, BorderLayout.SOUTH);
+            messageFrame = new JInternalFrame(form.getTitle());
+            messageFrame.setContentPane(frame);
+            messageFrame.pack();
+            JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
+            Dimension desktopSize = desktopPane.getSize();
+            Dimension jInternalFrameSize = messageFrame.getSize();
+            messageFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+                (desktopSize.height- jInternalFrameSize.height)/2);
+            messageFrame.setVisible(true);
+            frame.fadeIn();
         }
         else {
         	if (form.isSystemMenu()) {
@@ -231,6 +243,14 @@ public class FormLAF extends FormModel  {
 
     /** {@inheritDoc} */
     public void terminateDialog() {
+    	if (messageFrame != null) {
+    		frame.fadeOut();
+    		messageFrame.dispose();
+    		Init.getInstance(getRenderer()).getDesktop().remove(messageFrame);
+    		messageFrame=null;
+    		frame = null;
+    		Init.getInstance(getRenderer()).getDesktop().revalidate();
+    	}
     	if (frame != null) {
     		frame.fadeOut();
 //    		frame.dispose();
