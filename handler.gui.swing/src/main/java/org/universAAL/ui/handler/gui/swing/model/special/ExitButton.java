@@ -18,13 +18,15 @@ package org.universAAL.ui.handler.gui.swing.model.special;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
  * @author amedrano
  *
  */
-public class ExitButton implements ActionListener {
+public class ExitButton extends SubmitModel implements ActionListener {
 
 	private Renderer render;
 	
@@ -33,12 +35,14 @@ public class ExitButton implements ActionListener {
 	/**
 	 * 
 	 */
-	public ExitButton(Renderer render) {
+	public ExitButton(Submit submit, Renderer render) {
+		super(submit, render);
 		this.render = render;
 	}
 
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
 		render.logOffCurrentUser();
 	}
 
