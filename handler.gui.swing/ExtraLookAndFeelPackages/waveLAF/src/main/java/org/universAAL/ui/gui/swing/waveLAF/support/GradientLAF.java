@@ -50,7 +50,7 @@ public class GradientLAF extends JXPanel {
 		float y = getHeight();
 
 		g2.setPaint(new GradientPaint(0, 0, ColorLAF.getDialogGradiendBackground1(), 0,
-				y/2 , ColorLAF.getDialogGradiendBackground1(), true));
+				y/2 , ColorLAF.getDialogGradiendBackground2(), true));
 		g2.fillRect(clip.x, clip.y, clip.width, clip.height);
 	}
 	
