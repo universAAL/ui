@@ -27,6 +27,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uStoreButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.LAFButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
@@ -48,6 +50,8 @@ public class SubmitLAF extends SubmitModel {
 	 */
 	public SubmitLAF(Submit control, Renderer render) {
 		super(control, render);
+		specialBFactory.add(uCCButton.class);
+		specialBFactory.add(uStoreButton.class);
 	}
 
 	/**
