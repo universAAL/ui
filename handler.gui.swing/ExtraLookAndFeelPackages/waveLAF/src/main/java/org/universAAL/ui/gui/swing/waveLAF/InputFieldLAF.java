@@ -15,6 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.util.Date;
+
+import javax.swing.JComponent;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.jdesktop.swingx.JXDatePicker;
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
@@ -41,6 +47,18 @@ public class InputFieldLAF extends InputFieldModel {
 	    jc.setFont(ColorLAF.getplain());
 	}
     }
+
+	/** {@inheritDoc}*/
+	@Override
+	public JComponent getNewComponent() {
+		InputField inFi = (InputField) fc;
+		if (inFi.getValue() instanceof XMLGregorianCalendar) {
+			Date d = ((XMLGregorianCalendar)(inFi.getValue()))
+					.toGregorianCalendar().getTime();
+			return new JXDatePicker(d);
+		}
+		return super.getComponent();
+	}
 
 
 }

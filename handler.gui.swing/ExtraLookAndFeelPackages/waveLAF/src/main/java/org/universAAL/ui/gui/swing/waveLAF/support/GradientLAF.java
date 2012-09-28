@@ -19,6 +19,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 import org.jdesktop.swingx.JXPanel;
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
@@ -42,7 +43,7 @@ public class GradientLAF extends JXPanel {
 	private static float DELTA_ALPHA =  ((float)1.0)/((float) STEPS);
 	
 	protected void paintComponent(Graphics g) {
-		//super.paintComponent(g);
+		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g.create();
 		
 		Rectangle clip = g2.getClipBounds();
@@ -64,11 +65,9 @@ public class GradientLAF extends JXPanel {
 					try {
 						sleep(MS_PER_FRAME);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
-				//GradientLAF.this.setVisible(false);
 			}
 			
 		}.start();
@@ -85,7 +84,6 @@ public class GradientLAF extends JXPanel {
 					try {
 						sleep(MS_PER_FRAME);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
