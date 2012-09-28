@@ -28,7 +28,8 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.special.ExitButton;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
+import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonFactory;
+import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -36,6 +37,8 @@ import org.universAAL.ui.handler.gui.swing.osgi.Activator;
  */
 public class SubmitModel extends Model
 implements ActionListener {
+	
+	protected SpecialButtonFactory specialBFactory;
 
     /**
      * Constructor.
@@ -45,6 +48,8 @@ implements ActionListener {
     public SubmitModel(Submit control, Renderer render) {
         super(control, render);
         needsLabel = false;
+        specialBFactory = new SpecialButtonFactory(render);
+        specialBFactory.add(ExitButton.class);
     }
 
     /**
@@ -61,24 +66,12 @@ implements ActionListener {
     /** {@inheritDoc} */
 	protected void update() {
 		super.update();
-		ActionListener[] als = ((JButton)jc).getActionListeners();
-		boolean hasExitListener = false;
-		boolean hasSubmitListener = false;
-		for (int i = 0; i < als.length; i++) {
-			if (als[i].getClass().equals(this.getClass())) {
-				hasSubmitListener = true;
-			}
-			if (als[i].getClass().equals(ExitButton.class)) {
-				hasExitListener = true;
-			}
+		SpecialButtonInterface sbi = specialBFactory.getSpecialButton((Submit) fc);
+		if (sbi == null) {
+			SpecialButtonFactory.processListener((JButton) jc, this);
 		}
-		if (!hasSubmitListener) {
-			((JButton)jc).addActionListener(this);
-		}
-		if (!hasExitListener
-				 && ((Submit)fc).getID().equals(ExitButton.SUBMIT_ID)) {
-			((JButton)jc).removeActionListener(this);
-			((JButton)jc).addActionListener(new ExitButton((Submit)fc,getRenderer()));
+		else {
+			SpecialButtonFactory.processListener((JButton) jc, sbi);
 		}
 	}
 

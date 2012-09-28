@@ -15,38 +15,24 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.special;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
+ * An interface to detect and manage.
+ * SpecialButtons must have a
+ * ({@link Submit}, {@link Renderer}) constructor.
  * @author amedrano
  *
  */
-public class ExitButton extends SubmitModel implements SpecialButtonInterface {
-
-	private Renderer render;
+public interface SpecialButtonInterface extends ActionListener{
 	
-	private static final String SUBMIT_ID = "urn:ui.dm:UICaller#stopDialogLoop";
-
 	/**
-	 * 
+	 * Evaluate the "Specialness" of the button.
+	 * @return
 	 */
-	public ExitButton(Submit submit, Renderer render) {
-		super(submit, render);
-		this.render = render;
-	}
-
-	/** {@inheritDoc} */
-	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
-		render.logOffCurrentUser();
-	}
-
-	public boolean isSpecial() {
-		return ((Submit) fc).getID().equals(SUBMIT_ID);
-	}
+	public boolean isSpecial();
 
 }
