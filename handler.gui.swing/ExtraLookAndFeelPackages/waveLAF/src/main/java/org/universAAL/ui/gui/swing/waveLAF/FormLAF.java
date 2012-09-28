@@ -27,8 +27,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.CompoundBorder;
 
+import org.jdesktop.swingx.JXPanel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
+import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
@@ -45,7 +47,7 @@ public class FormLAF extends FormModel  {
     /**
      * internal accounting for the frame being displayed.
      */
-    private JPanel frame = null;
+    private GradientLAF frame = null;
 
     /**
      * Constructor.
@@ -139,7 +141,7 @@ public class FormLAF extends FormModel  {
      */
     public void showForm() {
     	if (frame == null) {
-            frame = new JPanel();
+            frame = new GradientLAF();
             frame.setLayout(new BorderLayout());
 //            JPanel content = new GradientLAF();
 //            content.setLayout(new BorderLayout());
@@ -219,8 +221,8 @@ public class FormLAF extends FormModel  {
         	// ALL non-message dialgos are maximized
     		setFullScreen();
     		Init.getInstance(getRenderer()).getDesktop().revalidate();
+    		frame.fadeIn();
         }
-        frame.setVisible(true);
     }
     
     private void setFullScreen(){
@@ -230,6 +232,7 @@ public class FormLAF extends FormModel  {
     /** {@inheritDoc} */
     public void terminateDialog() {
     	if (frame != null) {
+    		frame.fadeOut();
 //    		frame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(frame);
     		frame = null;
