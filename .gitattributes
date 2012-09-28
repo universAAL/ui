@@ -184,6 +184,8 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/LabelM
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/Model.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/ExitButton.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonFactory.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonInterface.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/Activator.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/package.html -text
