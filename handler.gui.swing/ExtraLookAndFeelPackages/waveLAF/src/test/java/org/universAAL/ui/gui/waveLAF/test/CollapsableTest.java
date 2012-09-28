@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,7 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlo
 
 public class CollapsableTest extends JFrame {
 
-	private JPanel contentPane;
+	private GradientLAF contentPane;
 	private JPanel collapsable;
 
 	/**
@@ -61,12 +63,25 @@ public class CollapsableTest extends JFrame {
 		contentPane.add(collapsable, BorderLayout.SOUTH);
 		
 		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				contentPane.fadeIn();
+				
+			}
+		});
 		collapsable.add(btnHome);
 		
 		JButton btnPendingMessages = new JButton("Pending Messages");
 		collapsable.add(btnPendingMessages);
 		
-		JButton btnPendingDialogs = new JButton("Pending Dialogs");
+		JButton btnPendingDialogs = new JButton("Exit");
+		btnPendingDialogs.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				contentPane.fadeOut();
+			}
+		});
 		collapsable.add(btnPendingDialogs);
 		
 		JPanel panel_1 = new MainMenuPager();
