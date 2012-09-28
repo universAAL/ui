@@ -61,17 +61,17 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color BackMML = new Color(213, 237, 247);
     final private static Color borderLineMM = new Color(169,231,255);
     final private static Color font = new Color(255, 255, 255);
-	final private static Color DialogGradiendBackground1 = new Color(0xf0, 0xf0, 0xf0);
+	final private static Color DialogGradiendBackground1 = new Color(0xe0, 0xe0, 0xe0);
 	final private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
 	final private static Color SystemBarBackground = new Color(204, 204, 204);
 
-    final private static int FONT_SIZE_BASE = 16;
+    final private static int FONT_SIZE_BASE = 20;
     final private static Font bold =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE + 4);
     final private static Font plain =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
     final private static Font label =
-            new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
+            new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 4);
     
     final public static int SEPARATOR_SPACE = 10; 
 
