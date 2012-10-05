@@ -55,12 +55,12 @@
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Private-Package>org.universAAL.ui.handler.gui.swing.osgi,
                             org.universAAL.ui.handler.gui.swing.formManagement,
-                            org.universAAL.ui.handler.gui.swing.dialogManagement,
-                            org.universAAL.ui.handler.gui.swing.model.special</Private-Package>
+                            org.universAAL.ui.handler.gui.swing.dialogManagement</Private-Package>
             <Export-Package>org.universAAL.ui.handler.gui.swing,
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel,
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout,
                             org.universAAL.ui.handler.gui.swing.model,
+                            org.universAAL.ui.handler.gui.swing.model.special,
                             org.universAAL.ui.handler.gui.swing.model.FormControl</Export-Package>
             <Import-Package>org.universAAL.middleware.owl,*</Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
