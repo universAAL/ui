@@ -61,7 +61,9 @@ public final class Activator implements BundleActivator {
 
     /** {@inheritDoc} */
     public void stop(BundleContext arg0) throws Exception {
-        render.finish();
+	if (render != null){
+	    render.finish();
+	}
     }
 
     public static void logDebug(String text, Throwable e) {

@@ -64,13 +64,14 @@ public class HierarchicalFromManager implements FormManager {
 	
 	/** {@inheritDoc} */
 	public final void addDialog(final UIRequest oe) {
-		currentForm = oe;
-		Form f = currentForm.getDialogForm();
-        formMap.put(f.getURI(), f);
-        if (f.getParentDialogURI() != null) {
-        	tree.putChild(f.getParentDialogURI(), f.getURI());
-        }
-        renderFrame(f);
+	    disposeFrame();
+	    currentForm = oe;
+	    Form f = currentForm.getDialogForm();
+	    formMap.put(f.getURI(), f);
+	    if (f.getParentDialogURI() != null) {
+		tree.putChild(f.getParentDialogURI(), f.getURI());
+	    }
+	    renderFrame(f);
 	}
 	
 	/** {@inheritDoc} */
