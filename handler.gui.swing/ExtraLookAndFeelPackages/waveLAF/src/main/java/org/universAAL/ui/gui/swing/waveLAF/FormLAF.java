@@ -129,8 +129,8 @@ public class FormLAF extends FormModel  {
     	JLabel route = new JLabel();
     	route.setFont(new Font("Arial", Font.PLAIN, 30));
     	String[] path = getTitlePath();
-    	String r = "";
-    	for (int i = 0; i < path.length; i++) {
+    	String r = path[0];
+    	for (int i = 1; i < path.length; i++) {
 			r += " / "+ path[i];
 		}
     	route.setText(r);
@@ -172,6 +172,7 @@ public class FormLAF extends FormModel  {
             messageFrame.setContentPane(frame);
             messageFrame.pack();
             JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
+            desktopPane.add(messageFrame);
             Dimension desktopSize = desktopPane.getSize();
             Dimension jInternalFrameSize = messageFrame.getSize();
             messageFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
