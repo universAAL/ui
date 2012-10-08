@@ -30,6 +30,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
 import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uStoreButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.LAFButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SubmitLAFButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
@@ -88,7 +89,8 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		LAFButton s = new LAFButton(fc.getLabel().getText(),
+		
+	LAFButton s = new LAFButton(fc.getLabel().getText(),
                 IconFactory.getIcon(fc.getLabel().getIconURL()));
         s.addActionListener(this);
 		return buttonDecorate(this, s);
@@ -100,6 +102,7 @@ public class SubmitLAF extends SubmitModel {
 			/*
 			 * System Buttons
 			 */
+			
 		}
 		else {
 			/*

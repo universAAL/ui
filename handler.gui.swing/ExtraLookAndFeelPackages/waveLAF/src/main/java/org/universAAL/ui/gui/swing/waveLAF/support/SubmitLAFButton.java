@@ -25,16 +25,15 @@ import javax.swing.plaf.ComponentUI;
 
  
 
-public class LAFButton extends JButton {
-	public Color ligth = new Color (56,142,143);
-	public Color dark	= new Color (75,183,185);
-    public LAFButton(String text, Icon icon) {
+public class SubmitLAFButton extends JButton {
+    public SubmitLAFButton(String text, Icon icon) {
         super(text,icon);
-        Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
+    	
+        Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
         setBorder(raisedBorder);
-        setBackground(new Color(55, 142, 143));
+        setForeground(Color.white);
         setUI(ui);
-       
+        setBackground(new Color(8, 68, 92));
        
         
     }
