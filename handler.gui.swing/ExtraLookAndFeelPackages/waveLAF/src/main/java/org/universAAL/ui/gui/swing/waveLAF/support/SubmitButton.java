@@ -14,9 +14,17 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF.support;
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.RenderingHints;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
@@ -26,6 +34,8 @@ import javax.swing.plaf.ComponentUI;
  
 
 public class SubmitButton extends JButton {
+	private Color ligth = new Color (8,34,79);
+	private Color dark	= new Color (17,8,79);
     public SubmitButton(String text, Icon icon) {
         super(text,icon);
     	
@@ -36,5 +46,28 @@ public class SubmitButton extends JButton {
         setBackground(new Color(8, 68, 92));
        
         
+    }
+    protected void paintComponent(Graphics g) {
+ 	   
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+
+        ButtonModel m = getModel();
+
+        Paint oldPaint = g2.getPaint();
+      
+        RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(0,0,getWidth(),getHeight()-1,17,17);
+            g2.clip(r2d);
+            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
+                    0.0f, getHeight(), dark));
+            g2.fillRect(0,0,getWidth(),getHeight());
+
+            g2.setStroke(new BasicStroke(4f));
+            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
+                    0.0f, getHeight(), dark));
+            g2.drawRoundRect(0, 0, getWidth()-1 , getHeight() -1, 15, 15);
+
+        g2.setPaint(oldPaint);
+        super.paintComponent(g);
     }
 }
