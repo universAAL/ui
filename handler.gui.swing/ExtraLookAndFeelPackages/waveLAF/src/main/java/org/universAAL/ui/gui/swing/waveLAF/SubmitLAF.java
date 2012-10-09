@@ -56,7 +56,26 @@ public class SubmitLAF extends SubmitModel {
 		specialBFactory.add(uStoreButton.class);
 	}
 
-	
+	/**
+	 * Set a color behabiour to a button
+	 *
+	 * @param button
+	 *            the button which to add the behaviour
+	 * @param border
+	 *            a {@link Border} for the button in normal status
+	 * @param normalF
+	 *            the foreground colour for normal state
+	 * @param normalB
+	 *            the background colour for normal state
+	 * @param enterF
+	 *            the foreground colour for pressed state
+	 * @param enterB
+	 *            the background colour for pressed state
+	 * @param clickF
+	 *            the foreground colour for clicked state
+	 * @param clickB
+	 *            the background colour for clicked state
+	 */
 	
 
 	/** {@inheritDoc} */

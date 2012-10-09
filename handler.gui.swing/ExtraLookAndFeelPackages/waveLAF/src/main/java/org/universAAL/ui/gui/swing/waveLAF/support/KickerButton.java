@@ -21,9 +21,10 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -33,16 +34,25 @@ import javax.swing.plaf.ComponentUI;
 
  
 
-public class KickerButton extends JButton {
-	public Color ligth = new Color (56,142,143);
-	public Color dark	= new Color (75,183,185);
+@SuppressWarnings("unused")
+public class KickerButton extends JButton implements MouseListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color ligth = new Color (56,142,143);
+	private Color dark	= new Color (75,183,185);
+	private Color white= new Color (255,255,255);
+	
     public KickerButton(String text, Icon icon) {
         super(text, icon);
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
    
         setBorder(raisedBorder);
         setBackground(new Color(55, 142, 143));
-        setForeground(new Color (255,255,255));
+        setForeground(white);
+        setOpaque(true);
+        addMouseListener(this);
         setUI(ui);       
         
     }
@@ -69,5 +79,27 @@ public class KickerButton extends JButton {
         g2.setPaint(oldPaint);
         super.paintComponent(g);
     }
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseEntered(MouseEvent e) {
+		setForeground(white);
+		setBackground(ligth);
+		setOpaque(true);
+		
+	}
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

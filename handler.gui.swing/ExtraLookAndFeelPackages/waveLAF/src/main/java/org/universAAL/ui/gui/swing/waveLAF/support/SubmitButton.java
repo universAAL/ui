@@ -21,29 +21,39 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.BorderFactory;
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.plaf.ComponentUI;
 
  
 
-public class SubmitButton extends JButton {
+public class SubmitButton extends JButton implements MouseListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	//border color definition 
 	private Color ligth = new Color (8,34,79);
 	private Color dark	= new Color (17,8,79);
-    public SubmitButton(String text, Icon icon) {
+    
+	
+	
+	public SubmitButton(String text, Icon icon) {
         super(text,icon);
-    	
-        Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
+    	Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
         setBorder(raisedBorder);
+        setBackground(new Color(8, 68, 92));
         setForeground(Color.white);
         setUI(ui);
-        setBackground(new Color(8, 68, 92));
+        addMouseListener(this);
+      
        
         
     }
@@ -70,4 +80,24 @@ public class SubmitButton extends JButton {
         g2.setPaint(oldPaint);
         super.paintComponent(g);
     }
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

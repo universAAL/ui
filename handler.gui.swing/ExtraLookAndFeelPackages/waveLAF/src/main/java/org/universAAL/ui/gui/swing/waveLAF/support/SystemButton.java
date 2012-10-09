@@ -24,6 +24,7 @@ import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
@@ -41,11 +42,16 @@ import javax.swing.plaf.ComponentUI;
 
  
 
-public class SystemButton extends JButton {
-	private Color ligth = new Color (108,198,198);
-	private Color dark	= new Color (108,198,198);
+@SuppressWarnings("unused")
+public class SystemButton extends JButton implements MouseListener{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color ligth = new Color (56,142,143);
+	private Color dark	= new Color (75,183,185);
 	private Color normalF = new Color (255,255,255);
-	private Color normalB = new Color(108,198,198) ;
+	private Color normalB = new Color(55, 142, 143) ;
 	private Color enterF = new Color (255,255,255);;
 	private Color enterB = new Color(55, 142, 143) ;;
 	private Color clickF = new Color (255,255,255);
@@ -53,11 +59,11 @@ public class SystemButton extends JButton {
 
     public SystemButton(String text, Icon icon) {
         super(text, icon);
-        SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
-   
+        SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
+// borde redondeado y que no se vea fondo       
         setBorder(raisedBorder);
         setBackground(normalB);
-        setForeground(new Color (255,255,255));
+        addMouseListener(this);
         setUI(ui);
       
         
@@ -86,25 +92,29 @@ public class SystemButton extends JButton {
         g2.setPaint(oldPaint);
         super.paintComponent(g);
     }
-
+	
  
 		public void mouseEntered(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			src.setForeground(enterF);
-			src.setBackground(enterB);
+			
+		
 		}
 
 		public void mouseExited(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			//src.setBorder(new CompoundBorder(BorderFactory.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
-			src.setForeground(normalF);
-			src.setBackground(normalB);
+			
 		}
 
 		public void mouseClicked(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			src.setForeground(clickF);
-			src.setBackground(clickB);
+			
+		}
+
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
     
