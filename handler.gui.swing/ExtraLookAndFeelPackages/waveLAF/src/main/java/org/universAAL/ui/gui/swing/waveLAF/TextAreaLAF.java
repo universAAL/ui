@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.Insets;
+
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -56,9 +58,10 @@ public class TextAreaLAF extends TextAreaModel {
 	super.update();
         String initialValue = (String) fc.getValue();
         JTextArea ta = (JTextArea) jc;
-        ta.setBorder(new SearchFieldBorder());
-        ta.setRows(10);
+       // ta.setBorder(new SearchFieldBorder());
+        ta.setRows(4);
         ta.setColumns(15);
+        ta.setMargin(new Insets(10,10,10,10)); 
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
@@ -66,6 +69,7 @@ public class TextAreaLAF extends TextAreaModel {
         sp.getAccessibleContext().setAccessibleName(initialValue);
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
+        
     }
 
 
