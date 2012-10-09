@@ -159,8 +159,8 @@ public class FormLAF extends FormModel  {
       
             io.getAccessibleContext().setAccessibleName(IO_NAME);
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
-                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
             sub.setLayout(new BorderedScrolPaneLayout());
             sub.setOpaque(false);
@@ -246,8 +246,8 @@ public class FormLAF extends FormModel  {
     public void terminateDialog() {
     	if (messageFrame != null) {
     		frame.fadeOut();
-    		messageFrame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(messageFrame);
+    		messageFrame.dispose();
     		messageFrame=null;
     		frame = null;
     		Init.getInstance(getRenderer()).getDesktop().revalidate();
@@ -257,8 +257,8 @@ public class FormLAF extends FormModel  {
 //    		frame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(frame);
     		frame = null;
-    		Init.getInstance(getRenderer()).getDesktop().revalidate();
     	}
+		Init.getInstance(getRenderer()).getDesktop().revalidate();
        //frame.getContentPane().removeAll();
     }
 }
