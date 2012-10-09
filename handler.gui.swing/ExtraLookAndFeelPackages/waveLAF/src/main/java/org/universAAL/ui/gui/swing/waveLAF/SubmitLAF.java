@@ -29,8 +29,9 @@ import javax.swing.border.EmptyBorder;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
 import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uStoreButton;
-import org.universAAL.ui.gui.swing.waveLAF.support.LAFButton;
-import org.universAAL.ui.gui.swing.waveLAF.support.SubmitLAFButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.KickerButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SubmitButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SystemButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
@@ -89,11 +90,28 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
+		if (isInIOGroup()&& isInMainMenu()){
+			//Kicker
+			KickerButton s = new KickerButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+			return s;
+		}
+		else if (isInStandardGroup()){
+			//system buttons AKA standarbuttons
+			SystemButton s = new SystemButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+			return s;
+		}
+		else {
+			//Lo demás inlcuyendo submits, submits en IOgroup 
+			SubmitButton s = new SubmitButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+			return s;
+		}
 		
-	LAFButton s = new LAFButton(fc.getLabel().getText(),
-                IconFactory.getIcon(fc.getLabel().getIconURL()));
-        s.addActionListener(this);
-		return buttonDecorate(this, s);
 	}
 
 	protected static JComponent buttonDecorate(Model model, JComponent button) {
@@ -110,6 +128,7 @@ public class SubmitLAF extends SubmitModel {
 			 */
 		}
 		if (model.isInSubmitGroup()) {
+			
 			button.setMaximumSize(
 					new Dimension(Integer.MAX_VALUE,
 							button.getPreferredSize().height));
