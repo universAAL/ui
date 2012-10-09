@@ -38,28 +38,28 @@ public class ColorLAF extends DefaultMetalTheme {
     return "uaal Wave";
     }
 
-    private final ColorUIResource primary1 = new ColorUIResource(255, 255, 247);
-    private final ColorUIResource primary2 = new ColorUIResource(169,231,255);//orange
-    private final ColorUIResource primary3 = new ColorUIResource(224, 224, 224);
+    private final ColorUIResource primary1 = new ColorUIResource(255, 255, 247); //cream
+    private final ColorUIResource primary2 = new ColorUIResource(255,255,255);//orange
+    private final ColorUIResource primary3 = new ColorUIResource(255,255,255);//gris claro
 
     private final ColorUIResource secondary1 =
-            new ColorUIResource(246, 252, 255);
-    private final ColorUIResource secondary2 = new ColorUIResource(246, 252, 255);
+            new ColorUIResource(55, 142, 143);
+    private final ColorUIResource secondary2 = new ColorUIResource(246,252,255);
     private final ColorUIResource secondary3 =
-            new ColorUIResource(246, 252, 255);
+            new ColorUIResource(204, 204, 204);
     private final ColorUIResource black = new ColorUIResource(0, 0, 0);
     private final ColorUIResource white = new ColorUIResource(255, 255, 255);
 
 
-    final private static Color orange = new Color(255, 124, 38);
-    final private static Color BackSystem = new Color(213, 237, 247);
+    final private static Color lineBlack = new Color(8,68,92);
+    final private static Color BackSystem = new Color(143,143,143); 
     final private static Color BackLetter = new Color(0, 0, 0);
     final private static Color OverSytem = new Color(255, 255, 255);
-    final private static Color SelectedLetter = new Color(238, 124, 34);
+    final private static Color SelectedLetter = new Color(255, 255, 247);
     final private static Color borderLine = new Color(0,0,0);
     final private static Color BackMM = new Color(8, 68, 92);
-    final private static Color BackMML = new Color(213, 237, 247);
-    final private static Color borderLineMM = new Color(169,231,255);
+    final private static Color BackMML = new Color(55, 142, 143);
+    final private static Color borderLineMM = new Color(8,68,92);
     final private static Color font = new Color(255, 255, 255);
 	final private static Color DialogGradiendBackground1 = new Color(0xe0, 0xe0, 0xe0);
 	final private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
@@ -106,7 +106,7 @@ public class ColorLAF extends DefaultMetalTheme {
     }
 
     public static Color getOrange() {
-    return orange;
+    return lineBlack;
     }
 
     public static Color getBackSystem() {

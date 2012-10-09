@@ -25,16 +25,19 @@ import javax.swing.plaf.ComponentUI;
 
  
 
-public class SubmitLAFButton extends JButton {
-    public SubmitLAFButton(String text, Icon icon) {
-        super(text,icon);
-    	
-        Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
+public class KickerButton extends JButton {
+	public Color ligth = new Color (56,142,143);
+	public Color dark	= new Color (75,183,185);
+    public KickerButton(String text, Icon icon) {
+        super(text, icon);
+        SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
+// borde redondeado y que no se vea fondo       
         setBorder(raisedBorder);
-        setForeground(Color.white);
+        setBackground(new Color(55, 142, 143));
         setUI(ui);
-        setBackground(new Color(8, 68, 92));
+       
        
         
     }
+    
 }
