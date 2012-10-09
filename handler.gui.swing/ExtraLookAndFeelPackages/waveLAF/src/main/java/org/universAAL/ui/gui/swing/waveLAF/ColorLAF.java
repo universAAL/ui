@@ -60,7 +60,7 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Color BackMM = new Color(8, 68, 92);
     final private static Color BackMML = new Color(55, 142, 143);
     final private static Color borderLineMM = new Color(8,68,92);
-    final private static Color font = new Color(255, 255, 255);
+    final private static Color font = new Color(0,0,0);
 	final private static Color DialogGradiendBackground1 = new Color(0xe0, 0xe0, 0xe0);
 	final private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
 	final private static Color SystemBarBackground = new Color(204, 204, 204);
