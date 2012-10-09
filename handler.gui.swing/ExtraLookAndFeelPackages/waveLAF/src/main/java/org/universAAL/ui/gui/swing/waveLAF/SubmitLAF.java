@@ -56,37 +56,8 @@ public class SubmitLAF extends SubmitModel {
 		specialBFactory.add(uStoreButton.class);
 	}
 
-	/**
-	 * Set a color behabiour to a button
-	 *
-	 * @param button
-	 *            the button which to add the behaviour
-	 * @param border
-	 *            a {@link Border} for the button in normal status
-	 * @param normalF
-	 *            the foreground colour for normal state
-	 * @param normalB
-	 *            the background colour for normal state
-	 * @param enterF
-	 *            the foreground colour for pressed state
-	 * @param enterB
-	 *            the background colour for pressed state
-	 * @param clickF
-	 *            the foreground colour for clicked state
-	 * @param clickB
-	 *            the background colour for clicked state
-	 */
-	public static void setButtonBehaviour(JComponent button, Color border,
-			Color normalF, Color normalB, Color enterF, Color enterB,
-			Color clickF, Color clickB) {
-		button.getAccessibleContext();
-		button.setBorder(new CompoundBorder(BorderFactory
-				.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
-		button.setForeground(normalF);
-		button.setBackground(normalB);
-		button.addMouseListener(new MyMouseAdatper(border, normalF, normalB,
-				enterF, enterB, clickF, clickB));
-	}
+	
+	
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
@@ -114,70 +85,6 @@ public class SubmitLAF extends SubmitModel {
 		
 	}
 
-	protected static JComponent buttonDecorate(Model model, JComponent button) {
-		
-		if (model.isInStandardGroup()) {
-			/*
-			 * System Buttons
-			 */
-			
-		}
-		else {
-			/*
-			 * buttons inside IO
-			 */
-		}
-		if (model.isInSubmitGroup()) {
-			
-			button.setMaximumSize(
-					new Dimension(Integer.MAX_VALUE,
-							button.getPreferredSize().height));
-		}
-		//setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
-		//		clickF, clickB);
-		return button;
-	}
-
-	protected static class MyMouseAdatper extends MouseAdapter {
-
-		private Color normalF;
-		private Color normalB;
-		private Color enterF;
-		private Color enterB;
-		private Color clickF;
-		private Color clickB;
-		private Color border;
-
-		public MyMouseAdatper(Color border, Color normalF, Color normalB,
-				Color enterF, Color enterB, Color clickF, Color clickB) {
-			this.border = border;
-			this.normalF = normalF;
-			this.normalB = normalB;
-			this.enterF = enterF;
-			this.enterB = enterB;
-			this.clickF = clickF;
-			this.clickB = clickB;
-		}
-
-		public void mouseEntered(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			src.setForeground(enterF);
-			src.setBackground(enterB);
-		}
-
-		public void mouseExited(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			src.setBorder(new CompoundBorder(BorderFactory
-					.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
-			src.setForeground(normalF);
-			src.setBackground(normalB);
-		}
-
-		public void mouseClicked(MouseEvent e) {
-			JComponent src = (JComponent) e.getSource();
-			src.setForeground(clickF);
-			src.setBackground(clickB);
-		}
-	}
+	
 
 }
