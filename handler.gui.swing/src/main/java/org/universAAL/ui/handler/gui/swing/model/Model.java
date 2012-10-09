@@ -209,7 +209,20 @@ public abstract class Model {
     protected void update() {
 	if (jc != null) {
 		jc.setName(fc.getURI());
-		jc.setToolTipText(fc.getHintString());
+		String help = fc.getHelpString();
+		String hint = fc.getHintString();
+		String hintAndHelp = "";
+		if (!help.isEmpty()) {
+			hintAndHelp += "Help:\n" + help;
+		}
+		if (!help.isEmpty() 
+				&& !hint.isEmpty()) {
+			hintAndHelp += "\n";
+		}
+		if (!hint.isEmpty()) {
+			hintAndHelp += "Hint: \n" + hint;
+		}
+		jc.setToolTipText(hintAndHelp);
 	}
 		/*
 		 * TODO: how to show Help ?
