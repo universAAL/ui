@@ -17,6 +17,7 @@
 package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,6 +33,7 @@ import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -60,13 +62,18 @@ public class SystemButton extends JButton implements MouseListener{
     public SystemButton(String text, Icon icon) {
         super(text, icon);
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
-// borde redondeado y que no se vea fondo       
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.CENTER);
         setBorder(raisedBorder);
         setBackground(normalB);
         addMouseListener(this);
         setUI(ui);
       
         
+    }
+    @Override
+    public Dimension getPreferredSize() {   
+        return (new Dimension(200,100));
     }
     
     protected void paintComponent(Graphics g) {
