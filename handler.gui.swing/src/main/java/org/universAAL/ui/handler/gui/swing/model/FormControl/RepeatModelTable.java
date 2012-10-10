@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -28,7 +27,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Input;

@@ -18,8 +18,8 @@ package org.universAAL.ui.handler.gui.swing.formManagement;
 import java.io.Serializable;
 import java.util.Comparator;
 
-import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.middleware.ui.UIRequest;
 
 /**
  * Comparator for {@link UIRequest}s.

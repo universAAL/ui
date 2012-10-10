@@ -7,12 +7,13 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout;
  */
 
 import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
-import java.io.ObjectInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 
 /**
  * A flow layout arranges components in a directional flow, much
