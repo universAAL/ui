@@ -89,7 +89,9 @@ public class SimpleFormManager implements FormManager {
 	}
 
 	protected void renderFrame() {
-		frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
+		if (currentForm != null) {
+			frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
+		}
 	}
 	
 	protected void disposeFrame(){
