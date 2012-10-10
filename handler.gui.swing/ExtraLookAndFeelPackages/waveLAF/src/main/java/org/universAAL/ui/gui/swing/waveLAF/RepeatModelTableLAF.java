@@ -84,14 +84,14 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	}
 	
 	private void setButtonColors(JButton button) {
-		Color border = ColorLAF.getborderLine();
-		Color normalF = ColorLAF.getBackLetter();
-		Color normalB = ColorLAF.getBackSystem();
-		Color enterF = ColorLAF.getBackLetter();
-		Color enterB = ColorLAF.getOverSytem();
-		Color clickF = ColorLAF.getSelectedLetter();
-		Color clickB = ColorLAF.getBackSystem();
-		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
-		clickF, clickB);
+//		Color border = ColorLAF.getborderLine();
+//		Color normalF = ColorLAF.getBackLetter();
+//		Color normalB = ColorLAF.getBackSystem();
+//		Color enterF = ColorLAF.getBackLetter();
+//		Color enterB = ColorLAF.getOverSytem();
+//		Color clickF = ColorLAF.getSelectedLetter();
+//		Color clickB = ColorLAF.getBackSystem();
+//		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
+//		clickF, clickB);
 	}
 }

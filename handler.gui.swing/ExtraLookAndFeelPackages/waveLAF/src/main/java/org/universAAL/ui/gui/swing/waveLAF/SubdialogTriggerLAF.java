@@ -15,10 +15,15 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.ui.gui.swing.waveLAF.support.KickerButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SubmitButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SystemButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerModel;
 
 /**
@@ -36,7 +41,27 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
     }
 
     /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-    	return SubmitLAF.buttonDecorate(this, super.getNewComponent());
-    }
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		JButton s = null;
+		if (isInIOGroup()&& isInMainMenu()){
+			//Kicker
+			s = new KickerButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+		}
+		else if (isInStandardGroup()){
+			//system buttons AKA standarbuttons
+			s = new SystemButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+		}
+		else {
+			//Lo demás inlcuyendo submits, submits en IOgroup 
+			s = new SubmitButton(fc.getLabel().getText(),
+					IconFactory.getIcon(fc.getLabel().getIconURL()));
+			s.addActionListener(this);
+		}
+		return s;
+	}
 }
