@@ -15,16 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
@@ -34,7 +25,6 @@ import org.universAAL.ui.gui.swing.waveLAF.support.SubmitButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.SystemButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
-import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
@@ -101,7 +91,6 @@ public class SubmitLAF extends SubmitModel {
 			s.addActionListener(this);
 			return s;
 		}
-		
 	}
 
 	
