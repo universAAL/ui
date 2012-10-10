@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2011 Universidad Politécnica de Madrid
+ * Copyright 2011 Universidad PolitÃ©cnica de Madrid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,18 +39,24 @@ public class UIRequestPriorityComparator implements Comparator, Serializable {
      * @see java.util.Comparator#compare(T, T)
      */
     /** {@inheritDoc} */
-    public int compare(Object o1, Object o2) {
-        LevelRating p1 = ((UIRequest) o1).getDialogPriority();
-        LevelRating p2 = ((UIRequest) o2).getDialogPriority();
-        if (((UIRequest) o1).getDialogForm().isSystemMenu()) {
-            return 1;
+    public int compare(Object u1, Object u2) {
+    	UIRequest o1 = (UIRequest) u1;
+    	UIRequest o2 = (UIRequest) u2;
+        LevelRating p1 = o1.getDialogPriority();
+        LevelRating p2 = o2.getDialogPriority();
+        if (p1.greater(p2)) {
+        	return -1;
         }
-        if (((UIRequest) o2).getDialogForm().isSystemMenu()) {
-            return -1;
+        if (p2.greater(p1)){
+        	return 1;
         }
-        return p1.greater(p2) ?
-                -1
-                : (p1.less(p2) ? 1 : 0);
+        int creationComparison = o1.getDialogForm().getCreationTime()
+        		.compare(o2.getDialogForm().getCreationTime());
+        if ( creationComparison !=0 ) {
+        	return creationComparison;
+        }      
+        return  o1.getDialogID().compareTo(o2.getDialogID());
     }
+
 
 }
