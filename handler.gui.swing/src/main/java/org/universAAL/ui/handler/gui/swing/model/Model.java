@@ -212,14 +212,18 @@ public abstract class Model {
 		String help = fc.getHelpString();
 		String hint = fc.getHintString();
 		String hintAndHelp = "";
-		if (!help.isEmpty()) {
+		if (help != null 
+				&& !help.isEmpty()) {
 			hintAndHelp += "Help:\n" + help;
 		}
-		if (!help.isEmpty() 
+		if (help != null
+				&& hint != null
+				&& !help.isEmpty() 
 				&& !hint.isEmpty()) {
 			hintAndHelp += "\n";
 		}
-		if (!hint.isEmpty()) {
+		if (help != null
+				&&!hint.isEmpty()) {
 			hintAndHelp += "Hint: \n" + hint;
 		}
 		jc.setToolTipText(hintAndHelp);
