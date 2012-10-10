@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing;
 
+import javax.swing.LookAndFeel;
+
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;

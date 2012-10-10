@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

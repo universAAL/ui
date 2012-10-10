@@ -18,7 +18,6 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 
-import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
