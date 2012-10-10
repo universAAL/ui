@@ -17,6 +17,8 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Input;
@@ -60,12 +63,24 @@ public class RepeatModelTable extends RepeatModel {
 	 * @return
 	 * @see RepeatModel#isATable()
 	 */
-	private FormControl[][] getTable() {
-		FormControl[] rows = ((Group) fc).getChildren();
-		int cols = ((Group) rows[0]).getChildren().length;
-		FormControl[][] table = new FormControl[rows.length][cols];
-		for (int r = 0; r < rows.length; r++) {
-			table[r] = ((Group) rows[r]).getChildren();
+	private Object[][] getTable() {
+		Repeat rep = ((Repeat) fc);
+		List rows = (List) rep.getValue();
+		int cols = rep.getChildren().length;
+		Object[][] table = new FormControl[rows.size()][cols];
+		for (int r = 0; r < rows.size(); r++) {
+			Object res =  rows.get(r);
+			if (res instanceof Group) {
+				List row = (List) ((Group) res).getValue();
+				table[r] =  row.toArray(new Object[row.size()]);
+			}
+			if (res instanceof List) {
+				table[r] = ((List)res)
+						.toArray(new Object[((List)res).size()]);
+			}
+			if (res.getClass().isArray()) {
+				table[r] = (Object[]) res;
+			}
 		}
 		return table;
 	}
@@ -126,7 +141,7 @@ public class RepeatModelTable extends RepeatModel {
 		 *
 		 */
 		private static final long serialVersionUID = 8263449027626068414L;
-		private FormControl[][] table;
+		private Object[][] table;
 
 		public RepeatTableModel() {
 			table = getTable();
@@ -141,18 +156,25 @@ public class RepeatModelTable extends RepeatModel {
 		}
 
 		public String getColumnName(int columnIndex) {
-			return table[0][columnIndex].getLabel().getText();
+			FormControl c = ((Repeat) fc).getChildren()[columnIndex];
+			if (c != null && c.getLabel() != null) {
+				return c.getLabel().getText();
+				// XXX: icons to column headers?
+			}
+			if (table[0][columnIndex] instanceof FormControl) {
+				return ((FormControl)table[0][columnIndex]).getLabel().getText();
+			}
+			return null;
 		}
 
 		public Class getColumnClass(int columnIndex) {
-			Class colClass = table[0][columnIndex].getValue().getClass();
-			for (int i = 1; i < getRowCount();i++) {
-				while (!colClass.isAssignableFrom(table[i][columnIndex].getValue().getClass())) {
-					//not a subclass (or equal) of colClass
-					colClass = colClass.getSuperclass();
-				}
+			if (table[0][columnIndex] instanceof FormControl) {
+				return getRenderer().getModelMapper()
+						.getModelFor(((FormControl)table[0][columnIndex]))
+						.getComponent().getClass();
+			} else {
+				return table[0][columnIndex].getClass();
 			}
-			return null;
 		}
 
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -161,7 +183,13 @@ public class RepeatModelTable extends RepeatModel {
 		}
 
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			return table[rowIndex][columnIndex].getValue();
+			if (table[rowIndex][columnIndex] instanceof FormControl) {
+				return getRenderer().getModelMapper()
+						.getModelFor(((FormControl)table[rowIndex][columnIndex]))
+						.getComponent();
+			} else {
+				return table[rowIndex][columnIndex];
+			}
 		}
 
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {

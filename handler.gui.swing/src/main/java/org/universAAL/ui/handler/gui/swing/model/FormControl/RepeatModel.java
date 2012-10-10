@@ -65,48 +65,37 @@ public class RepeatModel extends GroupModel {
      */
     protected boolean isATable() {
         /*
-         * Check that the children type is Group,
-         * that the length of all children (Groups) are the same,
-         * And that all the Groups do not contain more groups.
-         * XXX check the type for each column is consistent.
+         * Check that the children type is Group
          */
-        if (getChildrenType() != null 
-        	&& getChildrenType().equals(Group.class)) {
-            FormControl[] child = ((Repeat) fc).getChildren();
-            int i = 0;
-            LevelRating complexity = LevelRating.none;
-            Class last = child[0].getClass();
-            while (i < child.length
-                    && child[i].getClass() == last
-                    && complexity == ((Group) child[i]).getComplexity())
-                { i++; }
-            return i == child.length;
-        }
-        else {
-            return false;
-        }
+//        if (getChildrenType() != null 
+//        	&& getChildrenType().equals(Group.class)) {
+//            FormControl[] child = ((Repeat) fc).getChildren();
+//            int i = 0;
+//            LevelRating complexity = LevelRating.none;
+//            Class last = child[0].getClass();
+//            while (i < child.length
+//                    && child[i].getClass() == last
+//                    && complexity == ((Group) child[i]).getComplexity())
+//                { i++; }
+//            return i == child.length;
+//        }
+//        else {
+//            return false;
+//        }
+    	FormControl[] chd = ((Repeat) fc).getChildren();
+    	return chd.length > 0 && chd[0] instanceof Group;
     }
 
 
 
     /** {@inheritDoc}*/
     public JComponent getNewComponent() {
-        /*
-         *  TODO
-         *  Check for complexity and take decision
-         *  Check for multilevel and take decision
-         *  Check for Group children and render JTabbedPane
-         */
         if (isATable()) {
         	table = new RepeatModelTable((Repeat) fc, getRenderer());
             return table.getNewComponent();
-        }
-        if (getChildrenType().equals(Group.class)) {
-            /*
-             * children are Group, but not the same length
-             * display a tabbedpane
-             */
-            return tabbedPanel();
+        } else {
+        	//TODO: otherwise, the repeat ovject represents a one 
+        	// column list of simple values
         }
         
         return super.getNewComponent();
