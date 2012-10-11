@@ -21,16 +21,19 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
@@ -39,6 +42,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.plaf.ComponentUI;
+
+import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
 
 
@@ -57,24 +62,36 @@ public class SystemButton extends JButton implements MouseListener{
 	private Color enterF = new Color (255,255,255);;
 	private Color enterB = new Color(55, 142, 143) ;;
 	private Color clickF = new Color (255,255,255);
-	private Color clickB= new Color(75, 183, 185);;
+	private Color clickB= new Color(75, 183, 185);
+	private Image img;
 
     public SystemButton(String text, Icon icon) {
-        super(text, icon);
+    	super(text);
+    	//he generado uen buffer para controlar el tamaño, ver como se gestiona
+    	Image img = ((ImageIcon) icon).getImage() ;  
+    	Image newimg = img.getScaledInstance( 2*ColorLAF.SEPARATOR_SPACE, 2*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
+    	icon = new ImageIcon( newimg );
+
+       	setIcon(icon);
+     
+        
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
         setHorizontalTextPosition(SwingConstants.CENTER);
-        setVerticalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.BOTTOM);
         setBorder(raisedBorder);
         setBackground(normalB);
         addMouseListener(this);
         setUI(ui);
+        
       
         
     }
     @Override
-    public Dimension getPreferredSize() {   
-        return (new Dimension(200,100));
+    public Dimension getPreferredSize(){
+    	int ButtonWeight= 4* ColorLAF.SEPARATOR_SPACE;
+        return new Dimension(ButtonWeight, ButtonWeight);
     }
+
     
     protected void paintComponent(Graphics g) {
    
