@@ -15,18 +15,15 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -61,8 +58,8 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	}
 
 	/** {@inheritDoc}*/
-	public JComponent getNewComponent() {
-		/* TODO
+//	public JComponent getNewComponent() {
+		/* 
 		 * Representation of a table
 		 ********************************************
 		 * use:
@@ -78,18 +75,8 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		 * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
 		 */
 
-		JScrollPane scrollPane = new JScrollPane(getJTable());
 		
-
-		JPanel buttonPanel = getButtonPanel();
-		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		
-		JPanel pannelWithAll = new JPanel();
-		pannelWithAll.setLayout(new BorderLayout());
-		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
-		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
-		return pannelWithAll;
-	}
+//	}
 
 	/** {@inheritDoc}*/
 	protected void update() {

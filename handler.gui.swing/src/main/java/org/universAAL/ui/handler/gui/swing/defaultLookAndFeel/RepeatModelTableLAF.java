@@ -24,7 +24,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -60,6 +59,10 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
+		pannelWithAll.add(
+				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
+				BorderLayout.NORTH);
+		needsLabel = false;
 		return pannelWithAll;
 	}
 
