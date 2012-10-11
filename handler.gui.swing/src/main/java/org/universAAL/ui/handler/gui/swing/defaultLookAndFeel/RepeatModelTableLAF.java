@@ -15,7 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -46,42 +48,18 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		Repeat r = (Repeat) fc;
-
-		tableComponent = new JTable(new RepeatTableModel());
-		JScrollPane scrollPane = new JScrollPane(tableComponent);
-		tableComponent.setFillsViewportHeight(true);
-
-		JPanel buttonPanel = new JPanel();
+		JScrollPane scrollPane = new JScrollPane(getJTable());
+		
+		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		JButton b;
-		if (r.listAcceptsNewEntries()) {
-			b = new AddTableButton();
-			b.setText("+");
-			setButtonColors(b);
-			buttonPanel.add(b);
+		Component[] buttons = buttonPanel.getComponents();
+		for (int i = 0; i < buttons.length; i++) {
+			setButtonColors((JButton) buttons[i]);
 		}
-		if (r.listEntriesDeletable()) {
-			b = new DeleteTableButton();
-			b.setText("-");
-			setButtonColors(b);
-			buttonPanel.add(b);
-		}
-		if (r.listEntriesEditable()) {
-			b = new UpTableButton();
-			b.setText("^");
-			setButtonColors(b);
-			buttonPanel.add(b);
-			b = new DownTableButton();
-			b.setText("v");
-			setButtonColors(b);
-			buttonPanel.add(b);
-		}
-
 		JPanel pannelWithAll = new JPanel();
-		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-		pannelWithAll.add(scrollPane);
-		pannelWithAll.add(buttonPanel);
+		pannelWithAll.setLayout(new BorderLayout());
+		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
 		return pannelWithAll;
 	}
 
