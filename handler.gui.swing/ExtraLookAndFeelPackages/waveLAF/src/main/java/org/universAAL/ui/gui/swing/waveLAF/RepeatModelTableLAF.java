@@ -15,14 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
-import java.awt.Color;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -43,55 +36,6 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	
 	/** {@inheritDoc}*/
 	public JComponent getNewComponent() {
-		Repeat r = (Repeat)fc;
-
-
-		tableComponent = new JTable(new RepeatTableModel());
-		JScrollPane scrollPane = new JScrollPane(tableComponent);
-		tableComponent.setFillsViewportHeight(true);
-		
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		JButton b;
-		if (r.listAcceptsNewEntries()) {
-			b = new AddTableButton();
-			b.setText("+");
-			setButtonColors(b);
-			buttonPanel.add(b);
-		}
-		if (r.listEntriesDeletable()) {
-			b = new DeleteTableButton();
-			b.setText("-");
-			setButtonColors(b);
-			buttonPanel.add(b);
-		}
-		if (r.listEntriesEditable()) {
-			b = new UpTableButton();
-			b.setText("^");
-			setButtonColors(b);
-			buttonPanel.add(b);
-			b = new DownTableButton();
-			b.setText("v");
-			setButtonColors(b);
-			buttonPanel.add(b);
-		}
-
-		JPanel pannelWithAll = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-		pannelWithAll.add(scrollPane);
-		pannelWithAll.add(buttonPanel);
-		return pannelWithAll;
-	}
-	
-	private void setButtonColors(JButton button) {
-//		Color border = ColorLAF.getborderLine();
-//		Color normalF = ColorLAF.getBackLetter();
-//		Color normalB = ColorLAF.getBackSystem();
-//		Color enterF = ColorLAF.getBackLetter();
-//		Color enterB = ColorLAF.getOverSytem();
-//		Color clickF = ColorLAF.getSelectedLetter();
-//		Color clickB = ColorLAF.getBackSystem();
-//		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF, enterB,
-//		clickF, clickB);
+		return super.getNewComponent();
 	}
 }

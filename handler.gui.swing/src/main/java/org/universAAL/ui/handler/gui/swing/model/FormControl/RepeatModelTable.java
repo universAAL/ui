@@ -15,21 +15,25 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
-import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
@@ -38,14 +42,15 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author amedrano
  *
  */
-public class RepeatModelTable extends RepeatModel {
+public class RepeatModelTable extends RepeatModel implements ListSelectionListener{
 
 
 	/**
 	 * The table component
 	 */
 	protected JTable tableComponent;
-
+	private RepeatTableModel repeatTableModel;
+    private JComponent[] selectionComps;
 	/**
 	 * Constructor
 	 * @param control
@@ -53,34 +58,6 @@ public class RepeatModelTable extends RepeatModel {
 	public RepeatModelTable(Repeat control, Renderer render) {
 		super(control, render);
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * pre: isATable()
-	 * @param col
-	 * @return
-	 * @see RepeatModel#isATable()
-	 */
-	private Object[][] getTable() {
-		Repeat rep = ((Repeat) fc);
-		List rows = (List) rep.getValue();
-		int cols = rep.getChildren().length;
-		Object[][] table = new FormControl[rows.size()][cols];
-		for (int r = 0; r < rows.size(); r++) {
-			Object res =  rows.get(r);
-			if (res instanceof Group) {
-				List row = (List) ((Group) res).getValue();
-				table[r] =  row.toArray(new Object[row.size()]);
-			}
-			if (res instanceof List) {
-				table[r] = ((List)res)
-						.toArray(new Object[((List)res).size()]);
-			}
-			if (res.getClass().isArray()) {
-				table[r] = (Object[]) res;
-			}
-		}
-		return table;
 	}
 
 	/** {@inheritDoc}*/
@@ -100,15 +77,58 @@ public class RepeatModelTable extends RepeatModel {
 		 * check:
 		 * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
 		 */
+
+		JScrollPane scrollPane = new JScrollPane(getJTable());
+		
+
+		JPanel buttonPanel = getButtonPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		
+		JPanel pannelWithAll = new JPanel();
+		pannelWithAll.setLayout(new BorderLayout());
+		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
+		return pannelWithAll;
+	}
+
+	/** {@inheritDoc}*/
+	protected void update() {
+		FormControl[] selectionControls = repeatTableModel.getSelectionControls();
+		selectionComps = new JComponent[selectionControls.length];
+		Component[] siblings;
+		if (jc != null && jc.getParent() != null) {
+			siblings = jc.getParent().getComponents();
+		} else {
+			siblings = new JComponent[0];
+		}		
+		for (int i = 0; i < selectionControls.length; i++) {
+			for (int j = 0; j < siblings.length; j++) {
+				if (siblings[j] instanceof JComponent
+						&& ((JComponent) siblings[j])
+						.getName().equals(selectionControls[i].getURI())) {
+					selectionComps[i] = (JComponent) siblings[j];
+					continue;
+				}
+			}
+		}
+	}
+
+	protected JTable getJTable() {
+		Repeat r = (Repeat)fc;
+		repeatTableModel = new RepeatTableModel(r);
+		tableComponent = new JTable(repeatTableModel);
+		tableComponent.setFillsViewportHeight(true);
+		tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		tableComponent.setColumnSelectionAllowed(false);
+		tableComponent.setRowSelectionAllowed(true);
+		tableComponent.getSelectionModel().addListSelectionListener(this);
+		return tableComponent;
+	}
+	
+	protected JPanel getButtonPanel() {
 		Repeat r = (Repeat)fc;
 
-
-		tableComponent = new JTable(new RepeatTableModel());
-		JScrollPane scrollPane = new JScrollPane(tableComponent);
-		tableComponent.setFillsViewportHeight(true);
-		
 		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		if (r.listAcceptsNewEntries()) {
 			buttonPanel.add(new AddTableButton());
 		}
@@ -119,83 +139,9 @@ public class RepeatModelTable extends RepeatModel {
 			buttonPanel.add(new UpTableButton());
 			buttonPanel.add(new DownTableButton());
 		}
-
-		JPanel pannelWithAll = new JPanel();
-		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-		pannelWithAll.add(scrollPane);
-		pannelWithAll.add(buttonPanel);
-		return pannelWithAll;
+		return buttonPanel;
 	}
-
-	/** {@inheritDoc}*/
-	protected void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public class RepeatTableModel extends AbstractTableModel {
-
-		/**
-		 *
-		 */
-		private static final long serialVersionUID = 8263449027626068414L;
-		private Object[][] table;
-
-		public RepeatTableModel() {
-			table = getTable();
-		}
-
-		public int getRowCount() {
-			return table.length;
-		}
-
-		public int getColumnCount() {
-			return table[0].length;
-		}
-
-		public String getColumnName(int columnIndex) {
-			FormControl c = ((Repeat) fc).getChildren()[columnIndex];
-			if (c != null && c.getLabel() != null) {
-				return c.getLabel().getText();
-				// XXX: icons to column headers?
-			}
-			if (table[0][columnIndex] instanceof FormControl) {
-				return ((FormControl)table[0][columnIndex]).getLabel().getText();
-			}
-			return null;
-		}
-
-		public Class getColumnClass(int columnIndex) {
-			if (table[0][columnIndex] instanceof FormControl) {
-				return getRenderer().getModelMapper()
-						.getModelFor(((FormControl)table[0][columnIndex]))
-						.getComponent().getClass();
-			} else {
-				return table[0][columnIndex].getClass();
-			}
-		}
-
-		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return (table[rowIndex][columnIndex] instanceof Input)
-					&& ((Repeat) fc).listEntriesEditable();
-		}
-
-		public Object getValueAt(int rowIndex, int columnIndex) {
-			if (table[rowIndex][columnIndex] instanceof FormControl) {
-				return getRenderer().getModelMapper()
-						.getModelFor(((FormControl)table[rowIndex][columnIndex]))
-						.getComponent();
-			} else {
-				return table[rowIndex][columnIndex];
-			}
-		}
-
-		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-			((Input) table[rowIndex][columnIndex]).storeUserInput(aValue);
-			//TODO Check Validity!
-		}
-	}
-
+	
 	/**
 	 * Class representing the Add button for Tables.
 	 * @author amedrano
@@ -218,8 +164,7 @@ public class RepeatModelTable extends RepeatModel {
 
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+			repeatTableModel.addValue();
 		}
 	}
 
@@ -246,13 +191,7 @@ public class RepeatModelTable extends RepeatModel {
 		
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			Repeat r = (Repeat) fc;
-			int[] selIndexes = tableComponent.getSelectedRows();
-			for (int i = 0; i < selIndexes.length; i++) {
-				r.setSelection(selIndexes[i]);
-				r.removeSelection();
-				tableComponent.removeRowSelectionInterval(selIndexes[i], selIndexes[i]);
-			}
+			repeatTableModel.removeValue();
 		}
 	}
 	
@@ -320,4 +259,34 @@ public class RepeatModelTable extends RepeatModel {
 
 		}
 	}
+
+	public void valueChanged(ListSelectionEvent e) {
+		ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+		if (lsm.isSelectionEmpty()) {
+			for (int i = 0; i < selectionComps.length; i++) {
+				if (selectionComps[i] instanceof JTextField)
+					((JTextField) selectionComps[i]).setText("");
+				else if (selectionComps[i] instanceof JCheckBox)
+					((JCheckBox) selectionComps[i]).setSelected(false);
+				else if (selectionComps[i] instanceof JLabel)
+					((JLabel) selectionComps[i]).setText("No selection");
+			}
+			repeatTableModel.setSelection(-1);
+		} else {
+			repeatTableModel.setSelection(lsm.getMinSelectionIndex());
+			for (int i = 0; i < selectionComps.length; i++) {
+				Object val = repeatTableModel.getSelectionColumnValue(i);
+				if (selectionComps[i] instanceof JTextField)
+					((JTextField) selectionComps[i]).setText((val == null) ? ""
+							: val.toString());
+				else if (selectionComps[i] instanceof JCheckBox)
+					((JCheckBox) selectionComps[i]).setSelected(Boolean.TRUE
+							.equals(val));
+				else if (selectionComps[i] instanceof JLabel)
+					((JLabel) selectionComps[i]).setText((val == null) ? ""
+							: val.toString());
+			}
+		}
+	}
+	
 }

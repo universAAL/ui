@@ -44,7 +44,8 @@ public class IconFactory {
         if (url != null && !url.isEmpty()) {
             try {
             	URL ur = ResourceMapper.search(url);
-            	if (ur.getProtocol().equals("file")) {
+            	if (ur != null
+            			&& ur.getProtocol().equals("file")) {
             		return new ImageIcon(ur.getPath());
             	}
             	else {
