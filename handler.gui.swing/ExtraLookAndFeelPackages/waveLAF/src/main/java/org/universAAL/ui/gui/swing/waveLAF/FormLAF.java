@@ -21,13 +21,16 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
@@ -43,6 +46,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
  * @author pabril
  * @see FormModel
  */
+@SuppressWarnings("unused")
 public class FormLAF extends FormModel  {
 	   private static final Color GRAY = new Color(0, 51, 255);
     /**
@@ -50,6 +54,10 @@ public class FormLAF extends FormModel  {
      */
     private GradientLAF frame = null;
 	private JInternalFrame messageFrame;
+	private Border raisedbevel= BorderFactory.createRaisedBevelBorder();
+	private Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+	private Border pendingMessage =BorderFactory.createCompoundBorder(raisedbevel, loweredbevel); ; 
+	
 
     /**
      * Constructor.
@@ -142,9 +150,11 @@ public class FormLAF extends FormModel  {
      * render the frame for the {@link Form}.
      */
     public void showForm() {
+    	
     	if (frame == null) {
             frame = new GradientLAF();
             frame.setLayout(new BorderLayout());
+            frame.setBorder(pendingMessage);
 //            JPanel content = new GradientLAF();
 //            content.setLayout(new BorderLayout());
             //frame.setContentPane(content);
@@ -158,11 +168,12 @@ public class FormLAF extends FormModel  {
              JScrollPane io = (JScrollPane) getIOPanelScroll();
       
             io.getAccessibleContext().setAccessibleName(IO_NAME);
+//            JScrollPane sub = new JScrollPane(super.getSubmitPanel());
             JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
                     JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                     JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            sub.setLayout(new BorderedScrolPaneLayout());
+          //  sub.setLayout(new BorderedScrolPaneLayout());
             sub.setOpaque(false);
             sub.setBorder(null);
             sub.getViewport().setOpaque(false);
@@ -170,6 +181,7 @@ public class FormLAF extends FormModel  {
             frame.add(sub, BorderLayout.SOUTH);
             messageFrame = new JInternalFrame(form.getTitle());
             messageFrame.setContentPane(frame);
+            messageFrame.isResizable();
             messageFrame.pack();
             JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
             desktopPane.add(messageFrame);
@@ -252,7 +264,7 @@ public class FormLAF extends FormModel  {
     		frame = null;
     		Init.getInstance(getRenderer()).getDesktop().revalidate();
     	}
-    	if (frame != null) {
+    	else if (frame != null) {
     		frame.fadeOut();
 //    		frame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(frame);
