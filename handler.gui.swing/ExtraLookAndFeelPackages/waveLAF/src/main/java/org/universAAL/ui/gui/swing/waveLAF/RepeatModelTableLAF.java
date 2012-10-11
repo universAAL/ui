@@ -15,7 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.BorderLayout;
+
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -25,7 +30,8 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
  * @author amedrano
  *
  */
-public class RepeatModelTableLAF extends RepeatModelTable {
+public class RepeatModelTableLAF 
+extends RepeatModelTable {
 
 	/**
 	 * @param control
@@ -36,6 +42,18 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	
 	/** {@inheritDoc}*/
 	public JComponent getNewComponent() {
-		return super.getNewComponent();
+		JScrollPane scrollPane = new JScrollPane(getJTable());
+		
+		JPanel buttonPanel = getButtonPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		JPanel pannelWithAll = new JPanel();
+		pannelWithAll.setLayout(new BorderLayout());
+		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
+		pannelWithAll.add(
+				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
+				BorderLayout.NORTH);
+		needsLabel = false;
+		return pannelWithAll;
 	}
 }
