@@ -73,7 +73,7 @@ public class ColorLAF extends DefaultMetalTheme {
     final private static Font label =
             new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 4);
     
-    final public static int SEPARATOR_SPACE = 10; 
+    final public static int SEPARATOR_SPACE = 50; 
 
     /** {@inheritDoc} */
     protected ColorUIResource getPrimary1() {

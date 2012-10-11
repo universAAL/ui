@@ -58,7 +58,7 @@ public class SystemButton extends JButton implements MouseListener{
 	private Color ligth = new Color (56,142,143);
 	private Color dark	= new Color (75,183,185);
 	private Color normalF = new Color (255,255,255);
-	private Color normalB = new Color(55, 142, 143) ;
+	private Color normalB = new Color(70,178,180) ;
 	private Color enterF = new Color (255,255,255);;
 	private Color enterB = new Color(55, 142, 143) ;;
 	private Color clickF = new Color (255,255,255);
@@ -69,7 +69,7 @@ public class SystemButton extends JButton implements MouseListener{
     	super(text);
     	//he generado uen buffer para controlar el tamaño, ver como se gestiona
     	Image img = ((ImageIcon) icon).getImage() ;  
-    	Image newimg = img.getScaledInstance( 2*ColorLAF.SEPARATOR_SPACE, 2*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
+    	Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
     	icon = new ImageIcon( newimg );
 
        	setIcon(icon);

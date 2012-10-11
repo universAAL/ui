@@ -16,6 +16,7 @@
 package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -30,6 +31,8 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
+
+import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
  
 
@@ -57,6 +60,14 @@ public class SubmitButton extends JButton implements MouseListener{
        
         
     }
+	
+	@Override
+    public Dimension getPreferredSize(){
+    	int ButtonWeight= 3* ColorLAF.SEPARATOR_SPACE;
+    	int ButtonHeight= 1*ColorLAF.SEPARATOR_SPACE;
+        return new Dimension(ButtonWeight, ButtonHeight);
+    }
+	
     protected void paintComponent(Graphics g) {
  	   
         Graphics2D g2 = (Graphics2D) g;
