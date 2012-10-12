@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Manage a single {@link JFrame} corresponding to a
@@ -42,15 +43,19 @@ public class FrameManager {
      *         {@link Form} to be rendered
      * @param mp the mapper to use for locating classes
      */
-    public FrameManager(Form f, ModelMapper mp) {
-        model = mp.getModelFor(f);
-        model.showForm();
-        /*
-         *  TODO add a close action
-         *  closing = log off
-         *  if closing while in logging screen or no log required
-         *   = closing
-         */
+    public FrameManager(final Form f, final ModelMapper mp) {
+	    new Thread() {
+		public void run() {
+		    Activator.logDebug("Rendering", null);
+		    model = mp.getModelFor(f);
+		    if (model != null){
+			synchronized (model) {
+			    model.showForm();
+			    Activator.logDebug("Done Rendering", null);
+			}
+		    }
+		}
+	    }.start();
     }
 
     /**
@@ -58,6 +63,17 @@ public class FrameManager {
      * @see FormModel#finalizeForm()
      */
     public void disposeFrame() {
-        model.finalizeForm();
+	    Activator.logDebug("Disposing render.", null);
+	new Thread() {
+		public void run() {
+		    synchronized (model) {
+		    Activator.logDebug("Unrendering", null);
+			model.finalizeForm();
+			Activator.logDebug("Done", null);
+			model.notify();
+		    }
+		}
+		
+	}.start();
     }
 }
