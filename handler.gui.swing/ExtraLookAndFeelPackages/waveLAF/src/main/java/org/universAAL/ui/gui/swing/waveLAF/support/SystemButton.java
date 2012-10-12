@@ -67,13 +67,15 @@ public class SystemButton extends JButton implements MouseListener{
 
     public SystemButton(String text, Icon icon) {
     	super(text);
-    	//he generado uen buffer para controlar el tamaño, ver como se gestiona
-    	Image img = ((ImageIcon) icon).getImage() ;  
-    	Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
-    	icon = new ImageIcon( newimg );
+    	if (icon != null){
+    	    //he generado uen buffer para controlar el tamaño, ver como se gestiona
+    	    // ENGLISH PLEASE! :)
+    	    Image img = ((ImageIcon) icon).getImage() ;  
+    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
+    	    icon = new ImageIcon( newimg );
 
-       	setIcon(icon);
-     
+    	    setIcon(icon);
+    	}
         
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
         setHorizontalTextPosition(SwingConstants.CENTER);

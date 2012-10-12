@@ -261,16 +261,15 @@ public class FormLAF extends FormModel  {
     		Init.getInstance(getRenderer()).getDesktop().remove(messageFrame);
     		messageFrame.dispose();
     		messageFrame=null;
-    		frame = null;
-    		Init.getInstance(getRenderer()).getDesktop().revalidate();
     	}
     	else if (frame != null) {
     		frame.fadeOut();
 //    		frame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(frame);
-    		frame = null;
     	}
-		Init.getInstance(getRenderer()).getDesktop().revalidate();
+    	Init.getInstance(getRenderer()).getDesktop().revalidate();
+    	Init.getInstance(getRenderer()).getDesktop().repaint();
+    	frame = null;
        //frame.getContentPane().removeAll();
     }
 }
