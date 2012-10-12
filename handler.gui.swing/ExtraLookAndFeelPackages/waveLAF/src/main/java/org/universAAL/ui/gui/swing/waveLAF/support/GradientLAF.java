@@ -37,6 +37,8 @@ public class GradientLAF extends JXPanel {
 	private static final long MS_ANIMATION = 1000;
 	
 	private static final long MS_PER_FRAME = 1000/24;
+
+	private static final boolean FADEOUT_CONCURRENT = false;
 	
 	private static long STEPS = MS_ANIMATION/MS_PER_FRAME;
 	
@@ -55,22 +57,30 @@ public class GradientLAF extends JXPanel {
 	}
 	
 	public void fadeOut() {
+	   if (FADEOUT_CONCURRENT){
 		new Thread() {
 			@Override
 			public void run() {
-				setAlpha((float) 1.0);
-				GradientLAF.this.setVisible(true);
-				for (long i = STEPS - 1 ; i >= 0 ; i--) {
-					setAlpha(((float) i) * DELTA_ALPHA);
-					try {
-						sleep(MS_PER_FRAME);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
+			    internalFadeOut();
 			}
 			
 		}.start();
+	   } else {
+	       internalFadeOut();
+	   }
+	}
+	
+	private void internalFadeOut() {
+		setAlpha((float) 1.0);
+		GradientLAF.this.setVisible(true);
+		for (long i = STEPS - 1 ; i >= 0 ; i--) {
+			setAlpha(((float) i) * DELTA_ALPHA);
+			try {
+				Thread.sleep(MS_PER_FRAME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void fadeIn() {
