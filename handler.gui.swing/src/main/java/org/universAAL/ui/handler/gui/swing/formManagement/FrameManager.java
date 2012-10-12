@@ -46,12 +46,10 @@ public class FrameManager {
     public FrameManager(final Form f, final ModelMapper mp) {
 	    new Thread() {
 		public void run() {
-		    Activator.logDebug("Rendering", null);
 		    model = mp.getModelFor(f);
 		    if (model != null){
 			synchronized (model) {
 			    model.showForm();
-			    Activator.logDebug("Done Rendering", null);
 			}
 		    }
 		}
@@ -63,13 +61,10 @@ public class FrameManager {
      * @see FormModel#finalizeForm()
      */
     public void disposeFrame() {
-	    Activator.logDebug("Disposing render.", null);
 	new Thread() {
 		public void run() {
 		    synchronized (model) {
-		    Activator.logDebug("Unrendering", null);
 			model.finalizeForm();
-			Activator.logDebug("Done", null);
 			model.notify();
 		    }
 		}
