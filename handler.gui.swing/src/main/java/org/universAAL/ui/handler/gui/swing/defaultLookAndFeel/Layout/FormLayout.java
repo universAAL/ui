@@ -19,8 +19,6 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -30,6 +28,20 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
+ * This {@link LayoutManager} organizes elements in rows, maintaining 
+ * each element with it's label (this pair is managed as a {@link Unit}).
+ * Each {@link Row} may contain more than one {@link Unit} (if both can fit
+ * in it).
+ * Each {@link Row} is justified, ie all {@link Unit}s in each {@link Row} are
+ * extended to occupy the full width provided. The spare space is added to each
+ * {@link Unit} maintaining the ratio of space (minimum or preferred size).
+ * <br>
+ * Preview:<br>
+ * <img src="doc-files/FormLayout-preview.png" alt="Layout preview" width="60%" align="middle"/>
+ * <br>
+ * Each {@link Row} is spaced one {@link FormLayout#gap} between {@link Each} other
+ * and also the margin all arround has the same size.
+ * <img src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%" align="middle"/>
  * @author amedrano
  *
  */
@@ -93,6 +105,18 @@ public class FormLayout implements LayoutManager {
 
     }
     
+    /**
+     * Unites each JComponent with it's associated label into a unit.
+     * preview:
+     * <img src="doc-files/FormLayout-units.png" alt="Units" width="60%" align="middle"/>
+     * <br>
+     * Within each {@link Unit} the label and the {@link JComponent} are separated by
+     * half the {@link FormLayout#gap} provided in the constructor of 
+     * {@link FormLayout#FormLayout(int)}.
+     * <img src="doc-files/FormLayout-halfspaces.png" alt="Layout preview" width="60%" align="middle"/>
+     * @author mec
+     *
+     */
     class Unit {
 	
 	private JComponent jc;
