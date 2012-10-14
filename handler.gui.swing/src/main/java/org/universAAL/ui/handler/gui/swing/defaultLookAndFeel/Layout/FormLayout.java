@@ -37,11 +37,16 @@ import javax.swing.JLabel;
  * {@link Unit} maintaining the ratio of space (minimum or preferred size).
  * <br>
  * Preview:<br>
- * <img src="doc-files/FormLayout-preview.png" alt="Layout preview" width="60%" align="middle"/>
+ * <center>
+ * <img src="doc-files/FormLayout-preview.png" alt="Layout preview" width="60%"/>
+ * </center>
+ * 
  * <br>
- * Each {@link Row} is spaced one {@link FormLayout#gap} between {@link Each} other
+ * Each {@link Row} is spaced one {@link FormLayout#gap} between each other
  * and also the margin all arround has the same size.
- * <img src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%" align="middle"/>
+ * <center>
+ * 	<img src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%"/>
+ * </center>
  * @author amedrano
  *
  */
@@ -50,12 +55,17 @@ public class FormLayout implements LayoutManager {
     private int gap;
 
     /**
-     * 
+     * Create a {@link FormLayout} with a default gap of 5.
      */
     public FormLayout() {
 	this(5);
     }
 
+    /**
+     * Create a {@link FormLayout} witha specific gap.
+     * @param gap 
+     * 	the space in pixels to leave between elements and as margins
+     */
     public FormLayout(int gap) {
 	this.gap = gap;
     }
@@ -84,7 +94,21 @@ public class FormLayout implements LayoutManager {
 
     }
     
-    List toUnits(JComponent[] comps){
+    /**
+     * Generate a list of {@link Unit}s from a list of
+     * {@link JComponent}s. 
+     * {@link JLabel}s are associated with a {@link JComponent}
+     * with {@link JLabel#setLabelFor(Component)} then these two
+     * components are registered as a {@link Unit}.
+     * Single {@link Component}s ({@link Component}s without a 
+     * {@link JLabel} associated) compose them selves a single 
+     * {@link Unit}.
+     * @param comps
+     * 	The list of components to transform into {@link Unit}
+     * @return
+     * 	{@link List} of {@link Unit}s. 
+     */
+    List toUnits(Component[] comps){
 	HashSet visited = new HashSet();
 	List unitList = new ArrayList();
 	for (int i = 0; i < comps.length; i++) {
@@ -108,25 +132,29 @@ public class FormLayout implements LayoutManager {
     /**
      * Unites each JComponent with it's associated label into a unit.
      * preview:
-     * <img src="doc-files/FormLayout-units.png" alt="Units" width="60%" align="middle"/>
+     * <center>
+     * 	<img src="doc-files/FormLayout-units.png" alt="Units" width="60%"/>
+     * </center>
      * <br>
      * Within each {@link Unit} the label and the {@link JComponent} are separated by
      * half the {@link FormLayout#gap} provided in the constructor of 
      * {@link FormLayout#FormLayout(int)}.
-     * <img src="doc-files/FormLayout-halfspaces.png" alt="Layout preview" width="60%" align="middle"/>
-     * @author mec
+     * <center>
+     * 	<img src="doc-files/FormLayout-halfspaces.png" alt="Layout preview" width="60%" align="middle"/>
+     * </center>
+     * @author amedrano
      *
      */
     class Unit {
 	
-	private JComponent jc;
+	private Component jc;
 	private JLabel l;
 	private boolean isHorizontal;
 	private Dimension size;
 
 	public Unit(JLabel label) {
 	    this.l = label;
-	    this.jc = (JComponent) label.getLabelFor();
+	    this.jc = (Component) label.getLabelFor();
 	    if (jc.getPreferredSize().height
 		    > l.getPreferredSize().height){
 		isHorizontal = false;
@@ -135,7 +163,7 @@ public class FormLayout implements LayoutManager {
 	    }
 	}
 	
-	public Unit(JComponent comp) {
+	public Unit(Component comp) {
 	    this.jc = comp;
 	    this.l = null;
 	}
