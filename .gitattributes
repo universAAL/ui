@@ -151,6 +151,12 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/BorderedScrolPaneLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/FormLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-halfspaces.png -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-preview.png -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-spaces.png -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-units.png -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout.svg -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/package.html -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Login.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/MediaObjectLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RangeLAF.java -text
@@ -195,6 +201,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/packag
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/ExitButton.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonFactory.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonInterface.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/package.html -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/Activator.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/package.html -text
