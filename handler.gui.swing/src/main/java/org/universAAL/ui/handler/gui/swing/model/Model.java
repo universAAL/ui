@@ -212,30 +212,27 @@ public abstract class Model {
     
     protected void update() {
 	if (jc != null) {
-		jc.setName(fc.getURI());
-		String help = fc.getHelpString();
-		String hint = fc.getHintString();
-		String hintAndHelp = "";
-		if (help != null 
-				&& !help.isEmpty()) {
-			hintAndHelp += "Help:\n" + help;
-		}
-		if (help != null
-				&& hint != null
-				&& !help.isEmpty() 
-				&& !hint.isEmpty()) {
-			hintAndHelp += "\n";
-		}
-		if (help != null
-				&&!hint.isEmpty()) {
-			hintAndHelp += "Hint: \n" + hint;
-		}
-		jc.setToolTipText(hintAndHelp);
+	    jc.setName(fc.getURI());
+	    String help = fc.getHelpString();
+	    String hint = fc.getHintString();
+	    String hintAndHelp = "";
+	    if (help != null 
+		    && !help.isEmpty()) {
+		hintAndHelp += "Help:\n" + help;
+	    }
+	    if (help != null
+		    && hint != null
+		    && !help.isEmpty() 
+		    && !hint.isEmpty()) {
+		hintAndHelp += "\n";
+	    }
+	    if (help != null
+		    &&!hint.isEmpty()) {
+		hintAndHelp += "Hint: \n" + hint;
+	    }
+	    jc.setToolTipText(hintAndHelp);
 	}
-		/*
-		 * TODO: how to show Help ?
-		 */
-	}
+    }
 
 	/**
      * generate the {@link JComponent} that displays this

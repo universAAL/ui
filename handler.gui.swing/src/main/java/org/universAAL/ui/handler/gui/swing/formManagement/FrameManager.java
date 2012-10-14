@@ -20,7 +20,6 @@ import javax.swing.JFrame;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Manage a single {@link JFrame} corresponding to a
