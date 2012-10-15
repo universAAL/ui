@@ -221,6 +221,7 @@ handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutput.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfTestExtensionOfGroup.java -text
+handler.gui.swing/src/test/java/swing/simple/tests/TableTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/DefaultLAFConstructorTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ModelMapperTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
