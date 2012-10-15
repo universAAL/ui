@@ -38,7 +38,7 @@ public class GradientLAF extends JXPanel {
 	
 	private static final long MS_PER_FRAME = 1000/24;
 
-	private static final boolean FADEOUT_CONCURRENT = false;
+	private static final boolean FADEOUT_CONCURRENT = true;
 	
 	private static long STEPS = MS_ANIMATION/MS_PER_FRAME;
 	
@@ -71,33 +71,33 @@ public class GradientLAF extends JXPanel {
 	}
 	
 	private void internalFadeOut() {
-		setAlpha((float) 1.0);
-		GradientLAF.this.setVisible(true);
-		for (long i = STEPS - 1 ; i >= 0 ; i--) {
-			setAlpha(((float) i) * DELTA_ALPHA);
-			try {
-				Thread.sleep(MS_PER_FRAME);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+			setAlpha((float) 1.0);
+			GradientLAF.this.setVisible(true);
+			for (long i = STEPS - 1 ; i >= 0 ; i--) {
+				setAlpha(((float) i) * DELTA_ALPHA);
+				try {
+					Thread.sleep(MS_PER_FRAME);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}		
 	}
 	
 	public void fadeIn() {
 		new Thread() {
 			@Override
 			public void run() {
-				setAlpha((float) 0.0);
-				GradientLAF.this.setVisible(true);
-				for (long i = 0 ; i < STEPS ; i++) {
-					setAlpha(((float) i) * DELTA_ALPHA);
-					try {
-						sleep(MS_PER_FRAME);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					setAlpha((float) 0.0);
+					GradientLAF.this.setVisible(true);
+					for (long i = 0 ; i < STEPS ; i++) {
+						setAlpha(((float) i) * DELTA_ALPHA);
+						try {
+							sleep(MS_PER_FRAME);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
-				}
-				setAlpha((float) 1.0);
+					setAlpha((float) 1.0);
 			}
 			
 		}.start();
