@@ -60,14 +60,14 @@ public class FrameManager {
      * @see FormModel#finalizeForm()
      */
     public void disposeFrame() {
-	new Thread() {
-		public void run() {
+//	new Thread() {
+//		public void run() {
 		    synchronized (model) {
 			model.finalizeForm();
 			model.notify();
 		    }
-		}
-		
-	}.start();
+//		}
+//		
+//	}.start();
     }
 }
