@@ -21,23 +21,35 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatTableModel;
 
 public class TableTest extends JFrame {
-  private JTable m_simpleTable;
+    private static final String PREFIX = "http://example.com/Dable.owl#";
+    private static final String PROP_TABLE = PREFIX + "table";
+    private static final String PROP_COL = PREFIX + "column";
+
+private JTable m_simpleTable;
 
   private RepeatTableModel rtm;
 
   public TableTest() {
       List rows = new ArrayList();
       Resource cell = new Resource();
-      cell.setProperty("col1", new Integer(1));
-      cell.setProperty("col2", "two");
-      cell.setProperty("col3", new Float(3));
+      cell.setProperty(PROP_COL + "1", new Integer(1));
+      cell.setProperty(PROP_COL + "2", "two");
+      cell.setProperty(PROP_COL + "3", new Float(3));
       rows.add(cell);
       //...
+      cell.setProperty(PROP_COL + "1", new Integer(1));
+      cell.setProperty(PROP_COL + "2", "two");
+      cell.setProperty(PROP_COL + "3", new Float(3));
+      rows.add(cell);
+      cell.setProperty(PROP_COL + "1", new Integer(1));
+      cell.setProperty(PROP_COL + "2", "two");
+      cell.setProperty(PROP_COL + "3", new Float(3));
+      rows.add(cell);
       Resource dataRoot = new Resource();
-      dataRoot.setProperty("table", rows);
+      dataRoot.setProperty(PROP_TABLE, rows);
       Form f = Form.newDialog("test", dataRoot);
       Repeat repeat = new Repeat(f.getIOControls(),new Label("table", null),
-	      new PropertyPath(null, false, new String[]{"table"}),
+	      new PropertyPath(null, false, new String[]{PROP_TABLE}),
 	      null,null);
 //      new Repeat(g, new Label(userDM
 //		.getString("UICaller.pendingDialogs"), null),
@@ -46,11 +58,11 @@ public class TableTest extends JFrame {
 //				null, null);
       Group row = new Group(repeat, null, null, null, null);
       new SimpleOutput(row, new Label("col1", null), 
-	      new PropertyPath(null, false, new String[]{"col1"}), null);
+	      new PropertyPath(null, false, new String[]{PROP_COL + "1"}), null);
       new SimpleOutput(row, new Label("col2", null), 
-		      new PropertyPath(null, false, new String[]{"col2"}), null);
+		      new PropertyPath(null, false, new String[]{PROP_COL + "2"}), null);
       new SimpleOutput(row, new Label("col3", null), 
-	      new PropertyPath(null, false, new String[]{"col3"}), null);
+	      new PropertyPath(null, false, new String[]{PROP_COL + "3"}), null);
       
     rtm = new RepeatTableModel(repeat);
     System.out.println("Table ("+ rtm.getColumnCount() + ", "+ rtm.getRowCount() + ")");
