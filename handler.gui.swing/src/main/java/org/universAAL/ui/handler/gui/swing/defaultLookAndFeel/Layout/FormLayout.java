@@ -155,6 +155,9 @@ public class FormLayout implements LayoutManager {
 	public Unit(JLabel label) {
 	    this.l = label;
 	    this.jc = (Component) label.getLabelFor();
+	    if (jc == null){
+		jc = l;
+	    }
 	    if (jc.getPreferredSize().height
 		    > l.getPreferredSize().height){
 		isHorizontal = false;
