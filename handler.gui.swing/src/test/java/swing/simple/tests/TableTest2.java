@@ -36,46 +36,50 @@ public class TableTest2 extends JFrame {
 
     public TableTest2() {
 	render = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
-	
+
 	List rows = new ArrayList();
 	Resource cell = new Resource();
 	cell.setProperty(PROP_COL + "1", new Integer(1));
 	cell.setProperty(PROP_COL + "2", "two");
 	cell.setProperty(PROP_COL + "3", new Float(3));
 	rows.add(cell);
-	//...
-	cell.setProperty(PROP_COL + "1", new Integer(1));
-	cell.setProperty(PROP_COL + "2", "two");
-	cell.setProperty(PROP_COL + "3", new Float(3));
+	// ...
+	cell = new Resource();
+	cell.setProperty(PROP_COL + "1", new Integer(2));
+	cell.setProperty(PROP_COL + "2", "three");
+	cell.setProperty(PROP_COL + "3", new Float(4));
 	rows.add(cell);
-	cell.setProperty(PROP_COL + "1", new Integer(1));
-	cell.setProperty(PROP_COL + "2", "two");
-	cell.setProperty(PROP_COL + "3", new Float(3));
+	// ...
+	cell = new Resource();
+	cell.setProperty(PROP_COL + "1", new Integer(3));
+	cell.setProperty(PROP_COL + "2", "four");
+	cell.setProperty(PROP_COL + "3", new Float(5));
 	rows.add(cell);
 	Resource dataRoot = new Resource();
 	dataRoot.setProperty(PROP_TABLE, rows);
 	Form f = Form.newDialog("test", dataRoot);
-	Repeat repeat = new Repeat(f.getIOControls(),new Label("table", null),
-		new PropertyPath(null, false, new String[]{PROP_TABLE}),
-		null,null);
-	//      new Repeat(g, new Label(userDM
-	//		.getString("UICaller.pendingDialogs"), null),
-	//		new PropertyPath(null, false,
-	//				new String[] { PROP_DLG_LIST_DIALOG_LIST }),
-	//				null, null);
+	Repeat repeat = new Repeat(f.getIOControls(), new Label("table", null),
+		new PropertyPath(null, false, new String[] { PROP_TABLE }),
+		null, null);
+	// new Repeat(g, new Label(userDM
+	// .getString("UICaller.pendingDialogs"), null),
+	// new PropertyPath(null, false,
+	// new String[] { PROP_DLG_LIST_DIALOG_LIST }),
+	// null, null);
 	Group row = new Group(repeat, null, null, null, null);
-	new SimpleOutput(row, new Label("col1", null), 
-		new PropertyPath(null, false, new String[]{PROP_COL + "1"}), null);
-	new SimpleOutput(row, new Label("col2", null), 
-		new PropertyPath(null, false, new String[]{PROP_COL + "2"}), null);
-	new SimpleOutput(row, new Label("col3", null), 
-		new PropertyPath(null, false, new String[]{PROP_COL + "3"}), null);
+	new SimpleOutput(row, new Label("col1", null), new PropertyPath(null,
+		false, new String[] { PROP_COL + "1" }), null);
+	new SimpleOutput(row, new Label("col2", null), new PropertyPath(null,
+		false, new String[] { PROP_COL + "2" }), null);
+	new SimpleOutput(row, new Label("col3", null), new PropertyPath(null,
+		false, new String[] { PROP_COL + "3" }), null);
 
 	rtm = new RepeatTableModel(repeat);
-	System.out.println("Table ("+ rtm.getColumnCount() + ", "+ rtm.getRowCount() + ")");
+	System.out.println("Table (" + rtm.getColumnCount() + ", "
+		+ rtm.getRowCount() + ")");
 	rmt = new RepeatModelTableLAF(repeat, render);
 	getContentPane().add(rmt.getComponent());
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] arg) {

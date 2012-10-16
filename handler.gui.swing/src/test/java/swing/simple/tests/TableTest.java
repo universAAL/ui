@@ -37,13 +37,16 @@ private JTable m_simpleTable;
       cell.setProperty(PROP_COL + "3", new Float(3));
       rows.add(cell);
       //...
-      cell.setProperty(PROP_COL + "1", new Integer(1));
-      cell.setProperty(PROP_COL + "2", "two");
-      cell.setProperty(PROP_COL + "3", new Float(3));
+      cell = new Resource();
+      cell.setProperty(PROP_COL + "1", new Integer(2));
+      cell.setProperty(PROP_COL + "2", "three");
+      cell.setProperty(PROP_COL + "3", new Float(4));
       rows.add(cell);
-      cell.setProperty(PROP_COL + "1", new Integer(1));
-      cell.setProperty(PROP_COL + "2", "two");
-      cell.setProperty(PROP_COL + "3", new Float(3));
+      //...
+      cell = new Resource();
+      cell.setProperty(PROP_COL + "1", new Integer(3));
+      cell.setProperty(PROP_COL + "2", "four");
+      cell.setProperty(PROP_COL + "3", new Float(5));
       rows.add(cell);
       Resource dataRoot = new Resource();
       dataRoot.setProperty(PROP_TABLE, rows);
