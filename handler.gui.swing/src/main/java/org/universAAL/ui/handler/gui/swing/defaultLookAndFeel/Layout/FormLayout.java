@@ -52,7 +52,8 @@ import javax.swing.JLabel;
  */
 public class FormLayout implements LayoutManager {
 
-    private int gap;
+    private static final int LAYOUT_ITERATIONS = 2;
+	private int gap;
 
     /**
      * Create a {@link FormLayout} with a default gap of 5.
@@ -78,20 +79,79 @@ public class FormLayout implements LayoutManager {
 
     /** {@inheritDoc} */
     public Dimension preferredLayoutSize(Container parent) {
-	// TODO Auto-generated method stub
-	return null;
+	List units = toUnits(parent.getComponents());
+	int maxWidth = 0;
+	for (Iterator i = units.iterator(); i.hasNext();) {
+		Unit u = (Unit) i.next();
+		maxWidth = Math.max(maxWidth, u.getPreferredSize().width);
+	}
+	int height = 0;
+	Row row = new Row(maxWidth);
+	while (!units.isEmpty()) {
+		if (row.fits((Unit) units.get(0))) {
+			row.add((Unit) units.get(0));
+			units.remove(0);
+		} else {
+			height += row.getPreferredSize().height;
+			row = new Row(maxWidth);
+		}
+	}
+	return new Dimension(maxWidth, height);
+	// TODO: minimum size maintains screen relation. reducing area.
     }
 
     /** {@inheritDoc} */
     public Dimension minimumLayoutSize(Container parent) {
-	// TODO Auto-generated method stub
-	return null;
+    	List units = toUnits(parent.getComponents());
+    	int maxWidth = 0;
+    	int height = 0;
+    	for (Iterator i = units.iterator(); i.hasNext();) {
+    		Unit u = (Unit) i.next();
+    		maxWidth = Math.max(maxWidth, u.getMinimunSize().width);
+    	}
+    	
+    	for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
+    		height = 0;
+    		List unplacedUnits = new ArrayList(units);
+    		Row row = new Row(maxWidth);
+    		while (!unplacedUnits.isEmpty()) {
+    			if (row.fits((Unit) unplacedUnits.get(0))) {
+    				row.add((Unit) unplacedUnits.get(0));
+    				unplacedUnits.remove(0);
+    			} else {
+    				height += row.getMinimumSize().height;
+    				row = new Row(maxWidth);
+    			}
+    		}			
+    		int Area = maxWidth * height;
+    		//...
+    	}
+    	return new Dimension(maxWidth, height);
+    	// TODO: preffered size maintains screen relation.
     }
 
     /** {@inheritDoc} */
     public void layoutContainer(Container parent) {
-	// TODO Auto-generated method stub
-
+    	List units = toUnits(parent.getComponents());
+    	int maxWidth = parent.getSize().width;
+    	List rows = new ArrayList();
+    	rows.add(new Row(maxWidth));
+    	int last = 0;
+    	while (!units.isEmpty()) {
+    		if (((Row) rows.get(last)).fits((Unit) units.get(0))) {
+    			((Row) rows.get(last)).add((Unit) units.get(0));
+    			units.remove(0);
+    		} else {
+    			rows.add(new Row(maxWidth));
+    			last++;
+    		}
+    	}
+    	int loc = gap;
+    	for (Iterator i = rows.iterator(); i.hasNext();) {
+			Row row = (Row) i.next();
+			row.setYLocation(loc);
+			loc += gap;
+		}
     }
     
     /**
@@ -281,6 +341,11 @@ public class FormLayout implements LayoutManager {
 	    units = new ArrayList();
 	}
 	
+	public void setYLocation(int loc) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public Row(int width) {
 	   this();
 	   setWidth(width);
@@ -291,7 +356,30 @@ public class FormLayout implements LayoutManager {
 	}
 	
 	public boolean fits(Unit newUnit){
-	    return false;	    
+		int currentWidth = 0;
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			currentWidth += u.getPreferredSize().width;
+		}
+	    return (width - currentWidth) >= newUnit.getPreferredSize().width ;
+	}
+	
+	public boolean fitsMin(Unit newUnit){
+		int currentWidth = 0;
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			currentWidth += u.getMaximumSize().width;
+		}
+	    return (width - currentWidth) >= newUnit.getMaximumSize().width ;
+	}
+	
+	public boolean fitsMax(Unit newUnit){
+		int currentWidth = 0;
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			currentWidth += u.getMinimunSize().width;
+		}
+	    return (width - currentWidth) >= newUnit.getMinimunSize().width ;
 	}
 	
 	public void add(Unit newUnit){
