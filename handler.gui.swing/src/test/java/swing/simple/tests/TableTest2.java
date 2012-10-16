@@ -18,6 +18,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
@@ -27,6 +28,7 @@ public class TableTest2 extends JFrame {
     private static final String PREFIX = "http://example.com/Dable.owl#";
     private static final String PROP_TABLE = PREFIX + "table";
     private static final String PROP_COL = PREFIX + "column";
+	private static final String SWITCH_TO_CALL_PREFIX = "urn:ui.dm:UICaller:switchTo#";
 
     private RepeatModelTable rmt;
 
@@ -73,6 +75,9 @@ public class TableTest2 extends JFrame {
 		false, new String[] { PROP_COL + "2" }), null);
 	new SimpleOutput(row, new Label("col3", null), new PropertyPath(null,
 		false, new String[] { PROP_COL + "3" }), null);
+	new SubdialogTrigger(row, new Label("button", null),
+			SubdialogTrigger.VAR_REPEATABLE_ID)
+	.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 
 	rtm = new RepeatTableModel(repeat);
 	System.out.println("Table (" + rtm.getColumnCount() + ", "

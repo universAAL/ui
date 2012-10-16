@@ -107,9 +107,12 @@ public class RepeatModel extends GroupModel {
     	if (jc instanceof JTabbedPane) {
     		updateTabbedPanel();
     	}
-    	else {
+    	else if (isATable()){
     		table.update();
-    	}    	
-    	super.update();
+    		needsLabel = table.needsLabel;
+    	}
+    	else {
+    		super.update();
+    	}
     }
 }

@@ -22,6 +22,7 @@
  */
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
+import javax.swing.JComponent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
@@ -30,6 +31,9 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubdialogTriggerLAF;
 
 /**
  * This class implements a multiple inheritance of {@link Repeat} and
@@ -178,6 +182,17 @@ public class RepeatTableModel extends AbstractTableModel {
 	PropertyPath path = (elems.length > 1) ? elems[columnIndex]
 		.getReferencedPPath() : null;
 	String[] pp = (path == null) ? null : path.getThePath();
+//	if (elems[columnIndex] instanceof Input) {
+//		Input fc = (Input) elems[columnIndex].deepCopy();
+//		fc.changeProperty(Input.PROP_REFERENCED_PPATH, pp);
+//	}
+//	if (elems[columnIndex] instanceof SubdialogTrigger) {
+//		SubdialogTrigger fc = (SubdialogTrigger) elems[columnIndex].deepCopy();
+//		fc.changeProperty(SubdialogTrigger.PROP_SUBMISSION_ID, 
+//				fc.getProperty(SubdialogTrigger.PROP_REPEATABLE_ID_PREFIX 
+//						+ Integer.toString(rowIndex)));
+//		return new SubdialogTriggerLAF(fc, null).getComponent();
+//	}
 	return repeat.getValue(pp);
     }
 
@@ -212,7 +227,17 @@ public class RepeatTableModel extends AbstractTableModel {
 	    fireTableRowsUpdated(sel, sel);
 	}
     }
-
+	
+    public Class getColumnClass(int columnIndex) {
+		super.getColumnClass(columnIndex);
+//		if (elems[columnIndex] instanceof Input) {
+//			
+//		}
+		if (elems[columnIndex] instanceof Submit) {
+			return JComponent.class;
+		}
+		return Object.class;
+	}
     // comment the below two methods in order to disallow the direct edit of the
     // cells within the table
     // so that always first a selection is set and then appropriate methods of
