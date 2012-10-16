@@ -38,6 +38,7 @@ extends RepeatModelTable {
 	 */
 	public RepeatModelTableLAF(Repeat control, Renderer render) {
 		super(control, render);
+		needsLabel = false;
 	}
 	
 	/** {@inheritDoc}*/
@@ -49,11 +50,11 @@ extends RepeatModelTable {
 		JPanel pannelWithAll = new JPanel();
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
-		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
+		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
 		pannelWithAll.add(
 				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
 				BorderLayout.NORTH);
-		needsLabel = false;
 		return pannelWithAll;
+//		return getJTable();
 	}
 }

@@ -47,17 +47,16 @@ public class RepeatLAF extends RepeatModel {
         if (isATable()) {
         	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
             return table.getNewComponent();
-        }
-        if (getChildrenType() != null
+        } else if (getChildrenType() != null
         		&& getChildrenType().equals(Group.class)) {
             /*
              * children are Group, but not the same length
              * display a tabbedpane
              */
             return tabbedPanel();
+        } else {      
+        	return super.getNewComponent();
         }
-        
-        return super.getNewComponent();
-    }
+    }    
 
 }

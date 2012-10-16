@@ -58,7 +58,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		JPanel pannelWithAll = new JPanel();
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
-		pannelWithAll.add(buttonPanel, BorderLayout.WEST);
+		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
 		pannelWithAll.add(
 				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
 				BorderLayout.NORTH);
