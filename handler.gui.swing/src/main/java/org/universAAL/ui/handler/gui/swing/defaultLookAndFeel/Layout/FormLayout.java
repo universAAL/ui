@@ -53,9 +53,11 @@ import javax.swing.JLabel;
  */
 public class FormLayout implements LayoutManager {
 
-//    private static final int LAYOUT_ITERATIONS = 2;
+    private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 10;
 	private int gap;
+	private List lastRows;
+	private int lastWidth = -1;
 
     /**
      * Create a {@link FormLayout} with a default gap of 5.
@@ -74,100 +76,81 @@ public class FormLayout implements LayoutManager {
     }
 
     /** {@inheritDoc} */
-    public void addLayoutComponent(String name, Component comp) { }
-
-    /** {@inheritDoc} */
-    public void removeLayoutComponent(Component comp) {  }
-
-    /** {@inheritDoc} */
     public Dimension preferredLayoutSize(Container parent) {
     	Dimension ld = new Dimension();
     	synchronized (parent.getTreeLock()) {
     		List units = toUnits(parent.getComponents());
     		int maxPrefWidth = 0;
+    		int height = gap;
     		for (Iterator i = units.iterator(); i.hasNext();) {
     			Unit u = (Unit) i.next();
     			Dimension d = u.getPreferredSize();
     			maxPrefWidth = Math.max(maxPrefWidth, d.width);
+    			height += d.height + gap;
     		}
 
-    		List rows = getRows(units, maxPrefWidth);
-    		ld =  getRowsDimension(rows);
+    		for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
+    		    //Adjust Width so the ratio of the container is similar to the screen ratio
+    		    int Area = maxPrefWidth * height;
+    		    maxPrefWidth = Math.max(maxPrefWidth,
+    			    (int) Math.sqrt(Area*getSreenRatio()));
+
+    		    List rows = getRows(units, maxPrefWidth);
+    		    ld =  getRowsDimension(rows);
+    		    maxPrefWidth = ld.width;
+    		    height = ld.height;
+    		}
+
+//    		List rows = getRows(units, maxPrefWidth);
+//    		ld =  getRowsDimension(rows);
     		
     		Dimension pD = parent.getSize();
-			List rows2 = getRows(units, pD.width);
-			Dimension realD = getRowsDimension(rows2);
-			ld.height = realD.height;
+    		List rows2 = getRows(units, pD.width);
+    		Dimension realD = getRowsDimension(rows2);
+    		ld.height = realD.height;
 
     		return ld;
     	}
     }
     
-    Dimension getRowsDimension(List rows) {
-    	int height = gap;
-    	int maxWidth = 0;
-    	for (Iterator it = rows.iterator(); it.hasNext();) {
-    		Row r = (Row) it.next();
-    		r.setSize();
-    		Dimension rd = r.Size();
-    		height += rd.height + gap;
-    		maxWidth = Math.max(maxWidth, rd.width);
-    	}
-    	return new Dimension(maxWidth, height);
-    }
+    /** {@inheritDoc} */
+        public void layoutContainer(Container parent) {
+        	synchronized (parent.getTreeLock()) {
+        		List units = toUnits(parent.getComponents());
+        		List rows = getRows(units, parent.getSize().width);
+        		int loc = gap;
+        		for (Iterator i = rows.iterator(); i.hasNext();) {
+        			Row row = (Row) i.next();
+        			row.setYLocation(loc);
+        			loc += gap + row.getSize().height;
+        		}
+    //    		if (parent.getSize().width < maxWidth
+    //    				|| parent.getSize().height < loc) {
+    //    			Dimension d = new Dimension(maxWidth, loc);
+    //    			parent.setSize(d);
+    //    			parent.invalidate();
+    //    		}
+    //    		System.out.println("D("+ maxWidth + ", " + loc + gap + ")");
+        	}
+        }
 
-    List getRows(List units, int width) {
-    	int maxWidth = width;
-		List rows = new ArrayList();
-		rows.add(new Row(maxWidth));
-		int last = 0;
-		ArrayList workSet = new ArrayList(units);
-		while (!workSet.isEmpty()) {
-			Row row = ((Row) rows.get(last));
-			Unit u = (Unit) workSet.get(0);
-			if (row.fits(u)
-					|| row.count() == 0) {
-				row.add(u);
-				workSet.remove(0);
-			} else {
-				rows.add(new Row(maxWidth));
-				last++;
-			}
-		}
-		return rows;
-    }
-    
     /** {@inheritDoc} */
     public Dimension minimumLayoutSize(Container parent) {
     	return preferredLayoutSize(parent);    	
     }
 
-    static public float getSreenRatio() {
-    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		return screenSize.width/screenSize.height;
-    }
-    
     /** {@inheritDoc} */
-    public void layoutContainer(Container parent) {
-    	synchronized (parent.getTreeLock()) {
-    		List units = toUnits(parent.getComponents());
-    		List rows = getRows(units, parent.getSize().width);
-    		int loc = gap;
-    		for (Iterator i = rows.iterator(); i.hasNext();) {
-    			Row row = (Row) i.next();
-    			row.setYLocation(loc);
-    			loc += gap + row.getSize().height;
-    		}
-//    		if (parent.getSize().width < maxWidth
-//    				|| parent.getSize().height < loc) {
-//    			Dimension d = new Dimension(maxWidth, loc);
-//    			parent.setSize(d);
-//    			parent.invalidate();
-//    		}
-//    		System.out.println("D("+ maxWidth + ", " + loc + gap + ")");
-    	}
+    public void removeLayoutComponent(Component comp) {  
+	lastWidth = -1;
+	lastRows = null;
     }
-    
+
+    /** {@inheritDoc} */
+    public void addLayoutComponent(String name, Component comp) { 
+	lastWidth = -1;
+	lastRows = null;
+    }
+
     /**
      * Generate a list of {@link Unit}s from a list of
      * {@link JComponent}s. 
@@ -183,24 +166,90 @@ public class FormLayout implements LayoutManager {
      * 	{@link List} of {@link Unit}s. 
      */
     List toUnits(Component[] comps){
-	HashSet visited = new HashSet();
-	List unitList = new ArrayList();
-	for (int i = 0; i < comps.length; i++) {
-	    Unit u;
-	    if (!visited.contains(comps[i])) {
-		if (comps[i] instanceof JLabel) {
-		    u = new Unit((JLabel) comps[i]);
-		    visited.add(comps[i]);
-		    visited.add(((JLabel) comps[i]).getLabelFor());
-		} else {
-		    u = new Unit(comps[i]);
-		    visited.add(comps[i]);
-		}
-		unitList.add(u);
-	    }
-	}
-	return unitList;
+        HashSet visited = new HashSet();
+        List unitList = new ArrayList();
+        for (int i = 0; i < comps.length; i++) {
+            Unit u;
+            if (!visited.contains(comps[i])) {
+        	if (comps[i] instanceof JLabel) {
+        	    u = new Unit((JLabel) comps[i]);
+        	    visited.add(comps[i]);
+        	    visited.add(((JLabel) comps[i]).getLabelFor());
+        	} else {
+        	    u = new Unit(comps[i]);
+        	    visited.add(comps[i]);
+        	}
+        	unitList.add(u);
+            }
+        }
+        return unitList;
+    
+    }
 
+    /**
+     * Get a Layout out of a list of Units and a given width.
+     * @param units
+     * 	the {@link List} of {@link Unit}s
+     * @param width
+     * 	the width to fit in the rows
+     * @return
+     * 	The {@link List} of {@link Row}s.
+     */
+    List getRows(List units, int width) {
+	if (width != lastWidth){
+	    int maxWidth = width;
+	    List rows = new ArrayList();
+	    rows.add(new Row(maxWidth));
+	    int last = 0;
+	    ArrayList workSet = new ArrayList(units);
+	    while (!workSet.isEmpty()) {
+		Row row = ((Row) rows.get(last));
+		Unit u = (Unit) workSet.get(0);
+		if (row.fits(u)
+			|| row.count() == 0) {
+		    row.add(u);
+		    workSet.remove(0);
+		} else {
+		    rows.add(new Row(maxWidth));
+		    last++;
+		}
+	    }
+	    lastWidth = width;
+	    lastRows = rows;
+	    return rows;
+	} else {
+	    return lastRows;
+	}
+    }
+    
+    /**
+     * Scan a {@link List} of {@link Row}s to get the total dimension,
+     * including the padding.
+     * @param rows
+     * 	the {@link List} of {@link Row}s
+     * @return
+     * 	the Dimension it occupies
+     */
+    Dimension getRowsDimension(List rows) {
+    	int height = gap;
+    	int maxWidth = 0;
+    	for (Iterator it = rows.iterator(); it.hasNext();) {
+    		Row r = (Row) it.next();
+    		r.setSize();
+    		Dimension rd = r.Size();
+    		height += rd.height + gap;
+    		maxWidth = Math.max(maxWidth, rd.width);
+    	}
+    	return new Dimension(maxWidth, height);
+    }
+
+    /**
+     * Get the screen ratio, ie: Width / Height.
+     * @return
+     */
+    static public float getSreenRatio() {
+    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		return screenSize.width/screenSize.height;
     }
     
     /**
