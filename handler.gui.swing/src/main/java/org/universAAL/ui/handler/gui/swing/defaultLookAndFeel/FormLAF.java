@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -71,6 +72,7 @@ public class FormLAF extends FormModel {
 		 * ioPanel.getHeight())); //FIXME resize Layout+scroll
 		 */
 		JPanel ioPanel = super.getIOPanel();
+		ioPanel.setLayout(new FormLayout());
 		JScrollPane sp = new JScrollPane(ioPanel,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JScrollPane;
@@ -102,6 +104,26 @@ public class FormLayoutTest extends JFrame {
 		});
 		lblNewLabel_4.setLabelFor(list);
 		contentPane.add(list);
+		
+		JPanel group = new JPanel();
+		group.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+		group.setLayout(new FormLayout());
+		JLabel name2 = new JLabel("name2");
+		group.add(name2);
+		
+		JTextField tfn = new JTextField();
+		name2.setLabelFor(tfn);
+		group.add(tfn);
+		tfn.setColumns(10);
+		
+		JLabel surname2 = new JLabel("surname");
+		group.add(surname2);
+		
+		JTextField tfs = new JTextField();
+		surname2.setLabelFor(tfs);
+		group.add(tfs);
+		tfs.setColumns(10);
+		contentPane.add(group);
 		
 		JButton btnNewButton = new JButton("button");
 		contentPane.add(btnNewButton);
