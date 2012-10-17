@@ -226,7 +226,7 @@ public abstract class Model {
 		    && !hint.isEmpty()) {
 		hintAndHelp += "\n";
 	    }
-	    if (help != null
+	    if (hint != null
 		    &&!hint.isEmpty()) {
 		hintAndHelp += "Hint: \n" + hint;
 	    }
