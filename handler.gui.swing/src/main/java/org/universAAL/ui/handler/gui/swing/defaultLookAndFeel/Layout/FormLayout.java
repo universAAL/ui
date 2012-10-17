@@ -53,7 +53,7 @@ import javax.swing.JLabel;
  */
 public class FormLayout implements LayoutManager {
 
-    private static final int LAYOUT_ITERATIONS = 2;
+//    private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 10;
 	private int gap;
 
@@ -81,75 +81,65 @@ public class FormLayout implements LayoutManager {
 
     /** {@inheritDoc} */
     public Dimension preferredLayoutSize(Container parent) {
-	List units = toUnits(parent.getComponents());
-	int maxWidth = 0;
-	int height = gap;
-	for (Iterator i = units.iterator(); i.hasNext();) {
-		Unit u = (Unit) i.next();
-		Dimension d = u.getPreferredSize();
-		maxWidth = Math.max(maxWidth, d.width);
-		height += d.height + gap;
-	}
-	
-	//height = maxWidth;
-	for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
-		//Adjust Width so the ratio of the container is similar to the screen ratio
-		int Area = maxWidth * height;
-		maxWidth = (int) Math.sqrt(Area*getSreenRatio());
-		
-		height = gap;
-		List unplacedUnits = new ArrayList(units);
-		Row row = new Row(maxWidth);
-		while (!unplacedUnits.isEmpty()) {
-			Unit u = (Unit) unplacedUnits.get(0);
+    	Dimension ld = new Dimension();
+    	synchronized (parent.getTreeLock()) {
+    		List units = toUnits(parent.getComponents());
+    		int maxPrefWidth = 0;
+    		for (Iterator i = units.iterator(); i.hasNext();) {
+    			Unit u = (Unit) i.next();
+    			Dimension d = u.getPreferredSize();
+    			maxPrefWidth = Math.max(maxPrefWidth, d.width);
+    		}
+
+    		List rows = getRows(units, maxPrefWidth);
+    		ld =  getRowsDimension(rows);
+    		
+    		Dimension pD = parent.getSize();
+			List rows2 = getRows(units, pD.width);
+			Dimension realD = getRowsDimension(rows2);
+			ld.height = realD.height;
+
+    		return ld;
+    	}
+    }
+    
+    Dimension getRowsDimension(List rows) {
+    	int height = gap;
+    	int maxWidth = 0;
+    	for (Iterator it = rows.iterator(); it.hasNext();) {
+    		Row r = (Row) it.next();
+    		r.setSize();
+    		Dimension rd = r.Size();
+    		height += rd.height + gap;
+    		maxWidth = Math.max(maxWidth, rd.width);
+    	}
+    	return new Dimension(maxWidth, height);
+    }
+
+    List getRows(List units, int width) {
+    	int maxWidth = width;
+		List rows = new ArrayList();
+		rows.add(new Row(maxWidth));
+		int last = 0;
+		ArrayList workSet = new ArrayList(units);
+		while (!workSet.isEmpty()) {
+			Row row = ((Row) rows.get(last));
+			Unit u = (Unit) workSet.get(0);
 			if (row.fits(u)
 					|| row.count() == 0) {
 				row.add(u);
-				unplacedUnits.remove(0);
+				workSet.remove(0);
 			} else {
-				height += row.getPreferredSize().height + gap;
-				row = new Row(maxWidth);
+				rows.add(new Row(maxWidth));
+				last++;
 			}
-		}		
-	}
-	return new Dimension(maxWidth, height);
+		}
+		return rows;
     }
-
+    
     /** {@inheritDoc} */
     public Dimension minimumLayoutSize(Container parent) {
-//    	return preferredLayoutSize(parent);
-    	List units = toUnits(parent.getComponents());
-    	int maxWidth = 0;
-    	int height = gap;
-    	for (Iterator i = units.iterator(); i.hasNext();) {
-    		Unit u = (Unit) i.next();
-    		Dimension d = u.getMinimunSize();
-    		maxWidth = Math.max(maxWidth, d.width);
-    		height += d.height + gap;
-    	}
-    	
-    	//height = maxWidth;
-    	for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
-    		//Adjust Width so the ratio of the container is similar to the screen ratio
-    		int Area = maxWidth * height;
-    		maxWidth = (int) Math.sqrt(Area*getSreenRatio());
-    		
-    		height = gap;
-    		List unplacedUnits = new ArrayList(units);
-    		Row row = new Row(maxWidth);
-    		while (!unplacedUnits.isEmpty()) {
-    			Unit u = (Unit) unplacedUnits.get(0);
-    			if (row.fits(u)
-    					|| row.count() == 0) {
-    				row.add(u);
-    				unplacedUnits.remove(0);
-    			} else {
-    				height += row.getMinimunSize().height + gap;
-    				row = new Row(maxWidth);
-    			}
-    		}		
-    	}
-    	return new Dimension(maxWidth, height);
+    	return preferredLayoutSize(parent);    	
     }
 
     static public float getSreenRatio() {
@@ -161,22 +151,7 @@ public class FormLayout implements LayoutManager {
     public void layoutContainer(Container parent) {
     	synchronized (parent.getTreeLock()) {
     		List units = toUnits(parent.getComponents());
-    		int maxWidth = parent.getSize().width;
-    		List rows = new ArrayList();
-    		rows.add(new Row(maxWidth));
-    		int last = 0;
-    		while (!units.isEmpty()) {
-    			Row row = ((Row) rows.get(last));
-    			Unit u = (Unit) units.get(0);
-    			if (row.fits(u)
-    					|| row.count() == 0) {
-    				row.add(u);
-    				units.remove(0);
-    			} else {
-    				rows.add(new Row(maxWidth));
-    				last++;
-    			}
-    		}
+    		List rows = getRows(units, parent.getSize().width);
     		int loc = gap;
     		for (Iterator i = rows.iterator(); i.hasNext();) {
     			Row row = (Row) i.next();
@@ -189,6 +164,7 @@ public class FormLayout implements LayoutManager {
 //    			parent.setSize(d);
 //    			parent.invalidate();
 //    		}
+//    		System.out.println("D("+ maxWidth + ", " + loc + gap + ")");
     	}
     }
     
@@ -375,19 +351,24 @@ public class FormLayout implements LayoutManager {
 	
 	private int width;
 	private List units;
+	private int maxHeight;
 
 	public Row() {
 	    units = new ArrayList();
 	}
 	
+	public Dimension Size() {
+		return new Dimension(width, maxHeight);
+	}
+
 	public int count() {
 		return units.size();
 	}
 
-	public void setYLocation(int y) {
-		// TODO Set sizes
+	public void setSize() {
+		// Set sizes
 		int sumW = 0;
-		int maxHeight = 0;
+		maxHeight = 0;
 		for (Iterator i = units.iterator(); i.hasNext();) {
 			Unit u = (Unit) i.next();
 			Dimension d = u.getPreferredSize();
@@ -400,6 +381,10 @@ public class FormLayout implements LayoutManager {
 			myWidht = myWidht * (width - (1 + count() )*gap) / sumW;
 			u.setSize(new Dimension(myWidht, maxHeight));
 		}
+	}
+	
+	public void setYLocation(int y) {
+		setSize();
 		// Set locations.
 		int x = gap;
 		for (Iterator i = units.iterator(); i.hasNext();) {
@@ -475,16 +460,14 @@ public class FormLayout implements LayoutManager {
 	}
 
 	public Dimension getPreferredSize(){
-	    Dimension size = new Dimension(0,0);
-	    for (Iterator i = units.iterator(); i.hasNext();) {
-		Unit u = (Unit) i.next();
-		Dimension uS = u.getPreferredSize();
-		size.width += gap + uS.width;
-		size.height = Math.max(size.height, uS.height);
-	    }
-	    size.width += gap;
-	    return size;
-
+		Dimension size = new Dimension(gap,0);
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			Dimension uS = u.getPreferredSize();
+			size.width += uS.width + gap;
+			size.height = Math.max(size.height, uS.height);
+		}
+		return size;
 	}
 
 	public Dimension getMaximunSize(){

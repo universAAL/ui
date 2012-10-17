@@ -23,6 +23,7 @@ import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
@@ -73,7 +74,8 @@ public class GroupLAF extends GroupModel {
 			jc.setBorder(title);
 			needsLabel = false;
 			// XXX try add icon
-			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+//			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+			jc.setLayout(new FormLayout());
 		}
 		else if (this.isTheSubmitGroup()){
 			VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, 5, 5);
