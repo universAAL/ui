@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -53,6 +54,7 @@ import javax.swing.JLabel;
 public class FormLayout implements LayoutManager {
 
     private static final int LAYOUT_ITERATIONS = 2;
+	private static final int LABEL_HEIGHT_THRESHOLD = 10;
 	private int gap;
 
     /**
@@ -81,23 +83,33 @@ public class FormLayout implements LayoutManager {
     public Dimension preferredLayoutSize(Container parent) {
 	List units = toUnits(parent.getComponents());
 	int maxWidth = 0;
+	int height = 0;
 	for (Iterator i = units.iterator(); i.hasNext();) {
 		Unit u = (Unit) i.next();
 		maxWidth = Math.max(maxWidth, u.getPreferredSize().width);
 	}
-	int height = 0;
-	Row row = new Row(maxWidth);
-	while (!units.isEmpty()) {
-		if (row.fits((Unit) units.get(0))) {
-			row.add((Unit) units.get(0));
-			units.remove(0);
-		} else {
-			height += row.getPreferredSize().height;
-			row = new Row(maxWidth);
-		}
+	
+	height = maxWidth;
+	for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
+		//Adjust Width so the ratio of the container is similar to the screen ratio
+		int Area = maxWidth * height;
+		maxWidth = (int) Math.sqrt(Area*getSreenRatio());
+		
+		height = gap;
+		List unplacedUnits = new ArrayList(units);
+		Row row = new Row(maxWidth);
+		while (!unplacedUnits.isEmpty()) {
+			if (row.fits((Unit) unplacedUnits.get(0))) {
+				row.add((Unit) unplacedUnits.get(0));
+				unplacedUnits.remove(0);
+			} else {
+				height += row.getPreferredSize().height + gap;
+				row = new Row(maxWidth);
+			}
+		}			
+		
 	}
 	return new Dimension(maxWidth, height);
-	// TODO: minimum size maintains screen relation. reducing area.
     }
 
     /** {@inheritDoc} */
@@ -109,9 +121,13 @@ public class FormLayout implements LayoutManager {
     		Unit u = (Unit) i.next();
     		maxWidth = Math.max(maxWidth, u.getMinimunSize().width);
     	}
-    	
+    	height = maxWidth;
     	for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
-    		height = 0;
+    		//Adjust Width so the ratio of the container is similar to the screen ratio
+    		int Area = maxWidth * height;
+    		maxWidth = (int) Math.sqrt(Area*getSreenRatio());
+    		
+    		height = gap;
     		List unplacedUnits = new ArrayList(units);
     		Row row = new Row(maxWidth);
     		while (!unplacedUnits.isEmpty()) {
@@ -119,17 +135,20 @@ public class FormLayout implements LayoutManager {
     				row.add((Unit) unplacedUnits.get(0));
     				unplacedUnits.remove(0);
     			} else {
-    				height += row.getMinimumSize().height;
+    				height += row.getMinimumSize().height + gap;
     				row = new Row(maxWidth);
     			}
     		}			
-    		int Area = maxWidth * height;
-    		//...
+    		
     	}
     	return new Dimension(maxWidth, height);
-    	// TODO: preffered size maintains screen relation.
     }
 
+    static public float getSreenRatio() {
+    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		return screenSize.width/screenSize.height;
+    }
+    
     /** {@inheritDoc} */
     public void layoutContainer(Container parent) {
     	List units = toUnits(parent.getComponents());
@@ -138,19 +157,27 @@ public class FormLayout implements LayoutManager {
     	rows.add(new Row(maxWidth));
     	int last = 0;
     	while (!units.isEmpty()) {
-    		if (((Row) rows.get(last)).fits((Unit) units.get(0))) {
-    			((Row) rows.get(last)).add((Unit) units.get(0));
+    		Row row = ((Row) rows.get(last));
+    		Unit u = (Unit) units.get(0);
+    		if (row.fits(u)) {
+    			row.add(u);
     			units.remove(0);
     		} else {
-    			rows.add(new Row(maxWidth));
-    			last++;
+    			if (row.count() > 0) {
+    				rows.add(new Row(maxWidth));
+    				last++;
+    			} else {
+    				//Force it in
+        			row.add(u);
+        			units.remove(0);
+    			}
     		}
     	}
     	int loc = gap;
     	for (Iterator i = rows.iterator(); i.hasNext();) {
 			Row row = (Row) i.next();
 			row.setYLocation(loc);
-			loc += gap;
+			loc += gap + row.getSize().height;
 		}
     }
     
@@ -219,7 +246,7 @@ public class FormLayout implements LayoutManager {
 		jc = l;
 	    }
 	    if (jc.getPreferredSize().height
-		    > l.getPreferredSize().height){
+		    > l.getPreferredSize().height + LABEL_HEIGHT_THRESHOLD){
 		isHorizontal = false;
 	    } else {
 		isHorizontal = true;
@@ -341,8 +368,33 @@ public class FormLayout implements LayoutManager {
 	    units = new ArrayList();
 	}
 	
-	public void setYLocation(int loc) {
-		// TODO Auto-generated method stub
+	public int count() {
+		return units.size();
+	}
+
+	public void setYLocation(int y) {
+		// TODO Set sizes
+		int sumW = 0;
+		int maxHeight = 0;
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			Dimension d = u.getPreferredSize();
+			sumW += d.width;
+			maxHeight = Math.max(maxHeight,d.height);
+		}
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			int myWidht = u.getPreferredSize().width;
+			myWidht = myWidht * (width - (1 + count() )*gap) / sumW;
+			u.setSize(new Dimension(myWidht, maxHeight));
+		}
+		// Set locations.
+		int x = gap;
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			u.setLocation(x, y);
+			x += gap + u.getSize().width;
+		}
 		
 	}
 
