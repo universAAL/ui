@@ -154,7 +154,7 @@ public class FormLAF extends FormModel  {
     	
     	if (frame == null) {
             frame = new GradientLAF();
-            frame.setLayout(new FormLayout());
+            frame.setLayout(new BorderLayout());
             frame.setBorder(pendingMessage);
 //            JPanel content = new GradientLAF();
 //            content.setLayout(new BorderLayout());

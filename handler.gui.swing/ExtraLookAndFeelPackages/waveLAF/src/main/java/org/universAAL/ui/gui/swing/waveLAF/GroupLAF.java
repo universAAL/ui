@@ -16,7 +16,6 @@
 package org.universAAL.ui.gui.swing.waveLAF;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -101,10 +100,14 @@ public class GroupLAF extends GroupModel {
             // XXX try add icon
             jc.setLayout(new FormLayout());
         }
+        else if (this.isTheIOGroup()
+        	&& !this.isInMainMenu()){
+            jc.setLayout(new FormLayout());
+        }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){
-        	FormLayout vfl = new FormLayout();
-        //	vfl.setMaximizeOtherDimension(true);
+        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
+        	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
 		}
     }
