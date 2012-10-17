@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -135,6 +136,24 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	 */
 	public class AddTableButton extends JButton implements ActionListener {
 
+		public AddTableButton(Icon icon) {
+			super(icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Add");
+		}
+
+		public AddTableButton(String text, Icon icon) {
+			super(text, icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Add");
+		}
+
+		public AddTableButton(String text) {
+			super(text);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Add");
+		}
+
 		/**
 		 * Java Serializer Variable
 		 */
@@ -160,6 +179,24 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	 * @author amedrano
 	 */
 	public class DeleteTableButton extends JButton implements ActionListener {
+
+		public DeleteTableButton(Icon icon) {
+			super(icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Delete");
+		}
+
+		public DeleteTableButton(String text, Icon icon) {
+			super(text, icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Delete");
+		}
+
+		public DeleteTableButton(String text) {
+			super(text);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Delete");
+		}
 
 		/**
 		 * Java Serializer Variable
@@ -188,6 +225,24 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	 */
 	public class UpTableButton extends JButton implements ActionListener {
 
+		public UpTableButton(Icon icon) {
+			super(icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Up");
+		}
+
+		public UpTableButton(String text, Icon icon) {
+			super(text, icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Up");
+		}
+
+		public UpTableButton(String text) {
+			super(text);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Up");
+		}
+
 		/**
 		 * Java Serializer Variable
 		 */
@@ -206,11 +261,12 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
 			Repeat r = (Repeat) fc;
-			int[] selIndexes = tableComponent.getSelectedRows();
-			for (int i = 0; i < selIndexes.length; i++) {
-				r.setSelection(selIndexes[i]);
-				r.moveSelectionUp();
+			int indx = r.getSelectionIndex() - 1;
+			if (indx < 0) {
+				indx = 0;
 			}
+			repeatTableModel.setSelection(indx);
+			tableComponent.setRowSelectionInterval(indx, indx);
 		}
 	}
 	
@@ -219,6 +275,24 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	 * @author amedrano
 	 */
 	public class DownTableButton extends JButton implements ActionListener {
+
+		public DownTableButton(Icon icon) {
+			super(icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Down");
+		}
+
+		public DownTableButton(String text, Icon icon) {
+			super(text, icon);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Down");
+		}
+
+		public DownTableButton(String text) {
+			super(text);
+			this.addActionListener(this);
+			this.setName(fc.getURI()+"_Down");
+		}
 
 		/**
 		 * Java Serializer Variable
@@ -238,12 +312,12 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
 			Repeat r = (Repeat) fc;
-			int[] selIndexes = tableComponent.getSelectedRows();
-			for (int i = 0; i < selIndexes.length; i++) {
-				r.setSelection(selIndexes[i]);
-				r.moveSelectionDown();
+			int indx = r.getSelectionIndex() + 1;
+			if (indx >= repeatTableModel.getRowCount()) {
+				indx = repeatTableModel.getRowCount() - 1;
 			}
-
+			repeatTableModel.setSelection(indx);
+			tableComponent.setRowSelectionInterval(indx, indx);
 		}
 	}
 
