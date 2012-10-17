@@ -38,6 +38,7 @@ import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -153,7 +154,7 @@ public class FormLAF extends FormModel  {
     	
     	if (frame == null) {
             frame = new GradientLAF();
-            frame.setLayout(new BorderLayout());
+            frame.setLayout(new FormLayout());
             frame.setBorder(pendingMessage);
 //            JPanel content = new GradientLAF();
 //            content.setLayout(new BorderLayout());
