@@ -22,11 +22,14 @@
  */
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
+import java.util.Enumeration;
+
 import javax.swing.JComponent;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import org.universAAL.middleware.rdf.PropertyPath;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
@@ -187,13 +190,29 @@ public class RepeatTableModel extends AbstractTableModel {
 //		fc.changeProperty(Input.PROP_REFERENCED_PPATH, pp);
 //	}
 //	if (elems[columnIndex] instanceof SubdialogTrigger) {
-//		SubdialogTrigger fc = (SubdialogTrigger) elems[columnIndex].deepCopy();
+	/////TODO add renderer to constructor to build LAF models of SubdTrigger
+////		SubdialogTrigger fc = (SubdialogTrigger) elems[columnIndex].deepCopy();
+//	    SubdialogTrigger fc = (SubdialogTrigger) softCopy((SubdialogTrigger) elems[columnIndex]);
 //		fc.changeProperty(SubdialogTrigger.PROP_SUBMISSION_ID, 
 //				fc.getProperty(SubdialogTrigger.PROP_REPEATABLE_ID_PREFIX 
 //						+ Integer.toString(rowIndex)));
 //		return new SubdialogTriggerLAF(fc, null).getComponent();
 //	}
 	return repeat.getValue(pp);
+    }
+    
+    private SubdialogTrigger softCopy(SubdialogTrigger res) {
+	SubdialogTrigger newRes = new SubdialogTrigger();
+	Enumeration props = res.getPropertyURIs();
+	String[] types = res.getTypes();
+	for (int i = 0; i < types.length; i++) {
+	    newRes.addType(types[i], false);
+	}
+	while (props.hasMoreElements()){
+	    String prop = (String) props.nextElement();
+	    newRes.setProperty(prop, res.getProperty(prop));
+	}
+	return newRes;
     }
 
     /**
