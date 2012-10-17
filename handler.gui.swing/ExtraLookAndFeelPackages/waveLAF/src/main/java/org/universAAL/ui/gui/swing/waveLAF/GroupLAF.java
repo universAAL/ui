@@ -27,6 +27,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse2;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
@@ -98,12 +99,12 @@ public class GroupLAF extends GroupModel {
             jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
-            jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+            jc.setLayout(new FormLayout());
         }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){
-        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
-        	vfl.setMaximizeOtherDimension(true);
+        	FormLayout vfl = new FormLayout();
+        //	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
 		}
     }
