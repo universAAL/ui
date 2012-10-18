@@ -36,6 +36,7 @@ public class FormLayoutTest extends JFrame {
 			public void run() {
 				try {
 					FormLayoutTest frame = new FormLayoutTest();
+					frame.pack();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,9 +50,9 @@ public class FormLayoutTest extends JFrame {
 	 */
 	public FormLayoutTest() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
 		setContentPane(new JScrollPane(contentPane));
 //		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		contentPane.setLayout(new FormLayout());

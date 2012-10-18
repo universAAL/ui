@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -105,9 +106,16 @@ public class FormLayout implements LayoutManager {
 //    		ld =  getRowsDimension(rows);
     		
     		Dimension pD = parent.getSize();
-    		List rows2 = getRows(units, pD.width);
+    		Insets insets = parent.getInsets();
+            int maxwidth = pD.width - (insets.left + insets.right);
+    		List rows2 = getRows(units, maxwidth);
     		Dimension realD = getRowsDimension(rows2);
-    		ld.height = realD.height;
+    		if (pD.width != 0) {
+    			ld.height = realD.height;
+    		}
+    		
+    		ld.height += insets.bottom + insets.top;
+    		ld.width += insets.left + insets.right;
 
     		return ld;
     	}
@@ -116,12 +124,14 @@ public class FormLayout implements LayoutManager {
     /** {@inheritDoc} */
         public void layoutContainer(Container parent) {
         	synchronized (parent.getTreeLock()) {
+        		Insets insets = parent.getInsets();
+                int maxwidth = parent.getWidth() - (insets.left + insets.right);
         		List units = toUnits(parent.getComponents());
-        		List rows = getRows(units, parent.getSize().width);
-        		int loc = gap;
+        		List rows = getRows(units, maxwidth);
+        		int loc = gap + insets.top;
         		for (Iterator i = rows.iterator(); i.hasNext();) {
         			Row row = (Row) i.next();
-        			row.setYLocation(loc);
+        			row.setYLocation(insets.right,loc);
         			loc += gap + row.getSize().height;
         		}
     //    		if (parent.getSize().width < maxWidth
@@ -432,10 +442,10 @@ public class FormLayout implements LayoutManager {
 		}
 	}
 	
-	public void setYLocation(int y) {
+	public void setYLocation(int x, int y) {
 		setSize();
 		// Set locations.
-		int x = gap;
+		x += gap;
 		for (Iterator i = units.iterator(); i.hasNext();) {
 			Unit u = (Unit) i.next();
 			u.setLocation(x, y);
