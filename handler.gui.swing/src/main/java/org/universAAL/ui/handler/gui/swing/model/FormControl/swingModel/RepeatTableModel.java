@@ -2,6 +2,9 @@
 	Copyright 2008-2010 SPIRIT, http://www.spirit-intl.com/
 	SPIRIT S.A. E-BUSINESS AND COMMUNICATIONS ENGINEERING 
 	
+	Copyright 2012 -2014 UPM, http://www.upm.es/
+	Universidad Politécnica de Madrid
+	
 	See the NOTICE file distributed with this work for additional 
 	information regarding copyright ownership
 	
@@ -20,9 +23,12 @@
 /**
  * 
  */
-package org.universAAL.ui.handler.gui.swing.model.FormControl;
+package org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.table.AbstractTableModel;
@@ -30,13 +36,15 @@ import javax.swing.table.TableModel;
 
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubdialogTriggerLAF;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * This class implements a multiple inheritance of {@link Repeat} and
@@ -60,14 +68,26 @@ public class RepeatTableModel extends AbstractTableModel {
      */
     private FormControl[] elems;
 
+	/**
+	 * Reference to the Renderer to be able to render controls inside
+	 * tables.
+	 */
+	private Renderer render;
+
+	/**
+	 * A Reprocessed list of Forms to enable Inputs and Submits.
+	 */
+	private List repeatSubFormList;
+
     /**
      * Constructor method.
      * 
      * @param repeat
      *            initial {@link Repeat} object
      */
-    public RepeatTableModel(Repeat repeat) {
+    public RepeatTableModel(Repeat repeat, Renderer render) {
 	this.repeat = repeat;
+	this.render = render;
 	elems = repeat.getChildren();
 	if (elems == null || elems.length != 1) {
 	    throw new IllegalArgumentException("Malformed argument!");
@@ -78,13 +98,15 @@ public class RepeatTableModel extends AbstractTableModel {
 		throw new IllegalArgumentException("Malformed argument!");
 	} else if (elems[0] == null)
 	    throw new IllegalArgumentException("Malformed argument!");
+	
+	repeatSubFormList = generateSubForms();
     }
 
     /**
      * Call {@link Repeat#addValue()} and then
      * {@link AbstractTableModel#fireTableRowsInserted(int, int)}
      */
-    void addValue() {
+    public void addValue() {
 	if (repeat.addValue()) {
 	    int sel = repeat.getSelectionIndex();
 	    fireTableRowsInserted(sel, sel);
@@ -137,7 +159,7 @@ public class RepeatTableModel extends AbstractTableModel {
     /**
      * Getter for {@link #elems}
      */
-    FormControl[] getSelectionControls() {
+    public FormControl[] getSelectionControls() {
 	return elems;
     }
 
@@ -159,7 +181,7 @@ public class RepeatTableModel extends AbstractTableModel {
      *            Column index.
      * @return the value contained in column.
      */
-    Object getSelectionColumnValue(int col) {
+    public Object getSelectionColumnValue(int col) {
 	return elems[col].getValue();
     }
 
@@ -181,14 +203,17 @@ public class RepeatTableModel extends AbstractTableModel {
 	if (rowIndex < 0 || rowIndex >= repeat.getNumberOfValues()
 		|| columnIndex < 0 || columnIndex >= elems.length)
 	    throw new ArrayIndexOutOfBoundsException();
+	if (elems[columnIndex] instanceof Input
+			|| elems[columnIndex] instanceof Submit){
+
+		FormControl fc = (FormControl) ((Form)repeatSubFormList.get(rowIndex))
+				.getIOControls().getChildren()[columnIndex];
+		return render.getModelMapper().getModelFor(fc).getComponent();
+	}
 	repeat.setSelection(rowIndex);
 	PropertyPath path = (elems.length > 1) ? elems[columnIndex]
 		.getReferencedPPath() : null;
 	String[] pp = (path == null) ? null : path.getThePath();
-//	if (elems[columnIndex] instanceof Input) {
-//		Input fc = (Input) elems[columnIndex].deepCopy();
-//		fc.changeProperty(Input.PROP_REFERENCED_PPATH, pp);
-//	}
 //	if (elems[columnIndex] instanceof SubdialogTrigger) {
 	/////TODO add renderer to constructor to build LAF models of SubdTrigger
 ////		SubdialogTrigger fc = (SubdialogTrigger) elems[columnIndex].deepCopy();
@@ -200,26 +225,12 @@ public class RepeatTableModel extends AbstractTableModel {
 //	}
 	return repeat.getValue(pp);
     }
-    
-    private SubdialogTrigger softCopy(SubdialogTrigger res) {
-	SubdialogTrigger newRes = new SubdialogTrigger();
-	Enumeration props = res.getPropertyURIs();
-	String[] types = res.getTypes();
-	for (int i = 0; i < types.length; i++) {
-	    newRes.addType(types[i], false);
-	}
-	while (props.hasMoreElements()){
-	    String prop = (String) props.nextElement();
-	    newRes.setProperty(prop, res.getProperty(prop));
-	}
-	return newRes;
-    }
 
     /**
      * calls {@link Repeat#removeSelection()} for {@link #repeat} with the right
      * arguments (calling {@link Repeat#getSelectionIndex()}
      */
-    void removeValue() {
+    public void removeValue() {
 	int sel = repeat.getSelectionIndex();
 	if (repeat.removeSelection())
 	    fireTableRowsDeleted(sel, sel);
@@ -231,7 +242,7 @@ public class RepeatTableModel extends AbstractTableModel {
      * @param i
      *            index of the new selection
      */
-    void setSelection(int i) {
+    public void setSelection(int i) {
 	repeat.setSelection(i);
     }
 
@@ -249,10 +260,8 @@ public class RepeatTableModel extends AbstractTableModel {
 	
     public Class getColumnClass(int columnIndex) {
 		super.getColumnClass(columnIndex);
-//		if (elems[columnIndex] instanceof Input) {
-//			
-//		}
-		if (elems[columnIndex] instanceof Submit) {
+		if (elems[columnIndex] instanceof Input
+				|| elems[columnIndex] instanceof Submit) {
 			return JComponent.class;
 		}
 		return Object.class;
@@ -274,4 +283,77 @@ public class RepeatTableModel extends AbstractTableModel {
     // repeat.setValue(pp, value,
     // elems[columnIndex].getControlRestrictions());
     // }
+    
+    private List generateSubForms() {
+    	ArrayList formList = new ArrayList();
+    	Object repeatData = getValue(repeat.getReferencedPPath().getThePath(), 
+    			repeat.getFormObject().getData());
+    	List repeatList = null;
+    	if (repeatData instanceof Resource) {
+    		 repeatList = ((Resource) repeatData).asList();
+    	}
+    	if (repeatData instanceof List) {
+    		repeatList = (List) repeatData;
+    	}
+    	if (repeatList.isEmpty())
+    		throw new IllegalArgumentException("Referenced Path for Repeat is not a list");
+    	int index = 0;
+    	for (Iterator i = repeatList.iterator(); i.hasNext();) {
+			Resource res = (Resource) i.next();
+			Form subForm = Form.newDialog("", res);
+			for (int j = 0; j < elems.length; j++) {
+				if (elems[j] instanceof FormControl) {
+					FormControl nFC = (FormControl) softCopy(elems[j]);
+					nFC.setProperty(FormControl.PROP_PARENT_CONTROL, subForm.getIOControls());
+					addChild((Group) subForm.getIOControls(), nFC);
+					if (elems[j] instanceof SubdialogTrigger) {
+						nFC.changeProperty(SubdialogTrigger.PROP_SUBMISSION_ID,
+								nFC.getProperty(SubdialogTrigger.PROP_REPEATABLE_ID_PREFIX)
+								+ Integer.toString(index));
+					}
+				}
+			}
+			formList.add(subForm);
+			index++;
+		}
+    	
+    	return formList;
+    }
+    
+    private static Object getValue(String[] pp, Resource pr) {
+    	if (pp == null || pp.length == 0 || pr == null)
+    		return null;
+
+    	Object o = pr.getProperty(pp[0]);
+    	for (int i = 1; o != null && i < pp.length; i++) {
+    		if (!(o instanceof Resource))
+    			return null;
+    		pr = (Resource) o;
+    		o = pr.getProperty(pp[i]);
+    	}
+    	return o;
+    }
+    
+    private Object softCopy(Resource res) {
+    Resource newRes = Resource.getResource(res.getType(), Resource.generateAnonURI());
+	Enumeration props = res.getPropertyURIs();
+	String[] types = res.getTypes();
+	for (int i = 0; i < types.length; i++) {
+	    newRes.addType(types[i], false);
+	}
+	while (props.hasMoreElements()){
+	    String prop = (String) props.nextElement();
+	    newRes.setProperty(prop, res.getProperty(prop));
+	}
+	return newRes;
+    }
+    
+    private static void addChild(Group parent, FormControl child) {
+    	List children = (List) parent.getProperty(Group.PROP_CHILDREN);
+    	if (children == null) {
+    	    children = new ArrayList();
+    	    parent.setProperty(Group.PROP_CHILDREN, children);
+    	}
+    	children.add(child);
+    }
 }

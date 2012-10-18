@@ -61,7 +61,8 @@
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout,
                             org.universAAL.ui.handler.gui.swing.model,
                             org.universAAL.ui.handler.gui.swing.model.special,
-                            org.universAAL.ui.handler.gui.swing.model.FormControl</Export-Package>
+                            org.universAAL.ui.handler.gui.swing.model.FormControl,
+                            org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel</Export-Package>
             <Import-Package>org.universAAL.middleware.owl,*</Import-Package>
             <DynamicImport-Package>*</DynamicImport-Package>
           </instructions>

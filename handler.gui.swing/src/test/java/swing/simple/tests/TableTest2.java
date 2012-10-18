@@ -22,7 +22,7 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatTableModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 public class TableTest2 extends JFrame {
     private static final String PREFIX = "http://example.com/Dable.owl#";
@@ -79,7 +79,7 @@ public class TableTest2 extends JFrame {
 			SubdialogTrigger.VAR_REPEATABLE_ID)
 	.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 
-	rtm = new RepeatTableModel(repeat);
+	rtm = new RepeatTableModel(repeat,render);
 	System.out.println("Table (" + rtm.getColumnCount() + ", "
 		+ rtm.getRowCount() + ")");
 	rmt = new RepeatModelTableLAF(repeat, render);

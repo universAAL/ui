@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
@@ -68,10 +69,10 @@ implements ActionListener {
 		super.update();
 		SpecialButtonInterface sbi = specialBFactory.getSpecialButton((Submit) fc);
 		if (sbi == null) {
-			SpecialButtonFactory.processListener((JButton) jc, this);
+			SpecialButtonFactory.processListener((AbstractButton) jc, this);
 		}
 		else {
-			SpecialButtonFactory.processListener((JButton) jc, sbi);
+			SpecialButtonFactory.processListener((AbstractButton) jc, sbi);
 		}
 	}
 

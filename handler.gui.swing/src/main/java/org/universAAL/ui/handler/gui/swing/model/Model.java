@@ -46,6 +46,11 @@ public abstract class Model {
      * @see Group#STD_STD_BUTTONS
      */
     private static final String STD_STD_BUTTONS = "stdButtonsGroup";
+    
+    /**
+     * A property added to FormControls added to tables
+     */
+    public static final String FORM_CONTROL_IN_TABLE = Form.uAAL_DIALOG_NAMESPACE + "formInTable";
 
     /**
      * the {@link FormControl} for which this model represents.
@@ -183,6 +188,11 @@ public abstract class Model {
         return findInAntecesors(STD_SUBMITS);
     }
 
+    public boolean isInTable() {
+    	return fc.hasProperty(FORM_CONTROL_IN_TABLE) 
+    			&& Boolean.TRUE.equals(fc.getProperty(FORM_CONTROL_IN_TABLE));
+    }
+    
     /**
      * Test if the {@link JComponent} information provided by
      * the user is valid according to the {@link FormControl}'s

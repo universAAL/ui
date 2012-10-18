@@ -80,9 +80,13 @@ implements ActionListener {
     	if (getRenderer() != null) {
     	//	FormModel current = FormModelMapper
     	//			.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
-    		FormModel current = getRenderer().getModelMapper().getModelFor(
-    				getRenderer().getFormManagement().getCurrentDialog().getDialogForm());
-    		return current.isAntecessor(((SubdialogTrigger) fc).getID());
+    		try {
+				FormModel current = getRenderer().getModelMapper().getModelFor(
+						getRenderer().getFormManagement().getCurrentDialog().getDialogForm());
+				return current.isAntecessor(((SubdialogTrigger) fc).getID());
+			} catch (Exception e) {
+				return false;
+			}
     	}
     	else {
     		return false;
