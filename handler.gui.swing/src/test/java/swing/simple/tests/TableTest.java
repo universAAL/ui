@@ -18,7 +18,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatTableModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 public class TableTest extends JFrame {
     private static final String PREFIX = "http://example.com/Dable.owl#";
@@ -67,7 +67,7 @@ private JTable m_simpleTable;
       new SimpleOutput(row, new Label("col3", null), 
 	      new PropertyPath(null, false, new String[]{PROP_COL + "3"}), null);
       
-    rtm = new RepeatTableModel(repeat);
+    rtm = new RepeatTableModel(repeat, null);
     System.out.println("Table ("+ rtm.getColumnCount() + ", "+ rtm.getRowCount() + ")");
     m_simpleTable = new JTable(rtm);
     JScrollPane scrollPane = new JScrollPane(m_simpleTable);

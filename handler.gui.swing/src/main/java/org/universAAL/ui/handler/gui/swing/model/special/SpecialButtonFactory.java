@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -73,16 +74,16 @@ public class SpecialButtonFactory {
 	/**
 	 * removes previous {@link ActionListener}s and adds only
 	 * the {@link SpecialButtonInterface} as listener.
-	 * @param b the {@link JButton} to check.
+	 * @param ab the {@link AbstractButton} to check.
 	 * @param al the {@link ActionListener} that should manage
 	 * this button.
 	 */
-	static public void processListener(JButton b, ActionListener al) {
-		ActionListener[] all = b.getActionListeners();
+	static public void processListener(AbstractButton ab, ActionListener al) {
+		ActionListener[] all = ab.getActionListeners();
 		for (int i = 0; i < all.length; i++) {
-			b.removeActionListener(all[i]);
+			ab.removeActionListener(all[i]);
 		}
-		b.addActionListener(al);
+		ab.addActionListener(al);
 	}
 	
 	    

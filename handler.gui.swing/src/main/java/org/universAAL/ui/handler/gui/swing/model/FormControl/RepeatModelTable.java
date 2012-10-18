@@ -34,6 +34,7 @@ import javax.swing.event.ListSelectionListener;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 /**
  * Helper Class just to render RepeatTables.
@@ -47,7 +48,7 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	 * The table component
 	 */
 	protected JTable tableComponent;
-	private RepeatTableModel repeatTableModel;
+	private RepeatTableModel repeatTableModel = null;
     private JComponent[] selectionComps;
 	/**
 	 * Constructor
@@ -103,13 +104,15 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 
 	protected JTable getJTable() {
 		Repeat r = (Repeat)fc;
-		repeatTableModel = new RepeatTableModel(r);
-		tableComponent = new JTable(repeatTableModel);
-		tableComponent.setFillsViewportHeight(true);
-		tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tableComponent.setColumnSelectionAllowed(false);
-		tableComponent.setRowSelectionAllowed(true);
-		tableComponent.getSelectionModel().addListSelectionListener(this);
+		if (repeatTableModel == null) {
+			repeatTableModel = new RepeatTableModel(r,getRenderer());
+			tableComponent = new JTable(repeatTableModel);
+			tableComponent.setFillsViewportHeight(true);
+			tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			tableComponent.setColumnSelectionAllowed(false);
+			tableComponent.setRowSelectionAllowed(true);
+			tableComponent.getSelectionModel().addListSelectionListener(this);
+		}
 		return tableComponent;
 	}
 	
