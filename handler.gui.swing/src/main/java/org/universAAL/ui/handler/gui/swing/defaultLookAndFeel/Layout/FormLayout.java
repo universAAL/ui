@@ -78,8 +78,8 @@ public class FormLayout implements LayoutManager {
 
     /** {@inheritDoc} */
     public Dimension preferredLayoutSize(Container parent) {
-    	Dimension ld = new Dimension();
     	synchronized (parent.getTreeLock()) {
+        	Dimension ld = new Dimension();
     		List units = toUnits(parent.getComponents());
     		int maxPrefWidth = 0;
     		int height = gap;
@@ -102,17 +102,15 @@ public class FormLayout implements LayoutManager {
     		    height = ld.height;
     		}
 
-//    		List rows = getRows(units, maxPrefWidth);
-//    		ld =  getRowsDimension(rows);
     		
-    		Dimension pD = parent.getSize();
+//    		Dimension pD = parent.getSize();
     		Insets insets = parent.getInsets();
-            int maxwidth = pD.width - (insets.left + insets.right);
-    		List rows2 = getRows(units, maxwidth);
-    		Dimension realD = getRowsDimension(rows2);
-    		if (pD.width != 0) {
-    			ld.height = realD.height;
-    		}
+//            int maxwidth = pD.width - (insets.left + insets.right);
+//    		List rows2 = getRows(units, maxwidth);
+//    		Dimension realD = getRowsDimension(rows2);
+//    		if (pD.width != 0) {
+//    			ld.height = realD.height;
+//    		}
     		
     		ld.height += insets.bottom + insets.top;
     		ld.width += insets.left + insets.right;
@@ -134,13 +132,6 @@ public class FormLayout implements LayoutManager {
         			row.setYLocation(insets.right,loc);
         			loc += gap + row.getSize().height;
         		}
-    //    		if (parent.getSize().width < maxWidth
-    //    				|| parent.getSize().height < loc) {
-    //    			Dimension d = new Dimension(maxWidth, loc);
-    //    			parent.setSize(d);
-    //    			parent.invalidate();
-    //    		}
-    //    		System.out.println("D("+ maxWidth + ", " + loc + gap + ")");
         	}
         }
 
@@ -394,7 +385,7 @@ public class FormLayout implements LayoutManager {
 	public void setLocation(int x, int y){
 	    if (l != null){
 		if (isHorizontal){
-		    l.setLocation(x, y + jc.getSize().height - l.getSize().height);
+		    l.setLocation(x, y + (jc.getSize().height - l.getSize().height)/2);
 		    jc.setLocation(x + l.getSize().width + gap/2, y);
 		} else {
 		    l.setLocation(x, y);
