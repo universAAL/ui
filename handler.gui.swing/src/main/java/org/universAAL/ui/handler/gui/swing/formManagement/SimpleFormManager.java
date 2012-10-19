@@ -50,7 +50,7 @@ public class SimpleFormManager implements FormManager {
     
     /** {@inheritDoc} */
     public void addDialog(UIRequest oe) {
-            closeCurrentDialog();
+            closeCurrentDialog(); 
             currentForm = oe;
             renderFrame();
     }
@@ -63,8 +63,10 @@ public class SimpleFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public void closeCurrentDialog() {
-        disposeFrame();
-        currentForm = null;
+    	if (currentForm != null) {
+    		disposeFrame();
+    		currentForm = null;
+    	}
     }
 
 
