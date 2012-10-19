@@ -337,10 +337,10 @@ public class RepeatTableModel extends AbstractTableModel {
     private Object softCopy(Resource res) {
     Resource newRes = Resource.getResource(res.getType(), Resource.generateAnonURI());
 	Enumeration props = res.getPropertyURIs();
-	String[] types = res.getTypes();
-	for (int i = 0; i < types.length; i++) {
-	    newRes.addType(types[i], false);
-	}
+//	String[] types = res.getTypes();
+//	for (int i = 0; i < types.length; i++) {
+//	    newRes.addType(types[i], false);
+//	}
 	while (props.hasMoreElements()){
 	    String prop = (String) props.nextElement();
 	    newRes.setProperty(prop, res.getProperty(prop));
