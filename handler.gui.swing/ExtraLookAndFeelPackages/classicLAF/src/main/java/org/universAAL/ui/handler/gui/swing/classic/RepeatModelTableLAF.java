@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatTableModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 /**
  * @author amedrano
@@ -52,7 +52,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		Repeat r = (Repeat)fc;
 
 
-		tableComponent = new JTable(new RepeatTableModel(r));
+		tableComponent = new JTable(new RepeatTableModel(r,this.getRenderer()));
 		JScrollPane scrollPane = new JScrollPane(tableComponent);
 		tableComponent.setFillsViewportHeight(true);
 		

@@ -87,9 +87,9 @@ public class ColorLAF extends DefaultMetalTheme {
 
     private int FONT_SIZE_BASE = 24;
 
-    private FontUIResource fontBold = new FontUIResource("Corbel", Font.BOLD, FONT_SIZE_BASE + 2);
-    private FontUIResource fontPlain = new FontUIResource("Corbel", Font.PLAIN, FONT_SIZE_BASE);
-    private FontUIResource fontItalic = new FontUIResource("Corbel", Font.ITALIC, FONT_SIZE_BASE - 2);
+    public FontUIResource fontBold = new FontUIResource("Corbel", Font.BOLD, FONT_SIZE_BASE + 2);
+    public FontUIResource fontPlain = new FontUIResource("Corbel", Font.PLAIN, FONT_SIZE_BASE);
+    public FontUIResource fontItalic = new FontUIResource("Corbel", Font.ITALIC, FONT_SIZE_BASE - 2);
     
     protected static final ImageIcon button_normal = new ImageIcon(ColorLAF.class.getResource(
 		"/main/button_white_bright.png"));
