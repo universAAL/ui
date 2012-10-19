@@ -16,8 +16,9 @@
 package org.universAAL.ui.handler.gui.swing.classic;
 
 import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Toolkit;
 
@@ -27,23 +28,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.ScrollBarUI;
+import javax.swing.plaf.FontUIResource;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * The Look and Feel for Forms
+ * 
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
  * @see FormModel
  */
-public class FormLAF extends FormModel  {
+public class FormLAF extends FormModel {
 
     /**
      * internal accounting for the frame being displayed.
@@ -52,172 +53,176 @@ public class FormLAF extends FormModel  {
 
     /**
      * Constructor.
+     * 
      * @param f
-     *     {@link Form} which to model.
+     *            {@link Form} which to model.
      */
     public FormLAF(Form f, Renderer render) {
-        super(f, render);
+	super(f, render);
     }
 
     /**
      * get the io panel wrapped in a scroll pane.
-     * @return
-     *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
+     * 
+     * @return the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}
+     *         .
      */
     protected JScrollPane getIOPanelScroll() {
-    	JPanel ioPanel = super.getIOPanel();
-//    	ioPanel.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
-        JScrollPane sp = new JScrollPane(ioPanel,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
-	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
-        sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
-        return sp;
+	JPanel ioPanel = super.getIOPanel();
+	JScrollPane sp = new JScrollPane(ioPanel,
+		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
+	return sp;
     }
 
     /**
      * get the submit panel wrapped in a scroll pane.
-     * @return
-     *         the {@link FormModel#getSubmitPanel} wrapped in a {@link JScrollPane}.
+     * 
+     * @return the {@link FormModel#getSubmitPanel} wrapped in a
+     *         {@link JScrollPane}.
      */
-    protected JScrollPane getSubmitPanelScroll(int depth) {
-        JPanel submit = super.getSubmitPanel(depth);
-//        submit.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
-        submit.setLayout(new BoxLayout(submit, BoxLayout.Y_AXIS));
-        JScrollPane sp= new JScrollPane(submit,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
-        return sp;
+    protected JScrollPane getSubmitPanelScroll(int depth, boolean vertical) {
+	JPanel submit = super.getSubmitPanel(depth);
+	submit.setLayout(new BoxLayout(submit, vertical?BoxLayout.Y_AXIS:BoxLayout.X_AXIS));
+	JScrollPane sp = new JScrollPane(submit,
+		vertical?JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED:JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+		vertical?JScrollPane.HORIZONTAL_SCROLLBAR_NEVER:JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.setLayout(new BorderedScrolPaneLayout());
+	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
+	return sp;
     }
 
     /**
      * get the system panel wrapped in a scroll pane.
-     * @return
-     *         the {@link FormModel#getSystemPanel} wrapped in a {@link JScrollPane}.
+     * 
+     * @return the {@link FormModel#getSystemPanel} wrapped in a
+     *         {@link JScrollPane}.
      */
     protected JScrollPane getSystemPanelScroll() {
 	JPanel submit = super.getSystemPanel();
-//	submit.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
 	submit.setLayout(new BoxLayout(submit, BoxLayout.X_AXIS));
-	JScrollPane sp= new JScrollPane(submit,
-                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
-        return sp;
+	JScrollPane sp = new JScrollPane(submit,
+		JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.setLayout(new BorderedScrolPaneLayout());
+	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
+	return sp;
     }
 
     /**
      * generate the header panel.
-     * @return
-     *         a pannel with universAAL icon in it.
+     * 
+     * @return a pannel with universAAL icon in it.
      */
-    protected JPanel getHeader() {
-            JPanel header = new JPanel();
-            ImageIcon icon = new ImageIcon(
-                    (getClass().getResource("/main/uaal.png")));
-            icon.setDescription("UniversAAL Logo Image");
-            JLabel logo = new JLabel(icon);
-            logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-            header.add(logo);
-            return (JPanel) header;
-        }
+    protected JPanel getHeader(String title) {
+	JPanel header = new JPanel();
+	ImageIcon icon = new ImageIcon(
+		(getClass().getResource(title==null?"/main/uaal.png":"/main/uAALmicro.png")));
+	icon.setDescription("UniversAAL Logo Image");
+	JLabel logo = new JLabel(title!=null?" "+title+" ":"", icon, SwingConstants.LEFT);
+	logo.setFont(new FontUIResource("Corbel", Font.BOLD, 42));
+	logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
+	header.add(logo);
+	return (JPanel) header;
+    }
 
     /**
      * render the frame for the {@link Form}.
      */
     public void showForm() {
-        if (form.isMessage()) {
-            frame = new JFrame(form.getTitle());
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            JScrollPane io = getIOPanelScroll();
-            io.getAccessibleContext().setAccessibleName(IO_NAME);
-            JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
-                    JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            frame.add(io, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.pack();
-        }
-        if (form.isSystemMenu()) {
-            frame = new JFrame(form.getTitle());
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
-            frame.add(getIOPanel(), BorderLayout.CENTER);
-            frame.add(getSystemPanelScroll(), BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
-            frame.pack();
-            setFullScreen();
-        }
-        if (form.isStandardDialog() ) {
-            /*
-             *  some further LAF can be done here:
-             *   if only submints (no sub dialogs)
-             *     and <4 (and priority hi?)
-             *        then show like a popup.
-             */
-            frame = new JFrame(form.getTitle());
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
-            JScrollPane io = getIOPanelScroll();
-            io.getAccessibleContext().setAccessibleName(IO_NAME);
-            JScrollPane sub = getSubmitPanelScroll(0);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            JScrollPane sys = getSystemPanelScroll();
-            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-            frame.add(io, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.EAST);
-            frame.add(sys, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
-            frame.pack();
-            setFullScreen();
-        }
-       if (form.isSubdialog()) {
-            frame = new JFrame(form.getTitle());
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            frame.add(getHeader(), BorderLayout.NORTH);
-            JScrollPane sub = getSubmitPanelScroll(0);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-            JScrollPane sys = getSystemPanelScroll();
-            sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-            JPanel subpanel = new JPanel(new BorderLayout());
-            subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
-            for (int i = super.getSubdialogLevel(); i > 1; i--) {
-            	subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
-            	JPanel tempanel = new JPanel(new BorderLayout());
-            	tempanel.add(subpanel, BorderLayout.CENTER);
-            	subpanel = tempanel;
-            }
-            frame.add(subpanel, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.EAST);
-            frame.add(sys, BorderLayout.SOUTH);
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
-            frame.pack();
-            setFullScreen();
-        }
-       frame.setVisible(true);
-    }
-    
-    private void setFullScreen(){
-    	Toolkit tk = Toolkit.getDefaultToolkit();  
-    	int xSize = ((int) tk.getScreenSize().getWidth());  
-    	int ySize = ((int) tk.getScreenSize().getHeight());   
-    	frame.setSize(xSize,ySize);
+	frame = new JFrame(form.getTitle());
+	frame.getAccessibleContext().setAccessibleName(form.getTitle());
+	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	frame.setUndecorated(true);
+	if (form.isMessage()) {
+	    JScrollPane io = getIOPanelScroll();
+	    io.getAccessibleContext().setAccessibleName(IO_NAME);
+	    JScrollPane sub = getSubmitPanelScroll(0,true);
+	    sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+	    frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);
+	    frame.add(io, BorderLayout.CENTER);
+	    frame.add(sub, BorderLayout.SOUTH);
+	    frame.pack();
+	    setHalfScreen();
+	}else if (form.isSystemMenu()) {
+	    JScrollPane io = getIOPanelScroll();
+	    io.getAccessibleContext().setAccessibleName(IO_NAME);
+	    JScrollPane sys = getSystemPanelScroll();
+	    sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+	    frame.add(getHeader(null), BorderLayout.NORTH);
+	    frame.add(io, BorderLayout.CENTER);
+	    frame.add(sys, BorderLayout.SOUTH);
+	    frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+	    frame.pack();
+	    setFullScreen();
+	}else if (form.isStandardDialog()) {
+	    JScrollPane io = getIOPanelScroll();
+	    io.getAccessibleContext().setAccessibleName(IO_NAME);
+	    JScrollPane sub = getSubmitPanelScroll(0,true);
+	    sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+	    JScrollPane sys = getSystemPanelScroll();
+	    sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+	    frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);
+	    frame.add(io, BorderLayout.CENTER);
+	    frame.add(sub, BorderLayout.EAST);
+	    frame.add(sys, BorderLayout.SOUTH);
+	    frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+	    frame.pack();
+	    setFullScreen();
+	}else if (form.isSubdialog()) {
+	    JScrollPane sub = getSubmitPanelScroll(0,true);
+	    sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+	    JScrollPane sys = getSystemPanelScroll();
+	    sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+	    JPanel subpanel = new JPanel(new BorderLayout());
+	    subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
+	    for (int i = super.getSubdialogLevel(); i > 1; i--) {
+		subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+		JPanel tempanel = new JPanel(new BorderLayout());
+		tempanel.add(subpanel, BorderLayout.CENTER);
+		subpanel = tempanel;
+	    }
+	    frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);
+	    frame.add(subpanel, BorderLayout.CENTER);
+	    frame.add(sub, BorderLayout.EAST);
+	    frame.add(sys, BorderLayout.SOUTH);
+	    frame.setExtendedState(Frame.MAXIMIZED_BOTH);
+	    frame.pack();
+	    setFullScreen();
+	}
+	frame.setVisible(true);
     }
 
-    /** {@inheritDoc} */
     public void terminateDialog() {
-        if(frame != null){
-            frame.dispose();
-        }
+	if (frame != null) {
+	    frame.setVisible(false);
+	    frame.removeAll();
+	    frame=null;
+//	    frame.dispose();
+	}
     }
+    
+    private void setFullScreen() {
+	Toolkit tk = Toolkit.getDefaultToolkit();
+	int xSize = ((int) tk.getScreenSize().getWidth());
+	int ySize = ((int) tk.getScreenSize().getHeight());
+	frame.setSize(xSize, ySize);
+    }
+    
+    private void setHalfScreen(){
+    	Toolkit tk = Toolkit.getDefaultToolkit();  
+    	int xHalf = ((int) tk.getScreenSize().getWidth())/2;  
+    	int yHalf = ((int) tk.getScreenSize().getHeight())/2;   
+    	frame.setLocation(xHalf - (xHalf / 2),
+    		yHalf - (yHalf / 2));
+    	frame.setSize(xHalf,yHalf);
+    }
+
 }

@@ -51,6 +51,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/In
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_bright.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_dark.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_white_bright.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uAALmicro.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uaal.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Health_button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
