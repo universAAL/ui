@@ -130,7 +130,7 @@ public class FormLayout implements LayoutManager {
         		for (Iterator i = rows.iterator(); i.hasNext();) {
         			Row row = (Row) i.next();
         			row.setYLocation(insets.right,loc);
-        			loc += gap + row.getSize().height;
+        			loc += gap + row.Size().height;
         		}
         	}
         }
@@ -206,6 +206,11 @@ public class FormLayout implements LayoutManager {
 	    while (!workSet.isEmpty()) {
 		Row row = ((Row) rows.get(last));
 		Unit u = (Unit) workSet.get(0);
+		if (!u.isHorizontal) {
+			row = new RowWithVertUnits(row);
+			rows.remove(last);
+			rows.add(row);
+		}
 		if (row.fits(u)
 			|| row.count() == 0) {
 		    row.add(u);
@@ -274,8 +279,10 @@ public class FormLayout implements LayoutManager {
 	private Component jc;
 	private JLabel l;
 	private boolean isHorizontal;
-	private Dimension size;
+	protected Dimension size;
 
+	protected Unit() {	}
+	
 	public Unit(JLabel label) {
 	    this.l = label;
 	    this.jc = (Component) label.getLabelFor();
@@ -293,28 +300,6 @@ public class FormLayout implements LayoutManager {
 	public Unit(Component comp) {
 	    this.jc = comp;
 	    this.l = null;
-	}
-	
-	public Dimension getMinimunSize(){
-	    Dimension d = new Dimension();
-	    if (l != null){
-		if (isHorizontal){
-		    d.height = Math.max(l.getMinimumSize().height,
-			    jc.getMinimumSize().height);
-		    d.width = l.getMinimumSize().width
-			    + gap/2
-			    + jc.getMinimumSize().width;
-		} else {
-		    d.width = Math.max(l.getMinimumSize().width,
-			    jc.getMinimumSize().width);
-		    d.height = l.getMinimumSize().height
-			    + gap/2
-			    + jc.getMinimumSize().height;
-		}
-	    } else {
-		d = jc.getMinimumSize();
-	    }
-	    return d;
 	}
 	
 	public Dimension getPreferredSize(){
@@ -338,28 +323,6 @@ public class FormLayout implements LayoutManager {
 	    }
 	    return d;
 	}
-	
-	public Dimension getMaximumSize() {
-	    Dimension d = new Dimension();
-	    if (l != null){
-		if (isHorizontal){
-		    d.height = Math.max(l.getMaximumSize().height,
-			    jc.getMaximumSize().height);
-		    d.width = l.getMaximumSize().width
-			    + gap/2
-			    + jc.getMaximumSize().width;
-		} else {
-		    d.width = Math.max(l.getMaximumSize().width,
-			    jc.getMaximumSize().width);
-		    d.height = l.getMaximumSize().height
-			    + gap/2
-			    + jc.getMaximumSize().height;
-		}
-	    } else {
-		d = jc.getMaximumSize();
-	    }
-	    return d;
-	}    
 	
 	public void setSize(Dimension size){
 		this.size = size;
@@ -399,9 +362,9 @@ public class FormLayout implements LayoutManager {
     
     class Row {
 	
-	private int width;
-	private List units;
-	private int maxHeight;
+	protected int width;
+	protected List units;
+	protected int maxHeight;
 
 	public Row() {
 	    units = new ArrayList();
@@ -463,52 +426,10 @@ public class FormLayout implements LayoutManager {
 	    return (width - currentWidth) >= newUnit.getPreferredSize().width ;
 	}
 	
-	public boolean fitsMin(Unit newUnit){
-		int currentWidth = 0;
-		for (Iterator i = units.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			currentWidth += u.getMaximumSize().width;
-		}
-	    return (width - currentWidth) >= newUnit.getMaximumSize().width ;
-	}
-	
-	public boolean fitsMax(Unit newUnit){
-		int currentWidth = 0;
-		for (Iterator i = units.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			currentWidth += u.getMinimunSize().width;
-		}
-	    return (width - currentWidth) >= newUnit.getMinimunSize().width ;
-	}
-	
 	public void add(Unit newUnit){
 	    units.add(newUnit);
 	}
 	
-	public Dimension getSize(){
-	    Dimension size = new Dimension(0,0);
-	    for (Iterator i = units.iterator(); i.hasNext();) {
-		Unit u = (Unit) i.next();
-		Dimension uS = u.getSize();
-		size.width += gap + uS.width;
-		size.height = Math.max(size.height, uS.height);
-	    }
-	    size.width += gap;
-	    return size;
-	}
-	
-	public Dimension getMinimunSize(){
-	    Dimension size = new Dimension(0,0);
-	    for (Iterator i = units.iterator(); i.hasNext();) {
-		Unit u = (Unit) i.next();
-		Dimension uS = u.getMinimunSize();
-		size.width += gap + uS.width;
-		size.height = Math.max(size.height, uS.height);
-	    }
-	    size.width += gap;
-	    return size;
-	}
-
 	public Dimension getPreferredSize(){
 		Dimension size = new Dimension(gap,0);
 		for (Iterator i = units.iterator(); i.hasNext();) {
@@ -519,19 +440,136 @@ public class FormLayout implements LayoutManager {
 		}
 		return size;
 	}
-
-	public Dimension getMaximunSize(){
-	    Dimension size = new Dimension(0,0);
-	    for (Iterator i = units.iterator(); i.hasNext();) {
-		Unit u = (Unit) i.next();
-		Dimension uS = u.getMaximumSize();
-		size.width += gap + uS.width;
-		size.height = Math.max(size.height, uS.height);
-	    }
-	    size.width += gap;
-	    return size;
-
-	}
     }
 
+    class AggregatedUnit extends Unit {
+
+    	List units = new ArrayList();
+    	
+		public AggregatedUnit(Component comp) {
+			units.add(new Unit(comp));
+		}
+
+		public AggregatedUnit(JLabel label) {
+			units.add(new Unit(label));
+		}
+		
+		public AggregatedUnit(Unit u) {
+			units.add(u);
+		}
+
+		/** {@inheritDoc} */
+		public Dimension getPreferredSize() {
+			int height = gap;
+			int width = 0;
+			for (Iterator i = units.iterator(); i.hasNext();) {
+				Unit u = (Unit) i.next();
+				Dimension uD = u.getPreferredSize();
+				height += uD.height + gap;
+				width = Math.max(width, uD.width);
+			}
+			return new Dimension(width + 2 * gap, height);
+		}
+
+		/** {@inheritDoc} */
+		public void setSize(Dimension size) {
+			this.size = size;
+			int count = units.size();
+			int uHeight = (size.height - (count + 1)*gap)/count; 
+			for (Iterator i = units.iterator(); i.hasNext();) {
+				Unit u = (Unit) i.next();
+				u.setSize(new Dimension(size.width - 2 * gap, uHeight));
+			}
+		}
+
+		/** {@inheritDoc} */
+		public void setLocation(int x, int y) {
+			int newY = y + gap;
+			int uX = x + gap;
+			int count = units.size();
+			int uHeight = (size.height - (count + 1)*gap)/count;
+			for (Iterator i = units.iterator(); i.hasNext();) {
+				Unit u = (Unit) i.next();
+				u.setLocation(uX, newY);
+				newY +=uHeight + gap;
+			}
+		}
+
+		public boolean fits(Unit newUnit) {
+			int count = units.size() + 1;
+			int uHeight = (size.height - (count + 1)*gap)/count; 
+			return (uHeight > newUnit.getPreferredSize().height);
+		}
+
+		public void add(Unit newUnit) {
+			units.add(newUnit);			
+		}
+
+		public void setHeight(int height) {
+			if (size == null) {
+				size = new Dimension();
+			}
+			size.height = height;			
+		}		
+    }
+    
+    class RowWithVertUnits extends Row {
+
+		public RowWithVertUnits() {
+			super();
+		}
+
+		public RowWithVertUnits(int width) {
+			super(width);
+		}
+		
+		public RowWithVertUnits(Row previousRow) {
+			width = previousRow.width;
+			for (Iterator it = previousRow.units.iterator(); it.hasNext();) {
+				Unit u = (Unit) it.next();
+				maxHeight = Math.max(maxHeight, u.getPreferredSize().height);
+			}
+			for (Iterator i = previousRow.units.iterator(); i.hasNext();) {
+				Unit u = (Unit) i.next();
+				if (!(u  instanceof AggregatedUnit)) {
+					add(u);
+				} else {
+					for (Iterator it = ((AggregatedUnit)u).units.iterator(); it
+							.hasNext();) {
+						Unit aU = (Unit) it.next();
+						add(aU);
+					}
+				}
+			}
+		}
+		
+		/** {@inheritDoc} */
+		public boolean fits(Unit newUnit) {
+			int count = count();
+			return (newUnit.isHorizontal
+					&& count > 0 
+					&& units.get(count-1) instanceof AggregatedUnit
+					&& ((AggregatedUnit)units.get(count-1)).fits(newUnit))
+			|| super.fits(newUnit);			
+		}
+
+		/** {@inheritDoc} */
+		public void add(Unit newUnit) {
+			maxHeight = Math.max(maxHeight, newUnit.getPreferredSize().height);
+			int count = count();
+			if (newUnit.isHorizontal
+					&& count > 0
+					&& units.get(count-1) instanceof AggregatedUnit
+					&& ((AggregatedUnit)units.get(count-1)).fits(newUnit)) {
+				 ((AggregatedUnit)units.get(count-1)).add(newUnit);
+			} else if (newUnit.isHorizontal) {
+				AggregatedUnit aU = new AggregatedUnit(newUnit);
+				aU.setHeight(maxHeight);
+				super.add(aU);
+			} else {
+				super.add(newUnit);
+			}
+		}
+    	
+    }
 }
