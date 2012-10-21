@@ -460,7 +460,7 @@ public class FormLayout implements LayoutManager {
 
 		/** {@inheritDoc} */
 		public Dimension getPreferredSize() {
-			int height = gap;
+			int height = 0;
 			int width = 0;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
@@ -468,26 +468,26 @@ public class FormLayout implements LayoutManager {
 				height += uD.height + gap;
 				width = Math.max(width, uD.width);
 			}
-			return new Dimension(width + 2 * gap, height);
+			return new Dimension(width, height - gap);
 		}
 
 		/** {@inheritDoc} */
 		public void setSize(Dimension size) {
 			this.size = size;
 			int count = units.size();
-			int uHeight = (size.height - (count + 1)*gap)/count; 
+			int uHeight = (size.height - (count -1)*gap)/count; 
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
-				u.setSize(new Dimension(size.width - 2 * gap, uHeight));
+				u.setSize(new Dimension(size.width, uHeight));
 			}
 		}
 
 		/** {@inheritDoc} */
 		public void setLocation(int x, int y) {
-			int newY = y + gap;
-			int uX = x + gap;
+			int newY = y;
+			int uX = x;
 			int count = units.size();
-			int uHeight = (size.height - (count + 1)*gap)/count;
+			int uHeight = (size.height - (count - 1)*gap)/count;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
 				u.setLocation(uX, newY);
@@ -497,7 +497,7 @@ public class FormLayout implements LayoutManager {
 
 		public boolean fits(Unit newUnit) {
 			int count = units.size() + 1;
-			int uHeight = (size.height - (count + 1)*gap)/count; 
+			int uHeight = (size.height - (count - 1)*gap)/count; 
 			return (uHeight > newUnit.getPreferredSize().height);
 		}
 
