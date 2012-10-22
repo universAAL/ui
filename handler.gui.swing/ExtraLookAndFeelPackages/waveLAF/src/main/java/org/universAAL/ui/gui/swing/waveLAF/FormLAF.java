@@ -108,6 +108,7 @@ public class FormLAF extends FormModel  {
     protected JScrollPane getSubmitPanelScroll(int depth) {
         JPanel submit = super.getSubmitPanel(depth);
         submit.setOpaque(false);
+        //submit.setLayout(new FormLayout());
         JScrollPane sp = new JScrollPane(submit,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
