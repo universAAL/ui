@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+  * Copyright 2012 Universidad Politécnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ public class ColorLAF extends DefaultMetalTheme {
     }
 
     private final ColorUIResource primary1 = new ColorUIResource(255, 255, 247); //cream
-    private final ColorUIResource primary2 = new ColorUIResource(255,255,255);//orange
-    private final ColorUIResource primary3 = new ColorUIResource(255,255,255);//gris claro
+    private final ColorUIResource primary2 = new ColorUIResource(204, 204, 204);//orange
+    private final ColorUIResource primary3 = new ColorUIResource(204, 204, 204);//gris claro
 
     private final ColorUIResource secondary1 =
             new ColorUIResource(55, 142, 143);

@@ -81,6 +81,7 @@ public class SystemButton extends JButton implements MouseListener{
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setBorder(raisedBorder);
+        setForeground(Color.white);
         setBackground(normalB);
         addMouseListener(this);
         setUI(ui);
