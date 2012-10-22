@@ -17,8 +17,12 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel;
 
 import java.awt.Component;
 
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * @author amedrano
@@ -31,11 +35,11 @@ public class TableJComponentCellRenderer extends DefaultTableCellRenderer {
 	 */
 	private static final long serialVersionUID = -6364850374955049734L;
 
-	/**
-	 * 
-	 */
-	public TableJComponentCellRenderer() {
+	private Renderer render;
+	
+	public TableJComponentCellRenderer(Renderer render) {
 		super();
+		this.render = render;
 	}
 
 	/* (non-Javadoc)
@@ -43,17 +47,15 @@ public class TableJComponentCellRenderer extends DefaultTableCellRenderer {
 	 */
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
-		// TODO Auto-generated method stub
-		return super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
+		if (value instanceof FormControl) {
+			FormControl fc = (FormControl) value;
+			JComponent jc = render.getModelMapper().getModelFor(fc).getComponent();
+			//this.add(jc);
+			return jc;
+		} else {
+			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 				row, column);
-	}
-
-	/* (non-Javadoc)
-	 * @see javax.swing.table.DefaultTableCellRenderer#setValue(java.lang.Object)
-	 */
-	protected void setValue(Object value) {
-		// TODO Auto-generated method stub
-		super.setValue(value);
+		}
 	}
 
 }
