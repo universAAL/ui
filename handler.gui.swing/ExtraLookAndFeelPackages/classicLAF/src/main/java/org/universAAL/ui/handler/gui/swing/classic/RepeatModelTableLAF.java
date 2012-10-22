@@ -15,9 +15,9 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Component;
 
-import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -29,27 +29,23 @@ import javax.swing.SwingConstants;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 /**
  * @author amedrano
- *
+ * 
  */
 public class RepeatModelTableLAF extends RepeatModelTable {
 
-	private ColorLAF color;
+    /**
+     * @param control
+     */
+    public RepeatModelTableLAF(Repeat control, Renderer render) {
+	super(control, render);
+    }
 
-	/**
-	 * @param control
-	 */
-	public RepeatModelTableLAF(Repeat control, Renderer render) {
-		super(control, render);
-		color = ((Init) render.getInitLAF()).getColorLAF();
-	}
-	
-	/** {@inheritDoc}*/
-	public JComponent getNewComponent() {
-		Repeat r = (Repeat)fc;
+    /** {@inheritDoc} */
+    public JComponent getNewComponent() {
+		/*Repeat r = (Repeat)fc;
 
 
 		tableComponent = new JTable(new RepeatTableModel(r,this.getRenderer()));
@@ -86,9 +82,28 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		buttonPanel.setLayout( new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		pannelWithAll.add(scrollPane);
 		pannelWithAll.add(buttonPanel);
-		return pannelWithAll;
+		return pannelWithAll;*/
+	JTable table=getJTable();
+	table.setRowHeight(50);
+	JScrollPane scrollPane = new JScrollPane(table);
+
+	JPanel buttonPanel = getButtonPanel();
+	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+	Component[] buttons = buttonPanel.getComponents();
+	for (int i = 0; i < buttons.length; i++) {
+	    setButtonColors((JButton) buttons[i]);
 	}
-	
+	JPanel pannelWithAll = new JPanel();
+	pannelWithAll.setLayout(new BorderLayout());
+	pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+	pannelWithAll.add(buttonPanel, BorderLayout.EAST);
+	pannelWithAll.add(
+		getRenderer().getModelMapper().getModelFor(fc.getLabel())
+			.getComponent(), BorderLayout.NORTH);
+	needsLabel = false;
+	return pannelWithAll;
+    }
+
     private void setButtonColors(JButton button) {
 	button.setBorderPainted(false);
 	button.setFocusPainted(false);

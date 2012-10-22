@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.gui.swing.classic;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -38,6 +37,11 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
  * 
  */
 public class SubmitLAF extends SubmitModel implements ComponentListener{
+    
+    public static final int MAX_WIDE=270;
+    public static final int MAX_HEIGHT=100;
+    public static final int MIN_WIDE=170;
+    public static final int MIN_HEIGHT=100;
 
     /**
      * Constructor.
@@ -57,7 +61,7 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
 	button.setContentAreaFilled(false);
 	button.setHorizontalTextPosition(SwingConstants.CENTER);
 	button.setVerticalAlignment(SwingConstants.CENTER);
-	button.setMaximumSize(new Dimension(300,130));
+	button.setMaximumSize(new Dimension(MAX_WIDE,MAX_HEIGHT));
 	if(fc.getLabel()!=null){
 	    String txt=fc.getLabel().getText();
 	    if(txt!=null){
@@ -84,8 +88,8 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
 		int width=((AbstractButton) e.getComponent()).getWidth();//ZERO UNTIL .pack()
 		int height=((AbstractButton) e.getComponent()).getHeight();
 		if(width>0 && height>0){
-		if(width<190)width=190;
-		if(height<130)height=130;
+		if(width<MIN_WIDE)width=MIN_WIDE;
+		if(height<MIN_HEIGHT)height=MIN_HEIGHT;
 		Image img, newimg;
 		img = ColorLAF.button_normal.getImage() ;  
 		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
