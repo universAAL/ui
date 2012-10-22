@@ -79,9 +79,9 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
     public void componentResized(ComponentEvent e) {
 	if(fc.getLabel()!=null && ((AbstractButton) e.getComponent()).getIcon()==null){
 	    String url=fc.getLabel().getIconURL();
-	    if(url!=null){
-		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
-	    }else{
+//	    if(url!=null){//Custom buttons not allowed
+//		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
+//	    }else{
 //		((AbstractButton) e.getComponent()).setIcon(ColorLAF.button_normal);
 //		((AbstractButton) e.getComponent()).setPressedIcon(ColorLAF.button_pressed);
 //		((AbstractButton) e.getComponent()).setRolloverIcon(ColorLAF.button_focused);
@@ -102,7 +102,7 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
 		img = ColorLAF.button_focused.getImage() ;  
 		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
 		((AbstractButton) e.getComponent()).setRolloverIcon(new ImageIcon( newimg ));
-		}
+//		}
 	    }
 	}
     }
