@@ -15,91 +15,77 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
-import java.awt.Dimension;
-
-import javax.swing.BorderFactory;
+import java.awt.BorderLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.text.JTextComponent;
-
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.plaf.FontUIResource;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
  * @author pabril
- *
+ * 
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
-	/**
-	 * Added Scroll pane to contain TextArea
-	 */
-	JScrollPane sp;
-	
-	/**
-	 * Enveloped {@link JComponent}
-	 */
-	JComponent ejc;
+    private FontUIResource minorFont;
 
-	private ColorLAF color;
-	
     /**
      * Constructor.
-     * @param control the {@link SimpleOutput} which to model.
+     * 
+     * @param control
+     *            the {@link SimpleOutput} which to model.
      */
     public SimpleOutputLAF(SimpleOutput control, Renderer render) {
-        super(control, render);
-        color = ((Init) render.getInitLAF()).getColorLAF();
+	super(control, render);
+	minorFont = ((Init) render.getInitLAF()).getColorLAF().getSystemTextFont();
     }
 
     /** {@inheritDoc} */
-	public JComponent getNewComponent() {
-		Object content = ((SimpleOutput) fc).getContent();
-		JComponent sjc = super.getNewComponent();
-		ejc = sjc;
-		if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-                sp = new JScrollPane(sjc);
-                sjc = sp;
-            }
-		}
-		return sjc;
+    public JComponent getNewComponent() {
+	SimpleOutput form = (SimpleOutput) fc;
+	needsLabel = false;
+	Object content = form.getContent();
+	JComponent center;
+	if (content instanceof String) {
+	    center = new JLabel((String) content);
+	} else if (content instanceof Boolean) {
+	    center = new JCheckBox("",
+		    IconFactory.getIcon(form.getLabel().getIconURL()));
+	    ((JCheckBox) center).setEnabled(false);
+	    if (content != null) {
+		((JCheckBox) center).setSelected(((Boolean) content)
+			.booleanValue());
+	    }
+	} else {
+	    center = new JLabel(content.toString());
+	}
+	center.setFont(minorFont);
+
+	JPanel combined = new JPanel(new BorderLayout(5, 5));
+	combined.add(new JLabel(" "), BorderLayout.EAST);
+	combined.add(new JLabel(" "), BorderLayout.NORTH);
+	combined.add(new JLabel(" "), BorderLayout.SOUTH);
+	combined.add(center, BorderLayout.CENTER);
+	if (form.getLabel() != null) {
+	    String title = form.getLabel().getText();
+	    if (title != null && !title.isEmpty()) {
+		combined.add(new JLabel(title), BorderLayout.WEST);
+	    } else {
+		combined.add(new JLabel(" "), BorderLayout.WEST);
+	    }
 	}
 
-	/** {@inheritDoc} */
-    public void update() {
-        Object content = ((SimpleOutput) fc).getContent();
-        if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-            	jc = (JComponent) (jc == sp? ejc:jc);
-                JTextArea ta = (JTextArea) jc;
-                ta.getAccessibleContext().setAccessibleName(ta.getName());
-                ta.setLineWrap(true);
-                ta.setWrapStyleWord(true);
-                ta.getAccessibleContext();
-//                ta.setFont(color.getplain());
-                ta.setLineWrap(true);
-                ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-//                ta.setForeground(color.getfont());
-                sp.getAccessibleContext();
-            }
-            else {
-                JTextComponent tf = (JTextComponent) jc;
-                tf.getAccessibleContext().setAccessibleName(tf.getText());
-//                tf.setFont(color.getplain());
-                tf.setPreferredSize(new Dimension(150, 30));
-//                tf.setForeground(color.getBackMM());
-            }
-        }
-        if (content instanceof Boolean) {
-            JCheckBox cb = (JCheckBox) jc;
-            cb.getAccessibleContext().setAccessibleName(cb.getName());
-        }
-    	super.update();
+	return combined;
     }
 
+    /** {@inheritDoc} */
+    public void update() {
+	// Do nothing to avoid super
+    }
 
 }

@@ -35,6 +35,7 @@ import javax.swing.plaf.FontUIResource;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -45,11 +46,16 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
  * @see FormModel
  */
 public class FormLAF extends FormModel {
+    
+    private static final String PROP_LAYOUT_HINT = "http://ontology.itaca.es/ClassicGUI.owl#layout";
 
     /**
      * internal accounting for the frame being displayed.
      */
     private JFrame frame = null;
+
+    private boolean vertical=false;
+    public static int alignment=FlowLayout.LEADING;
 
     /**
      * Constructor.
@@ -59,6 +65,16 @@ public class FormLAF extends FormModel {
      */
     public FormLAF(Form f, Renderer render) {
 	super(f, render);
+	Object value=f.getProperty(PROP_LAYOUT_HINT);
+	if(value!=null && value instanceof String){
+	    String hint=(String)value;
+	    vertical=hint.toLowerCase().contains("vertical");
+	    if(hint.toLowerCase().contains("center")){
+		alignment=FlowLayout.CENTER;
+	    }else if(hint.toLowerCase().contains("trailing")){
+		alignment=FlowLayout.TRAILING;
+	    }
+	}
     }
 
     /**
@@ -69,6 +85,11 @@ public class FormLAF extends FormModel {
      */
     protected JScrollPane getIOPanelScroll() {
 	JPanel ioPanel = super.getIOPanel();
+	if(vertical){
+	    ioPanel.setLayout(new VerticalFlowLayout(alignment, 10, 10));
+	}else{
+	    ioPanel.setLayout(new FlowLayout(alignment, 10, 10));
+	}
 	JScrollPane sp = new JScrollPane(ioPanel,
 		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

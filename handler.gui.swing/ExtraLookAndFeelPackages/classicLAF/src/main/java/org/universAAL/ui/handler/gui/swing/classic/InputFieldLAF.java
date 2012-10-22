@@ -15,11 +15,20 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
+import java.awt.BorderLayout;
+import java.util.Locale;
+
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
 
 /**
@@ -27,6 +36,8 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
  *
  */
 public class InputFieldLAF extends InputFieldModel {
+    
+    private static final int LENGTH = 10;
 
     /**
      * Constructor
@@ -38,16 +49,69 @@ public class InputFieldLAF extends InputFieldModel {
 
     @Override
     public JComponent getNewComponent() {
-	JComponent c = super.getNewComponent();
-	if(c instanceof JTextField){
-	    if(((JTextField)c).getColumns()<10){
-		((JTextField)c).setColumns(10);
+	JComponent center;
+	InputField form = (InputField) fc;
+	needsLabel = false;
+	Object initVal = fc.getValue();
+
+	if (form.isOfBooleanType()) {
+	    center = new JCheckBox(""/*form.getLabel().getText()*/,
+		    IconFactory.getIcon(form.getLabel().getIconURL()));
+	    if (initVal != null) {
+		((JCheckBox) center).setSelected(((Boolean) initVal)
+			.booleanValue());
+	    }
+	    ((JCheckBox) center).addChangeListener(this);
+
+	} else if (form.getValue() instanceof Locale) {
+	    center = new JComboBox(Locale.getAvailableLocales());
+	    ((JComboBox) center).setSelectedItem(initVal);
+	    ((JComboBox) center).addActionListener(this);
+
+	} else if (form.getValue() instanceof String) {
+	    if (form.isSecret()) {
+		center = new JPasswordField(LENGTH);
+		if (initVal != null) {
+		    ((JPasswordField) center).setText(initVal.toString());
+		}
+		((JPasswordField) center).addCaretListener(this);
+	    } else {
+		center = new JTextField(LENGTH);
+		if (initVal != null) {
+		    ((JTextField) center).setText(initVal.toString());
+		}
+		((JTextField) center).addCaretListener(this);
+	    }
+	} else {
+	    center = new JTextField(LENGTH);
+		if (initVal != null) {
+		    ((JTextField) center).setText(initVal.toString());
+		}
+		((JTextField) center).addCaretListener(this);
+	}
+	
+	JPanel combined=new JPanel(new BorderLayout(5,5));
+	combined.add(new JLabel(" "), BorderLayout.EAST);
+	combined.add(new JLabel(" "), BorderLayout.NORTH);
+	combined.add(new JLabel(" "), BorderLayout.SOUTH);
+	combined.add(center, BorderLayout.CENTER);
+	if (form.getLabel()!=null){
+	    String title=form.getLabel().getText();
+	    if(title!=null && !title.isEmpty()){
+		combined.add(new JLabel(title), BorderLayout.WEST);
+	    }else{
+		combined.add(new JLabel(" "), BorderLayout.WEST);
 	    }
 	}
-	return c;
+	
+	return combined;
+    }
+
+    @Override
+    protected void update() {
+	// Do nothing to avoid super
     }
 
     
-
 
 }

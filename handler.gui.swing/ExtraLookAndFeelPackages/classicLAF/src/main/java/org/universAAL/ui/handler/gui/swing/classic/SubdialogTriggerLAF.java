@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.gui.swing.classic;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -37,7 +36,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerMod
  * 
  */
 public class SubdialogTriggerLAF extends SubdialogTriggerModel  implements ComponentListener{
-
+    
     /**
      * Constructor.
      * 
@@ -56,7 +55,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel  implements Compo
 	button.setContentAreaFilled(false);
 	button.setHorizontalTextPosition(SwingConstants.CENTER);
 	button.setVerticalAlignment(SwingConstants.CENTER);
-	button.setMaximumSize(new Dimension(300,130));
+	button.setMaximumSize(new Dimension(SubmitLAF.MAX_WIDE,SubmitLAF.MAX_HEIGHT));
 	if(fc.getLabel()!=null){
 	    String txt=fc.getLabel().getText();
 	    if(txt!=null){
@@ -83,8 +82,8 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel  implements Compo
 		int width=((AbstractButton) e.getComponent()).getWidth();//ZERO UNTIL .pack()
 		int height=((AbstractButton) e.getComponent()).getHeight();
 		if(width>0 && height>0){
-		if(width<190)width=190;
-		if(height<130)height=130;
+		if(width<SubmitLAF.MIN_WIDE)width=SubmitLAF.MIN_WIDE;
+		if(height<SubmitLAF.MIN_HEIGHT)height=SubmitLAF.MIN_HEIGHT;
 		Image img, newimg;
 		img = ColorLAF.button_normal.getImage() ;  
 		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;

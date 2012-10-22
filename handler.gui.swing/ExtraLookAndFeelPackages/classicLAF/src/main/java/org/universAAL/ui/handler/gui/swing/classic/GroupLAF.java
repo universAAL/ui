@@ -15,55 +15,80 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JTabbedPane;
-import javax.swing.border.TitledBorder;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * @author pabril
- *
+ * 
  */
-public class GroupLAF extends GroupModel {
+public class GroupLAF extends GroupModel implements AncestorListener {
 
-	/**
+    /**
      * Constructor.
-     * @param control the {@link Group} which to model
+     * 
+     * @param control
+     *            the {@link Group} which to model
      */
     public GroupLAF(Group control, Renderer render) {
-        super(control, render);
+	super(control, render);
+    }
+
+    @Override
+    public JComponent getNewComponent() {
+	JPanel panel = new JPanel();
+	panel.addAncestorListener(this);
+	return panel;
     }
 
     /** {@inheritDoc} */
     public void update() {
 	super.update();
-        if (jc instanceof JTabbedPane) {
-            /*
-             * Tabbed group
-             */
-            jc.getAccessibleContext();
-        }
-        else if (!((Group) fc).isRootGroup()) {
-            /*
-             * simple group control
-             */
-            String label;
-            if (fc.getLabel() != null) {
-                label = fc.getLabel().getText();
-                TitledBorder title = BorderFactory.createTitledBorder(label);
-                jc.setBorder(title);
-            }
-            else {
-                label = "";
-            }
-            needsLabel = false;
-        }
-        jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+	if (!this.isTheIOGroup()) {
+	    if (fc.getLabel() != null) {
+		String title = fc.getLabel().getText();
+		if (title != null) {
+		    if (this.isTheMainGroup() || this.isTheSubmitGroup()) {
+			title = "";
+		    }
+		    jc.setBorder(BorderFactory.createTitledBorder(title));
+		}
+	    }
+	}
     }
 
+    public void ancestorAdded(AncestorEvent event) {
+	Container parent = jc.getParent();
+	if (parent != null) {
+	    LayoutManager lay = jc.getParent().getLayout();
+	    if (lay instanceof FlowLayout) {
+		jc.setLayout(new VerticalFlowLayout(FormLAF.alignment));
+	    } else if (lay instanceof VerticalFlowLayout) {
+		jc.setLayout(new FlowLayout(FormLAF.alignment));
+	    }
+	}
+    }
+
+    public void ancestorRemoved(AncestorEvent event) {
+	// TODO Auto-generated method stub
+
+    }
+
+    public void ancestorMoved(AncestorEvent event) {
+	// TODO Auto-generated method stub
+
+    }
 
 }
