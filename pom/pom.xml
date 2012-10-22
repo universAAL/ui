@@ -37,7 +37,7 @@
     <module>../dm</module>
     <module>../handler.web</module>
     <module>../handler.sms</module>
-    <module>../dm.mobile</module>
+<!--     <module>../dm.mobile</module> -->
     <module>../handler.gui.swing</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/waveLAF</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
@@ -93,12 +93,7 @@
       <dependency>
         <groupId>org.universAAL.ui</groupId>
         <artifactId>ui.dm</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>org.universAAL.ui</groupId>
-        <artifactId>ui.dm.mobile</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.2.10-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.universAAL.ui</groupId>
