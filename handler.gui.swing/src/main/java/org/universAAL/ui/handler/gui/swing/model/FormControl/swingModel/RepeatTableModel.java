@@ -203,26 +203,19 @@ public class RepeatTableModel extends AbstractTableModel {
 	if (rowIndex < 0 || rowIndex >= repeat.getNumberOfValues()
 		|| columnIndex < 0 || columnIndex >= elems.length)
 	    throw new ArrayIndexOutOfBoundsException();
-	if (elems[columnIndex] instanceof Input
+	if ((elems[columnIndex] instanceof Input
+			&& repeat.listEntriesEditable() )
 			|| elems[columnIndex] instanceof Submit){
 
 		FormControl fc = (FormControl) ((Form)repeatSubFormList.get(rowIndex))
 				.getIOControls().getChildren()[columnIndex];
-		return render.getModelMapper().getModelFor(fc).getComponent();
+		return fc;
 	}
 	repeat.setSelection(rowIndex);
 	PropertyPath path = (elems.length > 1) ? elems[columnIndex]
 		.getReferencedPPath() : null;
 	String[] pp = (path == null) ? null : path.getThePath();
-//	if (elems[columnIndex] instanceof SubdialogTrigger) {
-	/////TODO add renderer to constructor to build LAF models of SubdTrigger
-////		SubdialogTrigger fc = (SubdialogTrigger) elems[columnIndex].deepCopy();
-//	    SubdialogTrigger fc = (SubdialogTrigger) softCopy((SubdialogTrigger) elems[columnIndex]);
-//		fc.changeProperty(SubdialogTrigger.PROP_SUBMISSION_ID, 
-//				fc.getProperty(SubdialogTrigger.PROP_REPEATABLE_ID_PREFIX 
-//						+ Integer.toString(rowIndex)));
-//		return new SubdialogTriggerLAF(fc, null).getComponent();
-//	}
+
 	return repeat.getValue(pp);
     }
 

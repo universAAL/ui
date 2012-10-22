@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJComponentCellRenderer;
 
 /**
  * Helper Class just to render RepeatTables.
@@ -111,6 +112,8 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 			tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableComponent.setColumnSelectionAllowed(false);
 			tableComponent.setRowSelectionAllowed(true);
+			tableComponent.setDefaultRenderer(
+					Object.class, new TableJComponentCellRenderer(getRenderer()));
 			tableComponent.getSelectionModel().addListSelectionListener(this);
 		}
 		return tableComponent;
