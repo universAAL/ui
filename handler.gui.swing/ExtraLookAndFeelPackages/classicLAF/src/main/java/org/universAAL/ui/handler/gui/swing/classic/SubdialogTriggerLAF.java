@@ -28,7 +28,6 @@ import javax.swing.SwingConstants;
 
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerModel;
 
 /**
@@ -72,7 +71,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel  implements Compo
     
     public void componentResized(ComponentEvent e) {
 	if(fc.getLabel()!=null && ((AbstractButton) e.getComponent()).getIcon()==null){
-	    String url=fc.getLabel().getIconURL();
+//	    String url=fc.getLabel().getIconURL();
 //	    if(url!=null){//Custom buttons not allowed
 //		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
 //	    }else{
