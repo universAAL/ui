@@ -28,7 +28,6 @@ import javax.swing.SwingConstants;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
@@ -38,7 +37,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
  */
 public class SubmitLAF extends SubmitModel implements ComponentListener{
     
-    public static final int MAX_WIDE=270;
+    public static final int MAX_WIDE=240;
     public static final int MAX_HEIGHT=100;
     public static final int MIN_WIDE=170;
     public static final int MIN_HEIGHT=100;
@@ -78,7 +77,7 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
     
     public void componentResized(ComponentEvent e) {
 	if(fc.getLabel()!=null && ((AbstractButton) e.getComponent()).getIcon()==null){
-	    String url=fc.getLabel().getIconURL();
+//	    String url=fc.getLabel().getIconURL();
 //	    if(url!=null){//Custom buttons not allowed
 //		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
 //	    }else{
