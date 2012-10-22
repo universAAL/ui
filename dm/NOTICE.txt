@@ -1,0 +1,36 @@
+universAAL User Interface Dialog Manager
+
+Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
+Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
+
+2010-2012 Ericsson Nikola Tesla d.d., www.ericsson.com/hr
+
+2012-2014 Universidad Politécnica de Madrid http://www.upm.es
+
+
+I. Included Software
+
+Software snippets extracted form development by Fraunhofer IGD within the PERSONA project is used as the initial version for further developments within the universAAL project.
+
+Redesigned artifact by Universidad Politécnica de Madrid within the universAAL project.
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Junit (http://www.junit.org/).
+Licensed under Common Public License 1.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+
+III. License Summary
+- Apache License 2.0
+- Common Public License 1.0
+- JGCL - Java Geometry Class Library
