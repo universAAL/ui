@@ -1,13 +1,3 @@
-dm.mobile/.classpath
-dm.mobile/.project
-dm.mobile/.settings
-dm.mobile/bin
-dm.mobile/target
-dm/.classpath
-dm/.project
-dm/.settings
-dm/bin
-dm/target
 handler.gui.swing/*.log
 handler.gui.swing/.classpath
 handler.gui.swing/.project
