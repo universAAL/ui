@@ -1501,6 +1501,16 @@ ui.dm.mobile-1.1.4-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MainMenu.j
 ui.dm.mobile-1.1.4-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MenuNode.java -text svneol=unset#text/plain
 ui.dm.mobile-1.1.4-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/ServiceCaller.java -text svneol=unset#text/plain
 ui.dm.mobile-1.1.4-SNAPSHOT/src/test/java/org/universAAL/ui/dm/mobile/test/ArtifactIntegrationTest.java -text
+ui.dm.mobile-1.2.1-SNAPSHOT/LICENSE.txt -text
+ui.dm.mobile-1.2.1-SNAPSHOT/NOTICE.txt -text
+ui.dm.mobile-1.2.1-SNAPSHOT/artifact_manual.composite -text
+ui.dm.mobile-1.2.1-SNAPSHOT/pom.xml -text
+ui.dm.mobile-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text svneol=unset#text/plain
+ui.dm.mobile-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/DialogManagerImpl.java -text svneol=unset#text/plain
+ui.dm.mobile-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MainMenu.java -text svneol=unset#text/plain
+ui.dm.mobile-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/MenuNode.java -text svneol=unset#text/plain
+ui.dm.mobile-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/ServiceCaller.java -text svneol=unset#text/plain
+ui.dm.mobile-1.2.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/mobile/test/ArtifactIntegrationTest.java -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-Clearthought.txt -text
 ui.handler.gui-1.0.2-SNAPSHOT/LICENSE-JGCL.txt -text
