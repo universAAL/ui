@@ -103,10 +103,10 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		// .fetchSharedObject(context, UIBusImpl.busFetchParams);
 	}
 
-	/** {@inheritDoc} */
-	public void finalize() throws Throwable {
-
-	}
+//	/** {@inheritDoc} */
+//	public void finalize() throws Throwable {
+//
+//	}
 
 	/**
 	 * This method is called by the UI bus and determines whether a dialog can

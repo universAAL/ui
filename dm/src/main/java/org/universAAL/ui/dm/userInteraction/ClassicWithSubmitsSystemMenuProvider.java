@@ -155,6 +155,8 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 							OPEN_DIALOGS_CALL);	  
 		    }
 		    break;
+		default:
+			break;
 		}
 		return stdButtons;
 	}

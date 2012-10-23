@@ -157,10 +157,10 @@ public class UserDialogManager implements DialogManager{
 	myUIRequests = new TreeSet<String>();
     }
 
-    /** {@inheritDoc} */
-    public void finalize() throws Throwable {
-	// TODO: add persistence (at least for messages)
-    }
+//    /** {@inheritDoc} */
+//    public void finalize() throws Throwable {
+//	// TODO: add persistence (at least for messages)
+//    }
 
     /**
      * Get the user's URI for this {@link UserDialogManager} target {@link User}
