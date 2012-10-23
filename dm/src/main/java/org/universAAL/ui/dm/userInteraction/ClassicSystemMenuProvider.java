@@ -150,6 +150,8 @@ public class ClassicSystemMenuProvider implements SystemMenuProvider {
 							OPEN_DIALOGS_CALL);	  
 		    }
 		    break;
+		default:
+			break;
 		}
 		return stdButtons;
 	}

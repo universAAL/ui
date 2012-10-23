@@ -143,6 +143,8 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 		    				MENU_CALL);
 			putPendingXXSubmits(stdButtons);	    
 		    break;
+		default:
+			break;
 		}
 		return stdButtons;
 	}

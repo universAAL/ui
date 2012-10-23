@@ -92,8 +92,11 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	entries.clear();
 	Group main = systemForm.getIOControls();
 	if (mainMenu == null) {
-	    mainMenu = new MainMenu(DialogManagerImpl.getModuleContext(),
-		    openMainMenuConfigFile());
+		InputStream is = openMainMenuConfigFile();
+	    mainMenu = new MainMenu(DialogManagerImpl.getModuleContext(),is);
+		try {
+			is.close();
+		} catch (Exception e) { }
 	}
 	mainMenu.resetSelection();
 	mainMenu.addMenuRepresentation(main);

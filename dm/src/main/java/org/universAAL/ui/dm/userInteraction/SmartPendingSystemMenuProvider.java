@@ -129,6 +129,8 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
 				putPendingXXSubmits(stdButtons);
 			}	    
 		    break;
+		default:
+			break;
 		}
 		return stdButtons;
 	}

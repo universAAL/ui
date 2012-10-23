@@ -98,10 +98,6 @@ public class PendingMessageBuilder implements SubmitGroupListener {
 		}
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/** {@inheritDoc} */
 	public void handle(UIResponse response) {
 		String submissionID = response.getSubmissionID();

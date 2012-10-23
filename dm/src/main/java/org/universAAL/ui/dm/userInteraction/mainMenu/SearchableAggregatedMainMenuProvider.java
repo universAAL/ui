@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.userInteraction.mainMenu;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -88,23 +87,21 @@ public class SearchableAggregatedMainMenuProvider extends
      */
     @SuppressWarnings({ "rawtypes" })
     private void filter(Group mmGroup) {
-	FormControl[] elem = mmGroup.getChildren();
-	for (int i = 0; i < elem.length; i++) {
-	    if (!elem[i].getLabel().getText().toLowerCase()
-	    		.contains(searchString.toLowerCase())
-	    		//!elem[i].getLabel().getText().matches("*" + searchString + "*")
-	    		// XXX: add regular expression evaluation??
-	    		){
-		//remove FC to mmf
-		List children = 
-			(List) mmGroup.getProperty(Group.PROP_CHILDREN);
-		if (children == null) {
-		    children = new ArrayList();
-		} else {
-			children.remove(elem[i]);
-		}
-		}
-	}
+    	FormControl[] elem = mmGroup.getChildren();
+    	for (int i = 0; i < elem.length; i++) {
+    		if (!elem[i].getLabel().getText().toLowerCase()
+    				.contains(searchString.toLowerCase())
+    				//!elem[i].getLabel().getText().matches("*" + searchString + "*")
+    				// XXX: add regular expression evaluation??
+    				){
+    			//remove FC to mmf
+    			List children = 
+    					(List) mmGroup.getProperty(Group.PROP_CHILDREN);
+    			if (children != null) { 
+    				children.remove(elem[i]);
+    			}
+    		}
+    	}
     }
 
     /** {@inheritDoc}*/

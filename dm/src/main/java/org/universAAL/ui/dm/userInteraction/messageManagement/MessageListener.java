@@ -42,10 +42,6 @@ public class MessageListener implements SubmitGroupListener {
 		this.messagePool  = messagePool;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/** {@inheritDoc} */
 	public Set<String> listDeclaredSubmitIds(){
 		TreeSet<String> s = new TreeSet<String>();

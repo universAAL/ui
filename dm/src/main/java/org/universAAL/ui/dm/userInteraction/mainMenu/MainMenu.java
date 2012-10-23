@@ -115,12 +115,12 @@ public class MainMenu {
 					root.add(cols[0], cols[1], cols[2], cols[3]);
 				}
 				else {
-					String s = "";
+					StringBuffer s = new StringBuffer();
 					for (int i = 0; i < cols.length; i++) {
-						s += " [ " + cols[i] + " ]";
+						s.append(" [ " + cols[i] + " ]");
 					}
 					context.logError("Main Menu File",
-							"unable to parse " + cols.length + "columns : " +s , null);
+							"unable to parse " + cols.length + "columns : " +s.toString() , null);
 				}
 			}
 			line = br.readLine();

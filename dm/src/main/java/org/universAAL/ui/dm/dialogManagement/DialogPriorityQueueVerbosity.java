@@ -114,23 +114,23 @@ public class DialogPriorityQueueVerbosity implements UIRequestPool {
 
     /** {@inheritDoc}*/
     public Collection<UIRequest> listAllActive() {
-    	String s = "";
+    	StringBuffer s = new StringBuffer();
     	for (UIRequest r : activeSet) {
-			s += r.getDialogID();
-			s += "\n";
+			s.append(r.getDialogID());
+			s.append("\n");
 		}
-    	log("listing Active:\n" + s);
+    	log("listing Active:\n" + s.toString());
 	return activeSet;
     }
 
     /** {@inheritDoc}*/
     public Collection<UIRequest> listAllSuspended() {
-    	String s = "";
+    	StringBuffer s = new StringBuffer();
     	for (UIRequest r : suspendedSet.values()) {
-			s += r.getDialogID();
-			s += "\n";
+			s.append(r.getDialogID());
+			s.append("\n");
 		}
-    	log("listing Suspended:\n" + s);
+    	log("listing Suspended:\n" + s.toString());
 	return suspendedSet.values();
     }
 
