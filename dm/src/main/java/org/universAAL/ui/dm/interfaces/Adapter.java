@@ -24,8 +24,8 @@ import org.universAAL.middleware.ui.UIRequest;
  * or change relative URLs to full URLs for seamless integration of handlers with
  * resource server.
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public interface Adapter {
 

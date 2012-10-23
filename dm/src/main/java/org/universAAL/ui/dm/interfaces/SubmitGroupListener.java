@@ -27,8 +27,8 @@ import org.universAAL.middleware.ui.UIResponse;
  * Interaction with the user and need to manage the 
  * User's reponse.
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public interface SubmitGroupListener {
 

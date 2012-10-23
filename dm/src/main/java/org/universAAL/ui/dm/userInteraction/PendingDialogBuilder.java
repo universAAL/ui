@@ -41,8 +41,8 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * Manage the interaction to allow the user to select a dialog,
  * remove all dialogs, suspend a dialog...
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public class PendingDialogBuilder implements SubmitGroupListener {
 

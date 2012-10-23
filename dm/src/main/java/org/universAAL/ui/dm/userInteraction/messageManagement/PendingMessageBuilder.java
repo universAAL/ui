@@ -41,8 +41,8 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * remove all message...
  * TODO: Add message management like, read a selected message, delete one message ...
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public class PendingMessageBuilder implements SubmitGroupListener {
 	/**

@@ -27,8 +27,8 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * Build a Message Form and manage the response.
  * 
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public class MessageListener implements SubmitGroupListener {
 
