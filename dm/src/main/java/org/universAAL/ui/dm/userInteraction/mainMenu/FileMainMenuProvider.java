@@ -114,6 +114,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 
     private InputStream openMainMenuConfigFile(){
     	String userID = userDM.getUserId();
+    	userID = userID.substring(userID.lastIndexOf("#")+1);
     	String lang = userDM.getUserLocale().getLanguage();
     	InputStream in = null;
     	try {

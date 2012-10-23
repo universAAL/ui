@@ -44,9 +44,8 @@ import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 public final class DialogManagerImpl extends UICaller implements DialogManager {
 
 	/*
-	 * "The road to the City of Emeralds is paved with yellow brick," said the
-	 * Witch,
-	 * "so you cannot miss it. When you get to Oz do not be afraid of him, but
+	 * "The road to the City of Emeralds is paved with yellow brick,
+	 *  so you cannot miss it. When you get to Oz do not be afraid of him, but
 	 *  tell your story and ask him to help you."
 	 */
 
@@ -64,8 +63,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	 * Another {@link Map} to speed up
 	 * {@link DialogManagerImpl#dialogFinished(String)},
 	 * {@link DialogManagerImpl#getSuspendedDialog(String)}
-	 * {@link DialogManagerImpl#suspendDialog(String)}
-	 * {@link DialogManagerImpl#dialogAborted(String)} and
+	 * {@link DialogManagerImpl#suspendDialog(String)} and
 	 * {@link DialogManagerImpl#handleUIResponse(UIResponse)} methods.
 	 */
 	private Map<String, UserDialogManager> dialogIDMap;
@@ -251,13 +249,18 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 					"handleUIResponse", "sumission ID null!", null);
 			return;
 		}
-		UserDialogManager udm = udmMap.get(response.getUser().getURI());
-		if (udm != null) {
-			udm.handleUIResponse(response);
+		Resource user = response.getUser();
+		if (!user.isAnon()) {
+			UserDialogManager udm = udmMap.get(user.getURI());
+			if (udm != null) {
+				udm.handleUIResponse(response);
+			} else {
+				getModuleContext().logError("UserDM Management",
+						"Unable to locate UDM for " + response.getUser().getURI(),
+						null);
+			}
 		} else {
-			getModuleContext().logError("UserDM Management",
-					"Unable to locate UDM for " + response.getUser().getURI(),
-					null);
+			moduleContext.logError("Handle Response", "Anonymous user in UIResponse: " + user.getURI(), null);
 		}
 	}
 

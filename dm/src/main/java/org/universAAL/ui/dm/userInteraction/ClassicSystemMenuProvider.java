@@ -78,15 +78,12 @@ public class ClassicSystemMenuProvider implements SystemMenuProvider {
 		    // XXX: do nothing?
 		} 
 		if (MENU_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    userDM.showMainMenu();
 		}
 		if (MESSAGES_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    new PendingMessageBuilder(userDM);
 		}
 		if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    new PendingDialogBuilder(userDM);
 		}
 

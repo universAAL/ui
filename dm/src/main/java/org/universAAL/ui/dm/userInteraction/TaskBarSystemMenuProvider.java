@@ -191,8 +191,6 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 	private void switchTo(Resource data, int selectionIndex) {
 		String dialogID = sentItems.get(selectionIndex);
 		UIRequestPool dialogPool = userDM.getDialogPool();
-		dialogPool.suspend(dialogPool.getCurrent().getDialogID());
-		dialogPool.unsuspend(dialogID);
 		userDM.resumeUIRequest(dialogPool.get(dialogID));
 	}
 }

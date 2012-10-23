@@ -83,15 +83,12 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 		    // XXX: do nothing?
 		} 
 		if (MENU_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    userDM.showMainMenu();
 		}
 		if (MESSAGES_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    new PendingMessageBuilder(userDM);
 		}
 		if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-			userDM.suspendCurrentDialog(userDM.getDialogPool());
 		    new PendingDialogBuilder(userDM);
 		}
 
@@ -327,8 +324,6 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 			String dialogID = sentItems.get(selectionIndex);
 			//XXX adaptation parameters are already added... ?
 			//addAdaptationParams(oe, getQueryString(user.getURI()));
-			dialogPool.suspend(dialogPool.getCurrent().getDialogID());
-			dialogPool.unsuspend(dialogID);
 			userDM.resumeUIRequest(dialogPool.get(dialogID));
 		}
 	}
