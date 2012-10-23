@@ -26,8 +26,8 @@ import org.universAAL.middleware.ui.rdf.Group;
  * And Manages the response form each submit
  * (as subtype of {@link SubmitGroupListener}).
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public interface MainMenuProvider extends SubmitGroupListener {
 

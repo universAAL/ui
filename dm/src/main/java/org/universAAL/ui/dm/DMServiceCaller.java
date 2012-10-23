@@ -21,9 +21,12 @@ package org.universAAL.ui.dm;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.service.ServiceCaller;
 import org.universAAL.middleware.service.ServiceResponse;
 
 /**
+ * DMs {@link ServiceCaller}. To be able to call services like
+ * consulting user profiles, starting UI applications, etc...
  * @author mtazari
  * 
  */
@@ -31,25 +34,27 @@ public class DMServiceCaller extends
 org.universAAL.middleware.service.ServiceCaller {
 	
 	
+	/**
+	 * Module context reference
+	 */
 	private ModuleContext ctxt;
 
+	/**
+	 * Constructor.
+	 * @param context
+	 */
 	public DMServiceCaller(ModuleContext context) {
 		super(context);
 		this.ctxt = context;
 	}
 
-    /**
-     * @see org.universAAL.middleware.service.ServiceCaller#communicationChannelBroken()
-     */
+	/** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
 	// TODO Auto-generated method stub
     }
 
-    /**
-     * @see org.universAAL.middleware.service.ServiceCaller#handleResponse(java.lang.String,
-     *      org.universAAL.middleware.service.ServiceResponse)
-     */
+    /** {@inheritDoc} */
     @Override
     public void handleResponse(String reqID, ServiceResponse response) {
 	LogUtils.logInfo(ctxt, DMServiceCaller.class,

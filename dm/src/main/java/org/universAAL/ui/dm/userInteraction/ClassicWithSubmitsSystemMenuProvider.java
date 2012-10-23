@@ -164,8 +164,8 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 	/**
 	 * Alternative without tables
 	 * @author amedrano
-	 * @version 1.0
-	 * @created 26-sep-2012 13:03:50
+	 *
+	 * created: 26-sep-2012 13:03:50
 	 */
 	public class PendingDialogBuilder implements SubmitGroupListener {
 

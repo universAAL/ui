@@ -24,7 +24,6 @@ import java.util.TimerTask;
 import java.util.TreeMap;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.ServiceCaller;
@@ -38,13 +37,18 @@ import org.universAAL.ui.dm.osgi.DialogManagerActivator;
  * The UICaller implements the interface
  * {@link org.universAAL.middleware.ui.DialogManager}.
  * 
- * @author mtazari
- * @author eandgrg
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
-public class DialogManagerImpl extends UICaller implements DialogManager {
+public final class DialogManagerImpl extends UICaller implements DialogManager {
+
+	/*
+	 * "The road to the City of Emeralds is paved with yellow brick," said the
+	 * Witch,
+	 * "so you cannot miss it. When you get to Oz do not be afraid of him, but
+	 *  tell your story and ask him to help you."
+	 */
 
 	/**
 	 * Singleton instance.
@@ -67,7 +71,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	private Map<String, UserDialogManager> dialogIDMap;
 
 	/**
-	 * A mini Garbage collector for {@link DialogManagerImpl#dialogIDMap}
+	 * A mini Garbage collector for {@link DialogManagerImpl#dialogIDMap}.
 	 */
 	private Timer gbSchedule;
 	/**
@@ -88,10 +92,16 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	public static final String CALL_PREFIX = "urn:ui.dm:UICaller"; //$NON-NLS-1$
 
 	/**
-	 * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage collector.
+	 * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage
+	 * collector.
 	 */
 	private static final long GC_PERIOD = 600000; // 10 min
 
+	/**
+	 * private constructor for creating singleton instance.
+	 * 
+	 * @param context
+	 */
 	private DialogManagerImpl(ModuleContext context) {
 		super(context);
 		moduleContext = context;
@@ -103,10 +113,10 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		// .fetchSharedObject(context, UIBusImpl.busFetchParams);
 	}
 
-//	/** {@inheritDoc} */
-//	public void finalize() throws Throwable {
-//
-//	}
+	// /** {@inheritDoc} */
+	// public void finalize() throws Throwable {
+	//
+	// }
 
 	/**
 	 * This method is called by the UI bus and determines whether a dialog can
@@ -124,8 +134,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 			String uURI = request.getAddressedUser().getURI();
 			UserDialogManager udm = udmMap.get(uURI);
 			if (udm == null) {
-				udm = new UserDialogManager(request.getAddressedUser(),
-						null);
+				udm = new UserDialogManager(request.getAddressedUser(), null);
 				udmMap.put(uURI, udm);
 			}
 			dialogIDMap.put(request.getDialogID(), udm);
@@ -173,6 +182,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	 * 
 	 * @param dialogID
 	 *            ID of the dialog.
+	 * @return the suspended {@link UIRequest}, null if not found.
 	 */
 	public UIRequest getSuspendedDialog(String dialogID) {
 		UserDialogManager udm = dialogIDMap.get(dialogID);
@@ -197,8 +207,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		if (udm != null) {
 			udm.suspendDialog(dialogID);
 		} else {
-				getModuleContext().logError("UserDM Management",
-						"Unable to locate UDM for dialog: " + dialogID, null);
+			getModuleContext().logError("UserDM Management",
+					"Unable to locate UDM for dialog: " + dialogID, null);
 		}
 	}
 
@@ -214,6 +224,7 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	 * a dialog was aborted.
 	 * 
 	 * @param dialogID
+	 *            the dialogID of the dialog to be aborted
 	 */
 	@Override
 	public void dialogAborted(String dialogID) {
@@ -231,11 +242,13 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	@Override
 	public void handleUIResponse(UIResponse response) {
 		if (response == null) {
-			DialogManagerImpl.getModuleContext().logError("handleUIResponse", "Null Response", null);
+			DialogManagerImpl.getModuleContext().logError("handleUIResponse",
+					"Null Response", null);
 			return;
 		}
 		if (response.getSubmissionID() == null) {
-			DialogManagerActivator.getModuleContext().logError("handleUIResponse", "sumission ID null!", null);
+			DialogManagerActivator.getModuleContext().logError(
+					"handleUIResponse", "sumission ID null!", null);
 			return;
 		}
 		UserDialogManager udm = udmMap.get(response.getUser().getURI());
@@ -243,7 +256,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 			udm.handleUIResponse(response);
 		} else {
 			getModuleContext().logError("UserDM Management",
-					"Unable to locate UDM for " + response.getUser().getURI(), null);
+					"Unable to locate UDM for " + response.getUser().getURI(),
+					null);
 		}
 	}
 
@@ -251,6 +265,8 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	 * Create a Singleton Instance.
 	 * 
 	 * @param mc
+	 *            the {@link ModuleContext} needed to create the singleton
+	 *            instance (for {@link UICaller}).
 	 */
 	public static void createInstance(ModuleContext mc) {
 		if (singleton == null) {
@@ -261,14 +277,16 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 	/**
 	 * Get the singleton instance.
 	 * 
-	 * @return
+	 * @return the singleton Instance, null if not created.
 	 */
 	public static DialogManagerImpl getInstance() {
 		return singleton;
 	}
 
 	/**
-	 * @return
+	 * Get the {@link ServiceCaller} for calling a service
+	 * 
+	 * @return the service caller created during the bundle start.
 	 */
 	public static ServiceCaller getServiceCaller() {
 		return DialogManagerActivator.getServiceCaller();
@@ -283,16 +301,24 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 		return moduleContext;
 	}
 
+	/**
+	 * A mini-Garbage collector to purge the
+	 * {@link DialogManagerImpl#dialogIDMap}
+	 * 
+	 * @author amedrano
+	 * 
+	 */
 	private class DMGC extends TimerTask {
 
+		/** {@inheritDoc} */
 		@Override
 		public void run() {
 			Set<String> remove = new HashSet<String>();
 			for (String dID : dialogIDMap.keySet()) {
 				UserDialogManager udm = dialogIDMap.get(dID);
 				if (udm == null
-						||( udm.getDialogPool().get(dID) == null
-						&& udm.getMessagePool().get(dID) == null)) {
+						|| (udm.getDialogPool().get(dID) == null && udm
+								.getMessagePool().get(dID) == null)) {
 					remove.add(dID);
 				}
 			}

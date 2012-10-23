@@ -24,8 +24,8 @@ import org.universAAL.middleware.ui.rdf.Group;
  * As subtype of {@link SubmitGroupListener} it will also respond to
  * and execute the system menu submits actions.
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public interface SystemMenuProvider extends SubmitGroupListener {
 

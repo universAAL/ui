@@ -26,8 +26,8 @@ import org.universAAL.middleware.ui.UIRequest;
  * Different implementations will influence on the Next {@link UIRequest}
  * selection, implementing for example priority queues.
  * @author amedrano
- * @version 1.0
- * @created 26-sep-2012 13:03:50
+ *
+ * created: 26-sep-2012 13:03:50
  */
 public interface UIRequestPool {
 
