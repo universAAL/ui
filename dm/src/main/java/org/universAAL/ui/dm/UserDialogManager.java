@@ -39,6 +39,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
+import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
@@ -161,8 +162,8 @@ public class UserDialogManager implements DialogManager {
 		// systemMenuProvider = new ClassicSystemMenuProvider(this);
 		systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 		messagePool = new DialogPriorityQueue();
-		dialogPool = new DialogPriorityQueue();
-		// dialogPool = new DialogPriorityQueueVerbosity();
+		//dialogPool = new DialogPriorityQueue();
+		dialogPool = new DialogPriorityQueueVerbosity();
 		listeners = new TreeMap<String, SubmitGroupListener>();
 		messageListener = new MessageListener(messagePool);
 		add(messageListener);
@@ -226,9 +227,6 @@ public class UserDialogManager implements DialogManager {
 			 */
 			isReady = true;
 			myUIRequests.remove(request.getDialogID());
-			// suspendCurrentDialog(messagePool); // this marks current message
-			// as kept
-			suspendCurrentDialog(dialogPool);
 		} else {
 			makeAdaptations(request);
 			addSystemMenu(request);
@@ -243,10 +241,9 @@ public class UserDialogManager implements DialogManager {
 				isReady = messagePool.hasToChange();
 				messagePool.getNextUIRequest();
 				// if message is ready, suspend current dialog or message.
-				if (isReady) {
-					// suspendCurrentDialog(messagePool); // this marks current
-					// message as kept
-					suspendCurrentDialog(dialogPool);
+				if (isReady
+						&& messagePool.getCurrent() != null) {
+					messagePool.suspend(messagePool.getCurrent().getDialogID());
 				}
 			} else {
 				/*
@@ -258,32 +255,14 @@ public class UserDialogManager implements DialogManager {
 				dialogPool.add(request);
 				isReady = dialogPool.hasToChange()
 						&& messagePool.getCurrent() == null;
-				if (isReady) {
-					suspendCurrentDialog(dialogPool);
+				if (isReady 
+						&& dialogPool.getCurrent() != null) {
+						dialogPool.suspend(dialogPool.getCurrent().getDialogID());					
 				}
 				dialogPool.getNextUIRequest();
 			}
 		}
 		return isReady;
-	}
-
-	/**
-	 * Suspend a dialog. removes the given dialog from 'runningDialogs' and
-	 * stores it in 'suspendedDialogs'.
-	 * 
-	 * @param pool
-	 *            the pool from which to suspend from.
-	 */
-	static public void suspendCurrentDialog(UIRequestPool pool) {
-		UIRequest current = pool.getCurrent();
-		if (current != null) {
-			String dialogID = current.getDialogID();
-			// DialogManagerImpl.getModuleContext()
-			// .logDebug("UDM", "Suspending current Dialog: "
-			// + dialogPool.getCurrent().getDialogID(), null);
-			pool.suspend(dialogID);
-			DialogManagerImpl.getInstance().suspendDialog(dialogID);
-		}
 	}
 
 	/**
@@ -307,12 +286,35 @@ public class UserDialogManager implements DialogManager {
 	 */
 	private void addSystemMenu(UIRequest request) {
 		// remove any previous menu.
-		request.getDialogForm().getStandardButtons()
-				.changeProperty(Group.PROP_CHILDREN, null);
-		systemMenuProvider.getSystemMenu(request);
-		add(systemMenuProvider);
+		if (request != null) {
+			if (request.getDialogForm() != null
+					&& request.getDialogForm().getStandardButtons() != null) {
+				request.getDialogForm().getStandardButtons()
+					.changeProperty(Group.PROP_CHILDREN, null);
+			}
+			systemMenuProvider.getSystemMenu(request);
+			add(systemMenuProvider);
+		}
 	}
-
+	
+    /**
+     * This method is called when an event on the input bus occurs indicating
+     * that a dialog was aborted. It removes the dialog from the list (it
+     * searches the lists {@link DialogManagerImpl#runningDialogs}, {@link DialogManagerImpl#suspendedDialogs}, and
+     * {@link DialogManagerImpl#waitingDialogs}) and unsubscribes from input bus.
+     * 
+     * @param dialogID
+     */
+    public void dialogAborted(String dialogID) {
+	    dialogPool.close(dialogID);
+	    messagePool.close(dialogID);
+		// a running dialog has been aborted; it's better to send a
+		// message to the user
+		pushDialog(Form.newMessage(
+				getString("UICaller.forcedCancellation"),
+				getString("UICaller.sorryAborted")));
+    }
+	
 	/**
 	 * This method is called by the UI bus to inform the dialog manager that a
 	 * dialog was successfully finished. The dialog manager can then show
@@ -332,10 +334,13 @@ public class UserDialogManager implements DialogManager {
 	 */
 	public void showSomething() {
 		// show other message, dialog or system menu
-		if (!messagePool.listAllActive().isEmpty()) {
+		// if there isn't one already...
+		if (!messagePool.listAllActive().isEmpty()
+				&& messagePool.getCurrent() == null) {
 			// show next message
 			resumeUIRequest(messagePool.getNextUIRequest());
-		} else if (!dialogPool.listAllActive().isEmpty()) {
+		} else if (!dialogPool.listAllActive().isEmpty()
+				&& dialogPool.getCurrent() == null) {
 			// there are pending new dialogs
 			resumeUIRequest(dialogPool.getNextUIRequest());
 		} else if (dialogPool.getCurrent() == null
@@ -348,7 +353,8 @@ public class UserDialogManager implements DialogManager {
 			Iterator<UIRequest> i = dialogPool.listAllSuspended().iterator();
 			dialogPool.unsuspend(i.next().getDialogID());
 			resumeUIRequest(dialogPool.getNextUIRequest());
-		} else {
+		} else if (messagePool.getCurrent() == null
+					&& dialogPool.getCurrent() == null){
 			/*
 			 * no more dialogs, or active messages to show => show main menu
 			 */
@@ -365,11 +371,6 @@ public class UserDialogManager implements DialogManager {
 	public final void resumeUIRequest(UIRequest req) {
 		// XXX: has to add to myRequests??
 		if (req != null) {
-			if (messagePool.listAllActive().contains(req)
-					|| dialogPool.listAllActive().contains(req)) {
-				DialogManagerImpl.getInstance()
-						.suspendDialog(req.getDialogID());
-			}
 			myUIRequests.add(req.getDialogID());
 			DialogManagerImpl.getInstance()
 					.resumeDialog(req.getDialogID(), req);
@@ -396,9 +397,10 @@ public class UserDialogManager implements DialogManager {
 		dialogPool.unsuspend(dialogID);
 		UIRequest r = dialogPool.get(dialogID);
 		if (r != null) {
+			resumeUIRequest(r);
 			return r;
 		} else {
-			messagePool.unsuspend(dialogID);
+			resumeUIRequest(messagePool.get(dialogID));
 			return messagePool.get(dialogID);
 		}
 	}
@@ -411,30 +413,7 @@ public class UserDialogManager implements DialogManager {
 	 *            ID of the dialog.
 	 */
 	public void suspendDialog(String dialogID) {
-		UIRequest dialg = dialogPool.get(dialogID);
-		if (dialg != null && dialg.getDialogType().equals(DialogType.message)
-				&& !messagePool.listAllSuspended().contains(dialg)) {
-			messagePool.suspend(dialogID);
-			// XXX: is this needed??
-			// DialogManagerImpl.getInstance().suspendDialog(dialogID);
-		} else if (dialg != null
-				&& !dialogPool.listAllSuspended().contains(dialg)) {
-			dialogPool.suspend(dialogID);
-			// XXX: is this needed??
-			// DialogManagerImpl.getInstance().suspendDialog(dialogID);
-		}
-	}
-
-	/**
-	 * This method is called when an event on the UI bus occurs indicating that
-	 * a dialog was aborted.
-	 * 
-	 * @param dialogID
-	 *            the id of the dialog to be aborted.
-	 */
-	public void dialogAborted(String dialogID) {
-		// Do the same as if the dialog was ended
-		dialogFinished(dialogID);
+		dialogPool.suspend(dialogID);
 	}
 
 	/**

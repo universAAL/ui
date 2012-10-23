@@ -223,8 +223,6 @@ public class PendingDialogBuilder implements SubmitGroupListener {
 		String dialogID = sentItems.get(selectionIndex);
 		//XXX adaptation parameters are already added... ?
 		//addAdaptationParams(oe, getQueryString(user.getURI()));
-		dialogPool.suspend(dialogPool.getCurrent().getDialogID());
-		dialogPool.unsuspend(dialogID);
 		userDM.resumeUIRequest(dialogPool.get(dialogID));
 	}
 /*
