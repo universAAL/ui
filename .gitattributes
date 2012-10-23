@@ -31,7 +31,9 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggrega
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java -text
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain
+dm/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/UIRequestPoolTest.java -text svneol=unset#text/plain
+dm/src/test/resources/main_menu_en.txt -text svneol=unset#text/plain
 handler.gui.swing/.checkstyle -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/pom.xml -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
