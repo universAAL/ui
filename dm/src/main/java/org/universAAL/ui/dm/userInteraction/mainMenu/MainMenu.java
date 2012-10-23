@@ -23,17 +23,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Locale;
+import java.nio.charset.Charset;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.ServiceRequest;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.dm.DialogManagerImpl;
 
 /**
  * A set of main menus. The main menu of the Dialog Manager represents a list of
@@ -72,21 +69,7 @@ public class MainMenu {
      */
     private MenuNode selection;
 
-    /**
-     * The language that was last used to construct the menu. The menu is only
-     * reconstructed if the language has changed. As this value is determined by
-     * the local system the JVM runs on, it currently does not change, but
-     * ensures that the menu is created only once.
-     */
-    // TODO: What if the configuration of the menu changes?
-    private String lastLanguage = null;
-
     private ModuleContext context;
-
-    /**
-     * {@link Locale} for the user.
-     */
-    private Locale locale;
     
     /**
      * constructor. Creates the menu.
@@ -94,10 +77,8 @@ public class MainMenu {
      * @param user
      *            The user.
      */
-    public MainMenu(ModuleContext ctxt, Resource user, Locale lang) {
-	context = ctxt;
-	locale = lang;
-	constructMenu(getUserLocalName(user));
+    public MainMenu(ModuleContext ctxt, InputStream in) {
+    	constructMenu(in);
     }
 
     /**
@@ -106,76 +87,41 @@ public class MainMenu {
      * associated.
      * @param userID 
      */
-    private void constructMenu(String userID) {
-	String lang = locale.getLanguage();
-
-	if (lang.equals(lastLanguage))
-	    return;
-
+    private void constructMenu(InputStream in) {
+	
 	root = new MenuNode(-1);
 	selection = root;
-
-	lastLanguage = lang;
+	
 	// Read the configuration file of the menu for this user which
 	// contains a list of menu entries. Entries are stored in 'entries'
 	// as a list where each line contains 3 values:
 	// 1. list of labels (multiple labels for hierarchical menus)
 	// 2. vendor
 	// 3. service class
-	InputStream in = null;
-	try {
-	    BundleConfigHome confHome = new BundleConfigHome(
-		    DialogManagerImpl.getModuleContext().getID());
-	    in = confHome.getConfFileAsStream(
-		    "main_menu_" + userID + "_" + lang + ".txt");
 
-	} catch (IOException e) {
 
-	
-	    try {
-		BundleConfigHome confHome = new BundleConfigHome(
-			    DialogManagerImpl.getModuleContext().getID());
-		in = confHome.getConfFileAsStream(
-			"main_menu_" + userID + ".txt");
-		    LogUtils.logWarn(context, getClass(),
-			    "constructMenu", new Object[] { "main_menu_" + userID
-				    + "_" + lang + ".txt does not exist so: main_menu_"
-				    + userID + ".txt was loaded instead!!" }, e);
-	    } catch (Exception e1) {
-		LogUtils
-			.logError(
-				context,
-				getClass(),
-				"constructMenu",
-				new Object[] { "main_menu_"
-					+ userID
-					+ ".txt does not exist also so Main menu for logged user has to be made before running again!" },
-				e1);
-		throw new RuntimeException(e1.getMessage());
-
-	    }
-
-	}
-
-	BufferedReader br = new BufferedReader(new InputStreamReader(in));
+	BufferedReader br = new BufferedReader(new InputStreamReader(in, Charset.forName("cp1252")));
 	
 	String line;
 	try {
 		line = br.readLine();
 		while (line != null) {
-			String[] cols = line.split("\\|");
-			if (cols.length == 3) {
-				root.add(cols[0], cols[1], cols[2]);
-			}
-			else if (cols.length == 4) {
-				root.add(cols[0], cols[1], cols[2], cols[3]);
-			}
-			else {
-				String s = "";
-				for (int i = 0; i < cols.length; i++) {
-					s += " [ " + cols[i] + " ]";
+			if (!line.startsWith("#")) {
+				String[] cols = line.split("\\|");
+				if (cols.length == 3) {
+					root.add(cols[0], cols[1], cols[2]);
 				}
-				context.logError("Main Menu File","unable to parse " + cols.length + "columns : " +s , null);
+				else if (cols.length == 4) {
+					root.add(cols[0], cols[1], cols[2], cols[3]);
+				}
+				else {
+					String s = "";
+					for (int i = 0; i < cols.length; i++) {
+						s += " [ " + cols[i] + " ]";
+					}
+					context.logError("Main Menu File",
+							"unable to parse " + cols.length + "columns : " +s , null);
+				}
 			}
 			line = br.readLine();
 		}
@@ -302,24 +248,6 @@ public class MainMenu {
 	return null;
     }
 
-    // MenuNode getSelectedNode() {
-    // return selection;
-    // }
-
-    /**
-     * Get the name of a user given as Resource. This method filters and returns
-     * only the name from the URI of a given resource.
-     * 
-     * @param u
-     *            The user as Resource.
-     * @return The name of the user.
-     */
-    private static String getUserLocalName(Resource u) {
-	if (u == null)
-	    return "";
-	String ln = u.getLocalName();
-	return (ln == null) ? "" : ln;
-    }
     
     /**
      * Get all the entries for the (sub)menu.

@@ -15,9 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.userInteraction.mainMenu;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
@@ -90,8 +93,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	Group main = systemForm.getIOControls();
 	if (mainMenu == null) {
 	    mainMenu = new MainMenu(DialogManagerImpl.getModuleContext(),
-		    user,
-		    userDM.getUserLocale());
+		    openMainMenuConfigFile());
 	}
 	mainMenu.resetSelection();
 	mainMenu.addMenuRepresentation(main);
@@ -107,4 +109,38 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	userDM.pushDialog(mff);
     }
 
+    private InputStream openMainMenuConfigFile(){
+    	String userID = userDM.getUserId();
+    	String lang = userDM.getUserLocale().getLanguage();
+    	InputStream in = null;
+    	try {
+    	    BundleConfigHome confHome = new BundleConfigHome(
+    		    DialogManagerImpl.getModuleContext().getID());
+    	    in = confHome.getConfFileAsStream(
+    		    "main_menu_" + userID + "_" + lang + ".txt");
+
+    	} catch (IOException e) {
+
+    	
+    	    try {
+    		BundleConfigHome confHome = new BundleConfigHome(
+    			    DialogManagerImpl.getModuleContext().getID());
+    		in = confHome.getConfFileAsStream(
+    			"main_menu_" + userID + ".txt");
+    		DialogManagerImpl.getModuleContext().logWarn("constructMenu", "main_menu_" + userID
+    				    + "_" + lang + ".txt does not exist so: main_menu_"
+    				    + userID + ".txt was loaded instead!!" , e);
+    	    } catch (Exception e1) {
+    	    	DialogManagerImpl.getModuleContext().logWarn("constructMenu", "main_menu_"
+    					+ userID
+    					+ ".txt does not exist also so Main menu for logged user has to be made before running again!" ,
+    				e1);
+    		throw new RuntimeException(e1.getMessage());
+
+    	    }
+
+    	}
+    	return in;
+    }
+    
 }

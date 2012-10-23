@@ -124,8 +124,9 @@ public class DialogManagerImpl extends UICaller implements DialogManager {
 			String uURI = request.getAddressedUser().getURI();
 			UserDialogManager udm = udmMap.get(uURI);
 			if (udm == null) {
-				udmMap.put(uURI, new UserDialogManager(request.getAddressedUser(),
-						null));
+				udm = new UserDialogManager(request.getAddressedUser(),
+						null);
+				udmMap.put(uURI, udm);
 			}
 			dialogIDMap.put(request.getDialogID(), udm);
 			return udm.checkNewDialog(request);
