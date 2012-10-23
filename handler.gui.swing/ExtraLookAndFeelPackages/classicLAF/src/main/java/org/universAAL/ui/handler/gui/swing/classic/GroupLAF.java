@@ -27,7 +27,6 @@ import javax.swing.event.AncestorListener;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -48,6 +47,7 @@ public class GroupLAF extends GroupModel implements AncestorListener {
 
     @Override
     public JComponent getNewComponent() {
+	needsLabel=false;
 	JPanel panel = new JPanel();
 	panel.addAncestorListener(this);
 	return panel;
@@ -74,9 +74,9 @@ public class GroupLAF extends GroupModel implements AncestorListener {
 	if (parent != null) {
 	    LayoutManager lay = jc.getParent().getLayout();
 	    if (lay instanceof FlowLayout) {
-		jc.setLayout(new VerticalFlowLayout(FormLAF.alignment,10,10));
-	    } else if (lay instanceof VerticalFlowLayout) {
-		jc.setLayout(new FlowLayout(FormLAF.alignment,10,10));
+		jc.setLayout(new MyVerticalFlowLayout());
+	    } else if (lay instanceof MyVerticalFlowLayout) {
+		jc.setLayout(new FlowLayout());
 	    }
 	}
     }

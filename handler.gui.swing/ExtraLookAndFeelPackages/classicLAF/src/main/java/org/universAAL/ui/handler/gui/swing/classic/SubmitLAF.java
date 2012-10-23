@@ -37,7 +37,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
  */
 public class SubmitLAF extends SubmitModel implements ComponentListener{
     
-    public static final int MAX_WIDE=240;
+    public static final int MAX_WIDE=200;
     public static final int MAX_HEIGHT=100;
     public static final int MIN_WIDE=170;
     public static final int MIN_HEIGHT=100;

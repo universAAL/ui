@@ -85,7 +85,7 @@ public class ColorLAF extends DefaultMetalTheme {
     // border / Label text
     // final private static Color font = new Color(0,0,0); //Text input written
 
-    private int FONT_SIZE_BASE = 24;
+    public static final int FONT_SIZE_BASE = 24;
 
     public FontUIResource fontBold = new FontUIResource("Corbel", Font.BOLD, FONT_SIZE_BASE + 2);
     public FontUIResource fontPlain = new FontUIResource("Corbel", Font.PLAIN, FONT_SIZE_BASE);
