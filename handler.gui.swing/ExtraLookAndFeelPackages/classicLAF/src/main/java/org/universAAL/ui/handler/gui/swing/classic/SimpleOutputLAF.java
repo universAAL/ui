@@ -16,10 +16,13 @@
 package org.universAAL.ui.handler.gui.swing.classic;
 
 import java.awt.BorderLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.plaf.FontUIResource;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -32,6 +35,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
+    private static final int MAX_LENGTH = 50;
     private FontUIResource minorFont;
 
     /**
@@ -52,7 +56,23 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 	Object content = form.getContent();
 	JComponent center;
 	if (content instanceof String) {
-	    center = new JLabel((String) content);
+	    String text=(String) content;
+	    if(text.length()<MAX_LENGTH){
+		center = new JLabel("<html><body align=\"center\"> "+(String) content+"</body>");
+	    } else {
+		center = new JTextArea(text);
+		((JTextArea) center).setFont(minorFont);
+		((JTextArea) center).setForeground(ColorLAF.OLD_GREEN_DARK);
+		((JTextArea) center).setColumns(MAX_LENGTH-10);//The width of a column is that of the char "m" in its font
+		((JTextArea) center).setLineWrap(true);
+		((JTextArea) center).setWrapStyleWord(true);
+		((JTextArea) center).setBorder(BorderFactory
+			.createEmptyBorder());
+		((JTextArea) center).setFocusable(false);
+		((JTextArea) center).setEditable(false);
+		((JTextArea) center).getAccessibleContext().setAccessibleName(
+			(String) content);
+	    }
 	} else if (content instanceof Boolean) {
 	    center = new JCheckBox("",
 		    IconFactory.getIcon(form.getLabel().getIconURL()));
@@ -79,7 +99,6 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 		combined.add(new JLabel(" "), BorderLayout.WEST);
 	    }
 	}
-
 	return combined;
     }
 

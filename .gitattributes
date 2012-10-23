@@ -43,6 +43,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universA
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java -text

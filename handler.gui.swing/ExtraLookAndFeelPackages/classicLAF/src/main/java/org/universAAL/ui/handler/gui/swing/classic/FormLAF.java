@@ -35,7 +35,6 @@ import javax.swing.plaf.FontUIResource;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -55,7 +54,11 @@ public class FormLAF extends FormModel {
     private JFrame frame = null;
 
     private boolean vertical=false;
-    public static int alignment=FlowLayout.LEADING;
+    public static final int H_CENTER=0;
+    public static final int H_LEFT=1;
+    public static final int H_RIGHT=2;
+    public static int vGroupHalign=H_CENTER;
+    public static int hGroupHalign=FlowLayout.CENTER;
 
     /**
      * Constructor.
@@ -69,10 +72,17 @@ public class FormLAF extends FormModel {
 	if(value!=null && value instanceof String){
 	    String hint=(String)value;
 	    vertical=hint.toLowerCase().contains("vertical");
+	    if(hint.toLowerCase().contains("left")){
+		vGroupHalign=H_LEFT;
+		hGroupHalign=FlowLayout.LEADING;
+	    }
+	    if(hint.toLowerCase().contains("rigth")){
+		vGroupHalign=H_RIGHT;
+		hGroupHalign=FlowLayout.TRAILING;
+	    }
 	    if(hint.toLowerCase().contains("center")){
-		alignment=FlowLayout.CENTER;
-	    }else if(hint.toLowerCase().contains("trailing")){
-		alignment=FlowLayout.TRAILING;
+		vGroupHalign=H_CENTER;
+		hGroupHalign=FlowLayout.CENTER;
 	    }
 	}
     }
@@ -86,9 +96,9 @@ public class FormLAF extends FormModel {
     protected JScrollPane getIOPanelScroll() {
 	JPanel ioPanel = super.getIOPanel();
 	if(vertical){
-	    ioPanel.setLayout(new VerticalFlowLayout(alignment, 10, 10));
+	    ioPanel.setLayout(new MyVerticalFlowLayout());
 	}else{
-	    ioPanel.setLayout(new FlowLayout(alignment, 10, 10));
+	    ioPanel.setLayout(new FlowLayout(hGroupHalign));
 	}
 	JScrollPane sp = new JScrollPane(ioPanel,
 		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
