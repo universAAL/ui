@@ -174,8 +174,8 @@ public class PendingDialogBuilder implements SubmitGroupListener {
 		TreeSet<String> s = new TreeSet<String>();
 		s.add(ABORT_ALL_OPEN_DIALOGS_CALL);
 		s.add(CLOSE_OPEN_DIALOGS_CALL);
-		for (String diagID : sentItems) {
-			s.add(SWITCH_TO_CALL_PREFIX+diagID);
+		for (int i = 0; i < sentItems.size(); i++) {
+			s.add(SWITCH_TO_CALL_PREFIX+Integer.toString(i));
 		}
 		return s;
 	}
@@ -185,12 +185,6 @@ public class PendingDialogBuilder implements SubmitGroupListener {
 		String submissionID = response.getSubmissionID();
 		Resource data = response.getSubmittedData();
 		if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
-			List<UIRequest> suspendend 
-			= new ArrayList<UIRequest>(dialogPool.listAllSuspended());
-			for (UIRequest r : suspendend ) {
-				DialogManagerImpl.getInstance()
-				.abortDialog(r.getDialogID());
-			}
 			dialogPool.removeAll();
 		}
 		if (CLOSE_OPEN_DIALOGS_CALL.equals(submissionID)) {
