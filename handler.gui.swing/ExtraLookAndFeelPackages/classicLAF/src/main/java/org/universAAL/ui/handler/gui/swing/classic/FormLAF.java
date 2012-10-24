@@ -175,11 +175,15 @@ public class FormLAF extends FormModel {
 	if (form.isMessage()) {
 	    JScrollPane io = getIOPanelScroll();
 	    io.getAccessibleContext().setAccessibleName(IO_NAME);
-	    JScrollPane sub = getSubmitPanelScroll(0,true);
+	    JScrollPane sub = getSubmitPanelScroll(0,false);
 	    sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-	    frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);
-	    frame.add(io, BorderLayout.CENTER);
-	    frame.add(sub, BorderLayout.SOUTH);
+	    JPanel border=new JPanel(new BorderLayout());
+	    border.setBorder(BorderFactory.createLineBorder(ColorLAF.BLACK_DARK));
+	    border.add(getHeader(form.getTitle()), BorderLayout.NORTH);
+	    border.add(io, BorderLayout.CENTER);
+	    border.add(sub, BorderLayout.SOUTH);
+	    frame.add(border);
+	    frame.setAlwaysOnTop(true);
 	    frame.pack();
 	    setHalfScreen();
 	}else if (form.isSystemMenu()) {
