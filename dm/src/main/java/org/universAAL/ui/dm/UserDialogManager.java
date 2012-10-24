@@ -17,6 +17,7 @@ package org.universAAL.ui.dm;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -333,6 +334,8 @@ public class UserDialogManager implements DialogManager {
 	 * Then check dialogs, as a last resort show main menu.
 	 */
 	public void showSomething() {
+		
+		Collection<UIRequest> suspendedDialogs = dialogPool.listAllSuspended();
 		// show other message, dialog or system menu
 		// if there isn't one already...
 		if (!messagePool.listAllActive().isEmpty()
@@ -344,13 +347,13 @@ public class UserDialogManager implements DialogManager {
 			// there are pending new dialogs
 			resumeUIRequest(dialogPool.getNextUIRequest());
 		} else if (dialogPool.getCurrent() == null
-				&& !dialogPool.listAllSuspended().isEmpty()) {
+				&& !suspendedDialogs.isEmpty()) {
 			/*
 			 * There aren't new dialogs, the current dialog is suspendend and
 			 * there are more dialogs that can be shown => unsuspend one dialog
 			 * and update with next dialog
 			 */
-			Iterator<UIRequest> i = dialogPool.listAllSuspended().iterator();
+			Iterator<UIRequest> i = suspendedDialogs.iterator();
 			dialogPool.unsuspend(i.next().getDialogID());
 			resumeUIRequest(dialogPool.getNextUIRequest());
 		} else if (messagePool.getCurrent() == null
@@ -394,13 +397,13 @@ public class UserDialogManager implements DialogManager {
 	 * @return the suspended {@link UIRequest}, null if not found.
 	 */
 	public final UIRequest getSuspendedDialog(String dialogID) {
-		dialogPool.unsuspend(dialogID);
 		UIRequest r = dialogPool.get(dialogID);
 		if (r != null) {
-			resumeUIRequest(r);
+			dialogPool.unsuspend(dialogID);
+			//resumeUIRequest(r);
 			return r;
 		} else {
-			resumeUIRequest(messagePool.get(dialogID));
+			//resumeUIRequest(messagePool.get(dialogID));
 			return messagePool.get(dialogID);
 		}
 	}
