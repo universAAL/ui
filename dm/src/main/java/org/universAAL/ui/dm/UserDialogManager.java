@@ -241,9 +241,9 @@ public class UserDialogManager implements DialogManager {
 				isReady = messagePool.hasToChange();
 				messagePool.getNextUIRequest();
 				// if message is ready, suspend current dialog or message.
-				if (isReady
-						&& messagePool.getCurrent() != null) {
-					messagePool.suspend(messagePool.getCurrent().getDialogID());
+				if (isReady 
+						&& dialogPool.getCurrent() != null) {
+						dialogPool.suspend(dialogPool.getCurrent().getDialogID());	
 				}
 			} else {
 				/*
