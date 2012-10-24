@@ -504,6 +504,9 @@ public class UserDialogManager implements DialogManager {
 	 *            the form to be presented to the user.
 	 */
 	public final void pushDialog(Form form) {
+		if (dialogPool.getCurrent() != null) {
+			dialogPool.suspend(dialogPool.getCurrent().getDialogID());
+		}
 		// TODO: adjust LevelRating, Locale, PrivacyLevel to user preferences!
 		UIRequest req = new UIRequest(user, form, LevelRating.none,
 				getUserLocale(), PrivacyLevel.insensible);
@@ -578,7 +581,9 @@ public class UserDialogManager implements DialogManager {
 
 		/** {@inheritDoc} */
 		public void run() {
-			dialogPool.close(d);
+			if (!dialogPool.listAllSuspended().contains(d)) {
+				dialogPool.close(d);
+			}
 			try {
 				Thread.sleep(FINALISE_WAIT);
 			} catch (InterruptedException e) {
