@@ -32,6 +32,7 @@ import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 /**
  * Main uAAL interfacing class.
  * The {@link Handler} is responsible of interfacing with universAAL, it will handle
@@ -82,7 +83,11 @@ public final class Handler extends UIHandler {
     /** {@ inheritDoc}	 */
 	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
-		// TODO Auto-generated method stub
+		String text = "Adaptation Parameters Changed\n";
+		text += dialogID + " Prop: " + changedProp + "\n";
+		text += "prop of type: " + newVal.getClass().getName();
+		
+		Activator.logDebug(text, null);
 
 	}
 
