@@ -45,17 +45,17 @@ public class RangeLAF extends RangeModel {
 	needsLabel = false;
 	JComponent center = super.getNewComponent();
 	JPanel combined=new JPanel(new BorderLayout(5,5));
-	combined.add(new JLabel(" "), BorderLayout.EAST);
-	combined.add(new JLabel(" "), BorderLayout.NORTH);
-	combined.add(new JLabel(" "), BorderLayout.SOUTH);
+//	combined.add(new JLabel(" "), BorderLayout.EAST);
+//	combined.add(new JLabel(" "), BorderLayout.NORTH);
+//	combined.add(new JLabel(" "), BorderLayout.SOUTH);
 	combined.add(center, BorderLayout.CENTER);
 	if (form.getLabel()!=null){
 	    String title=form.getLabel().getText();
 	    if(title!=null && !title.isEmpty()){
 		combined.add(new JLabel(title), BorderLayout.WEST);
-	    }else{
+	    }/*else{
 		combined.add(new JLabel(" "), BorderLayout.WEST);
-	    }
+	    }*/
 	}
 	return combined;
     }

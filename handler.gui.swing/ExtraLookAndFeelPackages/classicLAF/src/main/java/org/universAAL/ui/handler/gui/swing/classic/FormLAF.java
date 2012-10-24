@@ -59,6 +59,9 @@ public class FormLAF extends FormModel {
     public static final int H_RIGHT=2;
     public static int vGroupHalign=H_CENTER;
     public static int hGroupHalign=FlowLayout.CENTER;
+    public static boolean constant=false;
+    public static final int hgap=20;
+    public static final int vgap=20;
 
     /**
      * Constructor.
@@ -72,6 +75,7 @@ public class FormLAF extends FormModel {
 	if(value!=null && value instanceof String){
 	    String hint=(String)value;
 	    vertical=hint.toLowerCase().contains("vertical");
+	    constant=hint.toLowerCase().contains("constant");
 	    if(hint.toLowerCase().contains("left")){
 		vGroupHalign=H_LEFT;
 		hGroupHalign=FlowLayout.LEADING;
@@ -96,9 +100,9 @@ public class FormLAF extends FormModel {
     protected JScrollPane getIOPanelScroll() {
 	JPanel ioPanel = super.getIOPanel();
 	if(vertical){
-	    ioPanel.setLayout(new MyVerticalFlowLayout());
+	    ioPanel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER,hgap,vgap));
 	}else{
-	    ioPanel.setLayout(new FlowLayout(hGroupHalign));
+	    ioPanel.setLayout(new FlowLayout(hGroupHalign,hgap,vgap));
 	}
 	JScrollPane sp = new JScrollPane(ioPanel,
 		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
