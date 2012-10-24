@@ -74,9 +74,13 @@ public class GroupLAF extends GroupModel implements AncestorListener {
 	if (parent != null) {
 	    LayoutManager lay = jc.getParent().getLayout();
 	    if (lay instanceof FlowLayout) {
-		jc.setLayout(new MyVerticalFlowLayout());
+		jc.setLayout(FormLAF.constant ? new FlowLayout(
+			FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap) : new MyVerticalFlowLayout(
+			MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
 	    } else if (lay instanceof MyVerticalFlowLayout) {
-		jc.setLayout(new FlowLayout());
+		jc.setLayout(FormLAF.constant ? new MyVerticalFlowLayout(
+			MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap) : new FlowLayout(
+			FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
 	    }
 	}
     }
