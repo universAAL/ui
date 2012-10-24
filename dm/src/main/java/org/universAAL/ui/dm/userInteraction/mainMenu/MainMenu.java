@@ -78,6 +78,7 @@ public class MainMenu {
      *            The user.
      */
     public MainMenu(ModuleContext ctxt, InputStream in) {
+	context=ctxt;
     	constructMenu(in);
     }
 
