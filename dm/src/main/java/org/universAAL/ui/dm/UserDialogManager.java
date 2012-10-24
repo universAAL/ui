@@ -163,11 +163,10 @@ public class UserDialogManager implements DialogManager {
 		// systemMenuProvider = new ClassicSystemMenuProvider(this);
 		systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 		messagePool = new DialogPriorityQueue();
-		//dialogPool = new DialogPriorityQueue();
-		dialogPool = new DialogPriorityQueueVerbosity();
+		dialogPool = new DialogPriorityQueue();
+//		dialogPool = new DialogPriorityQueueVerbosity();
 		listeners = new TreeMap<String, SubmitGroupListener>();
 		messageListener = new MessageListener(messagePool);
-		add(messageListener);
 		/*
 		 * TODO: add persistence (at least for messages) with dataSerialization
 		 * OR profiling
@@ -263,6 +262,9 @@ public class UserDialogManager implements DialogManager {
 				dialogPool.getNextUIRequest();
 			}
 		}
+		if (isReady) {
+			addListeners(request);
+		}
 		return isReady;
 	}
 
@@ -287,14 +289,14 @@ public class UserDialogManager implements DialogManager {
 	 */
 	private void addSystemMenu(UIRequest request) {
 		// remove any previous menu.
-		if (request != null) {
-			if (request.getDialogForm() != null
-					&& request.getDialogForm().getStandardButtons() != null) {
-				request.getDialogForm().getStandardButtons()
-					.changeProperty(Group.PROP_CHILDREN, null);
+		if (request != null
+				&& request.getDialogForm() != null) {
+			Form f = request.getDialogForm();
+			if ( f.getStandardButtons() != null) {
+				f.getStandardButtons()
+				.changeProperty(Group.PROP_CHILDREN, null);
 			}
 			systemMenuProvider.getSystemMenu(request);
-			add(systemMenuProvider);
 		}
 	}
 	
@@ -374,9 +376,21 @@ public class UserDialogManager implements DialogManager {
 	public final void resumeUIRequest(UIRequest req) {
 		// XXX: has to add to myRequests??
 		if (req != null) {
-			myUIRequests.add(req.getDialogID());
+			addListeners(req);
+				myUIRequests.add(req.getDialogID());
 			DialogManagerImpl.getInstance()
 					.resumeDialog(req.getDialogID(), req);
+		}
+	}
+
+	private void addListeners(UIRequest req) {
+		if (req != null 
+				&& req.getDialogForm() != null) {
+			Form f = req.getDialogForm();
+			if (f.isMessage()) {
+				add(messageListener);
+			} 
+			add(systemMenuProvider);
 		}
 	}
 
@@ -403,7 +417,6 @@ public class UserDialogManager implements DialogManager {
 			//resumeUIRequest(r);
 			return r;
 		} else {
-			//resumeUIRequest(messagePool.get(dialogID));
 			return messagePool.get(dialogID);
 		}
 	}
@@ -435,8 +448,6 @@ public class UserDialogManager implements DialogManager {
 			SubmitGroupListener sgl = listeners.get(response.getSubmissionID());
 			listeners.clear();
 			sgl.handle(response);
-			// messageListener is always there...
-			add(messageListener);
 		}
 	}
 
