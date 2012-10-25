@@ -14,6 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.dm.userInteraction.messageManagement;
+
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -22,47 +23,45 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
 
-
 /**
  * Build a Message Form and manage the response.
  * 
  * @author amedrano
- *
- * created: 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
 public class MessageListener implements SubmitGroupListener {
 
-	/**
-	 * The messagePool that stores all the messages for the user.
-	 * It is used to change the message status.
-	 */
-	private UIRequestPool messagePool;
+    /**
+     * The messagePool that stores all the messages for the user. It is used to
+     * change the message status.
+     */
+    private UIRequestPool messagePool;
 
-	public MessageListener(UIRequestPool messagePool){
-		this.messagePool  = messagePool;
+    public MessageListener(UIRequestPool messagePool) {
+	this.messagePool = messagePool;
+    }
+
+    /** {@inheritDoc} */
+    public Set<String> listDeclaredSubmitIds() {
+	TreeSet<String> s = new TreeSet<String>();
+	s.add(Form.ACK_MESSAGE_KEEP);
+	s.add(Form.ACK_MESSAGE_DELET);
+	return s;
+    }
+
+    /** {@inheritDoc} */
+    public void handle(UIResponse response) {
+	String dialogID = response.getDialogID();
+	String submissionID = response.getSubmissionID();
+	// DialogManagerImpl.getModuleContext().logDebug("Message Handle",
+	// "response ID: " + dialogID + " SubmissionID: " + submissionID, null);
+	if (Form.ACK_MESSAGE_DELET.equals(submissionID)) {
+	    messagePool.close(dialogID);
+	} else if (Form.ACK_MESSAGE_KEEP.equals(submissionID)) {
+	    messagePool.suspend(dialogID);
 	}
 
-	/** {@inheritDoc} */
-	public Set<String> listDeclaredSubmitIds(){
-		TreeSet<String> s = new TreeSet<String>();
-		s.add(Form.ACK_MESSAGE_KEEP);
-		s.add(Form.ACK_MESSAGE_DELET);
-		return s;
-	}
+    }
 
-	/** {@inheritDoc} */
-	public void handle(UIResponse response) {
-		String dialogID = response.getDialogID();
-		String submissionID = response.getSubmissionID();
-		//DialogManagerImpl.getModuleContext().logDebug("Message Handle",
-		//		"response ID: " + dialogID + " SubmissionID: " + submissionID, null);
-		if (Form.ACK_MESSAGE_DELET.equals(submissionID)) {
-			messagePool.close(dialogID);		
-		}
-		else if (Form.ACK_MESSAGE_KEEP.equals(submissionID)) {
-			messagePool.suspend(dialogID);
-		}
-		
-	}
-	
 }

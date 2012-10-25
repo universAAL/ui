@@ -16,11 +16,12 @@
 package org.universAAL.ui.dm.interfaces;
 
 /**
- * FIXME TO BE DONE
- * Interface for permanent data storage: adaptations, users, messages, ...
+ * FIXME TO BE DONE Interface for permanent data storage: adaptations, users,
+ * messages, ...
+ * 
  * @author amedrano
- *
- * created: 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
 public interface StoreProvider {
 

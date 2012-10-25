@@ -32,128 +32,137 @@ import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuil
 
 /**
  * @author amedrano
- *
+ * 
  */
 public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
 
-	/**
+    /**
      * The submission ID to exit the main menu. A button with this functionality
      * is available only in the main menu.
      * */
-    static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX + "#stopDialogLoop"; //$NON-NLS-1$
+    static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX
+	    + "#stopDialogLoop"; //$NON-NLS-1$
 
     /**
      * The submission ID to show the main menu. A button with this functionality
      * is available in the standard dialog.
      */
-    static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX + "#showMainMenu"; //$NON-NLS-1$
+    static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX
+	    + "#showMainMenu"; //$NON-NLS-1$
 
     /**
      * The submission ID to show pending messages. A button with this
      * functionality is available in the system dialog and in standard dialogs.
      */
-    static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX + "#showMessages"; //$NON-NLS-1$
+    static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
+	    + "#showMessages"; //$NON-NLS-1$
 
     /**
      * The submission ID to show pending dialogs. A button with this
      * functionality is available in the system menu.
      */
-    static final String OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX + "#showOpenDialogs"; //$NON-NLS-1$
-	
-	private UserDialogManager userDM;
+    static final String OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
+	    + "#showOpenDialogs"; //$NON-NLS-1$
 
-	/**
+    private UserDialogManager userDM;
+
+    /**
 	 * 
 	 */
-	public SmartPendingSystemMenuProvider( UserDialogManager udm) {
-		userDM = udm;
+    public SmartPendingSystemMenuProvider(UserDialogManager udm) {
+	userDM = udm;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL
+     * .middleware.ui.UIResponse)
+     */
+    public void handle(UIResponse response) {
+	String submissionID = response.getSubmissionID();
+	if (EXIT_CALL.equals(submissionID)) {
+	    // XXX: do nothing?
+	}
+	if (MENU_CALL.equals(submissionID)) {
+	    userDM.showMainMenu();
+	}
+	if (MESSAGES_CALL.equals(submissionID)) {
+	    new PendingMessageBuilder(userDM);
+	}
+	if (OPEN_DIALOGS_CALL.equals(submissionID)) {
+	    new PendingDialogBuilder(userDM);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL.middleware.ui.UIResponse)
-	 */
-	public void handle(UIResponse response) {
-		String submissionID = response.getSubmissionID();
-		if (EXIT_CALL.equals(submissionID)) {
-		    // XXX: do nothing?
-		} 
-		if (MENU_CALL.equals(submissionID)) {
-		    userDM.showMainMenu();
-		}
-		if (MESSAGES_CALL.equals(submissionID)) {
-		    new PendingMessageBuilder(userDM);
-		}
-		if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-		    new PendingDialogBuilder(userDM);
-		}
+    }
 
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds
+     * ()
+     */
+    public Set<String> listDeclaredSubmitIds() {
+	TreeSet<String> s = new TreeSet<String>();
+	s.add(EXIT_CALL);
+	s.add(MENU_CALL);
+	s.add(MESSAGES_CALL);
+	s.add(OPEN_DIALOGS_CALL);
+	return s;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds()
-	 */
-	public Set<String> listDeclaredSubmitIds() {
-		TreeSet<String> s = new TreeSet<String>();
-		s.add(EXIT_CALL);
-		s.add(MENU_CALL);
-		s.add(MESSAGES_CALL);
-		s.add(OPEN_DIALOGS_CALL);
-		return s;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.
+     * universAAL.middleware.ui.UIRequest)
+     */
+    public Group getSystemMenu(UIRequest request) {
+	Form f = request.getDialogForm();
+	Group stdButtons = f.getStandardButtons();
+	switch (f.getDialogType().ord()) {
+	case DialogType.SYS_MENU:
+	    putPendingXXSubmits(stdButtons);
+	    new Submit(stdButtons, new Label(userDM.getString("UICaller.exit"),
+		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
+	    break;
+	case DialogType.MESSAGE:
+	    break;
+	case DialogType.SUBDIALOG:
+	case DialogType.STD_DIALOG:
+	    new Submit(stdButtons, new Label(userDM
+		    .getString("UICaller.mainMenu"), userDM
+		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
+	    String dialogTitle = f.getTitle();
+	    if (!userDM.getString("UICaller.pendingMessages").equals(
+		    dialogTitle)) {
+		putPendingXXSubmits(stdButtons);
+	    }
+	    break;
+	default:
+	    break;
 	}
+	return stdButtons;
+    }
 
-	/* (non-Javadoc)
-	 * @see org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.universAAL.middleware.ui.UIRequest)
-	 */
-	public Group getSystemMenu(UIRequest request) {
-		Form f = request.getDialogForm();
-		Group stdButtons = f.getStandardButtons();
-		switch (f.getDialogType().ord()) {
-		case DialogType.SYS_MENU:
-			putPendingXXSubmits(stdButtons);
-			new Submit(stdButtons,
-		    		new Label(userDM.getString("UICaller.exit"),
-		    				userDM.getString("UICaller.exit.icon")),
-		    				EXIT_CALL);
-		    break;
-		case DialogType.MESSAGE:
-		    break;
-		case DialogType.SUBDIALOG:
-		case DialogType.STD_DIALOG:
-			new Submit(stdButtons,
-		    		new Label(userDM.getString("UICaller.mainMenu"),
-		    				userDM.getString("UICaller.mainMenu.icon")),
-		    				MENU_CALL);
-			String dialogTitle = f.getTitle();
-			if (!userDM.getString("UICaller.pendingMessages").equals(
-					dialogTitle)) {
-				putPendingXXSubmits(stdButtons);
-			}	    
-		    break;
-		default:
-			break;
-		}
-		return stdButtons;
+    private void putPendingXXSubmits(Group stdButtons) {
+	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
+	    new Submit(stdButtons, new Label(userDM
+		    .getString("UICaller.pendingMessages"), userDM
+		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
+	} else {
+	    // show a button with different ICON/Message or nothing
 	}
-
-	
-	private void putPendingXXSubmits(Group stdButtons) {
-		if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
-			new Submit(stdButtons,
-					new Label(userDM.getString("UICaller.pendingMessages"),
-							userDM.getString("UICaller.pendingMessages.icon")),
-							MESSAGES_CALL);
-		}
-		else {
-			//show a button with different ICON/Message or nothing
-		}
-		if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
-			new Submit(stdButtons, 
-					new Label(userDM.getString("UICaller.pendingDialogs"),
-							userDM.getString("UICaller.pendingDialogs.icon")),
-							OPEN_DIALOGS_CALL);	 
-		}
-		else {
-			//show a button with different ICON/Message or nothing
-		}
+	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
+	    new Submit(stdButtons, new Label(userDM
+		    .getString("UICaller.pendingDialogs"), userDM
+		    .getString("UICaller.pendingDialogs.icon")),
+		    OPEN_DIALOGS_CALL);
+	} else {
+	    // show a button with different ICON/Message or nothing
 	}
+    }
 }

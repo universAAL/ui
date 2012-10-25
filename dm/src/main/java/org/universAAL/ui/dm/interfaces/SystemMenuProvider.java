@@ -18,23 +18,23 @@ package org.universAAL.ui.dm.interfaces;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Group;
 
-
 /**
- * Used to generate System group.
- * As subtype of {@link SubmitGroupListener} it will also respond to
- * and execute the system menu submits actions.
+ * Used to generate System group. As subtype of {@link SubmitGroupListener} it
+ * will also respond to and execute the system menu submits actions.
+ * 
  * @author amedrano
- *
- * created: 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
 public interface SystemMenuProvider extends SubmitGroupListener {
 
-	/**
-	 * generate the system Group for a given {@link UIRequest}.
-	 * @param request The {@link UIRequest} for which to generate 
-	 * the system group.
-	 * @return the System group for the {@link UIRequest}
-	 */
-	public Group getSystemMenu(UIRequest request);
+    /**
+     * generate the system Group for a given {@link UIRequest}.
+     * 
+     * @param request
+     *            The {@link UIRequest} for which to generate the system group.
+     * @return the System group for the {@link UIRequest}
+     */
+    public Group getSystemMenu(UIRequest request);
 
 }

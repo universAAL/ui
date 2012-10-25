@@ -25,30 +25,31 @@ import org.universAAL.middleware.service.ServiceCaller;
 import org.universAAL.middleware.service.ServiceResponse;
 
 /**
- * DMs {@link ServiceCaller}. To be able to call services like
- * consulting user profiles, starting UI applications, etc...
+ * DMs {@link ServiceCaller}. To be able to call services like consulting user
+ * profiles, starting UI applications, etc...
+ * 
  * @author mtazari
  * 
  */
 public class DMServiceCaller extends
-org.universAAL.middleware.service.ServiceCaller {
-	
-	
-	/**
-	 * Module context reference
-	 */
-	private ModuleContext ctxt;
+	org.universAAL.middleware.service.ServiceCaller {
 
-	/**
-	 * Constructor.
-	 * @param context
-	 */
-	public DMServiceCaller(ModuleContext context) {
-		super(context);
-		this.ctxt = context;
-	}
+    /**
+     * Module context reference
+     */
+    private ModuleContext ctxt;
 
-	/** {@inheritDoc} */
+    /**
+     * Constructor.
+     * 
+     * @param context
+     */
+    public DMServiceCaller(ModuleContext context) {
+	super(context);
+	this.ctxt = context;
+    }
+
+    /** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
 	// TODO Auto-generated method stub
@@ -57,8 +58,7 @@ org.universAAL.middleware.service.ServiceCaller {
     /** {@inheritDoc} */
     @Override
     public void handleResponse(String reqID, ServiceResponse response) {
-	LogUtils.logInfo(ctxt, DMServiceCaller.class,
-		"handleResponse",
+	LogUtils.logInfo(ctxt, DMServiceCaller.class, "handleResponse",
 		new Object[] { "Reply to ", reqID, " received: ",
 			response.getCallStatus().getLocalName() }, null);
     }

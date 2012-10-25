@@ -19,32 +19,30 @@ import java.util.Set;
 
 import org.universAAL.middleware.ui.UIResponse;
 
-
 /**
- * Listen to a set of SubmissionIDs and handle the 
- * {@link UIResponse} corresponding to any of them.
- * This interface is used for classes that generate
- * Interaction with the user and need to manage the 
- * User's reponse.
+ * Listen to a set of SubmissionIDs and handle the {@link UIResponse}
+ * corresponding to any of them. This interface is used for classes that
+ * generate Interaction with the user and need to manage the User's reponse.
+ * 
  * @author amedrano
- *
- * created: 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
 public interface SubmitGroupListener {
 
-	/**
-	 * Handle the {@link UIResponse} for any of the
-	 * SubmitionIDs declared in 
-	 * {@link SubmitGroupListener#listDeclaredSubmitIds()}.
-	 * @param response
-	 */
-	public void handle(UIResponse response);
+    /**
+     * Handle the {@link UIResponse} for any of the SubmitionIDs declared in
+     * {@link SubmitGroupListener#listDeclaredSubmitIds()}.
+     * 
+     * @param response
+     */
+    public void handle(UIResponse response);
 
-	/**
-	 * List the SubmissionIDs implementations of this interface
-	 * will handle.
-	 * @return
-	 */
-	public Set<String> listDeclaredSubmitIds();
+    /**
+     * List the SubmissionIDs implementations of this interface will handle.
+     * 
+     * @return
+     */
+    public Set<String> listDeclaredSubmitIds();
 
 }

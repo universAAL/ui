@@ -94,7 +94,7 @@ public class MenuNode {
      */
     private int level;
 
-	private String iconURL;
+    private String iconURL;
 
     // private boolean visible = false;
     // private boolean bActive = false;
@@ -122,8 +122,7 @@ public class MenuNode {
      *            The class the service implements.
      * @return The number of newly created nodes.
      */
-    int add(String path, String vendor, String serviceClass,
-			String iconURL) {
+    int add(String path, String vendor, String serviceClass, String iconURL) {
 	MenuNode aux, cur = this;
 	String[] pathArr = path.split("/");
 	// the first path elem is normally ""
@@ -149,15 +148,14 @@ public class MenuNode {
 	// cur is now a leaf of the tree that must be associated with a service
 	cur.vendor = vendor;
 	cur.serviceClass = serviceClass;
-	cur.iconURL = iconURL; 
+	cur.iconURL = iconURL;
 	// return the number of newly created nodes
 	return createdNodes;
     }
-    
 
-	void add(String path, String vendor, String serviceClass) {
-		add(path,vendor,serviceClass, null);		
-	}
+    void add(String path, String vendor, String serviceClass) {
+	add(path, vendor, serviceClass, null);
+    }
 
     /**
      * Add a single child to this node and set correctly the parent of the newly
@@ -319,10 +317,9 @@ public class MenuNode {
 	return str == null || "".equals(str);
     }
 
-	public String getIconURL() {
-		return iconURL;
-	}
-
+    public String getIconURL() {
+	return iconURL;
+    }
 
     // /**
     // * determines if a node has at least one visible child.

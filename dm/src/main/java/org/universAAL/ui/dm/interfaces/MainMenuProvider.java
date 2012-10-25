@@ -20,23 +20,24 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 
-
 /**
- * Provides the main menu for a certain user.
- * And Manages the response form each submit
- * (as subtype of {@link SubmitGroupListener}).
+ * Provides the main menu for a certain user. And Manages the response form each
+ * submit (as subtype of {@link SubmitGroupListener}).
+ * 
  * @author amedrano
- *
- * created: 26-sep-2012 13:03:50
+ * 
+ *         created: 26-sep-2012 13:03:50
  */
 public interface MainMenuProvider extends SubmitGroupListener {
 
-	/**
-	 * Generate the IO {@link Group} that contains the main menu for the user.
-	 * @param user
-	 * @param location
-	 * @param systemForm
-	 */
-	public Group getMainMenu(Resource user, AbsLocation location, Form systemForm);
+    /**
+     * Generate the IO {@link Group} that contains the main menu for the user.
+     * 
+     * @param user
+     * @param location
+     * @param systemForm
+     */
+    public Group getMainMenu(Resource user, AbsLocation location,
+	    Form systemForm);
 
 }
