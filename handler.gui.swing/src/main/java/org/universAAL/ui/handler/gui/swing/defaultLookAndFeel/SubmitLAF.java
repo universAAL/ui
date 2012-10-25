@@ -16,10 +16,15 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -27,6 +32,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
@@ -81,8 +87,14 @@ public class SubmitLAF extends SubmitModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
+		if (isInStandardGroup()){
+			return buttonDecorate(this, new SystemButton(fc.getLabel().getText(),
+	                IconFactory.getIcon(fc.getLabel().getIconURL())),
+					((Init) getRenderer().getInitLAF()).getColorLAF());
+		} else {
 		return buttonDecorate(this, super.getNewComponent(),
 				((Init) getRenderer().getInitLAF()).getColorLAF());
+		}
 	}
 
 	protected static JComponent buttonDecorate(Model model, JComponent button,
@@ -165,4 +177,24 @@ public class SubmitLAF extends SubmitModel {
 		}
 	}
 
+	public class SystemButton extends JButton {
+	    public SystemButton(String text, Icon icon) {
+	    	super(text);
+	    	if (icon != null){
+	    	    //he generado uen buffer para controlar el tamaño, ver como se gestiona
+	    	    // ENGLISH PLEASE! :)
+	    	    Image img = ((ImageIcon) icon).getImage() ;  
+	    	    Image newimg = img.getScaledInstance( 120, 120,  java.awt.Image.SCALE_SMOOTH ) ;  
+	    	    icon = new ImageIcon( newimg );
+
+	    	    setIcon(icon);
+	    	}
+	    }
+	    
+	    public Dimension getPreferredSize(){
+	    	int ButtonWeight= 200;
+	        return new Dimension(ButtonWeight, ButtonWeight);
+	    }
+	    
+	}
 }

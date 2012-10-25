@@ -234,7 +234,7 @@ public abstract class Model {
 		    && hint != null
 		    && !help.isEmpty() 
 		    && !hint.isEmpty()) {
-		hintAndHelp += "\n";
+		hintAndHelp += "\n<br>\n";
 	    }
 	    if (hint != null
 		    &&!hint.isEmpty()) {
