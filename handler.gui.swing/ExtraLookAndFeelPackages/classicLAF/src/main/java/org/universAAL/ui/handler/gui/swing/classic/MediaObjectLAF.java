@@ -60,7 +60,7 @@ public class MediaObjectLAF extends MediaObjectModel {
 	    }
 	}
 
-	return new JLabel("[Missin Image]");
+	return new JLabel("[Missing Image]");
     }
 
     @Override
