@@ -339,11 +339,11 @@ public class UserDialogManager implements DialogManager {
      */
     public void dialogFinished(String dialogID) {
     	if (!resumedUIRequests.contains(current)) {
-    		current = null;    		
+    		current = null;    
+    		new Thread(new ClosingTask(dialogID), "Closing Task").start();		
     	} else {
     		resumedUIRequests.remove(current);
     	}
-	new Thread(new ClosingTask(dialogID), "Closing Task").start();
     }
 
     /**
