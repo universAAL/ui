@@ -63,7 +63,6 @@ public class FrameManager {
     	if (model != null) {
     		synchronized (model) {
     			model.finalizeForm();
-    			model.notify();
     		}
     	}
     }

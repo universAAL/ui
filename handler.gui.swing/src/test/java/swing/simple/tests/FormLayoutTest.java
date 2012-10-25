@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.AbstractListModel;
 
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 
 public class FormLayoutTest extends JFrame {
@@ -53,7 +54,9 @@ public class FormLayoutTest extends JFrame {
 		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(10, 10, 10, 10));
-		setContentPane(new JScrollPane(contentPane));
+		JScrollPane sp = new JScrollPane(contentPane);
+		sp.setLayout(new BorderedScrolPaneLayout());
+		setContentPane(sp);
 //		contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		contentPane.setLayout(new FormLayout());
 		
