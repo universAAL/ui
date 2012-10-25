@@ -49,10 +49,10 @@ public class SimpleFormManager implements FormManager {
 	private Renderer render;
     
     /** {@inheritDoc} */
-    public void addDialog(UIRequest oe) {
-            closeCurrentDialog(); 
-            currentForm = oe;
-            renderFrame();
+    public synchronized void addDialog(UIRequest oe) {
+    	closeCurrentDialog();
+    	currentForm = oe;
+    	renderFrame();
     }
 
     /** {@inheritDoc} */
@@ -62,24 +62,27 @@ public class SimpleFormManager implements FormManager {
 
 
     /** {@inheritDoc} */
-    public void closeCurrentDialog() {
+    public synchronized void closeCurrentDialog() {
     	if (currentForm != null) {
     		disposeFrame();
     		currentForm = null;
     	}
     }
 
-
     /** {@inheritDoc} */
-    public void flush() {
+    public synchronized void flush() {
     	disposeFrame();
     }
 
     /** {@inheritDoc} */
-    public Resource cutDialog(String dialogID) {
-    closeCurrentDialog();
-        // TODO Auto-generated method stub, What to return?
-        return null;
+    public synchronized Resource cutDialog(String dialogID) {
+    	// TODO Return the request Data.
+    	if (currentForm != null 
+    			&& currentForm.getDialogID().equals(dialogID)) {
+    		closeCurrentDialog();
+    		return currentForm.getDialogForm().getData();
+    	}
+    	return null;
     }
 
 	public Form getParentOf(String formURI) {

@@ -18,6 +18,7 @@ package org.universAAL.ui.dm;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -131,6 +132,12 @@ public class UserDialogManager implements DialogManager {
      */
     private Set<String> myUIRequests;
 
+    
+    /**
+     * A set of resumed {@link UIRequest}.
+     */
+    private Set<UIRequest> resumedUIRequests;
+    
     /**
      * The internationalization file for strings meant to be read by the user.
      */
@@ -177,6 +184,7 @@ public class UserDialogManager implements DialogManager {
 	 */
 
 	myUIRequests = new TreeSet<String>();
+	resumedUIRequests = new HashSet<UIRequest>();
     }
 
     // /** {@inheritDoc} */
@@ -330,8 +338,12 @@ public class UserDialogManager implements DialogManager {
      *            ID of the dialog that is now finished.
      */
     public void dialogFinished(String dialogID) {
-	current = null;
-	new Thread(new ClosingTask(dialogID)).start();
+    	if (!resumedUIRequests.contains(current)) {
+    		current = null;    		
+    	} else {
+    		resumedUIRequests.remove(current);
+    	}
+	new Thread(new ClosingTask(dialogID), "Closing Task").start();
     }
 
     /**
@@ -356,6 +368,7 @@ public class UserDialogManager implements DialogManager {
 	     * there are more dialogs that can be shown => unsuspend one dialog
 	     * and update with next dialog
 	     */
+		//DialogManagerImpl.getModuleContext().logDebug("UDM", "Resuming suspended", null);
 	    Iterator<UIRequest> i = suspendedDialogs.iterator();
 	    dialogPool.unsuspend(i.next().getDialogID());
 	    resumeUIRequest(dialogPool.getNextUIRequest());
@@ -374,12 +387,15 @@ public class UserDialogManager implements DialogManager {
      *            the Request to be resumed.
      */
     public final void resumeUIRequest(UIRequest req) {
-	// XXX: has to add to myRequests??
 	if (req != null) {
 	    if (current != null && current != req) {
 		dialogPool.suspend(current.getDialogID());
 		messagePool.suspend(current.getDialogID());
 	    }
+	    dialogPool.unsuspend(req.getDialogID());
+	    messagePool.unsuspend(req.getDialogID());
+	    current = req;
+	    resumedUIRequests.add(req);
 	    addListeners(req);
 	    myUIRequests.add(req.getDialogID());
 	    DialogManagerImpl.getInstance()
@@ -417,11 +433,11 @@ public class UserDialogManager implements DialogManager {
 	UIRequest r = dialogPool.get(dialogID);
 	if (r != null) {
 	    dialogPool.unsuspend(dialogID);
-	    // resumeUIRequest(r);
-	    return r;
+	    current = r;
 	} else {
-	    return messagePool.get(dialogID);
+	    current = messagePool.get(dialogID);
 	}
+	return current;
     }
 
     /**
@@ -432,7 +448,10 @@ public class UserDialogManager implements DialogManager {
      *            ID of the dialog.
      */
     public void suspendDialog(String dialogID) {
-	dialogPool.suspend(dialogID);
+    	dialogPool.suspend(dialogID);
+    	if (current.getDialogID().equals(dialogID)) {
+    		current = null;
+    	}
     }
 
     /**
@@ -607,8 +626,7 @@ public class UserDialogManager implements DialogManager {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	    }
-	    if (messagePool.getCurrent() == null
-		    || dialogPool.getCurrent() == null) {
+	    if (current == null) {
 		showSomething();
 	    }
 	}
