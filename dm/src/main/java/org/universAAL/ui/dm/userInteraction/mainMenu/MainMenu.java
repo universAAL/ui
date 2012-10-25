@@ -70,7 +70,7 @@ public class MainMenu {
     private MenuNode selection;
 
     private ModuleContext context;
-    
+
     /**
      * constructor. Creates the menu.
      * 
@@ -78,21 +78,22 @@ public class MainMenu {
      *            The user.
      */
     public MainMenu(ModuleContext ctxt, InputStream in) {
-	context=ctxt;
-    	constructMenu(in);
+	context = ctxt;
+	constructMenu(in);
     }
 
     /**
      * Create the menu. Reads a configuration file with menu entries and creates
      * a tree of menu nodes where leaf nodes have a vendor and service class
      * associated.
-     * @param userID 
+     * 
+     * @param userID
      */
     private void constructMenu(InputStream in) {
-	
+
 	root = new MenuNode(-1);
 	selection = root;
-	
+
 	// Read the configuration file of the menu for this user which
 	// contains a list of menu entries. Entries are stored in 'entries'
 	// as a list where each line contains 3 values:
@@ -100,35 +101,34 @@ public class MainMenu {
 	// 2. vendor
 	// 3. service class
 
+	BufferedReader br = new BufferedReader(new InputStreamReader(in,
+		Charset.forName("cp1252")));
 
-	BufferedReader br = new BufferedReader(new InputStreamReader(in, Charset.forName("cp1252")));
-	
 	String line;
 	try {
-		line = br.readLine();
-		while (line != null) {
-			if (!line.startsWith("#")) {
-				String[] cols = line.split("\\|");
-				if (cols.length == 3) {
-					root.add(cols[0], cols[1], cols[2]);
-				}
-				else if (cols.length == 4) {
-					root.add(cols[0], cols[1], cols[2], cols[3]);
-				}
-				else {
-					StringBuffer s = new StringBuffer();
-					for (int i = 0; i < cols.length; i++) {
-						s.append(" [ " + cols[i] + " ]");
-					}
-					context.logError("Main Menu File",
-							"unable to parse " + cols.length + "columns : " +s.toString() , null);
-				}
+	    line = br.readLine();
+	    while (line != null) {
+		if (!line.startsWith("#")) {
+		    String[] cols = line.split("\\|");
+		    if (cols.length == 3) {
+			root.add(cols[0], cols[1], cols[2]);
+		    } else if (cols.length == 4) {
+			root.add(cols[0], cols[1], cols[2], cols[3]);
+		    } else {
+			StringBuffer s = new StringBuffer();
+			for (int i = 0; i < cols.length; i++) {
+			    s.append(" [ " + cols[i] + " ]");
 			}
-			line = br.readLine();
+			context.logError("Main Menu File", "unable to parse "
+				+ cols.length + "columns : " + s.toString(),
+				null);
+		    }
 		}
+		line = br.readLine();
+	    }
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
 	}
     }
 
@@ -145,8 +145,8 @@ public class MainMenu {
 	if (selection == null || selection == root)
 	    // add children of root
 	    for (MenuNode child : root.children()) {
-		new Submit(rg, new Label(child.getLabel(), child.getIconURL()), child
-			.getPath());
+		new Submit(rg, new Label(child.getLabel(), child.getIconURL()),
+			child.getPath());
 		System.out.println("Menu child: " + child.getPath());
 	    }
 	else {
@@ -159,15 +159,15 @@ public class MainMenu {
 	    MenuNode parent = selection.getParent();
 	    if (parent == null)
 		parent = root;
-	    new Submit(g, new Label(selection.getLabel(), selection.getIconURL()), parent
-		    .getPath());
+	    new Submit(g, new Label(selection.getLabel(), selection
+		    .getIconURL()), parent.getPath());
 	    // System.out.println("Menu Parent: "+parent.getPath());
 
 	    // options: the children of the currently selected node
 	    g = new Group(rg, new Label("Options", null), null, null, null);
 	    for (MenuNode child : selection.children()) {
-		new Submit(g, new Label(child.getLabel(), child.getIconURL()), child
-			.getPath());
+		new Submit(g, new Label(child.getLabel(), child.getIconURL()),
+			child.getPath());
 		// System.out.println("Menu child: "+child.getPath());
 	    }
 	}
@@ -189,7 +189,7 @@ public class MainMenu {
 	selection = node;
 	return oldSelection != selection;
     }
-    
+
     /**
      * Reset the selection to be root.
      */
@@ -249,12 +249,12 @@ public class MainMenu {
 	return null;
     }
 
-    
     /**
      * Get all the entries for the (sub)menu.
+     * 
      * @return
      */
-    public Iterable<MenuNode> entries(){
+    public Iterable<MenuNode> entries() {
 	return selection.children();
     }
 

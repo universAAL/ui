@@ -26,46 +26,45 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 
 public class DialogManagerActivator extends Thread implements BundleActivator {
 
-	
     private static ModuleContext mContext;
-	private static ServiceCaller serviceCaller;
+    private static ServiceCaller serviceCaller;
 
-	/**
+    /**
      * The bundle start method externalized in a separate thread for non-
      * blocking initialization of this bundle.
      */
     public void run() {
 
-	//contextSubscriber = new ContextSubscriber(mContext);
+	// contextSubscriber = new ContextSubscriber(mContext);
 	DialogManagerImpl.createInstance(mContext);
 	serviceCaller = new DMServiceCaller(mContext);
     }
 
-	/** {@inheritDoc}*/
-	public void start(BundleContext context) throws Exception {
-		mContext = uAALBundleContainer.THE_CONTAINER
-				.registerModule(new Object[] { context });
-//			ServiceReference sref = context
-//				.getServiceReference(MessageContentSerializer.class.getName());
-			start();
-			
-			LogUtils.logInfo(mContext, this.getClass(), "start",
-				new Object[] { "DM started." }, null);
+    /** {@inheritDoc} */
+    public void start(BundleContext context) throws Exception {
+	mContext = uAALBundleContainer.THE_CONTAINER
+		.registerModule(new Object[] { context });
+	// ServiceReference sref = context
+	// .getServiceReference(MessageContentSerializer.class.getName());
+	start();
 
-	}
-	
-	/** {@inheritDoc}*/
-	public void stop(BundleContext arg0) throws Exception {
-		LogUtils.logInfo(mContext, this.getClass(), "stop",
-				new Object[] { "DM stopped." }, null);
-	}
+	LogUtils.logInfo(mContext, this.getClass(), "start",
+		new Object[] { "DM started." }, null);
 
-	static public ModuleContext getModuleContext() {
-		return mContext;
-	}
+    }
 
-	static public ServiceCaller getServiceCaller() {
-		return serviceCaller;
-	}
+    /** {@inheritDoc} */
+    public void stop(BundleContext arg0) throws Exception {
+	LogUtils.logInfo(mContext, this.getClass(), "stop",
+		new Object[] { "DM stopped." }, null);
+    }
+
+    static public ModuleContext getModuleContext() {
+	return mContext;
+    }
+
+    static public ServiceCaller getServiceCaller() {
+	return serviceCaller;
+    }
 
 }

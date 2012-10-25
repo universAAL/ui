@@ -45,66 +45,66 @@ public class SearchableAggregatedMainMenuProvider extends
      */
     static final String SEARCH_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#doSearch"; //$NON-NLS-1$
-    
+
     static final String BACK_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#doBackFromSearch"; //$NON-NLS-1$;
-    
+
     /**
      * The reference to the dialog manager for the user.
      */
     private UserDialogManager userDM;
-	private String searchString;
-    
+    private String searchString;
+
     public SearchableAggregatedMainMenuProvider(UserDialogManager userDM) {
 	super();
 	this.userDM = userDM;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
 	if (SEARCH_CALL.equals(submissionID)) {
 	    Object searchStr = response
 		    .getUserInput(new String[] { PROP_SEARCH_STRING });
 	    if (searchStr instanceof String) {
-		 searchString = (String) searchStr;
+		searchString = (String) searchStr;
+	    } else {
+		DialogManagerImpl.getModuleContext()
+			.logError("handleUIResponse",
+				"Submission without effect: ", null);
 	    }
-	    else {
-		DialogManagerImpl.getModuleContext().logError(
-			"handleUIResponse","Submission without effect: ", null);
-		}
 	}
-	if (BACK_CALL.equals(submissionID)){
-		searchString = null;
+	if (BACK_CALL.equals(submissionID)) {
+	    searchString = null;
 	}
 	super.handle(response);
     }
-    
+
     /**
      * Filters {@link SearchableAggregatedMainMenuProvider#mmGroup} with
      * searchStr, and resends the new main menu.
+     * 
      * @param searchStr
      */
-    @SuppressWarnings({ "rawtypes" })
+    @SuppressWarnings( { "rawtypes" })
     private void filter(Group mmGroup) {
-    	FormControl[] elem = mmGroup.getChildren();
-    	for (int i = 0; i < elem.length; i++) {
-    		if (!elem[i].getLabel().getText().toLowerCase()
-    				.contains(searchString.toLowerCase())
-    				//!elem[i].getLabel().getText().matches("*" + searchString + "*")
-    				// XXX: add regular expression evaluation??
-    				){
-    			//remove FC to mmf
-    			List children = 
-    					(List) mmGroup.getProperty(Group.PROP_CHILDREN);
-    			if (children != null) { 
-    				children.remove(elem[i]);
-    			}
-    		}
-    	}
+	FormControl[] elem = mmGroup.getChildren();
+	for (int i = 0; i < elem.length; i++) {
+	    if (!elem[i].getLabel().getText().toLowerCase().contains(
+		    searchString.toLowerCase())
+	    // !elem[i].getLabel().getText().matches("*" + searchString + "*")
+	    // XXX: add regular expression evaluation??
+	    ) {
+		// remove FC to mmf
+		List children = (List) mmGroup.getProperty(Group.PROP_CHILDREN);
+		if (children != null) {
+		    children.remove(elem[i]);
+		}
+	    }
+	}
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     @Override
     public Set<String> listDeclaredSubmitIds() {
 	Set<String> s = super.listDeclaredSubmitIds();
@@ -113,27 +113,28 @@ public class SearchableAggregatedMainMenuProvider extends
 	return s;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     @Override
     public Group getMainMenu(Resource user, AbsLocation location,
 	    Form systemForm) {
 	Group mmGroup = super.getMainMenu(user, location, systemForm);
 	if (searchString != null) {
-		filter(mmGroup);
-		new Submit(mmGroup,new Label(userDM.getString("UICaller.back"), null),
-				BACK_CALL);
+	    filter(mmGroup);
+	    new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
+		    null), BACK_CALL);
 	} else {
-		addSearch(mmGroup);
+	    addSearch(mmGroup);
 	}
 	return mmGroup;
     }
 
-	/**
+    /**
      * Create the Search group element to be added to the main menu.
+     * 
      * @param parent
      * @return
      */
-    private Group addSearch(Group parent){
+    private Group addSearch(Group parent) {
 	Group g = new Group(parent, new Label(userDM
 		.getString("UICaller.search"), null), null, null, null);
 	Input in = new InputField(g, null, new PropertyPath(null, false,

@@ -28,142 +28,137 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
 
 /**
  * This {@link UIRequestPool} will manage active dialogs in a
- * {@link PriorityQueue} while keeping suspended dialogs in a
- * {@link Map}.
+ * {@link PriorityQueue} while keeping suspended dialogs in a {@link Map}.
+ * 
  * @author amedrano
- *
+ * 
  */
 public class DialogPriorityQueue implements UIRequestPool {
 
     private Map<String, UIRequest> suspendedSet;
-    
+
     private Set<UIRequest> activeSet;
-    
+
     private UIRequest current;
-    
+
     public DialogPriorityQueue() {
 	suspendedSet = new TreeMap<String, UIRequest>();
 	activeSet = new TreeSet<UIRequest>(new UIRequestPriorityComparator());
 	current = null;
     }
-    
-    /** {@inheritDoc}*/
+
+    /** {@inheritDoc} */
     public void add(UIRequest UIReq) {
 	activeSet.add(UIReq);
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public void close(String UIReqID) {
 	UIRequest r = getActive(UIReqID);
-	if (r != null){
+	if (r != null) {
 	    activeSet.remove(r);
 	    if (r == current) {
-	    	current = null;
+		current = null;
 	    }
 	}
 	suspendedSet.remove(UIReqID);
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public UIRequest getCurrent() {
 	return current;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public UIRequest getNextUIRequest() {
 	Iterator<UIRequest> i = activeSet.iterator();
-	if (i.hasNext()){
+	if (i.hasNext()) {
 	    current = i.next();
-	}
-	else {
+	} else {
 	    current = null;
 	}
-    return current;
+	return current;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public boolean hasToChange() {
 	Iterator<UIRequest> i = activeSet.iterator();
-	if (i.hasNext()){
+	if (i.hasNext()) {
 	    return current != i.next();
-	}
-	else {
+	} else {
 	    // no need to change, active set is empty.
 	    return false;
 	}
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Collection<UIRequest> listAllActive() {
 	return activeSet;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Collection<UIRequest> listAllSuspended() {
 	return suspendedSet.values();
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public void removeAll() {
 	current = null;
 	activeSet.clear();
 	suspendedSet.clear();
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public void suspend(String UIReqID) {
 	UIRequest r = getActive(UIReqID);
-	if (r != null){
+	if (r != null) {
 	    activeSet.remove(r);
 	    suspendedSet.put(r.getDialogID(), r);
-		if (UIReqID.equals(current.getDialogID())){
-			current = null;
-		}
+	    if (UIReqID.equals(current.getDialogID())) {
+		current = null;
+	    }
 	}
 
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public void unsuspend(String UIReqID) {
 	UIRequest r = suspendedSet.get(UIReqID);
-	if (r != null){
-		suspendedSet.remove(UIReqID);
+	if (r != null) {
+	    suspendedSet.remove(UIReqID);
 	    activeSet.add(r);
 	}
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public UIRequest get(String UIReqID) {
 	UIRequest r = suspendedSet.get(UIReqID);
-	if (r != null){
+	if (r != null) {
 	    return r;
-	}
-	else {
+	} else {
 	    return getActive(UIReqID);
 	}
     }
-    
+
     /**
-     * scan the active set for a {@link UIRequest} that has 
-     * an ID corresponding to UIReqID
-     * @param UIReqID The ID to look for
-     * @return
-     * 		the {@link UIRequest} with UIReqID id, or null
-     * 		if not found
+     * scan the active set for a {@link UIRequest} that has an ID corresponding
+     * to UIReqID
+     * 
+     * @param UIReqID
+     *            The ID to look for
+     * @return the {@link UIRequest} with UIReqID id, or null if not found
      */
-    private UIRequest getActive(String UIReqID){
+    private UIRequest getActive(String UIReqID) {
 	Iterator<UIRequest> i = activeSet.iterator();
 	UIRequest req = null;
 	boolean found = false;
-	while (!found 
-		&& i.hasNext()) {
+	while (!found && i.hasNext()) {
 	    req = (UIRequest) i.next();
 	    found = req.getDialogID().equals(UIReqID);
 	}
-	if (found){
+	if (found) {
 	    return req;
-	}
-	else {
+	} else {
 	    return null;
 	}
     }

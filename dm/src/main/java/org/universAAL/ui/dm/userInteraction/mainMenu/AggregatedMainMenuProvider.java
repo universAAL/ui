@@ -30,29 +30,32 @@ import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 
 /**
  * Aggregates the behavior of several {@link MainMenuProvider}s
+ * 
  * @author amedrano
- *
+ * 
  */
 public class AggregatedMainMenuProvider implements MainMenuProvider {
 
     List<MainMenuProvider> mmps = new ArrayList<MainMenuProvider>();
-    
-    /** {@inheritDoc}*/
+
+    /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	Iterator<MainMenuProvider> it = mmps.iterator();
-	if (it.hasNext()){
+	if (it.hasNext()) {
 	    MainMenuProvider mmp;
 	    do {
 		mmp = it.next();
 	    } while (it.hasNext()
-		    && mmp.listDeclaredSubmitIds().contains(response.getSubmissionID()));
-	    if (mmp.listDeclaredSubmitIds().contains(response.getSubmissionID())) {
+		    && mmp.listDeclaredSubmitIds().contains(
+			    response.getSubmissionID()));
+	    if (mmp.listDeclaredSubmitIds()
+		    .contains(response.getSubmissionID())) {
 		mmp.handle(response);
 	    }
 	}
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Set<String> listDeclaredSubmitIds() {
 	Set<String> mySet = new HashSet<String>();
 	for (MainMenuProvider mmp : mmps) {
@@ -61,31 +64,33 @@ public class AggregatedMainMenuProvider implements MainMenuProvider {
 	return mySet;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Group getMainMenu(Resource user, AbsLocation location,
 	    Form systemForm) {
-	
+
 	for (MainMenuProvider mmp : mmps) {
 	    mmp.getMainMenu(user, location, systemForm);
 	}
 	return systemForm.getIOControls();
     }
-    
+
     /**
      * Add a new {@link MainMenuProvider} to the aggregate.
+     * 
      * @param mmp
-     * 	the {@link MainMenuProvider} to be aggregated.
+     *            the {@link MainMenuProvider} to be aggregated.
      */
-    public void add(MainMenuProvider mmp){
+    public void add(MainMenuProvider mmp) {
 	mmps.add(mmp);
     }
 
     /**
      * Remove a {@link MainMenuProvider} from the aggregation.
+     * 
      * @param mmp
-     * 	the {@link MainMenuProvider} to be removed.
+     *            the {@link MainMenuProvider} to be removed.
      */
-    public void remove(MainMenuProvider mmp){
+    public void remove(MainMenuProvider mmp) {
 	mmps.remove(mmp);
     }
 }

@@ -34,38 +34,38 @@ import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 
 /**
  * @author amedrano
- *
+ * 
  */
 public class FileMainMenuProvider implements MainMenuProvider {
 
-    
     private MainMenu mainMenu;
-    
+
     private Set<String> entries = new TreeSet<String>();
-    
+
     private UserDialogManager userDM;
-    
-    public FileMainMenuProvider(UserDialogManager udm){
+
+    public FileMainMenuProvider(UserDialogManager udm) {
 	userDM = udm;
     }
-    
-    /** {@inheritDoc}*/
+
+    /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	if (entries.contains(submissionID)){
-	    ServiceRequest sr = mainMenu
-		    .getAssociatedServiceRequest(submissionID, response.getUser());
+	if (entries.contains(submissionID)) {
+	    ServiceRequest sr = mainMenu.getAssociatedServiceRequest(
+		    submissionID, response.getUser());
 	    if (sr == null) {
-		LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(),
-			"handleUIResponse", new Object[] {
-		    "Submission without effect: ", submissionID },
-		    null);
+		LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+			getClass(), "handleUIResponse", new Object[] {
+				"Submission without effect: ", submissionID },
+			null);
 		mainMenu.setSelection(submissionID);
 		showHierarchyMenu(submissionID);
 	    } else {
-		LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(),
-			"handleUIResponse", new Object[] { "Trying to call: ",
-		    response.getSubmissionID() }, null);
+		LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+			getClass(), "handleUIResponse",
+			new Object[] { "Trying to call: ",
+				response.getSubmissionID() }, null);
 		DialogManagerImpl.getServiceCaller().call(sr);
 	    }
 	}
@@ -81,22 +81,23 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	showNewMenu(f);
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Set<String> listDeclaredSubmitIds() {
 	return entries;
     }
 
-    /** {@inheritDoc}*/
+    /** {@inheritDoc} */
     public Group getMainMenu(Resource user, AbsLocation location,
 	    Form systemForm) {
 	entries.clear();
 	Group main = systemForm.getIOControls();
 	if (mainMenu == null) {
-		InputStream is = openMainMenuConfigFile();
-	    mainMenu = new MainMenu(DialogManagerImpl.getModuleContext(),is);
-		try {
-			is.close();
-		} catch (Exception e) { }
+	    InputStream is = openMainMenuConfigFile();
+	    mainMenu = new MainMenu(DialogManagerImpl.getModuleContext(), is);
+	    try {
+		is.close();
+	    } catch (Exception e) {
+	    }
 	}
 	mainMenu.resetSelection();
 	mainMenu.addMenuRepresentation(main);
@@ -105,46 +106,50 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	}
 	return main;
     }
-   
-    
+
     private void showNewMenu(Form mff) {
 	userDM.add(this);
 	userDM.pushDialog(mff);
     }
 
-    private InputStream openMainMenuConfigFile(){
-    	String userID = userDM.getUserId();
-    	userID = userID.substring(userID.lastIndexOf("#")+1);
-    	String lang = userDM.getUserLocale().getLanguage();
-    	InputStream in = null;
-    	try {
-    	    BundleConfigHome confHome = new BundleConfigHome(
-    		    DialogManagerImpl.getModuleContext().getID());
-    	    in = confHome.getConfFileAsStream(
-    		    "main_menu_" + userID + "_" + lang + ".txt");
+    private InputStream openMainMenuConfigFile() {
+	String userID = userDM.getUserId();
+	userID = userID.substring(userID.lastIndexOf("#") + 1);
+	String lang = userDM.getUserLocale().getLanguage();
+	InputStream in = null;
+	try {
+	    BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
+		    .getModuleContext().getID());
+	    in = confHome.getConfFileAsStream("main_menu_" + userID + "_"
+		    + lang + ".txt");
 
-    	} catch (IOException e) {
+	} catch (IOException e) {
 
-    	
-    	    try {
-    		BundleConfigHome confHome = new BundleConfigHome(
-    			    DialogManagerImpl.getModuleContext().getID());
-    		in = confHome.getConfFileAsStream(
-    			"main_menu_" + userID + ".txt");
-    		DialogManagerImpl.getModuleContext().logWarn("constructMenu", "main_menu_" + userID
-    				    + "_" + lang + ".txt does not exist so: main_menu_"
-    				    + userID + ".txt was loaded instead!!" , e);
-    	    } catch (Exception e1) {
-    	    	DialogManagerImpl.getModuleContext().logWarn("constructMenu", "main_menu_"
-    					+ userID
-    					+ ".txt does not exist also so Main menu for logged user has to be made before running again!" ,
-    				e1);
-    		throw new RuntimeException(e1.getMessage());
+	    try {
+		BundleConfigHome confHome = new BundleConfigHome(
+			DialogManagerImpl.getModuleContext().getID());
+		in = confHome.getConfFileAsStream("main_menu_" + userID
+			+ ".txt");
+		DialogManagerImpl.getModuleContext().logWarn(
+			"constructMenu",
+			"main_menu_" + userID + "_" + lang
+				+ ".txt does not exist so: main_menu_" + userID
+				+ ".txt was loaded instead!!", e);
+	    } catch (Exception e1) {
+		DialogManagerImpl
+			.getModuleContext()
+			.logWarn(
+				"constructMenu",
+				"main_menu_"
+					+ userID
+					+ ".txt does not exist also so Main menu for logged user has to be made before running again!",
+				e1);
+		throw new RuntimeException(e1.getMessage());
 
-    	    }
+	    }
 
-    	}
-    	return in;
+	}
+	return in;
     }
-    
+
 }
