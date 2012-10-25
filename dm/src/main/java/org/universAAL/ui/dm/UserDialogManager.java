@@ -40,7 +40,6 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
-import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
@@ -105,6 +104,11 @@ public class UserDialogManager implements DialogManager {
 	 * requests).
 	 */
 	private UIRequestPool dialogPool;
+	
+	/**
+	 * the current dialog
+	 */
+	private UIRequest current;
 
 	/**
 	 * Map submitIDs to {@link SubmitGroupListener} that will handle this call.
@@ -242,8 +246,8 @@ public class UserDialogManager implements DialogManager {
 				messagePool.getNextUIRequest();
 				// if message is ready, suspend current dialog or message.
 				if (isReady 
-						&& dialogPool.getCurrent() != null) {
-						dialogPool.suspend(dialogPool.getCurrent().getDialogID());	
+						&& current != null) {
+						dialogPool.suspend(current.getDialogID());	
 				}
 			} else {
 				/*
@@ -256,14 +260,15 @@ public class UserDialogManager implements DialogManager {
 				isReady = dialogPool.hasToChange()
 						&& messagePool.getCurrent() == null;
 				if (isReady 
-						&& dialogPool.getCurrent() != null) {
-						dialogPool.suspend(dialogPool.getCurrent().getDialogID());					
+						&& current != null) {
+						dialogPool.suspend(current.getDialogID());					
 				}
 				dialogPool.getNextUIRequest();
 			}
 		}
 		if (isReady) {
 			addListeners(request);
+			current = request;
 		}
 		return isReady;
 	}
@@ -301,10 +306,10 @@ public class UserDialogManager implements DialogManager {
 	}
 	
     /**
-     * This method is called when an event on the input bus occurs indicating
+     * This method is called when an event on the bus occurs indicating
      * that a dialog was aborted. It removes the dialog from the list (it
      * searches the lists {@link DialogManagerImpl#runningDialogs}, {@link DialogManagerImpl#suspendedDialogs}, and
-     * {@link DialogManagerImpl#waitingDialogs}) and unsubscribes from input bus.
+     * {@link DialogManagerImpl#waitingDialogs}).
      * 
      * @param dialogID
      */
@@ -328,6 +333,7 @@ public class UserDialogManager implements DialogManager {
 	 *            ID of the dialog that is now finished.
 	 */
 	public void dialogFinished(String dialogID) {
+		current = null;
 		new Thread(new ClosingTask(dialogID)).start();
 	}
 
@@ -345,10 +351,10 @@ public class UserDialogManager implements DialogManager {
 			// show next message
 			resumeUIRequest(messagePool.getNextUIRequest());
 		} else if (!dialogPool.listAllActive().isEmpty()
-				&& dialogPool.getCurrent() == null) {
+				&& current == null) {
 			// there are pending new dialogs
 			resumeUIRequest(dialogPool.getNextUIRequest());
-		} else if (dialogPool.getCurrent() == null
+		} else if (current == null
 				&& !suspendedDialogs.isEmpty()) {
 			/*
 			 * There aren't new dialogs, the current dialog is suspendend and
@@ -358,8 +364,7 @@ public class UserDialogManager implements DialogManager {
 			Iterator<UIRequest> i = suspendedDialogs.iterator();
 			dialogPool.unsuspend(i.next().getDialogID());
 			resumeUIRequest(dialogPool.getNextUIRequest());
-		} else if (messagePool.getCurrent() == null
-					&& dialogPool.getCurrent() == null){
+		} else if (current == null){
 			/*
 			 * no more dialogs, or active messages to show => show main menu
 			 */
@@ -376,6 +381,11 @@ public class UserDialogManager implements DialogManager {
 	public final void resumeUIRequest(UIRequest req) {
 		// XXX: has to add to myRequests??
 		if (req != null) {
+			if (current != null
+					&& current != req) {
+				dialogPool.suspend(current.getDialogID());
+				messagePool.suspend(current.getDialogID());
+			}
 			addListeners(req);
 				myUIRequests.add(req.getDialogID());
 			DialogManagerImpl.getInstance()
@@ -485,10 +495,8 @@ public class UserDialogManager implements DialogManager {
 		if (this.currentUserLocation != currentUserLocation) {
 			this.currentUserLocation = currentUserLocation;
 			// XXX: re-send current Request?
-			if (messagePool.getCurrent() != null) {
-				resumeUIRequest(messagePool.getCurrent());
-			} else if (dialogPool.getCurrent() != null) {
-				resumeUIRequest(dialogPool.getCurrent());
+			if (current != null) {
+				resumeUIRequest(current);
 			} else {
 				showSomething();
 			}
