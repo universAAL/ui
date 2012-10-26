@@ -53,7 +53,7 @@ public class FormLAF extends FormModel {
      */
     private JFrame frame = null;
 
-    private boolean vertical=false;
+    public static boolean vertical=false;
     public static final int H_CENTER=0;
     public static final int H_LEFT=1;
     public static final int H_RIGHT=2;
