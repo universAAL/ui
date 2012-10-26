@@ -47,7 +47,6 @@ import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
 import org.universAAL.ui.dm.userInteraction.ClassicSystemMenuProvider;
-import org.universAAL.ui.dm.userInteraction.ClassicWithSubmitsSystemMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider;
@@ -171,8 +170,8 @@ public class UserDialogManager implements DialogManager {
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	((AggregatedMainMenuProvider) mainMenuProvider)
 		.add(new FileMainMenuProvider(this));
-	// systemMenuProvider = new ClassicSystemMenuProvider(this);
-	systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
+	systemMenuProvider = new ClassicSystemMenuProvider(this);
+	//systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	messagePool = new DialogPriorityQueue();
 	dialogPool = new DialogPriorityQueue();
 	// dialogPool = new DialogPriorityQueueVerbosity();

@@ -112,8 +112,10 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 			tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableComponent.setColumnSelectionAllowed(false);
 			tableComponent.setRowSelectionAllowed(true);
+			TableJComponentCellRenderer tjccre = new TableJComponentCellRenderer(getRenderer());
 			tableComponent.setDefaultRenderer(
-					Object.class, new TableJComponentCellRenderer(getRenderer()));
+					Object.class, tjccre);
+			tableComponent.setDefaultEditor(Object.class,tjccre);
 			tableComponent.getSelectionModel().addListSelectionListener(this);
 		}
 		return tableComponent;

@@ -16,19 +16,24 @@
 package org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel;
 
 import java.awt.Component;
+import java.util.EventObject;
 
 import javax.swing.JComponent;
 import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellEditor;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * @author amedrano
  *
  */
-public class TableJComponentCellRenderer extends DefaultTableCellRenderer {
+public class TableJComponentCellRenderer extends DefaultTableCellRenderer implements TableCellEditor {
 
 	/**
 	 * 
@@ -36,6 +41,10 @@ public class TableJComponentCellRenderer extends DefaultTableCellRenderer {
 	private static final long serialVersionUID = -6364850374955049734L;
 
 	private Renderer render;
+
+	private JComponent jcomp;
+
+	private FormControl fc;
 	
 	public TableJComponentCellRenderer(Renderer render) {
 		super();
@@ -48,13 +57,55 @@ public class TableJComponentCellRenderer extends DefaultTableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		if (value instanceof FormControl) {
-			FormControl fc = (FormControl) value;
-			JComponent jc = render.getModelMapper().getModelFor(fc).getComponent();
+			fc = (FormControl) value;
+			jcomp = render.getModelMapper().getModelFor(fc).getComponent();
 			//this.add(jc);
-			return jc;
+			return jcomp;
 		} else {
 			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
 				row, column);
+		}
+	}
+
+	public Object getCellEditorValue() {
+		return jcomp;
+	}
+
+	public boolean isCellEditable(EventObject anEvent) {
+		return fc != null
+				&& (fc instanceof Input
+						|| fc instanceof Submit);
+	}
+
+	public boolean shouldSelectCell(EventObject anEvent) {
+		return true;
+	}
+
+	public boolean stopCellEditing() {
+		return true;
+	}
+
+	public void cancelCellEditing() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addCellEditorListener(CellEditorListener l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeCellEditorListener(CellEditorListener l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Component getTableCellEditorComponent(JTable table, Object value,
+			boolean isSelected, int row, int column) {
+		if (jcomp != null)	{
+			return jcomp;
+		} else {
+			return super.getTableCellRendererComponent(table, value, isSelected, false, row, column);
 		}
 	}
 
