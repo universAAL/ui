@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -79,7 +77,7 @@ public class TableTest2 extends JFrame {
 			SubdialogTrigger.VAR_REPEATABLE_ID)
 	.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 
-	rtm = new RepeatTableModel(repeat,render);
+	rtm = new RepeatTableModel(repeat);
 	System.out.println("Table (" + rtm.getColumnCount() + ", "
 		+ rtm.getRowCount() + ")");
 	rmt = new RepeatModelTableLAF(repeat, render);

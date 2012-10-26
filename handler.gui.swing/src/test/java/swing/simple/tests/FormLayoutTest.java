@@ -1,24 +1,20 @@
 package swing.simple.tests;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
-
-import java.awt.FlowLayout;
-
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.AbstractListModel;
 
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
