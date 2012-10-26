@@ -15,15 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.classic;
 
-import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -33,8 +29,11 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
  * @author pabril
  * 
  */
-public class GroupLAF extends GroupModel implements AncestorListener {
+public class GroupLAF extends GroupModel {
 
+    private static final String PROP_ODD = "http://ontology.itaca.es/ClassicGUI.owl#odd";
+    private boolean switchMe=false;
+    
     /**
      * Constructor.
      * 
@@ -48,8 +47,28 @@ public class GroupLAF extends GroupModel implements AncestorListener {
     @Override
     public JComponent getNewComponent() {
 	needsLabel=false;
+	if (!this.isTheIOGroup() && !this.isTheMainGroup() && !this.isTheSubmitGroup()) {
+	    Group parent = fc.getParentGroup();
+	    if (parent != null) {
+		if (parent.getProperty(PROP_ODD) == null) {
+		    // I am odd, switch me (IOControls is Even [is 0])
+		    fc.setProperty(PROP_ODD, Boolean.TRUE);
+		    switchMe = true;
+		}
+	    }
+	}
 	JPanel panel = new JPanel();
-	panel.addAncestorListener(this);
+	/* Logic:
+	 * Constant:	0 0 0 0 1 1 1 1     
+	 * Vertical:	0 0 1 1 0 0 1 1
+	 * Switch:	0 1 0 1 0 1 0 1
+	 * V Layout ->	0 1 1 0 0 0 1 1
+	 */
+	if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
+	    panel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
+	}else{
+	    panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
+	}
 	return panel;
     }
 
@@ -67,32 +86,6 @@ public class GroupLAF extends GroupModel implements AncestorListener {
 		}
 	    }
 	}
-    }
-
-    public void ancestorAdded(AncestorEvent event) {
-	Container parent = jc.getParent();
-	if (parent != null) {
-	    LayoutManager lay = jc.getParent().getLayout();
-	    if (lay instanceof FlowLayout) {
-		jc.setLayout(FormLAF.constant ? new FlowLayout(
-			FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap) : new MyVerticalFlowLayout(
-			MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
-	    } else if (lay instanceof MyVerticalFlowLayout) {
-		jc.setLayout(FormLAF.constant ? new MyVerticalFlowLayout(
-			MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap) : new FlowLayout(
-			FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
-	    }
-	}
-    }
-
-    public void ancestorRemoved(AncestorEvent event) {
-	// TODO Auto-generated method stub
-
-    }
-
-    public void ancestorMoved(AncestorEvent event) {
-	// TODO Auto-generated method stub
-
     }
 
 }
