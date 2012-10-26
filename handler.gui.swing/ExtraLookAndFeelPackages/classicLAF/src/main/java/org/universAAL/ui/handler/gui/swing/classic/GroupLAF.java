@@ -61,7 +61,7 @@ public class GroupLAF extends GroupModel {
 	    /* Logic:
 	     * Constant:	0 0 0 0 1 1 1 1     
 	     * Vertical:	0 0 1 1 0 0 1 1
-	     * Switch:	0 1 0 1 0 1 0 1
+	     * Switch:		0 1 0 1 0 1 0 1
 	     * V Layout ->	0 1 1 0 0 0 1 1
 	     */
 	    if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
