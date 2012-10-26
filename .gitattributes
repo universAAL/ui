@@ -60,6 +60,12 @@ handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/bu
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_white_bright.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uAALmicro.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uaal.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/Invisible_Button.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_green_bright.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_green_dark.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_white_bright.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/uAALmicro.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/uaal.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Health_button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Agenda_Button.png -text

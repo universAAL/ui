@@ -22,6 +22,8 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+
 /**
  * Color and Font Theme for MetalTheme.
  * 
@@ -92,11 +94,11 @@ public class ColorLAF extends DefaultMetalTheme {
     public FontUIResource fontItalic = new FontUIResource("Corbel", Font.ITALIC, FONT_SIZE_BASE - 2);
     
     protected static final ImageIcon button_normal = new ImageIcon(ColorLAF.class.getResource(
-		"/main/button_white_bright.png"));
+		"button_white_bright.png"));
     protected static final ImageIcon button_focused = new ImageIcon(ColorLAF.class.getResource(
-		"/main/button_green_bright.png"));
+		"button_green_bright.png"));
     protected static final ImageIcon button_pressed = new ImageIcon(ColorLAF.class.getResource(
-		"/main/button_green_dark.png"));
+		"button_green_dark.png"));
 
 
     protected ColorUIResource getPrimary1() {	//Unknown
