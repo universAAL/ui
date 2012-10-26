@@ -47,7 +47,9 @@ public class GroupLAF extends GroupModel {
     @Override
     public JComponent getNewComponent() {
 	needsLabel=false;
+	JPanel panel = new JPanel();
 	if (!this.isTheIOGroup() && !this.isTheMainGroup() && !this.isTheSubmitGroup()) {
+	    // Apply this only to non-official groups
 	    Group parent = fc.getParentGroup();
 	    if (parent != null) {
 		if (parent.getProperty(PROP_ODD) == null) {
@@ -56,18 +58,17 @@ public class GroupLAF extends GroupModel {
 		    switchMe = true;
 		}
 	    }
-	}
-	JPanel panel = new JPanel();
-	/* Logic:
-	 * Constant:	0 0 0 0 1 1 1 1     
-	 * Vertical:	0 0 1 1 0 0 1 1
-	 * Switch:	0 1 0 1 0 1 0 1
-	 * V Layout ->	0 1 1 0 0 0 1 1
-	 */
-	if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
-	    panel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
-	}else{
-	    panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
+	    /* Logic:
+	     * Constant:	0 0 0 0 1 1 1 1     
+	     * Vertical:	0 0 1 1 0 0 1 1
+	     * Switch:	0 1 0 1 0 1 0 1
+	     * V Layout ->	0 1 1 0 0 0 1 1
+	     */
+	    if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
+		panel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
+	    }else{
+		panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
+	    }
 	}
 	return panel;
     }
