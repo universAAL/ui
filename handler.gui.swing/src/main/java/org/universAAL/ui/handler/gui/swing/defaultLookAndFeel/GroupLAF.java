@@ -16,7 +16,6 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;

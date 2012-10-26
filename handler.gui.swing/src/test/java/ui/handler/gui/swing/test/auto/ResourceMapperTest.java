@@ -15,9 +15,9 @@
  ******************************************************************************/
 package ui.handler.gui.swing.test.auto;
 
-import org.universAAL.ui.handler.gui.swing.ResourceMapper;
-
 import junit.framework.TestCase;
+
+import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 
 /**
  * @author amedrano

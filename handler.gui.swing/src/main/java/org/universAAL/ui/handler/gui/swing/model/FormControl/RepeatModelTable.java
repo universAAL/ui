@@ -106,7 +106,7 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 	protected JTable getJTable() {
 		Repeat r = (Repeat)fc;
 		if (repeatTableModel == null) {
-			repeatTableModel = new RepeatTableModel(r,getRenderer());
+			repeatTableModel = new RepeatTableModel(r);
 			tableComponent = new JTable(repeatTableModel);
 			tableComponent.setFillsViewportHeight(true);
 			tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

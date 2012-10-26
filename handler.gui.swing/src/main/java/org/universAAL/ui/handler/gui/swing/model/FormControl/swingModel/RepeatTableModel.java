@@ -44,7 +44,6 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * This class implements a multiple inheritance of {@link Repeat} and
@@ -69,12 +68,6 @@ public class RepeatTableModel extends AbstractTableModel {
     private FormControl[] elems;
 
 	/**
-	 * Reference to the Renderer to be able to render controls inside
-	 * tables.
-	 */
-	private Renderer render;
-
-	/**
 	 * A Reprocessed list of Forms to enable Inputs and Submits.
 	 */
 	private List repeatSubFormList;
@@ -85,9 +78,8 @@ public class RepeatTableModel extends AbstractTableModel {
      * @param repeat
      *            initial {@link Repeat} object
      */
-    public RepeatTableModel(Repeat repeat, Renderer render) {
+    public RepeatTableModel(Repeat repeat) {
 	this.repeat = repeat;
-	this.render = render;
 	elems = repeat.getChildren();
 	if (elems == null || elems.length != 1) {
 	    throw new IllegalArgumentException("Malformed argument!");

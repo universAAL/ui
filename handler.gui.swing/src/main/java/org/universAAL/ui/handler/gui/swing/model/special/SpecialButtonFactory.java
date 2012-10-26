@@ -22,7 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.AbstractButton;
-import javax.swing.JButton;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;

@@ -36,7 +36,6 @@ import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.vcard.VCardOntology;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestFMRenderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 
 
