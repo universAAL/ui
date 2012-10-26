@@ -277,7 +277,14 @@ public class RepeatTableModel extends AbstractTableModel {
     // elems[columnIndex].getControlRestrictions());
     // }
     
-    private List generateSubForms() {
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+		// TODO Auto-generated method stub
+		return (elems[columnIndex] instanceof Input 
+				&& repeat.listEntriesDeletable())
+				|| elems[columnIndex] instanceof Submit;
+	}
+
+	private List generateSubForms() {
     	ArrayList formList = new ArrayList();
     	Object repeatData = getValue(repeat.getReferencedPPath().getThePath(), 
     			repeat.getFormObject().getData());
