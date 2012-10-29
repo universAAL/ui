@@ -88,7 +88,16 @@ public class FormLAF extends FormModel {
 		vGroupHalign=H_CENTER;
 		hGroupHalign=FlowLayout.CENTER;
 	    }
+	}else{
+	    setDefaults();
 	}
+    }
+
+    private void setDefaults() {
+	vertical=false;
+	vGroupHalign=H_CENTER;
+	hGroupHalign=FlowLayout.CENTER;
+	constant=false;
     }
 
     /**
