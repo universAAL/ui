@@ -19,8 +19,11 @@ import java.awt.event.ActionEvent;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -74,22 +77,47 @@ public class uCCButton implements SpecialButtonInterface {
 
 	
 	public static boolean uCCPresentInNode(){
-		URL url;
-		HttpURLConnection connection = null;
-		try {
-			url = new URL(UCC_URL);
-			connection = (HttpURLConnection) url.openConnection();
-			connection.getOutputStream();
-		} catch (MalformedURLException e) {
-			return false;
-		} catch (IOException e) {
-			return false;
-		}  finally {
-			if (connection != null) {
-				
-				connection.disconnect();
-			}
-		}
+		
+		
+		/* Trying to connect with httpURLConection */
+//		URL url;
+//		HttpURLConnection connection = null;
+//		try {
+//			url = new URL(UCC_URL);
+//			connection = (HttpURLConnection) url.openConnection();           
+//			connection.setDoOutput(true);
+//			connection.setDoInput(true);
+//			connection.getOutputStream();
+//		} catch (MalformedURLException e) {
+//			return false;
+//		} catch (IOException e) {
+//			return false;
+//		}  finally {
+//			if (connection != null) {
+//				connection.disconnect();
+//			}
+//		}
+//		return true;
+		
+		/* Using bare sockets */
+		
+//		Socket s = null;
+//		try {
+//			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
+//			boolean r = s.isConnected();
+//			s.close();
+//			return r;
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return false;
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return false;
+//		} 
+		
+		/* To Test call */ 
 		return true;
 	}
 	
