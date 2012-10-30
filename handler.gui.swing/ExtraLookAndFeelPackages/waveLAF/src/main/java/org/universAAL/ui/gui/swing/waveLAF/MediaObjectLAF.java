@@ -15,8 +15,14 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+
 import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.ui.gui.swing.waveLAF.support.ImageMedia;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
 
 /**
@@ -32,5 +38,19 @@ public class MediaObjectLAF extends MediaObjectModel {
     public MediaObjectLAF(MediaObject control, Renderer render) {
         super(control, render);
     }
+
+    @Override
+    public JComponent getNewComponent() {
+	MediaObject mo = (MediaObject) fc;
+	if (mo.getContentType().startsWith("image")) {
+	    Icon icon = IconFactory.getIcon(mo.getContentURL());
+	    if (icon != null) {
+	    	return new ImageMedia(fc.getLabel().getText(), icon);
+	    }
+	} 
+	return super.getNewComponent();
+    }
+    
+    
 
 }
