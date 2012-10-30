@@ -16,7 +16,9 @@
 package org.universAAL.ui.gui.swing.waveLAF.specialButtons;
 
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -101,24 +103,24 @@ public class uCCButton implements SpecialButtonInterface {
 		
 		/* Using bare sockets */
 		
-		Socket s = null;
-		try {
-			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
-			boolean r = s.isConnected();
-			s.close();
-			return r;
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		} 
+//		Socket s = null;
+//		try {
+//			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
+//			boolean r = s.isConnected();
+//			s.close();
+//			return r;
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return false;
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return false;
+//		} 
 		
 		/* To Test call */ 
-//		return true;
+		return true;
 	}
 	
 	public static void openuCCGUI() throws Exception{
@@ -156,7 +158,7 @@ public class uCCButton implements SpecialButtonInterface {
 		//sendPOSTRequest(UCC_URL, "url=http%3A%2F%2Fplease.open.gui");
 		sendPOSTRequest(UCC_URL, 
 				"url=" +URLEncoder.encode("http://please.open.gui","utf-8") 
-				+ "&submit=Open+GUI");
+				+ "&submit=" + URLEncoder.encode("Open+GUI", "utf-8"));
 	}
 	
 	public static void sendPOSTRequest(String request, String urlParameters) throws Exception {
@@ -171,6 +173,10 @@ public class uCCButton implements SpecialButtonInterface {
 		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
+		
+		InputStreamReader ir = new InputStreamReader(connection.getInputStream());
+		while (ir.read() != -1) {}
+		ir.close();
 		connection.disconnect();
 	}
 }
