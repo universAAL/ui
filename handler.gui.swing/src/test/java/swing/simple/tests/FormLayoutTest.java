@@ -1,5 +1,6 @@
 package swing.simple.tests;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.AbstractListModel;
@@ -127,6 +128,10 @@ public class FormLayoutTest extends JFrame {
 		
 		JButton btnNewButton = new JButton("button");
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton2 = new JButton("button2");
+		btnNewButton2.setMaximumSize(new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE));
+		contentPane.add(btnNewButton2);
 	}
 
 }

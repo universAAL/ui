@@ -280,48 +280,44 @@ public class FormLayout implements LayoutManager {
 	private JLabel l;
 	private boolean isHorizontal;
 	protected Dimension size;
+	protected Dimension pSize;
 
 	protected Unit() {	}
 	
 	public Unit(JLabel label) {
 	    this.l = label;
 	    this.jc = (Component) label.getLabelFor();
+	    this.pSize = new Dimension();
 	    if (jc == null){
-		jc = l;
+	    	jc = l;
+	    	pSize = l.getPreferredSize();
 	    }
 	    if (jc.getPreferredSize().height
-		    > l.getPreferredSize().height + LABEL_HEIGHT_THRESHOLD){
-		isHorizontal = false;
+	    		> l.getPreferredSize().height + LABEL_HEIGHT_THRESHOLD){
+	    	isHorizontal = false;
+	    	pSize.width = Math.max(l.getPreferredSize().width,
+	    			jc.getPreferredSize().width);
+	    	pSize.height = l.getPreferredSize().height
+	    			+ gap/2
+	    			+ jc.getPreferredSize().height;
 	    } else {
-		isHorizontal = true;
+	    	isHorizontal = true;
+	    	pSize.height = Math.max(l.getPreferredSize().height,
+	    			jc.getPreferredSize().height);
+	    	pSize.width = l.getPreferredSize().width
+	    			+ gap/2
+	    			+ jc.getPreferredSize().width;
 	    }
 	}
 	
 	public Unit(Component comp) {
 	    this.jc = comp;
 	    this.l = null;
+	    pSize = jc.getPreferredSize();
 	}
 	
 	public Dimension getPreferredSize(){
-	    Dimension d = new Dimension();
-	    if (l != null){
-		if (isHorizontal){
-		    d.height = Math.max(l.getPreferredSize().height,
-			    jc.getPreferredSize().height);
-		    d.width = l.getPreferredSize().width
-			    + gap/2
-			    + jc.getPreferredSize().width;
-		} else {
-		    d.width = Math.max(l.getPreferredSize().width,
-			    jc.getPreferredSize().width);
-		    d.height = l.getPreferredSize().height
-			    + gap/2
-			    + jc.getPreferredSize().height;
-		}
-	    } else {
-		d = jc.getPreferredSize();
-	    }
-	    return d;
+	    return pSize;
 	}
 	
 	public void setSize(Dimension size){
@@ -336,7 +332,7 @@ public class FormLayout implements LayoutManager {
 			}
 
 		} else {
-			//TODO check preferred dimensions and scale
+			// XXX check maximum dimensions and scale ?
 			jc.setSize(size);
 		}
 	}
@@ -362,9 +358,10 @@ public class FormLayout implements LayoutManager {
     
     class Row {
 	
-	protected int width;
+	protected int width = 0;
 	protected List units;
-	protected int maxHeight;
+	protected int maxHeight = 0;
+	protected int currentPrefWidth = 0;
 
 	public Row() {
 	    units = new ArrayList();
@@ -379,19 +376,12 @@ public class FormLayout implements LayoutManager {
 	}
 
 	public void setSize() {
+		int ratio = (width - (1 + count() )*gap) ;
 		// Set sizes
-		int sumW = 0;
-		maxHeight = 0;
-		for (Iterator i = units.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			Dimension d = u.getPreferredSize();
-			sumW += d.width;
-			maxHeight = Math.max(maxHeight,d.height);
-		}
 		for (Iterator i = units.iterator(); i.hasNext();) {
 			Unit u = (Unit) i.next();
 			int myWidht = u.getPreferredSize().width;
-			myWidht = myWidht * (width - (1 + count() )*gap) / sumW;
+			myWidht = myWidht * ratio / currentPrefWidth;
 			u.setSize(new Dimension(myWidht, maxHeight));
 		}
 	}
@@ -404,8 +394,7 @@ public class FormLayout implements LayoutManager {
 			Unit u = (Unit) i.next();
 			u.setLocation(x, y);
 			x += gap + u.getSize().width;
-		}
-		
+		}		
 	}
 
 	public Row(int width) {
@@ -418,27 +407,15 @@ public class FormLayout implements LayoutManager {
 	}
 	
 	public boolean fits(Unit newUnit){
-		int currentWidth = 0;
-		for (Iterator i = units.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			currentWidth += u.getPreferredSize().width;
-		}
-	    return (width - currentWidth) >= newUnit.getPreferredSize().width ;
+		return (width - currentPrefWidth - (count() + 1 ) * gap)
+				>= newUnit.getPreferredSize().width ;
 	}
 	
 	public void add(Unit newUnit){
 	    units.add(newUnit);
-	}
-	
-	public Dimension getPreferredSize(){
-		Dimension size = new Dimension(gap,0);
-		for (Iterator i = units.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			Dimension uS = u.getPreferredSize();
-			size.width += uS.width + gap;
-			size.height = Math.max(size.height, uS.height);
-		}
-		return size;
+		Dimension d = newUnit.getPreferredSize();
+	    currentPrefWidth += d.width;
+		maxHeight = Math.max(maxHeight,d.height);	    
 	}
     }
 
@@ -447,28 +424,19 @@ public class FormLayout implements LayoutManager {
     	List units = new ArrayList();
     	
 		public AggregatedUnit(Component comp) {
-			units.add(new Unit(comp));
-		}
-
-		public AggregatedUnit(JLabel label) {
-			units.add(new Unit(label));
+			Unit u = new Unit(comp);
+			pSize = u.pSize;
+			units.add(u);
 		}
 		
 		public AggregatedUnit(Unit u) {
 			units.add(u);
+			pSize = u.pSize;
 		}
 
 		/** {@inheritDoc} */
 		public Dimension getPreferredSize() {
-			int height = 0;
-			int width = 0;
-			for (Iterator i = units.iterator(); i.hasNext();) {
-				Unit u = (Unit) i.next();
-				Dimension uD = u.getPreferredSize();
-				height += uD.height + gap;
-				width = Math.max(width, uD.width);
-			}
-			return new Dimension(width, height - gap);
+			return new Dimension(pSize.width, pSize.height - gap);
 		}
 
 		/** {@inheritDoc} */
@@ -502,7 +470,10 @@ public class FormLayout implements LayoutManager {
 		}
 
 		public void add(Unit newUnit) {
-			units.add(newUnit);			
+			units.add(newUnit);	
+			Dimension uD = newUnit.getPreferredSize();
+			pSize.height += uD.height + gap;
+			pSize.width = Math.max(pSize.width, uD.width);		
 		}
 
 		public void setHeight(int height) {
@@ -555,13 +526,20 @@ public class FormLayout implements LayoutManager {
 
 		/** {@inheritDoc} */
 		public void add(Unit newUnit) {
-			maxHeight = Math.max(maxHeight, newUnit.getPreferredSize().height);
+			Dimension nUd = newUnit.getPreferredSize();
+			maxHeight = Math.max(maxHeight, nUd.height);
 			int count = count();
 			if (newUnit.isHorizontal
 					&& count > 0
 					&& units.get(count-1) instanceof AggregatedUnit
 					&& ((AggregatedUnit)units.get(count-1)).fits(newUnit)) {
-				 ((AggregatedUnit)units.get(count-1)).add(newUnit);
+				// update width
+				AggregatedUnit lastAU = ((AggregatedUnit)units.get(count-1));
+				currentPrefWidth -= lastAU.getPreferredSize().width;
+				// add the new Unit
+				lastAU.add(newUnit);
+				// and update Width
+				currentPrefWidth += lastAU.getPreferredSize().width;
 			} else if (newUnit.isHorizontal) {
 				AggregatedUnit aU = new AggregatedUnit(newUnit);
 				aU.setHeight(maxHeight);
