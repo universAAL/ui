@@ -16,13 +16,13 @@
 package org.universAAL.ui.gui.swing.waveLAF.specialButtons;
 
 import java.awt.event.ActionEvent;
-import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
 
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -101,24 +101,24 @@ public class uCCButton implements SpecialButtonInterface {
 		
 		/* Using bare sockets */
 		
-//		Socket s = null;
-//		try {
-//			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
-//			boolean r = s.isConnected();
-//			s.close();
-//			return r;
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return false;
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return false;
-//		} 
+		Socket s = null;
+		try {
+			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
+			boolean r = s.isConnected();
+			s.close();
+			return r;
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} 
 		
 		/* To Test call */ 
-		return true;
+//		return true;
 	}
 	
 	public static void openuCCGUI() throws Exception{
@@ -154,23 +154,21 @@ public class uCCButton implements SpecialButtonInterface {
 		 * Using native Java
 		 */
 		//sendPOSTRequest(UCC_URL, "url=http%3A%2F%2Fplease.open.gui");
-		sendPOSTRequest(UCC_URL, "url=http://please.open.gui");
+		sendPOSTRequest(UCC_URL, 
+				"url=" +URLEncoder.encode("http://please.open.gui","utf-8") 
+				+ "&submit=Open+GUI");
 	}
 	
 	public static void sendPOSTRequest(String request, String urlParameters) throws Exception {
-		URL url = new URL(request); 
+		URL url = new URL(request);
 		HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
 		connection.setDoOutput(true);
-		connection.setDoInput(true);
 		connection.setInstanceFollowRedirects(false); 
 		connection.setRequestMethod("POST"); 
-		connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
 		connection.setRequestProperty("charset", "utf-8");
-		connection.setRequestProperty("Content-Length", "" + Integer.toString(urlParameters.getBytes().length));
-		connection.setUseCaches (false);
 
-		DataOutputStream wr = new DataOutputStream(connection.getOutputStream ());
-		wr.writeBytes(urlParameters);
+		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream ());
+		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
 		connection.disconnect();
