@@ -79,7 +79,7 @@ public class UserDialogManager implements DialogManager {
 
     /**
      * {@link Adapter} {@link List} to make adaptations to all {@link UIRequest}
-     * s for this {@link User}.
+     * for this {@link User}.
      */
     private List<Adapter> adapterList;
 
@@ -131,12 +131,11 @@ public class UserDialogManager implements DialogManager {
      */
     private Set<String> myUIRequests;
 
-    
     /**
      * A set of resumed {@link UIRequest}.
      */
     private Set<UIRequest> resumedUIRequests;
-    
+
     /**
      * The internationalization file for strings meant to be read by the user.
      */
@@ -171,7 +170,7 @@ public class UserDialogManager implements DialogManager {
 	((AggregatedMainMenuProvider) mainMenuProvider)
 		.add(new FileMainMenuProvider(this));
 	systemMenuProvider = new ClassicSystemMenuProvider(this);
-	//systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
+	// systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	messagePool = new DialogPriorityQueue();
 	dialogPool = new DialogPriorityQueue();
 	// dialogPool = new DialogPriorityQueueVerbosity();
@@ -337,12 +336,12 @@ public class UserDialogManager implements DialogManager {
      *            ID of the dialog that is now finished.
      */
     public void dialogFinished(String dialogID) {
-    	if (!resumedUIRequests.contains(current)) {
-    		current = null;    
-    		new Thread(new ClosingTask(dialogID), "Closing Task").start();		
-    	} else {
-    		resumedUIRequests.remove(current);
-    	}
+	if (!resumedUIRequests.contains(current)) {
+	    current = null;
+	    new Thread(new ClosingTask(dialogID), "Closing Task").start();
+	} else {
+	    resumedUIRequests.remove(current);
+	}
     }
 
     /**
@@ -367,7 +366,8 @@ public class UserDialogManager implements DialogManager {
 	     * there are more dialogs that can be shown => unsuspend one dialog
 	     * and update with next dialog
 	     */
-		//DialogManagerImpl.getModuleContext().logDebug("UDM", "Resuming suspended", null);
+	    // DialogManagerImpl.getModuleContext().logDebug("UDM",
+	    // "Resuming suspended", null);
 	    Iterator<UIRequest> i = suspendedDialogs.iterator();
 	    dialogPool.unsuspend(i.next().getDialogID());
 	    resumeUIRequest(dialogPool.getNextUIRequest());
@@ -447,10 +447,10 @@ public class UserDialogManager implements DialogManager {
      *            ID of the dialog.
      */
     public void suspendDialog(String dialogID) {
-    	dialogPool.suspend(dialogID);
-    	if (current.getDialogID().equals(dialogID)) {
-    		current = null;
-    	}
+	dialogPool.suspend(dialogID);
+	if (current.getDialogID().equals(dialogID)) {
+	    current = null;
+	}
     }
 
     /**
