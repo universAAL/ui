@@ -54,6 +54,8 @@ handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universA
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/package.html -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/specialButtons/uCCButton.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/specialButtons/uStoreButton.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/Invisible_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_bright.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_dark.png -text

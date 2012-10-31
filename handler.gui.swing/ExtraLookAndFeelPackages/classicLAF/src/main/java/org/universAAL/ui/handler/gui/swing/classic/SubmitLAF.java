@@ -28,6 +28,8 @@ import javax.swing.SwingConstants;
 
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton;
+import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 
 /**
@@ -50,6 +52,8 @@ public class SubmitLAF extends SubmitModel implements ComponentListener{
      */
     public SubmitLAF(Submit control, Renderer render) {
 	super(control, render);
+	specialBFactory.add(uCCButton.class);
+	specialBFactory.add(uStoreButton.class);
     }
 
     /** {@inheritDoc} */
