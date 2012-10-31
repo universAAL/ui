@@ -22,7 +22,11 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton;
+import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -69,6 +73,9 @@ public class GroupLAF extends GroupModel {
 	    }else{
 		panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
 	    }
+	} else if (this.isTheMainGroup() && this.isInMainMenu()) {
+	    new Submit((Group) fc, new Label("uCC", null), uCCButton.SUBMIT_ID);
+	    new Submit((Group) fc, new Label("uStore", null), uStoreButton.SUBMIT_ID);
 	}
 	return panel;
     }
