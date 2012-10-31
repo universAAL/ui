@@ -50,6 +50,13 @@ public class MediaObjectModel extends OutputModel {
      * @return {@inheritDoc}
      */
     public JComponent getNewComponent() {
+    	MediaObject mo = (MediaObject) fc;
+    	if (mo.getContentType().startsWith("image")) {
+    	    Icon icon = IconFactory.getIcon(mo.getContentURL());
+    	    if (icon != null) {
+    	    	return new JLabel(fc.getLabel().getText(),icon, JLabel.CENTER);
+    	    }
+    	}
     	return new JLabel(fc.getLabel().getText());
     }
 
@@ -58,31 +65,24 @@ public class MediaObjectModel extends OutputModel {
      */
     protected void update() {
 
+    	super.update();    	
 	MediaObject mo = (MediaObject) fc;
 	if (mo.getContentType().startsWith("image")) {
-	    JLabel jl = (JLabel) jc;
-	    Icon icon = IconFactory.getIcon(mo.getContentURL());
-	    if (icon != null) {
-	    	getRenderer().getModuleContext().logDebug(this.getClass().getName() +":","Rendering icon", null);
-	    	//jl.setIcon(icon);
-	    	jc = new JLabel(icon);
-	    }
-	    jl.setName(fc.getURI());
 	    int x, y;
 	    x = mo.getResolutionPreferredX();
 	    y = mo.getResolutionPreferredY();
 	    if (x != 0 && y != 0) {
-		jl.setPreferredSize(new Dimension(x, y));
+		jc.setPreferredSize(new Dimension(x, y));
 	    }
 	    x = mo.getResolutionMaxX();
 	    y = mo.getResolutionMaxY();
 	    if (x != 0 && y != 0) {
-		jl.setMaximumSize(new Dimension(x, y));
+		jc.setMaximumSize(new Dimension(x, y));
 	    }
 	    x = mo.getResolutionMinX();
 	    y = mo.getResolutionMinY();
 	    if (x != 0 && y != 0) {
-		jl.setMinimumSize(new Dimension(x, y));
+		jc.setMinimumSize(new Dimension(x, y));
 	    }
 	}
     }

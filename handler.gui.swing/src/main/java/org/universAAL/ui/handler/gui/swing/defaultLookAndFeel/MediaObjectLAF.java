@@ -15,13 +15,15 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import javax.swing.JLabel;
+
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
 
 /**
  * @author pabril
- * 
+ * @author amedrano
  */
 public class MediaObjectLAF extends MediaObjectModel {
 
@@ -35,4 +37,13 @@ public class MediaObjectLAF extends MediaObjectModel {
 		super(control, render);
 	}
 
+	/** {@inheritDoc} */
+	protected void update() {
+		super.update();
+		if (jc instanceof JLabel) {
+			JLabel l = (JLabel) jc;
+			l.setVerticalTextPosition(JLabel.BOTTOM);
+			l.setHorizontalTextPosition(JLabel.CENTER);
+		}
+	}
 }

@@ -16,7 +16,6 @@
 package org.universAAL.ui.gui.swing.waveLAF.specialButtons;
 
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -30,17 +29,7 @@ import java.net.UnknownHostException;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
-//import java.net.MalformedURLException;
-//import java.util.ArrayList;
-//import java.util.List;
-//import org.apache.http.HttpEntity;
-//import org.apache.http.HttpResponse;
-//import org.apache.http.NameValuePair;
-//import org.apache.http.client.entity.UrlEncodedFormEntity;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.message.BasicNameValuePair;
-//import org.apache.http.util.EntityUtils;
+
 
 /**
  * @author amedrano
@@ -80,47 +69,22 @@ public class uCCButton implements SpecialButtonInterface {
 	
 	public static boolean uCCPresentInNode(){
 		
-		
-		/* Trying to connect with httpURLConection */
-//		URL url;
-//		HttpURLConnection connection = null;
-//		try {
-//			url = new URL(UCC_URL);
-//			connection = (HttpURLConnection) url.openConnection();           
-//			connection.setDoOutput(true);
-//			connection.setDoInput(true);
-//			connection.getOutputStream();
-//		} catch (MalformedURLException e) {
-//			return false;
-//		} catch (IOException e) {
-//			return false;
-//		}  finally {
-//			if (connection != null) {
-//				connection.disconnect();
-//			}
-//		}
-//		return true;
-		
 		/* Using bare sockets */
 		
-//		Socket s = null;
-//		try {
-//			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
-//			boolean r = s.isConnected();
-//			s.close();
-//			return r;
-//		} catch (UnknownHostException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return false;
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return false;
-//		} 
+		Socket s = null;
+		try {
+			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
+			boolean r = s.isConnected();
+			s.close();
+			return r;
+		} catch (UnknownHostException e) {
+			return false;
+		} catch (IOException e) {
+			return false;
+		} 
 		
 		/* To Test call */ 
-		return true;
+//		return true;
 	}
 	
 	public static void openuCCGUI() throws Exception{
@@ -130,32 +94,10 @@ public class uCCButton implements SpecialButtonInterface {
 		 * <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Open GUI">
 		 * </FORM>
 		 */
-		/*
-		 * Using apache common httpClient
-		 */
-		/*
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-
-		HttpPost httpPost = new HttpPost("http://127.0.0.1:9988");
-		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-		nvps.add(new BasicNameValuePair("url", "http://please.open.gui"));
-		nvps.add(new BasicNameValuePair("submit", "Open GUI"));
-		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
-		HttpResponse response2 = httpclient.execute(httpPost);
-
-		try {
-		    HttpEntity entity2 = response2.getEntity();
-		    // do something useful with the response body
-		    // and ensure it is fully consumed
-		    EntityUtils.consume(entity2);
-		} finally {
-		    httpPost.releaseConnection();
-		} */
 		
 		/*
 		 * Using native Java
 		 */
-		//sendPOSTRequest(UCC_URL, "url=http%3A%2F%2Fplease.open.gui");
 		sendPOSTRequest(UCC_URL, 
 				"url=" +URLEncoder.encode("http://please.open.gui","utf-8") 
 				+ "&submit=" + URLEncoder.encode("Open+GUI", "utf-8"));

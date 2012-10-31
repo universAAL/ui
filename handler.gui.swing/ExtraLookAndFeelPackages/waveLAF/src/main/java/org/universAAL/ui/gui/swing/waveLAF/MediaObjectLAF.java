@@ -17,7 +17,6 @@ package org.universAAL.ui.gui.swing.waveLAF;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
-import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.gui.swing.waveLAF.support.ImageMedia;
