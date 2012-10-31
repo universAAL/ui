@@ -73,7 +73,7 @@ public class uCCButton implements SpecialButtonInterface {
 		
 		Socket s = null;
 		try {
-			s = new Socket(InetAddress.getLoopbackAddress(), 9988);
+			s = new Socket(InetAddress.getByName("localhost"), 9988);
 			boolean r = s.isConnected();
 			s.close();
 			return r;
