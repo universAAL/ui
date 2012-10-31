@@ -27,8 +27,6 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  */
 public class uStoreButton implements SpecialButtonInterface {
 
-	private Renderer render;
-
 	private Submit submit;
 	
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uStore";
@@ -37,7 +35,6 @@ public class uStoreButton implements SpecialButtonInterface {
 	 * 
 	 */
 	public uStoreButton(Submit s, Renderer render) {
-		this.render = render;
 		submit = s;
 	}
 
