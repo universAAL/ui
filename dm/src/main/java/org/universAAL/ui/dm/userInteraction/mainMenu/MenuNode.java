@@ -99,7 +99,7 @@ public class MenuNode {
     // private boolean visible = false;
     // private boolean bActive = false;
 
-    MenuNode(int level) {
+    public MenuNode(int level) {
 	child = new MenuNode[] { null, null, null, null, null, null, null,
 		null, null, null, null, null, null, null, null };
 	label = "";
@@ -122,7 +122,8 @@ public class MenuNode {
      *            The class the service implements.
      * @return The number of newly created nodes.
      */
-    int add(String path, String vendor, String serviceClass, String iconURL) {
+    public int add(String path, String vendor, String serviceClass,
+	    String iconURL) {
 	MenuNode aux, cur = this;
 	String[] pathArr = path.split("/");
 	// the first path elem is normally ""
@@ -139,7 +140,7 @@ public class MenuNode {
 	// create missing nodes
 	int createdNodes = 0;
 	while (i < pathArr.length) {
-	    aux = new MenuNode(i - offset);
+	    aux = newMenuNode(i - offset);
 	    aux.label = pathArr[i++];
 	    cur.addChild(aux);
 	    cur = aux;
@@ -153,7 +154,11 @@ public class MenuNode {
 	return createdNodes;
     }
 
-    void add(String path, String vendor, String serviceClass) {
+    protected MenuNode newMenuNode(int level) {
+	return new MenuNode(level);
+    }
+
+    public void add(String path, String vendor, String serviceClass) {
 	add(path, vendor, serviceClass, null);
     }
 

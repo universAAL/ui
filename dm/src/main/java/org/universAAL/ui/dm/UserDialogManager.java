@@ -50,6 +50,7 @@ import org.universAAL.ui.dm.userInteraction.ClassicSystemMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider;
+import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener;
 
 /**
@@ -168,7 +169,8 @@ public class UserDialogManager implements DialogManager {
 	adapterList = new ArrayList<Adapter>();
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	((AggregatedMainMenuProvider) mainMenuProvider)
-		.add(new FileMainMenuProvider(this));
+		//.add(new FileMainMenuProvider(this));
+	.add(new ProfilableFileMainMenuProvider(this));
 	systemMenuProvider = new ClassicSystemMenuProvider(this);
 	// systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	messagePool = new DialogPriorityQueue();

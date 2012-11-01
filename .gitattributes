@@ -28,6 +28,10 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/FileMainMenuProvi
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MainMenu.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MenuNode.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java -text
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java -text
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java -text
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain

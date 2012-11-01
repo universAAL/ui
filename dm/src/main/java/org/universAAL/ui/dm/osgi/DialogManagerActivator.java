@@ -23,6 +23,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.service.ServiceCaller;
 import org.universAAL.ui.dm.DMServiceCaller;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 public class DialogManagerActivator extends Thread implements BundleActivator {
 
@@ -47,6 +48,7 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
 	// ServiceReference sref = context
 	// .getServiceReference(MessageContentSerializer.class.getName());
 	start();
+	new SCallee(mContext);
 
 	LogUtils.logInfo(mContext, this.getClass(), "start",
 		new Object[] { "DM started." }, null);
