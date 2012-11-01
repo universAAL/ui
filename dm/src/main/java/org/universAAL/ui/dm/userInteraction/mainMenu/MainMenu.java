@@ -62,20 +62,22 @@ public class MainMenu {
     /**
      * The root node.
      */
-    private MenuNode root;
+    protected MenuNode root;
 
     /**
      * The node that is currently selected.
      */
-    private MenuNode selection;
+    protected MenuNode selection;
 
-    private ModuleContext context;
+    protected ModuleContext context;
 
     /**
      * constructor. Creates the menu.
      * 
-     * @param user
-     *            The user.
+     * @param ctxt
+     *            the ModuleContext
+     * @param in
+     *            Input stream for the configuration file
      */
     public MainMenu(ModuleContext ctxt, InputStream in) {
 	context = ctxt;
@@ -87,9 +89,10 @@ public class MainMenu {
      * a tree of menu nodes where leaf nodes have a vendor and service class
      * associated.
      * 
-     * @param userID
+     * @param in
+     *            Input stream for the configuration file
      */
-    private void constructMenu(InputStream in) {
+    protected void constructMenu(InputStream in) {
 
 	root = new MenuNode(-1);
 	selection = root;
