@@ -32,6 +32,8 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  */
 public class DialogPriorityQueueTest extends UIRequestPoolTest {
 
+	private static final long INTER_REQUEST_SLEEP = 10;
+
 	/* (non-Javadoc)
 	 * @see org.universAAL.ui.dm.tests.UIRequestPoolTest#initialisePool()
 	 */
@@ -40,9 +42,7 @@ public class DialogPriorityQueueTest extends UIRequestPoolTest {
 		return new DialogPriorityQueue();
 	}
 	
-	public void testPriority(){
-	    if (true)
-		return;
+	public void testPriority() throws InterruptedException{
 	    UIRequest req1 = new UIRequest(
 		    new Resource(UIRequestPoolTest.MY_USER),
 		    Form.newMessage("", ""),
@@ -55,24 +55,28 @@ public class DialogPriorityQueueTest extends UIRequestPoolTest {
 		    LevelRating.high,
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
+	    Thread.sleep(INTER_REQUEST_SLEEP);
 	    UIRequest req3 = new UIRequest(
 		    new Resource(UIRequestPoolTest.MY_USER),
 		    Form.newMessage("", ""),
 		    LevelRating.middle,
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
+	    Thread.sleep(INTER_REQUEST_SLEEP);
 	    UIRequest req4 = new UIRequest(
 		    new Resource(UIRequestPoolTest.MY_USER),
 		    Form.newMessage("", ""),
 		    LevelRating.low,
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
+	    Thread.sleep(INTER_REQUEST_SLEEP);
 	    UIRequest req5 = new UIRequest(
 		    new Resource(UIRequestPoolTest.MY_USER),
 		    Form.newMessage("", ""),
 		    LevelRating.none,
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
+	    Thread.sleep(INTER_REQUEST_SLEEP);
 	    UIRequest req11 = new UIRequest(
 		    new Resource(UIRequestPoolTest.MY_USER),
 		    Form.newMessage("", ""),
@@ -80,7 +84,7 @@ public class DialogPriorityQueueTest extends UIRequestPoolTest {
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
 	    try {
-		Thread.sleep(50);
+		    Thread.sleep(5*INTER_REQUEST_SLEEP);
 	    } catch (InterruptedException e) {
 	    }
 	    UIRequest req12 = new UIRequest(
