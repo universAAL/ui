@@ -169,8 +169,9 @@ public class UserDialogManager implements DialogManager {
 	adapterList = new ArrayList<Adapter>();
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	((AggregatedMainMenuProvider) mainMenuProvider)
-		//.add(new FileMainMenuProvider(this));
-	.add(new ProfilableFileMainMenuProvider(this));
+		.add(new FileMainMenuProvider(this));
+    ((AggregatedMainMenuProvider) mainMenuProvider)
+    	.add(new ProfilableFileMainMenuProvider(this));
 	systemMenuProvider = new ClassicSystemMenuProvider(this);
 	// systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	messagePool = new DialogPriorityQueue();
