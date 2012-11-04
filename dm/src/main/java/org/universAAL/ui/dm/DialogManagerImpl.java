@@ -72,16 +72,17 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * A mini Garbage collector for {@link DialogManagerImpl#dialogIDMap}.
      */
     private Timer gbSchedule;
-    /**
-     * The bus reference to make calls to it.
-     */
-    // private static UIBus bus;
+
 
     /**
      * The {@link ModuleContext} reference.
      */
     private static ModuleContext moduleContext;
 
+    /*
+     *  FIXME: initialise SQLStoreProvider according to config-file (?)
+     *  and add accesing methods.
+     */
     // private StoreProvider m_StoreProvider;
 
     /**
@@ -331,11 +332,6 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 		dialogIDMap.remove(key);
 	    }
 	}
-
-    }
-
-    public void clearRunningDialogsForUser(Resource user) {
-	// TODO Auto-generated method stub
 
     }
 }

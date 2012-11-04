@@ -10,10 +10,11 @@ dm/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
 dm/src/main/java/org/universAAL/ui/dm/UserDialogManager.java -text
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/Adapter.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/MainMenuProvider.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/StoreProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/SQLStoreProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/SubmitGroupListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/SystemMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/UIRequestPool.java -text
