@@ -179,19 +179,9 @@ public class UserDialogManager implements DialogManager {
 	// dialogPool = new DialogPriorityQueueVerbosity();
 	listeners = new TreeMap<String, SubmitGroupListener>();
 	messageListener = new MessageListener(messagePool);
-	/*
-	 * TODO: add persistence (at least for messages) with dataSerialization
-	 * OR profiling
-	 */
-
 	myUIRequests = new TreeSet<String>();
 	resumedUIRequests = new HashSet<UIRequest>();
     }
-
-    // /** {@inheritDoc} */
-    // public void finalize() throws Throwable {
-    // // TODO: add persistence (at least for messages)
-    // }
 
     /**
      * Get the user's URI for this {@link UserDialogManager} target {@link User}
@@ -625,8 +615,7 @@ public class UserDialogManager implements DialogManager {
 	    try {
 		Thread.sleep(FINALISE_WAIT);
 	    } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		// do nothing
 	    }
 	    if (current == null) {
 		showSomething();
@@ -634,10 +623,4 @@ public class UserDialogManager implements DialogManager {
 	}
 
     }
-
-    public void clearRunningDialogsForUser(Resource user) {
-	// TODO Auto-generated method stub
-
-    }
-
 }

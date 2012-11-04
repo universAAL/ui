@@ -16,13 +16,16 @@
 package org.universAAL.ui.dm.interfaces;
 
 /**
- * FIXME TO BE DONE Interface for permanent data storage: adaptations, users,
+ * Interface for permanent data storage: adaptations, users,
  * messages, ...
  * 
  * @author amedrano
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public interface StoreProvider {
+public interface SQLStoreProvider {
 
+    public void initialize();
+    
+    public String getJCDBURL();
 }
