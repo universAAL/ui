@@ -14,7 +14,6 @@ import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuEntry;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuProfile;
-import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 
 public class RDFMainMenu extends MainMenu {
@@ -92,7 +91,7 @@ public class RDFMainMenu extends MainMenu {
 	InputStream in = null;
 	try {
 	    BundleConfigHome confHome = new BundleConfigHome(context.getID());
-	    in = confHome.getConfFileAsStream(ProfilableFileMainMenuProvider.filePrefix
+	    in = confHome.getConfFileAsStream(ProfilableFileMainMenuProvider.PROF_FILE_PREFIX
 		    + userID + ".txt");
 	    return readMenu(in);
 	} catch (Exception e) {
@@ -118,7 +117,7 @@ public class RDFMainMenu extends MainMenu {
 	try {
 	    BundleConfigHome confHome = new BundleConfigHome(context.getID());
 	    out = confHome
-		    .getConfFileAsOutputStream(ProfilableFileMainMenuProvider.filePrefix
+		    .getConfFileAsOutputStream(ProfilableFileMainMenuProvider.PROF_FILE_PREFIX
 			    + userID + ".txt");
 	    saveMenu(out, mp);
 	} catch (Exception e) {

@@ -12,11 +12,11 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
     // private RDFMainMenu rdfMainMenu;
     SCallee c;
 
-    public static String filePrefix = "mainmenu_";
+    static String PROF_FILE_PREFIX = "mainmenu_";
 
     public ProfilableFileMainMenuProvider(UserDialogManager udm) {
 	super(udm);
-	FileMainMenuProvider.filePrefix = filePrefix;
+	filePrefix = PROF_FILE_PREFIX;
 
 	c = new SCallee(DialogManagerImpl.getModuleContext());
     }

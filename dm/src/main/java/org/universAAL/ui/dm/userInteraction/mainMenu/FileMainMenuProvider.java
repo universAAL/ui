@@ -46,7 +46,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 
     private UserDialogManager userDM;
 
-    public static String filePrefix = "main_menu_";
+    protected String filePrefix = "main_menu_";
 
     public FileMainMenuProvider(UserDialogManager udm) {
 	userDM = udm;
@@ -97,16 +97,30 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	Group main = systemForm.getIOControls();
 	if (mainMenu == null) {
 	    InputStream is = openMainMenuConfigFile();
-	    mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
+		try {
+		    mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
+		} catch (Exception e1) {
+		    DialogManagerImpl.getModuleContext().logWarn(
+				"loadMainMenu",
+				"Main menu file cannot be loaded", e1);
+		    return main;
+		}
+	    
 	    try {
 		is.close();
 	    } catch (Exception e) {
 	    }
 	}
-	mainMenu.resetSelection();
-	mainMenu.addMenuRepresentation(main);
-	for (MenuNode entry : mainMenu.entries()) {
-	    entries.add(entry.getPath());
+	try {
+	    mainMenu.resetSelection();
+	    mainMenu.addMenuRepresentation(main);
+	    for (MenuNode entry : mainMenu.entries()) {
+	        entries.add(entry.getPath());
+	    }
+	} catch (Exception e) {
+	    DialogManagerImpl.getModuleContext().logWarn(
+			"loadMainMenu",
+			"unable to process Main Menu", e);
 	}
 	return main;
     }
@@ -149,7 +163,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 					+ userID
 					+ ".txt does not exist also so Main menu for logged user has to be made before running again!",
 				e1);
-		throw new RuntimeException(e1.getMessage());
+		//throw new RuntimeException(e1.getMessage());
 	    }
 	}
 	return in;
