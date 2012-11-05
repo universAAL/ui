@@ -45,6 +45,8 @@ public class RepeatLAF extends RepeatModel {
          *  Check for Group children and render JTabbedPane
          */
         if (isATable()) {
+        	
+        	//table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
         	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
             return table.getNewComponent();
         } else if (getChildrenType() != null

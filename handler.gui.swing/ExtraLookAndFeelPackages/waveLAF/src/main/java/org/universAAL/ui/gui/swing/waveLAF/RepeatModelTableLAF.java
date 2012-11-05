@@ -16,30 +16,49 @@
 package org.universAAL.ui.gui.swing.waveLAF;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.TableCellRenderer;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.gui.swing.waveLAF.support.TableColors;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
+
 
 /**
  * @author amedrano
  *
  */
-public class RepeatModelTableLAF 
-extends RepeatModelTable {
+public class RepeatModelTableLAF extends RepeatModelTable {
 
 	/**
 	 * @param control
 	 */
+	private Color ligth = new Color (255, 255, 247);
 	public RepeatModelTableLAF(Repeat control, Renderer render) {
 		super(control, render);
 		needsLabel = false;
+//		TableCellRenderer renderer = new TableColors();
+//		tableComponent.setDefaultRenderer(Object.class, renderer);
+//		tableComponent.getColumnModel().getColumn(0).setCellRenderer(new TableColors());  
+
+		getButtonPanel().setBackground(ligth);
+		
 	}
+	
+	
+
 	
 	/** {@inheritDoc}*/
 	public JComponent getNewComponent() {
@@ -48,6 +67,10 @@ extends RepeatModelTable {
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		JPanel pannelWithAll = new JPanel();
+		pannelWithAll.setBorder(new TitledBorder("TAbla"));
+		pannelWithAll.setBackground(ligth);
+		pannelWithAll.setForeground(Color.white);
+		
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
@@ -55,6 +78,7 @@ extends RepeatModelTable {
 				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
 				BorderLayout.NORTH);
 		return pannelWithAll;
-//		return getJTable();
 	}
+	
+	
 }

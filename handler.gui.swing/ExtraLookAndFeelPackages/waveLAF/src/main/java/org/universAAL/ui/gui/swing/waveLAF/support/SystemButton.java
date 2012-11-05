@@ -67,8 +67,8 @@ public class SystemButton extends JButton implements MouseListener{
     public SystemButton(String text, Icon icon) {
     	super(text);
     	if (icon != null){
-    	    //he generado uen buffer para controlar el tamaño, ver como se gestiona
-    	    // ENGLISH PLEASE! :)
+    	    
+    	 
     	    Image img = ((ImageIcon) icon).getImage() ;  
     	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
     	    icon = new ImageIcon( newimg );
