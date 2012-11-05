@@ -20,6 +20,7 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
@@ -28,6 +29,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
@@ -52,6 +54,16 @@ public class SubmitButton extends JButton implements MouseListener{
         super(text,icon);
     	Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
         setBorder(raisedBorder);
+        if (icon != null){
+    	    
+       	 
+    	    Image img = ((ImageIcon) icon).getImage() ;  
+    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
+    	    icon = new ImageIcon( newimg );
+
+    	    setIcon(icon);
+    	}
+        
         setBackground(new Color(8, 68, 92));
         setForeground(Color.white);
         setUI(ui);

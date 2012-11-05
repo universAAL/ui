@@ -19,6 +19,7 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
@@ -27,10 +28,13 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.ButtonModel;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.plaf.ComponentUI;
+
+import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
  
 
@@ -47,7 +51,16 @@ public class KickerButton extends JButton implements MouseListener{
     public KickerButton(String text, Icon icon) {
         super(text, icon);
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
-   
+        if (icon != null){
+    	    
+       	 
+    	    Image img = ((ImageIcon) icon).getImage() ;  
+    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
+    	    icon = new ImageIcon( newimg );
+
+    	    setIcon(icon);
+    	}
+        
         setBorder(raisedBorder);
         setBackground(new Color(55, 142, 143));
         setForeground(white);
