@@ -21,11 +21,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.interfaces.SQLStoreProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
 
 /**
@@ -41,6 +43,7 @@ public class DialogSQL implements UIRequestPool {
     private String userURI;
     private static MessageContentSerializer contentSerializer = null;
     private String connectionURL = null;
+	private UIRequest currentReq;
     
     public static void InitDB(String connectionURL) throws Exception {
 	    Connection connection = DriverManager.getConnection(connectionURL);
@@ -75,10 +78,20 @@ public class DialogSQL implements UIRequestPool {
 	return contentSerializer;
     }
         
-    public  DialogSQL(Resource user) {
-	// TODO obtain ConnectionURL from DialogManagerImpl.
+    public  DialogSQL(Resource user, SQLStoreProvider storeprov) {
 	userURI = user.getURI();
-	
+	if (storeprov == null) {
+		return;
+	}
+	connectionURL = storeprov.getJCDBURL();
+	if (connectionURL != null) {
+	try {
+		InitDB(connectionURL);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+    }
     }
     
     /** {@inheritDoc} */
@@ -113,20 +126,29 @@ public class DialogSQL implements UIRequestPool {
 
     /** {@inheritDoc} */
     public UIRequest getCurrent() {
-	// TODO maintain a current request
-	return null;
+	return currentReq;
     }
 
     /** {@inheritDoc} */
     public UIRequest getNextUIRequest() {
-	// TODO search and update current request
-	return null;
+	List<UIRequest> active = (List<UIRequest>) listAllActive();
+	if (active.size() > 0) {
+		currentReq = active.get(0);
+	} else {
+		currentReq =null;
+	}
+	return currentReq;
     }
 
     /** {@inheritDoc} */
     public boolean hasToChange() {
-	// TODO Auto-generated method stub
-	return false;
+    	List<UIRequest> active = (List<UIRequest>) listAllActive();
+    	if (active.size() > 0) {
+    		return currentReq != active.get(0);
+    	} else {
+    		//shouldn't reach here...
+    		return true;
+    	}
     }
 
     /** {@inheritDoc} */
