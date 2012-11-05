@@ -573,14 +573,6 @@ public class UserDialogManager implements DialogManager {
 	return messages.getString(key);
     }
 
-    /**
-     * Get the messages object.
-     * 
-     * @return the messages object, already localized.
-     */
-    public final Messages getMessages() {
-	return messages;
-    }
 
     /**
      * The task for finalising a dialog. Waits
