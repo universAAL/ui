@@ -58,6 +58,7 @@ public class FormLAF extends FormModel {
     public static final int H_LEFT=1;
     public static final int H_RIGHT=2;
     public static int vGroupHalign=H_CENTER;
+    public static int vGroupValign=MyVerticalFlowLayout.CENTER;
     public static int hGroupHalign=FlowLayout.CENTER;
     public static boolean constant=false;
     public static final int hgap=20;
@@ -88,6 +89,15 @@ public class FormLAF extends FormModel {
 		vGroupHalign=H_CENTER;
 		hGroupHalign=FlowLayout.CENTER;
 	    }
+	    if(hint.toLowerCase().contains("top")){
+		vGroupValign=MyVerticalFlowLayout.TOP;
+	    }
+	    if(hint.toLowerCase().contains("bottom")){
+		vGroupValign=MyVerticalFlowLayout.BOTTOM;
+	    }
+	    if(hint.toLowerCase().contains("middle")){
+		vGroupValign=MyVerticalFlowLayout.CENTER;
+	    }
 	}else{
 	    setDefaults();
 	}
@@ -96,6 +106,7 @@ public class FormLAF extends FormModel {
     private void setDefaults() {
 	vertical=false;
 	vGroupHalign=H_CENTER;
+	vGroupValign=MyVerticalFlowLayout.CENTER;
 	hGroupHalign=FlowLayout.CENTER;
 	constant=false;
     }
@@ -109,7 +120,7 @@ public class FormLAF extends FormModel {
     protected JScrollPane getIOPanelScroll() {
 	JPanel ioPanel = super.getIOPanel();
 	if(vertical){
-	    ioPanel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER,hgap,vgap));
+	    ioPanel.setLayout(new MyVerticalFlowLayout(vGroupValign,hgap,vgap));
 	}else{
 	    ioPanel.setLayout(new FlowLayout(hGroupHalign,hgap,vgap));
 	}
