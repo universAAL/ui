@@ -44,7 +44,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
     // Set of SubmissionIDs implementations of this interface will handle.
     private Set<String> entries = new TreeSet<String>();
 
-    private UserDialogManager userDM;
+    protected UserDialogManager userDM;
 
     protected String filePrefix = "main_menu_";
 
@@ -135,37 +135,30 @@ public class FileMainMenuProvider implements MainMenuProvider {
     }
 
     protected InputStream openMainMenuConfigFile() {
-	String userID = userDM.getUserId();
-	userID = userID.substring(userID.lastIndexOf("#") + 1);
-	String lang = userDM.getUserLocale().getLanguage();
-	InputStream in = null;
+    	String userID = userDM.getUserId();
+    	userID = userID.substring(userID.lastIndexOf("#") + 1);
+    	String lang = userDM.getUserLocale().getLanguage();
+    	InputStream in =  openMainMenuConfigFile(filePrefix + userID + "_" + lang
+    			+ ".txt");
+    	if (in != null){
+    		return in;
+    	}
+    	else {
+    		return openMainMenuConfigFile(filePrefix + userID + ".txt");
+    	}
+    }
+    
+    protected final InputStream openMainMenuConfigFile(String filename){
+    	InputStream in = null;
 	try {
 	    BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
 		    .getModuleContext().getID());
-	    in = confHome.getConfFileAsStream(filePrefix + userID + "_" + lang
-		    + ".txt");
+	    in = confHome.getConfFileAsStream(filename);
 	} catch (IOException e) {
-	    try {
-		BundleConfigHome confHome = new BundleConfigHome(
-			DialogManagerImpl.getModuleContext().getID());
-		in = confHome.getConfFileAsStream(filePrefix + userID + ".txt");
 		DialogManagerImpl.getModuleContext().logWarn(
 			"constructMenu",
-			filePrefix + userID + "_" + lang
-				+ ".txt does not exist so: " + filePrefix
-				+ userID + ".txt was loaded instead!!", e);
-	    } catch (Exception e1) {
-		DialogManagerImpl
-			.getModuleContext()
-			.logWarn(
-				"constructMenu",
-				filePrefix
-					+ userID
-					+ ".txt does not exist also so Main menu for logged user has to be made before running again!",
-				e1);
-		//throw new RuntimeException(e1.getMessage());
-	    }
-	}
+			filename + " does not exist.", e);
+	    } 
 	return in;
     }
 }
