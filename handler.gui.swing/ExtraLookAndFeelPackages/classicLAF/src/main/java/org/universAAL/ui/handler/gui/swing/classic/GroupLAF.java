@@ -69,7 +69,7 @@ public class GroupLAF extends GroupModel {
 	     * V Layout ->	0 1 1 0 0 0 1 1
 	     */
 	    if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
-		panel.setLayout(new MyVerticalFlowLayout(MyVerticalFlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap));
+		panel.setLayout(new MyVerticalFlowLayout(FormLAF.vGroupValign, FormLAF.hgap, FormLAF.vgap));
 	    }else{
 		panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
 	    }
