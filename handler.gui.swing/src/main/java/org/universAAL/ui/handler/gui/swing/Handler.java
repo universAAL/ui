@@ -19,6 +19,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.AllValuesFromRestriction;
 import org.universAAL.middleware.owl.Enumeration;
 import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIHandler;
@@ -70,7 +71,9 @@ public final class Handler extends UIHandler {
 	 */
 	Handler (Renderer renderer){
 		super(renderer.getModuleContext(),
-				getPermanentSubscriptions(Boolean.parseBoolean(renderer.getProperty(Renderer.DEMO_MODE))));
+				getPermanentSubscriptions(
+						Boolean.parseBoolean(renderer.getProperty(Renderer.DEMO_MODE)),
+						renderer.getRendererLocation()));
 		render = renderer;
 	}
 	
@@ -162,7 +165,8 @@ public final class Handler extends UIHandler {
          *     request for main menu
          */
         UIHandlerProfile oep = getPermanentSubscriptions(
-        		Boolean.parseBoolean(render.getProperty(Renderer.DEMO_MODE)));
+        		Boolean.parseBoolean(render.getProperty(Renderer.DEMO_MODE))
+        		, render.getRendererLocation());
         oep.addRestriction(MergedRestriction.getFixedValueRestriction(UIRequest.PROP_ADDRESSED_USER, user));
         this.addNewRegParams(oep);
     }
@@ -190,7 +194,7 @@ public final class Handler extends UIHandler {
      * @param demo set demo mode or not.
      * 
      */
-    private static UIHandlerProfile getPermanentSubscriptions(boolean demo) {
+    private static UIHandlerProfile getPermanentSubscriptions(boolean demo, AbsLocation location) {
         /*
          * Handler is interested in all UIRequests with following UIRequestPattern
          * restrictions:
@@ -213,6 +217,9 @@ public final class Handler extends UIHandler {
     	}
     	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
     			UIRequest.PROP_PRESENTATION_MODALITY, Modality.gui)); 
+    	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+    			UIRequest.PROP_PRESENTATION_LOCATION,
+    			location));
     	return oep;
     }
 }

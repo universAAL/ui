@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.owl.ComparableIndividual;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
@@ -438,5 +439,10 @@ public class Renderer extends Thread {
 	    
 	}.start();
 	return true;
+    }
+    
+    public final AbsLocation getRendererLocation(){
+    	AbsLocation loc = new Location(getProperty(GUI_LOCATION));
+    	return loc;
     }
 }
