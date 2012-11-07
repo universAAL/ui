@@ -260,6 +260,7 @@ handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecess
 handler.sms/ASL2.0.txt -text
 handler.sms/LICENSE -text
 handler.sms/MITX.txt -text
+handler.sms/NOTICE.txt -text
 handler.sms/configurationFiles/ui.handler.sms/account.properties -text
 handler.sms/pom.xml -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsSender.java -text
@@ -1211,7 +1212,9 @@ handler.web/src/main/resources/webhandler/img/universAAL_logo.png -text
 handler.web/src/main/resources/webhandler/img/universaal-logo-white.png -text
 handler.web/src/test/java/org/universAAL/ui/handler/web/test/ArtifactIntegrationTest.java -text
 pom/pom.xml -text
-resource.server/LICENSE.txt -text
+resource.server/ASL2.0.txt -text
+resource.server/MITX.txt -text
+resource.server/NOTICE.txt -text
 resource.server/pom.xml -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
 resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
