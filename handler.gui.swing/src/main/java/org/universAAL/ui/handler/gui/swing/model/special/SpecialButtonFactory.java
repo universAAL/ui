@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.swing.AbstractButton;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
@@ -58,9 +59,12 @@ public class SpecialButtonFactory {
 						new Class[] {Submit.class, Renderer.class})
 						.newInstance(new Object[] {s,render});
 			} catch (Exception e) {
-				render.getModuleContext().logError("SpecialButton", 
-						"Could not instanciate SpecialButtonInterface: "
-				+ classSBI.getName(), e);
+				LogUtils.logError(
+						render.getModuleContext(),
+						getClass(),
+						"getSpecialButton",
+						new String[]{"Could not instanciate SpecialButtonInterface: ",classSBI.getName()},
+						e);
 			} 
 			if (sbi == null
 					|| !sbi.isSpecial()) {

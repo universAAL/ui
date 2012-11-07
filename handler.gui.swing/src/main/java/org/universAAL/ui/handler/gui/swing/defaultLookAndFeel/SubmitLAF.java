@@ -178,7 +178,12 @@ public class SubmitLAF extends SubmitModel {
 	}
 
 	public class SystemButton extends JButton {
-	    public SystemButton(String text, Icon icon) {
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public SystemButton(String text, Icon icon) {
 	    	super(text);
 	    	if (icon != null){
 	    	    //he generado uen buffer para controlar el tamaño, ver como se gestiona

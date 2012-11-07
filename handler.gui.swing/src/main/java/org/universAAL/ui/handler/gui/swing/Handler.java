@@ -90,7 +90,7 @@ public final class Handler extends UIHandler {
 		text += dialogID + " Prop: " + changedProp + "\n";
 		text += "prop of type: " + newVal.getClass().getName();
 		
-		Activator.logDebug(text, null);
+		Activator.logDebug(getClass(), text, null);
 
 	}
 

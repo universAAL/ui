@@ -26,6 +26,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
@@ -58,7 +59,8 @@ public class uCCButton implements SpecialButtonInterface {
 		try {
 			uCCButton.openuCCGUI();
 		} catch (Exception e1) {
-			render.getModuleContext().logError("Opening uCC GUI", "Could not open GUI", e1);
+			LogUtils.logError(render.getModuleContext(), getClass(),
+					"Pressed uCC Button", new String[]{"Could Not open uCC GUI"}, e1);
 		}
 	}
 

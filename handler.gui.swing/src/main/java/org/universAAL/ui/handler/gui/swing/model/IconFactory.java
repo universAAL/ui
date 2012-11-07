@@ -52,7 +52,7 @@ public class IconFactory {
             		return new ImageIcon(ur);
             	}
 			} catch (Exception e) {
-				Activator.logDebug("unable to load Image:" + url, e);
+				Activator.logDebug(IconFactory.class, "unable to load Image:" + url, e);
 			}
         }
         return null;
