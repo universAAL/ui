@@ -96,20 +96,16 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	entries.clear();
 	Group main = systemForm.getIOControls();
 	if (mainMenu == null) {
-	    InputStream is = openMainMenuConfigFile();
 		try {
+		    InputStream is = openMainMenuConfigFile();
 		    mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
+			is.close();
 		} catch (Exception e1) {
 			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
 					getClass(), "getMainMenu", 
 					new String[]{"Main menu file cannot be loaded"}, e1);
 		    return main;
 		}
-	    
-	    try {
-		is.close();
-	    } catch (Exception e) {
-	    }
 	}
 	try {
 	    mainMenu.resetSelection();
@@ -138,13 +134,19 @@ public class FileMainMenuProvider implements MainMenuProvider {
     	String userID = userDM.getUserId();
     	userID = userID.substring(userID.lastIndexOf("#") + 1);
     	String lang = userDM.getUserLocale().getLanguage();
+    	try {
     	InputStream in =  openMainMenuConfigFile(filePrefix + userID + "_" + lang
     			+ ".txt");
     	if (in != null){
     		return in;
     	}
-    	else {
+    	}
+    	catch (Exception e) { }
+    	try {
     		return openMainMenuConfigFile(filePrefix + userID + ".txt");
+    	}
+    	catch (Exception e2) {
+    		return null;
     	}
     }
     

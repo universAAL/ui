@@ -44,6 +44,7 @@
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Export-Package></Export-Package>
             <Private-Package>org.universAAL.ui.dm,
+            				org.universAAL.ui.dm.adapters,
             				org.universAAL.ui.dm.dialogManagement,
             				org.universAAL.ui.dm.interfaces,
             				org.universAAL.ui.dm.osgi,
