@@ -18,6 +18,7 @@ package org.universAAL.ui.dm.userInteraction.mainMenu;
 import java.util.List;
 import java.util.Set;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.PropertyPath;
@@ -69,9 +70,11 @@ public class SearchableAggregatedMainMenuProvider extends
 	    if (searchStr instanceof String) {
 		searchString = (String) searchStr;
 	    } else {
-		DialogManagerImpl.getModuleContext()
-			.logError("handleUIResponse",
-				"Submission without effect: ", null);
+	    	LogUtils.logError(DialogManagerImpl.getModuleContext(),
+	    			getClass(),
+	    			"handle", 
+	    			new String[] {"Submission without effect."},
+	    			null);
 	    }
 	}
 	if (BACK_CALL.equals(submissionID)) {

@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Random;
 
+import junit.framework.TestCase;
+
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
@@ -28,8 +30,6 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
-
-import junit.framework.TestCase;
 
 public abstract class UIRequestPoolTest extends TestCase {
 

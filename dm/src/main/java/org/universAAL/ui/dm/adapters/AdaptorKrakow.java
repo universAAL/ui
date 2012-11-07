@@ -1,4 +1,4 @@
-package org.universAAL.ui.dm.dialogManagement;
+package org.universAAL.ui.dm.adapters;
 
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;

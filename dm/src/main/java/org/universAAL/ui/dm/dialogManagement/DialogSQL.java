@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
@@ -71,7 +72,10 @@ public class DialogSQL implements UIRequestPool {
 			    new Object[] { MessageContentSerializer.class.getName() });
 	    if (contentSerializer == null) {
 		Exception e = new RuntimeException("no serializer found");
-		DialogManagerImpl.getModuleContext().logError( "saveMenu","no serializer found", e);
+		LogUtils.logError(DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"getSerializer",
+				new String[] {"no serializer found"}, e);
 		throw e;
 	    }
 	}

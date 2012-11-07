@@ -100,9 +100,9 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		try {
 		    mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
 		} catch (Exception e1) {
-		    DialogManagerImpl.getModuleContext().logWarn(
-				"loadMainMenu",
-				"Main menu file cannot be loaded", e1);
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+					getClass(), "getMainMenu", 
+					new String[]{"Main menu file cannot be loaded"}, e1);
 		    return main;
 		}
 	    
@@ -118,9 +118,9 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	        entries.add(entry.getPath());
 	    }
 	} catch (Exception e) {
-	    DialogManagerImpl.getModuleContext().logWarn(
-			"loadMainMenu",
-			"unable to process Main Menu", e);
+		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+				getClass(), "getMainMenu", 
+				new String[]{"unable to process Main Menu"}, e);
 	}
 	return main;
     }
@@ -155,9 +155,10 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		    .getModuleContext().getID());
 	    in = confHome.getConfFileAsStream(filename);
 	} catch (IOException e) {
-		DialogManagerImpl.getModuleContext().logWarn(
-			"constructMenu",
-			filename + " does not exist.", e);
+		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+				getClass(), "openMainMenuConfigFile",
+				new String[]{filename + " does not exist."},
+				e);
 	    } 
 	return in;
     }

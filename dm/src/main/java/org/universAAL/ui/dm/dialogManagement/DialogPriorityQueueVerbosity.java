@@ -23,7 +23,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
@@ -43,13 +43,10 @@ public class DialogPriorityQueueVerbosity implements UIRequestPool {
 
     private UIRequest current;
 
-    private ModuleContext mc;
-
     public DialogPriorityQueueVerbosity() {
 	suspendedSet = new TreeMap<String, UIRequest>();
 	activeSet = new TreeSet<UIRequest>(new UIRequestPriorityComparator());
 	current = null;
-	mc = DialogManagerImpl.getModuleContext();
 	log("Created");
     }
 
@@ -198,7 +195,11 @@ public class DialogPriorityQueueVerbosity implements UIRequestPool {
     }
 
     private void log(String msg) {
-	mc.logDebug("DialogPriorityQueue", msg, null);
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(),
+	    		getClass(),
+	    		"DialogPriorityQueue",
+	    		new String[]{msg},
+	    		null);
     }
 
 }
