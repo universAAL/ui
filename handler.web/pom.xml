@@ -9,9 +9,9 @@
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.handler.web</artifactId>
-  <version>1.2.2-SNAPSHOT</version>
+  <version>1.2.3-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>Web UI Handler</name>
+  <name>UI Handler Web</name>
   <description>UI Handler that renders outputs as web pages</description>
   <inceptionYear>2008</inceptionYear>
   <organization>

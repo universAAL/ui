@@ -11,7 +11,7 @@
   <artifactId>ui.handler.gui.swing</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>Swing GUI Handler</name>
+  <name>UI Handler Swing</name>
   <description>Swing based GUI Handler</description>
   <organization>
     <name>Universidad Politécnica de Madrid</name>
