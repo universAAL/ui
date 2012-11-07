@@ -161,7 +161,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/junit/WaveLAFConstructorTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/CollapsableTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
-handler.gui.swing/LICENSE.txt -text svneol=unset#text/plain
 handler.gui.swing/MITX.txt -text
 handler.gui.swing/pom.xml -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text
@@ -257,7 +256,6 @@ handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTes
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SimpleManagementTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecessorTest.java -text
 handler.sms/ASL2.0.txt -text
-handler.sms/LICENSE -text
 handler.sms/MITX.txt -text
 handler.sms/NOTICE.txt -text
 handler.sms/configurationFiles/ui.handler.sms/account.properties -text
@@ -269,7 +267,6 @@ handler.web/ASL2.0.txt -text
 handler.web/LICENSE-BSD-Dojo.txt -text
 handler.web/LICENSE-JGCL.txt -text
 handler.web/LICENSE-MIT11-Bouncycastle.txt -text
-handler.web/LICENSE.txt -text
 handler.web/MITX.txt -text
 handler.web/NOTICE.txt -text
 handler.web/artifact_manual.composite -text
