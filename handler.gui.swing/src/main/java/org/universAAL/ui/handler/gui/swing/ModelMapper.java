@@ -17,6 +17,7 @@ package org.universAAL.ui.handler.gui.swing;
 
 import javax.swing.LookAndFeel;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
@@ -117,8 +118,11 @@ public final class ModelMapper {
                     .newInstance(new Object[] { constructorParameter, render } );
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
-            render.getModuleContext().logError(this.getClass().getName() +":", "Could not find Class: "
-                + LAFPackage + "." + getStringLAFClass(constructorParamClass), e);
+            	LogUtils.logError(render.getModuleContext(),
+            			getClass(),
+            			"tryToLoadClass", 
+            			new String[]{"Could not find Class: ",
+            		LAFPackage + "." + getStringLAFClass(constructorParamClass)}, e);
             }
             return null;
         }
@@ -222,16 +226,23 @@ public final class ModelMapper {
            ii.install(render);
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
-            	render.getModuleContext().logError(this.getClass().getName() +":","Unable to find "
-                + INIT_CLASS + " Class for selected LookAndFeel.Package", e);
+            	LogUtils.logWarn(render.getModuleContext(),
+            			getClass(),
+            			"initializeLAF",
+            			new String[]{"Unable to find: "
+            	                , INIT_CLASS, " Class for selected LookAndFeel.Package"}, e);
             }
             try {
             ii = getLookAndFeel(DefaultLAFPackage);
             ii.install(render);
             } catch (Exception e2) {
             if (render.getModuleContext() != null) {
-            	render.getModuleContext().logError(this.getClass().getName() +":","Unable to find "
-                    + INIT_CLASS + " Class for Default LookAndFeel Package", e);
+            	LogUtils.logError(render.getModuleContext(),
+            			getClass(),
+            			"initializeLAF",
+            			new String[] {"Unable to find: "
+                                , INIT_CLASS, " Class for Default LookAndFeel Package"},
+            			e2);
             }
             }
         }

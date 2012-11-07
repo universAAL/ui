@@ -21,6 +21,7 @@ import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -66,9 +67,9 @@ public final class Activator implements BundleActivator {
 	}
     }
 
-    public static void logDebug(String text, Throwable e) {
+    public static void logDebug(Class claz, String text, Throwable e) {
     	if (Activator.context != null) {
-    		Activator.context.logDebug("org.universAAL.ui.handler.gui.swing.osgi.Activator",text, e);
+    		LogUtils.logDebug(context, claz, "logDebug", new String[] {text}, e);
     	}
     	else {
     		System.err.println("[Debug]" + text);

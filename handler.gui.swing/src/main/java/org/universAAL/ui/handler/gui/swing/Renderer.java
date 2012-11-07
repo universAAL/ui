@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.owl.ComparableIndividual;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
@@ -157,15 +157,24 @@ public class Renderer extends Thread {
      */
     public Renderer(ModuleContext mc) {
     	moduleContext = mc;
-    	moduleContext.logDebug(this.getClass().getName() +":","starting Handler", null);
+    	LogUtils.logDebug(moduleContext, getClass(),
+    			"Constructor", new String[]{"starting Handler"}, null);
         handler = new Handler(this);
-        moduleContext.logDebug(this.getClass().getName() +":","loading properties", null);
+        
+        LogUtils.logDebug(moduleContext, getClass(), 
+        		"Constructor", new String[]{"loading properties"}, null);
         loadProperties();
-        moduleContext.logDebug(this.getClass().getName() +":","Initialising ModelMapper", null);
+        
+        LogUtils.logDebug(moduleContext, getClass(),
+        		"Constructor", new String[]{"Initialising ModelMapper"}, null);
         modelMapper = new ModelMapper(this);
-        moduleContext.logDebug(this.getClass().getName() +":","selecting Form Manager", null);
+        
+        LogUtils.logDebug(moduleContext, getClass(),
+        		"Constructor", new String[]{"selecting Form Manager"}, null);
         loadFormManager(getProperty(FORM_MANAGEMENT));
-        moduleContext.logDebug(this.getClass().getName() +":","loading LAF", null);
+        
+        LogUtils.logDebug(moduleContext, getClass(), 
+        		"Constructor", new String[]{"loading LAF"}, null);
         initLAF = modelMapper.initializeLAF();
     }
     
@@ -225,10 +234,11 @@ public class Renderer extends Thread {
 	                dir.mkdir();
 	                storeProperties();
 	            }
-	            moduleContext.logError(this.getClass().getName() +":",NO_SAVE, e1);
+	            LogUtils.logError(moduleContext, getClass(),
+	            		"storeProperties", new String[]{NO_SAVE}, e1);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LogUtils.logError(moduleContext, getClass(),
+						"storeProperties", new String[]{"Can't Create config dir"}, e);
 			}
 
     }

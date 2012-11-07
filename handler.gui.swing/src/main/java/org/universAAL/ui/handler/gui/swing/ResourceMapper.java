@@ -60,13 +60,13 @@ public class ResourceMapper {
 				return null;
 			}
 		} catch (MalformedURLException e) {
-			Activator.logDebug("Looking for " + url + " in folders", null);
+			Activator.logDebug(ResourceMapper.class, "Looking for " + url + " in folders", null);
 			resource = searchFolder(url);
 			if (resource != null) {
 				return resource;
 			}
 			else {
-				Activator.logDebug("Looking for " + url + " in resources", null);
+				Activator.logDebug(ResourceMapper.class, "Looking for " + url + " in resources", null);
 				return searchResources(url);
 			}
 		}
