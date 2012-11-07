@@ -8,6 +8,7 @@ dm/pom.xml -text
 dm/src/main/java/org/universAAL/ui/dm/DMServiceCaller.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
 dm/src/main/java/org/universAAL/ui/dm/UserDialogManager.java -text
+dm/src/main/java/org/universAAL/ui/dm/dialogManagement/AdaptorKrakow.java -text
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain

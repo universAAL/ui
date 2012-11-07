@@ -40,6 +40,7 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.dm.dialogManagement.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
@@ -167,11 +168,15 @@ public class UserDialogManager implements DialogManager {
 	}
 	// TODO Initialize fields according to user preferences
 	adapterList = new ArrayList<Adapter>();
+	
+	//FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui
+	adapterList.add(new AdaptorKrakow());
+	
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	((AggregatedMainMenuProvider) mainMenuProvider)
 		.add(new FileMainMenuProvider(this));
-    ((AggregatedMainMenuProvider) mainMenuProvider)
-    	.add(new ProfilableFileMainMenuProvider(this));
+	((AggregatedMainMenuProvider) mainMenuProvider)
+		.add(new ProfilableFileMainMenuProvider(this));
 	systemMenuProvider = new ClassicSystemMenuProvider(this);
 	// systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	messagePool = new DialogPriorityQueue();
@@ -537,7 +542,9 @@ public class UserDialogManager implements DialogManager {
 	UIRequest req = new UIRequest(user, form, LevelRating.none,
 		getUserLocale(), PrivacyLevel.insensible);
 	addSystemMenu(req);
+
 	makeAdaptations(req);
+
 	pushUIRequst(req);
     }
 
@@ -572,7 +579,6 @@ public class UserDialogManager implements DialogManager {
     public final String getString(String key) {
 	return messages.getString(key);
     }
-
 
     /**
      * The task for finalising a dialog. Waits
