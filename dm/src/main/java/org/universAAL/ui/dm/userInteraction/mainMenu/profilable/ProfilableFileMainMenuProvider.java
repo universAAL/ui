@@ -1,9 +1,8 @@
 package org.universAAL.ui.dm.userInteraction.mainMenu.profilable;
 
-import java.io.IOException;
 import java.io.InputStream;
+
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;

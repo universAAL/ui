@@ -28,6 +28,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.universAAL.middleware.container.osgi.util.Messages;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
@@ -40,7 +41,7 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.dm.dialogManagement.AdaptorKrakow;
+import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
@@ -159,12 +160,10 @@ public class UserDialogManager implements DialogManager {
 		    .getID());
 	    messages.setLocale(getUserLocale());
 	} catch (IOException e) {
-	    DialogManagerImpl
-		    .getModuleContext()
-		    .logError(
-			    "run",
-			    "Cannot initialize Dialog Manager externalized strings!",
-			    e);
+		LogUtils.logError(DialogManagerImpl.getModuleContext(), 
+				getClass(), "UserDialogManager", 
+				new String[] {"Cannot initialize Dialog Manager externalized strings!"},
+				e);
 	}
 	// TODO Initialize fields according to user preferences
 	adapterList = new ArrayList<Adapter>();
