@@ -63,6 +63,7 @@ public class FormLAF extends FormModel {
     public static boolean constant=false;
     public static final int hgap=20;
     public static final int vgap=20;
+    public static final int barwidth=30;
 
     /**
      * Constructor.
@@ -127,8 +128,10 @@ public class FormLAF extends FormModel {
 	JScrollPane sp = new JScrollPane(ioPanel,
 		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
-	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getVerticalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
+	sp.getHorizontalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
 	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
 	return sp;
     }
@@ -145,8 +148,10 @@ public class FormLAF extends FormModel {
 	JScrollPane sp = new JScrollPane(submit,
 		vertical?JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED:JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 		vertical?JScrollPane.HORIZONTAL_SCROLLBAR_NEVER:JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
-	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getVerticalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
+	sp.getHorizontalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
 	sp.setLayout(new BorderedScrolPaneLayout());
 	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
 	return sp;
@@ -164,8 +169,10 @@ public class FormLAF extends FormModel {
 	JScrollPane sp = new JScrollPane(submit,
 		JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	sp.getVerticalScrollBar().setPreferredSize(new Dimension(30, 30));
-	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(30, 30));
+	sp.getVerticalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getHorizontalScrollBar().setPreferredSize(new Dimension(barwidth, barwidth));
+	sp.getVerticalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
+	sp.getHorizontalScrollBar().setUnitIncrement(ColorLAF.FONT_SIZE_BASE);
 	sp.setLayout(new BorderedScrolPaneLayout());
 	sp.setBorder(BorderFactory.createLineBorder(ColorLAF.WHITE_BRIGHT));
 	return sp;
