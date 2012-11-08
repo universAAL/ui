@@ -22,8 +22,6 @@ import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 
-import org.universAAL.ui.handler.gui.swing.model.IconFactory;
-
 /**
  * Color and Font Theme for MetalTheme.
  * 
@@ -51,41 +49,8 @@ public class ColorLAF extends DefaultMetalTheme {
     protected static final ColorUIResource BLACK_MEDIUM = new ColorUIResource(55, 55, 55);
     protected static final ColorUIResource BLACK_DARK = new ColorUIResource(35, 35, 35);
 
-    protected static final ColorUIResource BLACK = new ColorUIResource(0, 0, 0); // Input text
-    protected static final ColorUIResource WHITE = new ColorUIResource(255, 255, 255); // Panel
-    // separation/Input
-    // backgrd
-    
-    // private final ColorUIResource primary1 = new ColorUIResource(0,0,0); //?
-    // private final ColorUIResource primary2 = new ColorUIResource(0,0,0);
-    // //Button/input text border focused
-    // private final ColorUIResource primary3 = new ColorUIResource(0,0,0);
-    // //Text cursor selection
-    //
-    // private final ColorUIResource secondary1 = new
-    // ColorUIResource(255,255,255); //Panel & input border
-    // private final ColorUIResource secondary2 = new
-    // ColorUIResource(255,255,255); //Fondo
-    // private final ColorUIResource secondary3 = new
-    // ColorUIResource(255,255,255); //Button backgrd pressed
-
-    //
-    // final private static Color orange = new Color(0, 0, 0); //Group Border
-    // final private static Color BackSystem = new Color(0,0,0); //Buttons
-    // backgrd
-    // final private static Color BackLetter = new Color(0,0,0); //Buttons text
-    // & All buttons text hover
-    // final private static Color OverSytem = new Color(0,0,0); //All Buttons
-    // Hover
-    // final private static Color SelectedLetter = new Color(0,0,0); //?
-    // final private static Color borderLine = new Color(0,0,0); //Buttons
-    // Border
-    // final private static Color BackMM = new Color(0,0,0); //STD Buttons
-    // backgrd
-    // final private static Color BackMML = new Color(0,0,0); //STD Buttons text
-    // final private static Color borderLineMM = new Color(0,0,0); //STD Buttons
-    // border / Label text
-    // final private static Color font = new Color(0,0,0); //Text input written
+    protected static final ColorUIResource BLACK = new ColorUIResource(0, 0, 0);
+    protected static final ColorUIResource WHITE = new ColorUIResource(255, 255, 255);
 
     public static final int FONT_SIZE_BASE = 24;
 
