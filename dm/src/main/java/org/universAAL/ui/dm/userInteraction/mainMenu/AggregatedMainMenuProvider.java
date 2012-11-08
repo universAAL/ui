@@ -16,9 +16,9 @@
 package org.universAAL.ui.dm.userInteraction.mainMenu;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.universAAL.middleware.owl.supply.AbsLocation;
@@ -36,42 +36,37 @@ import org.universAAL.ui.dm.interfaces.MainMenuProvider;
  */
 public class AggregatedMainMenuProvider implements MainMenuProvider {
 
-    List<MainMenuProvider> mmps = new ArrayList<MainMenuProvider>();
+    private List<MainMenuProvider> mmps = new ArrayList<MainMenuProvider>();
+    
+    private Map<String, MainMenuProvider> submitMap = new HashMap<String, MainMenuProvider>();
 
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
-	Iterator<MainMenuProvider> it = mmps.iterator();
-	if (it.hasNext()) {
-	    MainMenuProvider mmp;
-	    do {
-		mmp = it.next();
-	    } while (it.hasNext()
-		    && mmp.listDeclaredSubmitIds().contains(
-			    response.getSubmissionID()));
-	    if (mmp.listDeclaredSubmitIds()
-		    .contains(response.getSubmissionID())) {
-		mmp.handle(response);
-	    }
-	}
+    	MainMenuProvider hmmp = submitMap.get(response.getSubmissionID());
+    	if (hmmp != null) {
+    		hmmp.handle(response);
+    	}
     }
 
     /** {@inheritDoc} */
     public Set<String> listDeclaredSubmitIds() {
-	Set<String> mySet = new HashSet<String>();
 	for (MainMenuProvider mmp : mmps) {
-	    mySet.addAll(mmp.listDeclaredSubmitIds());
+		Set<String> mmpSet = mmp.listDeclaredSubmitIds();
+	    for (String submitID : mmpSet) {
+			submitMap.put(submitID, mmp);
+		}
 	}
-	return mySet;
+	return submitMap.keySet();
     }
 
     /** {@inheritDoc} */
     public Group getMainMenu(Resource user, AbsLocation location,
-	    Form systemForm) {
-
-	for (MainMenuProvider mmp : mmps) {
-	    mmp.getMainMenu(user, location, systemForm);
-	}
-	return systemForm.getIOControls();
+    		Form systemForm) {
+    	submitMap.clear();
+    	for (MainMenuProvider mmp : mmps) {
+    		mmp.getMainMenu(user, location, systemForm);
+    	}
+    	return systemForm.getIOControls();
     }
 
     /**

@@ -459,14 +459,15 @@ public class UserDialogManager implements DialogManager {
      *            the response to be handled.
      */
     public void handleUIResponse(UIResponse response) {
-	// DialogManagerImpl.getModuleContext().logDebug(
-	// "Response", "Handling response: " + response.getSubmissionID(),
-	// null);
+//    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  response.getSubmissionID()}, null);
 	if (listeners.containsKey(response.getSubmissionID())) {
 	    SubmitGroupListener sgl = listeners.get(response.getSubmissionID());
 	    listeners.clear();
 	    sgl.handle(response);
+	} else {
+		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"listeners don't include:",  response.getSubmissionID()}, null);
 	}
+		
     }
 
     /**

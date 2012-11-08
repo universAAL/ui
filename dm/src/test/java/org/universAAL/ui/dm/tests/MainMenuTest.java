@@ -31,7 +31,7 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
 
 public class MainMenuTest extends TestCase {
 
-	static private Resource user;
+	protected static Resource user;
 
 	public void setUp(){
 		OntologyManagement.getInstance().register(new DataRepOntology());
