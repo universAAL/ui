@@ -17,6 +17,7 @@ package org.universAAL.ui.dm.userInteraction.mainMenu;
 
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.MergedRestriction;
@@ -64,6 +65,7 @@ public class SearchableAggregatedMainMenuProvider extends
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
+	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  response.getSubmissionID()}, null);
 	if (SEARCH_CALL.equals(submissionID)) {
 	    Object searchStr = response
 		    .getUserInput(new String[] { PROP_SEARCH_STRING });
@@ -110,7 +112,7 @@ public class SearchableAggregatedMainMenuProvider extends
     /** {@inheritDoc} */
     @Override
     public Set<String> listDeclaredSubmitIds() {
-	Set<String> s = super.listDeclaredSubmitIds();
+	Set<String> s = new TreeSet<String>(super.listDeclaredSubmitIds());
 	s.add(SEARCH_CALL);
 	s.add(BACK_CALL);
 	return s;

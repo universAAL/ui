@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.rdf.Resource;
@@ -145,6 +146,8 @@ public class MainMenu {
      *            The group to add the menu.
      */
     void addMenuRepresentation(Group rg) {
+    	if (root == null)
+    		return;
 	if (selection == null || selection == root)
 	    // add children of root
 	    for (MenuNode child : root.children()) {
@@ -258,7 +261,10 @@ public class MainMenu {
      * @return
      */
     public Iterable<MenuNode> entries() {
-	return selection.children();
+    	if (selection != null)
+    		return selection.children();
+    	else 
+    		return new ArrayList<MenuNode>();
     }
 
     // private synchronized void update(MenuNode selection) {

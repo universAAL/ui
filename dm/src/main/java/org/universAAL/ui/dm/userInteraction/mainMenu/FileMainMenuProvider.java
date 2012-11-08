@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.userInteraction.mainMenu;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
@@ -46,7 +48,9 @@ public class FileMainMenuProvider implements MainMenuProvider {
 
     protected UserDialogManager userDM;
 
-    protected String filePrefix = "main_menu_";
+    private String filePrefix = "main_menu_";
+
+	private long lastRead = 0;
 
     public FileMainMenuProvider(UserDialogManager udm) {
 	userDM = udm;
@@ -55,6 +59,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
+	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
 	if (entries.contains(submissionID)) {
 	    ServiceRequest sr = mainMenu.getAssociatedServiceRequest(
 		    submissionID, response.getUser());
@@ -95,11 +100,15 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	    Form systemForm) {
 	entries.clear();
 	Group main = systemForm.getIOControls();
-	if (mainMenu == null) {
+	File f = getMainMenuFile();
+	if (f != null 
+			&& lastRead  != f.lastModified()) {
 		try {
-		    InputStream is = openMainMenuConfigFile();
-		    mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
-			is.close();
+		    InputStream is = tryOpenFile(f);
+		    if (is != null) {
+		    	mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
+		    	is.close();
+		    }
 		} catch (Exception e1) {
 			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
 					getClass(), "getMainMenu", 
@@ -107,21 +116,41 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		    return main;
 		}
 	}
-	try {
-	    mainMenu.resetSelection();
-	    mainMenu.addMenuRepresentation(main);
-	    for (MenuNode entry : mainMenu.entries()) {
-	        entries.add(entry.getPath());
-	    }
-	} catch (Exception e) {
-		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
-				getClass(), "getMainMenu", 
-				new String[]{"unable to process Main Menu"}, e);
+	if (mainMenu != null) {
+		try {
+			mainMenu.resetSelection();
+			mainMenu.addMenuRepresentation(main);
+			for (MenuNode entry : mainMenu.entries()) {
+				entries.add(entry.getPath());
+			}
+		} catch (Exception e) {
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+					getClass(), "getMainMenu", 
+					new String[]{"unable to process Main Menu"}, e);
+		}
 	}
 	return main;
     }
 
-    protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
+    protected File getMainMenuFile() {
+    	String userID = userDM.getUserId();
+    	userID = userID.substring(userID.lastIndexOf("#") + 1);
+    	String lang = userDM.getUserLocale().getLanguage();
+    	BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
+    		    .getModuleContext().getID());
+    	File f = new File(confHome.getAbsolutePath(),filePrefix + userID + "_" + lang
+    			+ ".txt");
+    	if (f.exists()){
+    		return f;
+    	}
+    	f = new File(confHome.getAbsolutePath(),filePrefix + userID + ".txt");
+    	if (f.exists()){
+    		return f;
+    	}
+    	return null;
+	}
+
+	protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
 	return new MainMenu(ctxt, in);
     }
 
@@ -129,33 +158,11 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	userDM.add(this);
 	userDM.pushDialog(mff);
     }
-
-    protected InputStream openMainMenuConfigFile() {
-    	String userID = userDM.getUserId();
-    	userID = userID.substring(userID.lastIndexOf("#") + 1);
-    	String lang = userDM.getUserLocale().getLanguage();
-    	try {
-    	InputStream in =  openMainMenuConfigFile(filePrefix + userID + "_" + lang
-    			+ ".txt");
-    	if (in != null){
-    		return in;
-    	}
-    	}
-    	catch (Exception e) { }
-    	try {
-    		return openMainMenuConfigFile(filePrefix + userID + ".txt");
-    	}
-    	catch (Exception e2) {
-    		return null;
-    	}
-    }
     
-    protected final InputStream openMainMenuConfigFile(String filename){
+    private final InputStream tryOpenFile(File filename){
     	InputStream in = null;
-	try {
-	    BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
-		    .getModuleContext().getID());
-	    in = confHome.getConfFileAsStream(filename);
+	try {	    
+	    in = new FileInputStream(filename);
 	} catch (IOException e) {
 		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
 				getClass(), "openMainMenuConfigFile",

@@ -1,17 +1,18 @@
 package org.universAAL.ui.dm.userInteraction.mainMenu.profilable;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
-import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuEntry;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuProfile;
 import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
@@ -23,8 +24,6 @@ public class RDFMainMenu extends MainMenu {
     }
 
     protected void constructMenu(InputStream in) {
-	if (in == null)
-	    return;
 
 	RDFMenuNode rdfroot = new RDFMenuNode(-1);
 	root = rdfroot;
@@ -32,7 +31,12 @@ public class RDFMainMenu extends MainMenu {
 
 	// Read the configuration file of the menu for this user which
 	// contains a list of menu entries.
-	Resource r = readMenu(in);
+	Resource r = null;
+	 try {
+		r = readMenu(in);
+	} catch (Exception e) {
+		r = null;
+	}
 	if (r == null) {
 	    LogUtils.logError(context, RDFMainMenu.class, "constructMenu",
 		    new Object[] { "resource is null" }, null);
@@ -85,14 +89,9 @@ public class RDFMainMenu extends MainMenu {
 	return (Resource) contentSerializer.deserialize(serialized);
     }
 
-    public Resource readMenu(User user) {
-	String userID = user.getLocalName();
-
-	InputStream in = null;
+    public Resource readMenu(File file) {
 	try {
-	    BundleConfigHome confHome = new BundleConfigHome(context.getID());
-	    in = confHome.getConfFileAsStream(ProfilableFileMainMenuProvider.PROF_FILE_PREFIX
-		    + userID + ".txt");
+		InputStream in = new FileInputStream(file);
 	    return readMenu(in);
 	} catch (Exception e) {
 	    // LogUtils
@@ -111,14 +110,9 @@ public class RDFMainMenu extends MainMenu {
 	return null;
     }
 
-    public void saveMenu(User user, MenuProfile mp) {
-	String userID = user.getLocalName();
-	OutputStream out = null;
+    public void saveMenu(File file, MenuProfile mp) {
 	try {
-	    BundleConfigHome confHome = new BundleConfigHome(context.getID());
-	    out = confHome
-		    .getConfFileAsOutputStream(ProfilableFileMainMenuProvider.PROF_FILE_PREFIX
-			    + userID + ".txt");
+		OutputStream out = new FileOutputStream(file);
 	    saveMenu(out, mp);
 	} catch (Exception e) {
 	    LogUtils.logError(context, RDFMainMenu.class, "saveMenu",

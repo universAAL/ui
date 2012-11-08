@@ -1,5 +1,7 @@
 package org.universAAL.ui.dm.userInteraction.mainMenu.profilable;
 
+import java.io.File;
+
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
@@ -30,6 +32,7 @@ public class SCallee extends ServiceCallee {
     private static ServiceProfile[] profiles = new ServiceProfile[1];
 
     private ModuleContext context;
+	private File file;
 
     static {
 	invalidInput.addOutput(new ProcessOutput(
@@ -50,9 +53,10 @@ public class SCallee extends ServiceCallee {
 
     }
 
-    public SCallee(ModuleContext context) {
+    public SCallee(ModuleContext context, File mainMenuFile) {
 	super(context, profiles);
 	this.context = context;
+	this.file = mainMenuFile;
     }
 
     @Override
@@ -96,7 +100,7 @@ public class SCallee extends ServiceCallee {
 	    // load
 	    Resource r = null;
 	    try {
-		r = mainMenu.readMenu(user);
+		r = mainMenu.readMenu(file);
 	    } catch (Exception e) {
 		// most likely, the menu file does not exist yet, so do nothing
 	    }
@@ -106,7 +110,7 @@ public class SCallee extends ServiceCallee {
 	    // add
 	    mp.addMenuEntry(entry);
 	    // save
-	    mainMenu.saveMenu(user, mp);
+	    mainMenu.saveMenu(file, mp);
 	    LogUtils.logDebug(context, SCallee.class, "addEntry", new Object[] {
 		    "adding main menu entry: ",
 		    entry.getServiceClass().getURI() }, null);
