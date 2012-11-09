@@ -395,7 +395,7 @@ public class UserDialogManager implements DialogManager {
 	    addListeners(req);
 	    myUIRequests.add(req.getDialogID());
 	    DialogManagerImpl.getInstance()
-		    .resumeDialog(req.getDialogID(), req);
+		    .resumeDialog(req.getDialogID(), req.getDialogForm().getData());
 	}
     }
 
