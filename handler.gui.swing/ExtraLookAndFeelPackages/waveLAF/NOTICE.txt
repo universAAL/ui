@@ -21,6 +21,9 @@ This product uses software developed at
 The OPS4J (http://www.ops4j.org)
 Licensed under the Apache License 2.0.
 
+This product uses software developed at
+SwingxLabs (http://swingx.java.net/)
+Licensed under the Lesser General Public License 2.1
 
 III. License Summary
 - Apache License 2.0
