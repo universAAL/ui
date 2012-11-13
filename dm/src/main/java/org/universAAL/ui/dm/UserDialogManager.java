@@ -18,7 +18,6 @@ package org.universAAL.ui.dm;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -43,12 +42,16 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
+import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
 import org.universAAL.ui.dm.userInteraction.ClassicSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.ClassicWithSubmitsSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.SmartPendingSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.TaskBarSystemMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider;
@@ -74,6 +77,16 @@ public class UserDialogManager implements DialogManager {
      * {@link UIRequest} will be sent before this time.
      */
     private static final long FINALISE_WAIT = 100;
+
+	private static final String SYSTEM_PROP_SYSMENUPROVIDER = "ui.dm.systemMenuProvision";
+
+	private static final String SYS_DEFAULT = "classic";
+
+	private static final String SYS_SUBMITS = "buttons";
+
+	private static final String SYS_SMART = "smart";
+
+	private static final String SYS_TASK = "task";
 
     /**
      * {@link User} this {@link UserDialogManager} is targeting.
@@ -135,11 +148,6 @@ public class UserDialogManager implements DialogManager {
     private Set<String> myUIRequests;
 
     /**
-     * A set of resumed {@link UIRequest}.
-     */
-    private Set<UIRequest> resumedUIRequests;
-
-    /**
      * The internationalization file for strings meant to be read by the user.
      */
     private Messages messages;
@@ -176,15 +184,28 @@ public class UserDialogManager implements DialogManager {
 		.add(new FileMainMenuProvider(this));
 	((AggregatedMainMenuProvider) mainMenuProvider)
 		.add(new ProfilableFileMainMenuProvider(this));
-	systemMenuProvider = new ClassicSystemMenuProvider(this);
-	// systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
+	
+	// LOAD System Menu provider according to system properties
+	String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,SYS_DEFAULT);
+	
+	if (smp.equals(SYS_DEFAULT)) {
+		systemMenuProvider = new ClassicSystemMenuProvider(this);
+	}
+	else if (smp.equals(SYS_SUBMITS)) {
+		systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
+	}
+	else if (smp.equals(SYS_SMART)) {
+		systemMenuProvider = new SmartPendingSystemMenuProvider(this);
+	}
+	else if (smp.equals(SYS_TASK)) {
+		systemMenuProvider = new TaskBarSystemMenuProvider(this);
+	}	
 	messagePool = new DialogPriorityQueue();
-	dialogPool = new DialogPriorityQueue();
-	// dialogPool = new DialogPriorityQueueVerbosity();
+	//dialogPool = new DialogPriorityQueue();
+	dialogPool = new DialogPriorityQueueVerbosity();
 	listeners = new TreeMap<String, SubmitGroupListener>();
 	messageListener = new MessageListener(messagePool);
 	myUIRequests = new TreeSet<String>();
-	resumedUIRequests = new HashSet<UIRequest>();
     }
 
     /**
@@ -332,13 +353,12 @@ public class UserDialogManager implements DialogManager {
      * @param dialogID
      *            ID of the dialog that is now finished.
      */
-    public void dialogFinished(String dialogID) {
-	if (!resumedUIRequests.contains(current)) {
-	    current = null;
-	    new Thread(new ClosingTask(dialogID), "Closing Task").start();
-	} else {
-	    resumedUIRequests.remove(current);
-	}
+    public synchronized void dialogFinished(String dialogID) {
+    	if (current != null 
+    			&& current.getDialogID().equals(dialogID)) {
+    		current = null;
+    	} 
+    	new Thread(new ClosingTask(dialogID), "Closing Task").start();
     }
 
     /**
@@ -346,7 +366,11 @@ public class UserDialogManager implements DialogManager {
      * Then check dialogs, as a last resort show main menu.
      */
     public void showSomething() {
-
+    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(),
+    			getClass(),
+    			"showSomething",
+    			new String[] {"Nothing to show, Trying to show something"},
+    			null);
 	Collection<UIRequest> suspendedDialogs = dialogPool.listAllSuspended();
 	// show other message, dialog or system menu
 	// if there isn't one already...
@@ -388,12 +412,13 @@ public class UserDialogManager implements DialogManager {
 		dialogPool.suspend(current.getDialogID());
 		messagePool.suspend(current.getDialogID());
 	    }
-	    dialogPool.unsuspend(req.getDialogID());
-	    messagePool.unsuspend(req.getDialogID());
-	    current = req;
-	    resumedUIRequests.add(req);
+	    //resumedUIRequests.add(req);
 	    addListeners(req);
-	    myUIRequests.add(req.getDialogID());
+	    //myUIRequests.add(req.getDialogID());
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+	    		"resumeUIRequest",
+	    		new String[] {"Resuming UIRequest:", req.getDialogForm().getTitle()},
+	    		null);
 	    DialogManagerImpl.getInstance()
 		    .resumeDialog(req.getDialogID(), req.getDialogForm().getData());
 	}
@@ -406,6 +431,12 @@ public class UserDialogManager implements DialogManager {
 		add(messageListener);
 	    }
 	    add(systemMenuProvider);
+	}
+	else {
+		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+				getClass(), "addListeners",
+				new String[] {"UIRequest or Form is null!"},
+				null);
 	}
     }
 
@@ -425,7 +456,7 @@ public class UserDialogManager implements DialogManager {
      *            ID of the dialog.
      * @return the suspended {@link UIRequest}, null if not found.
      */
-    public final UIRequest getSuspendedDialog(String dialogID) {
+    public final synchronized UIRequest getSuspendedDialog(String dialogID) {
 	UIRequest r = dialogPool.get(dialogID);
 	if (r != null) {
 	    dialogPool.unsuspend(dialogID);
@@ -443,11 +474,12 @@ public class UserDialogManager implements DialogManager {
      * @param dialogID
      *            ID of the dialog.
      */
-    public void suspendDialog(String dialogID) {
+    public synchronized void suspendDialog(String dialogID) {
 	dialogPool.suspend(dialogID);
 	if (current.getDialogID().equals(dialogID)) {
 	    current = null;
 	}
+	//request data through CutDialog
     }
 
     /**
@@ -459,13 +491,22 @@ public class UserDialogManager implements DialogManager {
      *            the response to be handled.
      */
     public void handleUIResponse(UIResponse response) {
-//    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  response.getSubmissionID()}, null);
-	if (listeners.containsKey(response.getSubmissionID())) {
-	    SubmitGroupListener sgl = listeners.get(response.getSubmissionID());
+    	String submissionID = response.getSubmissionID();
+    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
+    	String dialogID = response.getDialogID();
+    	UIRequest req = dialogPool.get(dialogID);
+    	if (req == null) {
+    		req = messagePool.get(dialogID);
+    	}
+    	if (req != null) {
+    		req.setCollectedInput(response.getSubmittedData());
+    	}
+	if (listeners.containsKey(submissionID)) {
+	    SubmitGroupListener sgl = listeners.get(submissionID);
 	    listeners.clear();
 	    sgl.handle(response);
 	} else {
-		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"listeners don't include:",  response.getSubmissionID()}, null);
+		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"listeners don't include:",  submissionID}, null);
 	}
 		
     }
@@ -478,7 +519,8 @@ public class UserDialogManager implements DialogManager {
      *            listeners.
      */
     public final void add(SubmitGroupListener sgl) {
-	for (String subID : sgl.listDeclaredSubmitIds()) {
+    	Set<String> declaredSID = sgl.listDeclaredSubmitIds();
+	for (String subID : declaredSID) {
 	    listeners.put(subID, sgl);
 	}
     }
@@ -535,8 +577,8 @@ public class UserDialogManager implements DialogManager {
      *            the form to be presented to the user.
      */
     public final void pushDialog(Form form) {
-	if (dialogPool.getCurrent() != null) {
-	    dialogPool.suspend(dialogPool.getCurrent().getDialogID());
+	if (current != null) {
+	    dialogPool.suspend(current.getDialogID());
 	}
 	// TODO: adjust LevelRating, Locale, PrivacyLevel to user preferences!
 	UIRequest req = new UIRequest(user, form, LevelRating.none,
@@ -607,9 +649,9 @@ public class UserDialogManager implements DialogManager {
 
 	/** {@inheritDoc} */
 	public void run() {
-	    if (!dialogPool.listAllSuspended().contains(d)) {
+	    //if (!dialogPool.listAllSuspended().contains(d)) {
 		dialogPool.close(d);
-	    }
+	    //}
 	    try {
 		Thread.sleep(FINALISE_WAIT);
 	    } catch (InterruptedException e) {

@@ -59,7 +59,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
+	//LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
 	if (entries.contains(submissionID)) {
 	    ServiceRequest sr = mainMenu.getAssociatedServiceRequest(
 		    submissionID, response.getUser());
@@ -71,7 +71,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		mainMenu.setSelection(submissionID);
 		showHierarchyMenu(submissionID);
 	    } else {
-		LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(),
 			getClass(), "handleUIResponse",
 			new Object[] { "Trying to call: ",
 				response.getSubmissionID() }, null);

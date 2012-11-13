@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
@@ -177,7 +178,7 @@ public class PendingDialogBuilder implements SubmitGroupListener {
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	Resource data = response.getSubmittedData();
+	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"handling:" , submissionID}, null);
 	if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
 	    dialogPool.removeAll();
 	}
@@ -192,7 +193,7 @@ public class PendingDialogBuilder implements SubmitGroupListener {
 	    } catch (Exception e) {
 		idx = -1;
 	    }
-	    switchTo(data, idx);
+	    switchTo(idx);
 	}
     }
 
@@ -200,14 +201,10 @@ public class PendingDialogBuilder implements SubmitGroupListener {
      * Switch to a specific pending dialog. This method is called from the
      * dialog presenting the list of pending dialogs when the user selects the
      * appropriate button.
-     * 
-     * @param data
-     *            The data from the dialog; contains information about all
-     *            pending dialogs.
      * @param selectionIndex
      *            Index of the selected pending dialog.
      */
-    private void switchTo(Resource data, int selectionIndex) {
+    private void switchTo(int selectionIndex) {
 	String dialogID = sentItems.get(selectionIndex);
 	// XXX adaptation parameters are already added... ?
 	// addAdaptationParams(oe, getQueryString(user.getURI()));
