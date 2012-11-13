@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.DialogType;
@@ -40,167 +40,159 @@ import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuil
  */
 public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 
-    /**
-     * The submission ID to exit the main menu. A button with this functionality
-     * is available only in the main menu.
-     * */
-    static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#stopDialogLoop"; //$NON-NLS-1$
+	/**
+	 * The submission ID to exit the main menu. A button with this functionality
+	 * is available only in the main menu.
+	 * */
+	static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX
+			+ "#stopDialogLoop"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show the main menu. A button with this functionality
-     * is available in the standard dialog.
-     */
-    static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMainMenu"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show the main menu. A button with this functionality
+	 * is available in the standard dialog.
+	 */
+	static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX
+			+ "#showMainMenu"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show pending messages. A button with this
-     * functionality is available in the system dialog and in standard dialogs.
-     */
-    static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMessages"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show pending messages. A button with this
+	 * functionality is available in the system dialog and in standard dialogs.
+	 */
+	static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
+			+ "#showMessages"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show pending dialogs. A button with this
-     * functionality is available in the system menu.
-     */
-    static final String OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showOpenDialogs"; //$NON-NLS-1$
+	private static final String SWITCH_TO_CALL_PREFIX = PendingDialogBuilder.SWITCH_TO_CALL_PREFIX;
 
-    private static final String SWITCH_TO_CALL_PREFIX = PendingDialogBuilder.SWITCH_TO_CALL_PREFIX;
+	private UserDialogManager userDM;
 
-    private UserDialogManager userDM;
+	private List<String> sentItems;
 
-    private List<String> sentItems;
-
-    /**
+	/**
 	 * 
 	 */
-    public TaskBarSystemMenuProvider(UserDialogManager udm) {
-	userDM = udm;
-	sentItems = new ArrayList<String>();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL
-     * .middleware.ui.UIResponse)
-     */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-	if (EXIT_CALL.equals(submissionID)) {
-	    // XXX: do nothing?
-	}
-	if (MENU_CALL.equals(submissionID)) {
-	    userDM.showMainMenu();
-	}
-	if (MESSAGES_CALL.equals(submissionID)) {
-	    new PendingMessageBuilder(userDM);
-	}
-	if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
-	    int idx = -1;
-	    try {
-		idx = Integer.parseInt(submissionID
-			.substring(SWITCH_TO_CALL_PREFIX.length()));
-	    } catch (Exception e) {
-		idx = -1;
-	    }
-	    switchTo(response.getSubmittedData(), idx);
+	public TaskBarSystemMenuProvider(UserDialogManager udm) {
+		userDM = udm;
+		sentItems = new ArrayList<String>();
 	}
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL
+	 * .middleware.ui.UIResponse)
+	 */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"handling:" , submissionID}, null);
+		if (EXIT_CALL.equals(submissionID)) {
+			// XXX: do nothing?
+		}
+		if (MENU_CALL.equals(submissionID)) {
+			userDM.showMainMenu();
+		}
+		if (MESSAGES_CALL.equals(submissionID)) {
+			new PendingMessageBuilder(userDM);
+		}
+		if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
+		    int idx = -1;
+		    try {
+			idx = Integer.parseInt(submissionID
+				.substring(SWITCH_TO_CALL_PREFIX.length()));
+		    } catch (Exception e) {
+			idx = -1;
+		    }
+		    switchTo(idx);
+		}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds
-     * ()
-     */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(EXIT_CALL);
-	s.add(MENU_CALL);
-	s.add(MESSAGES_CALL);
-	for (String diagID : sentItems) {
-	    s.add(SWITCH_TO_CALL_PREFIX + diagID);
 	}
-	return s;
-    }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.
-     * universAAL.middleware.ui.UIRequest)
-     */
-    public Group getSystemMenu(UIRequest request) {
-	Form f = request.getDialogForm();
-	Group stdButtons = f.getStandardButtons();
-	switch (f.getDialogType().ord()) {
-	case DialogType.SYS_MENU:
-	    new Submit(stdButtons, new Label(userDM.getString("UICaller.exit"),
-		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
-	    putPendingXXSubmits(stdButtons);
-	    break;
-	case DialogType.MESSAGE:
-	    break;
-	case DialogType.SUBDIALOG:
-	case DialogType.STD_DIALOG:
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.mainMenu"), userDM
-		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
-	    putPendingXXSubmits(stdButtons);
-	    break;
-	default:
-	    break;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds
+	 * ()
+	 */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(EXIT_CALL);
+		s.add(MENU_CALL);
+		s.add(MESSAGES_CALL);
+		for (int i = 0;i < sentItems.size(); i++) {
+			s.add(SWITCH_TO_CALL_PREFIX + Integer.toString(i));
+		}
+		return s;
 	}
-	return stdButtons;
-    }
 
-    private void putPendingXXSubmits(Group stdButtons) {
-	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingMessages"), userDM
-		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
-	} else {
-	    // show a button with different ICON/Message or nothing
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.
+	 * universAAL.middleware.ui.UIRequest)
+	 */
+	public Group getSystemMenu(UIRequest request) {
+		sentItems.clear();
+		Form f = request.getDialogForm();
+		Group stdButtons = f.getStandardButtons();
+		switch (f.getDialogType().ord()) {
+		case DialogType.SYS_MENU:
+			new Submit(stdButtons, new Label(userDM.getString("UICaller.exit"),
+					userDM.getString("UICaller.exit.icon")), EXIT_CALL);
+			putPendingXXSubmits(stdButtons);
+			break;
+		case DialogType.MESSAGE:
+			break;
+		case DialogType.SUBDIALOG:
+		case DialogType.STD_DIALOG:
+			new Submit(stdButtons, new Label(userDM
+					.getString("UICaller.mainMenu"), userDM
+					.getString("UICaller.mainMenu.icon")), MENU_CALL);
+			putPendingXXSubmits(stdButtons);
+			break;
+		default:
+			break;
+		}
+		return stdButtons;
 	}
-	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
-	    Group pendingDialogs = new Group(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingDialogs"), null), null, null,
-		    null);
-	    int i = 0;
-	    for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
-		String dialogId = req.getDialogID();
-		sentItems.add(dialogId);
-		new Submit(pendingDialogs, new Label(req.getDialogForm()
-			.getTitle(), null), SWITCH_TO_CALL_PREFIX
-			+ Integer.toString(i++));
-	    }
-	} else {
-	    // show a button with different ICON/Message or nothing
-	}
-    }
 
-    /**
-     * Switch to a specific pending dialog. This method is called from the
-     * dialog presenting the list of pending dialogs when the user selects the
-     * appropriate button.
-     * 
-     * @param data
-     *            The data from the dialog; contains information about all
-     *            pending dialogs.
-     * @param selectionIndex
-     *            Index of the selected pending dialog.
-     */
-    private void switchTo(Resource data, int selectionIndex) {
-	String dialogID = sentItems.get(selectionIndex);
-	UIRequestPool dialogPool = userDM.getDialogPool();
-	userDM.resumeUIRequest(dialogPool.get(dialogID));
-    }
+	private void putPendingXXSubmits(Group stdButtons) {
+		if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
+			new Submit(stdButtons, new Label(userDM
+					.getString("UICaller.pendingMessages"), userDM
+					.getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
+		} else {
+			// show a button with different ICON/Message or nothing
+		}
+		if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
+			Group pendingDialogs = new Group(stdButtons, new Label(userDM
+					.getString("UICaller.pendingDialogs"), null), null, null,
+					null);
+			int i = 0;
+			for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
+				String dialogId = req.getDialogID();
+				sentItems.add(dialogId);
+				new Submit(pendingDialogs, new Label(req.getDialogForm()
+						.getTitle(), null), SWITCH_TO_CALL_PREFIX
+						+ Integer.toString(i++));
+			}
+		} else {
+			// show a button with different ICON/Message or nothing
+		}
+	}
+
+	/**
+	 * Switch to a specific pending dialog. This method is called from the
+	 * dialog presenting the list of pending dialogs when the user selects the
+	 * appropriate button.
+	 * @param selectionIndex
+	 *            Index of the selected pending dialog.
+	 */
+	private void switchTo(int selectionIndex) {
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "switchTo", new String[] {"Switching to: " + selectionIndex}, null);
+		String dialogID = sentItems.get(selectionIndex);
+		UIRequestPool dialogPool = userDM.getDialogPool();
+		userDM.resumeUIRequest(dialogPool.get(dialogID));
+	}
 }

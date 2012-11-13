@@ -143,7 +143,8 @@ public class DialogPriorityQueueVerbosity implements UIRequestPool {
 	    log("Suspending: " + r.getDialogID());
 	    activeSet.remove(r);
 	    suspendedSet.put(r.getDialogID(), r);
-	    if (UIReqID.equals(current.getDialogID())) {
+	    if (current !=  null 
+	    		&& UIReqID.equals(current.getDialogID())) {
 		current = null;
 		log("It is the current, current == null");
 	    }

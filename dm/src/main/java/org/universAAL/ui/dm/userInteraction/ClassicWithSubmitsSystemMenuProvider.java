@@ -297,7 +297,6 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 	/** {@inheritDoc} */
 	public void handle(UIResponse response) {
 	    String submissionID = response.getSubmissionID();
-	    Resource data = response.getSubmittedData();
 	    if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
 		dialogPool.removeAll();
 	    }
@@ -312,7 +311,7 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 		} catch (Exception e) {
 		    idx = -1;
 		}
-		switchTo(data, idx);
+		switchTo(idx);
 	    }
 	}
 
@@ -320,14 +319,10 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 	 * Switch to a specific pending dialog. This method is called from the
 	 * dialog presenting the list of pending dialogs when the user selects
 	 * the appropriate button.
-	 * 
-	 * @param data
-	 *            The data from the dialog; contains information about all
-	 *            pending dialogs.
 	 * @param selectionIndex
 	 *            Index of the selected pending dialog.
 	 */
-	private void switchTo(Resource data, int selectionIndex) {
+	private void switchTo(int selectionIndex) {
 	    String dialogID = sentItems.get(selectionIndex);
 	    // XXX adaptation parameters are already added... ?
 	    // addAdaptationParams(oe, getQueryString(user.getURI()));

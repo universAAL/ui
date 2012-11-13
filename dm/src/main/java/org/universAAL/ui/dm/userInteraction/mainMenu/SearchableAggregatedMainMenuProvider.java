@@ -65,7 +65,6 @@ public class SearchableAggregatedMainMenuProvider extends
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  response.getSubmissionID()}, null);
 	if (SEARCH_CALL.equals(submissionID)) {
 	    Object searchStr = response
 		    .getUserInput(new String[] { PROP_SEARCH_STRING });
