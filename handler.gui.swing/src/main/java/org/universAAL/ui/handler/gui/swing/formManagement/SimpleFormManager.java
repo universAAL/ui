@@ -76,7 +76,7 @@ public class SimpleFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public synchronized Resource cutDialog(String dialogID) {
-    	// TODO Return the request Data.
+    	// Return the Form Data.
     	if (currentForm != null 
     			&& currentForm.getDialogID().equals(dialogID)) {
     		closeCurrentDialog();

@@ -296,7 +296,7 @@ public class RepeatTableModel extends AbstractTableModel {
 			for (int j = 0; j < elems.length; j++) {
 				if (elems[j] instanceof FormControl) {
 					FormControl nFC = (FormControl) softCopy(elems[j]);
-					nFC.setProperty(FormControl.PROP_PARENT_CONTROL, subForm.getIOControls());
+					nFC.changeProperty(FormControl.PROP_PARENT_CONTROL, subForm.getIOControls());
 					addChild((Group) subForm.getIOControls(), nFC);
 					if (elems[j] instanceof SubdialogTrigger) {
 						nFC.changeProperty(SubdialogTrigger.PROP_SUBMISSION_ID,
