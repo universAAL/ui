@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.waveLAF.support.pager;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +33,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import javax.swing.plaf.basic.BasicArrowButton;
+
+import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
 /**
  * A Jcomponent that will display components in {@link Page}s. 
@@ -86,7 +88,10 @@ public class MainMenuPager extends JPanel {
 		add(bm,BorderLayout.SOUTH);
 		
 		// these buttons can be customized
-		JButton btnPrev = new BasicArrowButton(SwingConstants.WEST);//new JButton("<-");
+		Dimension min = new Dimension(ColorLAF.SEPARATOR_SPACE, Integer.MAX_VALUE);
+		
+		JButton btnPrev = new CustomBasicArrowButton(SwingConstants.WEST);//new JButton("<-");
+		btnPrev.setPreferredSize(min);
 		add(btnPrev, BorderLayout.WEST);
 		btnPrev.addActionListener(new ActionListener() {
 			
@@ -103,7 +108,8 @@ public class MainMenuPager extends JPanel {
 			}
 		});
 		
-		JButton btnNext = new BasicArrowButton(SwingConstants.EAST); //new JButton("->");
+		JButton btnNext = new CustomBasicArrowButton(SwingConstants.EAST); //new JButton("->");
+		btnNext.setPreferredSize(min);
 		add(btnNext, BorderLayout.EAST);
 		btnNext.addActionListener(new ActionListener() {
 			
@@ -116,6 +122,7 @@ public class MainMenuPager extends JPanel {
 				}
 			}
 		});
+		
 		
 		pages = new JPanel();
 		add(pages, BorderLayout.CENTER);
