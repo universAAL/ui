@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.FlowLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -109,7 +111,11 @@ public class GroupLAF extends GroupModel {
             jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
-            jc.setLayout(new FormLayout());
+            if (isInStandardGroup()) {
+            	jc.setLayout(new FlowLayout());
+            } else {
+            	jc.setLayout(new FormLayout());
+            }
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){

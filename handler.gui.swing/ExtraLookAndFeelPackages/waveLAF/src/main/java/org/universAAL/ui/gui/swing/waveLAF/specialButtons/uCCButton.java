@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -38,6 +39,8 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  */
 public class uCCButton implements SpecialButtonInterface {
 
+	private static final int SOCK_PORT = 9988;
+
 	private static final String UCC_URL = "http://127.0.0.1:9988";
 
 	private Renderer render;
@@ -45,6 +48,8 @@ public class uCCButton implements SpecialButtonInterface {
 	private Submit submit;
 	
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uCC";
+
+	private static final int SOCK_TIMEOUT = 10;
 
 	/**
 	 * 
@@ -75,7 +80,12 @@ public class uCCButton implements SpecialButtonInterface {
 		
 		Socket s = null;
 		try {
-			s = new Socket(InetAddress.getByName("localhost"), 9988);
+			s = new Socket();
+			s.connect(
+					new InetSocketAddress(
+							InetAddress.getByName("localhost"),
+							SOCK_PORT),
+					SOCK_TIMEOUT);
 			boolean r = s.isConnected();
 			s.close();
 			return r;
