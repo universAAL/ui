@@ -132,7 +132,7 @@ public class HierarchicalFromManager implements FormManager {
 	 * @author amedrano
 	 *
 	 */
-	private class FormTree extends TreeMap{
+	private static class FormTree extends TreeMap{
 		/**
 		 * Serial ID.
 		 */

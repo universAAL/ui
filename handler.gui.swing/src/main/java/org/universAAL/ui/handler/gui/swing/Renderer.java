@@ -205,15 +205,19 @@ public class Renderer extends Thread {
         /*
          * Try to load from file, if not create file from defaults.
          */
-        	FileInputStream fis;
+        	FileInputStream fis = null;
 			try {
 				fis = new FileInputStream(getHomeDir() + RENDERER_CONF);
 				fileProp.load(fis);
 				fis.close();
 			} catch (FileNotFoundException e) {
 				storeProperties();
+				try {
+					fis.close();
+				} catch (Exception e2) {}
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
 			}
     }
 
@@ -222,7 +226,7 @@ public class Renderer extends Thread {
      */
     protected void storeProperties() {
 
-        	FileOutputStream fos;
+        	FileOutputStream fos = null;
 			try {
 				fos = new FileOutputStream(getHomeDir() + RENDERER_CONF);
 				fileProp.store( fos,
@@ -231,14 +235,23 @@ public class Renderer extends Thread {
 			} catch (FileNotFoundException e1) {
 				File dir = new File(getHomeDir());
 	            if (!dir.exists()) {
-	                dir.mkdir();
-	                storeProperties();
+	                if (dir.mkdir()) {
+	                	storeProperties();
+	                }
+	                else {
+	                	LogUtils.logError(moduleContext, getClass(),
+	    	            		"storeProperties", new String[]{NO_SAVE}, e1);
+	                }
 	            }
 	            LogUtils.logError(moduleContext, getClass(),
 	            		"storeProperties", new String[]{NO_SAVE}, e1);
 			} catch (IOException e) {
 				LogUtils.logError(moduleContext, getClass(),
 						"storeProperties", new String[]{"Can't Create config dir"}, e);
+			} finally {
+				try {
+					fos.close();
+				} catch (Exception e) {}
 			}
 
     }
