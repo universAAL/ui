@@ -130,8 +130,8 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
 		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
-	    break;
 	case DialogType.SUBDIALOG:
+	    break;
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(userDM
 		    .getString("UICaller.mainMenu"), userDM

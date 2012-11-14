@@ -143,8 +143,8 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 			putPendingXXSubmits(stdButtons);
 			break;
 		case DialogType.MESSAGE:
-			break;
 		case DialogType.SUBDIALOG:
+			break;
 		case DialogType.STD_DIALOG:
 			new Submit(stdButtons, new Label(userDM
 					.getString("UICaller.mainMenu"), userDM
