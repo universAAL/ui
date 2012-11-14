@@ -38,7 +38,7 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  * @author amedrano
  *
  */
-public class uCCButton implements SpecialButtonInterface {
+public class UCCButton implements SpecialButtonInterface {
 
 	private static final String UTF_8 = "utf-8";
 
@@ -57,7 +57,7 @@ public class uCCButton implements SpecialButtonInterface {
 	/**
 	 * 
 	 */
-	public uCCButton(Submit s, Renderer render) {
+	public UCCButton(Submit s, Renderer render) {
 		this.render = render;
 		submit = s;
 	}
@@ -65,7 +65,7 @@ public class uCCButton implements SpecialButtonInterface {
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
 		try {
-			uCCButton.openuCCGUI();
+			UCCButton.openuCCGUI();
 		} catch (Exception e1) {
 			LogUtils.logError(render.getModuleContext(), getClass(),
 					"Pressed uCC Button", new String[]{"Could Not open uCC GUI"}, e1);
