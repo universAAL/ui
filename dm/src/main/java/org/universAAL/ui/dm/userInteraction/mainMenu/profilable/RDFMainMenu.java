@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.charset.Charset;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -19,7 +20,9 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 
 public class RDFMainMenu extends MainMenu {
 
-    public RDFMainMenu(ModuleContext ctxt, InputStream in) {
+    private static final String UTF_8 = "utf-8";
+
+	public RDFMainMenu(ModuleContext ctxt, InputStream in) {
 	super(ctxt, in);
     }
 
@@ -58,7 +61,7 @@ public class RDFMainMenu extends MainMenu {
 
     protected Resource readMenu(InputStream in) {
 	// read the file
-	BufferedReader br = new BufferedReader(new InputStreamReader(in));
+	BufferedReader br = new BufferedReader(new InputStreamReader(in, Charset.forName(UTF_8)));
 	StringBuilder sb = new StringBuilder();
 	try {
 	    String line = br.readLine();
@@ -92,7 +95,9 @@ public class RDFMainMenu extends MainMenu {
     public Resource readMenu(File file) {
 	try {
 		InputStream in = new FileInputStream(file);
-	    return readMenu(in);
+	    Resource r = readMenu(in);
+	    in.close();
+	    return r;
 	} catch (Exception e) {
 	    // LogUtils
 	    // .logError(
@@ -114,6 +119,7 @@ public class RDFMainMenu extends MainMenu {
 	try {
 		OutputStream out = new FileOutputStream(file);
 	    saveMenu(out, mp);
+	    out.close();
 	} catch (Exception e) {
 	    LogUtils.logError(context, RDFMainMenu.class, "saveMenu",
 		    new Object[] { "" }, e);
@@ -134,7 +140,7 @@ public class RDFMainMenu extends MainMenu {
 	String serialized = contentSerializer.serialize(mp);
 	// write
 	try {
-	    out.write(serialized.getBytes());
+	    out.write(serialized.getBytes(Charset.forName(UTF_8)));
 	} catch (IOException e) {
 	    LogUtils.logError(context, RDFMainMenu.class, "saveMenu",
 		    new Object[] { "" }, e);

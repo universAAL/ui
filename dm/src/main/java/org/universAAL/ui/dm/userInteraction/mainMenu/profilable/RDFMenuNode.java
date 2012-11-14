@@ -15,16 +15,16 @@ public class RDFMenuNode extends MenuNode {
     public void add(MenuEntry entry) {
 	// simple method: transform entry to old style
 
-	String path = "";
+	StringBuffer path = new StringBuffer();
 	List<?> l = entry.getPath();
 	Resource lastPathElement = null;
 	for (Object o : l) {
 	    Resource r = (Resource) o;
-	    path += "/" + r.getResourceLabel(); // TODO: get label according to
+	    path.append("/" + r.getResourceLabel()); // TODO: get label according to
 						// language
 	    lastPathElement = r;
 	}
-	add(path, entry.getVendor().getURI(), entry.getServiceClass().getURI(),
+	add(path.toString(), entry.getVendor().getURI(), entry.getServiceClass().getURI(),
 		lastPathElement.getURI());
     }
 

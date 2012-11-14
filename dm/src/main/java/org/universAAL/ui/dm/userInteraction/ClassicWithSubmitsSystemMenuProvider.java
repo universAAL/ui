@@ -177,7 +177,7 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
      * 
      *         created: 26-sep-2012 13:03:50
      */
-    public class PendingDialogBuilder implements SubmitGroupListener {
+    public static class PendingDialogBuilder implements SubmitGroupListener {
 
 	/**
 	 * Prefix of a submission ID to switch to a pending dialog. All pending

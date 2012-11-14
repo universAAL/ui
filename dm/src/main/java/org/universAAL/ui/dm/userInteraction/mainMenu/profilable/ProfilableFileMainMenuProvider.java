@@ -13,14 +13,15 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
 
     // private RDFMainMenu rdfMainMenu;
-    SCallee c;
+    @SuppressWarnings("unused")
+	private SCallee serviceCallee;
 
     private static String PROF_FILE_PREFIX = "mainmenu_";
 
     public ProfilableFileMainMenuProvider(UserDialogManager udm) {
 	super(udm);
 
-	c = new SCallee(DialogManagerImpl.getModuleContext(), getMainMenuFile());
+	serviceCallee = new SCallee(DialogManagerImpl.getModuleContext(), getMainMenuFile());
     }
 
     protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
