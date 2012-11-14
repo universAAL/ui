@@ -12,6 +12,8 @@
   <artifactId>gui.swing.waveLAF</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
+	
+  <name>Wave Look and Feel for Swing Handler</name>
 
   <dependencies>
     <dependency>

@@ -37,7 +37,9 @@ public class UIHelper {
         } catch (IOException e) {
             return null;
         }
-
+        try {
+			resourceStream.close();
+		} catch (IOException e1) {	}
         ImageReader imageReader = (ImageReader) ImageIO.getImageReadersBySuffix(suffix).next();
         imageReader.setInput(imageStream);
         BufferedImage image = null;

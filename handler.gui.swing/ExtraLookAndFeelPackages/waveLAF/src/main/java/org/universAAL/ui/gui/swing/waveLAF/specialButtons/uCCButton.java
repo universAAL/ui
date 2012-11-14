@@ -26,6 +26,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.nio.charset.Charset;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -38,6 +39,8 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  *
  */
 public class uCCButton implements SpecialButtonInterface {
+
+	private static final String UTF_8 = "utf-8";
 
 	private static final int SOCK_PORT = 9988;
 
@@ -111,8 +114,8 @@ public class uCCButton implements SpecialButtonInterface {
 		 * Using native Java
 		 */
 		sendPOSTRequest(UCC_URL, 
-				"url=" +URLEncoder.encode("http://please.open.gui","utf-8") 
-				+ "&submit=" + URLEncoder.encode("Open+GUI", "utf-8"));
+				"url=" +URLEncoder.encode("http://please.open.gui",UTF_8) 
+				+ "&submit=" + URLEncoder.encode("Open+GUI", UTF_8));
 	}
 	
 	public static void sendPOSTRequest(String request, String urlParameters) throws Exception {
@@ -121,14 +124,14 @@ public class uCCButton implements SpecialButtonInterface {
 		connection.setDoOutput(true);
 		connection.setInstanceFollowRedirects(false); 
 		connection.setRequestMethod("POST"); 
-		connection.setRequestProperty("charset", "utf-8");
+		connection.setRequestProperty("charset", UTF_8);
 
-		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream ());
+		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream (), Charset.forName(UTF_8));
 		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
 		
-		InputStreamReader ir = new InputStreamReader(connection.getInputStream());
+		InputStreamReader ir = new InputStreamReader(connection.getInputStream(), Charset.forName(UTF_8));
 		while (ir.read() != -1) {}
 		ir.close();
 		connection.disconnect();

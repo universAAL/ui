@@ -26,19 +26,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.plaf.ComponentUI;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
- 
-
-@SuppressWarnings("unused")
 public class KickerButton extends JButton implements MouseListener{
 	/**
 	 * 
@@ -74,7 +68,7 @@ public class KickerButton extends JButton implements MouseListener{
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
-        ButtonModel m = getModel();
+        //ButtonModel m = getModel();
 
         Paint oldPaint = g2.getPaint();
       

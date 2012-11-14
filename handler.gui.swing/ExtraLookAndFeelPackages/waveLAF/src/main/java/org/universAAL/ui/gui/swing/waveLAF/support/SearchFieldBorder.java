@@ -20,11 +20,13 @@ import java.awt.Component;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Paint;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.Stroke;
+import java.awt.Toolkit;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
@@ -40,7 +42,15 @@ public class SearchFieldBorder implements Border {
 	private BufferedImage lens;
 
 	public SearchFieldBorder() {
-		 
+		Image image = Toolkit.getDefaultToolkit()
+	    		.getImage(getClass().getResource("/images/lens.png"));
+		if (image instanceof BufferedImage) {
+			lens = (BufferedImage) image;
+		}
+		else {
+			lens = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_3BYTE_BGR);
+			lens.getGraphics().drawImage(image, 0 , 0, null);
+		}
 	}
 
 	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
