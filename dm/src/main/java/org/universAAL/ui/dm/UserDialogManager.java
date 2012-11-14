@@ -323,9 +323,7 @@ public class UserDialogManager implements DialogManager {
 		f.getStandardButtons()
 			.changeProperty(Group.PROP_CHILDREN, null);
 	    }
-	    if (!request.getDialogForm().getDialogType().equals(DialogType.subdialog)) {
-	    	systemMenuProvider.getSystemMenu(request);
-	    }
+	    systemMenuProvider.getSystemMenu(request);
 	}
     }
 

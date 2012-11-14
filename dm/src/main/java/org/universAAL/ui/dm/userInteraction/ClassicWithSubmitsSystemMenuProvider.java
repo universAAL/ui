@@ -142,8 +142,8 @@ public class ClassicWithSubmitsSystemMenuProvider implements SystemMenuProvider 
 		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
-	    break;
 	case DialogType.SUBDIALOG:
+	    break;
 	case DialogType.STD_DIALOG:
 	    String dialogTitle = f.getTitle();
 
