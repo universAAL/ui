@@ -459,6 +459,8 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	case TRAILING:
 	    y += height;
 	    break;
+	default:
+		//something whent wrong...
 	}
 	for (int i = colStart ; i < colEnd ; i++) {
 	    Component m = target.getComponent(i);
@@ -572,6 +574,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	  case BOTTOM:       str = ",align=bottom"; break;
 	  case LEADING:     str = ",align=leading"; break;
 	  case TRAILING:    str = ",align=trailing"; break;
+	  default: 	//something whent wrong...
 	}
 	return getClass().getName() + "[hgap=" + hgap + ",vgap=" + vgap + str + "]";
     }

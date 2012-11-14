@@ -48,7 +48,7 @@ public class IconFactory {
             			&& ur.getProtocol().equals("file")) {
             		return new ImageIcon(ur.getPath());
             	}
-            	else {
+            	else if (ur != null){
             		return new ImageIcon(ur);
             	}
 			} catch (Exception e) {

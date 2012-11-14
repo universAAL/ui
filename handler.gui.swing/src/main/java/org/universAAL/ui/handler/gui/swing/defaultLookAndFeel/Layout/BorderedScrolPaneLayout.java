@@ -55,7 +55,14 @@ public class BorderedScrolPaneLayout extends ScrollPaneLayout {
 		/* Sync the (now obsolete) policy fields with the
 		 * JScrollPane.
 		 */
-		JScrollPane scrollPane = (JScrollPane)parent;
+		JScrollPane scrollPane;
+		if (parent instanceof JScrollPane) {
+			scrollPane = (JScrollPane)parent;
+		} 
+		else {
+			//shouldn't get gere!
+			scrollPane = null;
+		}
 		vsbPolicy = scrollPane.getVerticalScrollBarPolicy();
 		hsbPolicy = scrollPane.getHorizontalScrollBarPolicy();
 

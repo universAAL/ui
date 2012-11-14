@@ -294,7 +294,7 @@ public class RepeatTableModel extends AbstractTableModel {
 			Resource res = (Resource) i.next();
 			Form subForm = Form.newDialog("", res);
 			for (int j = 0; j < elems.length; j++) {
-				if (elems[j] instanceof FormControl) {
+				if (elems[j] != null) {
 					FormControl nFC = (FormControl) softCopy(elems[j]);
 					nFC.changeProperty(FormControl.PROP_PARENT_CONTROL, subForm.getIOControls());
 					addChild((Group) subForm.getIOControls(), nFC);

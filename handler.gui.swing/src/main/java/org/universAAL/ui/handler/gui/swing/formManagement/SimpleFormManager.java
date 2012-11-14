@@ -56,7 +56,7 @@ public class SimpleFormManager implements FormManager {
     }
 
     /** {@inheritDoc} */
-    public UIRequest getCurrentDialog() {
+    public synchronized UIRequest getCurrentDialog() {
         return currentForm;
     }
 
@@ -89,23 +89,23 @@ public class SimpleFormManager implements FormManager {
 		return null;
 	}
 
-	public void setRenderer(Renderer renderer) {
+	public synchronized void setRenderer(Renderer renderer) {
 		render = renderer;
 	}
 
-	protected void renderFrame() {
+	protected synchronized void renderFrame() {
 		if (currentForm != null) {
 			frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
 		}
 	}
 	
-	protected void disposeFrame(){
+	protected synchronized void disposeFrame(){
 		if (frame != null) {
     		frame.disposeFrame();
     	}
 	}
 
-	public Collection getAllDialogs() {
+	public synchronized Collection getAllDialogs() {
 		ArrayList l = new ArrayList();
 		if (currentForm != null) {
 			l.add(currentForm);

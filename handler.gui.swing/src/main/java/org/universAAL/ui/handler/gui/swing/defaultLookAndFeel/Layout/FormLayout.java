@@ -255,7 +255,7 @@ public class FormLayout implements LayoutManager {
      */
     static public float getSreenRatio() {
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		return screenSize.width/screenSize.height;
+		return (float)screenSize.width/(float)screenSize.height;
     }
     
     /**

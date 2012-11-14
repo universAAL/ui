@@ -177,7 +177,7 @@ public class SubmitLAF extends SubmitModel {
 		}
 	}
 
-	public class SystemButton extends JButton {
+	public static class SystemButton extends JButton {
 	    /**
 		 * 
 		 */
