@@ -139,11 +139,11 @@ public class FormLAF extends FormModel  {
     	JLabel route = new JLabel();
     	route.setFont(new Font("Arial", Font.PLAIN, 30));
     	String[] path = getTitlePath();
-    	String r = path[0];
+    	StringBuffer r = new StringBuffer(path[0]);
     	for (int i = 1; i < path.length; i++) {
-			r += " / "+ path[i];
+			r.append(" / "+ path[i]);
 		}
-    	route.setText(r);
+    	route.setText(r.toString());
     	header.add(route);
     	return (JPanel) header;
     }
