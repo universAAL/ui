@@ -15,8 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -54,6 +56,9 @@ public class Init implements InitInterface {
         }
         tray = new UAALTray(render);
         createDesktop();
+        UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
+        UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 3));
+        UIManager.put("ToolTip.font", ColorLAF.getLabelFont());
     }
     
     public ColorLAF getColorLAF(){
