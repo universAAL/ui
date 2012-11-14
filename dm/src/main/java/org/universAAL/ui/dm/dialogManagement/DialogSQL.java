@@ -63,6 +63,7 @@ public class DialogSQL implements UIRequestPool {
 		    "content blob"
 //		    + ",foreing key (user) references User(id))"
 		    );
+	    connection.close();
     }
     
     private MessageContentSerializer getSerializer() throws Exception{
@@ -110,6 +111,7 @@ public class DialogSQL implements UIRequestPool {
 		    "1,'" +
 		    getSerializer().serialize(UIReq) +
 		    "');" );
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -123,6 +125,7 @@ public class DialogSQL implements UIRequestPool {
 	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
 		    + "WHERE uri='" + UIReqID +
 		    "');" );
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -158,7 +161,6 @@ public class DialogSQL implements UIRequestPool {
     /** {@inheritDoc} */
     public Collection<UIRequest> listAllActive() {
 	// search
-	String connectionURL = null;
 	try {
 	    Connection c = DriverManager.getConnection(connectionURL);
 	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
@@ -170,8 +172,8 @@ public class DialogSQL implements UIRequestPool {
 		UIRequest req = (UIRequest) getSerializer()
 			.deserialize(r.getBlob("content").toString());
 		result.add(req);
-		
 	    }
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -192,8 +194,8 @@ public class DialogSQL implements UIRequestPool {
 		UIRequest req = (UIRequest) getSerializer()
 			.deserialize(r.getBlob("content").toString());
 		result.add(req);
-		
 	    }
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -208,6 +210,7 @@ public class DialogSQL implements UIRequestPool {
 	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
 		    + "WHERE user='" + userURI +
 		    "');" );
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -223,6 +226,7 @@ public class DialogSQL implements UIRequestPool {
 		    + "SET active=0"
 		    + " WHERE uri='"+ UIReqID +
 		    "');" );
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -237,6 +241,7 @@ public class DialogSQL implements UIRequestPool {
 		    + "SET active=1"
 		    + " WHERE uri='"+ UIReqID +
 		    "');" );
+	    c.close();
 	} catch (Exception e) {
 	    e.printStackTrace();
 	}
@@ -250,6 +255,7 @@ public class DialogSQL implements UIRequestPool {
 	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
 		    + "WHERE uri='" + UIReqID + 
 		    "');" );
+	    c.close();
 	    if (r.first()){
 		return (UIRequest) getSerializer()
 			.deserialize(r.getBlob("content").toString());
