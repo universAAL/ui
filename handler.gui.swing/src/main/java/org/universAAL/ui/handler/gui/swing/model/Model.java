@@ -225,10 +225,10 @@ public abstract class Model {
 	    jc.setName(fc.getURI());
 	    String help = fc.getHelpString();
 	    String hint = fc.getHintString();
-	    String hintAndHelp = "";
+	    String hintAndHelp = "<html>";
 	    if (help != null 
 		    && !help.isEmpty()) {
-		hintAndHelp += "Help:\n" + help;
+		hintAndHelp += "Help:<br>\n" + help;
 	    }
 	    if (help != null
 		    && hint != null
@@ -238,8 +238,9 @@ public abstract class Model {
 	    }
 	    if (hint != null
 		    &&!hint.isEmpty()) {
-		hintAndHelp += "Hint: \n" + hint;
+		hintAndHelp += "Hint:<br>\n" + hint;
 	    }
+	    hintAndHelp += "</html>";
 	    jc.setToolTipText(hintAndHelp);
 	}
     }
