@@ -260,12 +260,14 @@ public class FormLAF extends FormModel  {
     public void terminateDialog() {
     	if (messageFrame != null) {
     		frame.fadeOut();
+    		messageFrame.removeAll();
     		Init.getInstance(getRenderer()).getDesktop().remove(messageFrame);
     		messageFrame.dispose();
     		messageFrame=null;
     	}
     	else if (frame != null) {
     		frame.fadeOut();
+    		frame.removeAll();
 //    		frame.dispose();
     		Init.getInstance(getRenderer()).getDesktop().remove(frame);
     	}
