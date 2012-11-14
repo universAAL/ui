@@ -22,7 +22,11 @@ import java.awt.image.BufferedImage;
 import javax.swing.border.AbstractBorder;
 
 public class ShadowBorder extends AbstractBorder {
-    private BufferedImage leftImage;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private BufferedImage leftImage;
     private BufferedImage rightImage;
 
     public ShadowBorder() {

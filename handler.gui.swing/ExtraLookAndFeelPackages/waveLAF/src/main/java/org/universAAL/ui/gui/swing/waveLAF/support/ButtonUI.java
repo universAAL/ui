@@ -131,7 +131,11 @@ public class ButtonUI extends MetalButtonUI {
     // refer to Plastic's license (looks.dev.java.net)
 
 	private static class WaveButtonBorder extends AbstractBorder implements UIResource {
-        protected static final Insets INSETS = new Insets(3, 3, 3, 3);
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		protected static final Insets INSETS = new Insets(3, 3, 3, 3);
 
 	    public void paintBorder(Component c, Graphics g, int x, int y, int w, int h) {
 	        AbstractButton button = (AbstractButton) c;

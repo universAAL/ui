@@ -22,7 +22,11 @@ import java.awt.Insets;
 import javax.swing.border.AbstractBorder;
 
 public class ColorBorder extends AbstractBorder {
-    private Color color;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Color color;
     private Insets insets;
 
     public ColorBorder(Color color, int top, int left, int bottom, int right) {

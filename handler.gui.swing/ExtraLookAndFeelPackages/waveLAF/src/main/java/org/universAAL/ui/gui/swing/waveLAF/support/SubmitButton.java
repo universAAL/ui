@@ -27,7 +27,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.ButtonModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -85,7 +84,7 @@ public class SubmitButton extends JButton implements MouseListener{
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 
-        ButtonModel m = getModel();
+        //ButtonModel m = getModel();
 
         Paint oldPaint = g2.getPaint();
       
