@@ -316,13 +316,16 @@ public class UserDialogManager implements DialogManager {
      */
     private void addSystemMenu(UIRequest request) {
 	// remove any previous menu.
-	if (request != null && request.getDialogForm() != null) {
+	if (request != null 
+			&& request.getDialogForm() != null) {
 	    Form f = request.getDialogForm();
 	    if (f.getStandardButtons() != null) {
 		f.getStandardButtons()
 			.changeProperty(Group.PROP_CHILDREN, null);
 	    }
-	    systemMenuProvider.getSystemMenu(request);
+	    if (!request.getDialogForm().getDialogType().equals(DialogType.subdialog)) {
+	    	systemMenuProvider.getSystemMenu(request);
+	    }
 	}
     }
 
