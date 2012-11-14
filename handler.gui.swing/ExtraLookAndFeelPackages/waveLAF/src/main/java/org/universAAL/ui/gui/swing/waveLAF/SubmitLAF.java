@@ -18,8 +18,8 @@ package org.universAAL.ui.gui.swing.waveLAF;
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
-import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uStoreButton;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.UCCButton;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.UStoreButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.KickerButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.SubmitButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.SystemButton;
@@ -42,8 +42,8 @@ public class SubmitLAF extends SubmitModel {
 	 */
 	public SubmitLAF(Submit control, Renderer render) {
 		super(control, render);
-		specialBFactory.add(uCCButton.class);
-		specialBFactory.add(uStoreButton.class);
+		specialBFactory.add(UCCButton.class);
+		specialBFactory.add(UStoreButton.class);
 	}
 
 	/**

@@ -25,7 +25,7 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  * @author amedrano
  *
  */
-public class uStoreButton implements SpecialButtonInterface {
+public class UStoreButton implements SpecialButtonInterface {
 
 	private Submit submit;
 	
@@ -34,7 +34,7 @@ public class uStoreButton implements SpecialButtonInterface {
 	/**
 	 * 
 	 */
-	public uStoreButton(Submit s, Renderer render) {
+	public UStoreButton(Submit s, Renderer render) {
 		submit = s;
 	}
 

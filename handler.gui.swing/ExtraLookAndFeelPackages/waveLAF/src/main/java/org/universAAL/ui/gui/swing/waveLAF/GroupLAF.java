@@ -27,8 +27,8 @@ import javax.swing.border.TitledBorder;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
-import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uCCButton;
-import org.universAAL.ui.gui.swing.waveLAF.specialButtons.uStoreButton;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.UCCButton;
+import org.universAAL.ui.gui.swing.waveLAF.specialButtons.UStoreButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.collapsable.SystemCollapse2;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -57,10 +57,10 @@ public class GroupLAF extends GroupModel {
     public JComponent getNewComponent() {
     	if (this.isTheMainGroup()
     			&& this.isInMainMenu()){
-    		if (uCCButton.uCCPresentInNode()) {
-    			new Submit((Group)fc, new Label("uCC", "system/UCC.png"), uCCButton.SUBMIT_ID);
+    		if (UCCButton.uCCPresentInNode()) {
+    			new Submit((Group)fc, new Label("uCC", "system/UCC.png"), UCCButton.SUBMIT_ID);
     		}
-    		new Submit((Group)fc, new Label("uStore", "system/Ustore.png"), uStoreButton.SUBMIT_ID);
+    		new Submit((Group)fc, new Label("uStore", "system/Ustore.png"), UStoreButton.SUBMIT_ID);
     	}
     	if (this.isTheIOGroup() 
         		&& this.isInMainMenu()) {
