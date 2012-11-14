@@ -202,23 +202,26 @@ public abstract class Model {
 	    jc.setName(fc.getURI());
 	    String help = fc.getHelpString();
 	    String hint = fc.getHintString();
-	    String hintAndHelp = "<html>";
-	    if (help != null 
-		    && !help.isEmpty()) {
-		hintAndHelp += "Help:<br>\n" + help;
+	    boolean hasHelp = help != null && !help.isEmpty();
+	    boolean hasHint = hint != null &&!hint.isEmpty() ;
+		String hintAndHelp = null;   
+	    if (hasHelp || hasHint) {
+	    	hintAndHelp = "<html><body>";
 	    }
-	    if (help != null
-		    && hint != null
-		    && !help.isEmpty() 
-		    && !hint.isEmpty()) {
+	    if (hasHelp) {
+		hintAndHelp += "<b>Help:</b><br>\n" + help;
+	    }
+	    if (hasHelp
+		    && hasHint) {
 		hintAndHelp += "\n<br>\n";
 	    }
-	    if (hint != null
-		    &&!hint.isEmpty()) {
-		hintAndHelp += "Hint:<br>\n" + hint;
+	    if (hasHint) {
+		hintAndHelp += "<b>Hint:</b><br>\n" + hint;
 	    }
-	    hintAndHelp += "</html>";
-	    jc.setToolTipText(hintAndHelp);
+	    if (hasHelp || hasHint) {
+	    	hintAndHelp += "</body></html>";
+	    	jc.setToolTipText(hintAndHelp);
+	    }
 	}
     }
 
