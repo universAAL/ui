@@ -28,24 +28,6 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @see FormControl
  */
 public abstract class Model {
-
-    /**
-     * The IO root group identification.
-     * @see Group#STD_IO_CONTROLS
-     */
-    private static final String STD_IO_CONTROLS = "ioControlsGroup";
-
-    /**
-     * The Submits root group identification.
-     * @see Group#STD_SUBMITS
-     */
-    private static final String STD_SUBMITS = "submitsGroup";
-
-    /**
-     * The Standard buttons root group identification.
-     * @see Group#STD_STD_BUTTONS
-     */
-    private static final String STD_STD_BUTTONS = "stdButtonsGroup";
     
     /**
      * A property added to FormControls added to tables
@@ -131,33 +113,25 @@ public abstract class Model {
         return fc.getFormObject().isSubdialog();
     }
 
+    
     /**
-     * Test whether a group ID is part of the group antecessors
-     * of this {@link FormControl}.
-     * @param grpID
-     *         the Group ID to be tested as antecessor.
-     * @return
-     *         true if grpID is one of the antecessors.
+     * Check if the root group of this form control is equal to a
+     * given group. Also checks if this form control is in deed one
+     * of the root groups.
+     * @param g the group to compare to.
+     * @return if this, or the root group equals g.
      */
-    private boolean findInAntecesors(String grpID) {
-        Group g;
-        if (fc instanceof Group) {
-            g = (Group) fc;
-        }
-        else {
-            g = fc.getParentGroup();
-        }
-        while (!g.isRootGroup()
-        		&& (g.getLabel() != null
-        		&& g.getLabel().getText() != null
-                && !g.getLabel().getText().equals(grpID))
-        		|| g.getLabel() == null
-        		|| g.getLabel().getText() == null) {
-            g = g.getParentGroup();
-        }
-        return g.getLabel().getText().equals(grpID);
+    private boolean checkRootGroupEquals(Group g) {
+    	if (fc instanceof Group
+    			&& ((Group)fc).isRootGroup()) {
+    		return fc == g;
+    	}
+    	else {
+    		return  fc.getSuperGroups()[0].equals(g);
+    	}
+    	
     }
-
+    
     /**
      * test whether this {@link FormControl} is in a
      * standard buttons root group.
@@ -165,7 +139,9 @@ public abstract class Model {
      *         standard buttons group
      */
     public boolean isInStandardGroup() {
-        return findInAntecesors(STD_STD_BUTTONS);
+    	return checkRootGroupEquals(
+    			fc.getFormObject().getStandardButtons());
+    
     }
 
     /**
@@ -175,7 +151,7 @@ public abstract class Model {
      *         IO group
      */
     public boolean isInIOGroup() {
-        return findInAntecesors(STD_IO_CONTROLS);
+    	return checkRootGroupEquals(fc.getFormObject().getIOControls());
     }
 
     /**
@@ -185,7 +161,8 @@ public abstract class Model {
      *         Submits group
      */
     public boolean isInSubmitGroup() {
-        return findInAntecesors(STD_SUBMITS);
+    	return checkRootGroupEquals(
+    			fc.getFormObject().getSubmits());
     }
 
     public boolean isInTable() {
