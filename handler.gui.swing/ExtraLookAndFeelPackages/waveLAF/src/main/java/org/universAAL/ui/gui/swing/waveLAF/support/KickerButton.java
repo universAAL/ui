@@ -17,7 +17,7 @@ package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FontMetrics;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -28,7 +28,6 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.font.FontRenderContext;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
@@ -58,7 +57,7 @@ public class KickerButton extends JButton implements MouseListener, ComponentLis
         setBorder(raisedBorder);
         setBackground(new Color(55, 142, 143));
         setForeground(white);
-        setFont(ColorLAF.getbold());
+        setFont(new Font("Arial", Font.PLAIN, 36));
         setOpaque(true);
         addMouseListener(this);
         addComponentListener(this);
