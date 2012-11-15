@@ -34,7 +34,7 @@ public class GradientLAF extends JXPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private static final long MS_ANIMATION = 500;
+	public static final long MS_ANIMATION = 500;
 	
 	private static final long MS_PER_FRAME = 1000/24;
 

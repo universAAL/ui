@@ -30,8 +30,8 @@ public class ShadowBorder extends AbstractBorder {
     private BufferedImage rightImage;
 
     public ShadowBorder() {
-        this.leftImage  = (BufferedImage) UIHelper.loadImage("/images/shadow_left.png");
-        this.rightImage = (BufferedImage) UIHelper.loadImage("/images/shadow_right.png");
+        this.leftImage  = (BufferedImage) UIHelper.loadImage("/images/wave_shadow_left.png");
+        this.rightImage = (BufferedImage) UIHelper.loadImage("/images/wave_shadow_right.png");
     }
 
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {

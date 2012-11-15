@@ -34,7 +34,7 @@ public class UIHelper {
         ImageInputStream imageStream;
         try {
             imageStream = ImageIO.createImageInputStream(resourceStream);
-        } catch (IOException e) {
+        } catch (Exception e) {
             return null;
         }
         try {
