@@ -231,9 +231,7 @@ public class FormLAF extends FormModel  {
         		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
         		JPanel subpanel = new JPanel(new BorderLayout());
         		subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
-
-        		subpanel.setBorder(new CompoundBorder(new ColorBorder(GRAY, 0, 12, 0, 12),
-        				new ShadowBorder()));
+        		subpanel.setBorder(new ColorBorder(GRAY, 0, 12, 0, 12));
         		for (int i = super.getSubdialogLevel(); i > 1; i--) {
         			subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
         			JPanel tempanel = new JPanel(new BorderLayout());
