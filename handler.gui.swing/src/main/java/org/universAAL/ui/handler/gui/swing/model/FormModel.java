@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 
@@ -180,9 +181,17 @@ public abstract class FormModel {
      */
     protected JPanel getSystemPanel() {
         //JComponent jsys = new GroupModel(form.getStandardButtons(), getRenderer()).getComponent();
-    	JComponent jsys = getRenderer().getModelMapper().getModelFor(form.getStandardButtons()).getComponent();
-        jsys.setName(SYS_NAME);
-        return (JPanel) jsys;
+    	Group standarButtons = form.getStandardButtons();
+    	JComponent jsys;
+    	if (standarButtons != null) {
+			 jsys = getRenderer().getModelMapper()
+					.getModelFor(standarButtons).getComponent();
+    	}
+    	else {
+    		jsys = new JPanel();
+    	}
+    	jsys.setName(SYS_NAME);
+    	return (JPanel) jsys;
     }
 
     /**
@@ -193,9 +202,17 @@ public abstract class FormModel {
      */
     protected JPanel getSubmitPanel() {
         //JComponent jstd = new GroupModel(form.getSubmits(), getRenderer()).getComponent();
-    	JComponent jstd = getRenderer().getModelMapper().getModelFor(form.getSubmits()).getComponent();
-        jstd.setName(SUB_NAME);
-        return (JPanel) jstd;
+    	Group submits = form.getSubmits();
+    	JComponent jstd;
+    	if (submits != null) {
+			jstd = getRenderer().getModelMapper().getModelFor(submits)
+					.getComponent();
+    	}
+    	else {
+    		jstd = new JPanel();
+    	}
+    	jstd.setName(SUB_NAME);
+    	return (JPanel) jstd;
     }
 
     /**
