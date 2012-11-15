@@ -16,24 +16,30 @@
 package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.font.FontRenderContext;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
-public class KickerButton extends JButton implements MouseListener{
+public class KickerButton extends JButton implements MouseListener, ComponentListener{
 	/**
 	 * 
 	 */
@@ -41,28 +47,37 @@ public class KickerButton extends JButton implements MouseListener{
 	private Color ligth = new Color (56,142,143);
 	private Color dark	= new Color (75,183,185);
 	private Color white= new Color (255,255,255);
+	private Icon icon;
+	private Integer lastRun = new Integer(0);
 	
     public KickerButton(String text, Icon icon) {
-        super(text, icon);
+        super(text);
+        this.icon = icon;
         SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
-        if (icon != null){
-    	    
-       	 
-    	    Image img = ((ImageIcon) icon).getImage() ;  
-    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
-    	    icon = new ImageIcon( newimg );
-
-    	    setIcon(icon);
-    	}
-        
+      
         setBorder(raisedBorder);
         setBackground(new Color(55, 142, 143));
         setForeground(white);
+        setFont(ColorLAF.getbold());
         setOpaque(true);
         addMouseListener(this);
+        addComponentListener(this);
+        setHorizontalTextPosition(SwingConstants.CENTER);
+        setVerticalTextPosition(SwingConstants.BOTTOM);
         setUI(ui);       
         
     }
+    
+    private void resetIcon() {
+        if (icon != null){ 
+        	Dimension d = getSize();
+        	int square = Math.min(d.width, d.height - ColorLAF.SEPARATOR_SPACE );
+    	    Image img = ((ImageIcon) icon).getImage();  
+    	    Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
+    	    setIcon(new ImageIcon( newimg ));
+    	}
+    }
+    
     protected void paintComponent(Graphics g) {
     	   
         Graphics2D g2 = (Graphics2D) g;
@@ -107,6 +122,46 @@ public class KickerButton extends JButton implements MouseListener{
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public void componentResized(ComponentEvent e) {
+//		if (System.currentTimeMillis() - lastResize  > 100) {
+//			
+//			lastResize = System.currentTimeMillis();
+//		}		
+		new Thread( new ResizeTask()).start();
+	}
+	public void componentMoved(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void componentShown(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void componentHidden(ComponentEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	class ResizeTask implements Runnable {
+	
+		Integer myID;
+		
+		ResizeTask(){
+			synchronized (lastRun) {
+				myID = ++lastRun;
+			}
+		}
+		
+		public void run() {
+			try {
+				Thread.sleep(GradientLAF.MS_ANIMATION + 10);
+			} catch (InterruptedException e) {	}
+			if (myID == lastRun) {
+				KickerButton.this.resetIcon();
+				lastRun = 0;
+			}
+		}
 	}
     
 }
