@@ -86,7 +86,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 		String submissionID = response.getSubmissionID();
 		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"handling:" , submissionID}, null);
 		if (EXIT_CALL.equals(submissionID)) {
-			// XXX: do nothing?
+			// do nothing
 		}
 		if (MENU_CALL.equals(submissionID)) {
 			userDM.showMainMenu();

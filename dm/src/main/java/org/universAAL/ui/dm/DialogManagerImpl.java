@@ -224,8 +224,10 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     /** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
-	// TODO Auto-generated method stub
-
+    	LogUtils.logError(DialogManagerImpl.moduleContext,
+    			getClass(), "CommunicationChannelBroken",
+    			new String[] {"UIBus Is falling apart! Take cover!"},
+    			null);
     }
 
     /**

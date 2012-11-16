@@ -52,7 +52,7 @@ public class DMServiceCaller extends
     /** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
-	// TODO Auto-generated method stub
+	// do nothing
     }
 
     /** {@inheritDoc} */

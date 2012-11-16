@@ -21,9 +21,11 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 public class RDFMainMenu extends MainMenu {
 
     private static final String UTF_8 = "utf-8";
+	private ModuleContext context;
 
 	public RDFMainMenu(ModuleContext ctxt, InputStream in) {
-	super(ctxt, in);
+		super(in);
+		context = ctxt;
     }
 
     protected void constructMenu(InputStream in) {
