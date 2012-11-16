@@ -42,7 +42,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
-import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity;
+import org.universAAL.ui.dm.dialogManagement.NonRedudantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
@@ -201,8 +201,9 @@ public class UserDialogManager implements DialogManager {
 		systemMenuProvider = new TaskBarSystemMenuProvider(this);
 	}	
 	messagePool = new DialogPriorityQueue();
+	dialogPool = new NonRedudantDialogPriorityQueue();
 	//dialogPool = new DialogPriorityQueue();
-	dialogPool = new DialogPriorityQueueVerbosity();
+	//dialogPool = new DialogPriorityQueueVerbosity();
 	listeners = new TreeMap<String, SubmitGroupListener>();
 	messageListener = new MessageListener(messagePool);
 	myUIRequests = new TreeSet<String>();

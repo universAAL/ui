@@ -13,6 +13,7 @@ dm/src/main/java/org/universAAL/ui/dm/adapters/AdaptorKrakow.java -text
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedudantDialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/Adapter.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/MainMenuProvider.java -text
