@@ -22,7 +22,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.ui.gui.swing.waveLAF.support.SearchFieldBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel;
 

@@ -35,7 +35,6 @@ import javax.swing.border.LineBorder;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.waveLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
-import org.universAAL.ui.gui.swing.waveLAF.support.ShadowBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
