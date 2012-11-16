@@ -23,8 +23,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
@@ -36,7 +34,7 @@ import javax.swing.border.SoftBevelBorder;
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
 @SuppressWarnings("unused")
-public class SystemButton extends JButton implements MouseListener{
+public class SystemButton extends JButton {
 	/**
 	 * 
 	 */
@@ -69,7 +67,6 @@ public class SystemButton extends JButton implements MouseListener{
         setBorder(raisedBorder);
         setForeground(Color.white);
         setBackground(normalB);
-        addMouseListener(this);
         setUI(ui);
         
       
@@ -106,29 +103,6 @@ public class SystemButton extends JButton implements MouseListener{
         super.paintComponent(g);
     }
 	
- 
-		public void mouseEntered(MouseEvent e) {
-			
-		
-		}
-
-		public void mouseExited(MouseEvent e) {
-			
-		}
-
-		public void mouseClicked(MouseEvent e) {
-			
-		}
-
-		public void mousePressed(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
 	}
     
 

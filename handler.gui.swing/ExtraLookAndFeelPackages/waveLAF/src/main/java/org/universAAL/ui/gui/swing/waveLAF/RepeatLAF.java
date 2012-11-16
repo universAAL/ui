@@ -38,12 +38,7 @@ public class RepeatLAF extends RepeatModel {
     
     /** {@inheritDoc}*/
     public JComponent getNewComponent() {
-        /*
-         *  TODO
-         *  Check for complexity and take decision
-         *  Check for multilevel and take decision
-         *  Check for Group children and render JTabbedPane
-         */
+
         if (isATable()) {
         	
         	//table = new RepeatModelTableLAF((Repeat) fc, getRenderer());

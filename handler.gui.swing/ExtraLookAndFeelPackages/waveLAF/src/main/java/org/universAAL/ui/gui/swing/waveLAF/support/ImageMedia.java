@@ -66,7 +66,6 @@ public class ImageMedia extends JPanel {
     /** {@inheritDoc} */
     @Override
     public void setSize(int width, int height) {
-	// TODO Auto-generated method stub
 	super.setSize(width, height);
 	Dimension originalSize = lblImage.getSize();
 	Dimension ms = getMaximumSize();

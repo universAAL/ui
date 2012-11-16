@@ -23,8 +23,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Paint;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
@@ -37,7 +35,7 @@ import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
  
 
-public class SubmitButton extends JButton implements MouseListener{
+public class SubmitButton extends JButton {
 	/**
 	 * 
 	 */
@@ -66,10 +64,6 @@ public class SubmitButton extends JButton implements MouseListener{
         setBackground(new Color(8, 68, 92));
         setForeground(Color.white);
         setUI(ui);
-        addMouseListener(this);
-      
-       
-        
     }
 	
 	@Override
@@ -102,24 +96,4 @@ public class SubmitButton extends JButton implements MouseListener{
         g2.setPaint(oldPaint);
         super.paintComponent(g);
     }
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
