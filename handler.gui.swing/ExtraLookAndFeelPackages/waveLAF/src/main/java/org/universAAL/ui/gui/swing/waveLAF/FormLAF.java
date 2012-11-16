@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.waveLAF;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -28,6 +29,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
@@ -53,11 +55,7 @@ public class FormLAF extends FormModel  {
      * internal accounting for the frame being displayed.
      */
     private GradientLAF frame = null;
-	private JInternalFrame messageFrame;
-	private Border raisedbevel= BorderFactory.createRaisedBevelBorder();
-	private Border loweredbevel = BorderFactory.createLoweredBevelBorder();
-	private Border pendingMessage =BorderFactory.createCompoundBorder(raisedbevel, loweredbevel); ; 
-	
+	private JInternalFrame internalFrame;	
 
     /**
      * Constructor.
@@ -74,18 +72,6 @@ public class FormLAF extends FormModel  {
      *         the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}.
      */
     protected JComponent getIOPanelScroll() {
-    	/*
-        JPanel ioPanel = super.getIOPanel();
-        JScrollPane sp = new JScrollPane(ioPanel,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        //ioPanelDim = ioPanel.getPreferredSize();
-        ioPanel.setPreferredSize(new Dimension(sp.getSize().width,
-        //        ioPanel.getPreferredSize().height)
-                ioPanel.getHeight()));
-        //FIXME resize Layout+scroll
-         */
-    	
     	JPanel ioPanel = super.getIOPanel();
     	ioPanel.setOpaque(false);
         JScrollPane sp = new JScrollPane(ioPanel,
@@ -112,6 +98,26 @@ public class FormLAF extends FormModel  {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         sp.setLayout(new BorderedScrolPaneLayout());
+        sp.setOpaque(false);
+        sp.setBorder(null);
+        sp.getViewport().setOpaque(false);
+        return sp;
+    }
+    
+    /**
+     * get the submit panel Horizontally displayed wrapped in a scroll pane.
+     * @return
+     *         the {@link FormModel#getSubmitPanel} wrapped in a {@link JScrollPane}.
+     */
+    protected JScrollPane getSubmitHorizontalPanelScroll(int depth) {
+        JPanel submit = super.getSubmitPanel(depth);
+        submit.setLayout(new FlowLayout());
+        submit.setOpaque(false);
+        //submit.setLayout(new FormLayout());
+        JScrollPane sp = new JScrollPane(submit,
+                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sp.setLayout(new ScrollPaneLayout());
         sp.setOpaque(false);
         sp.setBorder(null);
         sp.getViewport().setOpaque(false);
@@ -151,116 +157,114 @@ public class FormLAF extends FormModel  {
      * render the frame for the {@link Form}.
      */
     public void showForm() {
-    	
+
     	if (frame == null) {
-            frame = new GradientLAF();
-            frame.setLayout(new BorderLayout());
-            frame.setBorder(pendingMessage);
-//            JPanel content = new GradientLAF();
-//            content.setLayout(new BorderLayout());
-            //frame.setContentPane(content);
+    		frame = new GradientLAF();
+    		frame.setLayout(new BorderLayout());
+    		frame.setBorder(createFrameBorder());
+        	frame.getAccessibleContext().setAccessibleName(form.getTitle());
+    	}    	
+    	
+    	/*
+    	 * MESSAGES
+    	 */
+    	if (form.isMessage()) {
+    		JScrollPane io = (JScrollPane) getIOPanelScroll();
+    		io.getAccessibleContext().setAccessibleName(IO_NAME);
+    		//            JScrollPane sub = new JScrollPane(super.getSubmitPanel());
+    		JScrollPane sub = getSubmitHorizontalPanelScroll(0);
+    		frame.add(io, BorderLayout.CENTER);
+    		frame.add(sub, BorderLayout.SOUTH);
+    		packAsInternalFrame();
     	}
-    	Init.getInstance(getRenderer()).getDesktop().add(frame);
-    	//frame.setTitle(form.getTitle());
-    	// TODO: message is not a panel but an internal frame!!
-        if (form.isMessage()) {
-            frame.getAccessibleContext().setAccessibleName(form.getTitle());
-            
-             JScrollPane io = (JScrollPane) getIOPanelScroll();
-      
-            io.getAccessibleContext().setAccessibleName(IO_NAME);
-//            JScrollPane sub = new JScrollPane(super.getSubmitPanel());
-            JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
-                    JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                    JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-            sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-          //  sub.setLayout(new BorderedScrolPaneLayout());
-            sub.setOpaque(false);
-            sub.setBorder(null);
-            sub.getViewport().setOpaque(false);
-            frame.add(io, BorderLayout.CENTER);
-            frame.add(sub, BorderLayout.SOUTH);
-            messageFrame = new JInternalFrame(form.getTitle());
-            messageFrame.setContentPane(frame);
-            messageFrame.isResizable();
-            messageFrame.pack();
-            JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
-            desktopPane.add(messageFrame);
-            Dimension desktopSize = desktopPane.getSize();
-            Dimension jInternalFrameSize = messageFrame.getSize();
-            messageFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
-                (desktopSize.height- jInternalFrameSize.height)/2);
-            messageFrame.setVisible(true);
-            frame.fadeIn();
-        }
-        else {
-        	if (form.isSystemMenu()) {
-        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
-        		//            frame.add(getHeader(), BorderLayout.NORTH);
-        		frame.add(getIOPanel(), BorderLayout.CENTER);
-        		frame.add(getSystemPanel(), BorderLayout.SOUTH);
-        	}
-        	if (form.isStandardDialog() ) {
-        		/*
-        		 *  some further LAF can be done here:
-        		 *   if only submints (no sub dialogs)
-        		 *     and <4 (and priority hi?)
-        		 *        then show like a popup.
-        		 */
-        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
-        		frame.add(getHeader(), BorderLayout.NORTH);
+    	
+    	/*
+    	 * MAIN MENU
+    	 */
+    	if (form.isSystemMenu()) {
+    		//            frame.add(getHeader(), BorderLayout.NORTH);
+    		frame.add(getIOPanel(), BorderLayout.CENTER);
+    		frame.add(getSystemPanel(), BorderLayout.SOUTH);
+    	}
+    	
+    	/*
+    	 * DIALOG
+    	 */
+    	if (form.isStandardDialog() ) {
+    		frame.add(getHeader(), BorderLayout.NORTH);
+    		JScrollPane io = (JScrollPane) getIOPanelScroll();
+    		io.getAccessibleContext().setAccessibleName(IO_NAME);
+    		JScrollPane sub = getSubmitPanelScroll(0);
+    		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+    		JPanel sys = getSystemPanel();
+    		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+    		frame.add(io, BorderLayout.CENTER);
+    		frame.add(sub, BorderLayout.EAST);
+    		frame.add(sys, BorderLayout.SOUTH);
+    	}
+    	
+    	/*
+    	 * SUBDIALOG
+    	 */
+    	if (form.isSubdialog()) {
+    		//subdialog in a JInternalFrame (it can overlay another frame in the desktop)
+    		JScrollPane sub = getSubmitHorizontalPanelScroll(0);
+    		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+    		JPanel subpanel = new JPanel(new BorderLayout());
+    		subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
+    		//subpanel.setBorder(new ColorBorder(GRAY, 0, 12, 0, 12));
+//    		for (int i = super.getSubdialogLevel(); i > 1; i--) {
+//    			subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+//    			JPanel tempanel = new JPanel(new BorderLayout());
+//    			tempanel.add(subpanel, BorderLayout.CENTER);
+//    			subpanel = tempanel;
+//    		}
+    		frame.add(subpanel, BorderLayout.CENTER);
+    		frame.add(sub, BorderLayout.SOUTH);
+    		packAsInternalFrame();
+    	}
 
-        		JScrollPane io = (JScrollPane) getIOPanelScroll();
-
-        		io.getAccessibleContext().setAccessibleName(IO_NAME);
-        		JScrollPane sub = getSubmitPanelScroll(0);
-        		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-        		JPanel sys = getSystemPanel();
-        		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-        		frame.add(io, BorderLayout.CENTER);
-        		frame.add(sub, BorderLayout.EAST);
-        		frame.add(sys, BorderLayout.SOUTH);
-        	}
-        	if (form.isSubdialog()) {
-        		frame.getAccessibleContext().setAccessibleName(form.getTitle());
-        		frame.add(getHeader(), BorderLayout.NORTH);
-        		JScrollPane sub = getSubmitPanelScroll(0);
-        		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-        		JPanel sys = getSystemPanel();
-        		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-        		JPanel subpanel = new JPanel(new BorderLayout());
-        		subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
-        		subpanel.setBorder(new ColorBorder(GRAY, 0, 12, 0, 12));
-        		for (int i = super.getSubdialogLevel(); i > 1; i--) {
-        			subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
-        			JPanel tempanel = new JPanel(new BorderLayout());
-        			tempanel.add(subpanel, BorderLayout.CENTER);
-        			subpanel = tempanel;
-        		}
-        		frame.add(subpanel, BorderLayout.CENTER);
-        		frame.add(sub, BorderLayout.EAST);
-        		frame.add(sys, BorderLayout.SOUTH); 
-        	}
-        	
-        	// ALL non-message dialgos are maximized
+    	if (internalFrame == null) {
+    		// add to the Desktop.
+    		Init.getInstance(getRenderer()).getDesktop().add(frame);
+    		// ALL non-internal frames are maximized
     		setFullScreen();
-    		Init.getInstance(getRenderer()).getDesktop().revalidate();
-    		frame.fadeIn();
-        }
+    	}
+    	else {
+    		// internalFrames aren't resizable 
+    		internalFrame.setResizable(false);
+            internalFrame.pack();
+            // add to the Desktop.
+            JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
+            desktopPane.add(internalFrame);
+            // center in Desktop.
+            Dimension desktopSize = desktopPane.getSize();
+            Dimension jInternalFrameSize = internalFrame.getSize();
+            internalFrame.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+                (desktopSize.height- jInternalFrameSize.height)/2);
+            internalFrame.setVisible(true);	
+    	}
+		Init.getInstance(getRenderer()).getDesktop().revalidate();
+        frame.fadeIn();
     }
     
-    private void setFullScreen(){
+    private void packAsInternalFrame() {
+        internalFrame = new JInternalFrame(form.getTitle());
+        internalFrame.setContentPane(frame);
+	}
+
+	private void setFullScreen(){
     	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
     }
 
     /** {@inheritDoc} */
     public void terminateDialog() {
-    	if (messageFrame != null) {
+    	if (internalFrame != null) {
     		frame.fadeOut();
-    		messageFrame.removeAll();
-    		Init.getInstance(getRenderer()).getDesktop().remove(messageFrame);
-    		messageFrame.dispose();
-    		messageFrame=null;
+    		internalFrame.removeAll();
+    		Init.getInstance(getRenderer()).getDesktop().remove(internalFrame);
+    		internalFrame.dispose();
+    		internalFrame=null;
     	}
     	else if (frame != null) {
     		frame.fadeOut();
@@ -272,5 +276,11 @@ public class FormLAF extends FormModel  {
     	Init.getInstance(getRenderer()).getDesktop().repaint();
     	frame = null;
        //frame.getContentPane().removeAll();
+    }
+    
+    private Border createFrameBorder() {
+    	Border raisedbevel= BorderFactory.createRaisedBevelBorder();
+    	Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+    	return BorderFactory.createCompoundBorder(raisedbevel, loweredbevel); 
     }
 }

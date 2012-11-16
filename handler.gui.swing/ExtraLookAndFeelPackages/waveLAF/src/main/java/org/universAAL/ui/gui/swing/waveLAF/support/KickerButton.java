@@ -100,47 +100,25 @@ public class KickerButton extends JButton implements MouseListener, ComponentLis
         g2.setPaint(oldPaint);
         super.paintComponent(g);
     }
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	public void mouseEntered(MouseEvent e) {
 		setForeground(white);
 		setBackground(ligth);
 		setOpaque(true);
 		
 	}
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void componentResized(ComponentEvent e) {
-//		if (System.currentTimeMillis() - lastResize  > 100) {
-//			
-//			lastResize = System.currentTimeMillis();
-//		}		
+	public void componentResized(ComponentEvent e)
+	{
 		new Thread( new ResizeTask()).start();
 	}
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	// un used methods.
+	public void mouseClicked(MouseEvent e) { }
+	public void mouseExited(MouseEvent e) {	}
+	public void mousePressed(MouseEvent e) { }
+	public void mouseReleased(MouseEvent e) { }
+	public void componentMoved(ComponentEvent e) { }
+	public void componentShown(ComponentEvent e) { }
+	public void componentHidden(ComponentEvent e) {	}
 	
 	class ResizeTask implements Runnable {
 	
