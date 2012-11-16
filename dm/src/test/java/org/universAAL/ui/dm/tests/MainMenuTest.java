@@ -44,7 +44,7 @@ public class MainMenuTest extends TestCase {
 	public void test1(){
 		InputStream is = getClass().getResourceAsStream("/main_menu_en.txt");
 		assertNotNull(is);
-		MainMenu mm = new MainMenu(null, is);
+		MainMenu mm = new MainMenu(is);
 		int i = 0;
 		Iterator<MenuNode> it = mm.entries().iterator();
 		while (it.hasNext()) {

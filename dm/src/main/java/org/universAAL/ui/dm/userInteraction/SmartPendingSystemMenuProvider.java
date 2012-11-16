@@ -83,7 +83,7 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
 	if (EXIT_CALL.equals(submissionID)) {
-	    // XXX: do nothing?
+	    // do nothing?
 	}
 	if (MENU_CALL.equals(submissionID)) {
 	    userDM.showMainMenu();

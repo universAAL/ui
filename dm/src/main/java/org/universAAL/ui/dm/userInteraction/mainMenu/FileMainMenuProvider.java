@@ -151,7 +151,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	}
 
 	protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
-	return new MainMenu(ctxt, in);
+	return new MainMenu(in);
     }
 
     private void showNewMenu(Form mff) {

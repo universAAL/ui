@@ -414,9 +414,9 @@ public class UserDialogManager implements DialogManager {
 		dialogPool.suspend(current.getDialogID());
 		messagePool.suspend(current.getDialogID());
 	    }
-	    //resumedUIRequests.add(req);
 	    addListeners(req);
-	    //myUIRequests.add(req.getDialogID());
+	    // make (update) adaptation parameters again
+	    makeAdaptations(req);
 	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
 	    		"resumeUIRequest",
 	    		new String[] {"Resuming UIRequest:", req.getDialogForm().getTitle()},
