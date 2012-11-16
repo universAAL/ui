@@ -14,86 +14,57 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF.support;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Paint;
-import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
  
 
-public class SubmitButton extends JButton {
+public class SubmitButton extends RoundedGradientButton {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	//border color definition 
-	private Color ligth = new Color (8,34,79);
-	private Color dark	= new Color (17,8,79);
+	private static final Color LIGHT = new Color (8,34,79);
+	private static final Color DARK	= new Color (17,8,79);
+	private static final Color BG = new Color(8, 68, 92);
     
 	
 	
 	public SubmitButton(String text, Icon icon) {
-        super(text,icon);
-    	Border raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED);
-        setBorder(raisedBorder);
-        if (icon != null){
-    	    
-       	 
-    	    Image img = ((ImageIcon) icon).getImage() ;  
-    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
-    	    icon = new ImageIcon( newimg );
-
-    	    setIcon(icon);
-    	}
-        
-        setBackground(new Color(8, 68, 92));
+        super(text,LIGHT,BG);
+        if (icon != null){ 
+        	Dimension d = getPreferredSize();
+        	int square = Math.min(d.width, d.height) - 6;
+    	    Image img = ((ImageIcon) icon).getImage();  
+    	    Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
+    	    setIcon(new ImageIcon( newimg ));
+    	}        
+        setBackground(BG);
         setForeground(Color.white);
-        setUI(ui);
     }
-	
+
+	@Override
+	protected void addBorder() {
+		SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  LIGHT, DARK);
+        setBorder(raisedBorder);
+	}
+
+
+
 	@Override
     public Dimension getPreferredSize(){
     	int ButtonWeight= 3* ColorLAF.SEPARATOR_SPACE;
     	int ButtonHeight= 1*ColorLAF.SEPARATOR_SPACE;
         return new Dimension(ButtonWeight, ButtonHeight);
-    }
-	
-    protected void paintComponent(Graphics g) {
- 	   
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-
-        //ButtonModel m = getModel();
-
-        Paint oldPaint = g2.getPaint();
-      
-        RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(0,0,getWidth(),getHeight()-1,17,17);
-            g2.clip(r2d);
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.fillRect(0,0,getWidth(),getHeight());
-
-            g2.setStroke(new BasicStroke(4f));
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.drawRoundRect(0, 0, getWidth()-1 , getHeight() -1, 15, 15);
-
-        g2.setPaint(oldPaint);
-        super.paintComponent(g);
     }
 }
