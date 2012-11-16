@@ -93,16 +93,18 @@ public class DialogSQL implements UIRequestPool {
 	try {
 		InitDB(connectionURL);
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"Constructor", new String[] {"unable to initialize DB"}, e);
 	}
     }
     }
     
     /** {@inheritDoc} */
     public void add(UIRequest UIReq) {
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    c.createStatement().executeUpdate("INSERT INTO" + DIALOGS_TABLE 
 		    + "VALUES ('" +
 		    userURI + "','" +
@@ -113,21 +115,40 @@ public class DialogSQL implements UIRequestPool {
 		    "');" );
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
     }
 
     /** {@inheritDoc} */
     public void close(String UIReqID) {
 	// remove entry
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
 		    + "WHERE uri='" + UIReqID +
 		    "');" );
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
     }
 
@@ -161,8 +182,9 @@ public class DialogSQL implements UIRequestPool {
     /** {@inheritDoc} */
     public Collection<UIRequest> listAllActive() {
 	// search
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
 		    + "WHERE userURI='" + userURI + 
 		    "' AND active=1" +
@@ -175,7 +197,16 @@ public class DialogSQL implements UIRequestPool {
 	    }
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	return null;
     }
@@ -183,8 +214,9 @@ public class DialogSQL implements UIRequestPool {
     /** {@inheritDoc} */
     public Collection<UIRequest> listAllSuspended() {
 	// search
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
 		    + "WHERE userURI='" + userURI + 
 		    "' AND active=0" +
@@ -197,7 +229,16 @@ public class DialogSQL implements UIRequestPool {
 	    }
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	return null;
     }
@@ -205,14 +246,24 @@ public class DialogSQL implements UIRequestPool {
     /** {@inheritDoc} */
     public void removeAll() {
 	// remove all corresponding to the userId
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
 		    + "WHERE user='" + userURI +
 		    "');" );
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
     }
@@ -220,38 +271,59 @@ public class DialogSQL implements UIRequestPool {
     /** {@inheritDoc} */
     public void suspend(String UIReqID) {
 	// update status
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    c.createStatement().executeUpdate("UPDATE " + DIALOGS_TABLE 
 		    + "SET active=0"
 		    + " WHERE uri='"+ UIReqID +
 		    "');" );
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
     }
 
     /** {@inheritDoc} */
     public void unsuspend(String UIReqID) {
 	// update status
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    c.createStatement().executeUpdate("UPDATE " + DIALOGS_TABLE 
 		    + "SET active=1"
 		    + " WHERE uri='"+ UIReqID +
 		    "');" );
 	    c.close();
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
     }
 
     /** {@inheritDoc} */
     public UIRequest get(String UIReqID) {
+    	Connection c = null;
 	try {
-	    Connection c = DriverManager.getConnection(connectionURL);
+	    c = DriverManager.getConnection(connectionURL);
 	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
 		    + "WHERE uri='" + UIReqID + 
 		    "');" );
@@ -261,7 +333,16 @@ public class DialogSQL implements UIRequestPool {
 			.deserialize(r.getBlob("content").toString());
 	    }
 	} catch (Exception e) {
-	    e.printStackTrace();
+		LogUtils.logError(
+				DialogManagerImpl.getModuleContext(), getClass(),
+				"add", 
+				new String[] {"unable to perform job, probably there is no connection with DB engine."},
+				e);
+	    try {
+			c.close();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 	return null;
     }
