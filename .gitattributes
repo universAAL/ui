@@ -136,6 +136,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/GradientLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ImageMedia.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/KickerButton.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/RoundedGradientButton.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/SubmitButton.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/SystemButton.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/TableColors.java -text

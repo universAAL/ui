@@ -14,57 +14,49 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF.support;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Paint;
-import java.awt.RenderingHints;
+import java.awt.Rectangle;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.AbstractButton;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
-import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
-public class KickerButton extends JButton implements MouseListener, ComponentListener{
+public class KickerButton extends RoundedGradientButton implements ComponentListener{
+	private static final Color DARK_COLOR = new Color (75,183,185);
+	private static final Color LIGHT_COLOR = new Color (56,142,143);
+	private static final Color BACKGROUND_COLOR = new Color(55, 142, 143);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Color ligth = new Color (56,142,143);
-	private Color dark	= new Color (75,183,185);
-	private Color white= new Color (255,255,255);
+
 	private Icon icon;
 	private Integer lastRun = new Integer(0);
 	
     public KickerButton(String text, Icon icon) {
-        super(text);
+        super(text, LIGHT_COLOR, DARK_COLOR);
         this.icon = icon;
-        SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
-      
-        setBorder(raisedBorder);
-        setBackground(new Color(55, 142, 143));
-        setForeground(white);
+        setBackground(BACKGROUND_COLOR);
+        setForeground(Color.WHITE);
         setFont(new Font("Arial", Font.PLAIN, 36));
-        setOpaque(true);
-        addMouseListener(this);
         addComponentListener(this);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.BOTTOM);
-        setUI(ui);       
-        
+    }
+    
+    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+	AbstractButton b = (AbstractButton) c;	
+	    g.setColor(b.getForeground());
     }
     
     private void resetIcon() {
@@ -77,45 +69,13 @@ public class KickerButton extends JButton implements MouseListener, ComponentLis
     	}
     }
     
-    protected void paintComponent(Graphics g) {
-    	   
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-
-        //ButtonModel m = getModel();
-
-        Paint oldPaint = g2.getPaint();
-      
-        RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(0,0,getWidth(),getHeight()-1,17,17);
-            g2.clip(r2d);
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.fillRect(0,0,getWidth(),getHeight());
-
-            g2.setStroke(new BasicStroke(4f));
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.drawRoundRect(0, 0, getWidth()-1 , getHeight() -1, 15, 15);
-
-        g2.setPaint(oldPaint);
-        super.paintComponent(g);
-    }
-	public void mouseEntered(MouseEvent e) {
-		setForeground(white);
-		setBackground(ligth);
-		setOpaque(true);
-		
-	}
+	
 	public void componentResized(ComponentEvent e)
 	{
 		new Thread( new ResizeTask()).start();
 	}
 	
 	// un used methods.
-	public void mouseClicked(MouseEvent e) { }
-	public void mouseExited(MouseEvent e) {	}
-	public void mousePressed(MouseEvent e) { }
-	public void mouseReleased(MouseEvent e) { }
 	public void componentMoved(ComponentEvent e) { }
 	public void componentShown(ComponentEvent e) { }
 	public void componentHidden(ComponentEvent e) {	}
@@ -140,5 +100,4 @@ public class KickerButton extends JButton implements MouseListener, ComponentLis
 			}
 		}
 	}
-    
 }

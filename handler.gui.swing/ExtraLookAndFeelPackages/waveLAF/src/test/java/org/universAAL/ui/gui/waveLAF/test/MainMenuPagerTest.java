@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
+import org.universAAL.ui.gui.swing.waveLAF.support.KickerButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 
 public class MainMenuPagerTest extends JFrame {
@@ -89,7 +90,7 @@ public class MainMenuPagerTest extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				JButton nb = new JButton(txtButtonTitle.getText());
+				JButton nb = new KickerButton(txtButtonTitle.getText(),null);
 				pager.add(nb);				
 			}
 		});

@@ -14,93 +14,42 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF.support;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Paint;
-import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
-@SuppressWarnings("unused")
-public class SystemButton extends JButton {
+public class SystemButton extends RoundedGradientButton {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Color ligth = new Color (56,142,143);
-	private Color dark	= new Color (75,183,185);
-	private Color normalF = new Color (255,255,255);
-	private Color normalB = new Color(70,178,180) ;
-	private Color enterF = new Color (255,255,255);;
-	private Color enterB = new Color(55, 142, 143) ;;
-	private Color clickF = new Color (255,255,255);
-	private Color clickB= new Color(75, 183, 185);
-	private Image img;
+	private static final Color LIGHT = new Color (56,142,143);
+	private static final Color DARK = new Color (75,183,185);
+	private static final Color BG = new Color(70,178,180) ;
 
     public SystemButton(String text, Icon icon) {
-    	super(text);
-    	if (icon != null){
-    	    
-    	 
+    	super(text, LIGHT, DARK);
+    	if (icon != null){  	    
     	    Image img = ((ImageIcon) icon).getImage() ;  
     	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
     	    icon = new ImageIcon( newimg );
-
     	    setIcon(icon);
     	}
-        
-        SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  ligth, dark);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.BOTTOM);
-        setBorder(raisedBorder);
         setForeground(Color.white);
-        setBackground(normalB);
-        setUI(ui);
-        
-      
-        
+        setBackground(BG);
     }
     @Override
     public Dimension getPreferredSize(){
     	int ButtonWeight= 4* ColorLAF.SEPARATOR_SPACE;
         return new Dimension(ButtonWeight, ButtonWeight);
-    }
-
-    
-    protected void paintComponent(Graphics g) {
-   
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-
-        //ButtonModel m = getModel();
-
-        Paint oldPaint = g2.getPaint();
-      
-        RoundRectangle2D.Float r2d = new RoundRectangle2D.Float(0,0,getWidth(),getHeight()-1,17,17);
-            g2.clip(r2d);
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.fillRect(0,0,getWidth(),getHeight());
-
-            g2.setStroke(new BasicStroke(4f));
-            g2.setPaint(new GradientPaint(0.0f, 0.0f, ligth,
-                    0.0f, getHeight(), dark));
-            g2.drawRoundRect(0, 0, getWidth()-1 , getHeight() -1, 15, 15);
-
-        g2.setPaint(oldPaint);
-        super.paintComponent(g);
     }
 	
 	}
