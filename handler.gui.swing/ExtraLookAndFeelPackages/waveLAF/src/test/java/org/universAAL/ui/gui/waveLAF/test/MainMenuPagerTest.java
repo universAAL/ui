@@ -28,6 +28,8 @@ import javax.swing.JButton;
 
 import org.universAAL.ui.gui.swing.waveLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.waveLAF.support.KickerButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SubmitButton;
+import org.universAAL.ui.gui.swing.waveLAF.support.SystemButton;
 import org.universAAL.ui.gui.swing.waveLAF.support.pager.MainMenuPager;
 
 public class MainMenuPagerTest extends JFrame {
@@ -76,10 +78,10 @@ public class MainMenuPagerTest extends JFrame {
 		panel.add(txtButtonTitle);
 		txtButtonTitle.setColumns(10);
 		
-		JButton btnAdd = new JButton("Add");
+		JButton btnAdd = new SubmitButton("Add",null);
 		panel.add(btnAdd);
 		
-		btnRemoveAll = new JButton("Remove ALL");
+		btnRemoveAll = new SubmitButton("Remove ALL",null);
 		btnRemoveAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pager.removeAll();
