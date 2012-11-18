@@ -16,10 +16,8 @@
 package org.universAAL.ui.gui.swing.waveLAF.support;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
@@ -34,17 +32,11 @@ public class SystemButton extends RoundedGradientButton {
 	private static final Color BG = new Color(70,178,180) ;
 
     public SystemButton(String text, Icon icon) {
-    	super(text, LIGHT, DARK);
-    	if (icon != null){  	    
-    	    Image img = ((ImageIcon) icon).getImage() ;  
-    	    Image newimg = img.getScaledInstance( 3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE,  java.awt.Image.SCALE_SMOOTH ) ;  
-    	    icon = new ImageIcon( newimg );
-    	    setIcon(icon);
-    	}
+    	super(text, BG, DARK);
+    	scaleIcon(3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setForeground(Color.white);
-        setBackground(BG);
     }
     @Override
     public Dimension getPreferredSize(){

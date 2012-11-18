@@ -14,57 +14,44 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF.support;
+
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.gui.swing.waveLAF.ColorLAF;
 
- 
-
 public class SubmitButton extends RoundedGradientButton {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	//border color definition 
-	private static final Color LIGHT = new Color (8,34,79);
-	private static final Color DARK	= new Color (17,8,79);
-	private static final Color BG = new Color(8, 68, 92);
-    
-	
-	
-	public SubmitButton(String text, Icon icon) {
-        super(text,LIGHT,BG);
-        if (icon != null){ 
-        	Dimension d = getPreferredSize();
-        	int square = Math.min(d.width, d.height) - 6;
-    	    Image img = ((ImageIcon) icon).getImage();  
-    	    Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
-    	    setIcon(new ImageIcon( newimg ));
-    	}        
-        setBackground(BG);
-        setForeground(Color.white);
+    private static final long serialVersionUID = 1L;
+
+    // border color definition
+    private static final Color LIGHT = new Color(8, 34, 79);
+    private static final Color DARK = new Color(17, 8, 79);
+    private static final Color BG = new Color(8, 68, 92);
+
+    public SubmitButton(String text, Icon icon) {
+	super(text, LIGHT, BG);
+	if (icon != null) {
+	    setIcon(icon);
+	    Dimension d = getPreferredSize();
+	    int square = Math.min(d.width, d.height) - 6;
+	    scaleIcon(square, square);
+	}
+	bLight = LIGHT;
+	bDark = DARK;
+	setBackground(BG);
+	setForeground(Color.white);
     }
 
-	@Override
-	protected void addBorder() {
-		SoftBevelBorder raisedBorder = new SoftBevelBorder(SoftBevelBorder.RAISED,  LIGHT, DARK);
-        setBorder(raisedBorder);
-	}
-
-
-
-	@Override
-    public Dimension getPreferredSize(){
-    	int ButtonWeight= 3* ColorLAF.SEPARATOR_SPACE;
-    	int ButtonHeight= 1*ColorLAF.SEPARATOR_SPACE;
-        return new Dimension(ButtonWeight, ButtonHeight);
+    @Override
+    public Dimension getPreferredSize() {
+	int ButtonWeight = 3 * ColorLAF.SEPARATOR_SPACE;
+	int ButtonHeight = 1 * ColorLAF.SEPARATOR_SPACE;
+	return new Dimension(ButtonWeight, ButtonHeight);
     }
 }
