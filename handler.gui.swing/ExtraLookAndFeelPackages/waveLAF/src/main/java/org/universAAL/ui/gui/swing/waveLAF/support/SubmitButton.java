@@ -30,9 +30,10 @@ public class SubmitButton extends RoundedGradientButton {
     private static final long serialVersionUID = 1L;
 
     // border color definition
-    private static final Color LIGHT = new Color(8, 34, 79);
-    private static final Color DARK = new Color(17, 8, 79);
-    private static final Color BG = new Color(8, 68, 92);
+    private static final Color LIGHT = new Color(204,204,204);
+    private static final Color DARK = new Color(173,173,173);
+    private static final Color BG = new Color(173,173,173);
+    private static final Color textSubmit=new Color (8, 68, 92);
 
     public SubmitButton(String text, Icon icon) {
 	super(text, LIGHT, BG);
@@ -45,7 +46,7 @@ public class SubmitButton extends RoundedGradientButton {
 	bLight = LIGHT;
 	bDark = DARK;
 	setBackground(BG);
-	setForeground(Color.white);
+	setForeground(textSubmit);
     }
 
     @Override
