@@ -24,8 +24,8 @@ public class RDFMainMenu extends MainMenu {
 	private ModuleContext context;
 
 	public RDFMainMenu(ModuleContext ctxt, InputStream in) {
-		super(in);
 		context = ctxt;
+		constructMenu(in);
     }
 
     protected void constructMenu(InputStream in) {
