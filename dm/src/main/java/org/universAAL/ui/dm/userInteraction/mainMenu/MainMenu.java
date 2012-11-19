@@ -71,6 +71,8 @@ public class MainMenu {
 	 */
 	protected MenuNode selection;
 
+	protected MainMenu() {}
+	
 	/**
 	 * constructor. Creates the menu.
 	 * @param in

@@ -144,11 +144,11 @@ public class FileMainMenuProvider implements MainMenuProvider {
     	if (f.exists()){
     		return f;
     	}
-    	f = new File(confHome.getAbsolutePath(),filePrefix + userID + ".txt");
-    	if (f.exists()){
-    		return f;
+    	File f2 = new File(confHome.getAbsolutePath(),filePrefix + userID + ".txt");
+    	if (f2.exists()){
+    		return f2;
     	}
-    	return null;
+    	return f;
 	}
 
 	protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
