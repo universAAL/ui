@@ -60,7 +60,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		JPanel pannelWithAll = new JPanel();
-		pannelWithAll.setBorder(new TitledBorder("TAbla"));
+		//pannelWithAll.setBorder(new TitledBorder(fc.getLabel().getText()));
 		pannelWithAll.setBackground(ligth);
 		pannelWithAll.setForeground(Color.white);
 		
