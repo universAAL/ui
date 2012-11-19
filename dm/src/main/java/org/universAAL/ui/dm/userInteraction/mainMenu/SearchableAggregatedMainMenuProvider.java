@@ -29,7 +29,6 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -51,6 +50,8 @@ public class SearchableAggregatedMainMenuProvider extends
     static final String BACK_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#doBackFromSearch"; //$NON-NLS-1$;
 
+    static final boolean searchFirst = true;
+    
     /**
      * The reference to the dialog manager for the user.
      */
@@ -120,16 +121,26 @@ public class SearchableAggregatedMainMenuProvider extends
     /** {@inheritDoc} */
     @Override
     public Group getMainMenu(Resource user, AbsLocation location,
-	    Form systemForm) {
-	Group mmGroup = super.getMainMenu(user, location, systemForm);
-	if (searchString != null) {
-	    filter(mmGroup);
-	    new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
-		    null), BACK_CALL);
-	} else {
-	    addSearch(mmGroup);
-	}
-	return mmGroup;
+    		Form systemForm) {
+    	if (searchString == null) {
+    		if (searchFirst) {
+    			addSearch(systemForm.getIOControls());
+    			Group mmGroup = super.getMainMenu(user, location, systemForm);
+    			return mmGroup;
+    		} 
+    		else {
+    			Group mmGroup = super.getMainMenu(user, location, systemForm);
+    			addSearch(mmGroup);
+    			return mmGroup;
+    		}
+    	}
+    	else {
+    		Group mmGroup = super.getMainMenu(user, location, systemForm);
+    		filter(mmGroup);
+    		new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
+    				null), BACK_CALL);
+    		return mmGroup;
+    	}
     }
 
     /**
@@ -141,10 +152,11 @@ public class SearchableAggregatedMainMenuProvider extends
     private Group addSearch(Group parent) {
 	Group g = new Group(parent, new Label(userDM
 		.getString("UICaller.search"), null), null, null, null);
-	Input in = new InputField(g, null, new PropertyPath(null, false,
+	InputField in = new InputField(g, null, new PropertyPath(null, false,
 		new String[] { PROP_SEARCH_STRING }), MergedRestriction
 		.getAllValuesRestrictionWithCardinality(PROP_SEARCH_STRING,
 			TypeMapper.getDatatypeURI(String.class), 1, 1), null);
+	in.setMaxLength(20);
 	new Submit(g, new Label(userDM.getString("UICaller.search"), null),
 		SEARCH_CALL).addMandatoryInput(in);
 	return g;
