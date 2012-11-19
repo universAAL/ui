@@ -33,6 +33,7 @@ public class SystemButton extends RoundedGradientButton {
 
     public SystemButton(String text, Icon icon) {
     	super(text, BG, DARK);
+    	setIcon(icon);
     	scaleIcon(3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setVerticalTextPosition(SwingConstants.BOTTOM);
