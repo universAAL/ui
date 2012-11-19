@@ -79,6 +79,16 @@ public class FormLayout implements LayoutManager {
     /** {@inheritDoc} */
     public Dimension preferredLayoutSize(Container parent) {
     	synchronized (parent.getTreeLock()) {
+    		int maxWidth;
+    		if (parent.getSize().width != 0) {
+    			maxWidth = parent.getSize().width;
+    		}
+//    		else if (parent.getPreferredSize().width != 0) {
+//    			maxWidth = parent.getPreferredSize().width;
+//    		}
+    		else {
+    			maxWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+    		}
         	Dimension ld = new Dimension();
     		List units = toUnits(parent.getComponents());
     		int maxPrefWidth = 0;
@@ -93,8 +103,9 @@ public class FormLayout implements LayoutManager {
     		for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
     		    //Adjust Width so the ratio of the container is similar to the screen ratio
     		    int Area = maxPrefWidth * height;
-    		    maxPrefWidth = Math.max(maxPrefWidth,
-    			    (int) Math.sqrt(Area*getSreenRatio()));
+    		    maxPrefWidth = Math.min(Math.max(maxPrefWidth,
+    			    (int) Math.sqrt(Area*getSreenRatio())),
+    			    maxWidth);
 
     		    List rows = getRows(units, maxPrefWidth);
     		    ld =  getRowsDimension(rows);
