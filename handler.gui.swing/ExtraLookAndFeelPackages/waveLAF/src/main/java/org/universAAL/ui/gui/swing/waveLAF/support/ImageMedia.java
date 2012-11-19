@@ -53,15 +53,17 @@ public class ImageMedia extends JPanel {
      * Create the component.
      */
     public ImageMedia(String text, Icon icon) {
-    	setLayout(new BorderLayout(0, 0));
+    	//setLayout(new BorderLayout(0, 0));
+    	lblImage = new JLabel(icon);
+    	lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+    	add(lblImage);//, BorderLayout.CENTER);
     	
     	lblText = new JLabel(text);
     	lblText.setHorizontalAlignment(SwingConstants.CENTER);
-    	add(lblText, BorderLayout.SOUTH);
+    	lblText.setVerticalTextPosition(SwingConstants.BOTTOM);
+    	add(lblText);//, BorderLayout.SOUTH);
     	
-    	lblImage = new JLabel(icon);
-    	lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-    	add(lblImage, BorderLayout.CENTER);
+    	
     	
     	setOpaque(false);
     }
