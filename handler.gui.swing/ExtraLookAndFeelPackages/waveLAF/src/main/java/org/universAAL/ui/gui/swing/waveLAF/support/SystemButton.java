@@ -41,8 +41,8 @@ public class SystemButton extends RoundedGradientButton {
     }
     @Override
     public Dimension getPreferredSize(){
-    	int ButtonWeight= 4* ColorLAF.SEPARATOR_SPACE;
-        return new Dimension(ButtonWeight, ButtonWeight);
+    	int buttonWidth= 4* ColorLAF.SEPARATOR_SPACE;
+        return new Dimension(buttonWidth, buttonWidth);
     }
 	
 	}
