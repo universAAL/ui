@@ -37,13 +37,12 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
     		    .getModuleContext().getID());
     	File f = new File(confHome.getAbsolutePath(),PROF_FILE_PREFIX + userID + "_" + lang
     			+ ".txt");
-    	if (f.exists()){
-    		return f;
-    	}
     	File f2 = new File(confHome.getAbsolutePath(),PROF_FILE_PREFIX + userID + ".txt");
+    	
     	if (f2.exists()){
     		return f2;
+    	} else {
+    		return f;
     	}
-    	return f;
 	}
 }
