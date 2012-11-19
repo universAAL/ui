@@ -60,8 +60,7 @@ public class BorderedScrolPaneLayout extends ScrollPaneLayout {
 			scrollPane = (JScrollPane)parent;
 		} 
 		else {
-			//shouldn't get gere!
-			scrollPane = null;
+			return null;
 		}
 		vsbPolicy = scrollPane.getVerticalScrollBarPolicy();
 		hsbPolicy = scrollPane.getHorizontalScrollBarPolicy();

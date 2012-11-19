@@ -41,7 +41,7 @@ public class KickerButton extends RoundedGradientButton implements ComponentList
 	private static final long serialVersionUID = 1L;
 
 	private Icon icon;
-	private Integer lastRun = new Integer(0);
+	private int lastRun = 0;
 	
     public KickerButton(String text, Icon icon) {
         super(text, LIGHT_COLOR, DARK_COLOR);
@@ -85,7 +85,7 @@ public class KickerButton extends RoundedGradientButton implements ComponentList
 		Integer myID;
 		
 		ResizeTask(){
-			synchronized (lastRun) {
+			synchronized (KickerButton.this) {
 				myID = ++lastRun;
 			}
 		}

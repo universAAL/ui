@@ -212,12 +212,12 @@ public class Renderer extends Thread {
 				fis.close();
 			} catch (FileNotFoundException e) {
 				storeProperties();
-				try {
-					fis.close();
-				} catch (Exception e2) {}
 			} catch (IOException e) {
 				e.printStackTrace();
 			} finally {
+				try {
+					fis.close();
+				} catch (Exception e2) {}
 			}
     }
 
