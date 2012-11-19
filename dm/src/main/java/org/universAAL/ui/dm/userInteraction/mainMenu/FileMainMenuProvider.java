@@ -102,6 +102,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 	Group main = systemForm.getIOControls();
 	File f = getMainMenuFile();
 	if (f != null 
+			&& f.exists()
 			&& lastRead  != f.lastModified()) {
 		try {
 		    InputStream is = tryOpenFile(f);
