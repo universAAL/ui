@@ -15,11 +15,14 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.waveLAF;
 
+import java.awt.Image;
+
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
-import org.universAAL.ui.gui.swing.waveLAF.support.ImageMedia;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
@@ -44,11 +47,22 @@ public class MediaObjectLAF extends MediaObjectModel {
 	if (mo.getContentType().startsWith("image")) {
 	    Icon icon = IconFactory.getIcon(mo.getContentURL());
 	    if (icon != null) {
-	    	ImageMedia im = new ImageMedia(fc.getLabel().getText(), icon);
-	    	im.setPreferredDimension(mo.getResolutionPreferredX(), mo.getResolutionPreferredY());
-	    	im.setMaximunDimension(mo.getResolutionMaxX(), mo.getResolutionMaxY());
-	    	im.setMinimunDimension(mo.getResolutionMinX(),mo.getResolutionMinY());
-	    	needsLabel = false;
+//	    	ImageMedia im = new ImageMedia(fc.getLabel().getText(), icon);
+//	    	im.setPreferredDimension(mo.getResolutionPreferredX(), mo.getResolutionPreferredY());
+//	    	im.setMaximunDimension(mo.getResolutionMaxX(), mo.getResolutionMaxY());
+//	    	im.setMinimunDimension(mo.getResolutionMinX(),mo.getResolutionMinY());
+	    	 if (icon != null){  	    
+		    	    Image img = ((ImageIcon) icon).getImage() ;  
+		    	    Image newimg = img.getScaledInstance( mo.getResolutionPreferredX(), mo.getResolutionPreferredY(),
+		    	    		java.awt.Image.SCALE_SMOOTH ) ;  
+		    	    icon = new ImageIcon( newimg );
+		    	}
+	    	 JLabel jl = new JLabel(mo.getLabel().getText(), icon, JLabel.CENTER);
+	    	 jl.setVerticalTextPosition(JLabel.BOTTOM);
+	    	 jl.setHorizontalTextPosition(JLabel.CENTER);
+	    	 jl.setOpaque(false);
+	    	 needsLabel = false;
+	    	 return jl;
 	    }
 	} 
 	return super.getNewComponent();
