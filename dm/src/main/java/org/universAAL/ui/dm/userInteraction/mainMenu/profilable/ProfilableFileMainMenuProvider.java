@@ -40,10 +40,10 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
     	if (f.exists()){
     		return f;
     	}
-    	f = new File(confHome.getAbsolutePath(),PROF_FILE_PREFIX + userID + ".txt");
-    	if (f.exists()){
-    		return f;
+    	File f2 = new File(confHome.getAbsolutePath(),PROF_FILE_PREFIX + userID + ".txt");
+    	if (f2.exists()){
+    		return f2;
     	}
-    	return null;
+    	return f;
 	}
 }
