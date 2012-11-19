@@ -45,6 +45,9 @@ public class ImageMedia extends JPanel {
      * The image.
      */
     private JLabel lblImage;
+	private Dimension pDim;
+	private Dimension maxDim;
+	private Dimension minDim;
 
     /**
      * Create the component.
@@ -62,41 +65,92 @@ public class ImageMedia extends JPanel {
     	
     	setOpaque(false);
     }
+    
+    public void setPreferredDimension(int width, int height) {
+    	if (width > 0
+    			&& height > 0) {
+    		pDim = new Dimension(width,height);
+    	} else {
+    		pDim = null;
+    	}
+    }
 
+    public void setMaximunDimension(int width, int height) {
+    	if (width > 0
+    			&& height > 0) {
+    		maxDim = new Dimension(width,height);
+    		setMaximumSize(maxDim);
+    	} else {
+    		maxDim = null;
+    	}
+    }
+    
+	public void setMinimunDimension(int width, int height) {
+		if (width > 0
+    			&& height > 0) {
+    		minDim = new Dimension(width,height);
+    		setMinimumSize(minDim);
+    	} else {
+    		minDim = null;
+    	}
+		
+	}
+    
+    /** {@inheritDoc} */
+    @Override
+    public Dimension getPreferredSize() {
+    	if (pDim != null) {
+    		return pDim;
+    	} else {
+    		return super.getPreferredSize();
+    	}
+    }
+    
     /** {@inheritDoc} */
     @Override
     public void setSize(int width, int height) {
-	super.setSize(width, height);
-	Dimension originalSize = lblImage.getSize();
-	Dimension ms = getMaximumSize();
-	int maxIconHeight = height - lblText.getSize().height;
-	Dimension iconSize = new Dimension(width,maxIconHeight);
-	if (width >= ms.width) {
-	    iconSize.width = ms.width;
-	}
-	if (maxIconHeight >= ms.height){
-	    iconSize.height = maxIconHeight;
-	}
-	if ( originalSize.width > originalSize.height){
-	    iconSize.height = (iconSize.width/originalSize.width) 
-		    * originalSize.height;
-	}
-	if ( originalSize.width > originalSize.height){
-	    iconSize.width = (iconSize.height/originalSize.height) 
-		    * originalSize.width;
-	}
-	if ( originalSize.width == originalSize.height){
-	    iconSize.width = Math.min(width, maxIconHeight);
-	    iconSize.height = iconSize.width;
-	}
-	Icon icon = lblImage.getIcon();
-	Image img = ((ImageIcon) icon).getImage() ;  
-	Image newimg = img.getScaledInstance( iconSize.width, iconSize.height,
-		java.awt.Image.SCALE_SMOOTH ) ;  
-	icon = new ImageIcon( newimg );
+    	if (width > 0
+    			&& height > 0) {
+    		super.setSize(width, height);
+    		Dimension originalSize = lblImage.getSize();
+    		int maxIconHeight = height - lblText.getSize().height;
+    		Dimension iconSize = new Dimension(width,maxIconHeight);
+    		if (maxDim != null
+    				&& width >= maxDim.width) {
+    			iconSize.width = maxDim.width;
+    		}
+    		if (maxDim != null
+    				&& maxIconHeight >= maxDim.height){
+    			iconSize.height = maxIconHeight;
+    		}
+    		if (minDim != null
+    				&& width < minDim.width) {
+    			iconSize.width = minDim.width;
+    		}
+    		if (minDim != null
+    				&& maxIconHeight < minDim.height){
+    			iconSize.height = minDim.height;
+    		}
+    		if ( originalSize.width > originalSize.height){
+    			iconSize.height = (iconSize.width/originalSize.width) 
+    					* originalSize.height;
+    		}
+    		if ( originalSize.width > originalSize.height){
+    			iconSize.width = (iconSize.height/originalSize.height) 
+    					* originalSize.width;
+    		}
+    		if ( originalSize.width == originalSize.height){
+    			iconSize.width = Math.min(width, maxIconHeight);
+    			iconSize.height = iconSize.width;
+    		}
+    		Icon icon = lblImage.getIcon();
+    		Image img = ((ImageIcon) icon).getImage() ;  
+    		Image newimg = img.getScaledInstance( iconSize.width, iconSize.height,
+    				java.awt.Image.SCALE_SMOOTH ) ;  
+    		icon = new ImageIcon( newimg );
 
-	lblImage.setIcon(icon);
+    		lblImage.setIcon(icon);
+    	}
     }
-
     
 }

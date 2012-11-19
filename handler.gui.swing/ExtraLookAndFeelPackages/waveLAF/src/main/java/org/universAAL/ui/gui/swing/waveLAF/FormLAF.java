@@ -98,6 +98,7 @@ public class FormLAF extends FormModel  {
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         sp.setLayout(new BorderedScrolPaneLayout());
+    	sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
         sp.setOpaque(false);
         sp.setBorder(null);
         sp.getViewport().setOpaque(false);

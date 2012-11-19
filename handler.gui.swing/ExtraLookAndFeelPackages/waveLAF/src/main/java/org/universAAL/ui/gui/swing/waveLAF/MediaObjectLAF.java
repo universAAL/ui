@@ -44,7 +44,11 @@ public class MediaObjectLAF extends MediaObjectModel {
 	if (mo.getContentType().startsWith("image")) {
 	    Icon icon = IconFactory.getIcon(mo.getContentURL());
 	    if (icon != null) {
-	    	return new ImageMedia(fc.getLabel().getText(), icon);
+	    	ImageMedia im = new ImageMedia(fc.getLabel().getText(), icon);
+	    	im.setPreferredDimension(mo.getResolutionPreferredX(), mo.getResolutionPreferredY());
+	    	im.setMaximunDimension(mo.getResolutionMaxX(), mo.getResolutionMaxY());
+	    	im.setMinimunDimension(mo.getResolutionMinX(),mo.getResolutionMinY());
+	    	needsLabel = false;
 	    }
 	} 
 	return super.getNewComponent();
