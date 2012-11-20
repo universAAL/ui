@@ -129,6 +129,13 @@ public class FormLayoutTest extends JFrame {
 		JButton superButton = new JButton("LOL");
 		group.add(superButton);
 		
+		JPanel group2 = new JPanel(new FormLayout());
+		
+		group2.add(new JTextField(7));
+		group2.add(new JButton("search"));
+		group2.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
+		
+		contentPane.add(group2);
 		JButton btnNewButton = new JButton("button");
 		contentPane.add(btnNewButton);
 		

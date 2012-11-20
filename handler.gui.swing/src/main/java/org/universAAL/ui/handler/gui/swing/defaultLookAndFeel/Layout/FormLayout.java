@@ -55,6 +55,8 @@ public class FormLayout implements LayoutManager {
 
 	private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 2;
+	private static final int HORIZONAL_UNIT_HEIGHT_LIMIT = 40;
+	
 	private int gap;
 	private List lastRows;
 	private int lastWidth = -1;
@@ -79,7 +81,7 @@ public class FormLayout implements LayoutManager {
 	/** {@inheritDoc} */
 	public Dimension preferredLayoutSize(Container parent) {
 		synchronized (parent.getTreeLock()) {
-			int maxWidth;
+			int maxWidth = Integer.MAX_VALUE;
 			if (parent.getSize().width != 0) {
 				maxWidth = parent.getSize().width;
 			}
@@ -91,9 +93,9 @@ public class FormLayout implements LayoutManager {
 			// else if (parent.getPreferredSize().width != 0) {
 			// maxWidth = parent.getPreferredSize().width;
 			// }
-			else {
-				maxWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-			}
+//			else {
+//				maxWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+//			}
 			Dimension ld = new Dimension();
 			List units = toUnits(parent.getComponents());
 			int maxPrefWidth = 0;
@@ -143,8 +145,7 @@ public class FormLayout implements LayoutManager {
 			int maxwidth = parent.getWidth() - (insets.left + insets.right);
 			List units = toUnits(parent.getComponents());
 			List rows = getRows(units, maxwidth);
-			int totalVerticalRows = 0;
-			int totalHeightHRows = 0;
+			int totalHeightVRows = 0;
 
 			int loc = gap + insets.top;
 			for (Iterator i = rows.iterator(); i.hasNext();) {
@@ -152,21 +153,19 @@ public class FormLayout implements LayoutManager {
 				row.setYLocation(insets.right, loc);
 				loc += gap + row.Size().height;
 				if (row instanceof RowWithVertUnits) {
-					totalVerticalRows++;
-				} else {
-					totalHeightHRows += row.Size().height;
+					totalHeightVRows += row.Size().height;
 				}
 			}
-			if ((loc + gap) < parent.getSize().height && totalVerticalRows > 0) {
+			int spareVertSpace = parent.getSize().height - (loc + insets.bottom);
+			if (spareVertSpace > 0 && totalHeightVRows > 0) {
 				// distribute spare vertical space between vertical rows
 				loc = gap + insets.top;
-				int vRowHeigh = (parent.getSize().height - totalHeightHRows
-						- (rows.size() + 1) * gap - parent.getInsets().top - parent
-							.getInsets().bottom) / totalVerticalRows;
+				float ratio = (float)(totalHeightVRows + spareVertSpace) / (float)totalHeightVRows;
 				for (Iterator i = rows.iterator(); i.hasNext();) {
 					Row row = (Row) i.next();
 					if (row instanceof RowWithVertUnits) {
-						((RowWithVertUnits) row).setHeight(vRowHeigh);
+						((RowWithVertUnits) row)
+						.setHeight((int)(row.Size().height*ratio));
 					}
 					row.setYLocation(insets.right, loc);
 					loc += gap + row.Size().height;
@@ -253,7 +252,7 @@ public class FormLayout implements LayoutManager {
 				}
 				if (row.fits(u) || row.count() == 0) {
 					row.add(u);
-					workSet.remove(0);
+					workSet.removeFirst();
 				} else {
 					rows.addLast(new Row(maxWidth));
 				}
@@ -348,7 +347,8 @@ public class FormLayout implements LayoutManager {
 		public Unit(Component comp) {
 			this.jc = comp;
 			this.l = null;
-			pSize = jc.getPreferredSize();
+			this.pSize = jc.getPreferredSize();
+			this.isHorizontal = this.pSize.height <= HORIZONAL_UNIT_HEIGHT_LIMIT;
 		}
 
 		public Dimension getPreferredSize() {
@@ -416,9 +416,9 @@ public class FormLayout implements LayoutManager {
 			// Set sizes
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
-				int myWidht = u.getPreferredSize().width;
-				myWidht = myWidht * ratio / currentPrefWidth;
-				u.setSize(new Dimension(myWidht, maxHeight));
+				int myWidth = u.getPreferredSize().width;
+				myWidth = myWidth * ratio / currentPrefWidth;
+				u.setSize(new Dimension(myWidth, maxHeight));
 			}
 		}
 
@@ -435,10 +435,6 @@ public class FormLayout implements LayoutManager {
 
 		public Row(int width) {
 			this();
-			setWidth(width);
-		}
-
-		public void setWidth(int width) {
 			this.width = width;
 		}
 
@@ -526,32 +522,35 @@ public class FormLayout implements LayoutManager {
 			super();
 		}
 
-		public void setHeight(int vRowHeigh) {
-			maxHeight = vRowHeigh;
-		}
-
 		public RowWithVertUnits(int width) {
 			super(width);
 		}
 
 		public RowWithVertUnits(Row previousRow) {
-			width = previousRow.width;
+			this(previousRow.width);
 			for (Iterator it = previousRow.units.iterator(); it.hasNext();) {
 				Unit u = (Unit) it.next();
 				maxHeight = Math.max(maxHeight, u.getPreferredSize().height);
 			}
-			for (Iterator i = previousRow.units.iterator(); i.hasNext();) {
-				Unit u = (Unit) i.next();
-				if (!(u instanceof AggregatedUnit)) {
-					add(u);
-				} else {
-					for (Iterator it = ((AggregatedUnit) u).units.iterator(); it
-							.hasNext();) {
-						Unit aU = (Unit) it.next();
-						add(aU);
-					}
-				}
+			this.units = new ArrayList(previousRow.units);
+			recalculateUnitDistribution();
+		}
+		
+		private void recalculateUnitDistribution() {
+		    ArrayList oldUnitList = new ArrayList(units);
+		    units.clear();
+		    for (Iterator i = oldUnitList.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			if (!(u instanceof AggregatedUnit)) {
+			    add(u);
+			} else {
+			    for (Iterator it = ((AggregatedUnit) u).units.iterator(); it
+				    .hasNext();) {
+				Unit aU = (Unit) it.next();
+				add(aU);
+			    }
 			}
+		    }
 		}
 
 		/** {@inheritDoc} */
@@ -584,6 +583,11 @@ public class FormLayout implements LayoutManager {
 			} else {
 				super.add(newUnit);
 			}
+		}
+
+		public void setHeight(int vRowHeigh) {
+			maxHeight = Math.max(vRowHeigh,maxHeight);
+			//recalculateUnitDistribution();
 		}
 
 	}
