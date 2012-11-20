@@ -51,7 +51,8 @@
             				org.universAAL.ui.dm.userInteraction,
             				org.universAAL.ui.dm.userInteraction.mainMenu,
             				org.universAAL.ui.dm.userInteraction.mainMenu.profilable,
-            				org.universAAL.ui.dm.userInteraction.messageManagement</Private-Package>
+            				org.universAAL.ui.dm.userInteraction.messageManagement,
+            				org.universAAL.ui.dm.userInteraction.systemMenu</Private-Package>
             <Import-Package>*</Import-Package>
           </instructions>
         </configuration>
