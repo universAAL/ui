@@ -69,7 +69,7 @@ public class TextAreaLAF extends TextAreaModel {
         ta.setForeground(ColorLAF.getfont());
         ta.setSelectionColor(ColorLAF.getOrange());
         sp = new JScrollPane(ejc, 
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         sp.setFocusable(true);
         sp.getAccessibleContext().setAccessibleName(initialValue);
