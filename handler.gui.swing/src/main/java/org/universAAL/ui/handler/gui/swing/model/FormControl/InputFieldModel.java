@@ -221,8 +221,6 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 		inFi.storeUserInput("");
 	    }
 	}
-	tf.setSelectionStart(e.getMark());
-	tf.setSelectionEnd(e.getDot());
     }
 
     /**
