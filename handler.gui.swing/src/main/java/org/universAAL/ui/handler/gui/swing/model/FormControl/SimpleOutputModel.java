@@ -141,13 +141,15 @@ public class SimpleOutputModel extends OutputModel {
     	Object content = ((SimpleOutput) fc).getContent();
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
         // getTypeURI returns null
-    	if (jc instanceof JTextComponent) {
+    	if (jc instanceof JTextComponent
+    			&& content instanceof String) {
     		JTextComponent ta = (JTextComponent) jc;
     		ta.setText((String) content);
     		ta.setEditable(false);
         }
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
-        if (jc instanceof JCheckBox) {
+        if (jc instanceof JCheckBox
+        		&& content instanceof Boolean) {
             JCheckBox cb = (JCheckBox) jc;
             cb.setSelected(((Boolean) content).booleanValue());
             cb.setEnabled(false);
@@ -162,7 +164,8 @@ public class SimpleOutputModel extends OutputModel {
 				|| inFi.getValue() instanceof Double) {
 			
 		}*/
-		if (content instanceof Locale) {
+		if (jc instanceof JTextField
+				&& content instanceof Locale) {
 			JTextField tf = (JTextField) jc;
 			tf.setText(((Locale) content).getDisplayLanguage());
 			tf.setEditable(false);

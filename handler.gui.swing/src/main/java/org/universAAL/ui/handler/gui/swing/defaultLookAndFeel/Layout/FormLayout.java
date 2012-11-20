@@ -143,11 +143,38 @@ public class FormLayout implements LayoutManager {
                 int maxwidth = parent.getWidth() - (insets.left + insets.right);
         		List units = toUnits(parent.getComponents());
         		List rows = getRows(units, maxwidth);
+        		int totalVerticalRows = 0;
+        		int totalHeightHRows = 0;
+        		
         		int loc = gap + insets.top;
         		for (Iterator i = rows.iterator(); i.hasNext();) {
         			Row row = (Row) i.next();
         			row.setYLocation(insets.right,loc);
         			loc += gap + row.Size().height;
+					if (row instanceof RowWithVertUnits) {
+						totalVerticalRows++;
+					} else {
+						totalHeightHRows += row.Size().height;
+					}
+        		}
+        		if ((loc+gap) < parent.getSize().height
+        				&& totalVerticalRows > 0) {
+        			// distribute spare vertical space between vertical rows
+        			loc = gap + insets.top;
+        			int vRowHeigh = (parent.getSize().height 
+        					- totalHeightHRows 
+        					- (rows.size() +1 ) * gap
+        					- parent.getInsets().top
+        					- parent.getInsets().bottom)
+        					/totalVerticalRows;
+        			for (Iterator i = rows.iterator(); i.hasNext();) {
+        				Row row = (Row) i.next();
+        				if (row instanceof RowWithVertUnits) {
+        					((RowWithVertUnits)row).setHeight(vRowHeigh);
+        				}
+        				row.setYLocation(insets.right,loc);
+        				loc += gap + row.Size().height;
+        			}
         		}
         	}
         }
@@ -505,6 +532,10 @@ public class FormLayout implements LayoutManager {
 
 		public RowWithVertUnits() {
 			super();
+		}
+
+		public void setHeight(int vRowHeigh) {
+			maxHeight = vRowHeigh;			
 		}
 
 		public RowWithVertUnits(int width) {
