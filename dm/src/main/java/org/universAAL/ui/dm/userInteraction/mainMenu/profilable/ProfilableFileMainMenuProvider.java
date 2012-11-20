@@ -21,7 +21,7 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
     public ProfilableFileMainMenuProvider(UserDialogManager udm) {
 	super(udm);
 
-	serviceCallee = new SCallee(DialogManagerImpl.getModuleContext(), getMainMenuFile());
+	serviceCallee = new SCallee(DialogManagerImpl.getModuleContext(), getMainMenuFile(), udm);
     }
 
     protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
