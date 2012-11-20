@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.concurrent.Semaphore;
 
 import org.universAAL.middleware.container.osgi.util.Messages;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -166,7 +167,12 @@ public class UserDialogManager implements DialogManager {
 	 * The Pending Dialogs Dialog implementation to be used
 	 */
 	private int pendingDialogsDialog;
-
+	
+	/**
+	 * A {@link Semaphore} to synchronize showSomething and handleUIRequest,
+	 * when calling a service.
+	 */
+	private Semaphore showingSomething = new Semaphore(1);
     /**
      * Constructor.
      * 
@@ -383,7 +389,9 @@ public class UserDialogManager implements DialogManager {
     			&& current.getDialogID().equals(dialogID)) {
     		current = null;
     	} 
-    	new Thread(new ClosingTask(dialogID), "Closing Task").start();
+    	Thread ctt = new Thread(new ClosingTask(dialogID), "Closing Task");
+    	ctt.setPriority(Thread.MIN_PRIORITY);
+    	ctt.start();
     }
 
     /**
@@ -516,29 +524,33 @@ public class UserDialogManager implements DialogManager {
      *            the response to be handled.
      */
     public void handleUIResponse(UIResponse response) {
-    	synchronized (dialogPool) {
-			String submissionID = response.getSubmissionID();
-			LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-					"handle", new String[] { "Handling:", submissionID }, null);
-			String dialogID = response.getDialogID();
-			UIRequest req = dialogPool.get(dialogID);
-			if (req == null) {
-				req = messagePool.get(dialogID);
-			}
-			if (req != null) {
-				req.setCollectedInput(response.getSubmittedData());
-			}
-			if (listeners.containsKey(submissionID)) {
-				SubmitGroupListener sgl = listeners.get(submissionID);
-				listeners.clear();
-				sgl.handle(response);
-			} else {
-				LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
-						getClass(), "handle", new String[] {
-								"listeners don't include:", submissionID },
-						null);
-			}
+    	try {
+			showingSomething.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+    	String submissionID = response.getSubmissionID();
+    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+    			"handle", new String[] { "Handling:", submissionID }, null);
+    	String dialogID = response.getDialogID();
+    	UIRequest req = dialogPool.get(dialogID);
+    	if (req == null) {
+    		req = messagePool.get(dialogID);
+    	}
+    	if (req != null) {
+    		req.setCollectedInput(response.getSubmittedData());
+    	}
+    	if (listeners.containsKey(submissionID)) {
+    		SubmitGroupListener sgl = listeners.get(submissionID);
+    		listeners.clear();
+    		sgl.handle(response);
+    	} else {
+    		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+    				getClass(), "handle", new String[] {
+    			"listeners don't include:", submissionID },
+    			null);
+    	}
+    	showingSomething.release();
     }
 
     /**
@@ -714,11 +726,13 @@ public class UserDialogManager implements DialogManager {
 	    } catch (InterruptedException e) {
 		// do nothing
 	    }
-	    synchronized (dialogPool) {
-			if (current == null) {
-				showSomething();
-			}
-		}
+	    try {
+			showingSomething.acquire();
+		} catch (InterruptedException e) {	}
+	    if (current == null) {
+	    	showSomething();
+	    }
+	    showingSomething.release();
 	}
 
     }
