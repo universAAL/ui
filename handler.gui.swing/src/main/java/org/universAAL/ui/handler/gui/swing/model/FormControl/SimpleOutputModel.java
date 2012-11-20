@@ -141,24 +141,13 @@ public class SimpleOutputModel extends OutputModel {
     	Object content = ((SimpleOutput) fc).getContent();
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
         // getTypeURI returns null
-        if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-                JTextArea ta = (JTextArea) jc;
-                ta.setText((String) content);
-                ta.setEditable(false);
-                //ta.setEnabled(false);
-                ta.setLineWrap(true);
-                ta.setWrapStyleWord(true);
-            }
-            else {
-                JTextComponent tf = (JTextComponent) jc;
-                tf.setText((String) content);
-                tf.setEditable(false);
-                //tf.setEnabled(false);
-            }
+    	if (jc instanceof JTextComponent) {
+    		JTextComponent ta = (JTextComponent) jc;
+    		ta.setText((String) content);
+    		ta.setEditable(false);
         }
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
-        if (content instanceof Boolean) {
+        if (jc instanceof JCheckBox) {
             JCheckBox cb = (JCheckBox) jc;
             cb.setSelected(((Boolean) content).booleanValue());
             cb.setEnabled(false);
