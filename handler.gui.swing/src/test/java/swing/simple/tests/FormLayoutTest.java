@@ -126,6 +126,9 @@ public class FormLayoutTest extends JFrame {
 		tfs.setColumns(10);
 		contentPane.add(group);
 		
+		JButton superButton = new JButton("LOL");
+		group.add(superButton);
+		
 		JButton btnNewButton = new JButton("button");
 		contentPane.add(btnNewButton);
 		
