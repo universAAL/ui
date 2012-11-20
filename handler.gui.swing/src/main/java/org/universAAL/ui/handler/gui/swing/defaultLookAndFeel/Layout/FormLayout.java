@@ -28,6 +28,8 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 
 /**
  * This {@link LayoutManager} organizes elements in rows, maintaining 
@@ -82,6 +84,11 @@ public class FormLayout implements LayoutManager {
     		int maxWidth;
     		if (parent.getSize().width != 0) {
     			maxWidth = parent.getSize().width;
+    		}
+    		if (parent.getParent() != null
+    				&& parent.getParent() instanceof JViewport
+    				&& ((JViewport)parent.getParent()).getSize().width >0) {
+    			maxWidth = ((JViewport)parent.getParent()).getSize().width;
     		}
 //    		else if (parent.getPreferredSize().width != 0) {
 //    			maxWidth = parent.getPreferredSize().width;
