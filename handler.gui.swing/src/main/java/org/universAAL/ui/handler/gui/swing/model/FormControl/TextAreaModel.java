@@ -82,5 +82,7 @@ implements CaretListener {
         if (isValid((JComponent) e.getSource())) {
             ((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
         }
+        ((JTextArea)jc).setSelectionStart(e.getMark());
+        ((JTextArea)jc).setSelectionEnd(e.getDot());
     }
 }
