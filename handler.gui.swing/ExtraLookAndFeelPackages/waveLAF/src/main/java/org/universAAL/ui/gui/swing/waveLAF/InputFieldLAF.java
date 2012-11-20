@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.waveLAF;
 import java.util.Date;
 
 import javax.swing.JComponent;
+import javax.swing.text.JTextComponent;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.jdesktop.swingx.JXDatePicker;
@@ -45,6 +46,9 @@ public class InputFieldLAF extends InputFieldModel {
 	if (jc != null){
 	    super.update();
 	    jc.setFont(ColorLAF.getplain());
+	    if (jc instanceof JTextComponent) {
+	    	((JTextComponent)jc).setSelectionColor(ColorLAF.getOrange());
+	    }
 	}
     }
 
