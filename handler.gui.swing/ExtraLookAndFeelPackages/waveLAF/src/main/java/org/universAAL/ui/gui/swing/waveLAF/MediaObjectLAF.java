@@ -48,9 +48,6 @@ public class MediaObjectLAF extends MediaObjectModel {
 	    Icon icon = IconFactory.getIcon(mo.getContentURL());
 	    if (icon != null) {
 //	    	ImageMedia im = new ImageMedia(fc.getLabel().getText(), icon);
-//	    	im.setPreferredDimension(mo.getResolutionPreferredX(), mo.getResolutionPreferredY());
-//	    	im.setMaximunDimension(mo.getResolutionMaxX(), mo.getResolutionMaxY());
-//	    	im.setMinimunDimension(mo.getResolutionMinX(),mo.getResolutionMinY());
 	    	 if (icon != null){  	    
 		    	    Image img = ((ImageIcon) icon).getImage() ;  
 		    	    Image newimg = img.getScaledInstance( mo.getResolutionPreferredX(), mo.getResolutionPreferredY(),

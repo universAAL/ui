@@ -58,27 +58,28 @@ public class TextAreaLAF extends TextAreaModel {
         String initialValue = (String) fc.getValue();
         JTextArea ta = (JTextArea) jc;
        // ta.setBorder(new SearchFieldBorder());
-        ta.setRows(4);
-        ta.setColumns(15);
+        ta.setRows(5);
+//        ta.setColumns(15);
         ta.setMargin(new Insets(10,10,10,10)); 
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        sp.setFocusable(true);
-        sp.getAccessibleContext().setAccessibleName(initialValue);
+        
         ta.setFont(ColorLAF.getplain());
         ta.setForeground(ColorLAF.getfont());
-        
+        ta.setSelectionColor(ColorLAF.getOrange());
+        sp = new JScrollPane(ejc, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sp.setFocusable(true);
+        sp.getAccessibleContext().setAccessibleName(initialValue);
+        jc = sp;
     }
-
-
-
 
     /** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		ejc =super.getNewComponent();
-		sp = new JScrollPane(ejc);
-		return sp;
+		ejc= super.getNewComponent();
+		return ejc;
 	}
 
 }

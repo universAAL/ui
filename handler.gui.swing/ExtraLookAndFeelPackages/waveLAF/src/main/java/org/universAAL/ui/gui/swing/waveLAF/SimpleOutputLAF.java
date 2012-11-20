@@ -55,26 +55,20 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 
     /** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		Object content = ((SimpleOutput) fc).getContent();
-		JComponent sjc = super.getNewComponent();
-		ejc = sjc;
-		if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
-                sp = new JScrollPane(sjc);
-                sjc = sp;
-            }
-		}
-		return sjc;
+		ejc = super.getNewComponent();
+		return ejc;
 	}
 
 	/** {@inheritDoc} */
     public void update() {
+		jc = (JComponent) (jc == sp? ejc:jc);
+    	super.update();
         Object content = ((SimpleOutput) fc).getContent();
         if (content instanceof String) {
             if (((String) content).length() >= TOO_LONG) {
-            	jc = (JComponent) (jc == sp? ejc:jc);
                 JTextArea ta = (JTextArea) jc;
                 ta.getAccessibleContext().setAccessibleName(ta.getName());
+                ta.setRows(5);
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
                 ta.getAccessibleContext();
@@ -82,6 +76,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
                 ta.setForeground(ColorLAF.getfont());
+                sp = new JScrollPane(jc);
                 sp.getAccessibleContext();
             }
             else {
@@ -90,13 +85,15 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 tf.setFont(ColorLAF.getplain());
                 tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
+                sp = null;
             }
         }
         if (content instanceof Boolean) {
             JCheckBox cb = (JCheckBox) jc;
             cb.getAccessibleContext().setAccessibleName(cb.getName());
+            sp = null;
         }
-    	super.update();
+        jc = sp==null? jc : sp;
     }
 
 
