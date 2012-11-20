@@ -28,7 +28,6 @@ import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 
 /**
@@ -57,7 +56,7 @@ import javax.swing.JViewport;
 public class FormLayout implements LayoutManager {
 
     private static final int LAYOUT_ITERATIONS = 2;
-	private static final int LABEL_HEIGHT_THRESHOLD = 10;
+	private static final int LABEL_HEIGHT_THRESHOLD = 2;
 	private int gap;
 	private List lastRows;
 	private int lastWidth = -1;
@@ -311,7 +310,7 @@ public class FormLayout implements LayoutManager {
 	    	pSize = l.getPreferredSize();
 	    }
 	    if (jc.getPreferredSize().height
-	    		> l.getPreferredSize().height + LABEL_HEIGHT_THRESHOLD){
+	    		> l.getPreferredSize().height * LABEL_HEIGHT_THRESHOLD){
 	    	isHorizontal = false;
 	    	pSize.width = Math.max(l.getPreferredSize().width,
 	    			jc.getPreferredSize().width);
