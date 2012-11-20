@@ -17,6 +17,7 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.service.ProfilingService;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuEntry;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuProfile;
+import org.universAAL.ui.dm.UserDialogManager;
 
 public class SCallee extends ServiceCallee {
 
@@ -33,6 +34,7 @@ public class SCallee extends ServiceCallee {
 
     private ModuleContext context;
 	private File file;
+	private UserDialogManager userDM;
 
     static {
 	invalidInput.addOutput(new ProcessOutput(
@@ -53,10 +55,11 @@ public class SCallee extends ServiceCallee {
 
     }
 
-    public SCallee(ModuleContext context, File mainMenuFile) {
+    public SCallee(ModuleContext context, File mainMenuFile, UserDialogManager udm) {
 	super(context, profiles);
 	this.context = context;
 	this.file = mainMenuFile;
+	this.userDM = udm;
     }
 
     @Override
@@ -114,6 +117,7 @@ public class SCallee extends ServiceCallee {
 	    LogUtils.logDebug(context, SCallee.class, "addEntry", new Object[] {
 		    "adding main menu entry: ",
 		    entry.getServiceClass().getURI() }, null);
+	    userDM.refreshMainMenu();
 
 	} catch (Exception e) {
 	    LogUtils

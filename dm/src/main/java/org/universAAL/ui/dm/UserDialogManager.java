@@ -621,6 +621,17 @@ public class UserDialogManager implements DialogManager {
     public final void showMainMenu() {
 	getMainMenu(user, currentUserLocation);
     }
+    
+    /**
+     * Re send the main menu, 
+     * if the current dialog is the main menu.
+     */
+    public final void refreshMainMenu() {
+    	if (current.getDialogForm().getDialogType()
+    			.equals(DialogType.sysMenu)) {
+    		showMainMenu();
+    	}
+    }
 
     /**
      * Get the language for the user.
