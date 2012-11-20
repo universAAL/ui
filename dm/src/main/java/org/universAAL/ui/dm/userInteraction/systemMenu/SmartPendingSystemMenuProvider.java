@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.dm.userInteraction;
+package org.universAAL.ui.dm.userInteraction.systemMenu;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -28,7 +28,6 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
-import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder;
 
 /**
  * @author amedrano
@@ -89,10 +88,10 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
 	    userDM.showMainMenu();
 	}
 	if (MESSAGES_CALL.equals(submissionID)) {
-	    new PendingMessageBuilder(userDM);
+	    userDM.openPendingMessagedDialog();
 	}
 	if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-	    new PendingDialogBuilder(userDM);
+	    userDM.openPendingDialogsDialog();
 	}
 
     }
