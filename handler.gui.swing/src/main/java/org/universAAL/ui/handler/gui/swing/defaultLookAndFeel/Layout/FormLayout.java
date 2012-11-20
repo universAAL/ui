@@ -24,6 +24,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -236,27 +237,25 @@ public class FormLayout implements LayoutManager {
 	List getRows(List units, int width) {
 		if (width != lastWidth) {
 			int maxWidth = width;
-			List rows = new ArrayList();
+			LinkedList rows = new LinkedList();
 			rows.add(new Row(maxWidth));
-			int last = 0;
-			ArrayList workSet = new ArrayList(units);
+			LinkedList workSet = new LinkedList(units);
 			while (!workSet.isEmpty()) {
-				Row row = ((Row) rows.get(last));
-				Unit u = (Unit) workSet.get(0);
+				Row row = (Row) rows.getLast();
+				Unit u = (Unit) workSet.getFirst();
 				// see if row needs to be transformed
 				if (!u.isHorizontal
 						&& row.fits(u)
 						&& !(row instanceof RowWithVertUnits)) {
 					row = new RowWithVertUnits(row);
-					rows.remove(last);
-					rows.add(row);
+					rows.removeLast();
+					rows.addLast(row);
 				}
 				if (row.fits(u) || row.count() == 0) {
 					row.add(u);
 					workSet.remove(0);
 				} else {
-					rows.add(new Row(maxWidth));
-					last++;
+					rows.addLast(new Row(maxWidth));
 				}
 			}
 			lastWidth = width;
