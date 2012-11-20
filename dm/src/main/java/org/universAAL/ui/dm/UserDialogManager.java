@@ -516,24 +516,29 @@ public class UserDialogManager implements DialogManager {
      *            the response to be handled.
      */
     public void handleUIResponse(UIResponse response) {
-    	String submissionID = response.getSubmissionID();
-    	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
-    	String dialogID = response.getDialogID();
-    	UIRequest req = dialogPool.get(dialogID);
-    	if (req == null) {
-    		req = messagePool.get(dialogID);
-    	}
-    	if (req != null) {
-    		req.setCollectedInput(response.getSubmittedData());
-    	}
-	if (listeners.containsKey(submissionID)) {
-	    SubmitGroupListener sgl = listeners.get(submissionID);
-	    listeners.clear();
-	    sgl.handle(response);
-	} else {
-		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"listeners don't include:",  submissionID}, null);
-	}
-		
+    	synchronized (dialogPool) {
+			String submissionID = response.getSubmissionID();
+			LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+					"handle", new String[] { "Handling:", submissionID }, null);
+			String dialogID = response.getDialogID();
+			UIRequest req = dialogPool.get(dialogID);
+			if (req == null) {
+				req = messagePool.get(dialogID);
+			}
+			if (req != null) {
+				req.setCollectedInput(response.getSubmittedData());
+			}
+			if (listeners.containsKey(submissionID)) {
+				SubmitGroupListener sgl = listeners.get(submissionID);
+				listeners.clear();
+				sgl.handle(response);
+			} else {
+				LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
+						getClass(), "handle", new String[] {
+								"listeners don't include:", submissionID },
+						null);
+			}
+		}
     }
 
     /**
@@ -709,9 +714,11 @@ public class UserDialogManager implements DialogManager {
 	    } catch (InterruptedException e) {
 		// do nothing
 	    }
-	    if (current == null) {
-		showSomething();
-	    }
+	    synchronized (dialogPool) {
+			if (current == null) {
+				showSomething();
+			}
+		}
 	}
 
     }
