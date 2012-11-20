@@ -52,40 +52,40 @@ public class PendingDialogBuilder implements SubmitGroupListener {
      * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
      * control which atomatically adds index numbers to this prefix.
      */
-    static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
+    public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
 	    + ":switchTo#"; //$NON-NLS-1$
-    static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE
+    public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE
 	    + "dlgDate"; //$NON-NLS-1$
-    static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE
+    public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE
 	    + "dlgList"; //$NON-NLS-1$
-    static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE
+    public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE
 	    + "dlgTitle"; //$NON-NLS-1$
-    static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
+    public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
 	    + "dlgDialogID"; //$NON-NLS-1$
-    static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
+    public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
 	    + "dlgListSentItems"; //$NON-NLS-1$
     /**
      * The submission ID to close the dialog that shows all pending dialogs.
      */
-    static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
+    public static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#closeOpenDialogs"; //$NON-NLS-1$
     /**
      * The submission ID to abort all open dialogs. A button with this
      * functionality is available in the dialog showing the list of all pending
      * dialogs.
      */
-    static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
+    public static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#abortAllOpenDialogs"; //$NON-NLS-1$
     /**
      * The DialogPool containing all dialogs for the user.
      */
-    private UIRequestPool dialogPool;
+    protected UIRequestPool dialogPool;
 
     /**
      * the list of Dialog Id sent
      */
-    private List<String> sentItems;
-    private UserDialogManager userDM;
+    protected List<String> sentItems;
+    protected UserDialogManager userDM;
 
     /**
      * The constructor will build the form and send the request to the user.

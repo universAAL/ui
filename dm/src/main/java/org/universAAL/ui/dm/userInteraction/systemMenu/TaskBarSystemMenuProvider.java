@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.dm.userInteraction;
+package org.universAAL.ui.dm.userInteraction.systemMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
-import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder;
+import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 
 /**
  * @author amedrano
@@ -92,7 +92,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 			userDM.showMainMenu();
 		}
 		if (MESSAGES_CALL.equals(submissionID)) {
-			new PendingMessageBuilder(userDM);
+			userDM.openPendingMessagedDialog();
 		}
 		if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
 		    int idx = -1;

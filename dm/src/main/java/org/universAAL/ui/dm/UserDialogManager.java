@@ -48,15 +48,17 @@ import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
-import org.universAAL.ui.dm.userInteraction.ClassicSystemMenuProvider;
-import org.universAAL.ui.dm.userInteraction.ClassicWithSubmitsSystemMenuProvider;
-import org.universAAL.ui.dm.userInteraction.SmartPendingSystemMenuProvider;
-import org.universAAL.ui.dm.userInteraction.TaskBarSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
+import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener;
+import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder;
+import org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider;
 
 /**
  * Dialog Management per user. This delegate of {@link DialogManagerImpl} cares
@@ -82,11 +84,19 @@ public class UserDialogManager implements DialogManager {
 
 	private static final String SYS_DEFAULT = "classic";
 
-	private static final String SYS_SUBMITS = "buttons";
-
 	private static final String SYS_SMART = "smart";
 
 	private static final String SYS_TASK = "task";
+	
+	private static final String SYSTEM_PROP_PDIALOGSBUILDER = "ui.dm.pendingDialogBuilder";
+	
+	private static final String PDD_TABLE = "table";
+	
+	private static final String PDD_BUTTON = "buttons";	
+
+	private static final int PENDING_DIALOGS_TABLE = 0;
+
+	private static final int PENDING_DIALOGS_BUTTONS = 1;
 
     /**
      * {@link User} this {@link UserDialogManager} is targeting.
@@ -152,6 +162,11 @@ public class UserDialogManager implements DialogManager {
      */
     private Messages messages;
 
+	/**
+	 * The Pending Dialogs Dialog implementation to be used
+	 */
+	private int pendingDialogsDialog;
+
     /**
      * Constructor.
      * 
@@ -185,14 +200,12 @@ public class UserDialogManager implements DialogManager {
 	((AggregatedMainMenuProvider) mainMenuProvider)
 		.add(new ProfilableFileMainMenuProvider(this));
 	
+	//TODO: load from UI Preferences
 	// LOAD System Menu provider according to system properties
 	String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,SYS_DEFAULT);
 	
 	if (smp.equals(SYS_DEFAULT)) {
 		systemMenuProvider = new ClassicSystemMenuProvider(this);
-	}
-	else if (smp.equals(SYS_SUBMITS)) {
-		systemMenuProvider = new ClassicWithSubmitsSystemMenuProvider(this);
 	}
 	else if (smp.equals(SYS_SMART)) {
 		systemMenuProvider = new SmartPendingSystemMenuProvider(this);
@@ -200,6 +213,16 @@ public class UserDialogManager implements DialogManager {
 	else if (smp.equals(SYS_TASK)) {
 		systemMenuProvider = new TaskBarSystemMenuProvider(this);
 	}	
+	
+	//TODO: load from UI PREFERENCES
+	String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER, PDD_TABLE);
+	if (pdd.equals(PDD_TABLE)) {
+		pendingDialogsDialog = PENDING_DIALOGS_TABLE;
+	}
+	else if (pdd.equals(PDD_BUTTON)) {
+		pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
+	}
+	
 	messagePool = new DialogPriorityQueue();
 	dialogPool = new NonRedudantDialogPriorityQueue();
 	//dialogPool = new DialogPriorityQueue();
@@ -622,6 +645,22 @@ public class UserDialogManager implements DialogManager {
      */
     public final String getString(String key) {
 	return messages.getString(key);
+    }
+    
+    public final void openPendingDialogsDialog() {
+    	switch (pendingDialogsDialog) {
+		case PENDING_DIALOGS_TABLE:
+			new PendingDialogBuilder(this);
+			break;
+		case PENDING_DIALOGS_BUTTONS:
+			new PendingDialogBuilderWithSubmits(this);
+		default:
+			break;
+		}
+    }
+    
+    public final void openPendingMessagedDialog() {
+    	new PendingMessageBuilder(this);
     }
 
     /**
