@@ -440,13 +440,12 @@ public class FormLayout implements LayoutManager {
 
 		public AggregatedUnit(Component comp) {
 			Unit u = new Unit(comp);
-			pSize = u.pSize;
 			units.add(u);
 		}
 
 		public AggregatedUnit(Unit u) {
 			units.add(u);
-			pSize = u.pSize;
+			pSize = new Dimension();
 		}
 
 		/** {@inheritDoc} */
@@ -457,11 +456,12 @@ public class FormLayout implements LayoutManager {
 		/** {@inheritDoc} */
 		public void setSize(Dimension size) {
 			this.size = size;
-			int count = units.size();
-			int uHeight = (size.height - (count - 1) * gap) / count;
+//			int count = units.size();
+			//int uHeight = (size.height - (count - 1) * gap) / count;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
-				u.setSize(new Dimension(size.width, uHeight));
+				//u.setSize(new Dimension(size.width, uHeight));
+				u.setSize(new Dimension(size.width, u.getPreferredSize().height));
 			}
 		}
 
