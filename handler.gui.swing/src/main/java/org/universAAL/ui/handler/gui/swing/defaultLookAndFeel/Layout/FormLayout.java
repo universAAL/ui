@@ -301,12 +301,13 @@ public class FormLayout implements LayoutManager {
 		protected Dimension pSize;
 
 		protected Unit() {
+			this.pSize = new Dimension();
 		}
 
 		public Unit(JLabel label) {
+			this();
 			this.l = label;
 			this.jc = (Component) label.getLabelFor();
-			this.pSize = new Dimension();
 			if (jc == null) {
 				jc = l;
 				pSize = l.getPreferredSize();
@@ -439,13 +440,14 @@ public class FormLayout implements LayoutManager {
 		List units = new ArrayList();
 
 		public AggregatedUnit(Component comp) {
+			super();
 			Unit u = new Unit(comp);
-			units.add(u);
+			add(u);
 		}
 
 		public AggregatedUnit(Unit u) {
-			units.add(u);
-			pSize = new Dimension();
+			super();
+			add(u);
 		}
 
 		/** {@inheritDoc} */
@@ -456,7 +458,7 @@ public class FormLayout implements LayoutManager {
 		/** {@inheritDoc} */
 		public void setSize(Dimension size) {
 			this.size = size;
-//			int count = units.size();
+			//int count = units.size();
 			//int uHeight = (size.height - (count - 1) * gap) / count;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
@@ -479,9 +481,10 @@ public class FormLayout implements LayoutManager {
 		}
 
 		public boolean fits(Unit newUnit) {
-			int count = units.size() + 1;
-			int uHeight = (size.height - (count - 1) * gap) / count;
-			return (uHeight > newUnit.getPreferredSize().height);
+//			int count = units.size() + 1;
+//			int uHeight = (size.height - (count - 1) * gap) / count;
+//			return (uHeight > newUnit.getPreferredSize().height);
+			return ((size.height - pSize.height) > newUnit.getPreferredSize().height );
 		}
 
 		public void add(Unit newUnit) {
