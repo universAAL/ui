@@ -58,8 +58,6 @@ public class FormLayout implements LayoutManager {
 	private static final int HORIZONAL_UNIT_HEIGHT_LIMIT = 40;
 	
 	private int gap;
-	private List lastRows;
-	private int lastWidth = -1;
 
 	/**
 	 * Create a {@link FormLayout} with a default gap of 5.
@@ -81,24 +79,21 @@ public class FormLayout implements LayoutManager {
 	/** {@inheritDoc} */
 	public Dimension preferredLayoutSize(Container parent) {
 		synchronized (parent.getTreeLock()) {
+			Insets insets = parent.getInsets();
 			int maxWidth = Integer.MAX_VALUE;
+			int maxPrefWidth = 0;
 			if (parent.getSize().width != 0) {
-				maxWidth = parent.getSize().width;
+				maxWidth = parent.getSize().width - insets.left - insets.right;
 			}
 			if (parent.getParent() != null
 					&& parent.getParent() instanceof JViewport
 					&& ((JViewport) parent.getParent()).getSize().width > 0) {
-				maxWidth = ((JViewport) parent.getParent()).getSize().width;
+				JViewport vp = ((JViewport) parent.getParent());
+				maxWidth = vp.getSize().width - insets.left - insets.right;
 			}
-			// else if (parent.getPreferredSize().width != 0) {
-			// maxWidth = parent.getPreferredSize().width;
-			// }
-//			else {
-//				maxWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
-//			}
+			
 			Dimension ld = new Dimension();
 			List units = toUnits(parent.getComponents());
-			int maxPrefWidth = 0;
 			int height = gap;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
@@ -106,6 +101,8 @@ public class FormLayout implements LayoutManager {
 				maxPrefWidth = Math.max(maxPrefWidth, d.width);
 				height += d.height + gap;
 			}
+			
+			maxWidth = Math.max(maxPrefWidth, maxWidth);
 
 			for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
 				// Adjust Width so the ratio of the container is similar to the
@@ -121,15 +118,6 @@ public class FormLayout implements LayoutManager {
 				maxPrefWidth = ld.width;
 				height = ld.height;
 			}
-
-			// Dimension pD = parent.getSize();
-			Insets insets = parent.getInsets();
-			// int maxwidth = pD.width - (insets.left + insets.right);
-			// List rows2 = getRows(units, maxwidth);
-			// Dimension realD = getRowsDimension(rows2);
-			// if (pD.width != 0) {
-			// ld.height = realD.height;
-			// }
 
 			ld.height += insets.bottom + insets.top;
 			ld.width += insets.left + insets.right;
@@ -156,7 +144,12 @@ public class FormLayout implements LayoutManager {
 					totalHeightVRows += row.Size().height;
 				}
 			}
-			int spareVertSpace = parent.getSize().height - (loc + insets.bottom);
+			int parentHeight = parent.getSize().height;
+			if (parent.getParent() != null
+					&& parent.getParent() instanceof JViewport) {
+				parentHeight = Math.min(parentHeight,parent.getParent().getSize().height);
+			}
+			int spareVertSpace = parentHeight - loc - insets.bottom;
 			if (spareVertSpace > 0 && totalHeightVRows > 0) {
 				// distribute spare vertical space between vertical rows
 				loc = gap + insets.top;
@@ -181,14 +174,10 @@ public class FormLayout implements LayoutManager {
 
 	/** {@inheritDoc} */
 	public void removeLayoutComponent(Component comp) {
-		lastWidth = -1;
-		lastRows = null;
 	}
 
 	/** {@inheritDoc} */
 	public void addLayoutComponent(String name, Component comp) {
-		lastWidth = -1;
-		lastRows = null;
 	}
 
 	/**
@@ -234,7 +223,6 @@ public class FormLayout implements LayoutManager {
 	 * @return The {@link List} of {@link Row}s.
 	 */
 	List getRows(List units, int width) {
-		if (width != lastWidth) {
 			int maxWidth = width;
 			LinkedList rows = new LinkedList();
 			rows.add(new Row(maxWidth));
@@ -257,12 +245,7 @@ public class FormLayout implements LayoutManager {
 					rows.addLast(new Row(maxWidth));
 				}
 			}
-			lastWidth = width;
-			lastRows = rows;
 			return rows;
-		} else {
-			return lastRows;
-		}
 	}
 
 	/**
@@ -586,7 +569,8 @@ public class FormLayout implements LayoutManager {
 		}
 
 		public void setHeight(int vRowHeigh) {
-			maxHeight = Math.max(vRowHeigh,maxHeight);
+			//maxHeight = Math.max(vRowHeigh,maxHeight);
+			maxHeight = vRowHeigh;
 			//recalculateUnitDistribution();
 		}
 
