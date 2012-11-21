@@ -522,6 +522,7 @@ public class FormLayout implements LayoutManager {
 		private void recalculateUnitDistribution() {
 		    ArrayList oldUnitList = new ArrayList(units);
 		    units.clear();
+		    currentPrefWidth = 0;
 		    for (Iterator i = oldUnitList.iterator(); i.hasNext();) {
 			Unit u = (Unit) i.next();
 			if (!(u instanceof AggregatedUnit)) {
@@ -571,7 +572,7 @@ public class FormLayout implements LayoutManager {
 		public void setHeight(int vRowHeigh) {
 			//maxHeight = Math.max(vRowHeigh,maxHeight);
 			maxHeight = vRowHeigh;
-			//recalculateUnitDistribution();
+			recalculateUnitDistribution();
 		}
 
 	}
