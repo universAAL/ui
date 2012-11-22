@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing;
 
-import javax.swing.LookAndFeel;
-
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
@@ -201,7 +199,7 @@ public final class ModelMapper {
     }
 
     /**
-     * locate the {@link LookAndFeel} class of the LAF package.
+     * locate the LookAndFeel ( {@link InitInterface}) class of the LAF package.
      * @param LAFPackage
      *             the full qualified name of the LAF package
      * @return
