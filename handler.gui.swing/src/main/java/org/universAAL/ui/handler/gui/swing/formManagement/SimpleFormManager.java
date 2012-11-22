@@ -78,7 +78,8 @@ public class SimpleFormManager implements FormManager {
     public synchronized Resource cutDialog(String dialogID) {
     	// Return the Form Data.
     	if (currentForm != null 
-    			&& currentForm.getDialogID().equals(dialogID)) {
+    			&& currentForm.getDialogID().equals(dialogID)
+    			&& currentForm.getDialogForm() != null) {
     		closeCurrentDialog();
     		return currentForm.getDialogForm().getData();
     	}
