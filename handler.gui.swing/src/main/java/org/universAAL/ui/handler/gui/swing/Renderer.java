@@ -35,6 +35,7 @@ import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
+import org.universAAL.ui.handler.gui.swing.formManagement.OverlayFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
@@ -124,8 +125,9 @@ public class Renderer extends Thread {
      * @see QueuedFormManager
      * @see SimpleFormManager
      * @see HierarchicalFromManager
+     * @see OverlayFormManager
      */
-    protected static final String FORM_MANAGEMENT = "queued.forms";
+    protected static final String FORM_MANAGEMENT = "form.manager";
     /**
      * Directory for configuration files.
      */
