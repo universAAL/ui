@@ -15,6 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Properties;
+
+import org.universAAL.middleware.container.utils.LogUtils;
+
 public class TestFMRenderer extends Renderer {
 
 
@@ -32,6 +38,14 @@ public class TestFMRenderer extends Renderer {
         modelMapper.initializeLAF();
 	}
 
+	protected void loadProperties() {
+	        properties = new Properties();
+	        properties.put(DEMO_MODE, "true");
+	        properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
+	        properties.put(GUI_LOCATION, "Unkown");
+	        properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
+	    }
+	
 	/** 
 	 * Tests should not store anything!
 	 * @see org.universAAL.ui.handler.gui.swing.Renderer#storeProperties()

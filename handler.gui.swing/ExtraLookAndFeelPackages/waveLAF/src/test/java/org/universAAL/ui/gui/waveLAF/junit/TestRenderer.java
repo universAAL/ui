@@ -41,13 +41,13 @@ public class TestRenderer extends Renderer {
 	/**
      * load configuration properties from a file, setting the
      * default for those which are not defined.
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      */
     protected void loadProperties() {
-        fileProp = new Properties();
-        fileProp.put(DEMO_MODE, "true");
-        fileProp.put("LookandFeel.package", "org.universAAL.ui.gui.swing.waveLAF");
-        fileProp.put(GUI_LOCATION, "Unkown");
+        properties = new Properties();
+        properties.put(DEMO_MODE, "true");
+        properties.put("LookandFeel.package", "org.universAAL.ui.gui.swing.waveLAF");
+        properties.put(GUI_LOCATION, "Unkown");
     }
 
    
