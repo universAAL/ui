@@ -30,6 +30,9 @@ import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
 
 /**
+ * Unlike in @link ClassicSystemMenuProvider buttons of pending messages or
+ * dialogs only show up if there are indeed pending messages or dialogs.
+ * 
  * @author amedrano
  * 
  */
