@@ -70,7 +70,7 @@ public class Renderer extends Thread {
     /**
      * The configuration properties read from the file.
      */
-    protected Properties fileProp;
+    protected Properties properties;
 
     /**
      * Form Logic Manager. it will decide
@@ -90,6 +90,9 @@ public class Renderer extends Thread {
 	 *  so it can be accessed by LAF components through the renderer.
 	 */
 	protected InitInterface initLAF;
+
+
+	private File propertiesFile;
     
     /**
      * Default User, for when there is no user
@@ -103,7 +106,7 @@ public class Renderer extends Thread {
      * demo mode will disable login and will use default
      * user.
      * Default: demo.mode=true.
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      * @see Renderer#DEFAULT_USER
      */
     protected static final String DEMO_MODE = "demo.mode";
@@ -112,7 +115,7 @@ public class Renderer extends Thread {
      * The Key value for the location configuration property.
      * this location is used when publishing {@link UIResponse}s.
      * Default: gui.location = Unknown
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      */
     protected static final String GUI_LOCATION = "gui.location";
 
@@ -151,33 +154,45 @@ public class Renderer extends Thread {
     }
     
     /**
-     * Constructor, using Singleton pattern:
-     * only Renderer Class can create an instance,
-     * to help contribute to the singleton pattern.
-     * @see Renderer#getInstance()
+     * Constructor for one Renderer on a certain file.
      * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+     * @param propFile {@link File} to use as property file for this {@link Renderer}.
      */
-    public Renderer(ModuleContext mc) {
-    	moduleContext = mc;
+    public Renderer(ModuleContext mc, File propFile){
+	moduleContext = mc;
+        propertiesFile = propFile; 
     	LogUtils.logDebug(moduleContext, getClass(),
-    			"Constructor", new String[]{"starting Handler"}, null);
+    			"Constructor for " + propFile.getName(),
+    			new String[]{"starting Handler"}, null);
         handler = new Handler(this);
         
         LogUtils.logDebug(moduleContext, getClass(), 
-        		"Constructor", new String[]{"loading properties"}, null);
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"loading properties"}, null);
         loadProperties();
         
         LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor", new String[]{"Initialising ModelMapper"}, null);
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"Initialising ModelMapper"}, null);
         modelMapper = new ModelMapper(this);
         
         LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor", new String[]{"selecting Form Manager"}, null);
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"selecting Form Manager"}, null);
         loadFormManager(getProperty(FORM_MANAGEMENT));
         
         LogUtils.logDebug(moduleContext, getClass(), 
-        		"Constructor", new String[]{"loading LAF"}, null);
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"loading LAF"}, null);
         initLAF = modelMapper.initializeLAF();
+    }
+    
+    /**
+     * Constructor.
+     * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+     */
+    public Renderer(ModuleContext mc) {
+    	this(mc, new File(getHomeDir() + RENDERER_CONF)); 
     }
     
     /**
@@ -196,26 +211,28 @@ public class Renderer extends Thread {
     /**
      * load configuration properties from a file, setting the
      * default for those which are not defined.
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      */
     protected void loadProperties() {
-        fileProp = new Properties();
-        fileProp.put(DEMO_MODE, "true");
-        fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        fileProp.put(GUI_LOCATION, "Unkown");
-        fileProp.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
+        properties = new Properties();
+        properties.put(DEMO_MODE, "true");
+        properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
+        properties.put(GUI_LOCATION, "Unkown");
+        properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
         /*
          * Try to load from file, if not create file from defaults.
          */
         	FileInputStream fis = null;
 			try {
-				fis = new FileInputStream(getHomeDir() + RENDERER_CONF);
-				fileProp.load(fis);
+				fis = new FileInputStream(propertiesFile);
+				properties.load(fis);
 				fis.close();
 			} catch (FileNotFoundException e) {
 				storeProperties();
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				LogUtils.logError(moduleContext, getClass(),
+					"loadProperties",
+					new String[]{"Error during property load."}, e);
 			} finally {
 				try {
 					fis.close();
@@ -231,7 +248,7 @@ public class Renderer extends Thread {
         	FileOutputStream fos = null;
 			try {
 				fos = new FileOutputStream(getHomeDir() + RENDERER_CONF);
-				fileProp.store( fos,
+				properties.store( fos,
 				        "Configuration file for SWING Renderer");
 				fos.close();
 			} catch (FileNotFoundException e1) {
@@ -305,11 +322,11 @@ public class Renderer extends Thread {
      *         Key of property to access
      * @return
      *         String Value of the property
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      */
     public final String getProperty(String string) {
         try {
-            return (String) fileProp.get(string);
+            return (String) properties.get(string);
         } catch (Exception e) {
             return "";
         }
@@ -469,5 +486,39 @@ public class Renderer extends Thread {
     public final AbsLocation getRendererLocation(){
     	AbsLocation loc = new Location(getProperty(GUI_LOCATION));
     	return loc;
+    }
+    
+    public static class RenderStarter implements Runnable{
+
+	private File propFile;
+	private Renderer render;
+	private ModuleContext context;
+
+	public RenderStarter(ModuleContext mc){
+	    propFile = null;
+	    context = mc;
+	}
+	
+	public RenderStarter(ModuleContext mc, File prop){
+	    propFile = prop;
+	    context = mc;
+	}
+	
+	public void run() {
+	    if (propFile == null){
+		render = new Renderer(context);
+		render.start();
+	    }
+	    else {
+		render = new Renderer(context);
+		render.start();
+	    }
+	    
+	}
+	
+	public void stop() {
+	    render.finish();
+	}
+	
     }
 }

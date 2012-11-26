@@ -39,13 +39,13 @@ public class TestRenderer extends Renderer {
 	/**
      * load configuration properties from a file, setting the
      * default for those which are not defined.
-     * @see Renderer#fileProp
+     * @see Renderer#properties
      */
     protected void loadProperties() {
-        fileProp = new Properties();
-        fileProp.put(DEMO_MODE, "true");
-        fileProp.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        fileProp.put(GUI_LOCATION, "Unkown");
+        properties = new Properties();
+        properties.put(DEMO_MODE, "true");
+        properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
+        properties.put(GUI_LOCATION, "Unkown");
     }
 
    
