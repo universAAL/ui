@@ -247,7 +247,7 @@ public class Renderer extends Thread {
 
         	FileOutputStream fos = null;
 			try {
-				fos = new FileOutputStream(getHomeDir() + RENDERER_CONF);
+				fos = new FileOutputStream(propertiesFile);
 				properties.store( fos,
 				        "Configuration file for SWING Renderer");
 				fos.close();
@@ -327,6 +327,30 @@ public class Renderer extends Thread {
     public final String getProperty(String string) {
         try {
             return (String) properties.get(string);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+    
+    /**
+     * Access to the property file.
+     * @param value
+     *         Key of property to access
+     * @param defaultVal
+     * 		   default value for the propertie if isn't int he property file.
+     * @return
+     *         String Value of the property.
+     * @see Renderer#properties
+     */
+    public final String getProperty(String value, String defaultVal) {
+        try {
+        	if (properties.contains(value)) {
+        		return (String) properties.get(value);
+        	}
+        	else {
+        		properties.put(value, defaultVal);
+        		return defaultVal;
+        	}
         } catch (Exception e) {
             return "";
         }
