@@ -154,52 +154,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/se
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/ASL2.0.txt -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/MITX.txt -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/NOTICE.txt -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/pom.xml -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/ColorLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/FormLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/GroupLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/Init.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/InputFieldLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/LabelLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/MediaObjectLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/RangeLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/RepeatLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/Select1LAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/SelectLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/SubmitLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/TextAreaLAF.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/package.html -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/specialButtons/UCCButton.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/specialButtons/UStoreButton.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ColorBorder.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/GradientLAF.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/ImageMedia.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/KickerButton.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/RoundedGradientButton.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/SubmitButton.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/SystemButton.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/TableColors.java -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/UAALTray.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/collapsable/SystemCollapse.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/collapsable/SystemCollapse2.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/collapsable/TriangularButton.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/pager/CustomBasicArrowButton.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/pager/MainMenuPager.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/org/universAAL/ui/gui/swing/waveLAF/support/pager/Page.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/java/package.html -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/Banner.png -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/UniversAAl_logo.png -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/main/resources/images/lens.png -text
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/junit/TestRenderer.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/junit/WaveLAFConstructorTest.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/CollapsableTest.java -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/waveLAF/src/test/java/org/universAAL/ui/gui/waveLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
 handler.gui.swing/MITX.txt -text
 handler.gui.swing/NOTICE.txt -text svneol=unset#text/plain
 handler.gui.swing/pom.xml -text

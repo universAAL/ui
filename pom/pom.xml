@@ -39,7 +39,7 @@
     <module>../handler.sms</module>
 <!--     <module>../dm.mobile</module> -->
     <module>../handler.gui.swing</module>
-    <module>../handler.gui.swing/ExtraLookAndFeelPackages/waveLAF</module>
+    <module>../handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
     <module>../resource.server</module>
   </modules>
