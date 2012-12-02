@@ -93,11 +93,12 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	waitingInputs = new Hashtable<String, Boolean>(); // user, isFirst
 	readyOutputs = new Hashtable<String, UIRequest>();
 	userSessions = new Hashtable<String, WebIOSession>();
-	myUIHandler = new MyUIHandler(mcontext, getOutputSubscriptionParams(),
+	myUIHandler = new MyUIHandler(mcontext, getHandlerSubscriptionParams(),
 		this);
+
     }
 
-    private UIHandlerProfile getOutputSubscriptionParams() {
+    private UIHandlerProfile getHandlerSubscriptionParams() {
 	// I am interested in all requests with following UIHandlerProfile
 	// restrictions
 	UIHandlerProfile oep = new UIHandlerProfile();
@@ -107,7 +108,32 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		.getFixedValueRestriction(UIRequest.PROP_PRESENTATION_LOCATION,
 			new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 				+ "Internet")));
+
+	// FIXME
+	// User("urn:org.universAAL.aal_space:test_env#jack")));
+	// oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+	// UIRequest.PROP_ADDRESSED_USER, new
+	// User(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "jack")));
 	return oep;
+    }
+
+    /**
+     * When any user has authenticated, this method will change the request
+     * pattern to receive only addressed {@link UIRequest}.
+     * 
+     * @param user
+     *            user for whom the {@link UIRequest} should be addressed to.
+     */
+    private void userAuthenticated(User user) {
+	/*
+	 * AddRestriction to subscription, receive only user related dialogs
+	 * request for main menu
+	 */
+	UIHandlerProfile oep = getHandlerSubscriptionParams();
+	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+		UIRequest.PROP_ADDRESSED_USER, user));
+
+	myUIHandler.addNewRegParams(oep);
     }
 
     public void finish(String userURI) {
@@ -541,8 +567,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		null);
 	// Check if it is the first time
 	if (!userSessions.containsKey(userURI)) {
-	    System.err.println("sesija ne sadrzi usera tako da je ovo 1. put");
-	    // Start and request main menu
+	    // Start session with user and request main menu
 	    LogUtils
 		    .logInfo(
 			    mContext,
@@ -553,15 +578,18 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
 	    userSessions.put(userURI, ses);
 
-	    // FIXME was in version with IO bus:
-	    // event = new InputEvent(new User(userURI), null,
-	    // InputEvent.uAAL_MAIN_MENU_REQUEST);
-	    // o = publish(event, Boolean.TRUE);
 
-	    // added instead above 2 rows when movin to UI bus
-	    // important that following 2 rows are not switched
-	    myUIHandler.userLoggedIn(new User(userURI), null);
-	    uiReqst = (UIRequest) readyOutputs.remove(userURI);
+	    User loggedUser = new User(userURI);
+	    // add logged user to subscription parameters of the handler (only
+	    // UIRequests targeting web+logged_user will be delivered to this
+	    // handler)
+	    // userAuthenticated(loggedUser);
+
+	    // added instead above 2 rows when moving to UI bus
+	    myUIHandler.userLoggedIn(loggedUser, null); // requesting main menu
+
+	    uiReqst = waitForOutput(userURI, false); //waiting for main menu
+	    // uiReqst = (UIRequest) readyOutputs.remove(userURI);
 
 	    ses.setCurrentUIRequest(uiReqst);
 	} else {
@@ -572,14 +600,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    for (; names.hasMoreElements();) {
 		String name = (String) names.nextElement();
 		if (name.startsWith("submit_")) {
-		    if (name.contentEquals("submit_MainMenuScreen")) {
-			mainMenuRequestedByRemoteUser = true;
-		    } else {
-			String submit = name.substring(7);
-			selectedSubmit = (Submit) ses
-				.getCurrentFormAssociation().get(submit);
-		    }
-
+		    String submit = name.substring(7);
+		    selectedSubmit = (Submit) ses.getCurrentFormAssociation()
+			    .get(submit);
 		} else {
 		    FormControl ctrl = (FormControl) ses
 			    .getCurrentFormAssociation().get(name);
@@ -632,23 +655,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 				.getParameter(name)));
 		    }
 		}
-	    }
+	    }// end for loop
 
-	    if (mainMenuRequestedByRemoteUser == true) {
-		userSessions.clear();
-		userSessions.put(userURI, ses);
-
-		 waitingInputs.clear();
-		 readyOutputs.clear();
-		 myUIHandler.userDialogIDs.clear();
-
-		myUIHandler.userLoggedIn(new User(userURI), null);
-		uiReqst = (UIRequest) readyOutputs.remove(userURI);
-		
-		mainMenuRequestedByRemoteUser = false;
-	    } else {
-		uiReqst = dialogFinished(selectedSubmit, userURI);
-	    }
+	    uiReqst = dialogFinished(selectedSubmit, userURI);
 	    ses.setCurrentUIRequest(uiReqst);
 
 	}
@@ -677,13 +686,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    } else if (line.contains("<!-- Title -->")) {
 		line = f.getTitle();
 	    } else if (line.contains("<!-- Left -->")) {
-		// if(f.getStandardButtons()!=null){
-		// line=this.renderGroupControl(f.getStandardButtons(), assoc,
-		// true);
-		// }else{
-		// line = "Standard Buttons";//Only for reference
-		// }
-		line = "";// TODO: Do not render standard buttons
+		line = "";
 	    } else if (line.contains("<!-- Center -->")) {
 		if (f.getIOControls() != null) {
 		    line = this.renderGroupControl(f.getIOControls(), assoc,
@@ -692,15 +695,23 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		    line = "";// "IO Controls";//Only for reference
 		}
 	    } else if (line.contains("<!-- Right -->")) {
+		// render standard (system) buttons on top of other submits
+		if (f.getStandardButtons() != null) {
+		    line = this.renderGroupControl(f.getStandardButtons(),
+			    assoc, true);
+		    html.append(line);
+		    html.append("<hr>");// add line between standard buttons and
+		    // submits
+		}
+
 		if (f.getSubmits() != null) {
 		    line = this.renderGroupControl(f.getSubmits(), assoc, true);
 		} else {
 		    line = "";// "Submits";//Only for reference
 		}
 		// add main menu request button on the right side above submits
-		// comming from the app (UICallers)
-		html
-			.append("<button dojotype=\"dijit.form.Button\" type=\"submit\" name=\"submit_MainMenuScreen\" value=\"Main menu\" label=\"Main menu\" title=\"Main menu\"> <img src=\"/webhandler/img/home_icon_small.png\" /></button><br>");
+		// html
+		// .append("<button dojotype=\"dijit.form.Button\" type=\"submit\" name=\"submit_MainMenuScreen\" value=\"Main menu\" label=\"Main menu\" title=\"Main menu\"> <img src=\"/webhandler/img/home_icon_small.png\" /></button><br>");
 	    }
 	    html.append(line);
 	    html.append(System.getProperty("line.separator"));
@@ -727,18 +738,30 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	doPost(req, resp);
     }
 
-    public final UIRequest publish(UIResponse event, Boolean first) {
+    /**
+     * Waits for output {@link UIRequest} that comes to be rendered (showed on
+     * the screen to a user).
+     * 
+     * @param userUri
+     *            user
+     * @param first
+     * @return {@link UIRequest}
+     */
+    public final UIRequest waitForOutput(String userUri, Boolean first) {
 	UIRequest o = null;
 	synchronized (waitingInputs) {
-	    String user = ((User) event.getUser()).getURI();
-	    waitingInputs.put(user, first);
+	    waitingInputs.put(userUri, first);
 
 	    while (o == null) {
 		try {
 		    LogUtils.logInfo(mContext, this.getClass(), "publish",
 			    new Object[] { "Waiting for Outputs.." }, null);
-		    waitingInputs.wait();
-		    o = (UIRequest) readyOutputs.remove(user);
+		    // wait only if readyOutputs is empty. There may be a case
+		    // when some (quick) output was received in meantime
+		    if (readyOutputs.isEmpty()) {
+			waitingInputs.wait();
+		    }
+		    o = (UIRequest) readyOutputs.remove(userUri);
 		    LogUtils.logInfo(mContext, this.getClass(), "publish",
 			    new Object[] { "Got outputs." }, null);
 		} catch (InterruptedException e) {
@@ -749,24 +772,28 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 				    "publish",
 				    new Object[] { "Exception while waiting for Outputs" },
 				    e);
-
 		}
 	    }
 	}
 	return o;
     }
 
+    /**
+     * 
+     * @param s
+     *            submit
+     * @param userURI
+     *            user uri
+     * @return output or more specifically {@link UIRequest}
+     */
     public UIRequest dialogFinished(Submit s, String userURI) {
 	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
 		new Object[] { "Dialog finished. User: " + userURI
 			+ " pressed a button." }, null);
-
 	if (s == null) {
 	    return this.userSessions.get(userURI).getCurrentUIRequest();
 	}
 
-	// for the next line, see the comment within handleUIRequest() above
-	// [preserved from SwingRenderer]
 	Object o = s.getFormObject().getProperty(UIRequest.MY_URI);
 	if (o instanceof UIRequest) {
 	    // is UIRequest
@@ -775,7 +802,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		    .getAddressedUser(), ((UIRequest) o)
 		    .getPresentationLocation(), s);
 	    myUIHandler.dialogFinished(uiResp);
-	    return this.publish(uiResp, Boolean.FALSE);
+	    return this.waitForOutput(((User) uiResp.getUser()).getURI(),
+		    Boolean.FALSE);
 	} else {
 	    // else is UIResponse
 	    synchronized (myUIHandler) {
@@ -785,14 +813,13 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest()
 				.getPresentationLocation(), s);
-		System.err.println("myUIHandler.dialogID: "
-			+ myUIHandler.dialogID);
 		if (s.getDialogID().equals(myUIHandler.dialogID)) {
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
 		}
 		myUIHandler.dialogFinished(uiResponse);
-		return this.publish(uiResponse, Boolean.FALSE);
+		return this.waitForOutput(((User) uiResponse.getUser())
+			.getURI(), Boolean.FALSE);
 	    }
 	}
     }
