@@ -153,10 +153,6 @@ public class MyUIHandler extends UIHandler {
      * .ui.UIRequest)
      */
     public void handleUICall(UIRequest uiRequest) {
-	// String user = ((User) uiRequest.getAddressedUser()).getURI();
-	// avoid casting to User since in new prof ont User is not parent class
-	// for Assisted Person
-
 	String user = ((User) uiRequest.getAddressedUser()).getURI();
 	LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
 		new Object[] { "Received UIRequest for user: " + user
@@ -226,8 +222,11 @@ public class MyUIHandler extends UIHandler {
 					new Object[] { "Received dialog is System Menu: "
 						+ uiRequest.getDialogType() },
 					null);
-			// log.debug("-------IS sysMenu -> {}", uiRequest
-			// .getDialogType());
+
+			// dec2012, "first" is now always false so here is where main menu has to be read
+			renderer.getReadyOutputs().put(user, uiRequest);// MAINMENU
+			this.userDialogIDs.put(uiRequest.getDialogID(), user);
+			renderer.getWaitingInputs().notifyAll();
 		    }
 		}
 	    } else {
