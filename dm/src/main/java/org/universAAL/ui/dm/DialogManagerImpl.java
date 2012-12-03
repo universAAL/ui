@@ -74,15 +74,14 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private Timer gbSchedule;
 
-
     /**
      * The {@link ModuleContext} reference.
      */
     private static ModuleContext moduleContext;
 
     /*
-     *  FIXME: initialise SQLStoreProvider according to config-file (?)
-     *  and add accesing methods.
+     * FIXME: initialise SQLStoreProvider according to config-file (?) and add
+     * accesing methods.
      */
     // private StoreProvider m_StoreProvider;
 
@@ -158,11 +157,9 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	    udm.dialogFinished(dialogID);
 	    dialogIDMap.remove(dialogID);
 	} else {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"dialogFinished",
-	    		new String[]{"Unable to locate UDM for dialog: " + dialogID},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "dialogFinished",
+		    new String[] { "Unable to locate UDM for dialog: "
+			    + dialogID }, null);
 	}
     }
 
@@ -192,11 +189,9 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	if (udm != null) {
 	    return udm.getSuspendedDialog(dialogID);
 	} else {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"getSuspendedDialog",
-	    		new String[]{"Unable to locate UDM for dialog: " + dialogID},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "getSuspendedDialog",
+		    new String[] { "Unable to locate UDM for dialog: "
+			    + dialogID }, null);
 	    return null;
 	}
     }
@@ -213,21 +208,18 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	if (udm != null) {
 	    udm.suspendDialog(dialogID);
 	} else {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"suspendDialog",
-	    		new String[]{"Unable to locate UDM for dialog: " + dialogID},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "suspendDialog",
+		    new String[] { "Unable to locate UDM for dialog: "
+			    + dialogID }, null);
 	}
     }
 
     /** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
-    	LogUtils.logError(DialogManagerImpl.moduleContext,
-    			getClass(), "CommunicationChannelBroken",
-    			new String[] {"UIBus Is falling apart! Take cover!"},
-    			null);
+	LogUtils.logError(DialogManagerImpl.moduleContext, getClass(),
+		"CommunicationChannelBroken",
+		new String[] { "UIBus Is falling apart! Take cover!" }, null);
     }
 
     /**
@@ -244,11 +236,9 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	    udm.dialogAborted(dialogID);
 	    dialogIDMap.remove(dialogID);
 	} else {
-	    LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"dialogAborted",
-	    		new String[]{"Unable to locate UDM for dialog: " + dialogID},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "dialogAborted",
+		    new String[] { "Unable to locate UDM for dialog: "
+			    + dialogID }, null);
 	}
     }
 
@@ -256,19 +246,13 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     @Override
     public void handleUIResponse(UIResponse response) {
 	if (response == null) {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"handleUIResponse",
-	    		new String[]{"Null Response"},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "handleUIResponse",
+		    new String[] { "Null Response" }, null);
 	    return;
 	}
 	if (response.getSubmissionID() == null) {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"handleUIResponse",
-	    		new String[]{"Submission ID is null!"},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "handleUIResponse",
+		    new String[] { "Submission ID is null!" }, null);
 	    return;
 	}
 	Resource user = response.getUser();
@@ -277,20 +261,15 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	    if (udm != null) {
 		udm.handleUIResponse(response);
 	    } else {
-			LogUtils.logError(moduleContext,
-		    		getClass(),
-		    		"handleUIResponse",
-		    		new String[]{"Unable to locate UDM for: ",
-		    				 response.getUser().getURI()},
-		    		null);
+		LogUtils.logError(moduleContext, getClass(),
+			"handleUIResponse", new String[] {
+				"Unable to locate UDM for: ",
+				response.getUser().getURI() }, null);
 	    }
 	} else {
-		LogUtils.logError(moduleContext,
-	    		getClass(),
-	    		"handleUIResponse",
-	    		new String[]{"Anonymous user in UIResponse: ",
-							 user.getURI()},
-	    		null);
+	    LogUtils.logError(moduleContext, getClass(), "handleUIResponse",
+		    new String[] { "Anonymous user in UIResponse: ",
+			    user.getURI() }, null);
 	}
     }
 
@@ -360,5 +339,9 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	    }
 	}
 
+    }
+
+    public UserDialogManager getUDM(String userURI) {
+	return udmMap.get(userURI);
     }
 }

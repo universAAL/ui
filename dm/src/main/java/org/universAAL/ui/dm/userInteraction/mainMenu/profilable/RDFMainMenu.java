@@ -21,11 +21,11 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 public class RDFMainMenu extends MainMenu {
 
     private static final String UTF_8 = "utf-8";
-	private ModuleContext context;
+    private ModuleContext context;
 
-	public RDFMainMenu(ModuleContext ctxt, InputStream in) {
-		context = ctxt;
-		constructMenu(in);
+    public RDFMainMenu(ModuleContext ctxt, InputStream in) {
+	context = ctxt;
+	constructMenu(in);
     }
 
     protected void constructMenu(InputStream in) {
@@ -37,10 +37,10 @@ public class RDFMainMenu extends MainMenu {
 	// Read the configuration file of the menu for this user which
 	// contains a list of menu entries.
 	Resource r = null;
-	 try {
-		r = readMenu(in);
+	try {
+	    r = readMenu(in);
 	} catch (Exception e) {
-		r = null;
+	    r = null;
 	}
 	if (r == null) {
 	    LogUtils.logError(context, RDFMainMenu.class, "constructMenu",
@@ -63,12 +63,14 @@ public class RDFMainMenu extends MainMenu {
 
     protected Resource readMenu(InputStream in) {
 	// read the file
-	BufferedReader br = new BufferedReader(new InputStreamReader(in, Charset.forName(UTF_8)));
+	BufferedReader br = new BufferedReader(new InputStreamReader(in,
+		Charset.forName(UTF_8)));
 	StringBuilder sb = new StringBuilder();
 	try {
 	    String line = br.readLine();
 	    while (line != null) {
 		sb.append(line);
+		sb.append('\n');
 		line = br.readLine();
 	    }
 	} catch (IOException e) {
@@ -83,7 +85,9 @@ public class RDFMainMenu extends MainMenu {
 
 	// deserialize
 	MessageContentSerializer contentSerializer = (MessageContentSerializer) context
-		.getContainer().fetchSharedObject(context,
+		.getContainer()
+		.fetchSharedObject(
+			context,
 			new Object[] { MessageContentSerializer.class.getName() });
 	if (contentSerializer == null) {
 	    LogUtils.logError(context, RDFMainMenu.class, "readMenu",
@@ -96,7 +100,7 @@ public class RDFMainMenu extends MainMenu {
 
     public Resource readMenu(File file) {
 	try {
-		InputStream in = new FileInputStream(file);
+	    InputStream in = new FileInputStream(file);
 	    Resource r = readMenu(in);
 	    in.close();
 	    return r;
@@ -119,7 +123,7 @@ public class RDFMainMenu extends MainMenu {
 
     public void saveMenu(File file, MenuProfile mp) {
 	try {
-		OutputStream out = new FileOutputStream(file);
+	    OutputStream out = new FileOutputStream(file);
 	    saveMenu(out, mp);
 	    out.close();
 	} catch (Exception e) {
@@ -132,7 +136,9 @@ public class RDFMainMenu extends MainMenu {
     public void saveMenu(OutputStream out, MenuProfile mp) {
 	// serialize
 	MessageContentSerializer contentSerializer = (MessageContentSerializer) context
-		.getContainer().fetchSharedObject(context,
+		.getContainer()
+		.fetchSharedObject(
+			context,
 			new Object[] { MessageContentSerializer.class.getName() });
 	if (contentSerializer == null) {
 	    LogUtils.logError(context, RDFMainMenu.class, "saveMenu",
