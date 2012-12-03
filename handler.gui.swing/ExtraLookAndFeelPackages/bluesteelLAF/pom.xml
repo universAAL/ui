@@ -11,8 +11,7 @@
   <artifactId>ui.handler.gui.swing.bluesteelLAF</artifactId>
   <version>1.2.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
-	
-  <name>Bluesteel Look and Feel for Swing Handler</name>
+  <name>universAAL UI Handler Swing Look and Feel Bluesteel</name>
 
   <dependencies>
     <dependency>

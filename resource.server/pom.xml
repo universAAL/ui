@@ -11,7 +11,7 @@
   <artifactId>ui.resource.server</artifactId>
   <version>1.2.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>UI Resource Server</name>
+  <name>universAAL UI Resource Server</name>
   <description>Resource server for UI Handlers. 
 	Exposes resources stored in configurations/handlerResources folder via HTTP</description>
   <inceptionYear>2012</inceptionYear>
