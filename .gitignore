@@ -9,10 +9,12 @@ handler.gui.swing/.settings
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/.classpath
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/.project
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/.settings
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/bin
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/target
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/.classpath
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/.project
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/.settings
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/bin
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/target
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/.classpath
 handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/.project
