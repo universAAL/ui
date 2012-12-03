@@ -11,7 +11,7 @@
   <artifactId>ui.handler.web</artifactId>
   <version>1.2.4-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>UI Handler Web</name>
+  <name>universAAL UI Handler Web</name>
   <description>UI Handler that renders outputs as web pages</description>
   <inceptionYear>2008</inceptionYear>
   <organization>

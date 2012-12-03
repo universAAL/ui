@@ -11,7 +11,7 @@
   <artifactId>ui.dm</artifactId>
   <version>1.2.12-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <name>UI Dialog Manager 2.0</name>
+  <name>universAAL UI Dialog Manager 2.0</name>
   <description>The component providing the UniversAAL system menu, handling context-free user input, and managing system reactivity.</description>
   <inceptionYear>2008</inceptionYear>
   <organization>
