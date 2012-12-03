@@ -328,7 +328,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     /**
      * The module context reference.
      * 
-     * @returnThe module context reference.
+     * @return The module context reference.
      */
     public static ModuleContext getModuleContext() {
 	return moduleContext;
