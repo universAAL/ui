@@ -9,7 +9,7 @@
   </parent>
   
   <groupId>org.universAAL.ui</groupId>
-  <artifactId>ui.handler.swing.classic</artifactId>
+  <artifactId>ui.handler.gui.swing.classicLAF</artifactId>
   <version>0.1.2-SNAPSHOT</version>
   <name>universAAL UI Handler Swing Look and Feel Classic</name>
 
