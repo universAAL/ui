@@ -245,8 +245,9 @@ public class FormLAF extends FormModel  {
                 (desktopSize.height- jInternalFrameSize.height)/2);
             internalFrame.setVisible(true);	
     	}
-		Init.getInstance(getRenderer()).getDesktop().revalidate();
+		
         frame.fadeIn();
+        Init.getInstance(getRenderer()).getDesktop().revalidate();
     }
     
     private void packAsInternalFrame() {
