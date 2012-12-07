@@ -1,6 +1,7 @@
 package org.universAAL.ui.dm.userInteraction.mainMenu.profilable;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -25,14 +26,16 @@ public class SCallee extends ServiceCallee {
     public static final String NAMESPACE = "http://ontology.igd.fhg.de/ui.dm.owl#";
     private static final String SRV_ADD_ENTRY = NAMESPACE + "addEntry";
     private static final String SRV_REMOVE_ENTRY = NAMESPACE + "removeEntry";
+    private static final String SRV_GET_ENTRIES = NAMESPACE + "getEntries";
     private static final String IN_USER_ID = NAMESPACE + "userID";
     private static final String IN_MENU_ENTRY = NAMESPACE + "menuEntry";
+    private static final String OUT_ENTRIES = NAMESPACE + "entries";
 
     // this is just to prepare a standard error message for later use
     private static final ServiceResponse invalidInput = new ServiceResponse(
 	    CallStatus.serviceSpecificFailure);
 
-    private static ServiceProfile[] profiles = new ServiceProfile[2];
+    private static ServiceProfile[] profiles = new ServiceProfile[3];
 
     private ModuleContext context;
 
@@ -64,6 +67,17 @@ public class SCallee extends ServiceCallee {
 		profiles[1] = myProfile;
 	    }
 	}.init();
+	new ProfilingService(SRV_GET_ENTRIES) {
+	    void init() {
+		addFilteringInput(IN_USER_ID, User.MY_URI, 1, 1,
+			new String[] { ProfilingService.PROP_CONTROLS });
+		addOutput(OUT_ENTRIES, MenuEntry.MY_URI, 0, 0, new String[] {
+			ProfilingService.PROP_CONTROLS,
+			Profilable.PROP_HAS_PROFILE,
+			Profile.PROP_HAS_SUB_PROFILE, MenuProfile.PROP_ENTRY });
+		profiles[2] = myProfile;
+	    }
+	}.init();
     }
 
     public SCallee(ModuleContext context) {
@@ -77,13 +91,15 @@ public class SCallee extends ServiceCallee {
 
     @Override
     public ServiceResponse handleCall(ServiceCall call) {
-	LogUtils
-		.logDebug(
-			context,
-			SCallee.class,
-			"handleCall",
-			new Object[] { " -- received request to add a new/remove an existing menu entry --" },
-			null);
+	// LogUtils
+	// .logDebug(
+	// context,
+	// SCallee.class,
+	// "handleCall",
+	// new Object[] {
+	// " -- received request to add a new/remove an existing menu entry --"
+	// },
+	// null);
 	if (call == null)
 	    return null;
 
@@ -92,8 +108,14 @@ public class SCallee extends ServiceCallee {
 	    return null;
 
 	Object userID = call.getInputValue(IN_USER_ID);
+	if (userID == null)
+	    return null;
+
+	if (operation.startsWith(SRV_GET_ENTRIES))
+	    return getEntries((User) userID);
+
 	Object menuEntry = call.getInputValue(IN_MENU_ENTRY);
-	if (userID == null || menuEntry == null)
+	if (menuEntry == null)
 	    return null;
 	((Resource) menuEntry).unliteral();
 
@@ -103,6 +125,43 @@ public class SCallee extends ServiceCallee {
 	    return removeEntry((User) userID, (MenuEntry) menuEntry);
 	}
 	return null;
+    }
+
+    private ServiceResponse getEntries(User user) {
+	try {
+	    RDFMainMenu mainMenu = new RDFMainMenu(context, null);
+
+	    // load
+	    Resource r = null;
+	    try {
+		r = mainMenu.readMenu(getFile(user.getURI()));
+	    } catch (Exception e) {
+		// most likely, the menu file does not exist yet, so return an
+		// empty response
+		return new ServiceResponse(CallStatus.succeeded);
+	    }
+	    if (r == null || !(r instanceof MenuProfile))
+		return new ServiceResponse(CallStatus.succeeded);
+
+	    // prepare the response
+	    ArrayList<MenuEntry> al = new ArrayList<MenuEntry>();
+	    MenuProfile p = (MenuProfile) r;
+	    MenuEntry[] me = p.getMenuEntries();
+	    for (int i = 0; i < me.length; i++)
+		al.add(me[i]);
+	    ServiceResponse sr = new ServiceResponse(CallStatus.succeeded);
+	    sr.addOutput(new ProcessOutput(OUT_ENTRIES, al));
+	    return sr;
+	} catch (Exception e) {
+	    LogUtils
+		    .logError(
+			    context,
+			    SCallee.class,
+			    "getEntries",
+			    new Object[] { "an error occured while trying to get the menu entries." },
+			    e);
+	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	}
     }
 
     private ServiceResponse addEntry(User user, MenuEntry entry) {
@@ -129,6 +188,7 @@ public class SCallee extends ServiceCallee {
 		    "adding main menu entry: ",
 		    entry.getServiceClass().getURI() }, null);
 	    refreshMainMenu(user.getURI());
+	    return new ServiceResponse(CallStatus.succeeded);
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
@@ -137,9 +197,8 @@ public class SCallee extends ServiceCallee {
 			    "addEntry",
 			    new Object[] { "an error occured while trying to add a new menu entry: " },
 			    e);
+	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
 	}
-
-	return new ServiceResponse(CallStatus.succeeded);
     }
 
     private ServiceResponse removeEntry(User user, MenuEntry entry) {
@@ -154,6 +213,7 @@ public class SCallee extends ServiceCallee {
 		r = mainMenu.readMenu(getFile(user.getURI()));
 	    } catch (Exception e) {
 		// most likely, the menu file does not exist yet, so do nothing
+		return new ServiceResponse(CallStatus.succeeded);
 	    }
 	    if (r == null) {
 		LogUtils
@@ -168,7 +228,6 @@ public class SCallee extends ServiceCallee {
 					" failed because the main menu file does not exist "
 						+ "(returning succeeded because the menu entry does not exist afterwards)."),
 				null);
-		return new ServiceResponse(CallStatus.succeeded);
 	    }
 	    if (!(r instanceof MenuProfile)) {
 		LogUtils
@@ -192,6 +251,7 @@ public class SCallee extends ServiceCallee {
 		    createLogMessage("main menu entry removed: ", user, entry),
 		    null);
 	    refreshMainMenu(user.getURI());
+	    return new ServiceResponse(CallStatus.succeeded);
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(
@@ -201,9 +261,8 @@ public class SCallee extends ServiceCallee {
 			    createLogMessage(
 				    "an error occured while trying to remove the menu entry: ",
 				    user, entry), e);
+	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
 	}
-
-	return new ServiceResponse(CallStatus.succeeded);
     }
 
     private File getFile(String userURI) {
