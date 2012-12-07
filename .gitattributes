@@ -1203,3 +1203,11 @@ handler.web/src/main/resources/webhandler/img/universAAL_logo.png -text
 handler.web/src/main/resources/webhandler/img/universaal-logo-white.png -text
 handler.web/src/test/java/org/universAAL/ui/handler/web/test/ArtifactIntegrationTest.java -text
 pom/pom.xml -text
+resource.server/ASL2.0.txt -text
+resource.server/MITX.txt -text
+resource.server/NOTICE.txt -text
+resource.server/pom.xml -text
+resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
+resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
+resource.server/src/main/resources/www/tst.txt -text
+resource.server/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
