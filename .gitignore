@@ -137,6 +137,11 @@ ui.handler.web-1.1.4-SNAPSHOT/.project
 ui.handler.web-1.1.4-SNAPSHOT/.settings
 ui.handler.web-1.1.4-SNAPSHOT/bin
 ui.handler.web-1.1.4-SNAPSHOT/target
+ui.handler.web-1.2.4-SNAPSHOT/.classpath
+ui.handler.web-1.2.4-SNAPSHOT/.project
+ui.handler.web-1.2.4-SNAPSHOT/.settings
+ui.handler.web-1.2.4-SNAPSHOT/bin
+ui.handler.web-1.2.4-SNAPSHOT/target
 ui.pom-1.0.2-SNAPSHOT/.classpath
 ui.pom-1.0.2-SNAPSHOT/.project
 ui.pom-1.0.2-SNAPSHOT/.settings
