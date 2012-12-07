@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>ui.pom</artifactId>
+    <groupId>org.universAAL.ui</groupId>
+    <version>1.2.0</version>
+    <relativePath>../../pom/pom.xml</relativePath>
+  </parent>
+  
+  <groupId>org.universAAL.ui.gui.swing</groupId>
+  <artifactId>defaultBasedLAF</artifactId>
+  <version>1.2.0</version>
+  <name>universAAL UI Handler Swing Look and Feel Default</name>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.universAAL.ui</groupId>
+          <artifactId>ui.handler.gui.swing</artifactId>
+          <version>1.2.0</version>
+      </dependency>
+  </dependencies>
+  
+  <developers>
+    <developer>
+      <id>amedrano</id>
+      <name>Alejandro Medrano</name>
+      <email>amedrano@lst.tfo.upm.es</email>
+      <roles>
+        <role>builder</role>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
+
+     <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+</project>
