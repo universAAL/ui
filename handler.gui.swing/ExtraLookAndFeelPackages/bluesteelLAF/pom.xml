@@ -13,6 +13,12 @@
   <packaging>bundle</packaging>
   <name>universAAL UI Handler Swing Look and Feel Bluesteel</name>
 
+  <scm>
+    <connection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</connection>
+    <developerConnection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</developerConnection>
+    <url>${svn.base.url}handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</url>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

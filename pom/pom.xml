@@ -115,6 +115,16 @@
         <artifactId>ui.resource.server</artifactId>
         <version>1.2.1-SNAPSHOT</version>
       </dependency>
+      <dependency>
+        <groupId>org.universAAL.ui</groupId>
+        <artifactId>ui.handler.gui.swing.bluesteelLAF</artifactId>
+        <version>1.2.2-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.universAAL.ui</groupId>
+        <artifactId>ui.handler.gui.swing.classicLAF</artifactId>
+        <version>0.1.2-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <properties>
