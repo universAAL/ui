@@ -19,6 +19,11 @@
     <name>Ericsson Nikola Tesla d.d. (ENT)</name>
     <url>http://www.ericsson.com/hr/</url>
   </organization>
+  <scm>
+    <connection>${svn.base}/resource.server</connection>
+    <developerConnection>${svn.base}/resource.server</developerConnection>
+    <url>${svn.base.url}resource.server</url>
+  </scm>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>

@@ -13,6 +13,11 @@
   <packaging>bundle</packaging>
   <name>universAAL UI Handler SMS</name>
   <description>UI Handler that sends application output as SMS</description>
+  <scm>
+    <connection>${svn.base}/handler.sms</connection>
+    <developerConnection>${svn.base}/handler.sms</developerConnection>
+    <url>${svn.base.url}handler.sms</url>
+  </scm>
   <build>
     <plugins>
       <plugin>
