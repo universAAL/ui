@@ -1480,6 +1480,51 @@ ui.dm-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/MainMenu.java -text
 ui.dm-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/MenuNode.java -text
 ui.dm-1.2.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ServiceCaller.java -text
 ui.dm-1.2.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/test/ArtifactIntegrationTest.java -text
+ui.dm-1.2.12-SNAPSHOT/ASL2.0.txt -text
+ui.dm-1.2.12-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
+ui.dm-1.2.12-SNAPSHOT/LICENSE-JGCL.txt -text
+ui.dm-1.2.12-SNAPSHOT/MITX.txt -text
+ui.dm-1.2.12-SNAPSHOT/NOTICE.txt -text
+ui.dm-1.2.12-SNAPSHOT/design.eap -text
+ui.dm-1.2.12-SNAPSHOT/pom.xml -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/DMServiceCaller.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/UserDialogManager.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdaptorKrakow.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedudantDialogPriorityQueue.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/Adapter.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/MainMenuProvider.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/SQLStoreProvider.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/SubmitGroupListener.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/SystemMenuProvider.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/UIRequestPool.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/FileMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MainMenu.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MenuNode.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java -text
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/ProfMainMenuTest.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/UIRequestPoolTest.java -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/resources/main_menu_en.txt -text svneol=unset#text/plain
+ui.dm-1.2.12-SNAPSHOT/src/test/resources/prof_main_menu.txt -text svneol=unset#text/plain
 ui.dm.mobile-1.0.2-SNAPSHOT/artifact_manual.composite -text
 ui.dm.mobile-1.0.2-SNAPSHOT/pom.xml -text
 ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text svneol=unset#text/plain
