@@ -29,38 +29,38 @@ import org.universAAL.middleware.context.ContextSubscriber;
  * 
  */
 public class DefaultContextSubscriber extends ContextSubscriber {
-	/**
-	 * The {@link IContextCallback} where the event is forwarded.
-	 */
-	IContextCallback callback;
+    /**
+     * The {@link IContextCallback} where the event is forwarded.
+     */
+    IContextCallback callback;
 
-	public DefaultContextSubscriber(ModuleContext context,
-			ContextEventPattern[] initialSubscriptions,
-			IContextCallback callback) {
-		super(context, initialSubscriptions);
-		this.callback = callback;
+    public DefaultContextSubscriber(ModuleContext context,
+	    ContextEventPattern[] initialSubscriptions,
+	    IContextCallback callback) {
+	super(context, initialSubscriptions);
+	this.callback = callback;
+    }
+
+    @Override
+    public void communicationChannelBroken() {
+	// TODO Auto-generated method stub
+
+    }
+
+    /**
+     * This methods just logs the received {@link ContextEvent} and forwards it
+     * if the callback field is not null.
+     */
+    public void handleContextEvent(ContextEvent event) {
+	LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
+		"handleContextEvent", new Object[] {
+			"Received context event:\n", "    Subject     = ",
+			event.getSubjectURI(), "\n", "    Subject type= ",
+			event.getSubjectTypeURI(), "\n", "    Predicate   = ",
+			event.getRDFPredicate(), "\n", "    Object      = ",
+			event.getRDFObject() }, null);
+	if (callback != null) {
+	    callback.CallbackForHandleContextEvent(event);
 	}
-
-	@Override
-	public void communicationChannelBroken() {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * This methods just logs the received {@link ContextEvent} and forwards it
-	 * if the callback field is not null.
-	 */
-	public void handleContextEvent(ContextEvent event) {
-		LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-				"handleContextEvent", new Object[] {
-						"Received context event:\n", "    Subject     = ",
-						event.getSubjectURI(), "\n", "    Subject type= ",
-						event.getSubjectTypeURI(), "\n", "    Predicate   = ",
-						event.getRDFPredicate(), "\n", "    Object      = ",
-						event.getRDFObject() }, null);
-		if (callback != null) {
-			callback.CallbackForHandleContextEvent(event);
-		}
-	}
+    }
 }

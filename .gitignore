@@ -41,3 +41,5 @@ resource.server/.project
 resource.server/.settings
 resource.server/bin
 resource.server/target
+ui.kinect.adapter/.settings
+ui.kinect.adapter/target

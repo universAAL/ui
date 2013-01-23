@@ -22,5 +22,5 @@ import org.universAAL.middleware.container.ModuleContext;
  * 
  */
 public class LoggerWithModuleContext {
-	public static ModuleContext mc;
+    public static ModuleContext mc;
 }
