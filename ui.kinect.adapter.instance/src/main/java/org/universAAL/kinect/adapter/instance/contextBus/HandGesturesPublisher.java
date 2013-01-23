@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.kinect.adapter.instance.HandGesturesContext;
+package org.universAAL.kinect.adapter.instance.contextBus;
 
 import java.util.Collection;
 
-import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.kinect.adapter.contextBus.AbstractContext;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.ontology.handgestures.HandGestureType;
 import org.universAAL.ontology.handgestures.HandGestures;

@@ -16,14 +16,21 @@ package org.universAAL.kinect.adapter.instance.osgi;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.universAAL.kinect.adapter.instance.HandGesturesContext.HandGesturesPublisher;
+import org.universAAL.kinect.adapter.communication.receiver.TCPServer;
+import org.universAAL.kinect.adapter.defaultComponents.DefaultAdapter;
+import org.universAAL.kinect.adapter.defaultComponents.DefaultBroker;
+import org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher;
+import org.universAAL.kinect.adapter.logging.LoggerWithModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.DefaultContextPublisher;
 import org.universAAL.middleware.context.owl.ContextProvider;
 import org.universAAL.middleware.context.owl.ContextProviderType;
+import org.universAAL.middleware.owl.MergedRestriction;
+import org.universAAL.ontology.handgestures.HandGestures;
 
 public class Activator implements BundleActivator {
 
@@ -53,12 +60,12 @@ public class Activator implements BundleActivator {
 		"http://www.ent.hr/ContextProvider.owl#handGesturePublisher");
 	// Set to type gauge (only publishes data information it senses)
 	cpInfo.setType(ContextProviderType.controller);
-	
+
 	// Set the provided events to the ones with Subject=HandGestures.MY_URI
 	ContextEventPattern cep1 = new ContextEventPattern();
 	cep1.addRestriction(MergedRestriction.getAllValuesRestriction(
 		ContextEvent.PROP_RDF_SUBJECT, HandGestures.MY_URI));
-	cpInfo.setProvidedEvents(cep1);
+	cpInfo.setProvidedEvents(new ContextEventPattern[] { cep1 });
 	// Create and register the context publisher
 	DefaultContextPublisher cp = new DefaultContextPublisher(mc, cpInfo);
 
