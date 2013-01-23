@@ -31,22 +31,22 @@ import org.universAAL.middleware.service.ServiceCaller;
  * 
  */
 public class DefaultAdapter implements IServiceCall, IContextPublisher {
-	private ServiceCaller caller;
-	private ContextPublisher cp;
+    private ServiceCaller caller;
+    private ContextPublisher cp;
 
-	public DefaultAdapter(ServiceCaller caller, ContextPublisher cp) {
-		super();
-		this.caller = caller;
-		this.cp = cp;
-	}
+    public DefaultAdapter(ServiceCaller caller, ContextPublisher cp) {
+	super();
+	this.caller = caller;
+	this.cp = cp;
+    }
 
-	public Collection<?> callservice(AbstractService ao)
-			throws AdapterException {
-		return ao.handleResponse(caller.call(ao.getServiceRequest()));
-	}
+    public Collection<?> callservice(AbstractService ao)
+	    throws AdapterException {
+	return ao.handleResponse(caller.call(ao.getServiceRequest()));
+    }
 
-	public void publish(AbstractContext ac) throws AdapterException {
-		cp.publish(ac.getContextEvent());
-	}
+    public void publish(AbstractContext ac) throws AdapterException {
+	cp.publish(ac.getContextEvent());
+    }
 
 }

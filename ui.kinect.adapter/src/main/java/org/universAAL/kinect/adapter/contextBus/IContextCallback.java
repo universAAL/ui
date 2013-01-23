@@ -17,10 +17,9 @@ package org.universAAL.kinect.adapter.contextBus;
 import org.universAAL.middleware.context.ContextEvent;
 
 /**
- * This is a callback interface for ContextEvents.
- * 
+ * This is a callback interface for {@link ContextEvent}s.
  * 
  */
 public interface IContextCallback {
-	public void CallbackForHandleContextEvent(ContextEvent event);
+    public void CallbackForHandleContextEvent(ContextEvent event);
 }

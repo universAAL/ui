@@ -15,12 +15,18 @@
 package org.universAAL.kinect.adapter.contextBus;
 
 import org.universAAL.kinect.adapter.IMessageBroker.AdapterException;
+import org.universAAL.middleware.context.ContextEvent;
 
 /**
- * This is an interface for publishing contexts.
- * 
- * 
+ * This is an interface for publishing {@link ContextEvent}s.
  */
 public interface IContextPublisher {
-	public void publish(AbstractContext ac) throws AdapterException;
+    /**
+     * Publishes Context Event
+     * 
+     * @param ac
+     *            {@link AbstractContext}
+     * @throws AdapterException
+     */
+    public void publish(AbstractContext ac) throws AdapterException;
 }

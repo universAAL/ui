@@ -34,57 +34,57 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * 
  */
 public class DefaultBroker implements IMessageBroker {
-	/**
-	 * The type identifier of a ServiceCall
-	 */
-	public static final int SERVICECALL = 1;
-	/**
-	 * The type identifier of a ContextPublish
-	 */
-	public static final int CONTEXTPUBLISH = 2;
-	/**
-	 * Message-Object mapping is done in this HashMap
-	 */
-	HashMap<Object, Object> hp;
-	IServiceCall service;
-	IContextPublisher context;
+    /**
+     * The type identifier of a ServiceCall
+     */
+    public static final int SERVICECALL = 1;
+    /**
+     * The type identifier of a ContextPublish
+     */
+    public static final int CONTEXTPUBLISH = 2;
+    /**
+     * Message-Object mapping is done in this HashMap
+     */
+    HashMap<Object, Object> hp;
+    IServiceCall service;
+    IContextPublisher context;
 
-	public DefaultBroker(IServiceCall service, IContextPublisher context) {
-		super();
-		hp = new HashMap<Object, Object>();
-		this.service = service;
-		this.context = context;
-	}
+    public DefaultBroker(IServiceCall service, IContextPublisher context) {
+	super();
+	hp = new HashMap<Object, Object>();
+	this.service = service;
+	this.context = context;
+    }
 
-	public void add(Object key, Object req) {
-		hp.put(key, req);
-	}
+    public void add(Object key, Object req) {
+	hp.put(key, req);
+    }
 
-	public Collection<?> SendNewMessage(Object type, Object key,
-			Collection<?> args) throws AdapterException {
-		Collection<?> c = null;
-		if (hp.containsKey(key)) {
-			switch (Integer.parseInt((String) type)) {
-			case SERVICECALL:
-				AbstractService ao = (AbstractService) hp.get(key);
-				ao.setServiceRequest(args);
-				c = service.callservice(ao);
-				break;
-			case CONTEXTPUBLISH:
-				AbstractContext ac = (AbstractContext) hp.get(key);
-				ac.setContextEvent(args);
-				context.publish(ac);
-				break;
-			default:
-				LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-						"SendNewMessage", new Object[] { "no valid type" },
-						null);
-				break;
-			}
-		} else {
-			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-					"SendNewMessage", new Object[] { "no key" }, null);
-		}
-		return c;
+    public Collection<?> SendNewMessage(Object type, Object key,
+	    Collection<?> args) throws AdapterException {
+	Collection<?> c = null;
+	if (hp.containsKey(key)) {
+	    switch (Integer.parseInt((String) type)) {
+	    case SERVICECALL:
+		AbstractService ao = (AbstractService) hp.get(key);
+		ao.setServiceRequest(args);
+		c = service.callservice(ao);
+		break;
+	    case CONTEXTPUBLISH:
+		AbstractContext ac = (AbstractContext) hp.get(key);
+		ac.setContextEvent(args);
+		context.publish(ac);
+		break;
+	    default:
+		LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
+			"SendNewMessage", new Object[] { "no valid type" },
+			null);
+		break;
+	    }
+	} else {
+	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
+		    "SendNewMessage", new Object[] { "no key" }, null);
 	}
+	return c;
+    }
 }

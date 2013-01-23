@@ -21,29 +21,26 @@ package org.universAAL.kinect.adapter.IMessageBroker;
  */
 public class AdapterException extends Exception {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public AdapterException() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public AdapterException() {
+	super();
+	// TODO Auto-generated constructor stub
+    }
 
-	public AdapterException(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
-	}
+    public AdapterException(String message, Throwable cause) {
+	super(message, cause);
+	// TODO Auto-generated constructor stub
+    }
 
-	public AdapterException(String message) {
-		super(message);
-		// TODO Auto-generated constructor stub
-	}
+    public AdapterException(String message) {
+	super(message);
+	// TODO Auto-generated constructor stub
+    }
 
-	public AdapterException(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
-	}
+    public AdapterException(Throwable cause) {
+	super(cause);
+	// TODO Auto-generated constructor stub
+    }
 
 }

@@ -28,22 +28,22 @@ import org.universAAL.middleware.service.ServiceResponse;
  * 
  */
 public abstract class RequestService extends AbstractService {
-	/**
-	 * This method just logs some information.
-	 */
-	@Override
-	public Collection<?> handleResponse(ServiceResponse response) {
-		if (response.getCallStatus() == CallStatus.succeeded) {
-			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-					"handleResponse", new Object[] { "succeeded" }, null);
-		} else {
-			LogUtils.logWarn(LoggerWithModuleContext.mc, this.getClass(),
-					"handleResponse",
-					new Object[] { "callstatus is not succeeded" }, null);
-		}
-		return null;
+    /**
+     * This method just logs some information.
+     */
+    @Override
+    public Collection<?> handleResponse(ServiceResponse response) {
+	if (response.getCallStatus() == CallStatus.succeeded) {
+	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
+		    "handleResponse", new Object[] { "succeeded" }, null);
+	} else {
+	    LogUtils.logWarn(LoggerWithModuleContext.mc, this.getClass(),
+		    "handleResponse",
+		    new Object[] { "callstatus is not succeeded" }, null);
 	}
+	return null;
+    }
 
-	abstract public void setServiceRequest(Collection<?> args);
+    abstract public void setServiceRequest(Collection<?> args);
 
 }
