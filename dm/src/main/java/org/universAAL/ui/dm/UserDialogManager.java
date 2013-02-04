@@ -274,7 +274,7 @@ public class UserDialogManager implements DialogManager {
 	 *            The UI request containing a dialog.
 	 * @return true, if the dialog can be shown directly.
 	 */
-	public boolean checkNewDialog(UIRequest request) {
+	public synchronized boolean checkNewDialog(UIRequest request) {
 		try {
 			showingSomething.acquire();
 		} catch (InterruptedException e) {
@@ -474,7 +474,7 @@ public class UserDialogManager implements DialogManager {
 	}
 
 	/** {@inheritDoc} */
-	public final void getMainMenu(Resource user, AbsLocation location) {
+	public final synchronized void getMainMenu(Resource user, AbsLocation location) {
 		Form mmf = Form.newSystemMenu(getString("UICaller.universaalMainMenu"));
 		mainMenuProvider.getMainMenu(user, location, mmf);
 		add(mainMenuProvider);
@@ -507,7 +507,7 @@ public class UserDialogManager implements DialogManager {
 	 * @param dialogID
 	 *            ID of the dialog.
 	 */
-	public synchronized void suspendDialog(String dialogID) {
+	public final synchronized void suspendDialog(String dialogID) {
 		dialogPool.suspend(dialogID);
 		if (current.getDialogID().equals(dialogID)) {
 			current = null;
@@ -548,6 +548,16 @@ public class UserDialogManager implements DialogManager {
 			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(),
 					"handle", new String[] { "listeners don't include:",
 							submissionID }, null);
+			// trying to recover, this may pose security issues
+			if (systemMenuProvider.listDeclaredSubmitIds().contains(submissionID)) {
+				systemMenuProvider.handle(response);
+			}
+			if (mainMenuProvider.listDeclaredSubmitIds().contains(submissionID)) {
+				mainMenuProvider.handle(response);
+			}
+			if (messageListener.listDeclaredSubmitIds().contains(submissionID)) {
+				messageListener.handle(response);
+			}
 		}
 		showingSomething.release();
 	}
@@ -628,6 +638,8 @@ public class UserDialogManager implements DialogManager {
 
 		makeAdaptations(req);
 
+		addListeners(req);
+		
 		pushUIRequst(req);
 	}
 
