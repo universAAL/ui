@@ -79,7 +79,9 @@ public class UserDialogManager implements DialogManager {
 	 * time, {@link UIRequest} may still be rendered, this time ensures no other
 	 * {@link UIRequest} will be sent before this time.
 	 */
-	private static final long FINALISE_WAIT = 100;
+	private static final String DEFAULT_FINALISE_WAIT = "100";
+	
+	private static final String SYSTEM_PROP_FINALIZE_WAIT = "ui.dm.finalizeWait";
 
 	private static final String SYSTEM_PROP_SYSMENUPROVIDER = "ui.dm.systemMenuProvision";
 
@@ -702,7 +704,7 @@ public class UserDialogManager implements DialogManager {
 
 	/**
 	 * The task for finalising a dialog. Waits
-	 * {@link UserDialogManager#FINALISE_WAIT} miliseconds before checking if
+	 * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} miliseconds before checking if
 	 * something must be shown.
 	 * 
 	 * @author amedrano
@@ -731,7 +733,10 @@ public class UserDialogManager implements DialogManager {
 			dialogPool.close(d);
 			// }
 			try {
-				Thread.sleep(FINALISE_WAIT);
+				Thread.sleep(
+						Long.parseLong(
+								System.getProperty(SYSTEM_PROP_FINALIZE_WAIT, 
+										DEFAULT_FINALISE_WAIT)));
 			} catch (InterruptedException e) {
 				// do nothing
 			}
