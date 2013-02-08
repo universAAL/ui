@@ -43,7 +43,7 @@ public class FrameManager {
      * @param mp the mapper to use for locating classes
      */
     public FrameManager(final Form f, final ModelMapper mp) {
-	    new Thread() {
+	    Thread t = new Thread() {
 		public void run() {
 		    model = mp.getModelFor(f);
 		    if (model != null){
@@ -52,7 +52,9 @@ public class FrameManager {
 			}
 		    }
 		}
-	    }.start();
+	    };
+	    t.setPriority(Thread.MAX_PRIORITY);
+	    t.start();
     }
 
     /**

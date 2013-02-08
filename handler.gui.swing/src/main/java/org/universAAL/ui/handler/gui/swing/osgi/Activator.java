@@ -46,9 +46,12 @@ public final class Activator implements BundleActivator {
     public BundleConfigHome home = null;
 
     private Renderer.RenderStarter[] renderers;
+    
+    private ThreadGroup tGroup;
 
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
+    	tGroup = new ThreadGroup("Swing Hanlder Threads");
         home = new BundleConfigHome(context.getBundle().getSymbolicName());
         BundleContext[] bc = { context };
         Activator.context = uAALBundleContainer.THE_CONTAINER
@@ -78,8 +81,8 @@ public final class Activator implements BundleActivator {
          *  http://forge.universaal.org/gf/project/uaal_ui/forum/?_forum_action=ForumMessageBrowse&thread_id=91&action=ForumBrowse&forum_id=89
          */
         for (int i = 0; i < renderers.length; i++) {
-	    new Thread(renderers[i]).start();
-	}
+        	new Thread(tGroup, renderers[i]).start();
+        }
     }
 
     /** {@inheritDoc} */
