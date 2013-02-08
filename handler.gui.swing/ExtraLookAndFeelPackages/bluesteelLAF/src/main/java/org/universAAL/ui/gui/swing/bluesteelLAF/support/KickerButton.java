@@ -72,7 +72,9 @@ public class KickerButton extends RoundedGradientButton implements ComponentList
 	
 	public void componentResized(ComponentEvent e)
 	{
-		new Thread( new ResizeTask()).start();
+		Thread t = new Thread(new ResizeTask());
+		t.setPriority(Thread.MAX_PRIORITY);
+		t.start();
 	}
 	
 	// un used methods.

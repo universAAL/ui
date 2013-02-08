@@ -60,13 +60,15 @@ public class GradientLAF extends JXPanel {
 	
 	public void fadeOut() {
 	   if (FADEOUT_CONCURRENT){
-		new Thread() {
+		Thread t = new Thread() {
 			@Override
 			public void run() {
 			    internalFadeOut();
 			}
 			
-		}.start();
+		};
+		t.setPriority(Thread.MAX_PRIORITY);
+		t.start();
 	   } else {
 	       internalFadeOut();
 	   }
@@ -87,13 +89,15 @@ public class GradientLAF extends JXPanel {
 	
 	public void fadeIn() {
 	    if (FADEIN_CONCURRENT){
-		new Thread() {
+		Thread t = new Thread() {
 			@Override
 			public void run() {
 			    internalFadeIn();
 			}
 			
-		}.start();
+		};
+		t.setPriority(Thread.MAX_PRIORITY);
+		t.start();
 	   } else {
 	       internalFadeIn();
 	   }	
