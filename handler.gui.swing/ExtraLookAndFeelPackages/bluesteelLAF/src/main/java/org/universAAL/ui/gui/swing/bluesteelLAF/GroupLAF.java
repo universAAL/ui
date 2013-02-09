@@ -24,6 +24,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -119,7 +120,13 @@ public class GroupLAF extends GroupModel {
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
-            jc.setLayout(new FormLayout());
+        	if (containsOnlySubGroups((Group)fc)) {
+        		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP);
+        		vfl.setMaximizeOtherDimension(true);
+        		jc.setLayout(vfl);
+        	} else {
+        		jc.setLayout(new FormLayout());
+        	}
         }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){
@@ -128,6 +135,23 @@ public class GroupLAF extends GroupModel {
 			jc.setLayout(vfl);
 		}
     }
+
+
+
+	/**
+	 * @param fc
+	 * @return
+	 */
+	private boolean containsOnlySubGroups(Group fc) {
+		boolean res = true;
+		FormControl[] children = fc.getChildren();
+		for (int i = 0; i < children.length; i++) {
+			if (!(children[i] instanceof Group)) {
+				res = false;
+			}
+		}
+		return res;
+	}
 
 
 }

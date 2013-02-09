@@ -55,6 +55,8 @@ public class MediaObjectModel extends OutputModel {
 			Icon icon = IconFactory.getIcon(mo.getContentURL());
 			if (icon != null) {
 				return new JLabel(fc.getLabel().getText(),icon, JLabel.CENTER);
+			} else {
+				return new JLabel(fc.getLabel().getText());
 			}
 		}
 		return new JLabel(fc.getLabel().getText());
@@ -71,14 +73,9 @@ public class MediaObjectModel extends OutputModel {
 			int x, y;
 			x = mo.getResolutionPreferredX();
 			y = mo.getResolutionPreferredY();
-			if (x != 0 && y != 0) {
+			if (x > 0 && y > 0) {
 				jc.setPreferredSize(new Dimension(x, y));
-			} else {
-				jc.setPreferredSize(
-						new Dimension(
-								((JLabel)jc).getIcon().getIconWidth(),
-								((JLabel)jc).getIcon().getIconWidth()));
-			}
+			} 
 			x = mo.getResolutionMaxX();
 			y = mo.getResolutionMaxY();
 			if (x != 0 && y != 0) {
