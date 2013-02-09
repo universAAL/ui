@@ -52,6 +52,7 @@ public class ResourceMapper {
 		
 		URL resource;
 		try {
+			Activator.logDebug(ResourceMapper.class, "Looking for " + url , null);
 			resource = new URL(url);
 			if (existsURL(resource)) {
 				return resource;
