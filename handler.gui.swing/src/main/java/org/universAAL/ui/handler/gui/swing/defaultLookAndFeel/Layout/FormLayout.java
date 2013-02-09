@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
@@ -53,9 +54,11 @@ import javax.swing.JViewport;
  */
 public class FormLayout implements LayoutManager {
 
+	private static final int PIXELS_PER_FONT_SIZE = Toolkit.getDefaultToolkit().getScreenResolution()/72;
 	private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 2;
-	private static final int HORIZONAL_UNIT_HEIGHT_LIMIT = 40;
+	private static final int HORIZONAL_UNIT_HEIGHT_LIMIT = PIXELS_PER_FONT_SIZE * LABEL_HEIGHT_THRESHOLD;
+	
 	
 	private int gap;
 
@@ -309,23 +312,36 @@ public class FormLayout implements LayoutManager {
 			this.l = label;
 			this.jc = (Component) label.getLabelFor();
 			if (jc == null) {
+				//This label is a component it self
 				jc = l;
-				pSize = l.getPreferredSize();
-			}
-			if (jc.getPreferredSize().height > l.getPreferredSize().height
-					* LABEL_HEIGHT_THRESHOLD) {
-				isHorizontal = false;
-				pSize.width = Math.max(l.getPreferredSize().width,
-						jc.getPreferredSize().width);
-				pSize.height = l.getPreferredSize().height + gap / 2
-						+ jc.getPreferredSize().height;
+				l = null;
+				pSize = jc.getPreferredSize();
+				if (pSize.height > getFontSizeInPx(jc.getFont()) * LABEL_HEIGHT_THRESHOLD) {
+					isHorizontal = false;
+				} else {
+					isHorizontal = true;
+				}
 			} else {
-				isHorizontal = true;
-				pSize.height = Math.max(l.getPreferredSize().height,
-						jc.getPreferredSize().height);
-				pSize.width = l.getPreferredSize().width + gap / 2
-						+ jc.getPreferredSize().width;
+				// This unit contains a label and a component
+				if (jc.getPreferredSize().height > getFontSizeInPx(l.getFont())
+						* LABEL_HEIGHT_THRESHOLD) {
+					isHorizontal = false;
+					pSize.width = Math.max(l.getPreferredSize().width,
+							jc.getPreferredSize().width);
+					pSize.height = l.getPreferredSize().height + gap / 2
+							+ jc.getPreferredSize().height;
+				} else {
+					isHorizontal = true;
+					pSize.height = Math.max(l.getPreferredSize().height,
+							jc.getPreferredSize().height);
+					pSize.width = l.getPreferredSize().width + gap / 2
+							+ jc.getPreferredSize().width;
+				}
 			}
+		}
+		
+		public int getFontSizeInPx(Font f) {
+			return (int) (f.getSize2D()/PIXELS_PER_FONT_SIZE);
 		}
 
 		public Unit(Component comp) {

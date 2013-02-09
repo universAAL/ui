@@ -87,6 +87,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/Banner.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/UniversAAl_logo.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/lens.png -text
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/deprecated/MediaObjectLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/BluesteelLAFConstructorTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/TestRenderer.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/CollapsableTest.java -text svneol=unset#text/plain

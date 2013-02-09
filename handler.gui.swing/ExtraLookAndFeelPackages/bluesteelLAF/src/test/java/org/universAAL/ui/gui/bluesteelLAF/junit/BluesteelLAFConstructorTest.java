@@ -40,6 +40,8 @@ import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.gui.swing.bluesteelLAF.*;
 
+import deprecated.MediaObjectLAF;
+
 /**
  * @author amedrano
  * 
