@@ -35,6 +35,11 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 
+/**
+ * Adds a search widget to the main menu, making it searchable.
+ * @author amedrano
+ *
+ */
 public class SearchableAggregatedMainMenuProvider extends
 	AggregatedMainMenuProvider {
 

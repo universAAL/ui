@@ -21,11 +21,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 
 /**
@@ -45,11 +47,18 @@ public class AggregatedMainMenuProvider implements MainMenuProvider {
     	MainMenuProvider hmmp = submitMap.get(response.getSubmissionID());
     	if (hmmp != null) {
     		hmmp.handle(response);
+    	} else {
+    		LogUtils.logError(DialogManagerImpl.getModuleContext(), 
+    				this.getClass(), "handle",
+    				new String [] {"no Main Menu Provider for call:",  response.getSubmissionID()}, 
+    				null);
+    		
     	}
     }
 
     /** {@inheritDoc} */
     public Set<String> listDeclaredSubmitIds() {
+    	submitMap.clear();
 	for (MainMenuProvider mmp : mmps) {
 		Set<String> mmpSet = mmp.listDeclaredSubmitIds();
 	    for (String submitID : mmpSet) {
@@ -62,7 +71,6 @@ public class AggregatedMainMenuProvider implements MainMenuProvider {
     /** {@inheritDoc} */
     public Group getMainMenu(Resource user, AbsLocation location,
     		Form systemForm) {
-    	submitMap.clear();
     	for (MainMenuProvider mmp : mmps) {
     		mmp.getMainMenu(user, location, systemForm);
     	}
