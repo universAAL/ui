@@ -118,8 +118,9 @@ public class FileMainMenuProvider implements MainMenuProvider {
 					new String[]{"Main menu file cannot be loaded"}, e1);
 		    return main;
 		}
-	} else if (f != null 
-			&& !f.exists()){
+	} else if (f == null 
+			|| (f != null 
+			&& !f.exists())) {
 		mainMenu = null;
 	}
 	if (mainMenu != null) {
