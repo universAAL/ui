@@ -202,7 +202,7 @@ public class SCallee extends ServiceCallee {
     }
 
     private ServiceResponse removeEntry(User user, MenuEntry entry) {
-	// add the menu entry: load the contents of the config file, add the
+	// remove the menu entry: load the contents of the config file, remove the
 	// entry, and then save the file again
 	try {
 	    RDFMainMenu mainMenu = new RDFMainMenu(context, null);
@@ -225,9 +225,11 @@ public class SCallee extends ServiceCallee {
 					"trying to remove the main menu entry ",
 					user,
 					entry,
-					" failed because the main menu file does not exist "
+					" failed because the main menu file does not exist, or it is not parsed "
+					+ "(MenuProfile is null) "
 						+ "(returning succeeded because the menu entry does not exist afterwards)."),
 				null);
+			return new ServiceResponse(CallStatus.succeeded);
 	    }
 	    if (!(r instanceof MenuProfile)) {
 		LogUtils
