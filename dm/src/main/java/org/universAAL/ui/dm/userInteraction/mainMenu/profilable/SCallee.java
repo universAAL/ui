@@ -129,7 +129,7 @@ public class SCallee extends ServiceCallee {
 
     private ServiceResponse getEntries(User user) {
 	try {
-	    RDFMainMenu mainMenu = new RDFMainMenu(context, null);
+	    RDFMainMenu mainMenu = new RDFMainMenu(context);
 
 	    // load
 	    Resource r = null;
@@ -168,7 +168,7 @@ public class SCallee extends ServiceCallee {
 	// add the menu entry: load the contents of the config file, add the
 	// entry, and then save the file again
 	try {
-	    RDFMainMenu mainMenu = new RDFMainMenu(context, null);
+	    RDFMainMenu mainMenu = new RDFMainMenu(context);
 
 	    // load
 	    Resource r = null;
@@ -205,7 +205,7 @@ public class SCallee extends ServiceCallee {
 	// remove the menu entry: load the contents of the config file, remove the
 	// entry, and then save the file again
 	try {
-	    RDFMainMenu mainMenu = new RDFMainMenu(context, null);
+	    RDFMainMenu mainMenu = new RDFMainMenu(context);
 
 	    // load
 	    Resource r = null;
