@@ -79,9 +79,12 @@ public class RDFMainMenu extends MainMenu {
 	    return null;
 	}
 	String serialized = sb.toString();
-	if (serialized.length() < 5)
+	if (serialized.length() < 5) {
 	    // just a small value to indicate that the file is empty
+	    LogUtils.logError(context, RDFMainMenu.class, "readMenu",
+			    new Object[] { "file is considered empty." }, null);
 	    return null;
+	}
 
 	// deserialize
 	MessageContentSerializer contentSerializer = (MessageContentSerializer) context
@@ -105,20 +108,18 @@ public class RDFMainMenu extends MainMenu {
 	    in.close();
 	    return r;
 	} catch (Exception e) {
-	    // LogUtils
-	    // .logError(
-	    // context,
-	    // RDFMainMenu.class,
-	    // "readMenu",
-	    // new Object[] { FileMainMenuProvider.filePrefix
-	    // + userID
-	    // +
-	    // ".txt does not exist so Main menu for logged user has to be made before running again!"
-	    // },
-	    // e);
-	    // throw new RuntimeException(e.getMessage());
+	     LogUtils
+	     .logError(
+	     context,
+	     RDFMainMenu.class,
+	     "readMenu",
+	     new Object[] { "file: " + file.getName()
+	    	 + "does not exist."
+	     },
+	     e);
+	     throw new RuntimeException(e.getMessage());
 	}
-	return null;
+//	return null;
     }
 
     public void saveMenu(File file, MenuProfile mp) {
