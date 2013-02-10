@@ -111,6 +111,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		    	is.close();
 		    }
 		} catch (Exception e1) {
+			mainMenu = null;
 			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
 					getClass(), "getMainMenu", 
 					new String[]{"Main menu file cannot be loaded"}, e1);
