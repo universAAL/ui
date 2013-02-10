@@ -109,6 +109,7 @@ public class FileMainMenuProvider implements MainMenuProvider {
 		    if (is != null) {
 		    	mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
 		    	is.close();
+		    	lastRead = f.lastModified();
 		    }
 		} catch (Exception e1) {
 			mainMenu = null;
@@ -117,6 +118,9 @@ public class FileMainMenuProvider implements MainMenuProvider {
 					new String[]{"Main menu file cannot be loaded"}, e1);
 		    return main;
 		}
+	} else if (f != null 
+			&& !f.exists()){
+		mainMenu = null;
 	}
 	if (mainMenu != null) {
 		try {
