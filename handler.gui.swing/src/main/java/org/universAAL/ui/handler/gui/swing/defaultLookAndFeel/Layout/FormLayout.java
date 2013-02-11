@@ -19,6 +19,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
@@ -54,11 +55,19 @@ import javax.swing.JViewport;
  */
 public class FormLayout implements LayoutManager {
 
-	private static final int PIXELS_PER_FONT_SIZE = Toolkit.getDefaultToolkit().getScreenResolution()/72;
+	private static int PIXELS_PER_FONT_SIZE;
 	private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 2;
-	private static final int HORIZONAL_UNIT_HEIGHT_LIMIT = PIXELS_PER_FONT_SIZE * LABEL_HEIGHT_THRESHOLD;
+	private static int HORIZONAL_UNIT_HEIGHT_LIMIT;
 	
+	static {
+		try {
+			PIXELS_PER_FONT_SIZE = Toolkit.getDefaultToolkit().getScreenResolution()/72;
+		} catch (HeadlessException e) {
+			PIXELS_PER_FONT_SIZE = 60;
+		}
+		HORIZONAL_UNIT_HEIGHT_LIMIT = PIXELS_PER_FONT_SIZE * LABEL_HEIGHT_THRESHOLD;
+	}
 	
 	private int gap;
 
