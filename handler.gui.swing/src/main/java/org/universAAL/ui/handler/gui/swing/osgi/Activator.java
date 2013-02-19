@@ -51,7 +51,7 @@ public final class Activator implements BundleActivator {
 
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
-    	tGroup = new ThreadGroup("Swing Hanlder Threads");
+    	tGroup = new ThreadGroup("Swing Handler Threads");
         home = new BundleConfigHome(context.getBundle().getSymbolicName());
         BundleContext[] bc = { context };
         Activator.context = uAALBundleContainer.THE_CONTAINER
