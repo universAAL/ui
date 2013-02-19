@@ -43,7 +43,7 @@ import org.universAAL.ontology.impairment.SightImpairment;
  */
 public class SmsUIHandler extends UIHandler {
 
-    public SmsUIHandler(ModuleContext mcontext) {
+    public SmsUIHandler(final ModuleContext mcontext) {
 	super(mcontext, getPermanentSubscriptions());
 
     }
@@ -84,7 +84,7 @@ public class SmsUIHandler extends UIHandler {
      * org.universAAL.middleware.ui.UIHandler#handleUICall(org.universAAL.middleware
      * .ui.UIRequest)
      */
-    public void handleUICall(UIRequest uiRequest) {
+    public final void handleUICall(final UIRequest uiRequest) {
 	Form f = uiRequest.getDialogForm();
 	String number = (String) f.getIOControls().getChildren()[0].getValue();
 	String message = (String) f.getIOControls().getChildren()[1].getValue();
@@ -97,13 +97,13 @@ public class SmsUIHandler extends UIHandler {
     }
 
     @Override
-    public void adaptationParametersChanged(String dialogID,
-	    String changedProp, Object newVal) {
+    public void adaptationParametersChanged(final String dialogID,
+	    final String changedProp, final Object newVal) {
 	// TODO Auto-generated method stub
     }
 
     @Override
-    public Resource cutDialog(String dialogID) {
+    public final Resource cutDialog(final String dialogID) {
 	// TODO Auto-generated method stub
 	return null;
     }

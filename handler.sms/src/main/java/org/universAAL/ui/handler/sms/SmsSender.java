@@ -38,7 +38,7 @@ import org.universAAL.ui.handler.sms.osgi.Activator;
  * @author eandgrg
  * 
  */
-public class SmsSender {
+public final class SmsSender {
 
     private static final File confHome = new File(new BundleConfigHome(
 	    "ui.handler.sms").getAbsolutePath());
@@ -95,7 +95,7 @@ public class SmsSender {
      *            text
      * @return unicode representation of a message
      */
-    static public String stringToHex(String s) {
+    public static String stringToHex(final String s) {
 	char[] chars = s.toCharArray();
 	String next;
 	StringBuffer output = new StringBuffer();
@@ -118,54 +118,76 @@ public class SmsSender {
      *            25|FAILED_USERCREDITS|342762992)
      * @return bulksms server status on send sms
      */
-    protected String getBulkSMSsendStatus(String result) {
+    protected String getBulkSMSsendStatus(final String result) {
 	String status = new String();
-	if (result.contains("IN_PROGRESS"))
+	if (result.contains("IN_PROGRESS")) {
 	    status.concat("Sent to server...");
-	if (result.contains("11"))
+	}
+	if (result.contains("11")) {
 	    status.concat("Delivered to mobile");
-	if (result.contains("22"))
+	}
+	if (result.contains("22")) {
 	    status.concat("Internal fatal error");
-	if (result.contains("23"))
+	}
+	if (result.contains("23")) {
 	    status.concat("Authentication failure");
-	if (result.contains("24"))
+	}
+	if (result.contains("24")) {
 	    status.concat("Data validation failed");
-	if (result.contains("25"))
+	}
+	if (result.contains("25")) {
 	    status.concat("You do not have sufficient credits");
-	if (result.contains("26"))
+	}
+	if (result.contains("26")) {
 	    status.concat("Upstream credits not available");
-	if (result.contains("27"))
+	}
+	if (result.contains("27")) {
 	    status.concat("You have exceeded your daily quota");
-	if (result.contains("28"))
+	}
+	if (result.contains("28")) {
 	    status.concat("Upstream quota exceeded");
-	if (result.contains("29"))
+	}
+	if (result.contains("29")) {
 	    status.concat("Message sending cancelled");
-	if (result.contains("31"))
+	}
+	if (result.contains("31")) {
 	    status.concat("Unroutable");
-	if (result.contains("32"))
+	}
+	if (result.contains("32")) {
 	    status
 		    .concat("Blocked (probably because of a recipient's complaint against you)");
-	if (result.contains("33"))
+	}
+	if (result.contains("33")) {
 	    status.concat("Failed: censored");
-	if (result.contains("50"))
+	}
+	if (result.contains("50")) {
 	    status.concat("Delivery failed - generic failure");
-	if (result.contains("51"))
+	}
+	if (result.contains("51")) {
 	    status.concat("Delivery to phone failed");
-	if (result.contains("52"))
+	}
+	if (result.contains("52")) {
 	    status.concat("Delivery to network failed");
-	if (result.contains("53"))
+	}
+	if (result.contains("53")) {
 	    status.concat("Message expired");
-	if (result.contains("54"))
+	}
+	if (result.contains("54")) {
 	    status.concat("Failed on remote network");
-	if (result.contains("56"))
+	}
+	if (result.contains("56")) {
 	    status.concat("Failed: remotely censored");
-	if (result.contains("57"))
+	}
+	if (result.contains("57")) {
 	    status.concat("Failed due to fault on handset (e.g. SIM full)");
-	if (result.contains("64"))
+	}
+	if (result.contains("64")) {
 	    status
 		    .concat("Queued for retry after temporary failure delivering, due to fault on handset (transient)");
-	if (result.contains("70"))
+	}
+	if (result.contains("70")) {
 	    status.concat("Unknown upstream status");
+	}
 	return status;
     }
 
@@ -178,7 +200,7 @@ public class SmsSender {
      *            text to send
      * @return if message is send or not
      */
-    public void sendMessage(String number, String text) {
+    public void sendMessage(final String number, final String text) {
 	try {
 	    // Construct data
 	    String data = "";
