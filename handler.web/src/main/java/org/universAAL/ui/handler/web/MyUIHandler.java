@@ -48,8 +48,8 @@ public class MyUIHandler extends UIHandler {
 
     private ModuleContext mContext;
 
-    protected MyUIHandler(ModuleContext mcontext,
-	    UIHandlerProfile initialSubscription, IWebRenderer renderer) {
+    protected MyUIHandler(final ModuleContext mcontext,
+	    final UIHandlerProfile initialSubscription, final IWebRenderer renderer) {
 	super(mcontext, initialSubscription);
 	this.renderer = renderer;
 	mContext = mcontext;
@@ -62,8 +62,8 @@ public class MyUIHandler extends UIHandler {
      * org.universAAL.middleware.ui.UIHandler#adaptationParametersChanged(java
      * .lang.String, java.lang.String, java.lang.Object)
      */
-    public void adaptationParametersChanged(String dialogID,
-	    String changedProp, Object newVal) {
+    public final void adaptationParametersChanged(final String dialogID,
+	    final String changedProp, final Object newVal) {
 	LogUtils.logInfo(mContext, this.getClass(),
 		"adaptationParametersChanged",
 		new Object[] { "Adaptation parameters changed for: "
@@ -127,7 +127,7 @@ public class MyUIHandler extends UIHandler {
      * 
      * @see org.universAAL.middleware.ui.UIHandler#cutDialog(java.lang.String)
      */
-    public Resource cutDialog(String dialogID) {
+    public final Resource cutDialog(final String dialogID) {
 	LogUtils.logInfo(mContext, this.getClass(), "cutDialog", new Object[] {
 		"Dialog {} was cut.", dialogID }, null);
 	synchronized (this) {
@@ -140,8 +140,9 @@ public class MyUIHandler extends UIHandler {
 		Resource data = currentUIRequest.getDialogForm().getData();
 		currentUIRequest = null;
 		return data;
-	    } else
+	    }{
 		return null;
+	    }
 	}
     }
 
@@ -152,7 +153,7 @@ public class MyUIHandler extends UIHandler {
      * org.universAAL.middleware.ui.UIHandler#handleUICall(org.universAAL.middleware
      * .ui.UIRequest)
      */
-    public void handleUICall(UIRequest uiRequest) {
+    public final void handleUICall(final UIRequest uiRequest) {
 	String user = ((User) uiRequest.getAddressedUser()).getURI();
 	LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
 		new Object[] { "Received UIRequest for user: " + user

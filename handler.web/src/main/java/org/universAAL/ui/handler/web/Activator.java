@@ -43,7 +43,7 @@ import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 public class Activator implements BundleActivator, ServiceListener {
 
     /**  */
-    private static TypeMapper tm = null;
+    private static TypeMapper typeMapper = null;
 
     /** the {@link BundleContext}. */
     private static BundleContext context;
@@ -51,11 +51,14 @@ public class Activator implements BundleActivator, ServiceListener {
     /** The mcontext. {@link ModuleContext} */
     private static ModuleContext mcontext;
 
- 
-    /* (non-Javadoc)
-     * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
+     * )
      */
-    public void start(BundleContext context) throws Exception {
+    public final void start(final BundleContext context) throws Exception {
 	LogUtils.logInfo(Activator.mcontext, this.getClass(), "start",
 		new Object[] { "Web UI Handler starting..." }, null);
 
@@ -68,11 +71,12 @@ public class Activator implements BundleActivator, ServiceListener {
 		+ org.universAAL.middleware.rdf.TypeMapper.class.getName()
 		+ ")";
 	context.addServiceListener(this, filter);
-	ServiceReference references[] = context.getServiceReferences(null,
+	ServiceReference[] references = context.getServiceReferences(null,
 		filter);
-	for (int i = 0; references != null && i < references.length; i++)
+	for (int i = 0; references != null && i < references.length; i++) {
 	    this.serviceChanged(new ServiceEvent(ServiceEvent.REGISTERED,
 		    references[i]));
+	}
 
 	new Thread() {
 	    public void run() {
@@ -88,28 +92,35 @@ public class Activator implements BundleActivator, ServiceListener {
 		new Object[] { "Web UI Handler started." }, null);
     }
 
- 
-    /* (non-Javadoc)
-     * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
-    public void stop(BundleContext arg0) throws Exception {
+    public final void stop(final BundleContext arg0) throws Exception {
 	LogUtils.logInfo(Activator.mcontext, this.getClass(), "stop",
 		new Object[] { "Web UI Handler stopped." }, null);
     }
 
-
-    /* (non-Javadoc)
-     * @see org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.ServiceEvent)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.
+     * ServiceEvent)
      */
-    public void serviceChanged(ServiceEvent event) {
+    public final void serviceChanged(final ServiceEvent event) {
 	switch (event.getType()) {
 	case ServiceEvent.REGISTERED:
 	case ServiceEvent.MODIFIED:
-	    tm = (TypeMapper) Activator.context.getService(event
+	    typeMapper = (TypeMapper) Activator.context.getService(event
 		    .getServiceReference());
 	    break;
 	case ServiceEvent.UNREGISTERING:
-	    tm = null;
+	    typeMapper = null;
+	    break;
+	default:
 	    break;
 	}
     }
@@ -120,7 +131,7 @@ public class Activator implements BundleActivator, ServiceListener {
      * @return the type mapper
      */
     public static TypeMapper getTypeMapper() {
-	return tm;
+	return typeMapper;
     }
 
 }

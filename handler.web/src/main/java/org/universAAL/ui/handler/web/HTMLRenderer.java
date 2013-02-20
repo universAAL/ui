@@ -86,7 +86,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     private Boolean mainMenuRequestedByRemoteUser = false;
     private ModuleContext mContext;
 
-    public HTMLRenderer(ModuleContext mcontext) {
+    public HTMLRenderer(final ModuleContext mcontext) {
 	super();
 	mContext = mcontext;
 	waitingInputs = new Hashtable<String, Boolean>();
@@ -109,7 +109,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return oep;
     }
 
-    public void finish(String userURI) {
+    public final void finish(final String userURI) {
 	this.userSessions.remove(userURI);
 	this.userURIs.remove(userURI);
 	LogUtils
@@ -118,7 +118,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 				+ userURI }, null);
     }
 
-    void popMessage(Form f) {
+    void popMessage(final Form f) {
 	// TODO popup
 
     }
@@ -130,23 +130,25 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * org.universAAL.ui.handler.web.IWebRenderer#updateScreenResolution(int,
      * int, int, int)
      */
-    public void updateScreenResolution(int max_x, int max_y, int min_x,
-	    int min_y) {
+    public void updateScreenResolution(final int max_x, final int max_y,
+	    final int min_x, final int min_y) {
 	// TODO Auto-generated method stub
 	// Is this necessary?
     }
 
     // --RENDERERS-- //Maybe in the future will be moved to other class
-    private String renderGroupControl(Group ctrl,
-	    Hashtable<String, FormControl> assoc, boolean repeat) {
+    private String renderGroupControl(final Group ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean repeat) {
 	StringBuilder html = new StringBuilder();
 	FormControl[] children = ctrl.getChildren();
-	if (children == null || children.length == 0)
+	if (children == null || children.length == 0) {
 	    return null;
+	}
 
 	for (int i = 0; i < children.length; i++) {
-	    if (repeat)
+	    if (repeat) {
 		html.append("<td>");
+	    }
 	    if (children[i] instanceof InputField) {
 		html.append(renderInputControl((InputField) children[i], assoc,
 			repeat));
@@ -187,12 +189,13 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 			repeat));
 	    } else if (children[i] instanceof Range) {
 		Range tempRng = (Range) children[i];
-		if ((Integer) tempRng.getMaxValue() > 10)
+		if ((Integer) tempRng.getMaxValue() > 10) {
 		    html.append(renderSpinnerControl((Range) children[i],
 			    assoc, repeat));
-		else
+		} else {
 		    html.append(renderRangeControl((Range) children[i], assoc,
 			    repeat));
+		}
 	    }
 	    html.append(System.getProperty("line.separator")
 		    + (repeat ? "</td>" : "<br>"));
@@ -200,17 +203,20 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private String renderGroupControl(Group group,
-	    Hashtable<String, FormControl> assoc) {
+    private String renderGroupControl(final Group group,
+	    final Hashtable<String, FormControl> assoc) {
 	return renderGroupControl(group, assoc, false);
     }
 
-    private String renderOutputControl(final FormControl ctrl, boolean mute) {
+    private String renderOutputControl(final FormControl ctrl,
+	    final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<b>" + cl.getText() + " </b>");
+	    }
+	}
 	Object initVal = ctrl.getValue();
 	if (initVal != null) {
 	    html.append(initVal.toString().replace("\n", "<br>"));
@@ -219,15 +225,17 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     }
 
     private String renderInputControl(final FormControl ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	StringBuilder html = new StringBuilder();
 	Label cl = ctrl.getLabel();
 
 	Object initVal = ctrl.getValue();
 
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	if (ctrl.isOfBooleanType() && initVal instanceof Boolean) {
 	    html
 		    .append("<input type=\"checkbox\" name=\""
@@ -239,8 +247,9 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 				    : "\"\"") + " />");
 	} else {
 	    String type = "text";
-	    if (((InputField) ctrl).isSecret())
+	    if (((InputField) ctrl).isSecret()) {
 		type = "password";
+	    }
 	    html.append("<input type=\"" + type + "\" name=\"" + ctrl.getURI()
 		    + "\" value=\""
 		    + ((initVal != null) ? initVal.toString() : "")
@@ -248,20 +257,24 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		    + ((initVal != null) ? initVal.toString().length() : "")
 		    + "\" />");
 	}
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSelect1Control(Select1 ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private Object renderSelect1Control(final Select1 ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	html.append("<select name=\"" + ctrl.getURI() + "\" >");
 	html.append(System.getProperty("line.separator"));
 	Label[] labels = ctrl.getChoices();
@@ -272,20 +285,24 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(System.getProperty("line.separator"));
 	}
 	html.append("</select>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSelectControl(Select ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private Object renderSelectControl(final Select ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	html.append("<select name=\"" + ctrl.getURI()
 		+ "\" size=\"4\" multiple=\"multiple\">");
 	html.append(System.getProperty("line.separator"));
@@ -297,20 +314,23 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(System.getProperty("line.separator"));
 	}
 	html.append("</select>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSubmitControl(Submit ctrl,
-	    Hashtable<String, FormControl> assoc) {
+    private Object renderSubmitControl(final Submit ctrl,
+	    final Hashtable<String, FormControl> assoc) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
 	String imageURL = null;
-	if (cl != null)
+	if (cl != null) {
 	    imageURL = cl.getIconURL();
+	}
 	if (imageURL != null) {
 	    // html.append("<input type=\"image\" src=\""+imageURL+"\" ");//TODO
 	    // doesnt work like submit
@@ -327,19 +347,21 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private Object renderRepeat(Repeat ctrl,
-	    Hashtable<String, FormControl> assoc) {
+    private Object renderRepeat(final Repeat ctrl,
+	    final Hashtable<String, FormControl> assoc) {
 	StringBuilder html = new StringBuilder();
 	FormControl[] elems = ctrl.getChildren();
 	boolean groupflag = false;
 	html.append("<table border=\"1\" cellspacing=\"0\" ><thead>");
-	if (elems == null || elems.length != 1)
+	if (elems == null || elems.length != 1) {
 	    throw new IllegalArgumentException("Malformed argument!");
+	}
 	if (elems[0] instanceof Group) {
 	    groupflag = true;
 	    FormControl[] elems2 = ((Group) elems[0]).getChildren();
-	    if (elems2 == null || elems2.length == 0)
+	    if (elems2 == null || elems2.length == 0) {
 		throw new IllegalArgumentException("Malformed argument!");
+	    }
 	    for (int i = 0; i < elems2.length; i++) {
 		if (elems2[i].getLabel() != null) {
 		    html.append("<th>" + elems2[i].getLabel() + "</th>");
@@ -347,8 +369,9 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		    html.append("<th>" + elems2[i].getType() + "</th>");
 		}
 	    }
-	} else if (elems[0] == null)
+	} else if (elems[0] == null) {
 	    throw new IllegalArgumentException("Malformed argument!");
+	}
 	html.append("</thead><tbody>");
 	for (int i = 0; i < ctrl.getNumberOfValues(); i++) {
 	    html.append("<tr>");
@@ -362,12 +385,14 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private String renderMediaObject(MediaObject ctrl, boolean mute) {
+    private String renderMediaObject(final MediaObject ctrl, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<b>" + cl.getText() + " </b>");
+	    }
+	}
 	String src = ctrl.getContentURL();
 	String alt = ctrl.getHintString();
 	int w = ctrl.getResolutionPreferredX();
@@ -377,20 +402,23 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    if (alt != null) {
 		html.append(" alt=\"" + alt + "\"");
 	    }
-	    if (w > 0 && h > 0)
+	    if (w > 0 && h > 0) {
 		html.append(" width=\"" + w + "\" height=\"" + h + "\" ");
+	    }
 	    html.append(" />");
 	}
 	return html.toString();
     }
 
-    private String renderTextArea(TextArea ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderTextArea(final TextArea ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	String initVal = (String) ctrl.getValue();
 	html.append("<textarea name=\"" + ctrl.getURI()
 		+ "\" rows=\"4\" cols=\"20\">");
@@ -398,27 +426,31 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(initVal.toString());
 	}
 	html.append("</textarea>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private String renderRangeControl(Range ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderRangeControl(final Range ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	// TODO Specific control of range (slider)
 	return renderSpinnerControl(ctrl, assoc, mute);
     }
 
-    private String renderSpinnerControl(Range ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderSpinnerControl(final Range ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	// TODO Specific control of range (spinner)
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	int max = (Integer) ctrl.getMaxValue();
 	int min = (Integer) ctrl.getMinValue();
 	Integer initVal = (Integer) ctrl.getValue();
@@ -433,9 +465,11 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(System.getProperty("line.separator"));
 	}
 	html.append("</select>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
@@ -447,7 +481,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * @see org.universAAL.ri.servicegateway.GatewayPort#dataDir()
      */
     @Override
-    public String dataDir() {
+    public final String dataDir() {
 	return "/webhandler";
     }
 
@@ -457,7 +491,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * @see org.universAAL.ri.servicegateway.GatewayPort#url()
      */
     @Override
-    public String url() {
+    public final String url() {
 	return "/universAAL";
     }
 
@@ -468,8 +502,9 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
-	    throws ServletException, IOException {
+    public final void doPost(final HttpServletRequest req,
+	    final HttpServletResponse resp) throws ServletException,
+	    IOException {
 
 	UIRequest uiReqst;
 	WebIOSession ses = new WebIOSession();
@@ -585,13 +620,13 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		userSessions.clear();
 		userSessions.put(userURI, ses);
 
-		 waitingInputs.clear();
-		 readyOutputs.clear();
-		 myUIHandler.userDialogIDs.clear();
+		waitingInputs.clear();
+		readyOutputs.clear();
+		myUIHandler.userDialogIDs.clear();
 
 		myUIHandler.userLoggedIn(new User(userURI), null);
 		uiReqst = (UIRequest) readyOutputs.remove(userURI);
-	
+
 		mainMenuRequestedByRemoteUser = false;
 	    } else {
 		uiReqst = dialogFinished(selectedSubmit, userURI);
@@ -612,10 +647,11 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	// This hashtable will replace the old one containing the past input
 
 	Form f = null;
-	if (uiReqst == null)
+	if (uiReqst == null) {
 	    f = getNoUICallerNotificationForm();
-	else
+	} else {
 	    f = uiReqst.getDialogForm();
+	}
 
 	while ((line = reader.readLine()) != null) {
 	    if (line.contains("<!-- Page title -->")) {
@@ -667,12 +703,13 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
-	    throws ServletException, IOException {
+    public final void doGet(final HttpServletRequest req,
+	    final HttpServletResponse resp) throws ServletException,
+	    IOException {
 	doPost(req, resp);
     }
 
-    public final UIRequest publish(UIResponse event, Boolean first) {
+    public final UIRequest publish(final UIResponse event, final Boolean first) {
 	UIRequest o = null;
 	synchronized (waitingInputs) {
 	    String user = ((User) event.getUser()).getURI();
@@ -701,7 +738,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return o;
     }
 
-    public UIRequest dialogFinished(Submit s, String userURI) {
+    public final UIRequest dialogFinished(final Submit s, final String userURI) {
 	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
 		new Object[] { "Dialog finished. User: " + userURI
 			+ " pressed a button." }, null);
@@ -727,9 +764,10 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest()
 				.getPresentationLocation(), s);
-		if (s.getDialogID().equals(myUIHandler.dialogID))
+		if (s.getDialogID().equals(myUIHandler.dialogID)) {
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
+		}
 		myUIHandler.dialogFinished(ie);
 		return this.publish(ie, Boolean.FALSE);
 	    }
@@ -737,17 +775,17 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     }
 
     @Override
-    public Hashtable<String, UIRequest> getReadyOutputs() {
+    public final Hashtable<String, UIRequest> getReadyOutputs() {
 	return this.readyOutputs;
     }
 
     @Override
-    public Hashtable<String, WebIOSession> getUserSessions() {
+    public final Hashtable<String, WebIOSession> getUserSessions() {
 	return this.userSessions;
     }
 
     @Override
-    public Hashtable<String, Boolean> getWaitingInputs() {
+    public final Hashtable<String, Boolean> getWaitingInputs() {
 	return this.waitingInputs;
     }
 
@@ -756,7 +794,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * 
      * @see org.universAAL.ui.handler.web.IWebRenderer#getRendererName()
      */
-    public String getRendererName() {
+    public final String getRendererName() {
 	return RENDERER_NAME;
     }
 
@@ -765,7 +803,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
      * @return notification that no Form is given by the application for this
      *         handler to render
      */
-    Form getNoUICallerNotificationForm() {
+    private final Form getNoUICallerNotificationForm() {
 	Form f = Form.newDialog("No UI Provider", (String) null);
 
 	new SimpleOutput(f.getIOControls(), null, null,
