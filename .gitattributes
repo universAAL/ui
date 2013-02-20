@@ -80,10 +80,12 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/CustomBasicArrowButton.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/MainMenuPager.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/Page.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/package.html -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/Banner.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/UniversAAl_logo.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/lens.png -text
@@ -214,6 +216,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormCo
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/RepeatTableModel.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableJComponentCellRenderer.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/package.html -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/IconFactory.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/InitInterface.java -text

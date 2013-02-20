@@ -27,12 +27,13 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceCaller;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
-import org.universAAL.ui.dm.osgi.DialogManagerActivator;
+import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**
  * The UICaller implements the interface
@@ -79,6 +80,18 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private static ModuleContext moduleContext;
 
+
+    /**
+     * The uAAL Service Caller. To call main menu services.
+     */
+    private static ServiceCaller serviceCaller;
+    
+    /**
+     * The uAAL Service Callee. To offer services like profilable main menu.
+     */
+    private static ServiceCallee serviceCallee;
+    
+    
     /*
      * FIXME: initialise SQLStoreProvider according to config-file (?) and add
      * accesing methods.
@@ -108,6 +121,8 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	dialogIDMap = new HashMap<String, UserDialogManager>();
 	gbSchedule = new Timer(true);
 	gbSchedule.scheduleAtFixedRate(new DMGC(), GC_PERIOD, GC_PERIOD);
+	serviceCaller = new DMServiceCaller(context);
+	serviceCallee = new SCallee(context);
 	// bus = (UIBus) context.getContainer()
 	// .fetchSharedObject(context, UIBusImpl.busFetchParams);
     }
@@ -274,6 +289,17 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     }
 
     /**
+     * Method to prepare for DM shutdown.
+     */
+    private void stop() {
+		if (serviceCallee != null)
+			serviceCallee.close();
+		if (serviceCaller != null)
+			serviceCaller.close();
+		//XXX: notiffy UserDialogManager s about impending shutdown?
+	}
+
+	/**
      * Create a Singleton Instance.
      * 
      * @param mc
@@ -284,6 +310,13 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	if (singleton == null) {
 	    singleton = new DialogManagerImpl(mc);
 	}
+    }
+    
+    /**
+     * Stop the Dialog Manager's instance
+     */
+    public static void stopDM() {
+    	getInstance().stop();
     }
 
     /**
@@ -301,7 +334,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * @return the service caller created during the bundle start.
      */
     public static ServiceCaller getServiceCaller() {
-	return DialogManagerActivator.getServiceCaller();
+	return serviceCaller;
     }
 
     /**
@@ -312,7 +345,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static ModuleContext getModuleContext() {
 	return moduleContext;
     }
-
+    
     /**
      * A mini-Garbage collector to purge the
      * {@link DialogManagerImpl#dialogIDMap}

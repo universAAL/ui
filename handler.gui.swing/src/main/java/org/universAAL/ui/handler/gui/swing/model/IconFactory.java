@@ -20,8 +20,8 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Entry point for all icon URL.
@@ -52,7 +52,7 @@ public class IconFactory {
             		return new ImageIcon(ur);
             	}
 			} catch (Exception e) {
-				Activator.logDebug(IconFactory.class, "unable to load Image:" + url, e);
+				Renderer.logDebug(IconFactory.class, "unable to load Image:" + url, e);
 			}
         }
         return null;

@@ -33,7 +33,6 @@ import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 /**
  * Main uAAL interfacing class.
  * The {@link Handler} is responsible of interfacing with universAAL, it will handle
@@ -90,7 +89,7 @@ public final class Handler extends UIHandler {
 		text += dialogID + " Prop: " + changedProp + "\n";
 		text += "prop of type: " + newVal.getClass().getName();
 		
-		Activator.logDebug(getClass(), text, null);
+		Renderer.logDebug(getClass(), text, null);
 
 	}
 
