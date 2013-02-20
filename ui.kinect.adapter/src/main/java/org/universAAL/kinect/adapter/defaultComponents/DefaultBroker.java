@@ -49,19 +49,19 @@ public class DefaultBroker implements IMessageBroker {
     IServiceCall service;
     IContextPublisher context;
 
-    public DefaultBroker(IServiceCall service, IContextPublisher context) {
+    public DefaultBroker(final IServiceCall service, final IContextPublisher context) {
 	super();
 	hp = new HashMap<Object, Object>();
 	this.service = service;
 	this.context = context;
     }
 
-    public void add(Object key, Object req) {
+    public final void add(final Object key, final Object req) {
 	hp.put(key, req);
     }
 
-    public Collection<?> SendNewMessage(Object type, Object key,
-	    Collection<?> args) throws AdapterException {
+    public final Collection<?> SendNewMessage(final Object type, final Object key,
+	    final Collection<?> args) throws AdapterException {
 	Collection<?> c = null;
 	if (hp.containsKey(key)) {
 	    switch (Integer.parseInt((String) type)) {

@@ -43,7 +43,7 @@ public class Activator implements BundleActivator {
      * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
      * )
      */
-    public void start(final BundleContext context) throws Exception {
+    public final void start(final BundleContext context) throws Exception {
 
 	mc = uAALBundleContainer.THE_CONTAINER
 		.registerModule(new Object[] { context });
@@ -52,7 +52,6 @@ public class Activator implements BundleActivator {
 		new Object[] { "Kinect adapter starting..." }, null);
 
 	LoggerWithModuleContext.mc = mc;
-	// ServiceCaller
 
 	// ContextPublisher
 	// Instantiate the context provider info with a valid provider URI
@@ -91,7 +90,7 @@ public class Activator implements BundleActivator {
      * @see
      * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
-    public void stop(BundleContext context) throws Exception {
+    public final void stop(final BundleContext context) throws Exception {
 	LogUtils.logInfo(Activator.mc, this.getClass(), "stop",
 		new Object[] { "Kinect adapter stopped." }, null);
     }

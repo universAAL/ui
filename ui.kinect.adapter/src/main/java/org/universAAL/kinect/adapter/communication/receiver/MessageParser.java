@@ -43,7 +43,7 @@ public class MessageParser {
      * @param broker
      *            where the parsed messages are forwarded.
      */
-    public MessageParser(IMessageBroker broker) {
+    public MessageParser(final IMessageBroker broker) {
 	super();
 	this.broker = broker;
     }
@@ -61,7 +61,7 @@ public class MessageParser {
      * @return
      * @throws AdapterException
      */
-    public Object parse(Object o) throws AdapterException {
+    public final Object parse(final Object o) throws AdapterException {
 	String[] message = ((String) o).split(separator);
 	Collection<?> ret = null;
 	// removing square bracket from args part.

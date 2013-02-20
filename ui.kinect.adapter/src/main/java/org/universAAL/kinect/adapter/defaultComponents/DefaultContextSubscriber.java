@@ -34,9 +34,9 @@ public class DefaultContextSubscriber extends ContextSubscriber {
      */
     IContextCallback callback;
 
-    public DefaultContextSubscriber(ModuleContext context,
-	    ContextEventPattern[] initialSubscriptions,
-	    IContextCallback callback) {
+    public DefaultContextSubscriber(final ModuleContext context,
+	    final ContextEventPattern[] initialSubscriptions,
+	    final IContextCallback callback) {
 	super(context, initialSubscriptions);
 	this.callback = callback;
     }
@@ -51,7 +51,7 @@ public class DefaultContextSubscriber extends ContextSubscriber {
      * This methods just logs the received {@link ContextEvent} and forwards it
      * if the callback field is not null.
      */
-    public void handleContextEvent(ContextEvent event) {
+    public final void handleContextEvent(final ContextEvent event) {
 	LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
 		"handleContextEvent", new Object[] {
 			"Received context event:\n", "    Subject     = ",

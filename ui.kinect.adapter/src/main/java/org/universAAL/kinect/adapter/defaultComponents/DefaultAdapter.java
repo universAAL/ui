@@ -34,18 +34,18 @@ public class DefaultAdapter implements IServiceCall, IContextPublisher {
     private ServiceCaller caller;
     private ContextPublisher cp;
 
-    public DefaultAdapter(ServiceCaller caller, ContextPublisher cp) {
+    public DefaultAdapter(final ServiceCaller caller, final ContextPublisher cp) {
 	super();
 	this.caller = caller;
 	this.cp = cp;
     }
 
-    public Collection<?> callservice(AbstractService ao)
+    public final Collection<?> callservice(final AbstractService ao)
 	    throws AdapterException {
 	return ao.handleResponse(caller.call(ao.getServiceRequest()));
     }
 
-    public void publish(AbstractContext ac) throws AdapterException {
+    public final void publish(final AbstractContext ac) throws AdapterException {
 	cp.publish(ac.getContextEvent());
     }
 

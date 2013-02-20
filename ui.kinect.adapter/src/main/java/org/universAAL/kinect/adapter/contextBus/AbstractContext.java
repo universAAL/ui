@@ -31,7 +31,7 @@ public interface AbstractContext {
      * 
      * @return
      */
-    public ContextEvent getContextEvent();
+    ContextEvent getContextEvent();
 
     /**
      * This method sets the arguments of the {@link ContextEvent}.
@@ -40,7 +40,7 @@ public interface AbstractContext {
      *            Collection of arguments to be used for creating the proper
      *            {@link ContextEvent}
      */
-    public void setContextEvent(Collection<?> args);
+    void setContextEvent(Collection<?> args);
 
     /**
      * This method handles the given response.
@@ -49,6 +49,6 @@ public interface AbstractContext {
      *            The {@link ContextEvent} to be processed
      * @return A collection of objects extracted from the response.
      */
-    public abstract Collection<?> handleContextEvent(ContextEvent response);
+    Collection<?> handleContextEvent(ContextEvent response);
 
 }

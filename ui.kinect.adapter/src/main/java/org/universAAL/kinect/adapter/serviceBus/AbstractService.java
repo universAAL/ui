@@ -31,7 +31,7 @@ public abstract class AbstractService {
 
     protected ServiceRequest servicerequest;
 
-    public ServiceRequest getServiceRequest() {
+    public final ServiceRequest getServiceRequest() {
 	return servicerequest;
     }
 
