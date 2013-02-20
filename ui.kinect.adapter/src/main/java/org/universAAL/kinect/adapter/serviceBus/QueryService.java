@@ -39,7 +39,7 @@ public abstract class QueryService extends AbstractService {
      * null if there is none.
      */
     @Override
-    public Collection<?> handleResponse(ServiceResponse response) {
+    public final Collection<?> handleResponse(final ServiceResponse response) {
 	if (response.getCallStatus() == CallStatus.succeeded) {
 	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
 		    "handleResponse", new Object[] { "succeeded" }, null);
@@ -71,6 +71,6 @@ public abstract class QueryService extends AbstractService {
 	return null;
     }
 
-    abstract public void setServiceRequest(Collection<?> args);
+    public abstract void setServiceRequest(Collection<?> args);
 
 }

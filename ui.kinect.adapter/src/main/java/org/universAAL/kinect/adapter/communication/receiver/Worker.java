@@ -34,7 +34,7 @@ public class Worker implements Runnable {
     OutputStreamWriter osw = null;
     MessageParser parser;
 
-    public Worker(Socket socket, MessageParser parser) {
+    public Worker(final Socket socket, final MessageParser parser) {
 	super();
 	this.socket = socket;
 	this.parser = parser;
@@ -42,7 +42,7 @@ public class Worker implements Runnable {
 /**
  * Runs the worker
  */
-    public void run() {
+    public final void run() {
 	try {
 	    osw = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
 	    osw.flush();

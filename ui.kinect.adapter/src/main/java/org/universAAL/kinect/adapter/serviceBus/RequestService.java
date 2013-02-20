@@ -32,7 +32,7 @@ public abstract class RequestService extends AbstractService {
      * This method just logs some information.
      */
     @Override
-    public Collection<?> handleResponse(ServiceResponse response) {
+    public final Collection<?> handleResponse(final ServiceResponse response) {
 	if (response.getCallStatus() == CallStatus.succeeded) {
 	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
 		    "handleResponse", new Object[] { "succeeded" }, null);
@@ -44,6 +44,6 @@ public abstract class RequestService extends AbstractService {
 	return null;
     }
 
-    abstract public void setServiceRequest(Collection<?> args);
+    public abstract void setServiceRequest(Collection<?> args);
 
 }

@@ -32,6 +32,6 @@ public interface IServiceCall {
      * @return
      * @throws AdapterException
      */
-    public Collection<?> callservice(AbstractService ao)
+    Collection<?> callservice(AbstractService ao)
 	    throws AdapterException;
 }

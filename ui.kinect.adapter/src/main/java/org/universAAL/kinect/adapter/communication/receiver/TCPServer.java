@@ -58,7 +58,7 @@ public class TCPServer implements Runnable {
      * @param port
      * @param broker
      */
-    public TCPServer(int port, IMessageBroker broker) {
+    public TCPServer(final int port, final IMessageBroker broker) {
 	this.port = port;
 	server_socket = null;
 	this.threadPool = Executors.newCachedThreadPool();
@@ -69,7 +69,7 @@ public class TCPServer implements Runnable {
      * This method accepts clients and creates workers for every accepted
      * Socket.
      */
-    public void run() {
+    public final void run() {
 	ServerSocket server_socket;
 	Socket socket = null;
 	try {

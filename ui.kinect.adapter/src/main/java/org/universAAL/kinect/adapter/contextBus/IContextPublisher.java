@@ -28,5 +28,5 @@ public interface IContextPublisher {
      *            {@link AbstractContext}
      * @throws AdapterException
      */
-    public void publish(AbstractContext ac) throws AdapterException;
+    void publish(AbstractContext ac) throws AdapterException;
 }

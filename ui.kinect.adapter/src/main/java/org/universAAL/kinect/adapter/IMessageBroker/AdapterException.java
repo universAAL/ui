@@ -28,17 +28,17 @@ public class AdapterException extends Exception {
 	// TODO Auto-generated constructor stub
     }
 
-    public AdapterException(String message, Throwable cause) {
+    public AdapterException(final String message, final Throwable cause) {
 	super(message, cause);
 	// TODO Auto-generated constructor stub
     }
 
-    public AdapterException(String message) {
+    public AdapterException(final String message) {
 	super(message);
 	// TODO Auto-generated constructor stub
     }
 
-    public AdapterException(Throwable cause) {
+    public AdapterException(final Throwable cause) {
 	super(cause);
 	// TODO Auto-generated constructor stub
     }
