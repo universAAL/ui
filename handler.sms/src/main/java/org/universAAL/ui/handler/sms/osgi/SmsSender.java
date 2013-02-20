@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.handler.sms;
+package org.universAAL.ui.handler.sms.osgi;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,7 +29,6 @@ import java.util.Properties;
 
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.ui.handler.sms.osgi.Activator;
 
 /**
  * Responsible for sending given sms message via designated server to desired
