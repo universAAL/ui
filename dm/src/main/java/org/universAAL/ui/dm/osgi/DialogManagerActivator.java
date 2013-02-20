@@ -20,11 +20,7 @@ import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.service.ServiceCallee;
-import org.universAAL.middleware.service.ServiceCaller;
-import org.universAAL.ui.dm.DMServiceCaller;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 public class DialogManagerActivator extends Thread implements BundleActivator {
 
