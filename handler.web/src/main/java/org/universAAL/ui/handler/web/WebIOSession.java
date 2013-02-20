@@ -35,20 +35,20 @@ public class WebIOSession {
     private UIRequest currentUIRequest;
     private Hashtable<String, FormControl> currentFormAssociation;
 
-    public Hashtable<String, FormControl> getCurrentFormAssociation() {
+    public final Hashtable<String, FormControl> getCurrentFormAssociation() {
 	return currentFormAssociation;
     }
 
-    public void setCurrentFormAssociation(
-	    Hashtable<String, FormControl> currentFormAssociation) {
+    public final void setCurrentFormAssociation(
+	    final Hashtable<String, FormControl> currentFormAssociation) {
 	this.currentFormAssociation = currentFormAssociation;
     }
 
-    public UIRequest getCurrentUIRequest() {
+    public final UIRequest getCurrentUIRequest() {
 	return currentUIRequest;
     }
 
-    public void setCurrentUIRequest(UIRequest req) {
+    public final void setCurrentUIRequest(final UIRequest req) {
 	this.currentUIRequest = req;
 
     }

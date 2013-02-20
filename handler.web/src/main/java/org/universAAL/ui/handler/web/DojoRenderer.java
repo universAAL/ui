@@ -84,10 +84,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     private Hashtable<String, UIRequest> readyOutputs; // userUri, UIRequest
     private Hashtable<String, WebIOSession> userSessions; // user, web session
 
-    private Boolean mainMenuRequestedByRemoteUser = false;
     private ModuleContext mContext;
 
-    public DojoRenderer(ModuleContext mcontext) {
+    public DojoRenderer(final ModuleContext mcontext) {
 	super();
 	mContext = mcontext;
 	waitingInputs = new Hashtable<String, Boolean>(); // user, isFirst
@@ -124,7 +123,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @param user
      *            user for whom the {@link UIRequest} should be addressed to.
      */
-    private void userAuthenticated(User user) {
+    private void userAuthenticated(final User user) {
 	/*
 	 * AddRestriction to subscription, receive only user related dialogs
 	 * request for main menu
@@ -136,7 +135,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	myUIHandler.addNewRegParams(oep);
     }
 
-    public void finish(String userURI) {
+    public final void finish(final String userURI) {
 	this.userSessions.remove(userURI);
 	this.userURIs.remove(userURI);
 	LogUtils
@@ -145,13 +144,13 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 				+ userURI }, null);
     }
 
-    void popMessage(Form f) {
+    void popMessage(final Form f) {
 	// TODO popup
 
     }
 
-    public void updateScreenResolution(int max_x, int max_y, int min_x,
-	    int min_y) {
+    public void updateScreenResolution(final int max_x, final int max_y, final int min_x,
+	    final int min_y) {
 	// TODO Auto-generated method stub
 	// Is this necessary?
     }
@@ -159,17 +158,19 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     // RENDERERS
 
     // Maybe in the future will be moved to other class
-    private String renderGroupControl(Group ctrl,
-	    Hashtable<String, FormControl> assoc, boolean repeat,
-	    boolean vertical) {
+    private String renderGroupControl(final Group ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean repeat,
+	    final boolean vertical) {
 	StringBuilder html = new StringBuilder();
 	FormControl[] children = ctrl.getChildren();
-	if (children == null || children.length == 0)
+	if (children == null || children.length == 0) {
 	    return null;
+	}
 
 	for (int i = 0; i < children.length; i++) {
-	    if (repeat)
+	    if (repeat) {
 		html.append("<td>");
+	    }
 	    if (children[i] instanceof InputField) {
 		html.append(renderInputControl((InputField) children[i], assoc,
 			repeat));
@@ -200,10 +201,12 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		}
 		String content = renderGroupControl((Group) children[i], assoc,
 			!vertical);
-		if (content != null)
+		if (content != null) {
 		    html.append(content);
-		if (display)
+		}
+		if (display) {
 		    html.append("</fieldset>");
+		}
 	    } else if (children[i] instanceof Submit) {
 		// also instances of SubdialogTrigger can be treated the same
 		html.append(renderSubmitControl((Submit) children[i], assoc));
@@ -216,12 +219,13 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 			repeat));
 	    } else if (children[i] instanceof Range) {
 		Range tempRng = (Range) children[i];
-		if ((Integer) tempRng.getMaxValue() > 10)
+		if ((Integer) tempRng.getMaxValue() > 10) {
 		    html.append(renderSpinnerControl((Range) children[i],
 			    assoc, repeat));
-		else
+		} else {
 		    html.append(renderRangeControl((Range) children[i], assoc,
 			    repeat));
+		}
 	    }
 	    html.append(System.getProperty("line.separator")
 		    + (repeat ? "</td>" : (vertical ? "<br>" : " ")));
@@ -229,17 +233,19 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private String renderGroupControl(Group group,
-	    Hashtable<String, FormControl> assoc, boolean vertical) {
+    private String renderGroupControl(final Group group,
+	    final Hashtable<String, FormControl> assoc, final boolean vertical) {
 	return renderGroupControl(group, assoc, false, vertical);
     }
 
-    private String renderOutputControl(final FormControl ctrl, boolean mute) {
+    private String renderOutputControl(final FormControl ctrl, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<b>" + cl.getText() + " </b>");
+	    }
+	}
 	Object initVal = ctrl.getValue();
 	if (initVal != null) {
 	    html.append(initVal.toString().replace("\n", "<br>"));
@@ -248,13 +254,15 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     }
 
     private String renderInputControl(final FormControl ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	StringBuilder html = new StringBuilder();
 	Label cl = ctrl.getLabel();
 	Object initVal = ctrl.getValue();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	if (ctrl.isOfBooleanType() && initVal instanceof Boolean) {
 	    html.append("<input type=\"hidden\" name=\"" + ctrl.getURI()
 		    + "\" value=\"false" + "\" />");
@@ -267,8 +275,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 				    : "\"\"") + " />");
 	} else {
 	    String type = "text";
-	    if (((InputField) ctrl).isSecret())
+	    if (((InputField) ctrl).isSecret()) {
 		type = "password";
+	    }
 	    html.append("<input dojotype=\"dijit.form.TextBox\" type=\"" + type
 		    + "\" name=\"" + ctrl.getURI() + "\" value=\""
 		    + ((initVal != null) ? initVal.toString() : "")
@@ -276,20 +285,24 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		    + ((initVal != null) ? initVal.toString().length() : "")
 		    + "\" />");
 	}
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSelect1Control(Select1 ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private Object renderSelect1Control(final Select1 ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	html.append("<select dojotype=\"dijit.form.FilteringSelect\" name=\""
 		+ ctrl.getURI() + "\" " + "autoComplete=\"true\" " +
 		// "invalidMessage=\"Invalid value\" " +
@@ -311,20 +324,24 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(System.getProperty("line.separator"));
 	}
 	html.append("</select>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSelectControl(Select ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private Object renderSelectControl(final Select ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	html.append("<select dojotype=\"dijit.form.MultiSelect\" name=\""
 		+ ctrl.getURI() + "\" " + "size=\"4\" multiple=\"multiple\">");
 	html.append(System.getProperty("line.separator"));
@@ -336,20 +353,23 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(System.getProperty("line.separator"));
 	}
 	html.append("</select>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private Object renderSubmitControl(Submit ctrl,
-	    Hashtable<String, FormControl> assoc) {
+    private Object renderSubmitControl(final Submit ctrl,
+	    final Hashtable<String, FormControl> assoc) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
 	String imageURL = null;
-	if (cl != null)
+	if (cl != null) {
 	    imageURL = cl.getIconURL();
+	}
 	if (imageURL != null) {
 	    // html.append("<input type=\"image\" src=\""+imageURL+"\" ");//TODO
 	    // doesn't work like submit
@@ -372,19 +392,21 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private Object renderRepeat(Repeat ctrl,
-	    Hashtable<String, FormControl> assoc) {
+    private Object renderRepeat(final Repeat ctrl,
+	    final Hashtable<String, FormControl> assoc) {
 	StringBuilder html = new StringBuilder();
 	FormControl[] elems = ctrl.getChildren();
 	boolean groupflag = false;
 	html.append("<table border=\"1\" cellspacing=\"0\" ><thead>");
-	if (elems == null || elems.length != 1)
+	if (elems == null || elems.length != 1) {
 	    throw new IllegalArgumentException("Malformed argument!");
+	}
 	if (elems[0] instanceof Group) {
 	    groupflag = true;
 	    FormControl[] elems2 = ((Group) elems[0]).getChildren();
-	    if (elems2 == null || elems2.length == 0)
+	    if (elems2 == null || elems2.length == 0) {
 		throw new IllegalArgumentException("Malformed argument!");
+	    }
 	    for (int i = 0; i < elems2.length; i++) {
 		if (elems2[i].getLabel() != null) {
 		    html.append("<th>" + elems2[i].getLabel() + "</th>");
@@ -392,8 +414,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		    html.append("<th>" + elems2[i].getType() + "</th>");
 		}
 	    }
-	} else if (elems[0] == null)
+	} else if (elems[0] == null) {
 	    throw new IllegalArgumentException("Malformed argument!");
+	}
 	html.append("</thead><tbody>");
 	for (int i = 0; i < ctrl.getNumberOfValues(); i++) {
 	    html.append("<tr>");
@@ -407,12 +430,14 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	return html.toString();
     }
 
-    private String renderMediaObject(MediaObject ctrl, boolean mute) {
+    private String renderMediaObject(final MediaObject ctrl, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<b>" + cl.getText() + " </b>");
+	    }
+	}
 	String src = ctrl.getContentURL();
 	String alt = ctrl.getHintString();
 	int w = ctrl.getResolutionPreferredX();
@@ -422,20 +447,23 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    if (alt != null) {
 		html.append(" alt=\"" + alt + "\"");
 	    }
-	    if (w > 0 && h > 0)
+	    if (w > 0 && h > 0) {
 		html.append(" width=\"" + w + "\" height=\"" + h + "\" ");
+	    }
 	    html.append(" />");
 	}
 	return html.toString();
     }
 
-    private String renderTextArea(TextArea ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderTextArea(final TextArea ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	String initVal = (String) ctrl.getValue();
 	html
 		.append("<textarea dojotype=\"dijit.form.SimpleTextarea\" name=\""
@@ -446,20 +474,24 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    html.append(initVal.toString());
 	}
 	html.append("</textarea>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private String renderRangeControl(Range ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderRangeControl(final Range ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	int max = (Integer) ctrl.getMaxValue();
 	int min = (Integer) ctrl.getMinValue();
 	Integer initVal = (Integer) ctrl.getValue();
@@ -479,20 +511,24 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	    html.append("<li>" + (i + min) + "</li>");
 	}
 	html.append("</ol>");
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</div></label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
 
-    private String renderSpinnerControl(Range ctrl,
-	    Hashtable<String, FormControl> assoc, boolean mute) {
+    private String renderSpinnerControl(final Range ctrl,
+	    final Hashtable<String, FormControl> assoc, final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("<label><b>" + cl.getText() + " </b>");
+	    }
+	}
 	int max = (Integer) ctrl.getMaxValue();
 	int min = (Integer) ctrl.getMinValue();
 	int delta = Integer.parseInt(ctrl.getStep().toString());
@@ -507,9 +543,11 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 			"constraints=\"{min:" + min + ",max:" + max
 			+ ",places:0}\" />");
 	html.append(System.getProperty("line.separator"));
-	if (cl != null && !mute)
-	    if (cl.getText() != null)
+	if (cl != null && !mute) {
+	    if (cl.getText() != null) {
 		html.append("</label>");
+	    }
+	}
 	assoc.put(ctrl.getURI(), ctrl);
 	return html.toString();
     }
@@ -520,7 +558,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @see org.universAAL.ri.servicegateway.GatewayPort#dataDir()
      */
     @Override
-    public String dataDir() {
+    public final String dataDir() {
 	return "/webhandler";
     }
 
@@ -530,7 +568,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @see org.universAAL.ri.servicegateway.GatewayPort#url()
      */
     @Override
-    public String url() {
+    public final String url() {
 	return "/universAAL";
     }
 
@@ -541,7 +579,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public final void doPost(final HttpServletRequest req, final HttpServletResponse resp)
 	    throws ServletException, IOException {
 	UIRequest uiReqst;
 	WebIOSession ses = new WebIOSession();
@@ -675,10 +713,11 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	// This hashtable will replace the old one containing the past input
 
 	Form f = null;
-	if (uiReqst == null)
+	if (uiReqst == null) {
 	    f = getNoUICallerNotificationForm();
-	else
+	} else {
 	    f = uiReqst.getDialogForm();
+	}
 
 	while ((line = reader.readLine()) != null) {
 	    if (line.contains("<!-- Page title -->")) {
@@ -733,7 +772,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+    public final void doGet(final HttpServletRequest req, final HttpServletResponse resp)
 	    throws ServletException, IOException {
 	doPost(req, resp);
     }
@@ -747,7 +786,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @param first
      * @return {@link UIRequest}
      */
-    public final UIRequest waitForOutput(String userUri, Boolean first) {
+    public final UIRequest waitForOutput(final String userUri, final Boolean first) {
 	UIRequest o = null;
 	synchronized (waitingInputs) {
 	    waitingInputs.put(userUri, first);
@@ -786,7 +825,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      *            user uri
      * @return output or more specifically {@link UIRequest}
      */
-    public UIRequest dialogFinished(Submit s, String userURI) {
+    public final UIRequest dialogFinished(final Submit s, final String userURI) {
 	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
 		new Object[] { "Dialog finished. User: " + userURI
 			+ " pressed a button." }, null);
@@ -825,17 +864,17 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     }
 
     @Override
-    public Hashtable<String, UIRequest> getReadyOutputs() {
+    public final Hashtable<String, UIRequest> getReadyOutputs() {
 	return this.readyOutputs;
     }
 
     @Override
-    public Hashtable<String, WebIOSession> getUserSessions() {
+    public final Hashtable<String, WebIOSession> getUserSessions() {
 	return this.userSessions;
     }
 
     @Override
-    public Hashtable<String, Boolean> getWaitingInputs() {
+    public final Hashtable<String, Boolean> getWaitingInputs() {
 	return this.waitingInputs;
     }
 
@@ -844,7 +883,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * 
      * @see org.universAAL.ui.handler.web.IWebRenderer#getRendererName()
      */
-    public String getRendererName() {
+    public final String getRendererName() {
 	return RENDERER_NAME;
     }
 
@@ -853,7 +892,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @return notification that no Form is given by DM or the application for
      *         this handler to render
      */
-    Form getNoUICallerNotificationForm() {
+    private final Form getNoUICallerNotificationForm() {
 	Form f = Form.newDialog("No UI Provider ", (String) null);
 
 	new SimpleOutput(f.getIOControls(), null, null,
