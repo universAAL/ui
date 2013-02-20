@@ -24,7 +24,6 @@ import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.Renderer.RenderStarter;
 
@@ -38,7 +37,7 @@ public final class Activator implements BundleActivator {
     /**
      * the {@link BundleContext} for the handler.newGui bundle
      */
-    static ModuleContext context = null;
+    public static ModuleContext context = null;
 
     /**
      * the home directory where to store the config files.
@@ -90,16 +89,6 @@ public final class Activator implements BundleActivator {
 	for (int i = 0; i < renderers.length; i++) {
 	    renderers[i].stop();
 	}
-    }
-
-    public static void logDebug(Class claz, String text, Throwable e) {
-    	if (Activator.context != null) {
-    		LogUtils.logDebug(context, claz, "logDebug", new String[] {text}, e);
-    	}
-    	else {
-    		System.err.println("[Debug]" + text);
-    		System.err.print(e);
-    	}
     }
     
 }

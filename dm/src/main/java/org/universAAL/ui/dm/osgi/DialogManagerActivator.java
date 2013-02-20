@@ -29,8 +29,6 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 public class DialogManagerActivator extends Thread implements BundleActivator {
 
     private static ModuleContext mContext;
-    private static ServiceCaller serviceCaller;
-    private static ServiceCallee serviceCallee;
 
     /**
      * The bundle start method externalized in a separate thread for non-
@@ -40,8 +38,6 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
 
 	// contextSubscriber = new ContextSubscriber(mContext);
 	DialogManagerImpl.createInstance(mContext);
-	serviceCaller = new DMServiceCaller(mContext);
-	serviceCallee = new SCallee(mContext);
     }
 
     /** {@inheritDoc} */
@@ -61,18 +57,9 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
     public void stop(BundleContext arg0) throws Exception {
 	LogUtils.logInfo(mContext, this.getClass(), "stop",
 		new Object[] { "DM stopped." }, null);
-
-	if (serviceCallee != null)
-	    serviceCallee.close();
-	if (serviceCaller != null)
-	    serviceCaller.close();
     }
 
     static public ModuleContext getModuleContext() {
 	return mContext;
-    }
-
-    static public ServiceCaller getServiceCaller() {
-	return serviceCaller;
     }
 }

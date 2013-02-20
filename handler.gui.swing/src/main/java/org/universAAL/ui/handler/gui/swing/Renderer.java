@@ -40,6 +40,7 @@ import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 import org.universAAL.ui.handler.gui.swing.model.Model;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Coordinator Class for Swing GUI Handler.
@@ -56,6 +57,60 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 public class Renderer extends Thread {
 
     /**
+	 * Default User, for when there is no user
+	 * logged in.
+	 * @see Renderer#DEMO_MODE
+	 */
+	protected static final String DEFAULT_USER = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied";
+
+
+	/**
+	 * The Key value for the demo mode configuration property.
+	 * demo mode will disable login and will use default
+	 * user.
+	 * Default: demo.mode=true.
+	 * @see Renderer#properties
+	 * @see Renderer#DEFAULT_USER
+	 */
+	protected static final String DEMO_MODE = "demo.mode";
+
+
+	/**
+	 * Error message to display when unable to save property file.
+	 */
+	protected static final String NO_SAVE = "Unable to save Property File";
+
+
+	/**
+	 * The Key value for the location configuration property.
+	 * this location is used when publishing {@link UIResponse}s.
+	 * Default: gui.location = Unknown
+	 * @see Renderer#properties
+	 */
+	protected static final String GUI_LOCATION = "gui.location";
+
+
+	/**
+	 * The Key value for the Form manager selection
+	 * configuration property.
+	 * this will select between the available {@link FormManager}s
+	 * Default: queued.forms=org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager
+	 * @see Renderer#fm
+	 * @see QueuedFormManager
+	 * @see SimpleFormManager
+	 * @see HierarchicalFromManager
+	 * @see OverlayFormManager
+	 */
+	protected static final String FORM_MANAGEMENT = "form.manager";
+
+
+	/**
+	 * FileName for the main configuration File.
+	 */
+	protected static final String RENDERER_CONF = "renderer.properties";
+
+
+	/**
      * The specific {@link UIHandler}
      * instance for Swing GUI Handler.
      */
@@ -68,17 +123,21 @@ public class Renderer extends Thread {
     private ModuleContext moduleContext = null;
 
     /**
-     * The configuration properties read from the file.
-     */
-    protected Properties properties;
-
-    /**
      * Form Logic Manager. it will decide
      * which Form to show when.
      */
     private FormManager fm;
 
-    /**
+    private File propertiesFile;
+
+
+	/**
+	 * The configuration properties read from the file.
+	 */
+	protected Properties properties;
+
+
+	/**
      *  The {@link ModelMapper} in order to find the correct
      *  {@link Model} for each rdf class.
      */
@@ -92,59 +151,10 @@ public class Renderer extends Thread {
 	protected InitInterface initLAF;
 
 
-	private File propertiesFile;
-    
-    /**
-     * Default User, for when there is no user
-     * logged in.
-     * @see Renderer#DEMO_MODE
-     */
-    protected static final String DEFAULT_USER = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied";
-
-    /**
-     * The Key value for the demo mode configuration property.
-     * demo mode will disable login and will use default
-     * user.
-     * Default: demo.mode=true.
-     * @see Renderer#properties
-     * @see Renderer#DEFAULT_USER
-     */
-    protected static final String DEMO_MODE = "demo.mode";
-
-    /**
-     * The Key value for the location configuration property.
-     * this location is used when publishing {@link UIResponse}s.
-     * Default: gui.location = Unknown
-     * @see Renderer#properties
-     */
-    protected static final String GUI_LOCATION = "gui.location";
-
-    /**
-     * The Key value for the Form manager selection
-     * configuration property.
-     * this will select between the available {@link FormManager}s
-     * Default: queued.forms=org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager
-     * @see Renderer#fm
-     * @see QueuedFormManager
-     * @see SimpleFormManager
-     * @see HierarchicalFromManager
-     * @see OverlayFormManager
-     */
-    protected static final String FORM_MANAGEMENT = "form.manager";
-    /**
+	/**
      * Directory for configuration files.
      */
     private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
-
-    /**
-     * FileName for the main configuration File.
-     */
-    protected static final String RENDERER_CONF = "renderer.properties";
-
-    /**
-     * Error message to display when unable to save property file.
-     */
-    protected static final String NO_SAVE = "Unable to save Property File";
 
     /**
      * Constructor, to only be used by test clases.
@@ -443,24 +453,6 @@ public class Renderer extends Thread {
     }
 
     /**
-     * Only to be called by container activator.
-     * Initialize the configuration home path.
-     * @param absolutePath
-     *         Absolute path to configuration directory
-     */
-    public static void setHome(String absolutePath) {
-        homeDir = absolutePath + "/";
-    }
-
-    /**
-     * Get the configuration directory.
-     * @return the home directory (ends with "/")
-     */
-    public static String getHomeDir() {
-        return homeDir;
-    }
-    
-    /**
      * Returns the ModelMapper that automatically assigns this Renderer to the Models.
      * @return
      */
@@ -512,20 +504,51 @@ public class Renderer extends Thread {
     	return loc;
     }
     
-    public static class RenderStarter implements Runnable{
+    /**
+	 * Only to be called by container activator.
+	 * Initialize the configuration home path.
+	 * @param absolutePath
+	 *         Absolute path to configuration directory
+	 */
+	public static void setHome(String absolutePath) {
+	    homeDir = absolutePath + "/";
+	}
 
+	/**
+	 * Get the configuration directory.
+	 * @return the home directory (ends with "/")
+	 */
+	public static String getHomeDir() {
+	    return homeDir;
+	}
+
+	public static void logDebug(Class claz, String text, Throwable e) {
+		if (RenderStarter.staticContext != null) {
+			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
+		}
+		else {
+			System.err.println("[Debug]" + text);
+			System.err.print(e);
+		}
+	}
+
+	public static class RenderStarter implements Runnable{
+	
 	private File propFile;
 	private Renderer render;
 	private ModuleContext context;
-
+	private static ModuleContext staticContext;
+	
 	public RenderStarter(ModuleContext mc){
 	    propFile = null;
 	    context = mc;
+	    staticContext = context;
 	}
 	
 	public RenderStarter(ModuleContext mc, File prop){
 	    propFile = prop;
 	    context = mc;
+	    staticContext = context;
 	}
 	
 	public void run() {
@@ -544,5 +567,5 @@ public class Renderer extends Thread {
 	    render.finish();
 	}
 	
-    }
+	}
 }

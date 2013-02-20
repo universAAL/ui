@@ -21,7 +21,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Find the resources referenced by urls.
@@ -52,7 +51,7 @@ public class ResourceMapper {
 		
 		URL resource;
 		try {
-			Activator.logDebug(ResourceMapper.class, "Looking for " + url , null);
+			Renderer.logDebug(ResourceMapper.class, "Looking for " + url , null);
 			resource = new URL(url);
 			if (existsURL(resource)) {
 				return resource;
@@ -61,13 +60,13 @@ public class ResourceMapper {
 				return null;
 			}
 		} catch (MalformedURLException e) {
-			Activator.logDebug(ResourceMapper.class, "Looking for " + url + " in folders", null);
+			Renderer.logDebug(ResourceMapper.class, "Looking for " + url + " in folders", null);
 			resource = searchFolder(url);
 			if (resource != null) {
 				return resource;
 			}
 			else {
-				Activator.logDebug(ResourceMapper.class, "Looking for " + url + " in resources", null);
+				Renderer.logDebug(ResourceMapper.class, "Looking for " + url + " in resources", null);
 				return searchResources(url);
 			}
 		}
