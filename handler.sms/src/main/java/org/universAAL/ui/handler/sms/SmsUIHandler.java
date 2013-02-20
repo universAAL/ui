@@ -32,6 +32,7 @@ import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
+import org.universAAL.ui.handler.sms.osgi.SmsSender;
 
 /**
  * SMS UI Handler. Handles dialogs containing sms message and a number to send

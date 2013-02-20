@@ -21,6 +21,9 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.ui.handler.sms.SmsUIHandler;
 
+/**
+ * 
+ */
 public class Activator implements BundleActivator {
 
     /** the {@link BundleContext}. */
@@ -54,10 +57,21 @@ public class Activator implements BundleActivator {
 
     }
 
+    /**
+     * 
+     * 
+     * @return {@link ModuleContext}
+     */
     public static ModuleContext getModuleContext() {
 	return mcontext;
     }
 
+    /**
+     * 
+     * 
+     * @param bcontext
+     *            {@link BundleContext}.
+     */
     public void setBcontext(BundleContext bcontext) {
 	this.bcontext = bcontext;
     }
