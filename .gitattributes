@@ -94,6 +94,9 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/TestRenderer.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/CollapsableTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/ASL2.0.txt -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/MITX.txt -text
+handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/NOTICE.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/pom.xml -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/FormLAF.java -text
