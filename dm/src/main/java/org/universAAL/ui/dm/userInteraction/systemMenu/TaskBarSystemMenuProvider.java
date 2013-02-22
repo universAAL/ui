@@ -35,7 +35,7 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 
 /**
- * Like @link SmartSystemMenuProvider but pending dialogs are showin in the
+ * Like @link SmartSystemMenuProvider but pending dialogs are shown in the
  * standard button group (windows inspired).
  * 
  * @author amedrano
