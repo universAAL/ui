@@ -32,7 +32,7 @@ import org.universAAL.ui.dm.interfaces.SQLStoreProvider;
 import org.universAAL.ui.dm.interfaces.UIRequestPool;
 
 /**
- * A {@link UIRequestPool} that stores (and retieves) the dialogs from a 
+ * A {@link UIRequestPool} that stores (and retrieves) the dialogs from a 
  * DataBase, making dialogs managed with this pool automatically persistent.
  * 
  * @author amedrano
@@ -61,7 +61,7 @@ public class DialogSQL implements UIRequestPool {
 		    "date integer,"+
 		    "active integer," +
 		    "content blob"
-//		    + ",foreing key (user) references User(id))"
+//		    + ",foreign key (user) references User(id))"
 		    );
 	    connection.close();
     }
