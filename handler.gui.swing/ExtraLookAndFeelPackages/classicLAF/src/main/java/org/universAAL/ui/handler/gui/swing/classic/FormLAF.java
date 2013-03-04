@@ -86,7 +86,7 @@ public class FormLAF extends FormModel {
 		vGroupHalign=H_LEFT;
 		hGroupHalign=FlowLayout.LEADING;
 	    }
-	    if(hint.toLowerCase().contains("rigth")){
+	    if(hint.toLowerCase().contains("right")){
 		vGroupHalign=H_RIGHT;
 		hGroupHalign=FlowLayout.TRAILING;
 	    }
