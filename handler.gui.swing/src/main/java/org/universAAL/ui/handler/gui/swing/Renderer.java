@@ -40,7 +40,6 @@ import org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 import org.universAAL.ui.handler.gui.swing.model.Model;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * Coordinator Class for Swing GUI Handler.
