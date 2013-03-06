@@ -26,15 +26,15 @@ import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 public class ResourceMapperTest extends TestCase {
 	
 	public void testResource1() {
-		assertNotNull(ResourceMapper.search("services/Health_button.png"));
+		assertNotNull(ResourceMapper.search("/app/Health.png"));
 	}
 
 	public void testResource2() {
-		assertNull(ResourceMapper.search("Health_button.png"));
+		assertNull(ResourceMapper.search("Health.png"));
 	}
 	
 	public void testResource3() {
-		assertNull(ResourceMapper.search("icons/services/Health_button.png"));
+		assertNull(ResourceMapper.search("/icons/app/Health.png"));
 	}
 	
 	public void testRemoteResource1() {
