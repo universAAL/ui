@@ -175,7 +175,7 @@ public final class Handler extends UIHandler {
      * @param submit
      *       the {@link Submit} button model pressed.
      */
-    public void summit(Submit submit) {
+    public void submit(Submit submit) {
         dialogFinished(
                 new UIResponse(
                         currentUser,
