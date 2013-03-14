@@ -104,7 +104,7 @@ implements ActionListener {
          *  TODO use needsSelection() in case of SubdialogTriggers in
          *  Repeat Tables, to check if the submitID is ready
          */
-    getRenderer().getHandler().summit((Submit) fc);
+    getRenderer().getHandler().submit((Submit) fc);
         //Renderer.getInstance().getFormManagement().closeCurrentDialog();
     }
 
