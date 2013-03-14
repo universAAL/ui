@@ -91,7 +91,7 @@ implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Input missing = ((Submit) fc).getMissingInputControl();
         if (isValid((JComponent) e.getSource()) && missing == null) {
-            getRenderer().getHandler().summit((Submit) fc);
+            getRenderer().getHandler().submit((Submit) fc);
             getRenderer().getFormManagement().closeCurrentDialog();
         }
         //else {
