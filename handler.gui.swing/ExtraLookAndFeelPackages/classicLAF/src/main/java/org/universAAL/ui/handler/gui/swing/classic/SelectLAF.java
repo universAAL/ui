@@ -28,7 +28,6 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TreeModelListener;
@@ -47,16 +46,6 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
  * 
  */
 public class SelectLAF extends SelectModel {
-
-    /**
-     * {@link JScrollPane} around the {@link JList}
-     */
-    JScrollPane sp = null;
-
-    /**
-     * Enveloped {@link JComponent}
-     */
-    JComponent ejc;
 
     /**
      * Constructor.
@@ -135,7 +124,7 @@ public class SelectLAF extends SelectModel {
 
 
     //TODO Remove this by making it public in model
-    protected class SelectionTreeModel implements TreeModel {
+    public class SelectionTreeModel implements TreeModel {
         Label[] root;
 
         public Object getRoot() {
