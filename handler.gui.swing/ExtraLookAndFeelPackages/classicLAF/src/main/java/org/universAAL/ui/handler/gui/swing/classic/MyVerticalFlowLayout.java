@@ -463,22 +463,25 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
     private int moveComponents(Container target, int x, int y, int width, int height,
                                 int colStart, int colEnd, boolean ltr) {
       synchronized (target.getTreeLock()) {
-	switch (newAlign) {
-	case TOP:
-	    y += ltr ? 0 : height;
-	    break;
-	case CENTER:
-	    y += height / 2;
-	    break;
-	case BOTTOM:
-	    y += ltr ? height : 0;
-	    break;
-	case LEADING:
-	    break;
-	case TRAILING:
-	    y += height;
-	    break;
-	}
+	    switch (newAlign) {
+	    case TOP:
+		y += ltr ? 0 : height;
+		break;
+	    case CENTER:
+		y += height / 2;
+		break;
+	    case BOTTOM:
+		y += ltr ? height : 0;
+		break;
+	    case LEADING:
+		break;
+	    case TRAILING:
+		y += height;
+		break;
+	    default: //=CENTER
+		y += height / 2;
+		break;
+	    }
 	for (int i = colStart ; i < colEnd ; i++) {
 	    Component m = target.getComponent(i);
 	    int xx=x;
@@ -596,11 +599,24 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
     public String toString() {
 	String str = "";
 	switch (align) {
-	  case TOP:        str = ",align=top"; break;
-	  case CENTER:      str = ",align=center"; break;
-	  case BOTTOM:       str = ",align=bottom"; break;
-	  case LEADING:     str = ",align=leading"; break;
-	  case TRAILING:    str = ",align=trailing"; break;
+	case TOP:
+	    str = ",align=top";
+	    break;
+	case CENTER:
+	    str = ",align=center";
+	    break;
+	case BOTTOM:
+	    str = ",align=bottom";
+	    break;
+	case LEADING:
+	    str = ",align=leading";
+	    break;
+	case TRAILING:
+	    str = ",align=trailing";
+	    break;
+	default: // =CENTER
+	    str = ",align=center";
+	    break; 
 	}
 	return getClass().getName() + "[hgap=" + hgap + ",vgap=" + vgap + str + "]";
     }

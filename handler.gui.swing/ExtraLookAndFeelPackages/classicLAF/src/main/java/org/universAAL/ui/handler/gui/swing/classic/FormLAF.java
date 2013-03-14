@@ -57,14 +57,14 @@ public class FormLAF extends FormModel {
      */
     private JFrame frame = null;
 
-    public static boolean vertical=false;
+    protected static boolean vertical=false;
     public static final int H_CENTER=0;
     public static final int H_LEFT=1;
     public static final int H_RIGHT=2;
-    public static int vGroupHalign=H_CENTER;
-    public static int vGroupValign=MyVerticalFlowLayout.CENTER;
-    public static int hGroupHalign=FlowLayout.CENTER;
-    public static boolean constant=false;
+    protected static int vGroupHalign=H_CENTER;
+    protected static int vGroupValign=MyVerticalFlowLayout.CENTER;
+    protected static int hGroupHalign=FlowLayout.CENTER;
+    protected static boolean constant=false;
     public static final int hgap=20;
     public static final int vgap=20;
     public static final int barwidth=30;

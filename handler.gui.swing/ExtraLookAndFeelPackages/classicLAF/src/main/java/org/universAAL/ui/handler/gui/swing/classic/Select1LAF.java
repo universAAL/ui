@@ -72,7 +72,7 @@ public class Select1LAF extends Select1Model {
 	    ((JComboBox) center).addActionListener(this);
 	} else {
 	    center = new JTree(new SelectionTreeModel());
-	    ((JComboBox) center).setEditable(false);
+	    ((JTree) center).setEditable(false);
 	}
 
 	JPanel combined = new JPanel(new BorderLayout(5, 5));
@@ -97,7 +97,7 @@ public class Select1LAF extends Select1Model {
     }
 
     // TODO Remove this by making it public in model
-    protected class SelectionTreeModel implements TreeModel {
+    public class SelectionTreeModel implements TreeModel {
 	Label[] root;
 
 	public Object getRoot() {
