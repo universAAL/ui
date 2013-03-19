@@ -42,8 +42,9 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
+import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
-import org.universAAL.ui.dm.dialogManagement.NonRedudantDialogPriorityQueue;
+import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.Adapter;
 import org.universAAL.ui.dm.interfaces.MainMenuProvider;
 import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
@@ -204,6 +205,9 @@ public class UserDialogManager implements DialogManager {
 
 		// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui
 		adapterList.add(new AdaptorKrakow());
+		
+		//FIXME use this after merging with ui.preferences.test
+		//adapterList.add(new AdapterUIPreferences());
 
 		mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 		((AggregatedMainMenuProvider) mainMenuProvider)
@@ -233,7 +237,7 @@ public class UserDialogManager implements DialogManager {
 		}
 
 		messagePool = new DialogPriorityQueue();
-		dialogPool = new NonRedudantDialogPriorityQueue();
+		dialogPool = new NonRedundantDialogPriorityQueue();
 		// dialogPool = new DialogPriorityQueue();
 		// dialogPool = new DialogPriorityQueueVerbosity();
 		listeners = new TreeMap<String, SubmitGroupListener>();

@@ -15,12 +15,15 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.tests;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Random;
 
 import junit.framework.TestCase;
 
+import org.universAAL.middleware.container.Container;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
@@ -33,121 +36,210 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
 
 public abstract class UIRequestPoolTest extends TestCase {
 
-	protected static final String MY_USER = "http://universaal.org/Users#TestUser";
-	private static UIRequestPool pool;
-	
-	public abstract UIRequestPool initialisePool();
-	
-	public void setUp(){
-		OntologyManagement.getInstance().register(new DataRepOntology());
-		OntologyManagement.getInstance().register(new UIBusOntology());
-	}
-	
-	public void test1() {
-		System.out.println("Test1 :");
-		pool = initialisePool();
-		assertEquals(0, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());
-		assertNull(pool.getCurrent());
-		assertFalse(pool.hasToChange());
-		printPool();
-	}
-	
-	public void test2() {
-		System.out.println("Test2 :");
-		UIRequest req = getNewRequest();
-		pool.add(req);
-		assertEquals(1, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());
-		assertTrue(pool.hasToChange());
-		printPool();
-	}
-	
-	public void test3() {
-//		System.out.println("Test3 :");
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {		}
-		UIRequest req = getNewRequest();
-		System.out.println("NEW REQUEST ID: " + req.getDialogID());
-		pool.add(req);
-		assertEquals(2, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());
-		printPool();
-	}
-	
-	public void test4() {
+    protected static final String MY_USER = "http://universaal.org/Users#TestUser";
+    private static UIRequestPool pool;
 
-		System.out.println("Test4 :");
-		UIRequest next = pool.getNextUIRequest();
-		assertNotNull(next);
-		assertEquals(pool.getCurrent(), next);
-		printPool();
-	}
-	
-	public void test5() {
-		System.out.println("Test5 :");
-		pool.suspend(pool.getCurrent().getDialogID());
-		assertNull(pool.getCurrent());
-		assertEquals(1, pool.listAllActive().size());
-		assertEquals(1, pool.listAllSuspended().size());
-		printPool();
-	}
-	
-	public void test6() {
-		System.out.println("Test6 :");
-		Iterator<UIRequest> i = pool.listAllSuspended().iterator();
-		String r = i.next().getDialogID();
-		pool.unsuspend(r);
-		assertEquals(2, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());		
-		printPool();
-	}
-	
-	public void test7() {
-		System.out.println("Test7 :");
-		UIRequest r = pool.getNextUIRequest();
-		pool.suspend(r.getDialogID());
-		assertEquals(r, pool.get(r.getDialogID()));	
-		printPool();
-	}
-	
-	public void test8() {
-		Iterator<UIRequest> i = pool.listAllSuspended().iterator();
-		String r = i.next().getDialogID();
-		pool.close(r);
-		assertEquals(1, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());	
-		i = pool.listAllActive().iterator();
-		r = i.next().getDialogID();
-		pool.close(r);
-		assertEquals(0, pool.listAllActive().size());
-		assertEquals(0, pool.listAllSuspended().size());
-		assertNull(pool.getCurrent());
+    public abstract UIRequestPool initialisePool();
+
+    ModuleContext mc = new ModuleContext() {
+
+	public boolean uninstall(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
 
-	private UIRequest getNewRequest() {
-		Form dialogForm  = Form.newMessage("test message", "testing messages" + new Random().nextLong());
-		UIRequest req = new UIRequest(new Resource(MY_USER), dialogForm  , LevelRating.none, Locale.ENGLISH, PrivacyLevel.insensible);
-		return req;
+	public boolean stop(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
-	
-	private void printPool() {
-		System.out.println("ActiveSet :");
-		for (UIRequest r : pool.listAllActive()) {
-			System.out.println(r.getDialogID());
-		}
-		System.out.println("SuspendendSet :");
-		for (UIRequest r : pool.listAllSuspended()) {
-			System.out.println(r.getDialogID());
-		}
-		System.out.println("Current :");
-		if (pool.getCurrent() != null) {
-			System.out.println(pool.getCurrent().getDialogID());
-		} else {
-			System.out.println("null");
-		}
+
+	public boolean start(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
-	
+
+	public void setAttribute(String attrName, Object attrValue) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void registerConfigFile(Object[] configFileParams) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logWarn(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logTrace(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logInfo(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logError(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logDebug(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public File[] listConfigFiles(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public String getID() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public Container getContainer() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public Object getAttribute(String attrName) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public boolean canBeUninstalled(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+
+	public boolean canBeStopped(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+
+	public boolean canBeStarted(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+    };
+
+    public void setUp() {
+	OntologyManagement.getInstance().register(mc, new DataRepOntology());
+	OntologyManagement.getInstance().register(mc, new UIBusOntology());
+    }
+
+    public void test1() {
+	System.out.println("Test1 :");
+	pool = initialisePool();
+	assertEquals(0, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	assertNull(pool.getCurrent());
+	assertFalse(pool.hasToChange());
+	printPool();
+    }
+
+    public void test2() {
+	System.out.println("Test2 :");
+	UIRequest req = getNewRequest();
+	pool.add(req);
+	assertEquals(1, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	assertTrue(pool.hasToChange());
+	printPool();
+    }
+
+    public void test3() {
+	// System.out.println("Test3 :");
+	// try {
+	// Thread.sleep(500);
+	// } catch (InterruptedException e) { }
+	UIRequest req = getNewRequest();
+	System.out.println("NEW REQUEST ID: " + req.getDialogID());
+	pool.add(req);
+	assertEquals(2, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	printPool();
+    }
+
+    public void test4() {
+
+	System.out.println("Test4 :");
+	UIRequest next = pool.getNextUIRequest();
+	assertNotNull(next);
+	assertEquals(pool.getCurrent(), next);
+	printPool();
+    }
+
+    public void test5() {
+	System.out.println("Test5 :");
+	pool.suspend(pool.getCurrent().getDialogID());
+	assertNull(pool.getCurrent());
+	assertEquals(1, pool.listAllActive().size());
+	assertEquals(1, pool.listAllSuspended().size());
+	printPool();
+    }
+
+    public void test6() {
+	System.out.println("Test6 :");
+	Iterator<UIRequest> i = pool.listAllSuspended().iterator();
+	String r = i.next().getDialogID();
+	pool.unsuspend(r);
+	assertEquals(2, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	printPool();
+    }
+
+    public void test7() {
+	System.out.println("Test7 :");
+	UIRequest r = pool.getNextUIRequest();
+	pool.suspend(r.getDialogID());
+	assertEquals(r, pool.get(r.getDialogID()));
+	printPool();
+    }
+
+    public void test8() {
+	Iterator<UIRequest> i = pool.listAllSuspended().iterator();
+	String r = i.next().getDialogID();
+	pool.close(r);
+	assertEquals(1, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	i = pool.listAllActive().iterator();
+	r = i.next().getDialogID();
+	pool.close(r);
+	assertEquals(0, pool.listAllActive().size());
+	assertEquals(0, pool.listAllSuspended().size());
+	assertNull(pool.getCurrent());
+    }
+
+    private UIRequest getNewRequest() {
+	Form dialogForm = Form.newMessage("test message", "testing messages"
+		+ new Random().nextLong());
+	UIRequest req = new UIRequest(new Resource(MY_USER), dialogForm,
+		LevelRating.none, Locale.ENGLISH, PrivacyLevel.insensible);
+	return req;
+    }
+
+    private void printPool() {
+	System.out.println("ActiveSet :");
+	for (UIRequest r : pool.listAllActive()) {
+	    System.out.println(r.getDialogID());
+	}
+	System.out.println("SuspendendSet :");
+	for (UIRequest r : pool.listAllSuspended()) {
+	    System.out.println(r.getDialogID());
+	}
+	System.out.println("Current :");
+	if (pool.getCurrent() != null) {
+	    System.out.println(pool.getCurrent().getDialogID());
+	} else {
+	    System.out.println("null");
+	}
+    }
 
 }

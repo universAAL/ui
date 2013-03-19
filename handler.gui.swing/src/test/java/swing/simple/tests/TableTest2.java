@@ -1,11 +1,14 @@
 package swing.simple.tests;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
+import org.universAAL.middleware.container.Container;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.PropertyPath;
@@ -23,6 +26,10 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 public class TableTest2 extends JFrame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 5693849204938097813L;
     private static final String PREFIX = "http://example.com/Dable.owl#";
     private static final String PROP_TABLE = PREFIX + "table";
     private static final String PROP_COL = PREFIX + "column";
@@ -86,9 +93,96 @@ public class TableTest2 extends JFrame {
     }
 
     public static void main(String[] arg) {
+	ModuleContext mc = new ModuleContext() {
 
-	OntologyManagement.getInstance().register(new DataRepOntology());
-	OntologyManagement.getInstance().register(new UIBusOntology());
+		public boolean uninstall(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean stop(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean start(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public void setAttribute(String attrName, Object attrValue) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void registerConfigFile(Object[] configFileParams) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logWarn(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logTrace(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logInfo(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logError(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logDebug(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public File[] listConfigFiles(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public String getID() {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public Container getContainer() {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public Object getAttribute(String attrName) {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public boolean canBeUninstalled(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean canBeStopped(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean canBeStarted(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+	    };
+
+	OntologyManagement.getInstance().register(mc, new DataRepOntology());
+	OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
 	TableTest2 m = new TableTest2();
 
