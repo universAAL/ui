@@ -15,11 +15,14 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.tests;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import org.universAAL.middleware.container.Container;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.Resource;
@@ -31,32 +34,120 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
 
 public class MainMenuTest extends TestCase {
 
-	protected static Resource user;
+    protected static Resource user;
+    ModuleContext mc = new ModuleContext() {
 
-	public void setUp(){
-		OntologyManagement.getInstance().register(new DataRepOntology());
-		OntologyManagement.getInstance().register(new UIBusOntology());
-		OntologyManagement.getInstance().register(new ServiceBusOntology());
+	public boolean uninstall(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
 
-		user = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "testUser");
+	public boolean stop(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
-	
-	public void test1(){
-		InputStream is = getClass().getResourceAsStream("/main_menu_en.txt");
-		assertNotNull(is);
-		MainMenu mm = new MainMenu(is);
-		int i = 0;
-		Iterator<MenuNode> it = mm.entries().iterator();
-		while (it.hasNext()) {
-			MenuNode menuNode = (MenuNode) it.next();
-			assertNotNull(menuNode.getLabel());
-			assertNotNull(menuNode.getPath());
-			assertNotNull(menuNode.getService(user));
-			if (i >3) {
-				assertNotNull(menuNode.getIconURL());
-			}
-			i++;
-		}
-		assertEquals(8, i);
+
+	public boolean start(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
+
+	public void setAttribute(String attrName, Object attrValue) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void registerConfigFile(Object[] configFileParams) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logWarn(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logTrace(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logInfo(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logError(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public void logDebug(String tag, String message, Throwable t) {
+	    // TODO Auto-generated method stub
+
+	}
+
+	public File[] listConfigFiles(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public String getID() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public Container getContainer() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public Object getAttribute(String attrName) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public boolean canBeUninstalled(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+
+	public boolean canBeStopped(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+
+	public boolean canBeStarted(ModuleContext requester) {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
+    };
+
+    public void setUp() {
+	OntologyManagement.getInstance().register(mc, new DataRepOntology());
+	OntologyManagement.getInstance().register(mc, new UIBusOntology());
+	OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
+
+	user = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
+		+ "testUser");
+    }
+
+    public void test1() {
+	InputStream is = getClass().getResourceAsStream("/main_menu_en.txt");
+	assertNotNull(is);
+	MainMenu mm = new MainMenu(is);
+	int i = 0;
+	Iterator<MenuNode> it = mm.entries().iterator();
+	while (it.hasNext()) {
+	    MenuNode menuNode = (MenuNode) it.next();
+	    assertNotNull(menuNode.getLabel());
+	    assertNotNull(menuNode.getPath());
+	    assertNotNull(menuNode.getService(user));
+	    if (i > 3) {
+		assertNotNull(menuNode.getIconURL());
+	    }
+	    i++;
+	}
+	assertEquals(8, i);
+    }
 }

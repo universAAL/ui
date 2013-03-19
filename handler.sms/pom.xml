@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>1.3.1-SNAPSHOT</version>
+    <version>1.3.2-SNAPSHOT</version>
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.handler.sms</artifactId>
-  <version>1.3.1-SNAPSHOT</version>
+  <version>1.3.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL UI Handler SMS</name>
   <description>UI Handler that sends application output as SMS</description>

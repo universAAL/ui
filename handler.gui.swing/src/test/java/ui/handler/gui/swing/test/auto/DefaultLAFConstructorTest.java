@@ -15,10 +15,13 @@
  ******************************************************************************/
 package ui.handler.gui.swing.test.auto;
 
+import java.io.File;
 import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.middleware.container.Container;
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.IntRestriction;
 import org.universAAL.middleware.owl.MergedRestriction;
@@ -70,8 +73,95 @@ public class DefaultLAFConstructorTest extends TestCase{
 	}
 
 	public void setUp(){
-		OntologyManagement.getInstance().register(new DataRepOntology());
-		OntologyManagement.getInstance().register(new UIBusOntology());
+	    ModuleContext mc = new ModuleContext() {
+
+		public boolean uninstall(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean stop(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean start(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public void setAttribute(String attrName, Object attrValue) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void registerConfigFile(Object[] configFileParams) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logWarn(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logTrace(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logInfo(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logError(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public void logDebug(String tag, String message, Throwable t) {
+		    // TODO Auto-generated method stub
+
+		}
+
+		public File[] listConfigFiles(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public String getID() {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public Container getContainer() {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public Object getAttribute(String attrName) {
+		    // TODO Auto-generated method stub
+		    return null;
+		}
+
+		public boolean canBeUninstalled(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean canBeStopped(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+
+		public boolean canBeStarted(ModuleContext requester) {
+		    // TODO Auto-generated method stub
+		    return false;
+		}
+	    };
+		OntologyManagement.getInstance().register(mc,new DataRepOntology());
+		OntologyManagement.getInstance().register(mc,new UIBusOntology());
 
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");

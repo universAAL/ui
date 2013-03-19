@@ -13,7 +13,7 @@ dm/src/main/java/org/universAAL/ui/dm/adapters/AdaptorKrakow.java -text
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedudantDialogPriorityQueue.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/Adapter.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/MainMenuProvider.java -text
@@ -333,6 +333,7 @@ handler.sms/pom.xml -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/Activator.java -text
 handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/SmsSender.java -text
+handler.sms/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIntegrationTest.java -text
 handler.web/ASL2.0.txt -text
 handler.web/LICENSE-BSD-Dojo.txt -text
 handler.web/LICENSE-JGCL.txt -text

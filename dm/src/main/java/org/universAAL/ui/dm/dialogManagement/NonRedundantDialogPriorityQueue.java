@@ -28,11 +28,11 @@ import org.universAAL.middleware.ui.rdf.Form;
  * @author amedrano
  *
  */
-public class NonRedudantDialogPriorityQueue extends DialogPriorityQueue {
+public class NonRedundantDialogPriorityQueue extends DialogPriorityQueue {
 
 	Map<String,UIRequest> formMap;
 	
-	public NonRedudantDialogPriorityQueue() {
+	public NonRedundantDialogPriorityQueue() {
 		super();
 		formMap = new HashMap<String, UIRequest>();
 	}

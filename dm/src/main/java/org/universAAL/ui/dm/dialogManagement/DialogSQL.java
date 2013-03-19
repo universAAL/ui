@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.sodapop.msg.MessageContentSerializer;
+import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.interfaces.SQLStoreProvider;
