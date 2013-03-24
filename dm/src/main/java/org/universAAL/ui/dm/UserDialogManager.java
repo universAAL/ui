@@ -42,7 +42,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
-import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
+//import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.Adapter;
