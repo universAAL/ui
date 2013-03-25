@@ -61,8 +61,8 @@ public class BluesteelLAFConstructorTest extends TestCase {
     }
 
     public void setUp() {
-	OntologyManagement.getInstance().register(new DataRepOntology());
-	OntologyManagement.getInstance().register(new UIBusOntology());
+	OntologyManagement.getInstance().register(null, new DataRepOntology());
+	OntologyManagement.getInstance().register(null, new UIBusOntology());
 
 	f = Form.newDialog("root", new Resource());
 	l = new Label("this is a Label", "");
