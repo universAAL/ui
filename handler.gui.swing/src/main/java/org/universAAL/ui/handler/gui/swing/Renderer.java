@@ -527,7 +527,8 @@ public class Renderer extends Thread {
 		}
 		else {
 			System.err.println("[Debug]" + text);
-			System.err.print(e);
+			if (e != null)
+			    System.err.print(e);
 		}
 	}
 
