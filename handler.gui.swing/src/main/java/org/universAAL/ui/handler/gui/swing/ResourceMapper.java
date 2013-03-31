@@ -67,7 +67,10 @@ public class ResourceMapper {
 			}
 			else {
 				Renderer.logDebug(ResourceMapper.class, "Looking for " + url + " in resources", null);
-				return searchResources(url);
+				URL retVal = searchResources(url);
+				if (retVal == null)
+					Renderer.logDebug(ResourceMapper.class, "ERROR: Resource " + url + " not found", null);
+				return retVal;
 			}
 		}
 				
