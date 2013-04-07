@@ -13,27 +13,12 @@
 	<version>1.3.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>universAAL UI Framework</name>
-	<description>The set of artefacts realizing the universAAL user interaction management framework.</description>
+	<description>The set of artefacts realizing the universAAL User Interaction Management framework.</description>
 	<scm>
 		<connection>${svn.base}/pom</connection>
 		<developerConnection>${svn.base}/pom</developerConnection>
 		<url>${svn.base.url}pom</url>
 	</scm>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.universAAL.support</groupId>
-				<artifactId>uaal-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<configuration>
-					<skipAttach>false</skipAttach>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<modules>
 		<module>../dm</module>
 		<module>../handler.web</module>
@@ -45,16 +30,6 @@
 		<module>../ui.kinect.adapter</module>
 		<module>../ui.kinect.adapter.instance</module>
 	</modules>
-	<repositories>
-		<repository>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<id>uaal</id>
-			<name>universAAL Repositories</name>
-			<url>http://depot.universaal.org/maven-repo/releases/</url>
-		</repository>
-	</repositories>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -139,6 +114,21 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.universAAL.support</groupId>
+				<artifactId>uaal-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<configuration>
+					<skipAttach>false</skipAttach>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<properties>
 		<remoteOBR></remoteOBR>
 		<gforge.project.name>uaal_ui</gforge.project.name>
