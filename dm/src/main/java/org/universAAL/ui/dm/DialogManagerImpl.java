@@ -33,6 +33,7 @@ import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**
@@ -54,7 +55,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     /**
      * Singleton instance.
      */
-    private static DialogManagerImpl singleton;
+    private static DialogManagerImpl singleton = null;
 
     /**
      * Map of {@link UserDialogManager} delegates. Key is the user's URI.
@@ -306,9 +307,13 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      *            the {@link ModuleContext} needed to create the singleton
      *            instance (for {@link UICaller}).
      */
-    public static void createInstance(ModuleContext mc) {
+    public static synchronized void createInstance(ModuleContext mc) {
 	if (singleton == null) {
+	    LogUtils.logDebug(mc, DialogManagerImpl.class, "createInstance",
+		    new String[] { "Creating singleton instance.." }, null);
 	    singleton = new DialogManagerImpl(mc);
+	    LogUtils.logDebug(mc, DialogManagerImpl.class, "createInstance",
+		    new String[] { "..singleton instance created." }, null);
 	}
     }
     
@@ -325,6 +330,21 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * @return the singleton Instance, null if not created.
      */
     public static DialogManagerImpl getInstance() {
+	if (singleton == null) {
+	    LogUtils.logDebug(DialogManagerActivator.getModuleContext(),
+		    DialogManagerImpl.class, "getInstance",
+		    new String[] { "Singleton instance not yet created." },
+		    null);
+
+	    createInstance(DialogManagerActivator.getModuleContext());
+
+	    if (singleton == null) {
+		LogUtils.logError(DialogManagerActivator.getModuleContext(),
+			DialogManagerImpl.class, "getInstance",
+			new String[] { "Could not get singleton instance." },
+			null);
+	    }
+	}
 	return singleton;
     }
 
