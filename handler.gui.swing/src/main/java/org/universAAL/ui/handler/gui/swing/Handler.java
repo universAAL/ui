@@ -110,7 +110,7 @@ public final class Handler extends UIHandler {
      * It will also extract important information, so the handler can adapt to
      * the user's circumstances.
      */
-    public void handleUICall(UIRequest req) {
+    public synchronized void handleUICall(UIRequest req) {
         render.getFormManagement().addDialog(req);
     }
 
