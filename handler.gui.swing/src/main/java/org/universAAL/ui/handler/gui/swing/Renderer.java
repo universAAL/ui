@@ -333,7 +333,7 @@ public class Renderer extends Thread {
      *         String Value of the property
      * @see Renderer#properties
      */
-    public final String getProperty(String string) {
+    public synchronized final String getProperty(String string) {
         try {
             return (String) properties.get(string);
         } catch (Exception e) {
@@ -351,7 +351,7 @@ public class Renderer extends Thread {
      *         String Value of the property.
      * @see Renderer#properties
      */
-    public final String getProperty(String value, String defaultVal) {
+    public synchronized final String getProperty(String value, String defaultVal) {
         try {
         	if (properties.contains(value)) {
         		return (String) properties.get(value);
@@ -366,20 +366,10 @@ public class Renderer extends Thread {
     }
 
     /**
-     * get the {@link FormManager} being used
-     * useful to access the current output event
-     * and current form.
-     * @return {@link Renderer#fm}
-     */
-    public FormManager getFormManagement() {
-        return fm;
-    }
-
-    /**
      * Gets the form being displayed right now.
      * @return the current {@link Form} being processed.
      */
-    public final Form getCurrentForm() {
+    public synchronized final Form getCurrentForm() {
         return fm.getCurrentDialog().getDialogForm();
     }
 
@@ -398,7 +388,7 @@ public class Renderer extends Thread {
      * Set the user that has just authenticated.
      * @param user the user that has just logged in
      */
-    final void logInUser(User user) {
+    final synchronized void logInUser(User user) {
         handler.setCurrentUser(user);
         initLAF.userLogIn(user);
     }
@@ -406,7 +396,7 @@ public class Renderer extends Thread {
     /**
      * The user is requesting a logOff.
      */
-    public final void logOffCurrentUser(){
+    public synchronized final void logOffCurrentUser(){
     	User u = getCurrentUser();
     	handler.unSetCurrentUser();
     	getInitLAF().userLogOff(u);
@@ -422,7 +412,7 @@ public class Renderer extends Thread {
      * @see AccessImpairment
      * @see UIRequest
      */
-    public final boolean hasImpairment(AccessImpairment impariment) {
+    public synchronized final boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
         int i = 0;
         while (i < imp.length && imp[i] != impariment) { i++; }
@@ -434,7 +424,7 @@ public class Renderer extends Thread {
      * @return
      *         the two-letter representation of the language-
      */
-    public final String getLanguage() {
+    public synchronized final String getLanguage() {
         return fm.getCurrentDialog().getDialogLanguage().getDisplayVariant();
     }
 
@@ -443,7 +433,7 @@ public class Renderer extends Thread {
      * @return
      *         location of the handler's display
      */
-    public final AbsLocation whereAmI() {
+    public synchronized final AbsLocation whereAmI() {
         /*
          *  Read Location from properties
          *  XXX other location process?
@@ -452,6 +442,16 @@ public class Renderer extends Thread {
     }
 
     /**
+	 * get the {@link FormManager} being used
+	 * useful to access the current output event
+	 * and current form.
+	 * @return {@link Renderer#fm}
+	 */
+	public FormManager getFormManagement() {
+	    return fm;
+	}
+
+	/**
      * Returns the ModelMapper that automatically assigns this Renderer to the Models.
      * @return
      */
@@ -485,7 +485,7 @@ public class Renderer extends Thread {
      * @return true only if the user is properly authenticated,
      * 	false otherwise.
      */
-    public final boolean authenticate(final String user, final String password){
+    public synchronized final boolean authenticate(final String user, final String password){
 	// TODO: implement user authentication mechanism
 	new Thread(){
 
@@ -521,7 +521,7 @@ public class Renderer extends Thread {
 	    return homeDir;
 	}
 
-	public static void logDebug(Class claz, String text, Throwable e) {
+	public synchronized static void logDebug(Class claz, String text, Throwable e) {
 		if (RenderStarter.staticContext != null) {
 			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
 		}
