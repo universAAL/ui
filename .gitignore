@@ -1,6 +1,7 @@
 dm/.classpath
 dm/.project
 dm/.settings
+dm/bin
 dm/target
 handler.gui.swing/*.log
 handler.gui.swing/.classpath
