@@ -91,9 +91,9 @@ public class RepeatModel extends GroupModel {
     public JComponent getNewComponent() {
         if (isATable()) {
         	table = new RepeatModelTable((Repeat) fc, getRenderer());
-            return table.getNewComponent();
+            return table.getJTable();
         } else {
-        	//TODO: otherwise, the repeat ovject represents a one 
+        	//TODO: otherwise, the repeat object represents a one 
         	// column list of simple values
         }
         
