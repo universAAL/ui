@@ -169,27 +169,33 @@ public class Renderer extends Thread {
      */
     public Renderer(ModuleContext mc, File propFile){
 	moduleContext = mc;
+        
+		//Load Properties
+        LogUtils.logDebug(moduleContext, getClass(), 
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"loading properties"}, null);
+        loadProperties();
+
+        //Create the Model Mapper
+        LogUtils.logDebug(moduleContext, getClass(),
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"Initialising ModelMapper"}, null);
+        modelMapper = new ModelMapper(this);
+
+        //Try loading the setted FormManager
+        LogUtils.logDebug(moduleContext, getClass(),
+        		"Constructor for " + propFile.getName(),
+        		new String[]{"selecting Form Manager"}, null);
+        loadFormManager(getProperty(FORM_MANAGEMENT));
+                 
+        //Build the uAAL handler
         propertiesFile = propFile; 
     	LogUtils.logDebug(moduleContext, getClass(),
     			"Constructor for " + propFile.getName(),
     			new String[]{"starting Handler"}, null);
         handler = new Handler(this);
-        
-        LogUtils.logDebug(moduleContext, getClass(), 
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"loading properties"}, null);
-        loadProperties();
-        
-        LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"Initialising ModelMapper"}, null);
-        modelMapper = new ModelMapper(this);
-        
-        LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"selecting Form Manager"}, null);
-        loadFormManager(getProperty(FORM_MANAGEMENT));
-        
+   
+        //Now everything is ready to initialize the LAF
         LogUtils.logDebug(moduleContext, getClass(), 
         		"Constructor for " + propFile.getName(),
         		new String[]{"loading LAF"}, null);
