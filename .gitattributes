@@ -217,6 +217,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormCo
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SubmitModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/TextAreaModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/package.html -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/JLabelWAVPlayer.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/RepeatTableModel.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableJComponentCellRenderer.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/package.html -text svneol=unset#text/plain
