@@ -16,7 +16,11 @@
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.Dimension;
+import java.net.URL;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -24,6 +28,7 @@ import javax.swing.JLabel;
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.JLabelWAVPlayer;
 
 /**
  * 
@@ -58,6 +63,12 @@ public class MediaObjectModel extends OutputModel {
 			} else {
 				return new JLabel(fc.getLabel().getText());
 			}
+		}
+		if (mo.getContentType().startsWith("audio")
+				&& mo.getContentType().contains("wav")){
+		    	JLabel jl = new JLabel();
+		    	jl.addComponentListener(new JLabelWAVPlayer(mo.getContentURL()));
+		    	return jl;
 		}
 		return new JLabel(fc.getLabel().getText());
 	}

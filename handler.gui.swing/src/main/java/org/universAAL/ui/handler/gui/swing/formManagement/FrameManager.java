@@ -27,13 +27,28 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
  *
  * @author amedrano
  */
-public class FrameManager {
+public class FrameManager implements Runnable{
 
     /**
+     * Switch to set the search for model and rendering the model a concurrent task.
+     */
+    private static final boolean CONCURRENT_MODELING_DISPLAY = false;
+
+	/**
      * the {@link Form} for which {@link FrameManager#frame}
      * corresponds to.
      */
     private FormModel model;
+    
+    /**
+     * The {@link Form} for which to find the {@link FormModel}. 
+     */
+    private Form form;
+    
+    /**
+     * The modelmapper used to locate models.
+     */
+    private ModelMapper mp;
 
     /**
      * Constructor.
@@ -43,18 +58,15 @@ public class FrameManager {
      * @param mp the mapper to use for locating classes
      */
     public FrameManager(final Form f, final ModelMapper mp) {
-	    Thread t = new Thread() {
-		public void run() {
-		    model = mp.getModelFor(f);
-		    if (model != null){
-			synchronized (model) {
-			    model.showForm();
-			}
-		    }
+    	form = f;
+    	this.mp = mp;
+    	if (CONCURRENT_MODELING_DISPLAY) {
+			Thread t = new Thread(this);
+			t.setPriority(Thread.MAX_PRIORITY);
+			t.start();			
+		} else {
+			run();
 		}
-	    };
-	    t.setPriority(Thread.MAX_PRIORITY);
-	    t.start();
     }
 
     /**
@@ -68,4 +80,14 @@ public class FrameManager {
     		}
     	}
     }
+
+	/** {@ inheritDoc}	 */
+	public void run() {
+	    model = mp.getModelFor(form);
+	    if (model != null){
+		synchronized (model) {
+		    model.showForm();
+		}
+	    }		
+	}
 }
