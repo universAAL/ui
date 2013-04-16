@@ -147,13 +147,17 @@ public class MainMenu {
 	void addMenuRepresentation(Group rg) {
 		if (root == null)
 			return;
-		if (selection == null || selection == root)
+		if (selection == null || selection == root) {
 			// add children of root
+			StringBuffer list = new StringBuffer();
 			for (MenuNode child : root.children()) {
 				new Submit(rg, new Label(child.getLabel(), child.getIconURL()),
 						child.getPath());
-				System.out.println("Menu child: " + child.getPath());
+				list.append("Menu child: " + child.getPath() + "\n");
 			}
+			LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+								getClass(), "addMenuRepresentation", list.toString().split("\\:") , null);
+		}
 		else {
 			// add children of an inner node
 			Group g;
