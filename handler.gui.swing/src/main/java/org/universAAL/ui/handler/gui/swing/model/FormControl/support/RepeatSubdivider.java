@@ -29,7 +29,8 @@ import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 
 /**
- * This support class is used to generate a list of virtual forms (one per row) so they can be loaded as models.
+ * This support class is used to generate a list of virtual forms (one per row) so each element of 
+ * the repeat ({@link FormControl}) can be Modeled as the rest of {@link FormControl}.
  * @author amedrano
  * 
  */
