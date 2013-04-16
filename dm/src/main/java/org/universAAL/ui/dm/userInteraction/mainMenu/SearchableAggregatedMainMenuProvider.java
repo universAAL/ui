@@ -83,9 +83,11 @@ public class SearchableAggregatedMainMenuProvider extends
 	    			new String[] {"Submission without effect."},
 	    			null);
 	    }
+	    return;
 	}
 	if (BACK_CALL.equals(submissionID)) {
 	    searchString = null;
+	    return;
 	}
 	super.handle(response);
     }
