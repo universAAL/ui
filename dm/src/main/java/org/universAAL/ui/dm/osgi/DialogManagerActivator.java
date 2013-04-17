@@ -51,6 +51,7 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
 
     /** {@inheritDoc} */
     public void stop(BundleContext arg0) throws Exception {
+    	DialogManagerImpl.stopDM();
 	LogUtils.logInfo(mContext, this.getClass(), "stop",
 		new Object[] { "DM stopped." }, null);
     }
