@@ -563,14 +563,18 @@ public class Renderer extends Thread {
 		render.start();
 	    }
 	    else {
-		render = new Renderer(context);
+		render = new Renderer(context,propFile);
 		render.start();
 	    }
 	    
 	}
 	
 	public void stop() {
-	    render.finish();
+	    try {
+			render.finish();
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	}
