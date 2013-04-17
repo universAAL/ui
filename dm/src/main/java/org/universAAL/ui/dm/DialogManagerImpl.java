@@ -322,6 +322,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     public static void stopDM() {
     	getInstance().stop();
+    	singleton = null;
     }
 
     /**

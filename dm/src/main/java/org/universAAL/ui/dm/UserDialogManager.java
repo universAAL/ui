@@ -210,10 +210,28 @@ public class UserDialogManager implements DialogManager {
 		//adapterList.add(new AdapterUIPreferences());
 
 		mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
-		((AggregatedMainMenuProvider) mainMenuProvider)
-				.add(new FileMainMenuProvider(this));
-		((AggregatedMainMenuProvider) mainMenuProvider)
-				.add(new ProfilableFileMainMenuProvider(this));
+		try {
+			((AggregatedMainMenuProvider) mainMenuProvider)
+					.add(new FileMainMenuProvider(this));
+		} catch (Exception e) {
+			LogUtils.logError(
+					DialogManagerImpl.getModuleContext(),
+					getClass(),
+					"UserDialogManager",
+					new String[] { "Cannot initialize FileMainMenuProvider!" },
+					e);
+		}
+		try {
+			((AggregatedMainMenuProvider) mainMenuProvider)
+					.add(new ProfilableFileMainMenuProvider(this));
+		} catch (Exception e) {
+			LogUtils.logError(
+					DialogManagerImpl.getModuleContext(),
+					getClass(),
+					"UserDialogManager",
+					new String[] { "Cannot initialize ProfilableMainMenuProvider!" },
+					e);
+		}
 
 		// TODO: load from UI Preferences
 		// LOAD System Menu provider according to system properties
