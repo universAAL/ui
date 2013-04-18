@@ -78,46 +78,47 @@ public class MyUIHandler extends UIHandler {
 			.getUserSessions()
 			.get(this.userDialogIDs.get(dialogID)))
 			.getCurrentUIRequest();
-		if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
-			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentUIRequest
-				.getScreenResolutionMaxX()) {
-		    // TODO: handle change of screenResolutionMaxX
-		    renderer.updateScreenResolution(((Integer) newVal)
-			    .intValue(), -1, -1, -1);
-		    currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
-			    .intValue());
-		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y
-			.equals(changedProp)
-			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentUIRequest
-				.getScreenResolutionMaxY()) {
-		    // TODO: handle change of screenResolutionMaxY
-		    renderer.updateScreenResolution(-1, ((Integer) newVal)
-			    .intValue(), -1, -1);
-		    currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
-			    .intValue());
-		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_X
-			.equals(changedProp)
-			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentUIRequest
-				.getScreenResolutionMinX()) {
-		    // TODO: handle change of screenResolutionMinX
-		    renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
-			    .intValue(), -1);
-		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
-			    .intValue());
-		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y
-			.equals(changedProp)
-			&& newVal instanceof Integer
-			&& ((Integer) newVal).intValue() != currentUIRequest
-				.getScreenResolutionMinY()) {
-		    // TODO: handle change of screenResolutionMinY
-		    renderer.updateScreenResolution(-1, -1, -1,
-			    ((Integer) newVal).intValue());
-		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
-			    .intValue());
-		}
+		//TODO remove later, commented according to latest changes in UI Bus 
+//		if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
+//			&& newVal instanceof Integer
+//			&& ((Integer) newVal).intValue() != currentUIRequest
+//				.getScreenResolutionMaxX()) {
+//		    // TODO: handle change of screenResolutionMaxX
+//		    renderer.updateScreenResolution(((Integer) newVal)
+//			    .intValue(), -1, -1, -1);
+//		    currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
+//			    .intValue());
+//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y
+//			.equals(changedProp)
+//			&& newVal instanceof Integer
+//			&& ((Integer) newVal).intValue() != currentUIRequest
+//				.getScreenResolutionMaxY()) {
+//		    // TODO: handle change of screenResolutionMaxY
+//		    renderer.updateScreenResolution(-1, ((Integer) newVal)
+//			    .intValue(), -1, -1);
+//		    currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
+//			    .intValue());
+//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_X
+//			.equals(changedProp)
+//			&& newVal instanceof Integer
+//			&& ((Integer) newVal).intValue() != currentUIRequest
+//				.getScreenResolutionMinX()) {
+//		    // TODO: handle change of screenResolutionMinX
+//		    renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
+//			    .intValue(), -1);
+//		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+//			    .intValue());
+//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y
+//			.equals(changedProp)
+//			&& newVal instanceof Integer
+//			&& ((Integer) newVal).intValue() != currentUIRequest
+//				.getScreenResolutionMinY()) {
+//		    // TODO: handle change of screenResolutionMinY
+//		    renderer.updateScreenResolution(-1, -1, -1,
+//			    ((Integer) newVal).intValue());
+//		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+//			    .intValue());
+//		}
 	    }
 	}
     }
