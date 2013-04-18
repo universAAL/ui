@@ -79,18 +79,18 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     /**
      * The {@link ModuleContext} reference.
      */
-    private static ModuleContext moduleContext;
+    private ModuleContext moduleContext;
 
 
     /**
      * The uAAL Service Caller. To call main menu services.
      */
-    private static ServiceCaller serviceCaller;
+    private ServiceCaller serviceCaller;
     
     /**
      * The uAAL Service Callee. To offer services like profilable main menu.
      */
-    private static ServiceCallee serviceCallee;
+    private ServiceCallee serviceCallee;
     
     
     /*
@@ -233,7 +233,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     /** {@inheritDoc} */
     @Override
     public void communicationChannelBroken() {
-	LogUtils.logError(DialogManagerImpl.moduleContext, getClass(),
+	LogUtils.logError(moduleContext, getClass(),
 		"CommunicationChannelBroken",
 		new String[] { "UIBus Is falling apart! Take cover!" }, null);
     }
@@ -297,6 +297,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 			serviceCallee.close();
 		if (serviceCaller != null)
 			serviceCaller.close();
+		moduleContext = null;
 		//XXX: notiffy UserDialogManager s about impending shutdown?
 	}
 
@@ -355,7 +356,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * @return the service caller created during the bundle start.
      */
     public static ServiceCaller getServiceCaller() {
-	return serviceCaller;
+	return getInstance().serviceCaller;
     }
 
     /**
@@ -364,7 +365,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * @return The module context reference.
      */
     public static ModuleContext getModuleContext() {
-	return moduleContext;
+	return getInstance().moduleContext;
     }
     
     /**
