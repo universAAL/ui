@@ -168,7 +168,8 @@ public class Renderer extends Thread {
      * @param propFile {@link File} to use as property file for this {@link Renderer}.
      */
     public Renderer(ModuleContext mc, File propFile){
-	moduleContext = mc;
+    	moduleContext = mc;
+    	propertiesFile = propFile; 
         
 		//Load Properties
         LogUtils.logDebug(moduleContext, getClass(), 
@@ -189,7 +190,6 @@ public class Renderer extends Thread {
         loadFormManager(getProperty(FORM_MANAGEMENT));
                  
         //Build the uAAL handler
-        propertiesFile = propFile; 
     	LogUtils.logDebug(moduleContext, getClass(),
     			"Constructor for " + propFile.getName(),
     			new String[]{"starting Handler"}, null);
@@ -237,22 +237,24 @@ public class Renderer extends Thread {
         /*
          * Try to load from file, if not create file from defaults.
          */
-        	FileInputStream fis = null;
-			try {
-				fis = new FileInputStream(propertiesFile);
-				properties.load(fis);
-				fis.close();
-			} catch (FileNotFoundException e) {
-				storeProperties();
-			} catch (Exception e) {
-				LogUtils.logError(moduleContext, getClass(),
-					"loadProperties",
-					new String[]{"Error during property load."}, e);
-			} finally {
-				try {
-					fis.close();
-				} catch (Exception e2) {}
-			}
+        FileInputStream fis = null;
+        if (propertiesFile != null) {
+        	try {
+        		fis = new FileInputStream(propertiesFile);
+        		properties.load(fis);
+        		fis.close();
+        	} catch (FileNotFoundException e) {
+        		storeProperties();
+        	} catch (Exception e) {
+        		LogUtils.logError(moduleContext, getClass(),
+        				"loadProperties",
+        				new String[]{"Error during property load."}, e);
+        	} finally {
+        		try {
+        			fis.close();
+        		} catch (Exception e2) {}
+        	}
+        }
     }
 
     /**
