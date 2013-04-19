@@ -254,6 +254,7 @@ public class FormLAF extends FormModel {
 
 	    frame.fadeIn();
 	    desktopPane.revalidate();
+	    desktopPane.repaint();
 	}
     }
 
@@ -281,6 +282,7 @@ public class FormLAF extends FormModel {
 		frame.removeAll();
 		// frame.dispose();
 		desktopPane.remove(frame);
+		desktopPane.removeAll();
 	    }
 	    desktopPane.revalidate();
 	    desktopPane.repaint();

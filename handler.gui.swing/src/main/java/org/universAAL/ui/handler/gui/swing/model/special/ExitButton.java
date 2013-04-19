@@ -17,6 +17,9 @@ package org.universAAL.ui.handler.gui.swing.model.special;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.SwingUtilities;
+
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
@@ -42,7 +45,11 @@ public class ExitButton extends SubmitModel implements SpecialButtonInterface {
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		render.logOffCurrentUser();
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				render.logOffCurrentUser();
+			}
+		});
 	}
 
 	public boolean isSpecial() {

@@ -28,6 +28,7 @@ import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
@@ -163,10 +164,14 @@ public class RepeatModelGrid extends RepeatModel {
 
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			if (((Repeat)fc).addValue()){
-				// re draw the whole Panel.
-				reDrawPanel();
-			}
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					if (((Repeat)fc).addValue()){
+						// re draw the whole Panel.
+						reDrawPanel();
+					}
+				}
+			});
 		}
 	}
 
@@ -211,8 +216,14 @@ public class RepeatModelGrid extends RepeatModel {
 		
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			//redraw Panel.
-			reDrawPanel();
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					if (((Repeat)fc).addValue()){
+						// re draw the whole Panel.
+						reDrawPanel();
+					}
+				}
+			});
 		}
 	}
 	

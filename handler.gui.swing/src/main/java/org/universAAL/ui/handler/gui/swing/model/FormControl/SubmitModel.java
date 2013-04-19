@@ -89,18 +89,28 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-        Input missing = ((Submit) fc).getMissingInputControl();
-        if (isValid((JComponent) e.getSource()) && missing == null) {
-            getRenderer().getHandler().submit((Submit) fc);
-            getRenderer().getFormManagement().closeCurrentDialog();
-        }
-        //else {
-            /*
-             *  TODO Check rest of model(each class)!
-             *  advice the user about data not being valid
-             */
-        //}
-
+    	new Thread(new SubmitTask(), "SubmitTask:" + fc.getLabel().getText()).start();
     }
 
+    class SubmitTask implements Runnable {
+
+		/** {@ inheritDoc}	 */
+		public void run() {
+
+	        Input missing = ((Submit) fc).getMissingInputControl();
+	        if (isValid((JComponent) jc) && missing == null) {
+	            getRenderer().getFormManagement().closeCurrentDialog();
+	            getRenderer().getHandler().submit((Submit) fc);
+	        }
+	        //else {
+	            /*
+	             *  TODO Check rest of model(each class)!
+	             *  advice the user about data not being valid
+	             */
+	        //}
+			
+		}
+    	
+    }
+    
 }
