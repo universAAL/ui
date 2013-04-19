@@ -64,11 +64,18 @@ public class UCCButton implements SpecialButtonInterface {
 
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
-		try {
-			UCCButton.openuCCGUI();
-		} catch (Exception e1) {
-			LogUtils.logError(render.getModuleContext(), getClass(),
-					"Pressed uCC Button", new String[]{"Could Not open uCC GUI"}, e1);
+		new Thread(new Task()).start();
+	}
+	
+	class Task implements Runnable {
+		
+		public void run(){
+			try {
+				UCCButton.openuCCGUI();
+			} catch (Exception e1) {
+				LogUtils.logError(render.getModuleContext(), getClass(),
+						"Pressed uCC Button", new String[]{"Could Not open uCC GUI"}, e1);
+			}			
 		}
 	}
 
