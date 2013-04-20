@@ -341,7 +341,7 @@ public class Renderer extends Thread {
      *         String Value of the property
      * @see Renderer#properties
      */
-    public synchronized final String getProperty(String string) {
+    public final String getProperty(String string) {
         try {
             return (String) properties.get(string);
         } catch (Exception e) {
@@ -359,7 +359,7 @@ public class Renderer extends Thread {
      *         String Value of the property.
      * @see Renderer#properties
      */
-    public synchronized final String getProperty(String value, String defaultVal) {
+    public final String getProperty(String value, String defaultVal) {
         try {
         	if (properties.contains(value)) {
         		return (String) properties.get(value);
@@ -377,7 +377,7 @@ public class Renderer extends Thread {
      * Gets the form being displayed right now.
      * @return the current {@link Form} being processed.
      */
-    public synchronized final Form getCurrentForm() {
+    public final Form getCurrentForm() {
         return fm.getCurrentDialog().getDialogForm();
     }
 
@@ -420,7 +420,7 @@ public class Renderer extends Thread {
      * @see AccessImpairment
      * @see UIRequest
      */
-    public synchronized final boolean hasImpairment(AccessImpairment impariment) {
+    public final boolean hasImpairment(AccessImpairment impariment) {
         AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
         int i = 0;
         while (i < imp.length && imp[i] != impariment) { i++; }
@@ -432,7 +432,7 @@ public class Renderer extends Thread {
      * @return
      *         the two-letter representation of the language-
      */
-    public synchronized final String getLanguage() {
+    public final String getLanguage() {
         return fm.getCurrentDialog().getDialogLanguage().getDisplayVariant();
     }
 
@@ -441,7 +441,7 @@ public class Renderer extends Thread {
      * @return
      *         location of the handler's display
      */
-    public synchronized final AbsLocation whereAmI() {
+    public final AbsLocation whereAmI() {
         /*
          *  Read Location from properties
          *  XXX other location process?
@@ -450,8 +450,8 @@ public class Renderer extends Thread {
     }
 
     /**
-	 * get the {@link FormManager} being used
-	 * useful to access the current output event
+	 * Get the {@link FormManager} being used,
+	 * useful to access the current UIResquest
 	 * and current form.
 	 * @return {@link Renderer#fm}
 	 */
@@ -493,7 +493,7 @@ public class Renderer extends Thread {
      * @return true only if the user is properly authenticated,
      * 	false otherwise.
      */
-    public synchronized final boolean authenticate(final String user, final String password){
+    public final boolean authenticate(final String user, final String password){
 	// TODO: implement user authentication mechanism
 	new Thread(){
 
@@ -529,7 +529,7 @@ public class Renderer extends Thread {
 	    return homeDir;
 	}
 
-	public synchronized static void logDebug(Class claz, String text, Throwable e) {
+	public static void logDebug(Class claz, String text, Throwable e) {
 		if (RenderStarter.staticContext != null) {
 			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
 		}

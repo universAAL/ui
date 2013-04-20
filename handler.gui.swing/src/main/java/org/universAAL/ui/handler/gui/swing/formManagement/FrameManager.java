@@ -32,7 +32,7 @@ public class FrameManager implements Runnable{
     /**
      * Switch to set the search for model and rendering the model a concurrent task.
      */
-    private static final boolean CONCURRENT_MODELING_DISPLAY = false;
+    private static final boolean CONCURRENT_MODELING_DISPLAY = true;
 
 	/**
      * the {@link Form} for which {@link FrameManager#frame}

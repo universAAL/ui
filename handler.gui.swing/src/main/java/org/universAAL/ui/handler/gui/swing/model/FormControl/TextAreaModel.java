@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-/**
- *
- */
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -77,10 +76,15 @@ implements CaretListener {
     /**
      * {@inheritDoc}
      */
-    public void caretUpdate(CaretEvent e) {
-        // update Model if valid
-        if (isValid((JComponent) e.getSource())) {
-            ((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
-        }
+    public void caretUpdate(final CaretEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+			public void run() {
+				// update Model if valid
+				if (isValid((JComponent) e.getSource())) {
+					((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
+				}
+			}
+		});
+        
     }
 }

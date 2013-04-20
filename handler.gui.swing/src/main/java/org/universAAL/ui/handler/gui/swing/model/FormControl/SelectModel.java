@@ -23,6 +23,7 @@ import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JTree;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeModelListener;
@@ -36,6 +37,7 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  *
@@ -140,16 +142,21 @@ public class SelectModel extends InputModel implements ListSelectionListener {
     /**
      * {@inheritDoc}
      */
-    public void valueChanged(ListSelectionEvent e) {
-        if (!((Select) fc).isMultilevel()) {
-        	int[] indexes = ((JList) e.getSource()).getSelectedIndices();
-        	Label[] items = ((Select) fc).getChoices();
-        	selected.clear();
-        	for (int i = 0; i < indexes.length; i++) {
-				selected.add(items[indexes[i]]);
+    public void valueChanged(final ListSelectionEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+			public void run() {
+				if (!((Select) fc).isMultilevel()) {
+					int[] indexes = ((JList) e.getSource()).getSelectedIndices();
+					Label[] items = ((Select) fc).getChoices();
+					selected.clear();
+					for (int i = 0; i < indexes.length; i++) {
+						selected.add(items[indexes[i]]);
+					}
+					((Select) fc).storeUserInput(selected);
+				}
 			}
-            ((Select) fc).storeUserInput(selected);
-        }
+		});
+        
     }
 
     /**

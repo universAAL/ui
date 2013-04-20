@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTree;
+import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeSelectionModel;
 
 import org.universAAL.middleware.ui.rdf.ChoiceItem;
@@ -29,6 +30,7 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  *
@@ -97,12 +99,17 @@ implements  ActionListener {
     /**
      * {@inheritDoc}
      */
-    public void actionPerformed(ActionEvent e) {
-        if (!((Select) fc).isMultilevel()) {
-            int i = ((JComboBox) e.getSource()).getSelectedIndex();
-            ((Select1) fc).storeUserInput(
-                    ((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
-        }
+    public void actionPerformed(final ActionEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+			public void run() {
+				if (!((Select) fc).isMultilevel()) {
+					int i = ((JComboBox) e.getSource()).getSelectedIndex();
+					((Select1) fc).storeUserInput(
+							((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
+				}
+			}
+		});
+        
     }
 
     /**

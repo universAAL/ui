@@ -28,12 +28,14 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJComponentCellRenderer;
 
@@ -178,7 +180,12 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			repeatTableModel.addValue();
+			TaskQueue.addTask(new Runnable() {
+				public void run() {
+					repeatTableModel.addValue();
+				}
+			});
+			
 		}
 	}
 
@@ -223,7 +230,12 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			repeatTableModel.removeValue();
+			TaskQueue.addTask(new Runnable() {
+				public void run() {
+					repeatTableModel.removeValue();
+				}
+			});
+			
 		}
 	}
 	
@@ -268,13 +280,18 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			Repeat r = (Repeat) fc;
-			int indx = r.getSelectionIndex() - 1;
-			if (indx < 0) {
-				indx = 0;
-			}
-			repeatTableModel.setSelection(indx);
-			tableComponent.setRowSelectionInterval(indx, indx);
+			TaskQueue.addTask(new Runnable() {
+				public void run() {
+					Repeat r = (Repeat) fc;
+					int indx = r.getSelectionIndex() - 1;
+					if (indx < 0) {
+						indx = 0;
+					}
+					repeatTableModel.setSelection(indx);
+					tableComponent.setRowSelectionInterval(indx, indx);
+				}
+			});
+			
 		}
 	}
 	
@@ -319,43 +336,53 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 		
 		/** {@inheritDoc}*/
 		public void actionPerformed(ActionEvent e) {
-			Repeat r = (Repeat) fc;
-			int indx = r.getSelectionIndex() + 1;
-			if (indx >= repeatTableModel.getRowCount()) {
-				indx = repeatTableModel.getRowCount() - 1;
-			}
-			repeatTableModel.setSelection(indx);
-			tableComponent.setRowSelectionInterval(indx, indx);
+			TaskQueue.addTask(new Runnable() {
+				public void run() {
+					Repeat r = (Repeat) fc;
+					int indx = r.getSelectionIndex() + 1;
+					if (indx >= repeatTableModel.getRowCount()) {
+						indx = repeatTableModel.getRowCount() - 1;
+					}
+					repeatTableModel.setSelection(indx);
+					tableComponent.setRowSelectionInterval(indx, indx);
+				}
+			});
+			
 		}
 	}
 
-	public void valueChanged(ListSelectionEvent e) {
-		ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-		if (lsm.isSelectionEmpty()) {
-			for (int i = 0; i < selectionComps.length; i++) {
-				if (selectionComps[i] instanceof JTextField)
-					((JTextField) selectionComps[i]).setText("");
-				else if (selectionComps[i] instanceof JCheckBox)
-					((JCheckBox) selectionComps[i]).setSelected(false);
-				else if (selectionComps[i] instanceof JLabel)
-					((JLabel) selectionComps[i]).setText("No selection");
+	public void valueChanged(final ListSelectionEvent e) {
+		TaskQueue.addTask(new Runnable() {
+			public void run() {
+				ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+				if (lsm.isSelectionEmpty()) {
+					for (int i = 0; i < selectionComps.length; i++) {
+						if (selectionComps[i] instanceof JTextField)
+							((JTextField) selectionComps[i]).setText("");
+						else if (selectionComps[i] instanceof JCheckBox)
+							((JCheckBox) selectionComps[i]).setSelected(false);
+						else if (selectionComps[i] instanceof JLabel)
+							((JLabel) selectionComps[i]).setText("No selection");
+					}
+					repeatTableModel.setSelection(-1);
+				} else {
+					repeatTableModel.setSelection(lsm.getMinSelectionIndex());
+					for (int i = 0; i < selectionComps.length; i++) {
+						Object val = repeatTableModel.getSelectionColumnValue(i);
+						if (selectionComps[i] instanceof JTextField)
+							((JTextField) selectionComps[i]).setText((val == null) ? ""
+									: val.toString());
+						else if (selectionComps[i] instanceof JCheckBox)
+							((JCheckBox) selectionComps[i]).setSelected(Boolean.TRUE
+									.equals(val));
+						else if (selectionComps[i] instanceof JLabel)
+							((JLabel) selectionComps[i]).setText((val == null) ? ""
+									: val.toString());
+					}
+				}
 			}
-			repeatTableModel.setSelection(-1);
-		} else {
-			repeatTableModel.setSelection(lsm.getMinSelectionIndex());
-			for (int i = 0; i < selectionComps.length; i++) {
-				Object val = repeatTableModel.getSelectionColumnValue(i);
-				if (selectionComps[i] instanceof JTextField)
-					((JTextField) selectionComps[i]).setText((val == null) ? ""
-							: val.toString());
-				else if (selectionComps[i] instanceof JCheckBox)
-					((JCheckBox) selectionComps[i]).setSelected(Boolean.TRUE
-							.equals(val));
-				else if (selectionComps[i] instanceof JLabel)
-					((JLabel) selectionComps[i]).setText((val == null) ? ""
-							: val.toString());
-			}
-		}
+		});
+		
 	}
 	
 }
