@@ -23,11 +23,13 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.universAAL.middleware.ui.rdf.Range;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -112,16 +114,20 @@ implements ChangeListener {
      * When a range is change, the input will be stored
      * {@inheritDoc}
      */
-    public void stateChanged(ChangeEvent e) {
-        int value;
-        // Check UserInput Type is Integer!
-        if (e.getSource() instanceof JSpinner) {
-            value = ((Integer) ((JSpinner) e.getSource()).getValue()).intValue();
-        }
-        else {
-            value = ((JSlider) e.getSource()).getValue();
-        }
-        ((Range) fc).storeUserInput(new Integer(value));
+    public void stateChanged(final ChangeEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+    		public void run() {
+    			int value;
+    			// Check UserInput Type is Integer!
+    			if (e.getSource() instanceof JSpinner) {
+    				value = ((Integer) ((JSpinner) e.getSource()).getValue()).intValue();
+    			}
+    			else {
+    				value = ((JSlider) e.getSource()).getValue();
+    			}
+    			((Range) fc).storeUserInput(new Integer(value));
+    		}
+    	});
     }
 
 }

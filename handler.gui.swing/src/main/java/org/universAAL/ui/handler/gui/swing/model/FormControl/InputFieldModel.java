@@ -27,6 +27,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.ChangeEvent;
@@ -37,6 +38,7 @@ import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  * ImputField Model, it condenses the view and controller parts of the MVC
@@ -187,14 +189,18 @@ public class InputFieldModel extends InputModel implements ChangeListener,
      * @param e
      *            the {@link ChangeEvent} to listen to.
      */
-    public void stateChanged(ChangeEvent e) {
-	/*
-	 * Update Model if valid
-	 */
-	if (isValid((JComponent) e.getSource())) {
-	    ((Input) fc).storeUserInput(Boolean.valueOf((((JCheckBox) e
-		    .getSource()).isSelected())));
-	}
+    public void stateChanged(final ChangeEvent e) {
+		TaskQueue.addTask(new Runnable() {
+			public void run() {
+				/*
+				 * Update Model if valid
+				 */
+				if (isValid((JComponent) e.getSource())) {
+					((Input) fc).storeUserInput(Boolean.valueOf((((JCheckBox) e
+							.getSource()).isSelected())));
+				}				
+			}
+		});
     }
 
     /**
@@ -204,36 +210,43 @@ public class InputFieldModel extends InputModel implements ChangeListener,
      * @param e
      *            the {@link CaretEvent} to listen to.
      */
-    public void caretUpdate(CaretEvent e) {
-	/*
-	 * Update Model if valid
-	 */
-	JTextField tf = (JTextField) e.getSource();
-	InputField inFi = (InputField) fc;
-	if (isValid(tf)) {
-	    try {
-		if (!inFi.isSecret()) {
-		    inFi.storeUserInput(tf.getText());
-		} else {
-		    inFi.storeUserInput(((JPasswordField) tf).getPassword());
-		}
-	    } catch (NullPointerException e1) {
-		inFi.storeUserInput("");
-	    }
-	}
+    public void caretUpdate(final CaretEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+			public void run() {
+				/*
+				 * Update Model if valid
+				 */
+				JTextField tf = (JTextField) e.getSource();
+				InputField inFi = (InputField) fc;
+				if (isValid(tf)) {
+					try {
+						if (!inFi.isSecret()) {
+							inFi.storeUserInput(tf.getText());
+						} else {
+							inFi.storeUserInput(((JPasswordField) tf).getPassword());
+						}
+					} catch (NullPointerException e1) {
+						inFi.storeUserInput("");
+					}
+				}
+			}
+		});
     }
 
     /**
      * Input will be stored each time the user changes the status of
      * an Input
      */
-    public void actionPerformed(ActionEvent e) {
-	if (e.getSource() instanceof JComboBox) {
-	    JComboBox cb = (JComboBox) e.getSource();
-	    InputField inFi = (InputField) fc;
-	    inFi.storeUserInput(cb.getSelectedItem());
-	}
-
+    public void actionPerformed(final ActionEvent e) {
+    	TaskQueue.addTask(new Runnable() {
+			public void run() {
+				if (e.getSource() instanceof JComboBox) {
+					JComboBox cb = (JComboBox) e.getSource();
+					InputField inFi = (InputField) fc;
+					inFi.storeUserInput(cb.getSelectedItem());
+				}
+			}
+		});
     }
 
 }

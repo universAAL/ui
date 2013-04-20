@@ -23,6 +23,7 @@ import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  * @author amedrano
@@ -45,7 +46,7 @@ public class ExitButton extends SubmitModel implements SpecialButtonInterface {
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
-		SwingUtilities.invokeLater(new Runnable() {
+		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				render.logOffCurrentUser();
 			}

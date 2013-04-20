@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdivider;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
  * An alternative to drawing Repeats, Specially indicated for editable repeats, since forms whould be modeled and rendered with in a 
@@ -79,6 +80,7 @@ public class RepeatModelGrid extends RepeatModel {
 	}
 	
 	private void reDrawPanel(){
+		grid.removeAll();
 		Repeat r = (Repeat)fc;
 		subDivider = new RepeatSubdivider(r);
 		elems = subDivider.getElems();
@@ -244,9 +246,13 @@ public class RepeatModelGrid extends RepeatModel {
 
 		/** {@ inheritDoc}	 */
 		public void focusGained(FocusEvent e) {
-			// change the repeat's lselected row to the row of this component.
-			Repeat r = (Repeat) fc;
-			r.setSelection(row);
+			TaskQueue.addTask(new Runnable() {
+				public void run() {
+					// change the repeat's lselected row to the row of this component.
+					Repeat r = (Repeat) fc;
+					r.setSelection(row);
+				}
+			});
 		}
 
 		/** {@ inheritDoc}	 */

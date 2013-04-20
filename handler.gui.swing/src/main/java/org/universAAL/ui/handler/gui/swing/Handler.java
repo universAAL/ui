@@ -110,7 +110,7 @@ public final class Handler extends UIHandler {
      * It will also extract important information, so the handler can adapt to
      * the user's circumstances.
      */
-    public synchronized void handleUICall(UIRequest req) {
+    public void handleUICall(UIRequest req) {
         render.getFormManagement().addDialog(req);
     }
 
@@ -185,7 +185,7 @@ public final class Handler extends UIHandler {
 
     
     /**
-     * States the pattern of interesting output events, for the handler.
+     * States the pattern of interesting UIRequests, for the handler.
      *
      * used to create the pattern needed for {@link Handler}.
      *
