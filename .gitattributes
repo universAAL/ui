@@ -22,6 +22,13 @@ dm/src/main/java/org/universAAL/ui/dm/interfaces/SubmitGroupListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/SystemMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/UIRequestPool.java -text
 dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBuffer.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/Messages.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesFormBuilder.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUIProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
@@ -38,6 +45,7 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/PendingM
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java -text svneol=unset#text/plain
+dm/src/main/resources/org/universAAL/ui/dm/ui/preferences/editor/messages.properties -text
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/ProfMainMenuTest.java -text svneol=unset#text/plain
