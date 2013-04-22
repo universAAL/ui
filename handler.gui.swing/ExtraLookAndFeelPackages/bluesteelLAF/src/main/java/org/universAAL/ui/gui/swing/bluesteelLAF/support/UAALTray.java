@@ -25,6 +25,8 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.SwingUtilities;
+
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -44,7 +46,7 @@ public class UAALTray {
 	if (SystemTray.isSupported()) {
 		//TODO Change icon
 	    Image image = Toolkit.getDefaultToolkit()
-	    		.getImage(getClass().getResource("/images/lens.png"));
+	    		.getImage(getClass().getResource("/images/uaal64x32.png"));
 	    trayIcon = new TrayIcon(image, "Tray Demo", getMenu());
 	    trayIcon.setImageAutoSize(true);
 
@@ -65,7 +67,12 @@ public class UAALTray {
 		logOnItem.addActionListener(new ActionListener() {
 		    
 		    public void actionPerformed(ActionEvent e) {
-			render.getInitLAF().showLoginScreen();
+		    	new Thread(new Runnable() {
+					
+					public void run() {
+						render.getInitLAF().showLoginScreen();
+					}
+				}).start();
 		    }
 		});
 		popup.add(logOnItem);
@@ -75,7 +82,12 @@ public class UAALTray {
 		logOffItem.addActionListener(new ActionListener() {
 		    
 		    public void actionPerformed(ActionEvent e) {
-			render.logOffCurrentUser();			
+		    	new Thread(new Runnable() {
+					
+					public void run() {
+						render.logOffCurrentUser();		
+					}
+				}).start();	
 		    }
 		});
 		popup.add(logOffItem);
@@ -84,6 +96,7 @@ public class UAALTray {
 	    exitItem.addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
+	        	//FIXME find a civilised way to shutdown!
 	    		System.exit(0);	    	
 	        }
 	    });
