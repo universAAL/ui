@@ -40,15 +40,22 @@ public class UStoreButton implements SpecialButtonInterface {
 
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
-		// open webbrowser uStore url
-		 try {
-	         //Set your page url in this string. For eg, I m using URL for Google Search engine
-	         String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
-	         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-	       }
-	       catch (java.io.IOException ex) {
-	           System.out.println(ex.getMessage());
-	       }
+		new Thread(new Task()).start();
+	}
+	
+	class Task implements Runnable{
+
+		public void run(){
+			// open webbrowser uStore url
+			try {
+				//Set your page url in this string. For eg, I m using URL for Google Search engine
+				String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
+				java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+			}
+			catch (java.io.IOException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
 	}
 
 	public boolean isSpecial() {
