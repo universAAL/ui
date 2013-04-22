@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
@@ -39,7 +40,7 @@ public class SimpleOutputModel extends OutputModel {
      * threshold for selecting between a {@link JTextArea} and
      * a {@link JTextField}
      */
-    protected static final int TOO_LONG = 20;
+    protected static final int TOO_LONG = 50;
 
     /**
      * Constructor.
@@ -57,6 +58,8 @@ public class SimpleOutputModel extends OutputModel {
      * <ul>
      * <li>a {@link JCheckBox} if the {@link SimpleOutput#getContent()} is a boolean
      * type
+     * <li>a {@link JLabel} if the {@link SimpleOutput#getContent()} is a String,
+     * it is not {@link SimpleOutputModel#TOO_LONG}, and it has no label.
      * <li>a {@link JTextField} if the {@link SimpleOutput#getContent()} is a String
      * and it is not {@link SimpleOutputModel#TOO_LONG}
      * <li>a {@link JTextArea} if the {@link SimpleOutput#getContent()} is
@@ -108,6 +111,11 @@ public class SimpleOutputModel extends OutputModel {
             if (((String) content).length() >= TOO_LONG) {
                 return new JTextArea();
             }
+            else if (fc.getLabel() == null 
+            		|| fc.getLabel().getText() == null
+            		|| fc.getLabel().getText().isEmpty()) {
+            	return new JLabel();
+            }
             else {
                 return new JTextField();
             }
@@ -147,6 +155,9 @@ public class SimpleOutputModel extends OutputModel {
     		ta.setText((String) content);
     		ta.setEditable(false);
         }
+    	if (jc instanceof JLabel) {
+    		((JLabel) jc).setText((String) content);
+    	}
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(Boolean.class))) {
         if (jc instanceof JCheckBox
         		&& content instanceof Boolean) {
