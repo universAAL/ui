@@ -20,6 +20,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.text.JTextComponent;
@@ -65,7 +66,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
     	super.update();
         Object content = ((SimpleOutput) fc).getContent();
         if (content instanceof String) {
-            if (((String) content).length() >= TOO_LONG) {
+            if (jc instanceof JTextArea) {
                 JTextArea ta = (JTextArea) jc;
                 ta.getAccessibleContext().setAccessibleName(ta.getName());
                 ta.setRows(5);
@@ -79,16 +80,21 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 sp = new JScrollPane(jc);
                 sp.getAccessibleContext();
             }
-            else {
+            else if (jc instanceof JTextComponent) {
                 JTextComponent tf = (JTextComponent) jc;
                 tf.getAccessibleContext().setAccessibleName(tf.getText());
                 tf.setFont(ColorLAF.getplain());
-                tf.setPreferredSize(new Dimension(150, 30));
+                //tf.setPreferredSize(new Dimension(150, 30));
                 tf.setForeground(ColorLAF.getBackMM());
                 sp = null;
             }
+            else if (jc instanceof JLabel) {
+            	JLabel jl = (JLabel) jc;
+            	jl.getAccessibleContext().setAccessibleName(jl.getText());
+                jl.setFont(ColorLAF.getplain());
+            }
         }
-        if (content instanceof Boolean) {
+        if (jc instanceof JCheckBox) {
             JCheckBox cb = (JCheckBox) jc;
             cb.getAccessibleContext().setAccessibleName(cb.getName());
             sp = null;
