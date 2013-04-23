@@ -147,7 +147,8 @@ public class FormLAF extends FormModel {
 	// header.add(logo);
 	// header.add(nuevo);
 	JLabel route = new JLabel();
-	route.setFont(new Font("Arial", Font.PLAIN, 30));
+	route.setFont(new Font("Arial", Font.PLAIN, 30)); 
+	// TODO Put this FONT in ColourLAF
 	String[] path = getTitlePath();
 	StringBuffer r = new StringBuffer(path[0]);
 	for (int i = 1; i < path.length; i++) {
