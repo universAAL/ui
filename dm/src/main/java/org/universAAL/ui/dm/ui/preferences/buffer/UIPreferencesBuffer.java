@@ -27,9 +27,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
-import org.universAAL.ontology.profile.SubProfile;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.ui.preferences.AccessMode;
 import org.universAAL.ontology.ui.preferences.AlertPreferences;
 import org.universAAL.ontology.ui.preferences.AlertType;
@@ -65,7 +63,10 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * 
  */
 public class UIPreferencesBuffer {
-    ModuleContext mcontext;
+    /**
+     * {@link ModuleContext}
+     */
+    private static ModuleContext mcontext;
     public UIPreferencesSubprofileHelper uiPreferencesSubprofileHelper = null;
     private Map<User, UIPreferencesSubProfile> userCurrentUIPreferencesSubProfileMap = null;
 
@@ -85,7 +86,7 @@ public class UIPreferencesBuffer {
     private Set<User> currentlyLoggedInUsers = null;
 
     public UIPreferencesBuffer(ModuleContext mcontext) {
-	this.mcontext = mcontext;
+	UIPreferencesBuffer.mcontext = mcontext;
 
 	// Hashtable is synchonized, Hashmap not. Hashtable object cannot accept
 	// null (for K or V). If it previously contained a mapping for the
