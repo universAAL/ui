@@ -22,13 +22,13 @@ import org.universAAL.middleware.ui.rdf.Group;
 
 /**
  * Provides the main menu for a certain user. And Manages the response form each
- * submit (as subtype of {@link SubmitGroupListener}).
+ * submit (as subtype of {@link ISubmitGroupListener}).
  * 
  * @author amedrano
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public interface MainMenuProvider extends SubmitGroupListener {
+public interface IMainMenuProvider extends ISubmitGroupListener {
 
     /**
      * Generate the IO {@link Group} that contains the main menu for the user.

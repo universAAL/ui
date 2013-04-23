@@ -45,11 +45,11 @@ import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 //import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
-import org.universAAL.ui.dm.interfaces.Adapter;
-import org.universAAL.ui.dm.interfaces.MainMenuProvider;
-import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
-import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.IAdapter;
+import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
+import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
+import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
@@ -108,32 +108,32 @@ public class UserDialogManager implements DialogManager {
 	private Resource user;
 
 	/**
-	 * {@link Adapter} {@link List} to make adaptations to all {@link UIRequest}
+	 * {@link IAdapter} {@link List} to make adaptations to all {@link UIRequest}
 	 * for this {@link User}.
 	 */
-	private List<Adapter> adapterList;
+	private List<IAdapter> adapterList;
 
 	/**
-	 * Main Menu Provider to render the main manu for the {@link User}.
+	 * Main Menu Provider to render the main menu for the {@link User}.
 	 */
-	private MainMenuProvider mainMenuProvider;
+	private IMainMenuProvider mainMenuProvider;
 
 	/**
 	 * System Group Provider for generating system menus.
 	 */
-	private SystemMenuProvider systemMenuProvider;
+	private ISystemMenuProvider systemMenuProvider;
 
 	/**
 	 * Message Pool, suspended Messages are read messages and saved. Active
 	 * messages are messages not read yet.
 	 */
-	private UIRequestPool messagePool;
+	private IUIRequestPool messagePool;
 
 	/**
 	 * Dialog pool, to manage active and suspendend Dialogs (ie: non-message
 	 * requests).
 	 */
-	private UIRequestPool dialogPool;
+	private IUIRequestPool dialogPool;
 
 	/**
 	 * the current dialog
@@ -141,9 +141,9 @@ public class UserDialogManager implements DialogManager {
 	private UIRequest current;
 
 	/**
-	 * Map submitIDs to {@link SubmitGroupListener} that will handle this call.
+	 * Map submitIDs to {@link ISubmitGroupListener} that will handle this call.
 	 */
-	private Map<String, SubmitGroupListener> listeners;
+	private Map<String, ISubmitGroupListener> listeners;
 
 	/**
 	 * Keep track of where the user is.
@@ -201,7 +201,7 @@ public class UserDialogManager implements DialogManager {
 					e);
 		}
 		// TODO Initialize fields according to user preferences
-		adapterList = new ArrayList<Adapter>();
+		adapterList = new ArrayList<IAdapter>();
 
 		// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui
 		adapterList.add(new AdaptorKrakow());
@@ -258,7 +258,7 @@ public class UserDialogManager implements DialogManager {
 		dialogPool = new NonRedundantDialogPriorityQueue();
 		// dialogPool = new DialogPriorityQueue();
 		// dialogPool = new DialogPriorityQueueVerbosity();
-		listeners = new TreeMap<String, SubmitGroupListener>();
+		listeners = new TreeMap<String, ISubmitGroupListener>();
 		messageListener = new MessageListener(messagePool);
 		myUIRequests = new TreeSet<String>();
 	}
@@ -276,14 +276,14 @@ public class UserDialogManager implements DialogManager {
 	/**
 	 * @return the messagePool.
 	 */
-	public final UIRequestPool getMessagePool() {
+	public final IUIRequestPool getMessagePool() {
 		return messagePool;
 	}
 
 	/**
 	 * @return the dialogPool
 	 */
-	public final UIRequestPool getDialogPool() {
+	public final IUIRequestPool getDialogPool() {
 		return dialogPool;
 	}
 
@@ -362,14 +362,14 @@ public class UserDialogManager implements DialogManager {
 	 *            the {@link UIRequest} to be adapted.
 	 */
 	private void makeAdaptations(UIRequest request) {
-		for (Adapter adap : adapterList) {
+		for (IAdapter adap : adapterList) {
 			adap.adapt(request);
 		}
 	}
 
 	/**
 	 * Adds the system menu to a {@link UIRequest} by calling a
-	 * {@link SystemMenuProvider} and adds it to the listener list.
+	 * {@link ISystemMenuProvider} and adds it to the listener list.
 	 * 
 	 * @param request
 	 *            the {@link UIRequest} to add the system Menu.
@@ -541,7 +541,7 @@ public class UserDialogManager implements DialogManager {
 
 	/**
 	 * Handle the response. If the reponse conrresponds to one of the registered
-	 * {@link SubmitGroupListener}s then delegate method, and remove all its IDs
+	 * {@link ISubmitGroupListener}s then delegate method, and remove all its IDs
 	 * from map.
 	 * 
 	 * @param response
@@ -565,7 +565,7 @@ public class UserDialogManager implements DialogManager {
 			req.setCollectedInput(response.getSubmittedData());
 		}
 		if (listeners.containsKey(submissionID)) {
-			SubmitGroupListener sgl = listeners.get(submissionID);
+			ISubmitGroupListener sgl = listeners.get(submissionID);
 			listeners.clear();
 			sgl.handle(response);
 		} else {
@@ -587,13 +587,13 @@ public class UserDialogManager implements DialogManager {
 	}
 
 	/**
-	 * Add a {@link SubmitGroupListener} to listen to {@link UIResponse}s.
+	 * Add a {@link ISubmitGroupListener} to listen to {@link UIResponse}s.
 	 * 
 	 * @param sgl
-	 *            the {@link SubmitGroupListener} to be added to the list of
+	 *            the {@link ISubmitGroupListener} to be added to the list of
 	 *            listeners.
 	 */
-	public final void add(SubmitGroupListener sgl) {
+	public final void add(ISubmitGroupListener sgl) {
 		Set<String> declaredSID = sgl.listDeclaredSubmitIds();
 		for (String subID : declaredSID) {
 			listeners.put(subID, sgl);

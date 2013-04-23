@@ -15,12 +15,12 @@ dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbos
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/interfaces/Adapter.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/MainMenuProvider.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/SQLStoreProvider.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/SubmitGroupListener.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/SystemMenuProvider.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/UIRequestPool.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/IAdapter.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/IMainMenuProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/ISQLStoreProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestPool.java -text
 dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBuffer.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
