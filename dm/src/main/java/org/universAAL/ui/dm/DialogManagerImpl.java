@@ -95,7 +95,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     private ServiceCallee serviceCallee;
 
     /*
-     * FIXME: initialise SQLStoreProvider according to config-file (?) and add
+     * FIXME: initialise ISQLStoreProvider according to config-file (?) and add
      * accesing methods.
      */
     // private StoreProvider m_StoreProvider;
