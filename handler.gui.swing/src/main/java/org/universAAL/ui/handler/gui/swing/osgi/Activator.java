@@ -21,6 +21,7 @@ import java.io.FileFilter;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
@@ -48,11 +49,14 @@ public final class Activator implements BundleActivator {
     
     private ThreadGroup tGroup;
 
+	static private BundleContext bundleContext;
+
     /** {@inheritDoc} */
     public void start(BundleContext context) throws Exception {
     	tGroup = new ThreadGroup("Swing Handler Threads");
-        home = new BundleConfigHome(context.getBundle().getSymbolicName());
-        BundleContext[] bc = { context };
+        bundleContext =  context;
+        home = new BundleConfigHome(bundleContext.getBundle().getSymbolicName());
+        BundleContext[] bc = { bundleContext };
         Activator.context = uAALBundleContainer.THE_CONTAINER
                 .registerModule(bc);
         Renderer.setHome(home.getAbsolutePath());
@@ -91,4 +95,7 @@ public final class Activator implements BundleActivator {
 	}
     }
     
+    static public void shutdownContainer() throws BundleException{
+    	bundleContext.getBundle(0).stop();
+    }
 }
