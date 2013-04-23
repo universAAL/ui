@@ -34,6 +34,9 @@ import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ui.dm.osgi.DialogManagerActivator;
+import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
+import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
+import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**
@@ -81,18 +84,16 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private ModuleContext moduleContext;
 
-
     /**
      * The uAAL Service Caller. To call main menu services.
      */
     private ServiceCaller serviceCaller;
-    
+
     /**
      * The uAAL Service Callee. To offer services like profilable main menu.
      */
     private ServiceCallee serviceCallee;
-    
-    
+
     /*
      * FIXME: initialise SQLStoreProvider according to config-file (?) and add
      * accesing methods.
@@ -110,6 +111,10 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private static final long GC_PERIOD = 600000; // 10 min
 
+    public static UIPreferencesUIProvider uiPreferencesUIProvider = null;
+    public static UIPreferencesSCallee uiPreferencesSCallee = null;
+    public static UIPreferencesBuffer uiPreferencesBuffer = null;
+
     /**
      * private constructor for creating singleton instance.
      * 
@@ -124,6 +129,14 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	gbSchedule.scheduleAtFixedRate(new DMGC(), GC_PERIOD, GC_PERIOD);
 	serviceCaller = new DMServiceCaller(context);
 	serviceCallee = new SCallee(context);
+
+	uiPreferencesBuffer = new UIPreferencesBuffer(moduleContext);
+	uiPreferencesUIProvider = new UIPreferencesUIProvider(moduleContext,
+		uiPreferencesBuffer);
+
+	uiPreferencesSCallee = new UIPreferencesSCallee(moduleContext,
+		uiPreferencesUIProvider);
+
 	// bus = (UIBus) context.getContainer()
 	// .fetchSharedObject(context, UIBusImpl.busFetchParams);
     }
@@ -293,15 +306,21 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * Method to prepare for DM shutdown.
      */
     private void stop() {
-		if (serviceCallee != null)
-			serviceCallee.close();
-		if (serviceCaller != null)
-			serviceCaller.close();
-		moduleContext = null;
-		//XXX: notiffy UserDialogManager s about impending shutdown?
-	}
+	if (serviceCallee != null)
+	    serviceCallee.close();
+	if (serviceCaller != null)
+	    serviceCaller.close();
+	moduleContext = null;
 
-	/**
+	uiPreferencesBuffer = null;
+	uiPreferencesUIProvider = null;
+	if (uiPreferencesSCallee != null)
+	    uiPreferencesSCallee.close();
+
+	// XXX: notiffy UserDialogManager s about impending shutdown?
+    }
+
+    /**
      * Create a Singleton Instance.
      * 
      * @param mc
@@ -317,13 +336,13 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 		    new String[] { "..singleton instance created." }, null);
 	}
     }
-    
+
     /**
      * Stop the Dialog Manager's instance
      */
     public static void stopDM() {
-    	getInstance().stop();
-    	singleton = null;
+	getInstance().stop();
+	singleton = null;
     }
 
     /**
@@ -367,7 +386,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static ModuleContext getModuleContext() {
 	return getInstance().moduleContext;
     }
-    
+
     /**
      * A mini-Garbage collector to purge the
      * {@link DialogManagerImpl#dialogIDMap}
