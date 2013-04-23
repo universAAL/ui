@@ -24,7 +24,7 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * @author amedrano
@@ -38,7 +38,7 @@ public class DialogPriorityQueueTest extends UIRequestPoolTest {
 	 * @see org.universAAL.ui.dm.tests.UIRequestPoolTest#initialisePool()
 	 */
 	@Override
-	public UIRequestPool initialisePool() {
+	public IUIRequestPool initialisePool() {
 		return new DialogPriorityQueue();
 	}
 	
@@ -94,7 +94,7 @@ public class DialogPriorityQueueTest extends UIRequestPoolTest {
 		    Locale.ENGLISH,
 		    PrivacyLevel.insensible);
 	    
-	    UIRequestPool pool = initialisePool();
+	    IUIRequestPool pool = initialisePool();
 	    pool.add(req5);
 	    pool.add(req2);
 	    pool.add(req1);

@@ -25,7 +25,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
+import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 
 /**
  * Alternative without tables
@@ -34,7 +34,7 @@ import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder implements SubmitGroupListener {
+public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder implements ISubmitGroupListener {
 
 /**
  * The constructor will build the form and send the request to the user.

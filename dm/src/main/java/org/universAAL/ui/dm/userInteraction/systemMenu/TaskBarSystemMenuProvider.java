@@ -30,8 +30,8 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 
 /**
@@ -41,7 +41,7 @@ import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
  * @author amedrano
  * 
  */
-public class TaskBarSystemMenuProvider implements SystemMenuProvider {
+public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
     /**
      * The submission ID to exit the main menu. A button with this functionality
@@ -82,7 +82,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL
+     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.universAAL
      * .middleware.ui.UIResponse)
      */
     public void handle(UIResponse response) {
@@ -115,7 +115,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds
+     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#listDeclaredSubmitIds
      * ()
      */
     public Set<String> listDeclaredSubmitIds() {
@@ -133,7 +133,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.
+     * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {
@@ -199,7 +199,7 @@ public class TaskBarSystemMenuProvider implements SystemMenuProvider {
 		"switchTo", new String[] { "Switching to: " + selectionIndex },
 		null);
 	String dialogID = sentItems.get(selectionIndex);
-	UIRequestPool dialogPool = userDM.getDialogPool();
+	IUIRequestPool dialogPool = userDM.getDialogPool();
 	userDM.resumeUIRequest(dialogPool.get(dialogID));
     }
 }

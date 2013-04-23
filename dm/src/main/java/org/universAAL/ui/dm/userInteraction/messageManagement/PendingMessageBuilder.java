@@ -33,8 +33,8 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * Build a form that list all pending messages for a user. Manage the
@@ -46,7 +46,7 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingMessageBuilder implements SubmitGroupListener {
+public class PendingMessageBuilder implements ISubmitGroupListener {
     /**
      * Prefix of a submission ID to switch to a pending dialog. All pending
      * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
@@ -83,7 +83,7 @@ public class PendingMessageBuilder implements SubmitGroupListener {
     /**
      * The Message Pool containing all messages for the user.
      */
-    private UIRequestPool messagePool;
+    private IUIRequestPool messagePool;
     private List<String> sentItems;
     private UserDialogManager userDM;
 

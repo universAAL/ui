@@ -34,8 +34,8 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * Build a form that list all pending dialogs for a user. Manage the interaction
@@ -45,7 +45,7 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilder implements SubmitGroupListener {
+public class PendingDialogBuilder implements ISubmitGroupListener {
 
     /**
      * Prefix of a submission ID to switch to a pending dialog. All pending
@@ -79,7 +79,7 @@ public class PendingDialogBuilder implements SubmitGroupListener {
     /**
      * The DialogPool containing all dialogs for the user.
      */
-    protected UIRequestPool dialogPool;
+    protected IUIRequestPool dialogPool;
 
     /**
      * the list of Dialog Id sent
