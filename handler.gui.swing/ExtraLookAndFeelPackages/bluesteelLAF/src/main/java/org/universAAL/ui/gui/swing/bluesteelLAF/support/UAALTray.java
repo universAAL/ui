@@ -27,10 +27,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingUtilities;
 
+import org.osgi.framework.BundleException;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
- * @author mec
+ * @author amedrano
  *
  */
 public class UAALTray {
@@ -96,8 +98,17 @@ public class UAALTray {
 	    exitItem.addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {
-	        	//FIXME find a civilised way to shutdown!
-	    		System.exit(0);	    	
+	        	SwingUtilities.invokeLater(new Runnable() {
+					
+					public void run() {
+						try {
+							Activator.shutdownContainer();
+						} catch (BundleException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				});
 	        }
 	    });
 	    popup.add(exitItem);
