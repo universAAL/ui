@@ -20,8 +20,8 @@ import java.util.TreeSet;
 
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.dm.interfaces.SubmitGroupListener;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * Build a Message Form and manage the response.
@@ -30,15 +30,15 @@ import org.universAAL.ui.dm.interfaces.UIRequestPool;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class MessageListener implements SubmitGroupListener {
+public class MessageListener implements ISubmitGroupListener {
 
     /**
      * The messagePool that stores all the messages for the user. It is used to
      * change the message status.
      */
-    private UIRequestPool messagePool;
+    private IUIRequestPool messagePool;
 
-    public MessageListener(UIRequestPool messagePool) {
+    public MessageListener(IUIRequestPool messagePool) {
 	this.messagePool = messagePool;
     }
 

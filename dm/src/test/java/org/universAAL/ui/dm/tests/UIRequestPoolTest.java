@@ -32,14 +32,14 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 public abstract class UIRequestPoolTest extends TestCase {
 
     protected static final String MY_USER = "http://universaal.org/Users#TestUser";
-    private static UIRequestPool pool;
+    private static IUIRequestPool pool;
 
-    public abstract UIRequestPool initialisePool();
+    public abstract IUIRequestPool initialisePool();
 
     ModuleContext mc = new ModuleContext() {
 

@@ -27,7 +27,7 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
+import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 
 /**
  * Unlike in @link ClassicSystemMenuProvider buttons of pending messages or
@@ -36,7 +36,7 @@ import org.universAAL.ui.dm.interfaces.SystemMenuProvider;
  * @author amedrano
  * 
  */
-public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
+public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 
     /**
      * The submission ID to exit the main menu. A button with this functionality
@@ -79,7 +79,7 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#handle(org.universAAL
+     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.universAAL
      * .middleware.ui.UIResponse)
      */
     public void handle(UIResponse response) {
@@ -103,7 +103,7 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SubmitGroupListener#listDeclaredSubmitIds
+     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#listDeclaredSubmitIds
      * ()
      */
     public Set<String> listDeclaredSubmitIds() {
@@ -119,7 +119,7 @@ public class SmartPendingSystemMenuProvider implements SystemMenuProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.universAAL.ui.dm.interfaces.SystemMenuProvider#getSystemMenu(org.
+     * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {

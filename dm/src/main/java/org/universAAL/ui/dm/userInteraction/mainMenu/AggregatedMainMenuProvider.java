@@ -28,23 +28,23 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.interfaces.MainMenuProvider;
+import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 
 /**
- * Aggregates the behavior of several {@link MainMenuProvider}s
+ * Aggregates the behavior of several {@link IMainMenuProvider}s
  * 
  * @author amedrano
  * 
  */
-public class AggregatedMainMenuProvider implements MainMenuProvider {
+public class AggregatedMainMenuProvider implements IMainMenuProvider {
 
-    private List<MainMenuProvider> mmps = new ArrayList<MainMenuProvider>();
+    private List<IMainMenuProvider> mmps = new ArrayList<IMainMenuProvider>();
     
-    private Map<String, MainMenuProvider> submitMap = new HashMap<String, MainMenuProvider>();
+    private Map<String, IMainMenuProvider> submitMap = new HashMap<String, IMainMenuProvider>();
 
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
-    	MainMenuProvider hmmp = submitMap.get(response.getSubmissionID());
+    	IMainMenuProvider hmmp = submitMap.get(response.getSubmissionID());
     	if (hmmp != null) {
     		hmmp.handle(response);
     	} else {
@@ -59,7 +59,7 @@ public class AggregatedMainMenuProvider implements MainMenuProvider {
     /** {@inheritDoc} */
     public Set<String> listDeclaredSubmitIds() {
     	submitMap.clear();
-	for (MainMenuProvider mmp : mmps) {
+	for (IMainMenuProvider mmp : mmps) {
 		Set<String> mmpSet = mmp.listDeclaredSubmitIds();
 	    for (String submitID : mmpSet) {
 			submitMap.put(submitID, mmp);
@@ -71,29 +71,29 @@ public class AggregatedMainMenuProvider implements MainMenuProvider {
     /** {@inheritDoc} */
     public Group getMainMenu(Resource user, AbsLocation location,
     		Form systemForm) {
-    	for (MainMenuProvider mmp : mmps) {
+    	for (IMainMenuProvider mmp : mmps) {
     		mmp.getMainMenu(user, location, systemForm);
     	}
     	return systemForm.getIOControls();
     }
 
     /**
-     * Add a new {@link MainMenuProvider} to the aggregate.
+     * Add a new {@link IMainMenuProvider} to the aggregate.
      * 
      * @param mmp
-     *            the {@link MainMenuProvider} to be aggregated.
+     *            the {@link IMainMenuProvider} to be aggregated.
      */
-    public void add(MainMenuProvider mmp) {
+    public void add(IMainMenuProvider mmp) {
 	mmps.add(mmp);
     }
 
     /**
-     * Remove a {@link MainMenuProvider} from the aggregation.
+     * Remove a {@link IMainMenuProvider} from the aggregation.
      * 
      * @param mmp
-     *            the {@link MainMenuProvider} to be removed.
+     *            the {@link IMainMenuProvider} to be removed.
      */
-    public void remove(MainMenuProvider mmp) {
+    public void remove(IMainMenuProvider mmp) {
 	mmps.remove(mmp);
     }
 }

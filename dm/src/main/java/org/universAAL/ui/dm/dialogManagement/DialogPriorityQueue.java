@@ -24,16 +24,16 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
- * This {@link UIRequestPool} will manage active dialogs in a
+ * This {@link IUIRequestPool} will manage active dialogs in a
  * {@link PriorityQueue} while keeping suspended dialogs in a {@link Map}.
  * 
  * @author amedrano
  * 
  */
-public class DialogPriorityQueue implements UIRequestPool {
+public class DialogPriorityQueue implements IUIRequestPool {
 
     private Map<String, UIRequest> suspendedSet;
 

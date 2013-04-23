@@ -28,17 +28,17 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.interfaces.SQLStoreProvider;
-import org.universAAL.ui.dm.interfaces.UIRequestPool;
+import org.universAAL.ui.dm.interfaces.ISQLStoreProvider;
+import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
- * A {@link UIRequestPool} that stores (and retrieves) the dialogs from a 
+ * A {@link IUIRequestPool} that stores (and retrieves) the dialogs from a 
  * DataBase, making dialogs managed with this pool automatically persistent.
  * 
  * @author amedrano
  *
  */
-public class DialogSQL implements UIRequestPool {
+public class DialogSQL implements IUIRequestPool {
 
     private static final String DIALOGS_TABLE = "Dialogs";
     private String userURI;
@@ -83,7 +83,7 @@ public class DialogSQL implements UIRequestPool {
 	return contentSerializer;
     }
         
-    public  DialogSQL(Resource user, SQLStoreProvider storeprov) {
+    public  DialogSQL(Resource user, ISQLStoreProvider storeprov) {
 	userURI = user.getURI();
 	if (storeprov == null) {
 		return;
