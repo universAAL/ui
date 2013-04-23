@@ -180,4 +180,41 @@ public class UIPreferencesSubprofileHelper {
 	    return null;
 	}
     }
+
+    /**
+     * Adds given {@link SubProfile} to a Profiling Server and connects it with
+     * given {@link UserProfile}.
+     * 
+     * @param userProfile
+     *            {@link UserProfile}
+     * @param subProfile
+     *            {@link SubProfile}
+     * @return true if the operation succeeded or false otherwise
+     */
+    // TODO currently not used but maybe will be needed in future
+    public boolean addSubprofileToUserProfile(UserProfile userProfile,
+	    SubProfile subProfile) {
+	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
+	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS,
+		Profilable.PROP_HAS_PROFILE }, userProfile);
+	req.addAddEffect(new String[] { ProfilingService.PROP_CONTROLS,
+		Profilable.PROP_HAS_PROFILE, Profile.PROP_HAS_SUB_PROFILE },
+		subProfile);
+
+	ServiceResponse resp = caller.call(req);
+	if (resp.getCallStatus() == CallStatus.succeeded) {
+	    LogUtils.logDebug(mcontext, this.getClass(),
+		    "addSubprofileToUserProfile", new Object[] {
+			    "SubProfile: " + subProfile.getURI()
+				    + " added to UserProfile: ",
+			    userProfile.getURI() }, null);
+	    return true;
+	} else {
+	    LogUtils.logDebug(mcontext, this.getClass(),
+		    "addSubprofileToUserProfile",
+		    new Object[] { "callstatus : "
+			    + resp.getCallStatus().name() }, null);
+	    return false;
+	}
+    }
 }
