@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * Licensed under both Apache License, Version 2.0 and MIT License .
+ * Licensed under both Apache License, Version 2.0 and MIT License.
  *
  * See the NOTICE file distributed with this work for additional 
  * information regarding copyright ownership
@@ -18,9 +18,9 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.interfaces.Adapter;
+import org.universAAL.ui.dm.interfaces.IAdapter;
 
-public class AdaptorKrakow implements Adapter {
+public class AdaptorKrakow implements IAdapter {
 
     public void adapt(UIRequest req) {
 

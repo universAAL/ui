@@ -15,17 +15,27 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.interfaces;
 
+import org.universAAL.middleware.ui.UIRequest;
+
 /**
- * Interface for permanent data storage: adaptations, users,
- * messages, ...
+ * Interface for all Dialog Manager adaptations. Adaptations not only mean
+ * adding parameters, but also these adapters can change the content of the
+ * request, for example implementing externationalization or change relative
+ * URLs to full URLs for seamless integration of handlers with resource server.
  * 
  * @author amedrano
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public interface SQLStoreProvider {
+public interface IAdapter {
 
-    public void initialize();
-    
-    public String getJCDBURL();
+    /**
+     * Perform an UI adaptation over {@link UIRequest}. This method may be
+     * recalled several times, therefore it must always check that the
+     * adaptation is in fact needed, and not already done.
+     * 
+     * @param request
+     */
+    public void adapt(final UIRequest request);
+
 }

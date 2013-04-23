@@ -29,7 +29,7 @@ import org.universAAL.middleware.ui.UIRequest;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public interface UIRequestPool {
+public interface IUIRequestPool {
 
     /**
      * Add a new {@link UIRequest}. Directly to the active set.
@@ -41,7 +41,7 @@ public interface UIRequestPool {
     /**
      * Remove the {@link UIRequest} corresponding with UIReqID from any set it
      * belongs to. if the {@link UIRequest} is the current request, then after
-     * this call {@link UIRequestPool#getCurrent()} == null.
+     * this call {@link IUIRequestPool#getCurrent()} == null.
      * 
      * @param UIReqID
      */
@@ -55,10 +55,10 @@ public interface UIRequestPool {
     public UIRequest getCurrent();
 
     /**
-     * If {@link UIRequestPool#hasToChange()} then get the next
+     * If {@link IUIRequestPool#hasToChange()} then get the next
      * {@link UIRequest}, updating the current. After this call
-     * {@link UIRequestPool#getNextUIRequest()} ==
-     * {@link UIRequestPool#getCurrent()}
+     * {@link IUIRequestPool#getNextUIRequest()} ==
+     * {@link IUIRequestPool#getCurrent()}
      * 
      * @return the next {@link UIRequest} to be current.
      */
@@ -92,7 +92,7 @@ public interface UIRequestPool {
 
     /**
      * Move a {@link UIRequest} from the active set to the suspendend one. If
-     * current is suspended then {@link UIRequestPool#getCurrent()} == null
+     * current is suspended then {@link IUIRequestPool#getCurrent()} == null
      * 
      * @param UIReqID
      */

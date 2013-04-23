@@ -15,26 +15,34 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.interfaces;
 
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.rdf.Group;
+import java.util.Set;
+
+import org.universAAL.middleware.ui.UIResponse;
 
 /**
- * Used to generate System group. As subtype of {@link SubmitGroupListener} it
- * will also respond to and execute the system menu submits actions.
+ * Listen to a set of SubmissionIDs and handle the {@link UIResponse}
+ * corresponding to any of them. This interface is used for classes that
+ * generate Interaction with the user and need to manage the User's reponse.
  * 
  * @author amedrano
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public interface SystemMenuProvider extends SubmitGroupListener {
+public interface ISubmitGroupListener {
 
     /**
-     * generate the system Group for a given {@link UIRequest}.
+     * Handle the {@link UIResponse} for any of the SubmitionIDs declared in
+     * {@link ISubmitGroupListener#listDeclaredSubmitIds()}.
      * 
-     * @param request
-     *            The {@link UIRequest} for which to generate the system group.
-     * @return the System group for the {@link UIRequest}
+     * @param response
      */
-    public Group getSystemMenu(UIRequest request);
+    public void handle(UIResponse response);
+
+    /**
+     * List the SubmissionIDs implementations of this interface will handle.
+     * 
+     * @return
+     */
+    public Set<String> listDeclaredSubmitIds();
 
 }
