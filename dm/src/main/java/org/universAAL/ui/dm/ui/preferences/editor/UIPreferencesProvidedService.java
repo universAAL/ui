@@ -17,7 +17,7 @@ package org.universAAL.ui.dm.ui.preferences.editor;
 import java.util.Hashtable;
 
 import org.universAAL.ontology.ui.preferences.service.UIPreferencesService;
-import org.universAAL.ui.dm.ui.preferences.test.Activator;
+import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
@@ -59,13 +59,14 @@ public class UIPreferencesProvidedService extends UIPreferencesService {
 
     static {
 	OntologyManagement.getInstance().register(
-		Activator.getMcontext(),
+		DialogManagerActivator.getModuleContext(),
 		new SimpleOntology(MY_URI, UIPreferencesService.MY_URI,
 			new ResourceFactoryImpl() {
 			    @Override
 			    public Resource createInstance(String classURI,
 				    String instanceURI, int factoryIndex) {
-				return new UIPreferencesProvidedService(instanceURI);
+				return new UIPreferencesProvidedService(
+					instanceURI);
 			    }
 			}));
 
@@ -74,7 +75,8 @@ public class UIPreferencesProvidedService extends UIPreferencesService {
 			UIPreferencesService.PROP_CONTROLS).copy(),
 		new String[] { UIPreferencesService.PROP_CONTROLS },
 		serverPEditorRestrictions);
-
+	// Url to be added to configurations/ui.dm/main menu: /UI Preferences
+	// Editor|http://www.ent.hr|http://ontology.universaal.org/InteractionPreferencesProfile.owl#UIPreferencesService
 	profiles[0] = InitialServiceDialog.createInitialDialogProfile(
 		UIPreferencesService.MY_URI, "http://www.ent.hr",
 		"UI Preferences dialog", START_UI);
