@@ -38,7 +38,8 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
  */
 public class Init implements InitInterface {
 
-    private ColorLAF color;
+    public static final String CONF_PREFIX = "ui.handler.gui.swing.bluesteelLAF.";
+	private ColorLAF color;
     private UAALTray tray;
     private JDesktopPane desktop;
     private JFrame frame;
@@ -99,12 +100,13 @@ public class Init implements InitInterface {
 	private void createDesktop() {
 	    frame = new JFrame();
 	    desktop = new JDesktopPane();
-	    
-	    desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	    desktop.setVisible(true);
 	    frame.setContentPane(desktop);
-	    frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-	    frame.setUndecorated(true);
+	    if (!Boolean.parseBoolean(render.getProperty(CONF_PREFIX + "windowed", "false"))){
+	    	desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+	    	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+	    	frame.setUndecorated(true);
+	    }
 	    frame.setVisible(true);
 	}
 
