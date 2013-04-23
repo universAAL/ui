@@ -24,6 +24,7 @@ import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.container.utils.StringUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
@@ -55,21 +56,12 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
  */
 public class Renderer extends Thread {
 
-    /**
-	 * Default User, for when there is no user
-	 * logged in.
-	 * @see Renderer#DEMO_MODE
-	 */
-	protected static final String DEFAULT_USER = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "saied";
-
-
 	/**
 	 * The Key value for the demo mode configuration property.
-	 * demo mode will disable login and will use default
+	 * demo mode will disable Impairment parameter registration.
 	 * user.
 	 * Default: demo.mode=true.
 	 * @see Renderer#properties
-	 * @see Renderer#DEFAULT_USER
 	 */
 	protected static final String DEMO_MODE = "demo.mode";
 
@@ -107,6 +99,9 @@ public class Renderer extends Thread {
 	 * FileName for the main configuration File.
 	 */
 	protected static final String RENDERER_CONF = "renderer.properties";
+
+
+	public static final String CONFIGURED_USER = "default.user";
 
 
 	/**
@@ -303,17 +298,38 @@ public class Renderer extends Thread {
     }
     
     /**
+     * Composes the configured user (in properties).
+     * @return
+     */
+    private String getDefaultUserURI(){
+    	String user = getProperty(CONFIGURED_USER);
+    	if (!user.isEmpty()) {
+    		if (StringUtils.isQualifiedName(user)){
+    			//user is a valid URI
+    			return user;
+    		} else {
+    			user = user.replaceAll("\\W", "_");
+    			return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user;
+    		}
+    	}
+    	else {
+    		return null;
+    	}
+    	
+    }
+    
+    /**
      * Main, Top Level Renderer Logic.
      */
     public void run() {
-
-	if (Boolean.parseBoolean(getProperty(DEMO_MODE))){
-	    User u = new User(DEFAULT_USER);
-	    logInUser(u);
-	}
-	else {
-	    getInitLAF().showLoginScreen();
-	}
+    	String user = getDefaultUserURI();
+    	if (user != null){
+    		User u = new User(user);
+    		logInUser(u);
+    	}
+    	else {
+    		getInitLAF().showLoginScreen();
+    	}
     }
 
     /**
