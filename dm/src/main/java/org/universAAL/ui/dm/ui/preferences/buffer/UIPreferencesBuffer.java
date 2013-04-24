@@ -23,32 +23,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.owl.Modality;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ontology.ui.preferences.AccessMode;
-import org.universAAL.ontology.ui.preferences.AlertPreferences;
-import org.universAAL.ontology.ui.preferences.AlertType;
-import org.universAAL.ontology.ui.preferences.AuditoryPreferences;
-import org.universAAL.ontology.ui.preferences.ColorType;
-import org.universAAL.ontology.ui.preferences.ContentDensityType;
-import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
-import org.universAAL.ontology.ui.preferences.GenericFontFamily;
-import org.universAAL.ontology.ui.preferences.Intensity;
-import org.universAAL.ontology.ui.preferences.Language;
-import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
-import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
-import org.universAAL.ontology.ui.preferences.PendingMessageBuilderType;
-import org.universAAL.ontology.ui.preferences.Size;
-import org.universAAL.ontology.ui.preferences.Status;
-import org.universAAL.ontology.ui.preferences.SystemMenuPreferences;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
-import org.universAAL.ontology.ui.preferences.VisualPreferences;
-import org.universAAL.ontology.ui.preferences.VoiceGender;
-import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
+import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper;
 
 /**
  * Acts as a buffer to store UI Preferences for logged in users so that
@@ -66,7 +47,8 @@ public class UIPreferencesBuffer {
     /**
      * {@link ModuleContext}
      */
-    private static ModuleContext mcontext;
+    public static ModuleContext mcontext;
+    public UIPreferencesSubprofilePrerequisitesHelper uiPreferencesSubprofilePrerequisitesHelper = null;
     public UIPreferencesSubprofileHelper uiPreferencesSubprofileHelper = null;
     private Map<User, UIPreferencesSubProfile> userCurrentUIPreferencesSubProfileMap = null;
 
@@ -83,7 +65,7 @@ public class UIPreferencesBuffer {
      * List with the unique names of the logged in users for which the UI
      * Preferences are to be retrieved from the Profiling Server
      */
-    private Set<User> currentlyLoggedInUsers = null;
+    private Set<User> allLoggedInUsers = null;
 
     public UIPreferencesBuffer(ModuleContext mcontext) {
 	UIPreferencesBuffer.mcontext = mcontext;
@@ -93,18 +75,51 @@ public class UIPreferencesBuffer {
 	// key, the old value is replaced by the specified value.
 	userCurrentUIPreferencesSubProfileMap = new Hashtable<User, UIPreferencesSubProfile>();
 
+	uiPreferencesSubprofilePrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(
+		mcontext);
 	uiPreferencesSubprofileHelper = new UIPreferencesSubprofileHelper(
 		mcontext);
 
-	// TODO populate this set with the users!
-	currentlyLoggedInUsers = new HashSet<User>();
+	allLoggedInUsers = new HashSet<User>();
 
-	Long period = Long.parseLong(System.getProperty(
-		CONTACT_PROF_SERVER_WAIT, CONTACT_PROF_SERVER_DEFAULT_WAIT));
+    }
 
-	getUIPreferencesTimer = new Timer(true);
-	getUIPreferencesTimer.scheduleAtFixedRate(new GetUIPreferencesTask(),
-		period, period);
+    /**
+     * Checks if {@link UIPreferencesSubProfile} has already been initialized
+     * for a given {@link User}. If not initialization bill be done and
+     * 
+     * @param user
+     *            {@link User}
+     * @param isAssistedPerson
+     *            if the {@link User} is {@link AssistedPerson} or not.
+     *            Important for UI preferences initialization.
+     */
+    public void addUserInitializeUIPreferencesStartObtainmentTask(
+	    final User user) {
+
+	// if this set already contains user, false will be returned which means
+	// ui preferences have already been initialized for this user and task
+	// for obtainment started
+	if (addLoggedInUsers(user)) {
+
+	    // initialize UIPReferencesSubprofile with stereotype data for given
+	    // user in separate thread
+	    UISubprofileInitializatorRunnable uiSubprofileInitializatorRunnable = new UISubprofileInitializatorRunnable(
+		    this, user);
+	    Thread t = new Thread(uiSubprofileInitializatorRunnable);
+	    t.setPriority(Thread.MAX_PRIORITY);
+	    t.start();
+
+	    // start obtainment timer for all users (logged in in some point in
+	    // time)
+	    getUIPreferencesTimer = new Timer(true);
+	    Long period = Long
+		    .parseLong(System.getProperty(CONTACT_PROF_SERVER_WAIT,
+			    CONTACT_PROF_SERVER_DEFAULT_WAIT));
+	    getUIPreferencesTimer.scheduleAtFixedRate(
+		    new GetUIPreferencesTask(), period, period);
+
+	}
     }
 
     /**
@@ -119,7 +134,7 @@ public class UIPreferencesBuffer {
 	/** {@inheritDoc} */
 	@Override
 	public void run() {
-	    it = currentlyLoggedInUsers.iterator();
+	    it = allLoggedInUsers.iterator();
 	    // obtain ui preferences for all logged in users
 	    while (it.hasNext()) {
 		tempUser = it.next();
@@ -139,192 +154,6 @@ public class UIPreferencesBuffer {
 	}
     }
 
-    public void initializeUIPreferences(User user, boolean isAssistedPerson) {
-	// create ui subprofile
-	UIPreferencesSubProfile uiSubprofile = new UIPreferencesSubProfile(user
-		.getURI()
-		+ "SubprofileUIPreferences");
-
-	// TODO determine how to get this data (security.authorizator still not
-	// implemented!)
-	// determine the type of the user (is it AP or Remote user) and
-	// initialize UI Preferences
-	UIPreferencesSubProfile filledUISubprofile = null;
-	if (isAssistedPerson) {
-	    // assisted person has primary modality GUI
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
-	} else {
-	    // remote user has primary modality WEB
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForRemoteUser(uiSubprofile);
-	}
-
-	// connecting filled in ui subprofile to user
-	uiPreferencesSubprofileHelper.addSubprofileToUser(user,
-		filledUISubprofile);
-
-	// remember connection between user and uiPrefsSubprofile (in creation
-	// time)so it does not
-	// have to be requested from Profiling Server when updating it
-	userCurrentUIPreferencesSubProfileMap.put(user, filledUISubprofile);
-
-    }
-
-    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForAssistedPerson(
-	    UIPreferencesSubProfile uiPrefsSubProfile) {
-	LogUtils
-		.logDebug(
-			mcontext,
-			this.getClass(),
-			"populateUIPreferencesWithStereotypeDataForAssistedPerson",
-			new Object[] { "ui.preferences initialization started for uiPrefsSubProfile: "
-				+ uiPrefsSubProfile.getURI() }, null);
-
-	GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
-		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
-	generalInteractionPreferences
-		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences.setPreferredLanguage(Language.english);
-	generalInteractionPreferences.setSecondaryLanguage(Language.english);
-	generalInteractionPreferences.setPreferredModality(Modality.gui);
-	generalInteractionPreferences.setSecondaryModality(Modality.voice);
-	uiPrefsSubProfile
-		.setInteractionPreferences(generalInteractionPreferences);
-
-	AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile
-		.getURI()
-		+ "uiAlertPreferences");
-	alertPref.setAlertOption(AlertType.visualAndAudio);
-	uiPrefsSubProfile.setAlertPreferences(alertPref);
-
-	AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI()
-		+ "uiAccessMode");
-	accessMode.setAuditoryModeStatus(Status.on);
-	accessMode.setOlfactoryModeStatus(Status.off);
-	accessMode.setTactileModeStatus(Status.off);
-	accessMode.setVisualModeStatus(Status.on);
-	accessMode.setTextualModeStatus(Status.on);
-	uiPrefsSubProfile.setAccessMode(accessMode);
-
-	AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
-		uiPrefsSubProfile.getURI() + "AuditoryPreferences");
-	auditoryPreferences.setKeySoundStatus(Status.off);
-	auditoryPreferences.setPitch(Intensity.medium);
-	auditoryPreferences.setSpeechRate(Intensity.medium);
-	auditoryPreferences.setVolume(Intensity.medium);
-	auditoryPreferences.setVoiceGender(VoiceGender.female);
-	auditoryPreferences.setSystemSounds(Status.on);
-	uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
-
-	SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
-		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
-	systemMenuPreferences
-		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setMessagePersistance(Status.on);
-	systemMenuPreferences
-		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
-	systemMenuPreferences
-		.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
-	systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
-	uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
-
-	VisualPreferences visualPreferences = new VisualPreferences(
-		uiPrefsSubProfile.getURI() + "VisualPreferences");
-	visualPreferences.setBackgroundColor(ColorType.lightBlue);
-	visualPreferences.setBrightness(Intensity.medium);
-	visualPreferences.setContentContrast(Intensity.high);
-	visualPreferences.setCursorSize(Size.medium);
-	visualPreferences.setDayNightMode(Status.on);
-	visualPreferences.setFlashingResources(Status.on);
-	visualPreferences.setFontColor(ColorType.black);
-	visualPreferences.setFontFamily(GenericFontFamily.serif);
-	visualPreferences.setFontSize(Size.medium);
-	visualPreferences.setHighlightColor(ColorType.white);
-	visualPreferences.setScreenResolution(Intensity.medium);
-	visualPreferences.setScreenSaverUsage(Status.off);
-	visualPreferences.setWindowLayout(WindowLayoutType.overlap);
-	uiPrefsSubProfile.setVisualPreferences(visualPreferences);
-
-	return uiPrefsSubProfile;
-    }
-
-    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForRemoteUser(
-	    UIPreferencesSubProfile uiPrefsSubProfile) {
-	LogUtils
-		.logDebug(
-			mcontext,
-			this.getClass(),
-			"populateUIPreferencesWithStereotypeDataForAssistedPerson",
-			new Object[] { "ui.preferences initialization started for uiPrefsSubProfile: "
-				+ uiPrefsSubProfile.getURI() }, null);
-
-	GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
-		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
-	generalInteractionPreferences
-		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences.setPreferredLanguage(Language.english);
-	generalInteractionPreferences.setSecondaryLanguage(Language.english);
-	generalInteractionPreferences.setPreferredModality(Modality.web);
-	generalInteractionPreferences.setSecondaryModality(Modality.gui);
-	uiPrefsSubProfile
-		.setInteractionPreferences(generalInteractionPreferences);
-
-	AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile
-		.getURI()
-		+ "uiAlertPreferences");
-	alertPref.setAlertOption(AlertType.visualOnly);
-	uiPrefsSubProfile.setAlertPreferences(alertPref);
-
-	AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI()
-		+ "uiAccessMode");
-	accessMode.setAuditoryModeStatus(Status.on);
-	accessMode.setOlfactoryModeStatus(Status.off);
-	accessMode.setTactileModeStatus(Status.off);
-	accessMode.setVisualModeStatus(Status.on);
-	accessMode.setTextualModeStatus(Status.on);
-	uiPrefsSubProfile.setAccessMode(accessMode);
-
-	AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
-		uiPrefsSubProfile.getURI() + "AuditoryPreferences");
-	auditoryPreferences.setKeySoundStatus(Status.off);
-	auditoryPreferences.setPitch(Intensity.medium);
-	auditoryPreferences.setSpeechRate(Intensity.medium);
-	auditoryPreferences.setVolume(Intensity.medium);
-	auditoryPreferences.setVoiceGender(VoiceGender.female);
-	auditoryPreferences.setSystemSounds(Status.on);
-	uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
-
-	SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
-		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
-	systemMenuPreferences
-		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setMessagePersistance(Status.on);
-	systemMenuPreferences
-		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
-	systemMenuPreferences
-		.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
-	systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
-	uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
-
-	VisualPreferences visualPreferences = new VisualPreferences(
-		uiPrefsSubProfile.getURI() + "VisualPreferences");
-	visualPreferences.setBackgroundColor(ColorType.lightBlue);
-	visualPreferences.setBrightness(Intensity.medium);
-	visualPreferences.setContentContrast(Intensity.high);
-	visualPreferences.setCursorSize(Size.medium);
-	visualPreferences.setDayNightMode(Status.on);
-	visualPreferences.setFlashingResources(Status.on);
-	visualPreferences.setFontColor(ColorType.black);
-	visualPreferences.setFontFamily(GenericFontFamily.serif);
-	visualPreferences.setFontSize(Size.medium);
-	visualPreferences.setHighlightColor(ColorType.black);
-	visualPreferences.setScreenResolution(Intensity.medium);
-	visualPreferences.setScreenSaverUsage(Status.off);
-	visualPreferences.setWindowLayout(WindowLayoutType.overlap);
-	uiPrefsSubProfile.setVisualPreferences(visualPreferences);
-
-	return uiPrefsSubProfile;
-    }
-
     /**
      * @return the {@link UIPreferencesSubProfile}
      */
@@ -339,10 +168,14 @@ public class UIPreferencesBuffer {
      *         the set unchanged and returns false
      */
     public boolean addLoggedInUsers(User userToAdd) {
-	return this.currentlyLoggedInUsers.add(userToAdd);
+	return this.allLoggedInUsers.add(userToAdd);
     }
 
     /**
+     * Associates the specified {@link UIPreferencesSubProfile} with the
+     * specified {@link User} If the map previously contained a mapping for the
+     * key, the old value is replaced by the specified value.
+     * 
      * @return the old {@link UIPreferencesSubProfile} that was associated with
      *         the {@link User} or null if there was no mapping
      */

@@ -33,6 +33,7 @@ import org.universAAL.middleware.ui.DialogManager;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
+import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
@@ -162,7 +163,8 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	    String uURI = request.getAddressedUser().getURI();
 	    UserDialogManager udm = udmMap.get(uURI);
 	    if (udm == null) {
-		udm = new UserDialogManager(request.getAddressedUser(), null);
+		udm = new UserDialogManager((User) request.getAddressedUser(),
+			null, uiPreferencesBuffer);
 		udmMap.put(uURI, udm);
 	    }
 	    dialogIDMap.put(request.getDialogID(), udm);
@@ -197,7 +199,8 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	if (user != null) {
 	    String uURI = user.getURI();
 	    if (!udmMap.containsKey(uURI)) {
-		udmMap.put(uURI, new UserDialogManager(user, location));
+		udmMap.put(uURI, new UserDialogManager((User) user, location,
+			uiPreferencesBuffer));
 	    } else {
 		udmMap.get(uURI).setCurrentUserLocation(location);
 	    }
