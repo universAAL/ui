@@ -37,8 +37,7 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * when each {@link UIRequest} arrives but instead it retrieves it in some
  * configured time interval.
  * 
- * Currently it also initializes UI Preferences subprofile based on stereotype
- * data for (Assisted Person or Remote) users.
+
  * 
  * @author eandgrg
  * 

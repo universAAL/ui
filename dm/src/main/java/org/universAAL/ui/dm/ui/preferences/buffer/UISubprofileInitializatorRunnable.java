@@ -1,9 +1,25 @@
+/*******************************************************************************
+ * Copyright 2013 Ericsson Nikola Tesla d.d.
+ *
+ * Licensed under both Apache License, Version 2.0 and MIT License.
+ *
+ * See the NOTICE file distributed with this work for additional 
+ * information regarding copyright ownership
+ *	
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.buffer;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.ui.preferences.AccessMode;
 import org.universAAL.ontology.ui.preferences.AlertPreferences;
@@ -26,6 +42,24 @@ import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 
+/**
+ * Initializes {@link UIPreferencesSubprofile} based on stereotype data for
+ * {@link AssistedPerson} or {@link Caregiver} user and connects it with given
+ * {@link User}.
+ * 
+ * Before that it checks if the {@link User} exists and if not adds it (to the
+ * Profiling server), it also checks if {@link UserProfile} exists for that
+ * {@link UIRequest} and if not it adds it and connects it with given
+ * {@link User}.
+ * 
+ * In addition same initialization data is also stored in the
+ * {@link UIPreferencesBuffer} (although they are retrieved by periodic task
+ * triggered every predefined amount of time).
+ * 
+ * @author eandgrg
+ * 
+ */
+
 public class UISubprofileInitializatorRunnable implements Runnable {
     /**
      * {@link ModuleContext}
@@ -46,10 +80,20 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	// check prerequisites - if User does not exist in
 	// Profiling
 	// Server (or is not obtainable) add it
-	if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
-		.getUserSucceeded(user)) {
+	// if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	// .getUserSucceeded(user)) {
+	// uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	// .addUserSucceeded(user);
+	// }
+	boolean userisAssistedPerson = false;
+	User obtainedUser = uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+		.getUser(user);
+	if (obtainedUser == null) {
 	    uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
 		    .addUserSucceeded(user);
+	} else {
+	    if (obtainedUser instanceof AssistedPerson)
+		userisAssistedPerson = true;
 	}
 
 	if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
@@ -65,16 +109,12 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		+ "SubprofileUIPreferences");
 
 	UIPreferencesSubProfile filledUISubprofile = null;
-
-	// FIXME temp until proper profile determination is not implemented
-	boolean isAP = true;
-
-	if (isAP) {
+	if (userisAssistedPerson) {
 	    // assisted person has primary modality GUI
 	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
 	} else {
 	    // remote user has primary modality WEB
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForRemoteUser(uiSubprofile);
+	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
 	}
 
 	// connecting filled in ui subprofile to user
@@ -87,6 +127,13 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		filledUISubprofile);
     }
 
+    /**
+     * 
+     * @param uiPrefsSubProfile
+     *            {@link UIPreferencesSubprofile} to be filled in
+     * @return given {@link UIPreferencesSubprofile} with stereotype data for
+     *         {@link AssistedPerson}
+     */
     public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForAssistedPerson(
 	    UIPreferencesSubProfile uiPrefsSubProfile) {
 	LogUtils
@@ -165,7 +212,14 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	return uiPrefsSubProfile;
     }
 
-    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForRemoteUser(
+    /**
+     * 
+     * @param uiPrefsSubProfile
+     *            {@link UIPreferencesSubprofile} to be filled in
+     * @return given {@link UIPreferencesSubprofile} with stereotype data for
+     *         {@link Caregiver}
+     */
+    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForCaregiver(
 	    UIPreferencesSubProfile uiPrefsSubProfile) {
 	LogUtils
 		.logDebug(

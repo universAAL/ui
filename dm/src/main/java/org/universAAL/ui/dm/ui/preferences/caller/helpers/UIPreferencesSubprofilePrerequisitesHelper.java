@@ -42,8 +42,8 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
     public DefaultServiceCaller sc;
 
     public UIPreferencesSubprofilePrerequisitesHelper(ModuleContext mc) {
+	UIPreferencesSubprofilePrerequisitesHelper.mc = mc;
 	sc = new DefaultServiceCaller(mc);
-	this.mc = mc;
     }
 
     public boolean getUserSucceeded(Resource user) {
@@ -78,7 +78,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
-    public String getUser(Resource user) {
+    public String getUserAsString(Resource user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
 		user);
@@ -99,6 +99,32 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * 
+     * @param user
+     *            {@link User}
+     * @return {@link User} obtained from Profiling server or null otherwise
+     */
+    public User getUser(Resource user) {
+	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
+	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
+		user);
+	req.addRequiredOutput(OUTPUT_USER,
+		new String[] { ProfilingService.PROP_CONTROLS });
+
+	ServiceResponse resp = sc.call(req);
+	if (resp.getCallStatus() == CallStatus.succeeded) {
+	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_USERS);
+	    if (out != null) {
+		return (User) out;
+	    } else {
+		return null;
+	    }
+	} else {
+	    return null;
+	}
+    }
+
     public boolean addUserSucceeded(User user) {
 	ServiceRequest sr = new ServiceRequest(new ProfilingService(), null);
 	sr.addAddEffect(new String[] { ProfilingService.PROP_CONTROLS }, user);
@@ -115,7 +141,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
-    public String getProfileForUser(User user) {
+    public String getProfileForUserAsString(User user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
 		user);
@@ -132,6 +158,44 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	    }
 	} else {
 	    return resp.getCallStatus().name();
+	}
+    }
+
+    public UserProfile getProfileForUser(User user) {
+	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
+	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
+		user);
+	req.addRequiredOutput(OUTPUT_GETPROFILE, new String[] {
+		ProfilingService.PROP_CONTROLS, Profilable.PROP_HAS_PROFILE });
+
+	ServiceResponse resp = sc.call(req);
+	if (resp.getCallStatus() == CallStatus.succeeded) {
+	    try {
+		List userProfileList = resp.getOutput(OUTPUT_GETPROFILE, true);
+
+		if (userProfileList == null || userProfileList.size() == 0) {
+		    LogUtils
+			    .logInfo(
+				    mc,
+				    this.getClass(),
+				    "getProfileForUser",
+				    new Object[] { "There are no user profiles for user: "
+					    + user.getURI() }, null);
+		    return null;
+		}
+		// just return 1st
+		UserProfile up = (UserProfile) userProfileList.get(0);
+		return up;
+
+	    } catch (Exception e) {
+		LogUtils.logError(mc, this.getClass(), "getProfileForUser",
+			new Object[] { "got exception", e.getMessage() }, e);
+		return null;
+	    }
+	} else {
+	    LogUtils.logWarn(mc, this.getClass(), "getProfileForUser",
+		    new Object[] { "callstatus is not succeeded" }, null);
+	    return null;
 	}
     }
 
