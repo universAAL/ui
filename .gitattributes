@@ -24,7 +24,6 @@ dm/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestPool.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestStore.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIResquestStore.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBuffer.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializatorRunnable.java -text
