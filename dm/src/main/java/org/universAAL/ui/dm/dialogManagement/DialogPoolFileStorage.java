@@ -33,6 +33,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.dm.interfaces.IUIResquestStore;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 
 /**
