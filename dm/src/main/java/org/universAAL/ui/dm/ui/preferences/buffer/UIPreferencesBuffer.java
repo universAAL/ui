@@ -37,8 +37,6 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * when each {@link UIRequest} arrives but instead it retrieves it in some
  * configured time interval.
  * 
-
- * 
  * @author eandgrg
  * 
  */
