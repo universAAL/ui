@@ -41,7 +41,9 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.dm.adapters.AdaptorKrakow; //import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
+import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
+import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.IAdapter;
@@ -50,8 +52,7 @@ import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
-import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
+import org.universAAL.ui.dm.ui.preferences.buffer.UISubprofileInitializatorRunnable;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
@@ -194,6 +195,12 @@ public class UserDialogManager implements DialogManager {
 	this.user = user;
 	currentUserLocation = location;
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
+	// since this constructor is called when obtaining main menu, this means
+	// that maybe new user is starting with the interaction so UI
+	// preferences
+	// should be initialized in this step
+	uiPreferencesBuffer
+		.addUserInitializeUIPreferencesAndStartObtainmentTask(user);
 	try {
 	    messages = new Messages(DialogManagerImpl.getModuleContext()
 		    .getID());
@@ -207,22 +214,21 @@ public class UserDialogManager implements DialogManager {
 			    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
 			    e);
 	}
-	// since this constructor is called when obtaining main menu, this means
-	// that maybe new user is starting with the interaction so UI
-	// preferences
-	// should be initialized in this step
 
-	uiPreferencesBuffer
-		.addUserInitializeUIPreferencesStartObtainmentTask(user);
-
-	// TODO Initialize fields according to user preferences
 	adapterList = new ArrayList<IAdapter>();
 
-	// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui
-	adapterList.add(new AdaptorKrakow());
+	// retrieve UIPreferencesSubProfile for current user
+	UIPreferencesSubProfile uiPreferencesSubProfile = uiPreferencesBuffer
+		.getUIPreferencesSubprofileForUser(user);
 
-	// FIXME use this after merging with ui.preferences.test
-	// adapterList.add(new AdapterUIPreferences());
+	// add UI preferences adapter that enriches UIrequest with
+	// UIPreferencesSupprofile data
+	adapterList.add(new AdapterUIPreferences(uiPreferencesSubProfile));
+
+	// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui.
+	// To be removed when above is working ok otherwise this will override
+	// things?
+	adapterList.add(new AdaptorKrakow());
 
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	try {

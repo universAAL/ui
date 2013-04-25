@@ -93,7 +93,7 @@ public class UIPreferencesBuffer {
      *            if the {@link User} is {@link AssistedPerson} or not.
      *            Important for UI preferences initialization.
      */
-    public void addUserInitializeUIPreferencesStartObtainmentTask(
+    public void addUserInitializeUIPreferencesAndStartObtainmentTask(
 	    final User user) {
 
 	// if this set already contains user, false will be returned which means
