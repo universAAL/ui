@@ -34,15 +34,16 @@ public class UISubprofileInitializatorRunnable implements Runnable {
     private User user;
     private UIPreferencesBuffer uiPreferencesBuffer;
 
-    public UISubprofileInitializatorRunnable(UIPreferencesBuffer uiPreferencesBuffer, final User user) {
-	UIPreferencesBuffer.mcontext = mcontext;
+    public UISubprofileInitializatorRunnable(
+	    UIPreferencesBuffer uiPreferencesBuffer, final User user) {
+	mcontext = UIPreferencesBuffer.mcontext;
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
 	this.user = user;
 
     }
 
     public void run() {
-	// check prerequisites if User does not exist in
+	// check prerequisites - if User does not exist in
 	// Profiling
 	// Server (or is not obtainable) add it
 	if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
@@ -64,10 +65,10 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		+ "SubprofileUIPreferences");
 
 	UIPreferencesSubProfile filledUISubprofile = null;
-	
-	//FIXME temp until proper profile determination is not implemented
-	boolean isAP=true;
-	
+
+	// FIXME temp until proper profile determination is not implemented
+	boolean isAP = true;
+
 	if (isAP) {
 	    // assisted person has primary modality GUI
 	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
