@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.dm.dialogManagement;
+package org.universAAL.ui.dm.interfaces;
 
 
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * Implementations of this interface will save and restore {@link IUIRequestPool}s,
