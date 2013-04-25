@@ -61,7 +61,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 			.logDebug(
 				mc,
 				this.getClass(),
-				"getUser",
+				"getUserSucceeded",
 				new Object[] { "User: "
 					+ user.getURI()
 					+ " obtained from Profiling server (so it exists)" },
@@ -71,7 +71,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 		return false;
 	    }
 	} else {
-	    LogUtils.logDebug(mc, this.getClass(), "getUser",
+	    LogUtils.logDebug(mc, this.getClass(), "getUserSucceeded",
 		    new Object[] { "Call for User: " + user.getURI()
 			    + " not succeeded or User does not exist." }, null);
 	    return false;
@@ -131,11 +131,11 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 
 	ServiceResponse res = sc.call(sr);
 	if (res.getCallStatus() == CallStatus.succeeded) {
-	    LogUtils.logDebug(mc, this.getClass(), "addUser", new Object[] {
+	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded", new Object[] {
 		    "new user: ", user.getURI(), " added." }, null);
 	    return true;
 	} else {
-	    LogUtils.logDebug(mc, this.getClass(), "addUser",
+	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded",
 		    new Object[] { "callstatus is not succeeded" }, null);
 	    return false;
 	}
@@ -210,7 +210,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	if (resp.getCallStatus() == CallStatus.succeeded) {
 	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_GETPROFILE);
 	    if (out != null) {
-		LogUtils.logDebug(mc, this.getClass(), "getProfileForUser",
+		LogUtils.logDebug(mc, this.getClass(), "getProfileForUserSucceeded",
 			new Object[] { "UserProfile obtained for user "
 				+ user.getURI() }, null);
 		return true;
@@ -222,7 +222,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 		    .logDebug(
 			    mc,
 			    this.getClass(),
-			    "getProfileForUser",
+			    "getProfileForUserSucceeded",
 			    new Object[] { "Call for UserProfile for user: "
 				    + user.getURI()
 				    + " not succeeded or UserProfile for this user does not exist." },
