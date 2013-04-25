@@ -33,7 +33,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
-import org.universAAL.ui.dm.interfaces.IUIResquestStore;
+import org.universAAL.ui.dm.interfaces.IUIRequestStore;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 
 /**
@@ -41,7 +41,7 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
  * @author amedrano
  *
  */
-public class DialogPoolFileStorage implements IUIResquestStore {
+public class DialogPoolFileStorage implements IUIRequestStore {
 
 	private static final String UTF_8 = "utf-8";
 	private static final String NAMESPACE = "http://ui.universAAL.org/dmFileStorage.owl#";
