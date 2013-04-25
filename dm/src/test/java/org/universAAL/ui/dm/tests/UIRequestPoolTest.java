@@ -127,6 +127,16 @@ public abstract class UIRequestPoolTest extends TestCase {
 	    // TODO Auto-generated method stub
 	    return false;
 	}
+
+	public Object getProperty(String arg0) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	public Object getProperty(String arg0, Object arg1) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
     };
 
     public void setUp() {
