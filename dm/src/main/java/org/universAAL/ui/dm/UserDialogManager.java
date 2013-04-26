@@ -41,6 +41,8 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
+import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
@@ -52,7 +54,6 @@ import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.buffer.UISubprofileInitializatorRunnable;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
@@ -70,6 +71,7 @@ import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider
  * for Interaction with just one user.
  * 
  * @author amedrano
+ * @author eandgrg
  * 
  *         created: 26-sep-2012 13:03:50
  */
@@ -87,19 +89,22 @@ public class UserDialogManager implements DialogManager {
 
     private static final String SYSTEM_PROP_FINALIZE_WAIT = "ui.dm.finalizeWait";
 
-    private static final String SYSTEM_PROP_SYSMENUPROVIDER = "ui.dm.systemMenuProvision";
-
-    private static final String SYS_DEFAULT = "classic";
-
-    private static final String SYS_SMART = "smart";
-
-    private static final String SYS_TASK = "task";
-
-    private static final String SYSTEM_PROP_PDIALOGSBUILDER = "ui.dm.pendingDialogBuilder";
-
-    private static final String PDD_TABLE = "table";
-
-    private static final String PDD_BUTTON = "buttons";
+    // TODO delete after testing, commented when applying ui prefs data
+    // private static final String SYSTEM_PROP_SYSMENUPROVIDER =
+    // "ui.dm.systemMenuProvision";
+    //
+    // private static final String SYS_DEFAULT = "classic";
+    //
+    // private static final String SYS_SMART = "smart";
+    //
+    // private static final String SYS_TASK = "task";
+    //
+    // private static final String SYSTEM_PROP_PDIALOGSBUILDER =
+    // "ui.dm.pendingDialogBuilder";
+    //
+    // private static final String PDD_TABLE = "table";
+    //
+    // private static final String PDD_BUTTON = "buttons";
 
     private static final int PENDING_DIALOGS_TABLE = 0;
 
@@ -255,22 +260,41 @@ public class UserDialogManager implements DialogManager {
 
 	// TODO: load from UI Preferences
 	// LOAD System Menu provider according to system properties
-	String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,
-		SYS_DEFAULT);
+	// String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,
+	// SYS_DEFAULT);
 
-	if (smp.equals(SYS_DEFAULT)) {
+	// if (smp.equals(SYS_DEFAULT)) {
+	// systemMenuProvider = new ClassicSystemMenuProvider(this);
+	// } else if (smp.equals(SYS_SMART)) {
+	// systemMenuProvider = new SmartPendingSystemMenuProvider(this);
+	// } else if (smp.equals(SYS_TASK)) {
+	// systemMenuProvider = new TaskBarSystemMenuProvider(this);
+	// }
+
+	MainMenuConfigurationType mmct = uiPreferencesSubProfile
+		.getSystemMenuPreferences().getMainMenuConfiguration();
+	if (mmct == MainMenuConfigurationType.classic) {
 	    systemMenuProvider = new ClassicSystemMenuProvider(this);
-	} else if (smp.equals(SYS_SMART)) {
+	} else if (mmct == MainMenuConfigurationType.smart) {
 	    systemMenuProvider = new SmartPendingSystemMenuProvider(this);
-	} else if (smp.equals(SYS_TASK)) {
+	} else if (mmct == MainMenuConfigurationType.taskBar) {
 	    systemMenuProvider = new TaskBarSystemMenuProvider(this);
 	}
 
 	// TODO: load from UI PREFERENCES
-	String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER, PDD_TABLE);
-	if (pdd.equals(PDD_TABLE)) {
+	// String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER,
+	// PDD_TABLE);
+	// if (pdd.equals(PDD_TABLE)) {
+	// pendingDialogsDialog = PENDING_DIALOGS_TABLE;
+	// } else if (pdd.equals(PDD_BUTTON)) {
+	// pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
+	// }
+
+	PendingDialogsBuilderType pdbt = uiPreferencesSubProfile
+		.getSystemMenuPreferences().getPendingDialogBuilder();
+	if (pdbt == PendingDialogsBuilderType.table) {
 	    pendingDialogsDialog = PENDING_DIALOGS_TABLE;
-	} else if (pdd.equals(PDD_BUTTON)) {
+	} else if (pdbt == PendingDialogsBuilderType.buttons) {
 	    pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
 	}
 
@@ -747,8 +771,8 @@ public class UserDialogManager implements DialogManager {
     }
 
     /**
-     * The task for finalising a dialog. Waits
-     * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} miliseconds before
+     * The task for finalizing a dialog. Waits
+     * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} milliseconds before
      * checking if something must be shown.
      * 
      * @author amedrano
