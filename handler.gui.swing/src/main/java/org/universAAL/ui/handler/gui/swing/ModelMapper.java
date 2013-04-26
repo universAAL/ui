@@ -147,6 +147,8 @@ public final class ModelMapper {
 	    Object model = tryToLoadClass(
 	            render.getProperty(LAFPackageProperty), refObj, refObjClass);
 	    if (model == null) {
+			LogUtils.logWarn(Renderer.getContext(), getClass(), "getModelFor", 
+					new String[]{"Loading from DefaultLAFPackage"}, null);
 	        model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
 	        if (model == null) {
 	            // If not found, try to find the model for superclass.        
@@ -156,7 +158,16 @@ public final class ModelMapper {
 	        			&& parentC != Form.class
 	        			&& parentC != Label.class
 	        			&& parentC != Object.class ) {
+	        		LogUtils.logDebug(Renderer.getContext(), getClass(), "getModelFor", 
+	        				new String[]{"lookig for Antecesor"}, null);
 	        		return getModelFor(refObj, parentC);
+	        	} else {
+	        		LogUtils.logError(Renderer.getContext(), getClass(), "getModelFor", 
+	        				new String[]{"This is really akuard,",
+	        							 "No Model found...",
+	        							 "not even in DefaultLAFPackage...",
+	        							 "or as any antecesor...",
+	        							 "COME ON!!"}, null);
 	        	}
 	        }
 	    }

@@ -28,7 +28,6 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel.SubmitTask;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>

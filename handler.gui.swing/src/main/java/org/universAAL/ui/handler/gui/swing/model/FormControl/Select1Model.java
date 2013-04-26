@@ -21,7 +21,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JTree;
-import javax.swing.SwingUtilities;
 import javax.swing.tree.DefaultTreeSelectionModel;
 
 import org.universAAL.middleware.ui.rdf.ChoiceItem;

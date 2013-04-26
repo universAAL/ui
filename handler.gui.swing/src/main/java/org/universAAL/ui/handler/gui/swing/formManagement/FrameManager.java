@@ -17,8 +17,10 @@ package org.universAAL.ui.handler.gui.swing.formManagement;
 
 import javax.swing.JFrame;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
@@ -83,11 +85,15 @@ public class FrameManager implements Runnable{
 
 	/** {@ inheritDoc}	 */
 	public void run() {
+		LogUtils.logDebug(Renderer.getContext(), getClass(), "run", 
+				new String[]{"Starting Modeling"}, null);
 	    model = mp.getModelFor(form);
 	    if (model != null){
-		synchronized (model) {
-		    model.showForm();
-		}
+	    	LogUtils.logDebug(Renderer.getContext(), getClass(), "run", 
+	    			new String[]{"Starting Rendering"}, null);
+	    	synchronized (model) {
+	    		model.showForm();
+	    	}
 	    }		
 	}
 }

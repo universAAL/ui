@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing;
 
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.AllValuesFromRestriction;
 import org.universAAL.middleware.owl.Enumeration;
 import org.universAAL.middleware.owl.MergedRestriction;
@@ -89,8 +90,8 @@ public final class Handler extends UIHandler {
 		text += dialogID + " Prop: " + changedProp + "\n";
 		text += "prop of type: " + newVal.getClass().getName();
 		
-		Renderer.logDebug(getClass(), text, null);
-
+		LogUtils.logDebug(super.owner, getClass(),
+				"adaptationParametersChanged", new String[] {text}, null);
 	}
 
 	/** {@ inheritDoc}	 */

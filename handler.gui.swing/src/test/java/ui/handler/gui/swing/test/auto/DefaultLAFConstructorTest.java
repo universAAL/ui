@@ -15,12 +15,10 @@
  ******************************************************************************/
 package ui.handler.gui.swing.test.auto;
 
-import java.io.File;
 import java.util.Locale;
 
 import junit.framework.TestCase;
 
-import org.universAAL.middleware.container.Container;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.IntRestriction;
@@ -40,6 +38,7 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF;
@@ -64,6 +63,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 	Renderer testRender;
 
 	private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
+	private ModuleContext mc;
 
 	private PropertyPath getPath(String input){
 		return new PropertyPath(
@@ -71,105 +71,11 @@ public class DefaultLAFConstructorTest extends TestCase{
 				false,
 				new String[] { "http://org.universaal.ui.newGui/tests.owl#"+input });
 	}
-
+	
 	public void setUp(){
-	    ModuleContext mc = new ModuleContext() {
-
-		public boolean uninstall(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean stop(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean start(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public void setAttribute(String attrName, Object attrValue) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void registerConfigFile(Object[] configFileParams) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logWarn(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logTrace(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logInfo(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logError(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logDebug(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public File[] listConfigFiles(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public String getID() {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Container getContainer() {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Object getAttribute(String attrName) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public boolean canBeUninstalled(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean canBeStopped(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean canBeStarted(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public Object getProperty(String arg0) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Object getProperty(String arg0, Object arg1) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-	    };
+	    mc = new POJOModuleContext();
+	    new Renderer.RenderStarter(mc);
+	    
 		OntologyManagement.getInstance().register(mc,new DataRepOntology());
 		OntologyManagement.getInstance().register(mc,new UIBusOntology());
 

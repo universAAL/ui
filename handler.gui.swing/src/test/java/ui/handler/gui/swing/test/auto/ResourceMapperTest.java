@@ -17,6 +17,8 @@ package ui.handler.gui.swing.test.auto;
 
 import junit.framework.TestCase;
 
+import org.universAAL.plainJava.POJOModuleContext;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 
 /**
@@ -25,6 +27,13 @@ import org.universAAL.ui.handler.gui.swing.ResourceMapper;
  */
 public class ResourceMapperTest extends TestCase {
 	
+	
+	/** {@inheritDoc} */
+	protected void setUp() throws Exception {
+		super.setUp();
+		new Renderer.RenderStarter(new POJOModuleContext());
+	}
+
 	public void testResource1() {
 		assertNotNull(ResourceMapper.search("/app/Health.png"));
 	}

@@ -1,7 +1,6 @@
 package swing.simple.tests;
 
 import java.awt.Dimension;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import org.universAAL.middleware.container.Container;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -21,6 +19,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
+import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 
 public class TableTest extends JFrame {
@@ -84,103 +83,7 @@ private JTable m_simpleTable;
 
   public static void main(String[] arg) {
       
-      ModuleContext mc = new ModuleContext() {
-
-		public boolean uninstall(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean stop(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean start(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public void setAttribute(String attrName, Object attrValue) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void registerConfigFile(Object[] configFileParams) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logWarn(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logTrace(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logInfo(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logError(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public void logDebug(String tag, String message, Throwable t) {
-		    // TODO Auto-generated method stub
-
-		}
-
-		public File[] listConfigFiles(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public String getID() {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Container getContainer() {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Object getAttribute(String attrName) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public boolean canBeUninstalled(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean canBeStopped(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public boolean canBeStarted(ModuleContext requester) {
-		    // TODO Auto-generated method stub
-		    return false;
-		}
-
-		public Object getProperty(String arg0) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-
-		public Object getProperty(String arg0, Object arg1) {
-		    // TODO Auto-generated method stub
-		    return null;
-		}
-	    };
+      ModuleContext mc = new POJOModuleContext();
 
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());
 	OntologyManagement.getInstance().register(mc, new UIBusOntology());
