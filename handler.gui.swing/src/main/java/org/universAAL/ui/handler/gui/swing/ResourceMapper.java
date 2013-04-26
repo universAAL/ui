@@ -21,6 +21,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.universAAL.middleware.container.utils.LogUtils;
+
 
 /**
  * Find the resources referenced by urls.
@@ -51,7 +53,9 @@ public class ResourceMapper {
 		
 		URL resource;
 		try {
-			Renderer.logDebug(ResourceMapper.class, "Looking for " + url , null);
+			LogUtils.logDebug(Renderer.getContext(), 
+					ResourceMapper.class, "search",
+					new String[]{"Looking for " + url}, null);
 			resource = new URL(url);
 			if (existsURL(resource)) {
 				return resource;
@@ -60,16 +64,22 @@ public class ResourceMapper {
 				return null;
 			}
 		} catch (MalformedURLException e) {
-			Renderer.logDebug(ResourceMapper.class, "Looking for " + url + " in folders", null);
+			LogUtils.logDebug(Renderer.getContext(), 
+					ResourceMapper.class, "search",
+					new String[]{"Looking for " + url + " in folders"}, null);
 			resource = searchFolder(url);
 			if (resource != null) {
 				return resource;
 			}
 			else {
-				Renderer.logDebug(ResourceMapper.class, "Looking for " + url + " in resources", null);
+				LogUtils.logDebug(Renderer.getContext(), 
+						ResourceMapper.class, "search",
+						new String[]{"Looking for " + url + " in resources"}, null);
 				URL retVal = searchResources(url);
 				if (retVal == null)
-					Renderer.logDebug(ResourceMapper.class, "ERROR: Resource " + url + " not found", null);
+				LogUtils.logWarn(Renderer.getContext(), 
+						ResourceMapper.class, "search",
+						new String[]{"Resource " + url + " not found"}, null);
 				return retVal;
 			}
 		}

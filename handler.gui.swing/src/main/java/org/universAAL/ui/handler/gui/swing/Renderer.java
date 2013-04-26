@@ -545,17 +545,21 @@ public class Renderer extends Thread {
 	    return homeDir;
 	}
 
-	public static void logDebug(Class claz, String text, Throwable e) {
-		if (RenderStarter.staticContext != null) {
-			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
-		}
-		else {
-			System.err.println("[Debug]" + text);
-			if (e != null)
-			    System.err.print(e);
-		}
-	}
+//	public static void logDebug(Class claz, String text, Throwable e) {
+//		if (RenderStarter.staticContext != null) {
+//			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
+//		}
+//		else {
+//			System.err.println("[Debug]" + text);
+//			if (e != null)
+//			    System.err.print(e);
+//		}
+//	}
 
+	public static ModuleContext getContext(){
+		return RenderStarter.staticContext;
+	}
+	
 	public static class RenderStarter implements Runnable{
 	
 	private File propFile;

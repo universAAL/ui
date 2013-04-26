@@ -20,6 +20,7 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 
@@ -52,7 +53,10 @@ public class IconFactory {
             		return new ImageIcon(ur);
             	}
 			} catch (Exception e) {
-				Renderer.logDebug(IconFactory.class, "unable to load Image:" + url, e);
+				LogUtils.logDebug(
+						Renderer.getContext(),
+						IconFactory.class, "getIcon",
+						new String[] {"unable to load Image:" + url}, e);
 			}
         }
         return null;

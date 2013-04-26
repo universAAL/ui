@@ -17,7 +17,6 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import javax.swing.JComponent;
 import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 

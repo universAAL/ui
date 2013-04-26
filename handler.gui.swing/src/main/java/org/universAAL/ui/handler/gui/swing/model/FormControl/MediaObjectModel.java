@@ -16,11 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.Dimension;
-import java.net.URL;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
