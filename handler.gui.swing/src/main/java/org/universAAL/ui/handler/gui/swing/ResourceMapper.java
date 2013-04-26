@@ -61,6 +61,9 @@ public class ResourceMapper {
 				return resource;
 			}
 			else {
+				LogUtils.logWarn(Renderer.getContext(), 
+						ResourceMapper.class, "search",
+						new String[]{"url: " + url + " seems not to exists, or it is not accessible"}, null);
 				return null;
 			}
 		} catch (MalformedURLException e) {
