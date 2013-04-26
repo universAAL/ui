@@ -186,6 +186,9 @@ public class UserDialogManager implements DialogManager {
     private Semaphore showingSomething = new Semaphore(1);
 
     public UIPreferencesBuffer uiPreferencesBuffer = null;
+    
+    UIPreferencesSubProfile uiPreferencesSubProfile=null;
+
 
     /**
      * Constructor.
@@ -223,7 +226,7 @@ public class UserDialogManager implements DialogManager {
 	adapterList = new ArrayList<IAdapter>();
 
 	// retrieve UIPreferencesSubProfile for current user
-	UIPreferencesSubProfile uiPreferencesSubProfile = uiPreferencesBuffer
+	uiPreferencesSubProfile = uiPreferencesBuffer
 		.getUIPreferencesSubprofileForUser(user);
 
 	// add UI preferences adapter that enriches UIrequest with
@@ -768,6 +771,14 @@ public class UserDialogManager implements DialogManager {
 
     public final void openPendingMessagedDialog() {
 	new PendingMessageBuilder(this);
+    }
+    
+
+    /**
+     * @return the uiPreferencesSubProfile
+     */
+    public UIPreferencesSubProfile getUiPreferencesSubProfile() {
+        return uiPreferencesSubProfile;
     }
 
     /**

@@ -34,11 +34,13 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ontology.ui.preferences.Status;
 
 /**
  * Adds a search widget to the main menu, making it searchable.
+ * 
  * @author amedrano
- *
+ * 
  */
 public class SearchableAggregatedMainMenuProvider extends
 	AggregatedMainMenuProvider {
@@ -55,8 +57,8 @@ public class SearchableAggregatedMainMenuProvider extends
     static final String BACK_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#doBackFromSearch"; //$NON-NLS-1$;
 
-    static final boolean searchFirst = true;
-    
+    static boolean searchFirst;
+
     /**
      * The reference to the dialog manager for the user.
      */
@@ -66,6 +68,11 @@ public class SearchableAggregatedMainMenuProvider extends
     public SearchableAggregatedMainMenuProvider(UserDialogManager userDM) {
 	super();
 	this.userDM = userDM;
+	if (userDM.getUiPreferencesSubProfile().getSystemMenuPreferences()
+		.getSearchFeatureIsFirst() == Status.on) {
+	    searchFirst = true;
+	} else
+	    searchFirst = false;
     }
 
     /** {@inheritDoc} */
@@ -77,11 +84,9 @@ public class SearchableAggregatedMainMenuProvider extends
 	    if (searchStr instanceof String) {
 		searchString = (String) searchStr;
 	    } else {
-	    	LogUtils.logError(DialogManagerImpl.getModuleContext(),
-	    			getClass(),
-	    			"handle", 
-	    			new String[] {"Submission without effect."},
-	    			null);
+		LogUtils.logError(DialogManagerImpl.getModuleContext(),
+			getClass(), "handle",
+			new String[] { "Submission without effect." }, null);
 	    }
 	    return;
 	}
@@ -128,26 +133,24 @@ public class SearchableAggregatedMainMenuProvider extends
     /** {@inheritDoc} */
     @Override
     public Group getMainMenu(Resource user, AbsLocation location,
-    		Form systemForm) {
-    	if (searchString == null) {
-    		if (searchFirst) {
-    			addSearch(systemForm.getIOControls());
-    			Group mmGroup = super.getMainMenu(user, location, systemForm);
-    			return mmGroup;
-    		} 
-    		else {
-    			Group mmGroup = super.getMainMenu(user, location, systemForm);
-    			addSearch(mmGroup);
-    			return mmGroup;
-    		}
-    	}
-    	else {
-    		Group mmGroup = super.getMainMenu(user, location, systemForm);
-    		filter(mmGroup);
-    		new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
-    				null), BACK_CALL);
-    		return mmGroup;
-    	}
+	    Form systemForm) {
+	if (searchString == null) {
+	    if (searchFirst) {
+		addSearch(systemForm.getIOControls());
+		Group mmGroup = super.getMainMenu(user, location, systemForm);
+		return mmGroup;
+	    } else {
+		Group mmGroup = super.getMainMenu(user, location, systemForm);
+		addSearch(mmGroup);
+		return mmGroup;
+	    }
+	} else {
+	    Group mmGroup = super.getMainMenu(user, location, systemForm);
+	    filter(mmGroup);
+	    new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
+		    null), BACK_CALL);
+	    return mmGroup;
+	}
     }
 
     /**
