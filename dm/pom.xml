@@ -75,6 +75,11 @@
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.impairment</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.data.serialization.core</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

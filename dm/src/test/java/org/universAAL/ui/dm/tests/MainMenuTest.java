@@ -15,13 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.tests;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
 
-import org.universAAL.middleware.container.Container;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -29,109 +27,14 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.owl.ServiceBusOntology;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.util.Constants;
+import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
 import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
 
 public class MainMenuTest extends TestCase {
 
     protected static Resource user;
-    ModuleContext mc = new ModuleContext() {
-
-	public boolean uninstall(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public boolean stop(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public boolean start(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public void setAttribute(String attrName, Object attrValue) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void registerConfigFile(Object[] configFileParams) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void logWarn(String tag, String message, Throwable t) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void logTrace(String tag, String message, Throwable t) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void logInfo(String tag, String message, Throwable t) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void logError(String tag, String message, Throwable t) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public void logDebug(String tag, String message, Throwable t) {
-	    // TODO Auto-generated method stub
-
-	}
-
-	public File[] listConfigFiles(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	public String getID() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	public Container getContainer() {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	public Object getAttribute(String attrName) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	public boolean canBeUninstalled(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public boolean canBeStopped(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public boolean canBeStarted(ModuleContext requester) {
-	    // TODO Auto-generated method stub
-	    return false;
-	}
-
-	public Object getProperty(String arg0) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-
-	public Object getProperty(String arg0, Object arg1) {
-	    // TODO Auto-generated method stub
-	    return null;
-	}
-    };
+    ModuleContext mc = new POJOModuleContext();
 
     public void setUp() {
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());
