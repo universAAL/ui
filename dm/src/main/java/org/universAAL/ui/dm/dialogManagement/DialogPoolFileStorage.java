@@ -16,11 +16,9 @@
 package org.universAAL.ui.dm.dialogManagement;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
-import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 
 /**
  * Serialize/Deserialze a whole {@link IUIRequestPool} into/form a file.
