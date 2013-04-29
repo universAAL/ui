@@ -18,6 +18,8 @@ package org.universAAL.ui.dm.tests;
 import java.io.File;
 import java.util.Locale;
 
+import junit.framework.TestCase;
+
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -42,8 +44,6 @@ import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
-
-import junit.framework.TestCase;
 
 /**
  * @author amedrano

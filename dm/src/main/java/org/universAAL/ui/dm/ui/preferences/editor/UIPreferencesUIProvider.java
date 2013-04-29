@@ -20,6 +20,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.UICaller;
+import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.Modality;
@@ -47,7 +48,6 @@ import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.editor.Messages;
 
 /**
  * UI Preferences Editor dialog provider. Sends {@link UIRequest} containing the

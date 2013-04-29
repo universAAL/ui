@@ -44,6 +44,7 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.ui.preferences.Language;
 import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.Status;
@@ -59,6 +60,7 @@ import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
+import org.universAAL.ui.dm.interfaces.UIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
@@ -81,7 +83,7 @@ import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class UserDialogManager implements DialogManager {
+public class UserDialogManager implements DialogManager, UIPreferencesChangeListener {
 
     /**
      * The time to wait for new requests after a dialog finishes before showing
@@ -211,136 +213,183 @@ public class UserDialogManager implements DialogManager {
      */
     public UserDialogManager(User user, AbsLocation location,
 	    UIPreferencesBuffer uiPreferencesBuffer) {
-	this.user = user;
-	currentUserLocation = location;
-	this.uiPreferencesBuffer = uiPreferencesBuffer;
-	// since this constructor is called when obtaining main menu, this means
-	// that maybe new user is starting with the interaction so UI
-	// preferences
-	// should be initialized in this step
-	uiPreferencesBuffer
-		.addUserInitializeUIPreferencesAndStartObtainmentTask(user);
-	try {
-	    messages = new Messages(DialogManagerImpl.getModuleContext()
-		    .getID());
-	    messages.setLocale(getUserLocale());
-	} catch (IOException e) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "UserDialogManager",
-			    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
-			    e);
-	}
+    	this.user = user;
+    	currentUserLocation = location;
+    	this.uiPreferencesBuffer = uiPreferencesBuffer;
+    	// since this constructor is called when obtaining main menu, this means
+    	// that maybe new user is starting with the interaction so UI
+    	// preferences
+    	// should be initialized in this step
+    	uiPreferencesBuffer
+    	.addUserInitializeUIPreferencesAndStartObtainmentTask(user);
 
-	adapterList = new ArrayList<IAdapter>();
+		listeners = new TreeMap<String, ISubmitGroupListener>();
+		myUIRequests = new TreeSet<String>();
+    	chaged(uiPreferencesBuffer
+    			.getUIPreferencesSubprofileForUser(user));
 
-	// retrieve UIPreferencesSubProfile for current user
-	uiPreferencesSubProfile = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user);
-
-	// add UI preferences adapter that enriches UIrequest with
-	// UIPreferencesSupprofile data
-	adapterList.add(new AdapterUIPreferences(uiPreferencesSubProfile));
-
-	// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui.
-	// To be removed when above is working ok otherwise this will override
-	// things?
-	adapterList.add(new AdaptorKrakow());
-
-	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
-	try {
-	    ((AggregatedMainMenuProvider) mainMenuProvider)
-		    .add(new FileMainMenuProvider(this));
-	} catch (Exception e) {
-	    LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(),
-		    "UserDialogManager",
-		    new String[] { "Cannot initialize FileMainMenuProvider!" },
-		    e);
-	}
-	try {
-	    ((AggregatedMainMenuProvider) mainMenuProvider)
-		    .add(new ProfilableFileMainMenuProvider(this));
-	} catch (Exception e) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "UserDialogManager",
-			    new String[] { "Cannot initialize ProfilableMainMenuProvider!" },
-			    e);
-	}
-
-	// TODO: load from UI Preferences
-	// LOAD System Menu provider according to system properties
-	// String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,
-	// SYS_DEFAULT);
-
-	// if (smp.equals(SYS_DEFAULT)) {
-	// systemMenuProvider = new ClassicSystemMenuProvider(this);
-	// } else if (smp.equals(SYS_SMART)) {
-	// systemMenuProvider = new SmartPendingSystemMenuProvider(this);
-	// } else if (smp.equals(SYS_TASK)) {
-	// systemMenuProvider = new TaskBarSystemMenuProvider(this);
-	// }
-
-	MainMenuConfigurationType mmct = uiPreferencesSubProfile
-		.getSystemMenuPreferences().getMainMenuConfiguration();
-	if (mmct == MainMenuConfigurationType.classic) {
-	    systemMenuProvider = new ClassicSystemMenuProvider(this);
-	} else if (mmct == MainMenuConfigurationType.smart) {
-	    systemMenuProvider = new SmartPendingSystemMenuProvider(this);
-	} else if (mmct == MainMenuConfigurationType.taskBar) {
-	    systemMenuProvider = new TaskBarSystemMenuProvider(this);
-	}
-
-	// TODO: load from UI PREFERENCES
-	// String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER,
-	// PDD_TABLE);
-	// if (pdd.equals(PDD_TABLE)) {
-	// pendingDialogsDialog = PENDING_DIALOGS_TABLE;
-	// } else if (pdd.equals(PDD_BUTTON)) {
-	// pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
-	// }
-
-	PendingDialogsBuilderType pdbt = uiPreferencesSubProfile
-		.getSystemMenuPreferences().getPendingDialogBuilder();
-	if (pdbt == PendingDialogsBuilderType.table) {
-	    pendingDialogsDialog = PENDING_DIALOGS_TABLE;
-	} else if (pdbt == PendingDialogsBuilderType.buttons) {
-	    pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
-	}
-
-	messagePool = new DialogPriorityQueue();
-	dialogPool = new NonRedundantDialogPriorityQueue();
-	// dialogPool = new DialogPriorityQueue();
-	// dialogPool = new DialogPriorityQueueVerbosity();
-	listeners = new TreeMap<String, ISubmitGroupListener>();
-	messageListener = new MessageListener(messagePool);
-	myUIRequests = new TreeSet<String>();
-	
-	if (uiPreferencesSubProfile.getSystemMenuPreferences().getMessagePersistance()
-			.equals(Status.on)) {
-		saverTask = new AutoSaverTask();
-		saverTask.read();
-		saverTask.activate();
-	}
-	
     }
     
     /**
      * Close operation, used to close pending tasks.
      */
     void close() {
-		if (uiPreferencesSubProfile.getSystemMenuPreferences().getMessagePersistance()
+		if (uiPreferencesSubProfile.getSystemMenuPreferences().getUIRequestPersistance()
 				.equals(Status.on)) {
 			saverTask.cancel();
 			saverTask.write();
 		}
 	}
 
+	/** {@inheritDoc} */
+	public void chaged(UIPreferencesSubProfile subProfile) {
+		// update the UIPreferencesSubProfile for current user
+		uiPreferencesSubProfile = subProfile;
+		
+		/*
+		 * Get the messages
+		 */
+		try {
+		    messages = new Messages(DialogManagerImpl.getModuleContext()
+			    .getID());
+		    messages.setLocale(getUserLocale());
+		} catch (IOException e) {
+		    LogUtils
+			    .logError(
+				    DialogManagerImpl.getModuleContext(),
+				    getClass(),
+				    "UserDialogManager",
+				    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
+				    e);
+		}
 
+		/*
+		 * generate the adapter List
+		 * XXX: these can be also defined by uiPrefSubProf options...
+		 */
+		adapterList = new ArrayList<IAdapter>();
+
+		// add UI preferences adapter that enriches UIrequest with
+		// UIPreferencesSupprofile data
+		adapterList.add(new AdapterUIPreferences(uiPreferencesSubProfile));
+
+		// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui.
+		// To be removed when above is working ok otherwise this will override
+		// things?
+		adapterList.add(new AdaptorKrakow());
+
+		/*
+		 * Initialise mainMenuProvider
+		 */
+		mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
+		try {
+		    ((AggregatedMainMenuProvider) mainMenuProvider)
+			    .add(new FileMainMenuProvider(this));
+		} catch (Exception e) {
+		    LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(),
+			    "UserDialogManager",
+			    new String[] { "Cannot initialize FileMainMenuProvider!" },
+			    e);
+		}
+		try {
+		    ((AggregatedMainMenuProvider) mainMenuProvider)
+			    .add(new ProfilableFileMainMenuProvider(this));
+		} catch (Exception e) {
+		    LogUtils
+			    .logError(
+				    DialogManagerImpl.getModuleContext(),
+				    getClass(),
+				    "UserDialogManager",
+				    new String[] { "Cannot initialize ProfilableMainMenuProvider!" },
+				    e);
+		}
+
+		/*
+		 * System Menu Behavior  
+		 */
+		// TODO: load from UI Preferences
+		// LOAD System Menu provider according to system properties
+		// String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,
+		// SYS_DEFAULT);
+
+		// if (smp.equals(SYS_DEFAULT)) {
+		// systemMenuProvider = new ClassicSystemMenuProvider(this);
+		// } else if (smp.equals(SYS_SMART)) {
+		// systemMenuProvider = new SmartPendingSystemMenuProvider(this);
+		// } else if (smp.equals(SYS_TASK)) {
+		// systemMenuProvider = new TaskBarSystemMenuProvider(this);
+		// }
+
+		MainMenuConfigurationType mmct = uiPreferencesSubProfile
+			.getSystemMenuPreferences().getMainMenuConfiguration();
+		if (mmct == MainMenuConfigurationType.classic) {
+		    systemMenuProvider = new ClassicSystemMenuProvider(this);
+		} else if (mmct == MainMenuConfigurationType.smart) {
+		    systemMenuProvider = new SmartPendingSystemMenuProvider(this);
+		} else if (mmct == MainMenuConfigurationType.taskBar) {
+		    systemMenuProvider = new TaskBarSystemMenuProvider(this);
+		}
+
+		/*
+		 * Pending Dialog Builder setting
+		 */
+		// TODO: load from UI PREFERENCES
+		// String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER,
+		// PDD_TABLE);
+		// if (pdd.equals(PDD_TABLE)) {
+		// pendingDialogsDialog = PENDING_DIALOGS_TABLE;
+		// } else if (pdd.equals(PDD_BUTTON)) {
+		// pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
+		// }
+
+		PendingDialogsBuilderType pdbt = uiPreferencesSubProfile
+			.getSystemMenuPreferences().getPendingDialogBuilder();
+		if (pdbt == PendingDialogsBuilderType.table) {
+		    pendingDialogsDialog = PENDING_DIALOGS_TABLE;
+		} else if (pdbt == PendingDialogsBuilderType.buttons) {
+		    pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
+		}
+
+	
+		/*
+		 * Dialog Pool behavior
+		 */
+		// TODO: use dialogPool behavior according o UIPrefSubProf
+		if (dialogPool == null) {
+			dialogPool = new NonRedundantDialogPriorityQueue();
+		// dialogPool = new DialogPriorityQueue();
+		// dialogPool = new DialogPriorityQueueVerbosity();
+		}
+//		else {
+//			IUIRequestPool old = dialogPool;
+//			dialogPool = new ...;
+//			DialogPoolCopier.copy(old, dialogPool);
+//		}
+		/*
+		 * Message Pool behavior
+		 */
+		// TODO: use dialogPool behavior according o UIPrefSubProf
+		if (messagePool == null){
+			messagePool = new DialogPriorityQueue();
+		}
+//		else {
+//			IUIRequestPool old = messagePool;
+//			messagePool = new DialogPriorityQueue();
+//			DialogPoolCopier.copy(old, messagePool);
+//		}
+		messageListener = new MessageListener(messagePool);
+		
+		/*
+		 * Persistence Setting
+		 */
+		if (uiPreferencesSubProfile.getSystemMenuPreferences().getUIRequestPersistance()
+				.equals(Status.on)) {
+			saverTask = new AutoSaverTask();
+			saverTask.read();
+			saverTask.activate();
+		}
+		
+	}
 
 	/**
      * Get the user's URI for this {@link UserDialogManager} target {@link User}
@@ -764,18 +813,69 @@ public class UserDialogManager implements DialogManager {
 	}
     }
 
+    private Locale getLocaleFromLanguage(Language lang){
+		switch (lang.ord()) {
+		case Language.GERMAN:
+			return Locale.GERMAN;
+		case Language.ITALIAN:
+			return Locale.ITALIAN;
+		case Language.GREEK:
+			return new Locale("el");
+		case Language.SPANISH:
+			return new Locale("es");
+		case Language.ENGLISH:
+			return Locale.ENGLISH;
+		case Language.POLISH:
+			return new Locale("pl");
+		case Language.CROATIAN:
+			return new Locale("hr");
+		case Language.NORVEGIAN:
+			return new Locale("no");
+		case Language.DUTCH:
+			return new Locale("nl");
+		case Language.FRENCH:
+			return Locale.FRENCH;
+		case Language.TAIWANESE:
+			return Locale.TAIWAN;
+		case Language.ISRAELI:
+			return new Locale("he");
+		case Language.PORTUGUESE:
+			return new Locale("pt");
+		case Language.RUSIAN:
+			return new Locale("ru");
+		case Language.HUNGARIAN:
+			return new Locale("hu");
+		case Language.CHINESE:
+			return Locale.CHINESE;
+		default:
+			return null;
+		}
+    }
+    
     /**
      * Get the language for the user.
      * 
      * @return the Locale for the user Language.
      */
     public final Locale getUserLocale() {
-	// TODO find REAL USER's LOCALE
-	return Locale.ENGLISH;
-	// check user's profile
-	// check system property
-	// check default systemlocale?
-	// if everything else fails then english?
+	// find REAL USER's LOCALE
+    	Language lang = uiPreferencesSubProfile.getInteractionPreferences().getPreferredLanguage();
+    	
+    	try {
+    		return getLocaleFromLanguage(lang);
+		} catch (Exception e) {
+			// a locale couldn't be created, Try secondary language.
+			try {
+				lang = uiPreferencesSubProfile.getInteractionPreferences().getSecondaryLanguage();
+				return getLocaleFromLanguage(lang);
+			} catch (Exception e1) {
+				// OR 
+				// check system property
+				// check default systemlocale?
+				// if everything else fails then english?
+				return Locale.ENGLISH;
+			}
+		}
     }
 
     /**
@@ -886,8 +986,7 @@ public class UserDialogManager implements DialogManager {
 		 * Constructor.
 		 */
 		public AutoSaverTask() {
-			userID = getUserId();
-			userID = userID.substring(userID.lastIndexOf("#") + 1);
+			userID = user.getLocalName();
 			getDialogFile().mkdirs();
 			
 			storeDLG = new DialogPoolFileStorage(
