@@ -100,8 +100,15 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 		String serialized = "";
 		try {
 			serialized = new Scanner(file).useDelimiter("\\Z").next();
-		} catch (FileNotFoundException e) {
-			// Highly unprobable.
+		} catch (Exception e){
+			/*
+			 *  either:
+			 *  	- empty file
+			 *  	- non existent file
+			 *  	- Scanner failture...
+			 *  Nothing to do here
+			 */
+			return;
 		}
 		
 		Resource root = (Resource) contentSerializer.deserialize(serialized);

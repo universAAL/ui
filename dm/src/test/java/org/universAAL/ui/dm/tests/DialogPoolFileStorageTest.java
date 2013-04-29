@@ -104,4 +104,14 @@ public class DialogPoolFileStorageTest extends TestCase {
 		assertEquals(NO_REQUESTS/2, pool.listAllSuspended().size());
 		assertEquals(NO_REQUESTS, pool.listAllActive().size() + pool.listAllSuspended().size());
 	}
+	
+	public void testReadNonExistent(){
+		IUIRequestPool pool = new DialogPriorityQueue();
+		IUIRequestStore store = new DialogPoolFileStorage(mc, new File(FILE_PATH+"foo"));
+		
+		store.read(pool);
+		
+		assertEquals(0, pool.listAllSuspended().size());
+		assertEquals(0, pool.listAllActive().size() + pool.listAllSuspended().size());
+	}
 }
