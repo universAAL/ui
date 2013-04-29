@@ -17,8 +17,8 @@ import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.vcard.VCardOntology;
 import org.universAAL.plainJava.POJOModuleContext;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 
 

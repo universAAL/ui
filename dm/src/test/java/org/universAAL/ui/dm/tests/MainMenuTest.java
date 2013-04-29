@@ -28,8 +28,8 @@ import org.universAAL.middleware.service.owl.ServiceBusOntology;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.plainJava.POJOModuleContext;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 
 public class MainMenuTest extends TestCase {
 

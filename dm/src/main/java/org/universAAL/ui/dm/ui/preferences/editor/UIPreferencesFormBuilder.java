@@ -338,10 +338,10 @@ public class UIPreferencesFormBuilder {
 		null);
 
 	msgPersistenceSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
-		.getMessagePersistance().name(), (String) null,
-		systemMenuPreferences.getMessagePersistance()));
+		.getUIRequestPersistance().name(), (String) null,
+		systemMenuPreferences.getUIRequestPersistance()));
 	for (int i = 0; i < Status.getSize(); i++) {
-	    if (i - systemMenuPreferences.getMessagePersistance().ord() == 0) {
+	    if (i - systemMenuPreferences.getUIRequestPersistance().ord() == 0) {
 		continue;
 	    }
 	    msgPersistenceSelect.addChoiceItem(new ChoiceItem(Status

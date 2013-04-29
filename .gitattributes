@@ -39,10 +39,10 @@ dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUIProvi
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/FileMainMenuProvider.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MainMenu.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/MenuNode.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java -text

@@ -23,7 +23,7 @@ import java.util.List;
 
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.ontology.profile.ui.mainmenu.MenuEntry;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MenuNode;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 
 public class RDFMenuNode extends MenuNode {
 

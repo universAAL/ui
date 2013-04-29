@@ -185,7 +185,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
 	systemMenuPreferences
 		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setMessagePersistance(Status.on);
+	systemMenuPreferences.setUIRequestPersistance(Status.on);
 	systemMenuPreferences
 		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
 	systemMenuPreferences
@@ -270,7 +270,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
 	systemMenuPreferences
 		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setMessagePersistance(Status.on);
+	systemMenuPreferences.setUIRequestPersistance(Status.on);
 	systemMenuPreferences
 		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
 	systemMenuPreferences

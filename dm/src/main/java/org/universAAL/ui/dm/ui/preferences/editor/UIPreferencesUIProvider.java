@@ -284,7 +284,7 @@ public class UIPreferencesUIProvider extends UICaller {
 	    SystemMenuPreferences smp = currentUIprefsSubProf
 		    .getSystemMenuPreferences();
 	    smp.setMainMenuConfiguration(mainMenuConfigurationType);
-	    smp.setMessagePersistance(messagePersistanceStatus);
+	    smp.setUIRequestPersistance(messagePersistanceStatus);
 	    smp.setPendingDialogBuilder(pendingDialogBuilderType);
 	    smp.setPendingMessageBuilder(pendingMessageBuilderType);
 	    smp.setSearchFeatureIsFirst(searchFeatureIsFirstStatus);
