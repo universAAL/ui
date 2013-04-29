@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.dm;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +24,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
@@ -43,9 +46,11 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
+import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
+import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.IAdapter;
@@ -53,6 +58,7 @@ import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.dm.interfaces.IUIRequestStore;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
@@ -189,6 +195,11 @@ public class UserDialogManager implements DialogManager {
     
     UIPreferencesSubProfile uiPreferencesSubProfile=null;
 
+	/**
+	 * An instance to retrieve, save and autosave the pools.
+	 */
+	private AutoSaverTask saverTask;
+    
 
     /**
      * Constructor.
@@ -308,9 +319,30 @@ public class UserDialogManager implements DialogManager {
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	messageListener = new MessageListener(messagePool);
 	myUIRequests = new TreeSet<String>();
+	
+	if (uiPreferencesSubProfile.getSystemMenuPreferences().getMessagePersistance()
+			.equals(Status.on)) {
+		saverTask = new AutoSaverTask();
+		saverTask.read();
+		saverTask.activate();
+	}
+	
     }
-
+    
     /**
+     * Close operation, used to close pending tasks.
+     */
+    void close() {
+		if (uiPreferencesSubProfile.getSystemMenuPreferences().getMessagePersistance()
+				.equals(Status.on)) {
+			saverTask.cancel();
+			saverTask.write();
+		}
+	}
+
+
+
+	/**
      * Get the user's URI for this {@link UserDialogManager} target {@link User}
      * .
      * 
@@ -827,5 +859,87 @@ public class UserDialogManager implements DialogManager {
 	    showingSomething.release();
 	}
 
+    }
+    
+    class AutoSaverTask extends TimerTask {
+    	/**
+    	 * The folder name where to save the {@link UIRequest}s.
+    	 */
+    	private static final String PERSISTENCY_FOLDER = "persistency/";
+
+    	/**
+    	 * Period to autosave {@link UIRequest}s.
+    	 */
+    	private static final long AUTOSAVE_PERIOD = 300000; //each 5 minutes.
+		private static final String DIALOG_EXT = ".dlg";
+		private static final String MESSAGE_EXT = ".msg";
+		private String userID;
+		private IUIRequestStore storeDLG;
+		private IUIRequestStore storeMSG;
+		
+		/**
+		 * The timer daemon to save UIRequests periodically.
+		 */
+		private Timer persistencyTimer;
+		
+		/**
+		 * Constructor.
+		 */
+		public AutoSaverTask() {
+			userID = getUserId();
+			userID = userID.substring(userID.lastIndexOf("#") + 1);
+			getDialogFile().mkdirs();
+			
+			storeDLG = new DialogPoolFileStorage(
+					DialogManagerImpl.getModuleContext(),
+					getDialogFile());
+			
+			storeMSG = new DialogPoolFileStorage(
+					DialogManagerImpl.getModuleContext(),
+					getMessageFile());
+		}
+		
+		/** {@inheritDoc} */
+		@Override
+		public void run() {
+			try {
+				showingSomething.acquire();
+			} catch (InterruptedException e) {}
+			write();
+			showingSomething.release();
+		}
+    	
+		public File getDialogFile(){
+			return new File(
+					DialogManagerImpl.getConfigHome(),
+					PERSISTENCY_FOLDER  + userID + DIALOG_EXT);
+		}
+		
+		public File getMessageFile(){
+			return new File(
+					DialogManagerImpl.getConfigHome(),
+					PERSISTENCY_FOLDER  + userID + MESSAGE_EXT);
+		}
+		
+		public void read(){
+			storeDLG.read(dialogPool);
+			storeMSG.read(messagePool);
+		}
+		
+		public void write(){
+			storeDLG.save(dialogPool);
+			storeMSG.save(messagePool);			
+		}
+		
+		public void activate(){
+			persistencyTimer = new Timer(true);
+			persistencyTimer.schedule(new AutoSaverTask(),
+				AUTOSAVE_PERIOD
+				, AUTOSAVE_PERIOD);
+		}
+		
+		public void stop(){
+			persistencyTimer.cancel();
+		}
     }
 }
