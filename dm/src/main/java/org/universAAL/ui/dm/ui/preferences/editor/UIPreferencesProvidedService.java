@@ -16,8 +16,6 @@ package org.universAAL.ui.dm.ui.preferences.editor;
 
 import java.util.Hashtable;
 
-import org.universAAL.ontology.ui.preferences.service.UIPreferencesService;
-import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.SimpleOntology;
@@ -25,6 +23,8 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
 import org.universAAL.middleware.service.owl.InitialServiceDialog;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
+import org.universAAL.ontology.ui.preferences.service.UIPreferencesService;
+import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 
 /**
  * Provides the service for starting the UI Preferences Editor Dialog.

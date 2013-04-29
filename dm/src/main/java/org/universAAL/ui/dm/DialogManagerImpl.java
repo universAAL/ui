@@ -36,9 +36,9 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.osgi.DialogManagerActivator;
+import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**

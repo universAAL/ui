@@ -32,9 +32,9 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ontology.ui.preferences.Status;
 
 /**
  * Adds a search widget to the main menu, making it searchable.
