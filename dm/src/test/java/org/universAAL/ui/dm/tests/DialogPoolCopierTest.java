@@ -17,13 +17,12 @@ package org.universAAL.ui.dm.tests;
 
 import java.util.Locale;
 
+import junit.framework.TestCase;
+
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.serialization.MessageContentSerializer;
-import org.universAAL.middleware.serialization.MessageContentSerializerEx;
-import org.universAAL.middleware.serialization.turtle.TurtleSerializer;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
@@ -40,8 +39,6 @@ import org.universAAL.ui.dm.dialogManagement.DialogPoolCopier;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
-
-import junit.framework.TestCase;
 
 /**
  * @author amedrano
