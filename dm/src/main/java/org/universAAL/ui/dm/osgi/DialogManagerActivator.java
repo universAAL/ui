@@ -15,10 +15,13 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.osgi;
 
+import java.io.File;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.dm.DialogManagerImpl;
 
@@ -33,7 +36,11 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
     public void run() {
 
 	// contextSubscriber = new ContextSubscriber(mContext);
-	DialogManagerImpl.createInstance(mContext);
+    	DialogManagerImpl.setConfigHome(
+    			new File(new BundleConfigHome(mContext.getID()).getAbsolutePath()));
+    	
+    	DialogManagerImpl.createInstance(mContext);
+    
     }
 
     /** {@inheritDoc} */

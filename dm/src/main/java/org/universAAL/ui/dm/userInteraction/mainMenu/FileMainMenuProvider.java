@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
@@ -143,11 +142,9 @@ public class FileMainMenuProvider implements IMainMenuProvider {
     	String userID = userDM.getUserId();
     	userID = userID.substring(userID.lastIndexOf("#") + 1);
     	String lang = userDM.getUserLocale().getLanguage();
-    	BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
-    		    .getModuleContext().getID());
-    	File f = new File(confHome.getAbsolutePath(),filePrefix + userID + "_" + lang
+    	File f = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + "_" + lang
     			+ ".txt");
-    	File f2 = new File(confHome.getAbsolutePath(),filePrefix + userID + ".txt");
+    	File f2 = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + ".txt");
     	if (f2.exists()){
     		return f2;
     	} else {
