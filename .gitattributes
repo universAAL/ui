@@ -11,6 +11,7 @@ dm/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
 dm/src/main/java/org/universAAL/ui/dm/UserDialogManager.java -text
 dm/src/main/java/org/universAAL/ui/dm/adapters/AdapterUIPreferences.java -text
 dm/src/main/java/org/universAAL/ui/dm/adapters/AdaptorKrakow.java -text
+dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
@@ -53,6 +54,7 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMe
 dm/src/main/resources/org/universAAL/ui/dm/ui/preferences/editor/messages.properties -text
 dm/src/test/java/org/universAAL/plainJava/POJOContainer.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/plainJava/POJOModuleContext.java -text svneol=unset#text/plain
+dm/src/test/java/org/universAAL/ui/dm/tests/DialogPoolCopierTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPoolFileStorageTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset#text/plain
