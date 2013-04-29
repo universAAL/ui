@@ -23,7 +23,6 @@ import java.io.File;
 import java.io.InputStream;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
@@ -49,9 +48,7 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
 
     public static File getMainMenuFile(String userURI) {
 	userURI = userURI.substring(userURI.lastIndexOf("#") + 1);
-	BundleConfigHome confHome = new BundleConfigHome(DialogManagerImpl
-		.getModuleContext().getID());
-	return new File(confHome.getAbsolutePath(), PROF_FILE_PREFIX + userURI
+	return new File(DialogManagerImpl.getConfigHome(), PROF_FILE_PREFIX + userURI
 		+ ".txt");
     }
 }

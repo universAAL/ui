@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.dm;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -116,6 +117,12 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static UIPreferencesSCallee uiPreferencesSCallee = null;
     public static UIPreferencesBuffer uiPreferencesBuffer = null;
 
+    
+    /**
+     * The configHome is the folder where all the DMs config files are to be saved.
+     */
+    private static File configHome;
+    
     /**
      * private constructor for creating singleton instance.
      * 
@@ -389,7 +396,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static ModuleContext getModuleContext() {
 	return getInstance().moduleContext;
     }
-
+    
     /**
      * A mini-Garbage collector to purge the
      * {@link DialogManagerImpl#dialogIDMap}
@@ -421,4 +428,20 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public UserDialogManager getUDM(String userURI) {
 	return udmMap.get(userURI);
     }
+
+	/**
+	 * Get the config folder.
+	 * @return the configHome
+	 */
+	public static File getConfigHome() {
+		return configHome;
+	}
+
+	/**
+	 * This should only be called form an activator.
+	 * @param configHome set the configHome folder.
+	 */
+	public static void setConfigHome(File configHome) {
+		DialogManagerImpl.configHome = configHome;
+	}
 }
