@@ -25,8 +25,8 @@ import java.io.InputStream;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.userInteraction.mainMenu.FileMainMenuProvider;
-import org.universAAL.ui.dm.userInteraction.mainMenu.MainMenu;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider;
+import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
 
 public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
 

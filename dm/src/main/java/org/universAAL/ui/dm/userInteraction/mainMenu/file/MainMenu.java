@@ -17,7 +17,7 @@
 	See the License for the specific language governing permissions and
 	limitations under the License.
  */
-package org.universAAL.ui.dm.userInteraction.mainMenu;
+package org.universAAL.ui.dm.userInteraction.mainMenu.file;
 
 import java.io.BufferedReader;
 import java.io.IOException;
