@@ -30,8 +30,8 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 
-import org.universAAL.middleware.container.osgi.util.Messages;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
@@ -250,9 +250,8 @@ public class UserDialogManager implements DialogManager, UIPreferencesChangeList
 		 * Get the messages
 		 */
 		try {
-		    messages = new Messages(DialogManagerImpl.getModuleContext()
-			    .getID());
-		    messages.setLocale(getUserLocale());
+			File messagesFile = new File(DialogManagerImpl.getConfigHome(),"messages.properties");
+		    messages = new Messages(messagesFile, getUserLocale());
 		} catch (IOException e) {
 		    LogUtils
 			    .logError(
