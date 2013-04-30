@@ -24,7 +24,7 @@ import org.universAAL.middleware.rdf.impl.ResourceFactoryImpl;
 import org.universAAL.middleware.service.owl.InitialServiceDialog;
 import org.universAAL.middleware.service.owls.profile.ServiceProfile;
 import org.universAAL.ontology.ui.preferences.service.UIPreferencesService;
-import org.universAAL.ui.dm.osgi.DialogManagerActivator;
+import org.universAAL.ui.dm.DialogManagerImpl;
 
 /**
  * Provides the service for starting the UI Preferences Editor Dialog.
@@ -59,7 +59,7 @@ public class UIPreferencesProvidedService extends UIPreferencesService {
 
     static {
 	OntologyManagement.getInstance().register(
-		DialogManagerActivator.getModuleContext(),
+		DialogManagerImpl.getModuleContext(),
 		new SimpleOntology(MY_URI, UIPreferencesService.MY_URI,
 			new ResourceFactoryImpl() {
 			    @Override

@@ -35,7 +35,6 @@ import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.dm.osgi.DialogManagerActivator;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
@@ -364,15 +363,15 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     public static DialogManagerImpl getInstance() {
 	if (singleton == null) {
-	    LogUtils.logDebug(DialogManagerActivator.getModuleContext(),
+	    LogUtils.logDebug(getModuleContext(),
 		    DialogManagerImpl.class, "getInstance",
 		    new String[] { "Singleton instance not yet created." },
 		    null);
 
-	    createInstance(DialogManagerActivator.getModuleContext());
+	    createInstance(getModuleContext());
 
 	    if (singleton == null) {
-		LogUtils.logError(DialogManagerActivator.getModuleContext(),
+		LogUtils.logError(getModuleContext(),
 			DialogManagerImpl.class, "getInstance",
 			new String[] { "Could not get singleton instance." },
 			null);
