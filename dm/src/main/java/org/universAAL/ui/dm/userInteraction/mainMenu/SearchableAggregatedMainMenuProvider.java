@@ -101,11 +101,13 @@ public class SearchableAggregatedMainMenuProvider extends
      * Filters {@link SearchableAggregatedMainMenuProvider#mmGroup} with
      * searchStr, and resends the new main menu.
      * 
-     * @param searchStr
+     * @param mmGroup the main menu group to filter.
+     * @return the number of results after filtering.
      */
     @SuppressWarnings( { "rawtypes" })
-    private void filter(Group mmGroup) {
+    private int filter(Group mmGroup) {
 	FormControl[] elem = mmGroup.getChildren();
+	int noResults = elem.length;
 	for (int i = 0; i < elem.length; i++) {
 	    if (!elem[i].getLabel().getText().toLowerCase().contains(
 		    searchString.toLowerCase())
@@ -116,9 +118,11 @@ public class SearchableAggregatedMainMenuProvider extends
 		List children = (List) mmGroup.getProperty(Group.PROP_CHILDREN);
 		if (children != null) {
 		    children.remove(elem[i]);
+		    noResults--;
 		}
 	    }
 	}
+	return noResults;
     }
 
     /** {@inheritDoc} */
@@ -146,7 +150,19 @@ public class SearchableAggregatedMainMenuProvider extends
 	    }
 	} else {
 	    Group mmGroup = super.getMainMenu(user, location, systemForm);
-	    filter(mmGroup);
+	    if (filter(mmGroup) == 0){
+	    	//no results, resetting 
+	    	searchString = null;
+	    	return this.getMainMenu(user, location, systemForm);
+	    	/*
+	    	 * XXX instead of showing the original main menu:
+	    	 * 1) add CloudNotComplyException
+	    	 * 2) add throws CloudNotComplyException to IMainMenuProvider interface
+	    	 * 3) capture the exception in UserDialogManager (and abort pushing the dialog)
+	    	 * 4) show a message|subdialog saying there are no results 
+	    	 * 		(if message, delete "remember" option).
+	    	 */
+	    }
 	    new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
 		    null), BACK_CALL);
 	    return mmGroup;
