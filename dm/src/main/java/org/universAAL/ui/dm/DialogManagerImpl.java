@@ -315,7 +315,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * Method to prepare for DM shutdown.
      */
     private void stop() {
-	// notiffy UserDialogManager s about impending shutdown
+	// notify UserDialogManager s about impending shutdown
 	for (UserDialogManager udm : dialogIDMap.values()) {
 	    udm.close();
 	}
