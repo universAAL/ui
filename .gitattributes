@@ -32,10 +32,10 @@ dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitiali
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/Messages.java -text
-dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesFormBuilder.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java -text
-dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUIProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
