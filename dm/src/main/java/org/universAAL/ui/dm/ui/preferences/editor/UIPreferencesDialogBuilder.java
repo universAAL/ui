@@ -60,11 +60,12 @@ import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
  * 
  */
 public class UIPreferencesDialogBuilder {
+    
 
     public static UIPreferencesBuffer uiPreferencesBuffer = null;
 
     public UIPreferencesDialogBuilder(UIPreferencesBuffer uiPreferencesBuffer) {
-	UIPreferencesFormBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
+	UIPreferencesDialogBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
     }
 
     /**
