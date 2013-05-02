@@ -36,8 +36,9 @@ public class RangeLAF extends RangeModel {
     /** {@inheritDoc} */
     public void update() {
 	super.update();
-        jc.setFont(ColorLAF.getLabelFont());
-        jc.setForeground(ColorLAF.getborderLineMM());
+		ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
+        jc.setFont(c.getLabelFont());
+        jc.setForeground(c.getborderLineMM());
     }
 
 

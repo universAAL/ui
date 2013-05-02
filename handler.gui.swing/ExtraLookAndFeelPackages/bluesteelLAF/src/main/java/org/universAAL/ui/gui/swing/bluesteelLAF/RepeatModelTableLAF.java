@@ -22,7 +22,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.TitledBorder;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;

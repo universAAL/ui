@@ -17,6 +17,8 @@ package org.universAAL.ui.handler.gui.swing;
 
 import java.util.Properties;
 
+import org.universAAL.middleware.container.ModuleContext;
+
 public class TestFMRenderer extends Renderer {
 
 
@@ -26,7 +28,9 @@ public class TestFMRenderer extends Renderer {
 	public static final String SIMPLE_MANAGER =
 			"org.universAAL.ui.handler.gui.swing.TestSimpleFM";
 
-	public TestFMRenderer(String formManagerClass) {
+	public TestFMRenderer(ModuleContext mc, String formManagerClass) {
+		super();
+		moduleContext = mc;
 		//handler = new Handler(this);
 		loadProperties();
 		modelMapper = new ModelMapper(this);

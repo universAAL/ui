@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.IntRestriction;
 import org.universAAL.middleware.owl.MergedRestriction;
@@ -37,6 +38,7 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.gui.swing.bluesteelLAF.*;
 
@@ -50,25 +52,30 @@ public class BluesteelLAFConstructorTest extends TestCase {
 
     Form f;
     Label l;
+	ModuleContext mc = new POJOModuleContext();
     Renderer testRender;
 
     private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
 
     private PropertyPath getPath(String input) {
 	return new PropertyPath(null, false,
-		new String[] { "http://org.universaal.ui.newGui/tests.owl#"
+		new String[] { "http://org.universaal.ui.handler.gui.swing/tests.owl#"
 			+ input });
     }
 
     public void setUp() {
-	OntologyManagement.getInstance().register(null, new DataRepOntology());
-	OntologyManagement.getInstance().register(null, new UIBusOntology());
+	OntologyManagement.getInstance().register(mc, new DataRepOntology());
+	OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
 	f = Form.newDialog("root", new Resource());
 	l = new Label("this is a Label", "");
-	testRender = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
+	testRender = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
     }
 
+    public void testColorLAF(){
+    	new ColorLAF();
+    }
+    
     public void testGroup() {
 	Group g = new Group(f.getIOControls(), l, getPath("group1"), null, null);
 	new GroupLAF(g, testRender).getComponent();

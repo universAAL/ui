@@ -81,7 +81,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");
-		testRender = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
+		testRender = new TestRenderer(mc,TestRenderer.SIMPLE_MANAGER);
 	}
 
 	public void testGroup(){

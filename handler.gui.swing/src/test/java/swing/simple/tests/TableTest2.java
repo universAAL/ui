@@ -41,7 +41,8 @@ public class TableTest2 extends JFrame {
     private TestRenderer render;
 
     public TableTest2() {
-	render = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
+    	ModuleContext mc = new POJOModuleContext();
+	render = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 
 	List rows = new ArrayList();
 	Resource cell = new Resource();

@@ -114,7 +114,7 @@ public class Renderer extends Thread {
     /**
      * uAAL {@link ModuleContext} to make uAAL operations.
      */
-    private ModuleContext moduleContext = null;
+    protected ModuleContext moduleContext = null;
 
     /**
      * Form Logic Manager. it will decide
@@ -149,13 +149,6 @@ public class Renderer extends Thread {
      * Directory for configuration files.
      */
     private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
-
-    /**
-     * Constructor, to only be used by test clases.
-     */
-    protected Renderer() {
-    	super();
-    }
     
     /**
      * Constructor for one Renderer on a certain file.
@@ -196,6 +189,11 @@ public class Renderer extends Thread {
         		new String[]{"loading LAF"}, null);
         initLAF = modelMapper.initializeLAF();
     }
+    
+    /**
+     * Only to be used by TestCases.
+     */
+    protected Renderer(){  }
     
     /**
      * Constructor.

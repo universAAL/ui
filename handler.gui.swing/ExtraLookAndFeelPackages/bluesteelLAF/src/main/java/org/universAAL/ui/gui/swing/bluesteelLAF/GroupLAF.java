@@ -90,7 +90,7 @@ public class GroupLAF extends GroupModel {
              * Tabbed group
              */
             jc.getAccessibleContext();
-            jc.setFont(ColorLAF.getplain());
+            jc.setFont(Init.getInstance(getRenderer()).getColorLAF().getplain());
         }
         else if (!((Group) fc).isRootGroup()) {
             /*
@@ -104,11 +104,13 @@ public class GroupLAF extends GroupModel {
                 label = "";
             }
             //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-            Border line = BorderFactory.createLineBorder(ColorLAF.getOrange());
+            Border line = BorderFactory.createLineBorder(
+            		Init.getInstance(getRenderer()).getColorLAF().getOrange());
             TitledBorder title;
             title = BorderFactory.createTitledBorder
                     (line, label, 0, 0,
-                            ColorLAF.getbold(), ColorLAF.getborderLineMM());
+                    		Init.getInstance(getRenderer()).getColorLAF().getbold(), 
+                    		Init.getInstance(getRenderer()).getColorLAF().getborderLineMM());
             jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
