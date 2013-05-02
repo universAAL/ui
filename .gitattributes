@@ -4,7 +4,6 @@ dm/LICENSE-CPL-JUnit.txt -text
 dm/LICENSE-JGCL.txt -text
 dm/MITX.txt -text
 dm/NOTICE.txt -text
-dm/design.eap -text
 dm/pom.xml -text
 dm/src/main/java/org/universAAL/ui/dm/DMServiceCaller.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
