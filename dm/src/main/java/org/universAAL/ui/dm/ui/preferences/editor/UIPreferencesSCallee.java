@@ -39,15 +39,15 @@ public class UIPreferencesSCallee extends ServiceCallee {
      */
     private static ModuleContext mcontext;
     
-    private static UIPreferencesUIProvider uiPreferencesUIProvider=null;
+    private static UIPreferencesUICaller uiPreferencesUICaller=null;
     
     private static final ServiceResponse failure = new ServiceResponse(
 	    CallStatus.serviceSpecificFailure);
 
-    public UIPreferencesSCallee(ModuleContext mcontext, UIPreferencesUIProvider uiPreferencesUIProvider ) {
+    public UIPreferencesSCallee(ModuleContext mcontext, UIPreferencesUICaller uiPreferencesUICaller ) {
 	super(mcontext, UIPreferencesProvidedService.profiles);
 	UIPreferencesSCallee.mcontext = mcontext;
-	UIPreferencesSCallee.uiPreferencesUIProvider=uiPreferencesUIProvider;
+	UIPreferencesSCallee.uiPreferencesUICaller=uiPreferencesUICaller;
     }
 
     /*
@@ -153,7 +153,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
      * @return {@link ServiceResponse} status
      */
     public ServiceResponse showUIPreferencesEditorDialog(User user) {
-	uiPreferencesUIProvider.showUIPreferencesEditorScreen(user);
+	uiPreferencesUICaller.showUIPreferencesEditorScreen(user);
 	return new ServiceResponse(CallStatus.succeeded);
     }
 

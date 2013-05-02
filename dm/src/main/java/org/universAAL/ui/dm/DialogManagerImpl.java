@@ -37,7 +37,7 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
-import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUIProvider;
+import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**
@@ -112,7 +112,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     private static final long GC_PERIOD = 600000; // 10 min
 
-    public static UIPreferencesUIProvider uiPreferencesUIProvider = null;
+    public static UIPreferencesUICaller uiPreferencesUICaller = null;
     public static UIPreferencesSCallee uiPreferencesSCallee = null;
     public static UIPreferencesBuffer uiPreferencesBuffer = null;
 
@@ -138,11 +138,11 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	serviceCallee = new SCallee(context);
 
 	uiPreferencesBuffer = new UIPreferencesBuffer(moduleContext);
-	uiPreferencesUIProvider = new UIPreferencesUIProvider(moduleContext,
+	uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
 		uiPreferencesBuffer);
 
 	uiPreferencesSCallee = new UIPreferencesSCallee(moduleContext,
-		uiPreferencesUIProvider);
+		uiPreferencesUICaller);
 
 	// bus = (UIBus) context.getContainer()
 	// .fetchSharedObject(context, UIBusImpl.busFetchParams);
@@ -326,7 +326,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	moduleContext = null;
 
 	uiPreferencesBuffer = null;
-	uiPreferencesUIProvider = null;
+	uiPreferencesUICaller = null;
 	if (uiPreferencesSCallee != null)
 	    uiPreferencesSCallee.close();
     }

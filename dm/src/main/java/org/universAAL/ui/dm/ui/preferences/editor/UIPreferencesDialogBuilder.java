@@ -40,6 +40,7 @@ import org.universAAL.ontology.ui.preferences.PendingMessageBuilderType;
 import org.universAAL.ontology.ui.preferences.Size;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.SystemMenuPreferences;
+import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
@@ -58,85 +59,14 @@ import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
  * @author eandgrg
  * 
  */
-public class UIPreferencesFormBuilder {
+public class UIPreferencesDialogBuilder {
 
-    public static final String INPUT_NAMESPACE = "http://ontology.universAAL.org/UIPreferencesInput.owl#";
+    public static UIPreferencesBuffer uiPreferencesBuffer = null;
 
-    public static final String REF_PREFERRED_MODALITY = INPUT_NAMESPACE
-	    + "preferredModality";
-    public static final String REF_SECONDARY_MODALITY = INPUT_NAMESPACE
-	    + "secondaryModality";
-    public static final String REF_PREFERRED_LANGUAGE = INPUT_NAMESPACE
-	    + "preferredLanguage";
-    public static final String REF_SECONDARY_LANGUAGE = INPUT_NAMESPACE
-	    + "secondaryLanguage";
-    public static final String REF_CONTENT_DENSITY = INPUT_NAMESPACE
-	    + "contentDensity";
-    public static final String REF_SYSTEM_MENU_CONF = INPUT_NAMESPACE
-	    + "mainMenuConf";
-    public static final String REF_SYSTEM_MSG_PERSISTANCE = INPUT_NAMESPACE
-	    + "msqPersistance";
-    public static final String REF_SYSTEM_PENDING_DIALOG_BUILDER = INPUT_NAMESPACE
-	    + "pendingDialogBuilder";
-    public static final String REF_SYSTEM_PENDING_MESSAGE_BUILDER = INPUT_NAMESPACE
-	    + "pendingMsgBuilder";
-    public static final String REF_SYSTEM_SEARCH_FIRST = INPUT_NAMESPACE
-	    + "isSearchFirst";
-    public static final String REF_VISUAL_BCK_COLOR = INPUT_NAMESPACE
-	    + "backgroundColor";
-    public static final String REF_VISUAL_FLASHING_RESOURCES = INPUT_NAMESPACE
-	    + "flashingResources";
-    public static final String REF_VISUAL_DAY_NIGHT_MODE = INPUT_NAMESPACE
-	    + "dayNightMode";
-    public static final String REF_VISUAL_HIGHLIGHT_COLOR = INPUT_NAMESPACE
-	    + "highlightColor";
-    public static final String REF_VISUAL_WINDOW_LAYOUT = INPUT_NAMESPACE
-	    + "windowLayout";
-    public static final String REF_VISUAL_FONT_FAMILY = INPUT_NAMESPACE
-	    + "fontFamily";
-    public static final String REF_VISUAL_BRIGHTNESS = INPUT_NAMESPACE
-	    + "brightness";
-    public static final String REF_VISUAL_CONTENT_CONTRAST = INPUT_NAMESPACE
-	    + "contentContrast";
-    public static final String REF_VISUAL_SCREEN_RESOLUTION = INPUT_NAMESPACE
-	    + "screenResolution";
-    public static final String REF_VISUAL_CURSOR_SIZE = INPUT_NAMESPACE
-	    + "cursorSize";
-    public static final String REF_VISUAL_SCREEN_SAVER_USAGE = INPUT_NAMESPACE
-	    + "screenSaverUsage";
-    public static final String REF_VISUAL_FONT_COLOR = INPUT_NAMESPACE
-	    + "fontColor";
-    public static final String REF_VISUAL_FONT_SIZE = INPUT_NAMESPACE
-	    + "fontSize";
-    public static final String REF_AUDITORY_SPEECH_RATE = INPUT_NAMESPACE
-	    + "speechRate";
-    public static final String REF_AUDITORY_VOICE_GENDER = INPUT_NAMESPACE
-	    + "voiceGender";
-    public static final String REF_AUDITORY_SYSTEM_SOUNDS = INPUT_NAMESPACE
-	    + "systemSounds";
-    public static final String REF_AUDITORY_VOLUME = INPUT_NAMESPACE + "volume";
-    public static final String REF_AUDITORY_PITCH = INPUT_NAMESPACE + "pitch";
-    public static final String REF_AUDITORY_KEY_SOUND = INPUT_NAMESPACE
-	    + "keySound";
-    public static final String REF_ALERT_TYPE = INPUT_NAMESPACE + "alertType";
-    public static final String REF_ACCESS_MODE_OLFACTORY = INPUT_NAMESPACE
-	    + "olfactory";
-    public static final String REF_ACCESS_MODE_AUDITORY = INPUT_NAMESPACE
-	    + "auditory";
-    public static final String REF_ACCESS_MODE_VISUAL = INPUT_NAMESPACE
-	    + "visual";
-    public static final String REF_ACCESS_MODE_TEXTUAL = INPUT_NAMESPACE
-	    + "textual";
-    public static final String REF_ACCESS_MODE_TACTILE = INPUT_NAMESPACE
-	    + "tactile";
-
-    
-    public static UIPreferencesBuffer uiPreferencesBuffer=null;
-    
-    public UIPreferencesFormBuilder(UIPreferencesBuffer uiPreferencesBuffer) {
+    public UIPreferencesDialogBuilder(UIPreferencesBuffer uiPreferencesBuffer) {
 	UIPreferencesFormBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
     }
-    
+
     /**
      * 
      * @param user
@@ -144,27 +74,33 @@ public class UIPreferencesFormBuilder {
      * @return UI Preferences Editor {@link Form} for the given user
      */
     public Form getUIPreferencesEditorForm(User user) {
+
+	// fetch the subprofile for given (current) User
+	UIPreferencesSubProfile uiPreferencesSubprofile = uiPreferencesBuffer
+		.getUIPreferencesSubprofileForUser(user);
+
 	Form f = Form
 		.newDialog(
 			Messages
 				.getString("UIPreferencesFormBuilder.UIPreferencesScreenTitle"),
-			(String) null);
+			uiPreferencesSubprofile);
 	Group controls = f.getIOControls();
 	Group submits = f.getSubmits();
 
+	// if uiPreferencesSubprofile could not be obtained user
+	// should receive a message that states that (although this should never
+	// happen since UIPrefs are initialized in ui.dm
+	if (uiPreferencesSubprofile == null) {
+	    return getStatusMessageForm(Messages
+		    .getString("UIPreferencesFormBuilder.UIPreferencesObtainmentError"));
+	}
+	
+	
 	// ///////////////////////////////////////////////////
 	// GeneralInteractionPreferences Group controls START
 	// ///////////////////////////////////////////////////
-	GeneralInteractionPreferences gInteractionPrefs = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user).getInteractionPreferences();
-
-	// if gInteractionPrefs is null there is a big chance that other
-	// preferences are also unobtainable from the Profiling Server so user
-	// should receive a message that states that
-	if (gInteractionPrefs == null) {
-	    return getStatusMessageForm(Messages
-			.getString("UIPreferencesFormBuilder.UIPreferencesObtainmentError"));
-	}
+	
+	GeneralInteractionPreferences gInteractionPrefs = uiPreferencesSubprofile.getInteractionPreferences();
 
 	Group generalInteractionPreferencesGroup = new Group(
 		controls,
@@ -191,7 +127,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.PreferredModalitySelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_PREFERRED_MODALITY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				GeneralInteractionPreferences.PROP_PREFERRED_MODALITY }), null, null);
 	// show the one stored in Profiling server as the 1st (selected) one;
 	// another one is another from the couple (web, gui)
 	preferredModalitySelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
@@ -208,7 +145,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.SecondaryModalitySelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SECONDARY_MODALITY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				GeneralInteractionPreferences.PROP_SECONDARY_MODALITY }), null, null);
 	secondaryModalitySelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getSecondaryModality().name(), (String) null,
 		gInteractionPrefs.getSecondaryModality()));
@@ -228,7 +166,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.PreferredLanguageSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_PREFERRED_LANGUAGE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				GeneralInteractionPreferences.PROP_PREFERRED_LANGUAGE}), null, null);
 	preferredLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getPreferredLanguage().name(), (String) null,
 		gInteractionPrefs.getPreferredLanguage()));
@@ -248,7 +187,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.SecondaryLanguageSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SECONDARY_LANGUAGE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				GeneralInteractionPreferences.PROP_SECONDARY_LANGUAGE }), null, null);
 	secondaryLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getSecondaryLanguage().name(), (String) null,
 		gInteractionPrefs.getSecondaryLanguage()));
@@ -267,7 +207,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.ContentDensity"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_CONTENT_DENSITY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				GeneralInteractionPreferences.PROP_CONTENT_DENSITY }), null, null);
 	contentDensity.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getContentDensity().name(), (String) null, gInteractionPrefs
 		.getContentDensity()));
@@ -283,8 +224,8 @@ public class UIPreferencesFormBuilder {
 	// ///////////////////////////////////////////////////
 	// SystemMenuPreferences Group controls START
 	// ///////////////////////////////////////////////////
-	SystemMenuPreferences systemMenuPreferences = uiPreferencesBuffer
-	.getUIPreferencesSubprofileForUser(user).getSystemMenuPreferences();
+	SystemMenuPreferences systemMenuPreferences = uiPreferencesSubprofile
+		.getSystemMenuPreferences();
 
 	Group systemPreferencesGroup = new Group(
 		controls,
@@ -310,7 +251,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.MainMenuConfSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SYSTEM_MENU_CONF }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				SystemMenuPreferences.PROP_MAIN_MENU_CONFIGURATION}), null, null);
 
 	mainMenuConfSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
 		.getMainMenuConfiguration().name(), (String) null,
@@ -332,9 +274,10 @@ public class UIPreferencesFormBuilder {
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			Messages
-				.getString("UIPreferencesFormBuilder.MsgPersistenceSelect"),
+				.getString("UIPreferencesFormBuilder.UIRequestPersistenceSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SYSTEM_MSG_PERSISTANCE }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				SystemMenuPreferences.PROP_UIREQUEST_PERSISTANCE }), null,
 		null);
 
 	msgPersistenceSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
@@ -357,7 +300,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.PendingDialogueBuilderSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SYSTEM_PENDING_DIALOG_BUILDER }),
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				SystemMenuPreferences.PROP_PENDING_DIALOG_BUILDER }),
 		null, null);
 
 	pendingDialogueBuilderSelect
@@ -383,7 +327,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.PendingMessageBuilderSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SYSTEM_PENDING_MESSAGE_BUILDER }),
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				SystemMenuPreferences.PROP_PENDING_MESSAGE_BUILDER}),
 		null, null);
 
 	pendingMessageBuilderSelect
@@ -409,7 +354,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.SearchIsFirstSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_SYSTEM_SEARCH_FIRST }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				SystemMenuPreferences.PROP_SEARCH_FEATURE_IS_FIRST }), null, null);
 
 	searchIsFirstSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
 		.getSearchFeatureIsFirst().name(), (String) null,
@@ -428,8 +374,7 @@ public class UIPreferencesFormBuilder {
 	// VisualPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	VisualPreferences visualPreferences = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user).getVisualPreferences();
+	VisualPreferences visualPreferences = uiPreferencesSubprofile.getVisualPreferences();
 
 	Group visualPreferencesGroup = new Group(
 		controls,
@@ -455,7 +400,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.BackgroundColorSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_BCK_COLOR }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_BACKGROUND_COLOR }), null, null);
 	backgroundColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getBackgroundColor().name(), (String) null, visualPreferences
 		.getBackgroundColor()));
@@ -475,7 +421,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.FlashingResourcesSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_FLASHING_RESOURCES }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_FLASHING_RESOURCES }), null,
 		null);
 	flashingResourcesSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getFlashingResources().name(), (String) null,
@@ -496,7 +443,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.DayNightModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_DAY_NIGHT_MODE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_DAY_NIGHT_MODE }), null, null);
 	dayNightModeSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getDayNightMode().name(), (String) null, visualPreferences
 		.getDayNightMode()));
@@ -516,7 +464,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.HighlightColourSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_HIGHLIGHT_COLOR }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_HIGHLIGHT_COLOR }), null,
 		null);
 	highlightColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getHighlightColor().name(), (String) null, visualPreferences
@@ -537,7 +486,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.WindowLayoutSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_WINDOW_LAYOUT }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_WINDOW_LAYOUT }), null, null);
 	windowLayoutSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getWindowLayout().name(), (String) null, visualPreferences
 		.getWindowLayout()));
@@ -557,7 +507,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.FontFamilySelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_FONT_FAMILY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_FONT_FAMILY }), null, null);
 	fontFamilySelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getFontFamily().name(), (String) null, visualPreferences
 		.getFontFamily()));
@@ -577,7 +528,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.BrightnessSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_BRIGHTNESS }), null, null);
+			new String[] {UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_BRIGHTNESS }), null, null);
 	brightnessSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getBrightness().name(), (String) null, visualPreferences
 		.getBrightness()));
@@ -597,7 +549,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.ContentContrastSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_CONTENT_CONTRAST }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_CONTENT_CONTRAST }), null,
 		null);
 	contentContrastSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getContentContrast().name(), (String) null, visualPreferences
@@ -618,7 +571,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.ScreenResolutionSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_SCREEN_RESOLUTION }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_SCREEN_RESOLUTION }), null,
 		null);
 	screenResolutionSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getScreenResolution().name(), (String) null, visualPreferences
@@ -639,7 +593,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.CursorSizeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_CURSOR_SIZE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_CURSOR_SIZE }), null, null);
 	cursorSizeSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getCursorSize().name(), (String) null, visualPreferences
 		.getCursorSize()));
@@ -659,7 +614,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.ScreenSaverUsageSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_SCREEN_SAVER_USAGE }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_SCREEN_SAVER_USAGE }), null,
 		null);
 	screenSaverUsageSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getScreenSaverUsage().name(), (String) null, visualPreferences
@@ -680,7 +636,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.FontColourSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_FONT_COLOR }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_FONT_COLOR }), null, null);
 	fontColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getHighlightColor().name(), (String) null, visualPreferences
 		.getHighlightColor()));
@@ -698,7 +655,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.FontSizeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_VISUAL_FONT_SIZE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				VisualPreferences.PROP_FONT_SIZE }), null, null);
 	fontSizeSelect.addChoiceItem(new ChoiceItem(visualPreferences
 		.getFontSize().name(), (String) null, visualPreferences
 		.getFontSize()));
@@ -714,8 +672,7 @@ public class UIPreferencesFormBuilder {
 	// AuditoryPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AuditoryPreferences auditoryPreferences = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user).getAudioPreferences();
+	AuditoryPreferences auditoryPreferences = uiPreferencesSubprofile.getAudioPreferences();
 
 	Group auditoryPreferencesGroup = new Group(
 		controls,
@@ -741,7 +698,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.SpeechRateSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_SPEECH_RATE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_SPEECH_RATE }), null, null);
 	speechRateSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
 		.getSpeechRate().name(), (String) null, auditoryPreferences
 		.getSpeechRate()));
@@ -761,7 +719,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.VoiceGenderSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_VOICE_GENDER }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_VOICE_GENDER }), null, null);
 	voiceGenderSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
 		.getVoiceGender().name(), (String) null, auditoryPreferences
 		.getVoiceGender()));
@@ -781,7 +740,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.SystemSoundsSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_SYSTEM_SOUNDS }), null,
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_SYSTEM_SOUNDS }), null,
 		null);
 	systemSoundsSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
 		.getSystemSounds().name(), (String) null, auditoryPreferences
@@ -800,7 +760,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.VolumeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_VOLUME }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_VOLUME }), null, null);
 	volumeSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
 		.getVolume().name(), (String) null, auditoryPreferences
 		.getVolume()));
@@ -818,7 +779,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.PitchSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_PITCH }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_PITCH }), null, null);
 	pitchSelect.addChoiceItem(new ChoiceItem(auditoryPreferences.getPitch()
 		.name(), (String) null, auditoryPreferences.getPitch()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
@@ -835,7 +797,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.KeySoundsSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_AUDITORY_KEY_SOUND }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AuditoryPreferences.PROP_KEY_SOUND }), null, null);
 	keySoundsSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
 		.getKeySoundStatus().name(), (String) null, auditoryPreferences
 		.getKeySoundStatus()));
@@ -852,8 +815,7 @@ public class UIPreferencesFormBuilder {
 	// AlertPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AlertPreferences alertPreferences = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user).getAlertPreferences();
+	AlertPreferences alertPreferences = uiPreferencesSubprofile.getAlertPreferences();
 
 	Group alertPreferencesGroup = new Group(
 		controls,
@@ -873,7 +835,8 @@ public class UIPreferencesFormBuilder {
 		new org.universAAL.middleware.ui.rdf.Label(Messages
 			.getString("UIPreferencesFormBuilder.AlertSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ALERT_TYPE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AlertPreferences.PROP_ALERT_OPTION}), null, null);
 	alertSelect.addChoiceItem(new ChoiceItem(alertPreferences
 		.getAlertOption().name(), (String) null, alertPreferences
 		.getAlertOption()));
@@ -890,8 +853,7 @@ public class UIPreferencesFormBuilder {
 	// AccessModePreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AccessMode accessModePreferences = uiPreferencesBuffer
-		.getUIPreferencesSubprofileForUser(user).getAccessMode();
+	AccessMode accessModePreferences = uiPreferencesSubprofile.getAccessMode();
 
 	Group accessModeGroup = new Group(
 		controls,
@@ -913,7 +875,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.VisualModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ACCESS_MODE_VISUAL }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AccessMode.PROP_VISUAL_MODE_STATUS}), null, null);
 	visualModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
 		.getVisualModeStatus().name(), (String) null,
 		accessModePreferences.getVisualModeStatus()));
@@ -933,7 +896,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.TextualModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ACCESS_MODE_TEXTUAL }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AccessMode.PROP_TEXTUAL_MODE_STATUS }), null, null);
 	textualModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
 		.getTextualModeStatus().name(), (String) null,
 		accessModePreferences.getTextualModeStatus()));
@@ -953,7 +917,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.AuditoryModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ACCESS_MODE_AUDITORY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AccessMode.PROP_AUDITORY_MODE_STATUS }), null, null);
 	auditoryModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
 		.getAuditoryModeStatus().name(), (String) null,
 		accessModePreferences.getAuditoryModeStatus()));
@@ -973,7 +938,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.OlfactoryModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ACCESS_MODE_OLFACTORY }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AccessMode.PROP_OLFACTORY_MODE_STATUS }), null, null);
 	olfactoryModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
 		.getOlfactoryModeStatus().name(), (String) null,
 		accessModePreferences.getOlfactoryModeStatus()));
@@ -993,7 +959,8 @@ public class UIPreferencesFormBuilder {
 			Messages
 				.getString("UIPreferencesFormBuilder.TactileModeSelect"),
 			(String) null), new PropertyPath(null, false,
-			new String[] { REF_ACCESS_MODE_TACTILE }), null, null);
+			new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				AccessMode.PROP_TACTILE_MODE_STATUS }), null, null);
 	tactileModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
 		.getTactileModeStatus().name(), (String) null,
 		accessModePreferences.getTactileModeStatus()));
