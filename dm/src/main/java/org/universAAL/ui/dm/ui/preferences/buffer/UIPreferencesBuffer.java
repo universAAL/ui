@@ -152,7 +152,7 @@ public class UIPreferencesBuffer {
     }
 
     /**
-     * @return the {@link UIPreferencesSubProfile}
+     * @return the {@link UIPreferencesSubProfile} or null
      */
     public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user) {
 	return userCurrentUIPreferencesSubProfileMap.get(user);
