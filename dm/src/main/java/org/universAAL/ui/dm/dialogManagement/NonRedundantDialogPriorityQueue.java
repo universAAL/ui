@@ -22,45 +22,45 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 
 /**
- * This class will work as {@link DialogPriorityQueue}, except it will monitor 
- * {@link Form}s of the {@link UIRequest}s to check there is no redundancy, 
- * ie: no two request with the same form.
+ * This class will work as {@link DialogPriorityQueue}, except it will monitor
+ * {@link Form}s of the {@link UIRequest}s to check there is no redundancy, ie:
+ * no two request with the same form.
+ * 
  * @author amedrano
- *
+ * 
  */
 public class NonRedundantDialogPriorityQueue extends DialogPriorityQueue {
 
-	Map<String,UIRequest> formMap;
-	
-	public NonRedundantDialogPriorityQueue() {
-		super();
-		formMap = new HashMap<String, UIRequest>();
-	}
+    Map<String, UIRequest> formMap;
 
-	/** {@inheritDoc}*/
-	@Override
-	public void add(UIRequest UIReq) {
-		String formURI = UIReq.getDialogForm().getURI();
-		if (!formMap.containsKey(formURI)) {
-			formMap.put(formURI, UIReq);
-			super.add(UIReq);
-		} 
-		else {
-			UIRequest oldReq =  formMap.get(formURI);
-			formMap.remove(formURI);
-			super.close(oldReq.getDialogID());
-			formMap.put(formURI, UIReq);
-			super.add(UIReq);
-		}
-	}
+    public NonRedundantDialogPriorityQueue() {
+	super();
+	formMap = new HashMap<String, UIRequest>();
+    }
 
-	/** {@inheritDoc}*/
-	@Override
-	public void close(String UIReqID) {
-		UIRequest req = get(UIReqID);
-		if (req != null) {
-			formMap.remove(req.getDialogForm().getURI());
-		}
-		super.close(UIReqID);
+    /** {@inheritDoc} */
+    @Override
+    public void add(UIRequest UIReq) {
+	String formURI = UIReq.getDialogForm().getURI();
+	if (!formMap.containsKey(formURI)) {
+	    formMap.put(formURI, UIReq);
+	    super.add(UIReq);
+	} else {
+	    UIRequest oldReq = formMap.get(formURI);
+	    formMap.remove(formURI);
+	    super.close(oldReq.getDialogID());
+	    formMap.put(formURI, UIReq);
+	    super.add(UIReq);
 	}
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void close(String UIReqID) {
+	UIRequest req = get(UIReqID);
+	if (req != null) {
+	    formMap.remove(req.getDialogForm().getURI());
+	}
+	super.close(UIReqID);
+    }
 }
