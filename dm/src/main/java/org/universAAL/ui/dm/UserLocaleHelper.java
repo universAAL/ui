@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2013 Universidad Politécnica de Madrid
+ * Copyright 2013 Ericsson Nikola Tesla d.d.
+ *
+ * Licensed under both Apache License, Version 2.0 and MIT License.
+ *
+ * See the NOTICE file distributed with this work for additional 
+ * information regarding copyright ownership
+ *	
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
 package org.universAAL.ui.dm;
 
 import java.io.File;
@@ -9,6 +24,14 @@ import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.ontology.ui.preferences.Language;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 
+/**
+ * Class to determine {@link Locale} from the preferred (or if preferred not
+ * found secondary) Language for the user stored in
+ * {@link UIPreferencesSubProfile}.
+ * 
+ * @author amedrano
+ * @author eandgrg
+ */
 public class UserLocaleHelper {
 
     /**
@@ -18,8 +41,7 @@ public class UserLocaleHelper {
 
     private UIPreferencesSubProfile uiPreferencesSubprofile = null;
 
-    public UserLocaleHelper(
-	    UIPreferencesSubProfile uiPreferencesSubprofile) {
+    public UserLocaleHelper(UIPreferencesSubProfile uiPreferencesSubprofile) {
 	this.uiPreferencesSubprofile = uiPreferencesSubprofile;
 
 	/*
@@ -44,7 +66,9 @@ public class UserLocaleHelper {
     /**
      * Get the language for the user.
      * 
-     * @return the {@link Locale} for the user Language.
+     * @return the {@link Locale} from the preferred (or if preferred not found
+     *         secondary) language for the user stored in
+     *         {@link UIPreferencesSubProfile}.
      */
     public final Locale getUserLocaleFromPreferredLanguage() {
 	// find REAL USER's LOCALE
