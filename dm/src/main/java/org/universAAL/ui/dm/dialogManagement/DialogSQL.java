@@ -32,11 +32,11 @@ import org.universAAL.ui.dm.interfaces.ISQLStoreProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
- * A {@link IUIRequestPool} that stores (and retrieves) the dialogs from a 
+ * A {@link IUIRequestPool} that stores (and retrieves) the dialogs from a
  * DataBase, making dialogs managed with this pool automatically persistent.
  * 
  * @author amedrano
- *
+ * 
  */
 public class DialogSQL implements IUIRequestPool {
 
@@ -44,111 +44,110 @@ public class DialogSQL implements IUIRequestPool {
     private String userURI;
     private static MessageContentSerializer contentSerializer = null;
     private String connectionURL = null;
-	private UIRequest currentReq;
-    
-    public static void InitDB(String connectionURL) throws Exception {
-	    Connection connection = DriverManager.getConnection(connectionURL);
-	    Statement statement = connection.createStatement();
-	    statement.setQueryTimeout(30);  // set timeout to 30 sec.
+    private UIRequest currentReq;
 
-//	    statement.executeUpdate("create table if not exists User ("+
-//		    "id integer primary key AUTOINCREMENT," +
-//		    "uri string not NULL,"+
-//		    ")");
-	    statement.executeUpdate("create table if not exists" + DIALOGS_TABLE + "("+
-		    "user string,"+
-		    "uri string primary key,"+
-		    "date integer,"+
-		    "active integer," +
-		    "content blob"
-//		    + ",foreign key (user) references User(id))"
-		    );
-	    connection.close();
+    public static void InitDB(String connectionURL) throws Exception {
+	Connection connection = DriverManager.getConnection(connectionURL);
+	Statement statement = connection.createStatement();
+	statement.setQueryTimeout(30); // set timeout to 30 sec.
+
+	// statement.executeUpdate("create table if not exists User ("+
+	// "id integer primary key AUTOINCREMENT," +
+	// "uri string not NULL,"+
+	// ")");
+	statement.executeUpdate("create table if not exists" + DIALOGS_TABLE
+		+ "(" + "user string," + "uri string primary key,"
+		+ "date integer," + "active integer," + "content blob"
+	// + ",foreign key (user) references User(id))"
+		);
+	connection.close();
     }
-    
-    private MessageContentSerializer getSerializer() throws Exception{
-	if (contentSerializer == null){
-	    contentSerializer = (MessageContentSerializer) DialogManagerImpl.getModuleContext()
-		    .getContainer().fetchSharedObject(DialogManagerImpl.getModuleContext(),
-			    new Object[] { MessageContentSerializer.class.getName() });
+
+    private MessageContentSerializer getSerializer() throws Exception {
+	if (contentSerializer == null) {
+	    contentSerializer = (MessageContentSerializer) DialogManagerImpl
+		    .getModuleContext().getContainer().fetchSharedObject(
+			    DialogManagerImpl.getModuleContext(),
+			    new Object[] { MessageContentSerializer.class
+				    .getName() });
 	    if (contentSerializer == null) {
 		Exception e = new RuntimeException("no serializer found");
 		LogUtils.logError(DialogManagerImpl.getModuleContext(),
-				getClass(),
-				"getSerializer",
-				new String[] {"no serializer found"}, e);
+			getClass(), "getSerializer",
+			new String[] { "no serializer found" }, e);
 		throw e;
 	    }
 	}
 	return contentSerializer;
     }
-        
-    public  DialogSQL(Resource user, ISQLStoreProvider storeprov) {
+
+    public DialogSQL(Resource user, ISQLStoreProvider storeprov) {
 	userURI = user.getURI();
 	if (storeprov == null) {
-		return;
+	    return;
 	}
 	connectionURL = storeprov.getJCDBURL();
 	if (connectionURL != null) {
-	try {
+	    try {
 		InitDB(connectionURL);
-	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"Constructor", new String[] {"unable to initialize DB"}, e);
+	    } catch (Exception e) {
+		LogUtils.logError(DialogManagerImpl.getModuleContext(),
+			getClass(), "Constructor",
+			new String[] { "unable to initialize DB" }, e);
+	    }
 	}
     }
-    }
-    
+
     /** {@inheritDoc} */
     public void add(UIRequest UIReq) {
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    c.createStatement().executeUpdate("INSERT INTO" + DIALOGS_TABLE 
-		    + "VALUES ('" +
-		    userURI + "','" +
-		    UIReq.getDialogID() + "'," +
-		    System.currentTimeMillis() + "," +
-		    "1,'" +
-		    getSerializer().serialize(UIReq) +
-		    "');" );
+	    c.createStatement().executeUpdate(
+		    "INSERT INTO" + DIALOGS_TABLE + "VALUES ('" + userURI
+			    + "','" + UIReq.getDialogID() + "',"
+			    + System.currentTimeMillis() + "," + "1,'"
+			    + getSerializer().serialize(UIReq) + "');");
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
     }
 
     /** {@inheritDoc} */
     public void close(String UIReqID) {
 	// remove entry
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
-		    + "WHERE uri='" + UIReqID +
-		    "');" );
+	    c.createStatement().executeUpdate(
+		    "DELETE FROM" + DIALOGS_TABLE + "WHERE uri='" + UIReqID
+			    + "');");
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
     }
 
@@ -161,52 +160,53 @@ public class DialogSQL implements IUIRequestPool {
     public UIRequest getNextUIRequest() {
 	List<UIRequest> active = (List<UIRequest>) listAllActive();
 	if (active.size() > 0) {
-		currentReq = active.get(0);
+	    currentReq = active.get(0);
 	} else {
-		currentReq =null;
+	    currentReq = null;
 	}
 	return currentReq;
     }
 
     /** {@inheritDoc} */
     public boolean hasToChange() {
-    	List<UIRequest> active = (List<UIRequest>) listAllActive();
-    	if (active.size() > 0) {
-    		return currentReq != active.get(0);
-    	} else {
-    		//shouldn't reach here...
-    		return true;
-    	}
+	List<UIRequest> active = (List<UIRequest>) listAllActive();
+	if (active.size() > 0) {
+	    return currentReq != active.get(0);
+	} else {
+	    // shouldn't reach here...
+	    return true;
+	}
     }
 
     /** {@inheritDoc} */
     public Collection<UIRequest> listAllActive() {
 	// search
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
-		    + "WHERE userURI='" + userURI + 
-		    "' AND active=1" +
-		    ");" );
+	    ResultSet r = c.createStatement().executeQuery(
+		    "SELECT content FROM" + DIALOGS_TABLE + "WHERE userURI='"
+			    + userURI + "' AND active=1" + ");");
 	    ArrayList<UIRequest> result = new ArrayList<UIRequest>();
 	    while (r.next()) {
-		UIRequest req = (UIRequest) getSerializer()
-			.deserialize(r.getBlob("content").toString());
+		UIRequest req = (UIRequest) getSerializer().deserialize(
+			r.getBlob("content").toString());
 		result.add(req);
 	    }
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
 	return null;
     }
@@ -214,31 +214,32 @@ public class DialogSQL implements IUIRequestPool {
     /** {@inheritDoc} */
     public Collection<UIRequest> listAllSuspended() {
 	// search
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
-		    + "WHERE userURI='" + userURI + 
-		    "' AND active=0" +
-		    ");" );
+	    ResultSet r = c.createStatement().executeQuery(
+		    "SELECT content FROM" + DIALOGS_TABLE + "WHERE userURI='"
+			    + userURI + "' AND active=0" + ");");
 	    ArrayList<UIRequest> result = new ArrayList<UIRequest>();
 	    while (r.next()) {
-		UIRequest req = (UIRequest) getSerializer()
-			.deserialize(r.getBlob("content").toString());
+		UIRequest req = (UIRequest) getSerializer().deserialize(
+			r.getBlob("content").toString());
 		result.add(req);
 	    }
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
 	return null;
     }
@@ -246,24 +247,26 @@ public class DialogSQL implements IUIRequestPool {
     /** {@inheritDoc} */
     public void removeAll() {
 	// remove all corresponding to the userId
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    c.createStatement().executeUpdate("DELETE FROM" + DIALOGS_TABLE 
-		    + "WHERE user='" + userURI +
-		    "');" );
+	    c.createStatement().executeUpdate(
+		    "DELETE FROM" + DIALOGS_TABLE + "WHERE user='" + userURI
+			    + "');");
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
 
     }
@@ -271,78 +274,82 @@ public class DialogSQL implements IUIRequestPool {
     /** {@inheritDoc} */
     public void suspend(String UIReqID) {
 	// update status
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    c.createStatement().executeUpdate("UPDATE " + DIALOGS_TABLE 
-		    + "SET active=0"
-		    + " WHERE uri='"+ UIReqID +
-		    "');" );
+	    c.createStatement().executeUpdate(
+		    "UPDATE " + DIALOGS_TABLE + "SET active=0" + " WHERE uri='"
+			    + UIReqID + "');");
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
     }
 
     /** {@inheritDoc} */
     public void unsuspend(String UIReqID) {
 	// update status
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    c.createStatement().executeUpdate("UPDATE " + DIALOGS_TABLE 
-		    + "SET active=1"
-		    + " WHERE uri='"+ UIReqID +
-		    "');" );
+	    c.createStatement().executeUpdate(
+		    "UPDATE " + DIALOGS_TABLE + "SET active=1" + " WHERE uri='"
+			    + UIReqID + "');");
 	    c.close();
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
 
     }
 
     /** {@inheritDoc} */
     public UIRequest get(String UIReqID) {
-    	Connection c = null;
+	Connection c = null;
 	try {
 	    c = DriverManager.getConnection(connectionURL);
-	    ResultSet r = c.createStatement().executeQuery("SELECT content FROM" + DIALOGS_TABLE 
-		    + "WHERE uri='" + UIReqID + 
-		    "');" );
+	    ResultSet r = c.createStatement().executeQuery(
+		    "SELECT content FROM" + DIALOGS_TABLE + "WHERE uri='"
+			    + UIReqID + "');");
 	    c.close();
-	    if (r.first()){
-		return (UIRequest) getSerializer()
-			.deserialize(r.getBlob("content").toString());
+	    if (r.first()) {
+		return (UIRequest) getSerializer().deserialize(
+			r.getBlob("content").toString());
 	    }
 	} catch (Exception e) {
-		LogUtils.logError(
-				DialogManagerImpl.getModuleContext(), getClass(),
-				"add", 
-				new String[] {"unable to perform job, probably there is no connection with DB engine."},
-				e);
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "add",
+			    new String[] { "unable to perform job, probably there is no connection with DB engine." },
+			    e);
 	    try {
-			c.close();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+		c.close();
+	    } catch (Exception e1) {
+		e1.printStackTrace();
+	    }
 	}
 	return null;
     }

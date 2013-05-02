@@ -116,12 +116,12 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static UIPreferencesSCallee uiPreferencesSCallee = null;
     public static UIPreferencesBuffer uiPreferencesBuffer = null;
 
-    
     /**
-     * The configHome is the folder where all the DMs config files are to be saved.
+     * The configHome is the folder where all the DMs config files are to be
+     * saved.
      */
     private static File configHome;
-    
+
     /**
      * private constructor for creating singleton instance.
      * 
@@ -315,20 +315,20 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * Method to prepare for DM shutdown.
      */
     private void stop() {
-    	// notiffy UserDialogManager s about impending shutdown
-    	for (UserDialogManager udm : dialogIDMap.values()) {
-    		udm.close();
-    	}
-    	if (serviceCallee != null)
-    		serviceCallee.close();
-    	if (serviceCaller != null)
-    		serviceCaller.close();
-    	moduleContext = null;
+	// notiffy UserDialogManager s about impending shutdown
+	for (UserDialogManager udm : dialogIDMap.values()) {
+	    udm.close();
+	}
+	if (serviceCallee != null)
+	    serviceCallee.close();
+	if (serviceCaller != null)
+	    serviceCaller.close();
+	moduleContext = null;
 
-    	uiPreferencesBuffer = null;
-    	uiPreferencesUIProvider = null;
-    	if (uiPreferencesSCallee != null)
-    		uiPreferencesSCallee.close();
+	uiPreferencesBuffer = null;
+	uiPreferencesUIProvider = null;
+	if (uiPreferencesSCallee != null)
+	    uiPreferencesSCallee.close();
     }
 
     /**
@@ -363,16 +363,16 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      */
     public static DialogManagerImpl getInstance() {
 	if (singleton == null) {
-	    LogUtils.logDebug(getModuleContext(),
-		    DialogManagerImpl.class, "getInstance",
+	    LogUtils.logDebug(getModuleContext(), DialogManagerImpl.class,
+		    "getInstance",
 		    new String[] { "Singleton instance not yet created." },
 		    null);
 
 	    createInstance(getModuleContext());
 
 	    if (singleton == null) {
-		LogUtils.logError(getModuleContext(),
-			DialogManagerImpl.class, "getInstance",
+		LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
+			"getInstance",
 			new String[] { "Could not get singleton instance." },
 			null);
 	    }
@@ -397,7 +397,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static ModuleContext getModuleContext() {
 	return getInstance().moduleContext;
     }
-    
+
     /**
      * A mini-Garbage collector to purge the
      * {@link DialogManagerImpl#dialogIDMap}
@@ -430,19 +430,22 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	return udmMap.get(userURI);
     }
 
-	/**
-	 * Get the config folder.
-	 * @return the configHome
-	 */
-	public static File getConfigHome() {
-		return configHome;
-	}
+    /**
+     * Get the config folder.
+     * 
+     * @return the configHome
+     */
+    public static File getConfigHome() {
+	return configHome;
+    }
 
-	/**
-	 * This should only be called form an activator.
-	 * @param configHome set the configHome folder.
-	 */
-	public static void setConfigHome(File configHome) {
-		DialogManagerImpl.configHome = configHome;
-	}
+    /**
+     * This should only be called form an activator.
+     * 
+     * @param configHome
+     *            set the configHome folder.
+     */
+    public static void setConfigHome(File configHome) {
+	DialogManagerImpl.configHome = configHome;
+    }
 }

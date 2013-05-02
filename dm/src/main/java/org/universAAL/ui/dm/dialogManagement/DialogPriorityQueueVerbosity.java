@@ -143,8 +143,7 @@ public class DialogPriorityQueueVerbosity implements IUIRequestPool {
 	    log("Suspending: " + r.getDialogID());
 	    activeSet.remove(r);
 	    suspendedSet.put(r.getDialogID(), r);
-	    if (current !=  null 
-	    		&& UIReqID.equals(current.getDialogID())) {
+	    if (current != null && UIReqID.equals(current.getDialogID())) {
 		current = null;
 		log("It is the current, current == null");
 	    }
@@ -196,11 +195,8 @@ public class DialogPriorityQueueVerbosity implements IUIRequestPool {
     }
 
     private void log(String msg) {
-		LogUtils.logDebug(DialogManagerImpl.getModuleContext(),
-	    		getClass(),
-	    		"DialogPriorityQueue",
-	    		new String[]{msg},
-	    		null);
+	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+		"DialogPriorityQueue", new String[] { msg }, null);
     }
 
 }

@@ -114,8 +114,7 @@ public class DialogPriorityQueue implements IUIRequestPool {
 	if (r != null) {
 	    activeSet.remove(r);
 	    suspendedSet.put(r.getDialogID(), r);
-	    if (current !=  null 
-	    		&& UIReqID.equals(current.getDialogID())) {
+	    if (current != null && UIReqID.equals(current.getDialogID())) {
 		current = null;
 	    }
 	}
