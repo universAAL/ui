@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.Dimension;
-
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
@@ -65,6 +63,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 		jc = (JComponent) (jc == sp? ejc:jc);
     	super.update();
         Object content = ((SimpleOutput) fc).getContent();
+        ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
         if (content instanceof String) {
             if (jc instanceof JTextArea) {
                 JTextArea ta = (JTextArea) jc;
@@ -73,25 +72,25 @@ public class SimpleOutputLAF extends SimpleOutputModel {
                 ta.setLineWrap(true);
                 ta.setWrapStyleWord(true);
                 ta.getAccessibleContext();
-                ta.setFont(ColorLAF.getplain());
+                ta.setFont(color.getplain());
                 ta.setLineWrap(true);
                 ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-                ta.setForeground(ColorLAF.getfont());
+                ta.setForeground(color.getfont());
                 sp = new JScrollPane(jc);
                 sp.getAccessibleContext();
             }
             else if (jc instanceof JTextComponent) {
                 JTextComponent tf = (JTextComponent) jc;
                 tf.getAccessibleContext().setAccessibleName(tf.getText());
-                tf.setFont(ColorLAF.getplain());
+                tf.setFont(color.getplain());
                 //tf.setPreferredSize(new Dimension(150, 30));
-                tf.setForeground(ColorLAF.getBackMM());
+                tf.setForeground(color.getBackMM());
                 sp = null;
             }
             else if (jc instanceof JLabel) {
             	JLabel jl = (JLabel) jc;
             	jl.getAccessibleContext().setAccessibleName(jl.getText());
-                jl.setFont(ColorLAF.getplain());
+                jl.setFont(color.getplain());
             }
         }
         if (jc instanceof JCheckBox) {

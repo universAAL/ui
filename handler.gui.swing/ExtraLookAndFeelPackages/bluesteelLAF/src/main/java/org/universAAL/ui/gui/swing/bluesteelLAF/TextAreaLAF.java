@@ -64,10 +64,10 @@ public class TextAreaLAF extends TextAreaModel {
         ta.getAccessibleContext().setAccessibleName(initialValue);
         ta.setLineWrap(true);
         ta.setWrapStyleWord(true);
-        
-        ta.setFont(ColorLAF.getplain());
-        ta.setForeground(ColorLAF.getfont());
-        ta.setSelectionColor(ColorLAF.getOrange());
+        ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
+        ta.setFont(c.getplain());
+        ta.setForeground(c.getfont());
+        ta.setSelectionColor(c.getOrange());
         sp = new JScrollPane(ejc, 
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

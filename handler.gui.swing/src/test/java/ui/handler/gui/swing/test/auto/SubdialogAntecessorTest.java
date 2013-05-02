@@ -65,7 +65,7 @@ public class SubdialogAntecessorTest extends TestCase {
         OntologyManagement.getInstance().register(mc, new VCardOntology());
     	OntologyManagement.getInstance().register(mc, new ProfileOntology());
     	
-    	testRender = new TestFMRenderer(TestFMRenderer.HIERARCHICAL_MANAGER);
+    	testRender = new TestFMRenderer(mc,TestFMRenderer.HIERARCHICAL_MANAGER);
         root = Form.newDialog("root", new Resource());
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
         d2 = Form.newSubdialog("Dialog 2", root.getDialogID());

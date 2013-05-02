@@ -65,7 +65,7 @@ public class SimpleManagementTest extends TestCase {
         OntologyManagement.getInstance().register(mc, new SpaceOntology());
         OntologyManagement.getInstance().register(mc, new VCardOntology());
     	OntologyManagement.getInstance().register(mc, new ProfileOntology());
-    	testRender = new TestFMRenderer(TestFMRenderer.SIMPLE_MANAGER);
+    	testRender = new TestFMRenderer(mc, TestFMRenderer.SIMPLE_MANAGER);
         root = Form.newDialog("root", new Resource());
         d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
         user = new User("saied");

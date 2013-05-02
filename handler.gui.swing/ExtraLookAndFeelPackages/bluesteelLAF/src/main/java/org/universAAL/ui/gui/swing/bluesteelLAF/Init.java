@@ -27,6 +27,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 
 import org.jdesktop.swingx.JXLoginPane;
 import org.jdesktop.swingx.auth.LoginService;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.UAALTray;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -53,13 +54,21 @@ public class Init implements InitInterface {
         try {
             UIManager.setLookAndFeel(new MetalLookAndFeel());
         } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
+        	LogUtils.logWarn(render.getModuleContext(), 
+        			getClass(), "install",
+        			new String[] {"unable to set MetalLookAndFeel."}, e);
         }
-        tray = new UAALTray(render);
+        try {
+			tray = new UAALTray(render);
+		} catch (Exception e) {
+        	LogUtils.logWarn(render.getModuleContext(), 
+        			getClass(), "install",
+        			new String[] {"unable to start Tray Icon."}, e);
+		}
         createDesktop();
         UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
         UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 3));
-        UIManager.put("ToolTip.font", ColorLAF.getLabelFont());
+        UIManager.put("ToolTip.font", color.getLabelFont());
     }
     
     public ColorLAF getColorLAF(){

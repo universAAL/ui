@@ -45,9 +45,10 @@ public class InputFieldLAF extends InputFieldModel {
     public void update() {
 	if (jc != null){
 	    super.update();
-	    jc.setFont(ColorLAF.getplain());
+	    jc.setFont(Init.getInstance(getRenderer()).getColorLAF().getplain());
 	    if (jc instanceof JTextComponent) {
-	    	((JTextComponent)jc).setSelectionColor(ColorLAF.getOrange());
+	    	((JTextComponent)jc).setSelectionColor(
+	    			Init.getInstance(getRenderer()).getColorLAF().getOrange());
 	    }
 	}
     }

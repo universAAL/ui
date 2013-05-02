@@ -61,7 +61,7 @@ public class ModelMapperTest extends TestCase {
 		root = Form.newDialog("root", new Resource());
 		Label l = new Label("some Label", null);
 		new SimpleOutput(root.getIOControls(), l, null, "simple Text Output");
-		testRenderer = new TestRenderer(TestRenderer.SIMPLE_MANAGER);
+		testRenderer = new TestRenderer(mc,TestRenderer.SIMPLE_MANAGER);
 		mp = testRenderer.getModelMapper();
 	}
 

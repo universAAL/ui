@@ -45,8 +45,9 @@ public class MediaObjectLAF extends MediaObjectModel {
 			JLabel l = (JLabel) jc;
 			l.setVerticalTextPosition(JLabel.BOTTOM);
 			l.setHorizontalTextPosition(JLabel.CENTER);
-			l.setFont(ColorLAF.getLabelFont());
-	        l.setForeground(ColorLAF.getborderLineMM());
+			ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
+			l.setFont(c.getLabelFont());
+	        l.setForeground(c.getborderLineMM());
 	        l.setOpaque(false);
 		}
 	}

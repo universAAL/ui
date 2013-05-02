@@ -17,6 +17,7 @@ package org.universAAL.ui.gui.bluesteelLAF.junit;
 
 import java.util.Properties;
 
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.ui.handler.gui.swing.*;
 
 public class TestRenderer extends Renderer {
@@ -25,7 +26,9 @@ public class TestRenderer extends Renderer {
     public static String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager";
     public static String QUEUED_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager";
 
-    public TestRenderer(String FromManager) {
+   
+    
+    public TestRenderer(ModuleContext mc, String FromManager) {
 	super();
 	loadProperties();
 	modelMapper = new ModelMapper(this);
