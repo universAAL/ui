@@ -225,7 +225,7 @@ public class Renderer extends Thread {
         properties = new Properties();
         properties.put(DEMO_MODE, "true");
         properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        properties.put(GUI_LOCATION, "Unkown");
+        properties.put(GUI_LOCATION, "Unknown");
         properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
         /*
          * Try to load from file, if not create file from defaults.
