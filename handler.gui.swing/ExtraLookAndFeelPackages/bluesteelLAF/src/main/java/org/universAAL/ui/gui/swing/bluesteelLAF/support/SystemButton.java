@@ -27,7 +27,7 @@ public class SystemButton extends RoundedGradientButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final Color LIGHT = new Color (56,142,143);
+//	private static final Color LIGHT = new Color (56,142,143);
 	private static final Color DARK = new Color (75,183,185);
 	private static final Color BG = new Color(70,178,180) ;
 

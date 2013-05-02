@@ -134,6 +134,30 @@ public class ColorLAF extends DefaultMetalTheme {
 	}
 
 
+	public String getFontFamily() {
+		return fontFamily;
+	}
+
+	public void setFontFamily(String fontFamily) {
+		this.fontFamily = fontFamily;
+	}
+
+	public int getFontSizeBase() {
+		return fontSizeBase;
+	}
+
+	public void setFontSizeBase(int fontSizeBase) {
+		this.fontSizeBase = fontSizeBase;
+	}
+
+	public Color getFontColor() {
+		return fontColor;
+	}
+
+	public void setFontColor(Color fontColor) {
+		this.fontColor = fontColor;
+	}
+
 	public static Color getDialogGradiendBackground1() {
 		return DialogGradiendBackground1;
 	}
