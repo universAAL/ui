@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
@@ -74,7 +75,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		Color enterB = color.getOverSytem();
 		Color clickF = color.getSelectedLetter();
 		Color clickB = color.getBackSystem();
-		SubmitLAF.setButtonBehaviour(button, border, normalF, normalB, enterF,
+		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF,
 				enterB, clickF, clickB);
 	}
 }

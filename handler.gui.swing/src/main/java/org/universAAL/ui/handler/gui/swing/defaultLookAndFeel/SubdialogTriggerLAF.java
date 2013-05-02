@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
@@ -39,7 +40,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		return SubmitLAF.buttonDecorate(this, super.getNewComponent(),
+		return SubmitLAF.getButton(this, (JButton) super.getNewComponent(),
 				((Init) getRenderer().getInitLAF()).getColorLAF());
 	}
 }
