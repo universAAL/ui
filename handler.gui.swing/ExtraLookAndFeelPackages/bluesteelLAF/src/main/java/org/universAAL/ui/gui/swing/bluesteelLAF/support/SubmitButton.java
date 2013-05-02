@@ -51,6 +51,7 @@ public class SubmitButton extends RoundedGradientButton {
 
     @Override
     public Dimension getPreferredSize() {
+    	//TODO set preferred size according to text
 	int buttonWidth = 3 * ColorLAF.SEPARATOR_SPACE;
 	int buttonHeight = 1 * ColorLAF.SEPARATOR_SPACE;
 	return new Dimension(buttonWidth, buttonHeight);
