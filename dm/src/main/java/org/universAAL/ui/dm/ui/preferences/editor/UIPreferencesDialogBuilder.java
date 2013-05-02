@@ -14,12 +14,8 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.editor;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
 
-import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.owl.Modality;
@@ -50,7 +46,6 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
-import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 
