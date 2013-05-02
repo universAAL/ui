@@ -667,7 +667,7 @@ public class UserDialogManager implements DialogManager,
     }
 
     /**
-     * Handle the response. If the reponse conrresponds to one of the registered
+     * Handle the response. If the {@link UIResponse} corresponds to one of the registered
      * {@link ISubmitGroupListener}s then delegate method, and remove all its
      * IDs from map.
      * 
