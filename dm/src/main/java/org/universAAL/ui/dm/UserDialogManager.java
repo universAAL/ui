@@ -16,12 +16,10 @@
 package org.universAAL.ui.dm;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
@@ -31,7 +29,6 @@ import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
 
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
@@ -44,7 +41,6 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ontology.ui.preferences.Language;
 import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.Status;
@@ -179,14 +175,15 @@ public class UserDialogManager implements DialogManager,
     private Set<String> myUIRequests;
 
     /**
-     * The internationalization file for strings meant to be read by the user.
-     */
-    private Messages messages;
-
-    /**
      * The Pending Dialogs Dialog implementation to be used
      */
     private int pendingDialogsDialog;
+
+    /**
+     * Helper to determine {@link Locale} for the {@linkUser} from preferred
+     * {@linkLanguage} contained in {@link UIPreferencesSubProfile}
+     */
+    private UserLocaleHelper userLocaleHelper;
 
     /**
      * A {@link Semaphore} to synchronize showSomething and handleUIRequest,
@@ -245,22 +242,7 @@ public class UserDialogManager implements DialogManager,
 	// update the UIPreferencesSubProfile for current user
 	uiPreferencesSubProfile = subProfile;
 
-	/*
-	 * Get the messages
-	 */
-	try {
-	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
-		    "messages.properties");
-	    messages = new Messages(messagesFile, getUserLocale());
-	} catch (IOException e) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "UserDialogManager",
-			    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
-			    e);
-	}
+	userLocaleHelper = new UserLocaleHelper(subProfile);
 
 	/*
 	 * generate the adapter List XXX: these can be also defined by
@@ -526,8 +508,9 @@ public class UserDialogManager implements DialogManager,
 	messagePool.close(dialogID);
 	// a running dialog has been aborted; it's better to send a
 	// message to the user
-	pushDialog(Form.newMessage(getString("UICaller.forcedCancellation"),
-		getString("UICaller.sorryAborted")));
+	pushDialog(Form.newMessage(userLocaleHelper
+		.getString("UICaller.forcedCancellation"), userLocaleHelper
+		.getString("UICaller.sorryAborted")));
     }
 
     /**
@@ -626,7 +609,8 @@ public class UserDialogManager implements DialogManager,
     /** {@inheritDoc} */
     public final synchronized void getMainMenu(Resource user,
 	    AbsLocation location) {
-	Form mmf = Form.newSystemMenu(getString("UICaller.universaalMainMenu"));
+	Form mmf = Form.newSystemMenu(userLocaleHelper
+		.getString("UICaller.universaalMainMenu"));
 	mainMenuProvider.getMainMenu(user, location, mmf);
 	add(mainMenuProvider);
 	pushDialog(mmf);
@@ -667,9 +651,9 @@ public class UserDialogManager implements DialogManager,
     }
 
     /**
-     * Handle the response. If the {@link UIResponse} corresponds to one of the registered
-     * {@link ISubmitGroupListener}s then delegate method, and remove all its
-     * IDs from map.
+     * Handle the response. If the {@link UIResponse} corresponds to one of the
+     * registered {@link ISubmitGroupListener}s then delegate method, and remove
+     * all its IDs from map.
      * 
      * @param response
      *            the response to be handled.
@@ -785,7 +769,8 @@ public class UserDialogManager implements DialogManager,
 	}
 	// TODO: adjust LevelRating, Locale, PrivacyLevel to user preferences!
 	UIRequest req = new UIRequest(user, form, LevelRating.none,
-		getUserLocale(), PrivacyLevel.insensible);
+		userLocaleHelper.getUserLocaleFromPreferredLanguage(),
+		PrivacyLevel.insensible);
 	addSystemMenu(req);
 
 	makeAdaptations(req);
@@ -809,84 +794,6 @@ public class UserDialogManager implements DialogManager,
 	if (current.getDialogForm().getDialogType().equals(DialogType.sysMenu)) {
 	    showMainMenu();
 	}
-    }
-
-    private Locale getLocaleFromLanguage(Language lang) {
-	switch (lang.ord()) {
-	case Language.GERMAN:
-	    return Locale.GERMAN;
-	case Language.ITALIAN:
-	    return Locale.ITALIAN;
-	case Language.GREEK:
-	    return new Locale("el");
-	case Language.SPANISH:
-	    return new Locale("es");
-	case Language.ENGLISH:
-	    return Locale.ENGLISH;
-	case Language.POLISH:
-	    return new Locale("pl");
-	case Language.CROATIAN:
-	    return new Locale("hr");
-	case Language.NORVEGIAN:
-	    return new Locale("no");
-	case Language.DUTCH:
-	    return new Locale("nl");
-	case Language.FRENCH:
-	    return Locale.FRENCH;
-	case Language.TAIWANESE:
-	    return Locale.TAIWAN;
-	case Language.ISRAELI:
-	    return new Locale("he");
-	case Language.PORTUGUESE:
-	    return new Locale("pt");
-	case Language.RUSIAN:
-	    return new Locale("ru");
-	case Language.HUNGARIAN:
-	    return new Locale("hu");
-	case Language.CHINESE:
-	    return Locale.CHINESE;
-	default:
-	    return null;
-	}
-    }
-
-    /**
-     * Get the language for the user.
-     * 
-     * @return the Locale for the user Language.
-     */
-    public final Locale getUserLocale() {
-	// find REAL USER's LOCALE
-	Language lang = uiPreferencesSubProfile.getInteractionPreferences()
-		.getPreferredLanguage();
-
-	try {
-	    return getLocaleFromLanguage(lang);
-	} catch (Exception e) {
-	    // a locale couldn't be created, Try secondary language.
-	    try {
-		lang = uiPreferencesSubProfile.getInteractionPreferences()
-			.getSecondaryLanguage();
-		return getLocaleFromLanguage(lang);
-	    } catch (Exception e1) {
-		// OR
-		// check system property
-		// check default systemlocale?
-		// if everything else fails then english?
-		return Locale.ENGLISH;
-	    }
-	}
-    }
-
-    /**
-     * Get a string in internationalization Messages file.
-     * 
-     * @param key
-     *            the key for the string
-     * @return the string.
-     */
-    public final String getString(String key) {
-	return messages.getString(key);
     }
 
     public final void openPendingDialogsDialog() {
