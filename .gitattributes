@@ -212,6 +212,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubdialogTriggerLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubmitLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TextAreaLAF.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/MyButton.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FormManager.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FrameManager.java -text

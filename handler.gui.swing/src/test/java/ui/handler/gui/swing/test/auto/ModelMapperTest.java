@@ -18,6 +18,7 @@ package ui.handler.gui.swing.test.auto;
 import junit.framework.TestCase;
 
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.Resource;
@@ -110,6 +111,7 @@ public class ModelMapperTest extends TestCase {
 	 * @see ModelMapperTest#testHierarchicalNonExistingFormControlExtension()
 	 */
 	public void testNonExistingFormControlExtension() {
+		warn();
 		TestExtensionOfGroup teog = new TestExtensionOfGroup();
 		assertTrue(mp.getModelFor(teog) instanceof GroupLAF);
 	}
@@ -155,7 +157,16 @@ public class ModelMapperTest extends TestCase {
 	 * 
 	 */
 	public void testHierarchicalNonExistingFormControlExtension() {
+		warn();
 		TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
 		assertTrue(mp.getModelFor(teteog) instanceof GroupLAF);
+	}
+
+	private void warn() {
+		LogUtils.logWarn(mc, getClass(), "testing",
+				new String[] {"some errors may appear continued,",
+			" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
+				null);
+		
 	}
 }
