@@ -114,7 +114,6 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 
 	private void resizeTriangle() {
 		int width = getSize().width / 7;
-		//System.out.println(width);
 		Dimension d = new Dimension(width, width/4);
 		tglbtnSystem.setSize(d);
 		tglbtnSystem.setPreferredSize(d);

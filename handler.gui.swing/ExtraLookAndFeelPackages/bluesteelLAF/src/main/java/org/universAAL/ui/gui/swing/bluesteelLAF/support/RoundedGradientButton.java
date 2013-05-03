@@ -138,13 +138,13 @@ public class RoundedGradientButton extends JButton {
 	        getLoweredBorder().paintBorder(b, g2, 0, 0, getWidth(), getHeight());
 		}
 
-		/* (non-Javadoc)
-		 * @see javax.swing.plaf.metal.MetalButtonUI#paintFocus(java.awt.Graphics, javax.swing.AbstractButton, java.awt.Rectangle, java.awt.Rectangle, java.awt.Rectangle)
-		 */
+		/** {@inheritDoc} */
 		@Override
 		protected void paintFocus(Graphics g, AbstractButton b,
 				Rectangle viewRect, Rectangle textRect, Rectangle iconRect) {
 		}
+		
+		//TODO: paint hover effect.
 	}
 
 }
