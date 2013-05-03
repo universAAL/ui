@@ -196,6 +196,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	VisualPreferences visualPreferences = new VisualPreferences(
 		uiPrefsSubProfile.getURI() + "VisualPreferences");
 	visualPreferences.setBackgroundColor(ColorType.lightBlue);
+	visualPreferences.setComponentSpacing(Intensity.medium);
 	visualPreferences.setBrightness(Intensity.medium);
 	visualPreferences.setContentContrast(Intensity.high);
 	visualPreferences.setCursorSize(Size.medium);
@@ -282,6 +283,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		uiPrefsSubProfile.getURI() + "VisualPreferences");
 	visualPreferences.setBackgroundColor(ColorType.lightBlue);
 	visualPreferences.setBrightness(Intensity.medium);
+	visualPreferences.setComponentSpacing(Intensity.medium);
 	visualPreferences.setContentContrast(Intensity.high);
 	visualPreferences.setCursorSize(Size.medium);
 	visualPreferences.setDayNightMode(Status.on);
