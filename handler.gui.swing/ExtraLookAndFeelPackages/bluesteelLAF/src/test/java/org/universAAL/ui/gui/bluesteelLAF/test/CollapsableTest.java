@@ -3,8 +3,6 @@ package org.universAAL.ui.gui.bluesteelLAF.test;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,8 +11,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.support.KickerButton;
+import org.universAAL.ui.gui.swing.bluesteelLAF.support.SubmitButton;
+import org.universAAL.ui.gui.swing.bluesteelLAF.support.SystemButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.SystemCollapse;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
@@ -22,7 +22,11 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlo
 
 public class CollapsableTest extends JFrame {
 
-    private GradientLAF contentPane;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private GradientLAF contentPane;
     private JPanel collapsable;
 
     /**
@@ -62,7 +66,8 @@ public class CollapsableTest extends JFrame {
 
 	contentPane.add(collapsable, BorderLayout.SOUTH);
 
-	JButton btnHome = new JButton("Home");
+	JButton btnHome = //new JButton("Home");
+			new SystemButton("Home", null);
 	btnHome.addActionListener(new ActionListener() {
 
 	    public void actionPerformed(ActionEvent e) {
@@ -72,10 +77,13 @@ public class CollapsableTest extends JFrame {
 	});
 	collapsable.add(btnHome);
 
-	JButton btnPendingMessages = new JButton("Pending Messages");
+	JButton btnPendingMessages = 
+//			new JButton("Pending Messages");
+			new SystemButton("Pending Messages", null);
 	collapsable.add(btnPendingMessages);
 
-	JButton btnPendingDialogs = new JButton("Exit");
+	JButton btnPendingDialogs = //new JButton("Exit");
+		new SystemButton("Exit", null);
 	btnPendingDialogs.addActionListener(new ActionListener() {
 
 	    public void actionPerformed(ActionEvent e) {
@@ -89,7 +97,7 @@ public class CollapsableTest extends JFrame {
 
 	JPanel panel = new JPanel();
 	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP,
-		ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
+		10, 10);
 	vfl.setMaximizeOtherDimension(true);
 	panel.setLayout(vfl);
 	JScrollPane sp = new JScrollPane(panel,
@@ -103,12 +111,17 @@ public class CollapsableTest extends JFrame {
 	    for (int j = 0; j < i; j++) {
 		l += Integer.toString(j);
 	    }
-	    JButton jb = new JButton("Submit " + l);
+	    JButton jb 
+	    //= new JButton("Submit " + l);
+	     = new SubmitButton("Submit " + l, null);
 	    panel.add(jb);
 	}
 
 	for (int i = 0; i < 25; i++) {
-	    panel_1.add(new JButton("Service " + Integer.toString(i)));
+	    panel_1.add(
+//	    		new JButton("Service " + Integer.toString(i))
+	    		new KickerButton("Service " + Integer.toString(i), null)
+	    		);
 	}
     }
 
