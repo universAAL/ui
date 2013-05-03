@@ -28,7 +28,15 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import org.jdesktop.swingx.JXLoginPane;
 import org.jdesktop.swingx.auth.LoginService;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.ui.preferences.ColorType;
+import org.universAAL.ontology.ui.preferences.GenericFontFamily;
+import org.universAAL.ontology.ui.preferences.Intensity;
+import org.universAAL.ontology.ui.preferences.Size;
+import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ontology.ui.preferences.VisualPreferences;
+import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.UAALTray;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
@@ -45,11 +53,13 @@ public class Init implements InitInterface {
     private JDesktopPane desktop;
     private JFrame frame;
     private Renderer render;
+	private boolean windowed;
 
 	/** {@inheritDoc} */
     public void install(Renderer render) {
     	this.render = render;
     	color = new ColorLAF();
+    	windowed = Boolean.parseBoolean(render.getProperty(CONF_PREFIX + "windowed", "false"));
         MetalLookAndFeel.setCurrentTheme(color);
         try {
             UIManager.setLookAndFeel(new MetalLookAndFeel());
@@ -111,7 +121,7 @@ public class Init implements InitInterface {
 	    desktop = new JDesktopPane();
 	    desktop.setVisible(true);
 	    frame.setContentPane(desktop);
-	    if (!Boolean.parseBoolean(render.getProperty(CONF_PREFIX + "windowed", "false"))){
+	    if (!windowed){
 	    	desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	    	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	    	frame.setUndecorated(true);
@@ -132,5 +142,175 @@ public class Init implements InitInterface {
 			return render.authenticate(arg0, new String(arg1));
 		}
 		
+	}
+
+
+	/**
+	 * @param currentDialog
+	 */
+	public void processPrefs(UIRequest currentDialog) {
+		VisualPreferences vp = (VisualPreferences) currentDialog
+				.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
+
+		if (vp != null){
+//			ColorType bgColor = vp.getBackgroundColor();
+			ColorType fColor = vp.getFontColor();
+			Size fSize = vp.getFontSize();
+			GenericFontFamily fFamily = vp.getFontFamily();
+			WindowLayoutType wl = vp.getWindowLayout();
+			Intensity spacing = vp.getComponentSpacing();
+/*			if (bgColor != null){
+				switch (bgColor.ord()) {
+				case ColorType.WHITE:
+				case ColorType.BLACK:
+				case ColorType.LIGHT_GRAY:
+				case ColorType.DARK_GREY:
+					
+					break;
+				case ColorType.LIGHT_BLUE:
+				case ColorType.DARK_BLUE:
+				case ColorType.CYAN:
+					
+					break;
+				case ColorType.LIGHT_GREEN:
+				case ColorType.DARK_GREEN:
+					
+					break;
+				case ColorType.LIGHT_RED:
+				case ColorType.DARK_RED:
+				case ColorType.MAGENTA:
+				case ColorType.PURPLE:
+				case ColorType.PINK:
+					
+					break;
+				case ColorType.YELLOW:
+				case ColorType.ORANGE:
+				
+					break;
+
+				default:
+					break;
+				}
+			}*/
+			if (fColor != null){
+				switch (fColor.ord()) {
+				case ColorType.WHITE:
+					color.setFontColor(Color.WHITE);
+					break;
+				case ColorType.BLACK:
+					color.setFontColor(Color.BLACK);
+					break;
+				case ColorType.LIGHT_GRAY:
+					color.setFontColor(Color.LIGHT_GRAY);
+					break;
+				case ColorType.DARK_GREY:
+					color.setFontColor(Color.DARK_GRAY);
+					break;
+				case ColorType.LIGHT_BLUE:
+					color.setFontColor(new Color(0xADD8E6));
+					break;
+				case ColorType.DARK_BLUE:
+					color.setFontColor(new Color(0x0000A0));
+					break;
+				case ColorType.LIGHT_GREEN:
+					color.setFontColor(new Color(0x90EE90));
+					break;
+				case ColorType.DARK_GREEN:
+					color.setFontColor(new Color(0x254117));
+					break;
+				case ColorType.LIGHT_RED:
+					color.setFontColor(new Color(0x0000A0));
+					break;
+				case ColorType.DARK_RED:
+					color.setFontColor(new Color(0x8B0000));
+					break;
+				case ColorType.ORANGE:
+					color.setFontColor(Color.ORANGE);
+					break;
+				case ColorType.YELLOW:
+					color.setFontColor(Color.YELLOW);
+					break;
+				case ColorType.CYAN:
+					color.setFontColor(Color.CYAN);
+					break;
+				case ColorType.PURPLE:
+					color.setFontColor(new Color(0x800080));
+					break;
+				case ColorType.MAGENTA:
+					color.setFontColor(Color.MAGENTA);
+					break;
+				case ColorType.PINK:
+					color.setFontColor(Color.PINK);
+					break;
+				default:
+					break;
+				}
+			}
+			if (fFamily != null){
+				switch (fFamily.ord()) {
+				case GenericFontFamily.SERIF:
+					color.setFontFamily("Serif");
+					break;
+				case GenericFontFamily.SANS_SERIF:
+					color.setFontFamily("SansSerif");
+					break;
+				case GenericFontFamily.CURSIVE:
+					color.setFontFamily("Monotype Corsiva");
+					break;
+				case GenericFontFamily.FANTASY:
+					color.setFontFamily("Old English Text MT");
+					break;
+				case GenericFontFamily.MONOSPACE:
+					color.setFontFamily("Monospaced");
+					break;
+
+				default:
+					break;
+				}
+			}
+			if (fSize != null){
+				switch (fSize.ord()) {
+				case Size.LARGE:
+					color.setFontSizeBase(30);
+					break;
+				case Size.MEDIUM:
+					color.setFontSizeBase(20);
+					break;
+				case Size.SMALL:
+					color.setFontSizeBase(12);
+					break;
+				default:
+					break;
+				}
+			}
+			if (wl != null){
+				switch (wl.ord()) {
+				case WindowLayoutType.OVERLAP:
+					windowed = true;
+					break;
+				case WindowLayoutType.TILED:
+					windowed = false;
+					break;
+				default:
+					break;
+				}
+			}
+			if (spacing != null){
+				switch (spacing.ord()) {
+				case Intensity.LOW:
+					color.setGap(5);
+					break;
+				case Intensity.MEDIUM:
+					color.setGap(10);					
+					break;
+				case Intensity.HIGH:
+					color.setGap(20);					
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
 	}
 }

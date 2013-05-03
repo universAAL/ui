@@ -33,6 +33,7 @@ public class ColorLAF extends DefaultMetalTheme {
 	private String fontFamily = "Arial";
 	private int fontSizeBase = 20;
 	private Color fontColor = new Color(0, 0, 0);
+	private int gap  = 10;
 
 	private ColorUIResource primary1 = new ColorUIResource(255, 255, 247); // cream
 	private ColorUIResource primary2 = new ColorUIResource(204, 204, 204);// orange
@@ -156,6 +157,19 @@ public class ColorLAF extends DefaultMetalTheme {
 
 	public void setFontColor(Color fontColor) {
 		this.fontColor = fontColor;
+	}
+	
+	/**
+	 * @return
+	 */
+	public int getGap() {
+		return gap;
+	}
+	/**
+	 * @param gap the gap to set
+	 */
+	public void setGap(int gap) {
+		this.gap = gap;
 	}
 
 	public static Color getDialogGradiendBackground1() {

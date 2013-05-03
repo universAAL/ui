@@ -54,9 +54,9 @@ public class MainMenuPager extends JPanel {
 	
 	private int currentPage = 0;
 	
-	private int noCols = 3;
-	private int noRows = 2;
-	private int space = 5;
+	private int noCols;
+	private int noRows;
+	private int space;
 	
 	private ArrayList<Component> comps = new ArrayList<Component>();
 
@@ -69,6 +69,13 @@ public class MainMenuPager extends JPanel {
 	 * Create the panel.
 	 */
 	public MainMenuPager() {
+		this(3,2,5);
+	}
+	
+	public MainMenuPager(int cols, int rows, int gap){
+		noCols = cols;
+		noRows = rows;
+		space = gap;
 		setOpaque(false);
 		addMouseWheelListener(new MouseWheelListener() {
 			public void mouseWheelMoved(MouseWheelEvent e) {

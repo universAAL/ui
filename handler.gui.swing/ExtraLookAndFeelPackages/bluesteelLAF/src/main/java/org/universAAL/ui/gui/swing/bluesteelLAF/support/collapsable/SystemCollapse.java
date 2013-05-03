@@ -44,11 +44,17 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 	private JButton tglbtnSystem;
 	private JPanel systemPanel;
 	private Color backgroundColor;
+	private int gap;
 
 	/**
 	 * Create the panel.
 	 */
 	public SystemCollapse() {
+		this(ColorLAF.SEPARATOR_SPACE);
+	}
+	
+	public SystemCollapse(int gap){
+		this.gap = gap;
 		backgroundColor = ColorLAF.getSystemBarBackground();
 		
 		setOpaque(false);
@@ -84,7 +90,7 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 		
 		systemPanel = new JPanel();
 		systemPanel.setBackground(backgroundColor);
-		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE));
+		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, this.gap, this.gap));
 		
 		JScrollPane scrollPane = new JScrollPane(systemPanel);
 		scrollPane.setLayout(new BorderedScrolPaneLayout());
