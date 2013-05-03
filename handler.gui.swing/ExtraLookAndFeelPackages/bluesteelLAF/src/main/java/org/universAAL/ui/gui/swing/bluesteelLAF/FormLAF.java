@@ -163,6 +163,8 @@ public class FormLAF extends FormModel {
      * render the frame for the {@link Form}.
      */
     public void showForm() {
+    	Renderer r = getRenderer();
+    	((Init) r.getInitLAF()).processPrefs(r.getFormManagement().getCurrentDialog());
 	JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
 	synchronized (desktopPane) {
 	    if (frame == null) {

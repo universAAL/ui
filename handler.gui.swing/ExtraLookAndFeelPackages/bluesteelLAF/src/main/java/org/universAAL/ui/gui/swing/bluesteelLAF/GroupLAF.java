@@ -63,12 +63,19 @@ public class GroupLAF extends GroupModel {
     		}
     		new Submit((Group)fc, new Label("uStore", "system/Ustore.png"), UStoreButton.SUBMIT_ID);
     	}
+    	int gap = Init.getInstance(getRenderer()).getColorLAF().getGap();
     	if (this.isTheIOGroup() 
         		&& this.isInMainMenu()) {
-        	return new MainMenuPager();
+    		//XXX get col-row ratio +- form screen resolution.
+    		if (gap >= 20)
+    			return new MainMenuPager(2,2,gap);
+    		if (gap >= 10)
+    			return new MainMenuPager(3, 2, gap);
+    		else
+    			return new MainMenuPager(4, 3, gap);
         }
     	else if (this.isTheMainGroup()) {
-    		return new SystemCollapse();
+    		return new SystemCollapse(gap);
     	}
     	else if (((Group) fc).isRootGroup()) {
     		JPanel p = new JPanel();
@@ -85,12 +92,14 @@ public class GroupLAF extends GroupModel {
 	/** {@inheritDoc} */
     public void update() {
 	super.update();
+		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
+		int gap = color.getGap();
         if (jc instanceof JTabbedPane) {
             /*
              * Tabbed group
              */
             jc.getAccessibleContext();
-            jc.setFont(Init.getInstance(getRenderer()).getColorLAF().getplain());
+            jc.setFont(color.getplain());
         }
         else if (!((Group) fc).isRootGroup()) {
             /*
@@ -105,34 +114,34 @@ public class GroupLAF extends GroupModel {
             }
             //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
             Border line = BorderFactory.createLineBorder(
-            		Init.getInstance(getRenderer()).getColorLAF().getOrange());
+            		color.getOrange());
             TitledBorder title;
             title = BorderFactory.createTitledBorder
                     (line, label, 0, 0,
-                    		Init.getInstance(getRenderer()).getColorLAF().getbold(), 
-                    		Init.getInstance(getRenderer()).getColorLAF().getborderLineMM());
+                    		color.getbold(), 
+                    		color.getborderLineMM());
             jc.setBorder(title);
             needsLabel = false;
             // XXX try add icon
             if (isInStandardGroup()) {
-            	jc.setLayout(new FlowLayout());
+            	jc.setLayout(new FlowLayout(FlowLayout.CENTER,gap,gap));
             } else {
-            	jc.setLayout(new FormLayout());
+            	jc.setLayout(new FormLayout(gap));
             }
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
         	if (containsOnlySubGroups((Group)fc)) {
-        		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP);
+        		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         		vfl.setMaximizeOtherDimension(true);
         		jc.setLayout(vfl);
         	} else {
-        		jc.setLayout(new FormLayout());
+        		jc.setLayout(new FormLayout(gap));
         	}
         }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){
-        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, ColorLAF.SEPARATOR_SPACE, ColorLAF.SEPARATOR_SPACE);
+        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
 		}
