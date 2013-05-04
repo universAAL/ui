@@ -21,6 +21,7 @@ import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -48,6 +49,9 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 public class Init implements InitInterface {
 
     public static final String CONF_PREFIX = "ui.handler.gui.swing.bluesteelLAF.";
+	private static final String TOOLTIP_ACTIVE = CONF_PREFIX + "tootip.active";
+	private static final String TOOLTIP_DELAY = CONF_PREFIX + "tootip.delay";
+	private static final String WINDOWED = CONF_PREFIX + "windowed";
 	private ColorLAF color;
     private UAALTray tray;
     private JDesktopPane desktop;
@@ -59,7 +63,7 @@ public class Init implements InitInterface {
     public void install(Renderer render) {
     	this.render = render;
     	color = new ColorLAF();
-    	windowed = Boolean.parseBoolean(render.getProperty(CONF_PREFIX + "windowed", "false"));
+    	windowed = Boolean.parseBoolean(render.getProperty(WINDOWED, "false"));
         MetalLookAndFeel.setCurrentTheme(color);
         try {
             UIManager.setLookAndFeel(new MetalLookAndFeel());
@@ -79,6 +83,10 @@ public class Init implements InitInterface {
         UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
         UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 3));
         UIManager.put("ToolTip.font", color.getLabelFont());
+        ToolTipManager.sharedInstance()
+        	.setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
+        ToolTipManager.sharedInstance()
+    		.setEnabled(Boolean.parseBoolean(render.getProperty(TOOLTIP_ACTIVE, "true")));
     }
     
     public ColorLAF getColorLAF(){
