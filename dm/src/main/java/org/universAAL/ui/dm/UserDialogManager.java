@@ -51,6 +51,7 @@ import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
 import org.universAAL.ui.dm.interfaces.IAdapter;
+import org.universAAL.ui.dm.interfaces.IDialogBuilder;
 import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
@@ -111,10 +112,6 @@ public class UserDialogManager implements DialogManager,
     //
     // private static final String PDD_BUTTON = "buttons";
 
-    private static final int PENDING_DIALOGS_TABLE = 0;
-
-    private static final int PENDING_DIALOGS_BUTTONS = 1;
-
     /**
      * {@link User} this {@link UserDialogManager} is targeting.
      */
@@ -136,6 +133,11 @@ public class UserDialogManager implements DialogManager,
      */
     private ISystemMenuProvider systemMenuProvider;
 
+    /**
+     * The pending Messages Dialog Builder to use.
+     */
+    private IDialogBuilder pendingDialogsBuilder;
+    
     /**
      * Message Pool, suspended Messages are read messages and saved. Active
      * messages are messages not read yet.
@@ -173,11 +175,6 @@ public class UserDialogManager implements DialogManager,
      * {@link UserDialogManager} is pushing.
      */
     private Set<String> myUIRequests;
-
-    /**
-     * The Pending Dialogs Dialog implementation to be used
-     */
-    private int pendingDialogsDialog;
 
     /**
      * Helper to determine {@link Locale} for the {@linkUser} from preferred
@@ -326,9 +323,9 @@ public class UserDialogManager implements DialogManager,
 	PendingDialogsBuilderType pdbt = uiPreferencesSubProfile
 		.getSystemMenuPreferences().getPendingDialogBuilder();
 	if (pdbt == PendingDialogsBuilderType.table) {
-	    pendingDialogsDialog = PENDING_DIALOGS_TABLE;
+	    pendingDialogsBuilder = new PendingDialogBuilder(this);
 	} else if (pdbt == PendingDialogsBuilderType.buttons) {
-	    pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
+	    pendingDialogsBuilder = new PendingDialogBuilderWithSubmits(this);
 	}
 
 	/*
@@ -732,7 +729,6 @@ public class UserDialogManager implements DialogManager,
     public final void setCurrentUserLocation(AbsLocation currentUserLocation) {
 	if (this.currentUserLocation != currentUserLocation) {
 	    this.currentUserLocation = currentUserLocation;
-	    // XXX: re-send current Request?
 	    if (current != null) {
 		resumeUIRequest(current);
 	    } else {
@@ -797,15 +793,7 @@ public class UserDialogManager implements DialogManager,
     }
 
     public final void openPendingDialogsDialog() {
-	switch (pendingDialogsDialog) {
-	case PENDING_DIALOGS_TABLE:
-	    new PendingDialogBuilder(this);
-	    break;
-	case PENDING_DIALOGS_BUTTONS:
-	    new PendingDialogBuilderWithSubmits(this);
-	default:
-	    break;
-	}
+    	pendingDialogsBuilder.showDialog();
     }
 
     public final void openPendingMessagedDialog() {

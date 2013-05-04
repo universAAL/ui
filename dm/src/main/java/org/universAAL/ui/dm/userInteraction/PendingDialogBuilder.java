@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.UserLocaleHelper;
+import org.universAAL.ui.dm.interfaces.IDialogBuilder;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
@@ -46,7 +47,7 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilder implements ISubmitGroupListener {
+public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilder {
 
     /**
      * Prefix of a submission ID to switch to a pending dialog. All pending
@@ -96,11 +97,6 @@ public class PendingDialogBuilder implements ISubmitGroupListener {
     public PendingDialogBuilder(UserDialogManager udm) {
 	dialogPool = udm.getDialogPool();
 	userDM = udm;
-	Form pdForm = buildForm();
-	if (pdForm != null) {
-	    userDM.add(this);
-	    userDM.pushDialog(pdForm);
-	}
     }
 
     public Form buildForm() {
@@ -239,5 +235,15 @@ public class PendingDialogBuilder implements ISubmitGroupListener {
      * runningDialogs.put(user.getURI(), oe); resumeDialog(dialogID, oe); } } }
      * } }
      */
+
+	/** {@inheritDoc} */
+	public void showDialog() {
+		Form pdForm = buildForm();
+		if (pdForm != null) {
+		    userDM.add(this);
+		    userDM.pushDialog(pdForm);
+		}
+		
+	}
 
 }
