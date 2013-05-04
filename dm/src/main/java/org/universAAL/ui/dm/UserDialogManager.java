@@ -62,6 +62,7 @@ import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
+import org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider;
@@ -94,6 +95,8 @@ public class UserDialogManager implements DialogManager,
     private static final String DEFAULT_FINALISE_WAIT = "100";
 
     private static final String SYSTEM_PROP_FINALIZE_WAIT = "ui.dm.finalizeWait";
+
+	private static final String SYSTEM_PROP_LOAD_ALL_SERVICES = "ui.dm.loadAllServices";
 
     // TODO delete after testing, commented when applying ui prefs data
     // private static final String SYSTEM_PROP_SYSMENUPROVIDER =
@@ -280,6 +283,21 @@ public class UserDialogManager implements DialogManager,
 			    "UserDialogManager",
 			    new String[] { "Cannot initialize ProfilableMainMenuProvider!" },
 			    e);
+	}
+	
+	if (System.getProperty(SYSTEM_PROP_LOAD_ALL_SERVICES) != null){
+		try {
+			((AggregatedMainMenuProvider) mainMenuProvider)
+			.add(new AllMainMenuProvider(user));
+		} catch (Exception e) {
+	    LogUtils
+		    .logError(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "UserDialogManager",
+			    new String[] { "Cannot initialize AllMainMenuProvider!" },
+			    e);
+		}
 	}
 
 	/*
