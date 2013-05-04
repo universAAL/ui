@@ -18,6 +18,7 @@ dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbos
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IAdapter.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/IDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IMainMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISQLStoreProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
