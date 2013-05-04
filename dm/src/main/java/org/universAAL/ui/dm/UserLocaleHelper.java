@@ -17,6 +17,7 @@ package org.universAAL.ui.dm;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -34,7 +35,9 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
  */
 public class UserLocaleHelper {
 
-    /**
+    private static final String MSG_FILE_NAME = "messages.properties";
+
+	/**
      * The internationalization file for strings meant to be read by the user.
      */
     private Messages messages;
@@ -49,17 +52,32 @@ public class UserLocaleHelper {
 	 */
 	try {
 	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
-		    "messages.properties");
+		    MSG_FILE_NAME);
 	    messages = new Messages(messagesFile,
 		    getUserLocaleFromPreferredLanguage());
 	} catch (IOException e) {
+	    LogUtils
+		    .logWarn(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "getUIPreferencesEditorForm",
+			    new String[] { "Cannot initialize Dialog Manager externalized strings from configuration folder!",
+			    	" Loading from resources"},
+			    e);
+	    try {
+	    	URL messagesResource = getClass().getClassLoader().getResource(MSG_FILE_NAME);
+			messages = new Messages(messagesResource,
+					getUserLocaleFromPreferredLanguage());
+		} catch (Exception e1) {
 	    LogUtils
 		    .logError(
 			    DialogManagerImpl.getModuleContext(),
 			    getClass(),
 			    "getUIPreferencesEditorForm",
-			    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
-			    e);
+			    new String[] { "Cannot initialize Dialog Manager externalized strings from Resources!",
+			    	" COME ON! give me a break."},
+			    e1);
+		}
 	}
     }
 
