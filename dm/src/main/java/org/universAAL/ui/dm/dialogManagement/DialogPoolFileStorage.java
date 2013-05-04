@@ -89,7 +89,7 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 			osw.write(serialized);
 			osw.close();
 		} catch (FileNotFoundException e) {
-			// Highly unprobable.
+			// Highly improbable.
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

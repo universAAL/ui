@@ -58,7 +58,7 @@ public class SearchableAggregatedMainMenuProvider extends
     static final String BACK_CALL = DialogManagerImpl.CALL_PREFIX
 	    + "#doBackFromSearch"; //$NON-NLS-1$;
 
-    static boolean searchFirst;
+    boolean searchFirst;
 
     /**
      * The reference to the dialog manager for the user.
