@@ -100,7 +100,7 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 	public void read(IUIRequestPool target){
 		String serialized = "";
 		try {
-			serialized = new Scanner(file).useDelimiter("\\Z").next();
+			serialized = new Scanner(file,UTF_8).useDelimiter("\\Z").next();
 		} catch (Exception e){
 			/*
 			 *  either:

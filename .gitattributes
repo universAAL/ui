@@ -15,7 +15,6 @@ dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java -te
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
-dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogSQL.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IAdapter.java -text
