@@ -311,7 +311,11 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	}
     }
 
-    /**
+    public UserDialogManager getUDM(String userURI) {
+	return udmMap.get(userURI);
+	}
+
+	/**
      * Method to prepare for DM shutdown.
      */
     private void stop() {
@@ -399,38 +403,6 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     }
 
     /**
-     * A mini-Garbage collector to purge the
-     * {@link DialogManagerImpl#dialogIDMap}
-     * 
-     * @author amedrano
-     * 
-     */
-    private class DMGC extends TimerTask {
-
-	/** {@inheritDoc} */
-	@Override
-	public void run() {
-	    Set<String> remove = new HashSet<String>();
-	    for (String dID : dialogIDMap.keySet()) {
-		UserDialogManager udm = dialogIDMap.get(dID);
-		if (udm == null
-			|| (udm.getDialogPool().get(dID) == null && udm
-				.getMessagePool().get(dID) == null)) {
-		    remove.add(dID);
-		}
-	    }
-	    for (String key : remove) {
-		dialogIDMap.remove(key);
-	    }
-	}
-
-    }
-
-    public UserDialogManager getUDM(String userURI) {
-	return udmMap.get(userURI);
-    }
-
-    /**
      * Get the config folder.
      * 
      * @return the configHome
@@ -448,4 +420,32 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public static void setConfigHome(File configHome) {
 	DialogManagerImpl.configHome = configHome;
     }
+
+	/**
+	 * A mini-Garbage collector to purge the
+	 * {@link DialogManagerImpl#dialogIDMap}
+	 * 
+	 * @author amedrano
+	 * 
+	 */
+	private class DMGC extends TimerTask {
+	
+	/** {@inheritDoc} */
+	@Override
+	public void run() {
+	    Set<String> remove = new HashSet<String>();
+	    for (String dID : dialogIDMap.keySet()) {
+		UserDialogManager udm = dialogIDMap.get(dID);
+		if (udm == null
+			|| (udm.getDialogPool().get(dID) == null && udm
+				.getMessagePool().get(dID) == null)) {
+		    remove.add(dID);
+		}
+	    }
+	    for (String key : remove) {
+		dialogIDMap.remove(key);
+	    }
+	}
+	
+	}
 }

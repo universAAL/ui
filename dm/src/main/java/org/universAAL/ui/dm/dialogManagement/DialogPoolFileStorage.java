@@ -96,6 +96,7 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 	}
 	
 	/** {@inheritDoc} */
+	@SuppressWarnings("unchecked")
 	public void read(IUIRequestPool target){
 		String serialized = "";
 		try {

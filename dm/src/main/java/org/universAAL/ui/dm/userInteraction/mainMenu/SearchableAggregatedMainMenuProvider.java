@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 
 /**
  * Adds a search widget to the main menu, making it searchable.
@@ -163,7 +164,7 @@ public class SearchableAggregatedMainMenuProvider extends
 	    	 * 		(if message, delete "remember" option).
 	    	 */
 	    }
-	    new Submit(mmGroup, new Label(userDM.getString("UICaller.back"),
+	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString("UICaller.back"),
 		    null), BACK_CALL);
 	    return mmGroup;
 	}
@@ -176,14 +177,15 @@ public class SearchableAggregatedMainMenuProvider extends
      * @return
      */
     private Group addSearch(Group parent) {
-	Group g = new Group(parent, new Label(userDM
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	Group g = new Group(parent, new Label(ulh
 		.getString("UICaller.search"), null), null, null, null);
 	InputField in = new InputField(g, null, new PropertyPath(null, false,
 		new String[] { PROP_SEARCH_STRING }), MergedRestriction
 		.getAllValuesRestrictionWithCardinality(PROP_SEARCH_STRING,
 			TypeMapper.getDatatypeURI(String.class), 1, 1), null);
 	in.setMaxLength(20);
-	new Submit(g, new Label(userDM.getString("UICaller.search"), null),
+	new Submit(g, new Label(ulh.getString("UICaller.search"), null),
 		SEARCH_CALL).addMandatoryInput(in);
 	return g;
     }

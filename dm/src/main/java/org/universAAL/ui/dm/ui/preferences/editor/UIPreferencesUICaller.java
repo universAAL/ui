@@ -27,6 +27,8 @@ import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 
 /**
@@ -101,9 +103,15 @@ public class UIPreferencesUICaller extends UICaller {
 
 		submit = null;
 	    }
-	} catch (Exception e) {
-	    showMessageScreen(addressedUser, Messages
-		    .getString("UIPreferencesUIProvider.UnknownServiceError"));
+	} catch (Exception e) { 
+		/*
+	     * FIXME: user may not be registered
+	     *  and the following might give a NullPointerException
+	     */
+		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
+		.getLocaleHelper();
+	    showMessageScreen(addressedUser, 
+		    ulh.getString("UIPreferencesUIProvider.UnknownServiceError"));
 	}
     }
 
@@ -166,8 +174,15 @@ public class UIPreferencesUICaller extends UICaller {
 			    new Object[] {
 				    "Unknown error processing the user input",
 				    e }, null);
-	    showMessageScreen(addressedUser, Messages
-		    .getString("UIPreferencesUIProvider.UnknownServiceError"));
+
+	    /*
+	     * FIXME: user may not be registered
+	     *  and the following might give a NullPointerException
+	     */
+		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
+		.getLocaleHelper();
+	    showMessageScreen(addressedUser, 
+		    ulh.getString("UIPreferencesUIProvider.UnknownServiceError"));
 	}
 
     }

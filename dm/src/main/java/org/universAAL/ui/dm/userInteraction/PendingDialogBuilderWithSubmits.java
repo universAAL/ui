@@ -25,6 +25,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 
 /**
@@ -48,6 +49,7 @@ public PendingDialogBuilderWithSubmits(UserDialogManager udm) {
 public Form buildForm() {
     // a list with information about a dialog in RDF-form:
     // title, date, dialog ID
+	UserLocaleHelper ulh = userDM.getLocaleHelper();
     List<Resource> dialogs = new ArrayList<Resource>();
     sentItems = new ArrayList<String>();
     Form f = null;
@@ -70,7 +72,7 @@ public Form buildForm() {
 	Resource msgList = new Resource();
 	msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	f = Form.newDialog(userDM.getString("UICaller.pendingDialogs"),
+	f = Form.newDialog(ulh.getString("UICaller.pendingDialogs"),
 		msgList);
 	Group g = f.getIOControls();
 	int i = 0;
@@ -81,14 +83,14 @@ public Form buildForm() {
 	}
 	// a dd submits
 	g = f.getSubmits();
-	new Submit(g, new Label(userDM.getString("UICaller.ok"), null),
+	new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
 		CLOSE_OPEN_DIALOGS_CALL);
-	new Submit(g, new Label(userDM.getString("UICaller.abortAll"),
+	new Submit(g, new Label(ulh.getString("UICaller.abortAll"),
 		null), ABORT_ALL_OPEN_DIALOGS_CALL);
     }
     if (f == null)
 	f = Form.newMessage(
-		userDM.getString("UICaller.pendingDialogs"), userDM
+		ulh.getString("UICaller.pendingDialogs"), ulh
 			.getString("UICaller.noPendingDialogs"));
     return f;
 }

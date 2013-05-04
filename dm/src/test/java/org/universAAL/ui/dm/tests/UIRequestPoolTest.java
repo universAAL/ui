@@ -55,9 +55,9 @@ public abstract class UIRequestPoolTest extends TestCase {
 	assertNull(pool.getCurrent());
 	assertFalse(pool.hasToChange());
 	printPool();
-    }
-
-    public void test2() {
+//    }
+//
+//    public void test2() {
 	System.out.println("Test2 :");
 	UIRequest req = getNewRequest();
 	pool.add(req);
@@ -65,40 +65,40 @@ public abstract class UIRequestPoolTest extends TestCase {
 	assertEquals(0, pool.listAllSuspended().size());
 	assertTrue(pool.hasToChange());
 	printPool();
-    }
-
-    public void test3() {
+//    }
+//
+//    public void test3() {
 	// System.out.println("Test3 :");
 	// try {
 	// Thread.sleep(500);
 	// } catch (InterruptedException e) { }
-	UIRequest req = getNewRequest();
+	req = getNewRequest();
 	System.out.println("NEW REQUEST ID: " + req.getDialogID());
 	pool.add(req);
 	assertEquals(2, pool.listAllActive().size());
 	assertEquals(0, pool.listAllSuspended().size());
 	printPool();
-    }
-
-    public void test4() {
+//    }
+//
+//    public void test4() {
 
 	System.out.println("Test4 :");
 	UIRequest next = pool.getNextUIRequest();
 	assertNotNull(next);
 	assertEquals(pool.getCurrent(), next);
 	printPool();
-    }
-
-    public void test5() {
+//    }
+//
+//    public void test5() {
 	System.out.println("Test5 :");
 	pool.suspend(pool.getCurrent().getDialogID());
 	assertNull(pool.getCurrent());
 	assertEquals(1, pool.listAllActive().size());
 	assertEquals(1, pool.listAllSuspended().size());
 	printPool();
-    }
-
-    public void test6() {
+//    }
+//
+//    public void test6() {
 	System.out.println("Test6 :");
 	Iterator<UIRequest> i = pool.listAllSuspended().iterator();
 	String r = i.next().getDialogID();
@@ -106,25 +106,25 @@ public abstract class UIRequestPoolTest extends TestCase {
 	assertEquals(2, pool.listAllActive().size());
 	assertEquals(0, pool.listAllSuspended().size());
 	printPool();
-    }
-
-    public void test7() {
+//    }
+//
+//    public void test7() {
 	System.out.println("Test7 :");
-	UIRequest r = pool.getNextUIRequest();
-	pool.suspend(r.getDialogID());
-	assertEquals(r, pool.get(r.getDialogID()));
+	req = pool.getNextUIRequest();
+	pool.suspend(req.getDialogID());
+	assertEquals(req, pool.get(req.getDialogID()));
 	printPool();
-    }
-
-    public void test8() {
-	Iterator<UIRequest> i = pool.listAllSuspended().iterator();
-	String r = i.next().getDialogID();
-	pool.close(r);
+//    }
+//
+//    public void test8() {
+	Iterator<UIRequest> it = pool.listAllSuspended().iterator();
+	String rURI = it.next().getDialogID();
+	pool.close(rURI);
 	assertEquals(1, pool.listAllActive().size());
 	assertEquals(0, pool.listAllSuspended().size());
-	i = pool.listAllActive().iterator();
-	r = i.next().getDialogID();
-	pool.close(r);
+	it = pool.listAllActive().iterator();
+	rURI = it.next().getDialogID();
+	pool.close(rURI);
 	assertEquals(0, pool.listAllActive().size());
 	assertEquals(0, pool.listAllSuspended().size());
 	assertNull(pool.getCurrent());

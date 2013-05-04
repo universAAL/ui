@@ -33,6 +33,7 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
@@ -129,6 +130,7 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
     }
 
     private Form buildForm() {
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	Form f = null;
 	Collection<UIRequest> pendingMessages = new ArrayList<UIRequest>(
 		messagePool.listAllSuspended());
@@ -167,9 +169,9 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
 		msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
 		f = Form.newDialog(
-			userDM.getString("UICaller.pendingMessages"), msgList);
+			ulh.getString("UICaller.pendingMessages"), msgList);
 		Group g = f.getIOControls();
-		g = new Repeat(g, new Label(userDM
+		g = new Repeat(g, new Label(ulh
 			.getString("UICaller.pendingMessages"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
@@ -180,26 +182,26 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		// dummy group needed if more than one form control is going
 		// to be added as child of the repeat
 		g = new Group(g, null, null, null, null);
-		new SimpleOutput(g, new Label(userDM
+		new SimpleOutput(g, new Label(ulh
 			.getString("UICaller.subject"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
 			null);
 		new SimpleOutput(g, new Label(
-			userDM.getString("UICaller.date"), null),
+			ulh.getString("UICaller.date"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
 			null);
-		new SimpleOutput(g, new Label(userDM
+		new SimpleOutput(g, new Label(ulh
 			.getString("UICaller.message"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_BODY }),
 			null);
 		// add submits
 		g = f.getSubmits();
-		new Submit(g, new Label(userDM.getString("UICaller.ok"), null),
+		new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
 			CLOSE_MESSAGES_CALL);
-		new Submit(g, new Label(userDM.getString("UICaller.deleteAll"),
+		new Submit(g, new Label(ulh.getString("UICaller.deleteAll"),
 			null), DELETE_ALL_MESSAGES_CALL);
 	    }
 	}
@@ -207,15 +209,15 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 	// if there are no messages available, create a new message saying
 	// exactly that, so that the user knows that there are no messages
 	if (f == null)
-	    f = Form.newMessage(userDM.getString("UICaller.pendingMessages"),
-		    userDM.getString("UICaller.noPendingMessages"));
+	    f = Form.newMessage(ulh.getString("UICaller.pendingMessages"),
+		    ulh.getString("UICaller.noPendingMessages"));
 	return f;
     }
 
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
-	return userDM.getString("UICaller.noPendingMessages")
+	return userDM.getLocaleHelper().getString("UICaller.noPendingMessages")
 		.equals(msgContent)
-		&& userDM.getString("UICaller.pendingMessages").equals(
+		&& userDM.getLocaleHelper().getString("UICaller.pendingMessages").equals(
 			formTitle);
     }
 
