@@ -27,6 +27,7 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 
 /**
@@ -120,20 +121,21 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	Form f = request.getDialogForm();
 	Group stdButtons = f.getStandardButtons();
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingMessages"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.pendingMessages"), ulh
 		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingDialogs"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.pendingDialogs"), ulh
 		    .getString("UICaller.pendingDialogs.icon")),
 		    OPEN_DIALOGS_CALL);
-	    new Submit(stdButtons, new Label(userDM.getString("UICaller.exit"),
-		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
+	    new Submit(stdButtons, new Label(ulh.getString("UICaller.exit"),
+		    ulh.getString("UICaller.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
@@ -141,19 +143,19 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.STD_DIALOG:
 	    String dialogTitle = f.getTitle();
 
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.mainMenu"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.mainMenu"), ulh
 		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
 
-	    if (!userDM.getString("UICaller.pendingMessages").equals(
+	    if (!ulh.getString("UICaller.pendingMessages").equals(
 		    dialogTitle)) {
-		new Submit(stdButtons, new Label(userDM
-			.getString("UICaller.pendingMessages"), userDM
+		new Submit(stdButtons, new Label(ulh
+			.getString("UICaller.pendingMessages"), ulh
 			.getString("UICaller.pendingMessages.icon")),
 			MESSAGES_CALL);
 
-		new Submit(stdButtons, new Label(userDM
-			.getString("UICaller.pendingDialogs"), userDM
+		new Submit(stdButtons, new Label(ulh
+			.getString("UICaller.pendingDialogs"), ulh
 			.getString("UICaller.pendingDialogs.icon")),
 			OPEN_DIALOGS_CALL);
 	    }

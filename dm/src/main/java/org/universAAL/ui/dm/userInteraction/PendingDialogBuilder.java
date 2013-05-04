@@ -34,6 +34,7 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
@@ -105,6 +106,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener {
     public Form buildForm() {
 	// a list with information about a dialog in RDF-form:
 	// title, date, dialog ID
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	List<Resource> dialogs = new ArrayList<Resource>();
 	sentItems = new ArrayList<String>();
 	Form f = null;
@@ -126,10 +128,10 @@ public class PendingDialogBuilder implements ISubmitGroupListener {
 	    Resource msgList = new Resource();
 	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	    f = Form.newDialog(userDM.getString("UICaller.pendingDialogs"),
+	    f = Form.newDialog(ulh.getString("UICaller.pendingDialogs"),
 		    msgList);
 	    Group g = f.getIOControls();
-	    g = new Repeat(g, new Label(userDM
+	    g = new Repeat(g, new Label(ulh
 		    .getString("UICaller.pendingDialogs"), null),
 		    new PropertyPath(null, false,
 			    new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
@@ -140,27 +142,27 @@ public class PendingDialogBuilder implements ISubmitGroupListener {
 	    // dummy group needed if more than one form control is going to
 	    // be added as child of the repeat
 	    g = new Group(g, null, null, null, null);
-	    new SimpleOutput(g, new Label(userDM.getString("UICaller.subject"),
+	    new SimpleOutput(g, new Label(ulh.getString("UICaller.subject"),
 		    null), new PropertyPath(null, false,
 		    new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
-	    new SimpleOutput(g, new Label(userDM.getString("UICaller.date"),
+	    new SimpleOutput(g, new Label(ulh.getString("UICaller.date"),
 		    null), new PropertyPath(null, false,
 		    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
-	    new SubdialogTrigger(g, new Label(userDM
+	    new SubdialogTrigger(g, new Label(ulh
 		    .getString("UICaller.switchTo"), null),
 		    SubdialogTrigger.VAR_REPEATABLE_ID)
 		    .setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 	    // add submits
 	    g = f.getSubmits();
-	    new Submit(g, new Label(userDM.getString("UICaller.ok"), null),
+	    new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
 		    CLOSE_OPEN_DIALOGS_CALL);
 	    new Submit(g,
-		    new Label(userDM.getString("UICaller.abortAll"), null),
+		    new Label(ulh.getString("UICaller.abortAll"), null),
 		    ABORT_ALL_OPEN_DIALOGS_CALL);
 	}
 	if (f == null)
-	    f = Form.newMessage(userDM.getString("UICaller.pendingDialogs"),
-		    userDM.getString("UICaller.noPendingDialogs"));
+	    f = Form.newMessage(ulh.getString("UICaller.pendingDialogs"),
+		    ulh.getString("UICaller.noPendingDialogs"));
 	return f;
     }
 

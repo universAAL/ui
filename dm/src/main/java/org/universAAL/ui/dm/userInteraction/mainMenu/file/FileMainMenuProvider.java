@@ -141,7 +141,8 @@ public class FileMainMenuProvider implements IMainMenuProvider {
     protected File getMainMenuFile() {
     	String userID = userDM.getUserId();
     	userID = userID.substring(userID.lastIndexOf("#") + 1);
-    	String lang = userDM.getUserLocale().getLanguage();
+    	String lang = userDM.getLocaleHelper()
+    			.getUserLocaleFromPreferredLanguage().getLanguage();
     	File f = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + "_" + lang
     			+ ".txt");
     	File f2 = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + ".txt");

@@ -8,6 +8,7 @@ import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.serialization.MessageContentSerializerEx;
 import org.universAAL.middleware.serialization.turtle.TurtleSerializer;
+import org.universAAL.middleware.service.owl.ServiceBusOntology;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.ontology.location.LocationOntology;
 import org.universAAL.ontology.phThing.PhThingOntology;
@@ -34,6 +35,7 @@ public class ProfMainMenuTest extends MainMenuTest {
 				new Object[] { MessageContentSerializerEx.class.getName() });
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
     	OntologyManagement.getInstance().register(mc, new UIBusOntology());
         OntologyManagement.getInstance().register(mc, new LocationOntology());
         OntologyManagement.getInstance().register(mc, new ShapeOntology());

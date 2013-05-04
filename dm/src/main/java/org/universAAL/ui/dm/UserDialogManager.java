@@ -818,7 +818,16 @@ public class UserDialogManager implements DialogManager,
     public UIPreferencesSubProfile getUiPreferencesSubProfile() {
 	return uiPreferencesSubProfile;
     }
-
+    
+    /**
+     * Get the {@link UserLocaleHelper}, to access internationalized strings
+     * and user locale.
+     * @return the helper.
+     */
+    public UserLocaleHelper getLocaleHelper(){
+    	return userLocaleHelper;
+    }
+    
     /**
      * The task for finalizing a dialog. Waits
      * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} milliseconds before

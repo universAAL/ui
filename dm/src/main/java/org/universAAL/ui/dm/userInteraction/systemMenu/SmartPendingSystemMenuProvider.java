@@ -27,6 +27,7 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 
 /**
@@ -123,23 +124,24 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	Form f = request.getDialogForm();
 	Group stdButtons = f.getStandardButtons();
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 	    putPendingXXSubmits(stdButtons);
-	    new Submit(stdButtons, new Label(userDM.getString("UICaller.exit"),
-		    userDM.getString("UICaller.exit.icon")), EXIT_CALL);
+	    new Submit(stdButtons, new Label(ulh.getString("UICaller.exit"),
+		    ulh.getString("UICaller.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
 	    break;
 	case DialogType.STD_DIALOG:
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.mainMenu"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.mainMenu"), ulh
 		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
 	    String dialogTitle = f.getTitle();
-	    if (!userDM.getString("UICaller.pendingMessages").equals(
+	    if (!ulh.getString("UICaller.pendingMessages").equals(
 		    dialogTitle)) {
 		putPendingXXSubmits(stdButtons);
 	    }
@@ -151,16 +153,17 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
     }
 
     private void putPendingXXSubmits(Group stdButtons) {
+		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingMessages"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.pendingMessages"), ulh
 		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
-	    new Submit(stdButtons, new Label(userDM
-		    .getString("UICaller.pendingDialogs"), userDM
+	    new Submit(stdButtons, new Label(ulh
+		    .getString("UICaller.pendingDialogs"), ulh
 		    .getString("UICaller.pendingDialogs.icon")),
 		    OPEN_DIALOGS_CALL);
 	} else {
