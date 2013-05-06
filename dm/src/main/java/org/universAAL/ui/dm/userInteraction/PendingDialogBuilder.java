@@ -124,11 +124,11 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	    Resource msgList = new Resource();
 	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	    f = Form.newDialog(ulh.getString("UICaller.pendingDialogs"),
+	    f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
 		    msgList);
 	    Group g = f.getIOControls();
 	    g = new Repeat(g, new Label(ulh
-		    .getString("UICaller.pendingDialogs"), null),
+		    .getString("MenuProvider.pendingDialogs"), null),
 		    new PropertyPath(null, false,
 			    new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
 		    null);
@@ -138,27 +138,27 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	    // dummy group needed if more than one form control is going to
 	    // be added as child of the repeat
 	    g = new Group(g, null, null, null, null);
-	    new SimpleOutput(g, new Label(ulh.getString("UICaller.subject"),
+	    new SimpleOutput(g, new Label(ulh.getString("PendingDialogBuilder.subject"),
 		    null), new PropertyPath(null, false,
 		    new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
-	    new SimpleOutput(g, new Label(ulh.getString("UICaller.date"),
+	    new SimpleOutput(g, new Label(ulh.getString("PendingDialogBuilder.date"),
 		    null), new PropertyPath(null, false,
 		    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
 	    new SubdialogTrigger(g, new Label(ulh
-		    .getString("UICaller.switchTo"), null),
+		    .getString("PendingDialogBuilder.switchTo"), null),
 		    SubdialogTrigger.VAR_REPEATABLE_ID)
 		    .setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 	    // add submits
 	    g = f.getSubmits();
-	    new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
+	    new Submit(g, new Label(ulh.getString("PendingDialogBuilder.ok"), null),
 		    CLOSE_OPEN_DIALOGS_CALL);
 	    new Submit(g,
-		    new Label(ulh.getString("UICaller.abortAll"), null),
+		    new Label(ulh.getString("PendingDialogBuilder.abortAll"), null),
 		    ABORT_ALL_OPEN_DIALOGS_CALL);
 	}
 	if (f == null)
-	    f = Form.newMessage(ulh.getString("UICaller.pendingDialogs"),
-		    ulh.getString("UICaller.noPendingDialogs"));
+	    f = Form.newMessage(ulh.getString("MenuProvider.pendingDialogs"),
+		    ulh.getString("MenuProvider.noPendingDialogs"));
 	return f;
     }
 

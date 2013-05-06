@@ -164,7 +164,7 @@ public class SearchableAggregatedMainMenuProvider extends
 	    	 * 		(if message, delete "remember" option).
 	    	 */
 	    }
-	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString("UICaller.back"),
+	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString("SearchableAggregatedMainMenuProvider.back"),
 		    null), BACK_CALL);
 	    return mmGroup;
 	}
@@ -179,13 +179,13 @@ public class SearchableAggregatedMainMenuProvider extends
     private Group addSearch(Group parent) {
 		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	Group g = new Group(parent, new Label(ulh
-		.getString("UICaller.search"), null), null, null, null);
+		.getString("SearchableAggregatedMainMenuProvider.search"), null), null, null, null);
 	InputField in = new InputField(g, null, new PropertyPath(null, false,
 		new String[] { PROP_SEARCH_STRING }), MergedRestriction
 		.getAllValuesRestrictionWithCardinality(PROP_SEARCH_STRING,
 			TypeMapper.getDatatypeURI(String.class), 1, 1), null);
 	in.setMaxLength(20);
-	new Submit(g, new Label(ulh.getString("UICaller.search"), null),
+	new Submit(g, new Label(ulh.getString("SearchableAggregatedMainMenuProvider.search"), null),
 		SEARCH_CALL).addMandatoryInput(in);
 	return g;
     }

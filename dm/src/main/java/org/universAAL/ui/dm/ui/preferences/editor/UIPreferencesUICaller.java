@@ -111,7 +111,7 @@ public class UIPreferencesUICaller extends UICaller {
 		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
 		.getLocaleHelper();
 	    showMessageScreen(addressedUser, 
-		    ulh.getString("UIPreferencesUIProvider.UnknownServiceError"));
+		    ulh.getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
     }
 
@@ -182,7 +182,7 @@ public class UIPreferencesUICaller extends UICaller {
 		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
 		.getLocaleHelper();
 	    showMessageScreen(addressedUser, 
-		    ulh.getString("UIPreferencesUIProvider.UnknownServiceError"));
+		    ulh.getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
 
     }

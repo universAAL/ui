@@ -53,7 +53,6 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMe
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/resources/messages.properties -text
-dm/src/main/resources/messages_en.properties -text
 dm/src/test/java/org/universAAL/plainJava/POJOContainer.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/plainJava/POJOModuleContext.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPoolCopierTest.java -text svneol=unset#text/plain
@@ -63,7 +62,6 @@ dm/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset
 dm/src/test/java/org/universAAL/ui/dm/tests/ProfMainMenuTest.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/UIRequestPoolTest.java -text svneol=unset#text/plain
 dm/src/test/resources/main_menu_en.txt -text svneol=unset#text/plain
-dm/src/test/resources/messages.properties -text
 dm/src/test/resources/prof_main_menu.txt -text svneol=unset#text/plain
 handler.gui.swing/.checkstyle -text
 handler.gui.swing/ASL2.0.txt -text

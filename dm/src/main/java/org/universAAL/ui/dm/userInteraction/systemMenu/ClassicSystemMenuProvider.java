@@ -128,14 +128,14 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.SYS_MENU:
 
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingMessages"), ulh
-		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages"), ulh
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingDialogs"), ulh
-		    .getString("UICaller.pendingDialogs.icon")),
+		    .getString("MenuProvider.pendingDialogs"), ulh
+		    .getString("MenuProvider.pendingDialogs.icon")),
 		    OPEN_DIALOGS_CALL);
-	    new Submit(stdButtons, new Label(ulh.getString("UICaller.exit"),
-		    ulh.getString("UICaller.exit.icon")), EXIT_CALL);
+	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
@@ -144,19 +144,19 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 	    String dialogTitle = f.getTitle();
 
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.mainMenu"), ulh
-		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu"), ulh
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
 
-	    if (!ulh.getString("UICaller.pendingMessages").equals(
+	    if (!ulh.getString("MenuProvider.pendingMessages").equals(
 		    dialogTitle)) {
 		new Submit(stdButtons, new Label(ulh
-			.getString("UICaller.pendingMessages"), ulh
-			.getString("UICaller.pendingMessages.icon")),
+			.getString("MenuProvider.pendingMessages"), ulh
+			.getString("MenuProvider.pendingMessages.icon")),
 			MESSAGES_CALL);
 
 		new Submit(stdButtons, new Label(ulh
-			.getString("UICaller.pendingDialogs"), ulh
-			.getString("UICaller.pendingDialogs.icon")),
+			.getString("MenuProvider.pendingDialogs"), ulh
+			.getString("MenuProvider.pendingDialogs.icon")),
 			OPEN_DIALOGS_CALL);
 	    }
 	    break;

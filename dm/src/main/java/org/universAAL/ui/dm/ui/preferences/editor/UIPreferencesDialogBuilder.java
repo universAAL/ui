@@ -95,13 +95,13 @@ public class UIPreferencesDialogBuilder {
 	// happen since UIPrefs are initialized in ui.dm
 	if (uiPreferencesSubprofile == null) {
 	    return getStatusMessageForm(userLocaleHelper
-		    .getString("UIPreferencesFormBuilder.UIPreferencesObtainmentError"));
+		    .getString("UIPreferencesDialogBuilder.UIPreferencesObtainmentError"));
 	}
 
 	Form f = Form
 		.newDialog(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.UIPreferencesScreenTitle"),
+				.getString("UIPreferencesDialogBuilder.UIPreferencesScreenTitle"),
 			uiPreferencesSubprofile);
 	Group controls = f.getIOControls();
 	Group submits = f.getSubmits();
@@ -117,7 +117,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.GeneralInteractionPreferences"),
+				.getString("UIPreferencesDialogBuilder.GeneralInteractionPreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleGroupGeneralInteractionPreferences = new Group(
 		generalInteractionPreferencesGroup, null, null, null,
@@ -129,14 +129,14 @@ public class UIPreferencesDialogBuilder {
 		null,
 		null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectGeneralInteractionPreferences"));
+			.getString("UIPreferencesDialogBuilder.SelectGeneralInteractionPreferences"));
 
 	// Select preferred Modality control
 	Select1 preferredModalitySelect = new Select1(
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.PreferredModalitySelect"),
+				.getString("UIPreferencesDialogBuilder.PreferredModalitySelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -156,7 +156,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SecondaryModalitySelect"),
+				.getString("UIPreferencesDialogBuilder.SecondaryModalitySelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -179,7 +179,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.PreferredLanguageSelect"),
+				.getString("UIPreferencesDialogBuilder.PreferredLanguageSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -202,7 +202,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SecondaryLanguageSelect"),
+				.getString("UIPreferencesDialogBuilder.SecondaryLanguageSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -224,7 +224,7 @@ public class UIPreferencesDialogBuilder {
 	Select1 contentDensity = new Select1(
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.ContentDensity"),
+			.getString("UIPreferencesDialogBuilder.ContentDensity"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -252,7 +252,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SystemMenuPreferences"),
+				.getString("UIPreferencesDialogBuilder.SystemMenuPreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleGroupSystemMenuPreferences = new Group(
 		systemPreferencesGroup, null, null, null, (Resource) null);// This
@@ -263,14 +263,14 @@ public class UIPreferencesDialogBuilder {
 		null,
 		null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectSystemMenuPreferences"));
+			.getString("UIPreferencesDialogBuilder.SelectSystemMenuPreferences"));
 
 	// Select Main Menu Conf control
 	Select1 mainMenuConfSelect = new Select1(
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.MainMenuConfSelect"),
+				.getString("UIPreferencesDialogBuilder.MainMenuConfSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -297,7 +297,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.UIRequestPersistenceSelect"),
+				.getString("UIPreferencesDialogBuilder.UIRequestPersistenceSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -322,7 +322,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.PendingDialogueBuilderSelect"),
+				.getString("UIPreferencesDialogBuilder.PendingDialogueBuilderSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -350,7 +350,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.PendingMessageBuilderSelect"),
+				.getString("UIPreferencesDialogBuilder.PendingMessageBuilderSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -378,7 +378,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleGroupSystemMenuPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SearchIsFirstSelect"),
+				.getString("UIPreferencesDialogBuilder.SearchIsFirstSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -409,7 +409,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.VisualPreferences"),
+				.getString("UIPreferencesDialogBuilder.VisualPreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleVisualPreferences = new Group(visualPreferencesGroup,
 		null, null, null, (Resource) null);// This
@@ -420,14 +420,14 @@ public class UIPreferencesDialogBuilder {
 		null,
 		null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectVisualPreferences"));
+			.getString("UIPreferencesDialogBuilder.SelectVisualPreferences"));
 
 	// Select Background Color control
 	Select1 backgroundColourSelect = new Select1(
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.BackgroundColorSelect"),
+				.getString("UIPreferencesDialogBuilder.BackgroundColorSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -449,7 +449,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.FlashingResourcesSelect"),
+				.getString("UIPreferencesDialogBuilder.FlashingResourcesSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -472,7 +472,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.DayNightModeSelect"),
+				.getString("UIPreferencesDialogBuilder.DayNightModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -494,7 +494,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.HighlightColourSelect"),
+				.getString("UIPreferencesDialogBuilder.HighlightColourSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -516,7 +516,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.WindowLayoutSelect"),
+				.getString("UIPreferencesDialogBuilder.WindowLayoutSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -538,7 +538,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.FontFamilySelect"),
+				.getString("UIPreferencesDialogBuilder.FontFamilySelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -560,7 +560,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.BrightnessSelect"),
+				.getString("UIPreferencesDialogBuilder.BrightnessSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -582,7 +582,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.ContentContrastSelect"),
+				.getString("UIPreferencesDialogBuilder.ContentContrastSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -604,7 +604,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.ScreenResolutionSelect"),
+				.getString("UIPreferencesDialogBuilder.ScreenResolutionSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -626,7 +626,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.CursorSizeSelect"),
+				.getString("UIPreferencesDialogBuilder.CursorSizeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -648,7 +648,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.ScreenSaverUsageSelect"),
+				.getString("UIPreferencesDialogBuilder.ScreenSaverUsageSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -671,7 +671,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.FontColourSelect"),
+				.getString("UIPreferencesDialogBuilder.FontColourSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -691,7 +691,7 @@ public class UIPreferencesDialogBuilder {
 	// Select fontSizeSelect control
 	Select1 fontSizeSelect = new Select1(invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.FontSizeSelect"),
+			.getString("UIPreferencesDialogBuilder.FontSizeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -718,7 +718,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.AuditoryPreferences"),
+				.getString("UIPreferencesDialogBuilder.AuditoryPreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleGroupAuditoryPreferences = new Group(
 		auditoryPreferencesGroup, null, null, null, (Resource) null);
@@ -729,14 +729,14 @@ public class UIPreferencesDialogBuilder {
 		null,
 		null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectAuditoryPreferences"));
+			.getString("UIPreferencesDialogBuilder.SelectAuditoryPreferences"));
 
 	// Select speechRate control
 	Select1 speechRateSelect = new Select1(
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SpeechRateSelect"),
+				.getString("UIPreferencesDialogBuilder.SpeechRateSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -758,7 +758,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.VoiceGenderSelect"),
+				.getString("UIPreferencesDialogBuilder.VoiceGenderSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -780,7 +780,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.SystemSoundsSelect"),
+				.getString("UIPreferencesDialogBuilder.SystemSoundsSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -800,7 +800,7 @@ public class UIPreferencesDialogBuilder {
 	// Select volume control
 	Select1 volumeSelect = new Select1(invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.VolumeSelect"),
+			.getString("UIPreferencesDialogBuilder.VolumeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -820,7 +820,7 @@ public class UIPreferencesDialogBuilder {
 	// Select pitch control
 	Select1 pitchSelect = new Select1(invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.PitchSelect"),
+			.getString("UIPreferencesDialogBuilder.PitchSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -839,7 +839,7 @@ public class UIPreferencesDialogBuilder {
 	// Select keySoundsSelect control
 	Select1 keySoundsSelect = new Select1(invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.KeySoundsSelect"),
+			.getString("UIPreferencesDialogBuilder.KeySoundsSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -867,7 +867,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.AlertPreferences"),
+				.getString("UIPreferencesDialogBuilder.AlertPreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleGroupAlertPreferences = new Group(alertPreferencesGroup,
 		null, null, null, (Resource) null);
@@ -878,12 +878,12 @@ public class UIPreferencesDialogBuilder {
 		null,
 		null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectAlertPreferences"));
+			.getString("UIPreferencesDialogBuilder.SelectAlertPreferences"));
 
 	// Select alertSelect control
 	Select1 alertSelect = new Select1(invisibleVisualPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesFormBuilder.AlertSelect"),
+			.getString("UIPreferencesDialogBuilder.AlertSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -911,7 +911,7 @@ public class UIPreferencesDialogBuilder {
 		controls,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.AccessModePreferences"),
+				.getString("UIPreferencesDialogBuilder.AccessModePreferences"),
 			(String) null), null, null, (Resource) null);
 	Group invisibleAccessModeGroupPreferences = new Group(accessModeGroup,
 		null, null, null, (Resource) null);
@@ -919,14 +919,14 @@ public class UIPreferencesDialogBuilder {
 	// vertically
 	new SimpleOutput(invisibleAccessModeGroupPreferences, null, null,
 		userLocaleHelper
-			.getString("UIPreferencesFormBuilder.SelectAccessMode"));
+			.getString("UIPreferencesDialogBuilder.SelectAccessMode"));
 
 	// Select visualModeSelect control
 	Select1 visualModeSelect = new Select1(
 		invisibleAccessModeGroupPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.VisualModeSelect"),
+				.getString("UIPreferencesDialogBuilder.VisualModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -948,7 +948,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleAccessModeGroupPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.TextualModeSelect"),
+				.getString("UIPreferencesDialogBuilder.TextualModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -970,7 +970,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleAccessModeGroupPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.AuditoryModeSelect"),
+				.getString("UIPreferencesDialogBuilder.AuditoryModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -992,7 +992,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleAccessModeGroupPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.OlfactoryModeSelect"),
+				.getString("UIPreferencesDialogBuilder.OlfactoryModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -1014,7 +1014,7 @@ public class UIPreferencesDialogBuilder {
 		invisibleAccessModeGroupPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.TactileModeSelect"),
+				.getString("UIPreferencesDialogBuilder.TactileModeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
@@ -1036,7 +1036,7 @@ public class UIPreferencesDialogBuilder {
 	// ////////////////////////////////////
 
 	new Submit(submits, new org.universAAL.middleware.ui.rdf.Label(
-		userLocaleHelper.getString("UIPreferencesFormBuilder.Submit"),
+		userLocaleHelper.getString("UIPreferencesDialogBuilder.Submit"),
 		(String) null), "submit_uiPreferences");
 	return f;
     }
@@ -1051,7 +1051,7 @@ public class UIPreferencesDialogBuilder {
 	Form f = Form
 		.newDialog(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.UIPreferencesScreenTitle"),
+				.getString("UIPreferencesDialogBuilder.UIPreferencesScreenTitle"),
 			(String) null);
 	Group controls = f.getIOControls();
 	Group submits = f.getSubmits();
@@ -1061,7 +1061,7 @@ public class UIPreferencesDialogBuilder {
 		submits,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
-				.getString("UIPreferencesFormBuilder.EditUIPreferences"),
+				.getString("UIPreferencesDialogBuilder.EditUIPreferences"),
 			(String) null), "editUIPreferences");
 	return f;
     }

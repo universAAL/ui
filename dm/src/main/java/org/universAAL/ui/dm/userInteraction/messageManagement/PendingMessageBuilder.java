@@ -169,10 +169,10 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
 		msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
 		f = Form.newDialog(
-			ulh.getString("UICaller.pendingMessages"), msgList);
+			ulh.getString("PendingMessageBuilder.pendingMessages"), msgList);
 		Group g = f.getIOControls();
 		g = new Repeat(g, new Label(ulh
-			.getString("UICaller.pendingMessages"), null),
+			.getString("PendingMessageBuilder.pendingMessages"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
 			null, null);
@@ -183,25 +183,25 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		// to be added as child of the repeat
 		g = new Group(g, null, null, null, null);
 		new SimpleOutput(g, new Label(ulh
-			.getString("UICaller.subject"), null),
+			.getString("PendingMessageBuilder.subject"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
 			null);
 		new SimpleOutput(g, new Label(
-			ulh.getString("UICaller.date"), null),
+			ulh.getString("PendingMessageBuilder.date"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
 			null);
 		new SimpleOutput(g, new Label(ulh
-			.getString("UICaller.message"), null),
+			.getString("PendingMessageBuilder.message"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_BODY }),
 			null);
 		// add submits
 		g = f.getSubmits();
-		new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
+		new Submit(g, new Label(ulh.getString("PendingMessageBuilder.ok"), null),
 			CLOSE_MESSAGES_CALL);
-		new Submit(g, new Label(ulh.getString("UICaller.deleteAll"),
+		new Submit(g, new Label(ulh.getString("PendingDialogBuilder.deleteAll"),
 			null), DELETE_ALL_MESSAGES_CALL);
 	    }
 	}
@@ -209,15 +209,15 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 	// if there are no messages available, create a new message saying
 	// exactly that, so that the user knows that there are no messages
 	if (f == null)
-	    f = Form.newMessage(ulh.getString("UICaller.pendingMessages"),
-		    ulh.getString("UICaller.noPendingMessages"));
+	    f = Form.newMessage(ulh.getString("PendingMessageBuilder.pendingMessages"),
+		    ulh.getString("PendingMessageBuilder.noPendingMessages"));
 	return f;
     }
 
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
-	return userDM.getLocaleHelper().getString("UICaller.noPendingMessages")
+	return userDM.getLocaleHelper().getString("PendingMessageBuilder.noPendingMessages")
 		.equals(msgContent)
-		&& userDM.getLocaleHelper().getString("UICaller.pendingMessages").equals(
+		&& userDM.getLocaleHelper().getString("PendingMessageBuilder.pendingMessages").equals(
 			formTitle);
     }
 
