@@ -144,8 +144,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	Group stdButtons = f.getStandardButtons();
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
-	    new Submit(stdButtons, new Label(ulh.getString("UICaller.exit"),
-		    ulh.getString("UICaller.exit.icon")), EXIT_CALL);
+	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	case DialogType.MESSAGE:
@@ -153,8 +153,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	    break;
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.mainMenu"), ulh
-		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu"), ulh
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	default:
@@ -167,14 +167,14 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingMessages"), ulh
-		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages"), ulh
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
 	    Group pendingDialogs = new Group(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingDialogs"), null), null, null,
+		    .getString("MenuProvider.pendingDialogs"), null), null, null,
 		    null);
 	    int i = 0;
 	    for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {

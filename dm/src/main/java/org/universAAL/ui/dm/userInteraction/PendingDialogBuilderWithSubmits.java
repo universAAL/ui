@@ -72,7 +72,7 @@ public Form buildForm() {
 	Resource msgList = new Resource();
 	msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	f = Form.newDialog(ulh.getString("UICaller.pendingDialogs"),
+	f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
 		msgList);
 	Group g = f.getIOControls();
 	int i = 0;
@@ -83,15 +83,15 @@ public Form buildForm() {
 	}
 	// a dd submits
 	g = f.getSubmits();
-	new Submit(g, new Label(ulh.getString("UICaller.ok"), null),
+	new Submit(g, new Label(ulh.getString("PendingDialogBuilderWithSubmits.ok"), null),
 		CLOSE_OPEN_DIALOGS_CALL);
-	new Submit(g, new Label(ulh.getString("UICaller.abortAll"),
+	new Submit(g, new Label(ulh.getString("PendingDialogBuilder.abortAll"),
 		null), ABORT_ALL_OPEN_DIALOGS_CALL);
     }
     if (f == null)
 	f = Form.newMessage(
-		ulh.getString("UICaller.pendingDialogs"), ulh
-			.getString("UICaller.noPendingDialogs"));
+		ulh.getString("MenuProvider.pendingDialogs"), ulh
+			.getString("PendingDialogBuilderWithSubmits.noPendingDialogs"));
     return f;
 }
 

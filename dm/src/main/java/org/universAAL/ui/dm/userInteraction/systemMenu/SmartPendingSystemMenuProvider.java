@@ -130,18 +130,18 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 	    putPendingXXSubmits(stdButtons);
-	    new Submit(stdButtons, new Label(ulh.getString("UICaller.exit"),
-		    ulh.getString("UICaller.exit.icon")), EXIT_CALL);
+	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
 	    break;
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.mainMenu"), ulh
-		    .getString("UICaller.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu"), ulh
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
 	    String dialogTitle = f.getTitle();
-	    if (!ulh.getString("UICaller.pendingMessages").equals(
+	    if (!ulh.getString("MenuProvider.pendingMessages").equals(
 		    dialogTitle)) {
 		putPendingXXSubmits(stdButtons);
 	    }
@@ -156,15 +156,15 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 		UserLocaleHelper ulh = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingMessages"), ulh
-		    .getString("UICaller.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages"), ulh
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("UICaller.pendingDialogs"), ulh
-		    .getString("UICaller.pendingDialogs.icon")),
+		    .getString("MenuProvider.pendingDialogs"), ulh
+		    .getString("MenuProvider.pendingDialogs.icon")),
 		    OPEN_DIALOGS_CALL);
 	} else {
 	    // show a button with different ICON/Message or nothing

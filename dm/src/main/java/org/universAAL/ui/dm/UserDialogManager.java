@@ -524,8 +524,8 @@ public class UserDialogManager implements DialogManager,
 	// a running dialog has been aborted; it's better to send a
 	// message to the user
 	pushDialog(Form.newMessage(userLocaleHelper
-		.getString("UICaller.forcedCancellation"), userLocaleHelper
-		.getString("UICaller.sorryAborted")));
+		.getString("UserDialogManager.forcedCancellation"), userLocaleHelper
+		.getString("UserDialogManager.sorryAborted")));
     }
 
     /**
@@ -625,7 +625,7 @@ public class UserDialogManager implements DialogManager,
     public final synchronized void getMainMenu(Resource user,
 	    AbsLocation location) {
 	Form mmf = Form.newSystemMenu(userLocaleHelper
-		.getString("UICaller.universaalMainMenu"));
+		.getString("UserDialogManager.universaalMainMenu"));
 	mainMenuProvider.getMainMenu(user, location, mmf);
 	add(mainMenuProvider);
 	pushDialog(mmf);
