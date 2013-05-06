@@ -14,6 +14,10 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.buffer;
 
+import java.util.Locale;
+
+import javax.security.auth.callback.LanguageCallback;
+
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.UIRequest;
@@ -149,7 +153,8 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
 	generalInteractionPreferences
 		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences.setPreferredLanguage(Language.english);
+	generalInteractionPreferences
+		.setPreferredLanguage(getLanguageFromLocale());
 	generalInteractionPreferences.setSecondaryLanguage(Language.english);
 	generalInteractionPreferences.setPreferredModality(Modality.gui);
 	generalInteractionPreferences.setSecondaryModality(Modality.voice);
@@ -235,7 +240,8 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
 	generalInteractionPreferences
 		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences.setPreferredLanguage(Language.english);
+	generalInteractionPreferences
+		.setPreferredLanguage(getLanguageFromLocale());
 	generalInteractionPreferences.setSecondaryLanguage(Language.english);
 	generalInteractionPreferences.setPreferredModality(Modality.web);
 	generalInteractionPreferences.setSecondaryModality(Modality.gui);
@@ -300,4 +306,54 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	return uiPrefsSubProfile;
     }
 
+    /**
+     * 
+     * @return {@link Language} based on the user.language property defined in
+     *         JVM arguments (or, from Locale)
+     */
+    private Language getLanguageFromLocale() {
+
+	// get language from jvm (system) property or b) from default locale
+	// already in memory
+	String langCode = System.getProperty("user.language", java.util.Locale
+		.getDefault().getLanguage().toLowerCase());
+
+	if (langCode.equalsIgnoreCase("de"))
+	    return Language.german;
+	else if (langCode.equalsIgnoreCase("en"))
+	    return Language.english;
+	else if (langCode.equalsIgnoreCase("es"))
+	    return Language.spanish;
+	else if (langCode.equalsIgnoreCase("nl"))
+	    return Language.dutch;
+	else if (langCode.equalsIgnoreCase("pl"))
+	    return Language.polish;
+	else if (langCode.equalsIgnoreCase("it"))
+	    return Language.italian;
+	else if (langCode.equalsIgnoreCase("el"))
+	    return Language.greek;
+	else if (langCode.equalsIgnoreCase("hr"))
+	    return Language.croatian;
+	else if (langCode.equalsIgnoreCase("no"))
+	    return Language.norvegian;
+	else if (langCode.equalsIgnoreCase("fr"))
+	    return Language.french;
+	else if (langCode.equalsIgnoreCase("iw"))// check
+	    return Language.israeli;
+	else if (langCode.equalsIgnoreCase("pt"))
+	    return Language.portuguese;
+	else if (langCode.equalsIgnoreCase("ru"))
+	    return Language.rusian;
+	else if (langCode.equalsIgnoreCase("hu"))
+	    return Language.hungarian;
+	else if (langCode.equalsIgnoreCase("zh")) {
+	    // taiwaneese and chineese have same language code
+	    if (java.util.Locale.getDefault().getCountry().equalsIgnoreCase(
+		    "TW")) {
+		return Language.taiwanese;
+	    } else
+		return Language.chinese;
+	} else
+	    return Language.english;
+    }
 }
