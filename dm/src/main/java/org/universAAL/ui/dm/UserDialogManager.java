@@ -32,7 +32,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.rdf.Resource;
-import org.universAAL.middleware.ui.DialogManager;
+import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
@@ -81,7 +81,7 @@ import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class UserDialogManager implements DialogManager,
+public class UserDialogManager implements IDialogManager,
 	UIPreferencesChangeListener {
 
     /**
@@ -416,7 +416,7 @@ public class UserDialogManager implements DialogManager,
      * priority of a dialog that is currently shown). Additionally, it adds
      * adaptation parameters.
      * 
-     * @see org.universAAL.middleware.ui.DialogManager#checkNewDialog(UIRequest)
+     * @see org.universAAL.middleware.ui.IDialogManager#checkNewDialog(UIRequest)
      * @param request
      *            The UI request containing a dialog.
      * @return true, if the dialog can be shown directly.
@@ -533,7 +533,7 @@ public class UserDialogManager implements DialogManager,
      * dialog was successfully finished. The dialog manager can then show
      * dialogs that were previously suspended.
      * 
-     * @see org.universAAL.middleware.ui.DialogManager#dialogFinished(String)
+     * @see org.universAAL.middleware.ui.IDialogManager#dialogFinished(String)
      * @param dialogID
      *            ID of the dialog that is now finished.
      */
