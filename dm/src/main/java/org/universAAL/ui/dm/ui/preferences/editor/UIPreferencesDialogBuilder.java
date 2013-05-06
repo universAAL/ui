@@ -55,9 +55,9 @@ import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
  * system menu, visual, auditory, alert, access mode and general ones such as
  * language or modality preferences.
  * 
- * Initially selected preferences are the ones stored in User Profile (UI
- * Preferences subprofile). All preferences are given as Select1 selections
- * (mostly rendered as dropdown by UI Handlers).
+ * Initially selected preferences are the ones stored in User Profile (in
+ * {@link UIPreferencesSubprofile}). All preferences are given as Select1
+ * selections (mostly rendered as dropdown by UI Handlers).
  * 
  * @author eandgrg
  * 
@@ -143,13 +143,32 @@ public class UIPreferencesDialogBuilder {
 			GeneralInteractionPreferences.PROP_PREFERRED_MODALITY }),
 		null, null);
 	// show the one stored in Profiling server as the 1st (selected) one;
-	// another one is another from the couple (web, gui)
-	preferredModalitySelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
-		.getPreferredModality().name(), (String) null,
-		gInteractionPrefs.getPreferredModality()));
-	if (gInteractionPrefs.getPreferredModality() == Modality.gui)
-	    preferredModalitySelect.addChoiceItem(new ChoiceItem(Modality.web
-		    .name(), (String) null, Modality.web));
+	// another one is another from the couple (web, gui). Preferred modality
+	// can only be web or gui (since UIStrategy uses it)
+	if (gInteractionPrefs.getPreferredModality() == Modality.gui) {
+	    preferredModalitySelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.Modality.gui"),
+			    (String) null, Modality.gui));
+	    preferredModalitySelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.Modality.web"),
+			    (String) null, Modality.web));
+	} else {
+	    preferredModalitySelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.Modality.web"),
+			    (String) null, Modality.web));
+	    preferredModalitySelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.Modality.gui"),
+			    (String) null, Modality.gui));
+
+	}
 
 	// Select secondary Modality control
 	Select1 secondaryModalitySelect = new Select1(
@@ -162,16 +181,19 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_SECONDARY_MODALITY }),
 		null, null);
-	secondaryModalitySelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
-		.getSecondaryModality().name(), (String) null,
-		gInteractionPrefs.getSecondaryModality()));
+	secondaryModalitySelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Modality."
+			+ gInteractionPrefs.getSecondaryModality().name()),
+		(String) null, gInteractionPrefs.getSecondaryModality()));
 	for (int i = 0; i < Modality.getSize(); i++) {
 	    if (i - gInteractionPrefs.getSecondaryModality().ord() == 0) {
 		continue;
 	    }
-	    secondaryModalitySelect.addChoiceItem(new ChoiceItem(Modality
-		    .getLevelByOrder(i).name(), (String) null, Modality
-		    .getLevelByOrder(i)));
+	    secondaryModalitySelect.addChoiceItem(new ChoiceItem(
+		    userLocaleHelper
+			    .getString("UIPreferencesDialogBuilder.Modality."
+				    + Modality.getLevelByOrder(i).name()),
+		    (String) null, Modality.getLevelByOrder(i)));
 	}
 
 	// Select preferred Language control
@@ -185,6 +207,7 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_PREFERRED_LANGUAGE }),
 		null, null);
+	// FIXME update after applying new Lang ontology
 	preferredLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getPreferredLanguage().name(), (String) null,
 		gInteractionPrefs.getPreferredLanguage()));
@@ -208,6 +231,7 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_SECONDARY_LANGUAGE }),
 		null, null);
+	// FIXME update after applying new Lang ontology
 	secondaryLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
 		.getSecondaryLanguage().name(), (String) null,
 		gInteractionPrefs.getSecondaryLanguage()));
@@ -223,23 +247,28 @@ public class UIPreferencesDialogBuilder {
 	// Select content density control
 	Select1 contentDensity = new Select1(
 		invisibleGroupGeneralInteractionPreferences,
-		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.ContentDensity"),
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.ContentDensity"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_CONTENT_DENSITY }),
 		null, null);
-	contentDensity.addChoiceItem(new ChoiceItem(gInteractionPrefs
-		.getContentDensity().name(), (String) null, gInteractionPrefs
-		.getContentDensity()));
+	contentDensity.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ContentDensityType."
+			+ gInteractionPrefs.getContentDensity().name()),
+		(String) null, gInteractionPrefs.getContentDensity()));
 	for (int i = 0; i < ContentDensityType.getSize(); i++) {
 	    if (i - gInteractionPrefs.getContentDensity().ord() == 0) {
 		continue;
 	    }
-	    contentDensity.addChoiceItem(new ChoiceItem(ContentDensityType
-		    .getContentDensityTypeByOrder(i).name(), (String) null,
-		    ContentDensityType.getContentDensityTypeByOrder(i)));
+	    contentDensity.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ContentDensityType."
+			    + ContentDensityType
+				    .getContentDensityTypeByOrder(i).name()),
+		    (String) null, ContentDensityType
+			    .getContentDensityTypeByOrder(i)));
 	}
 
 	// ///////////////////////////////////////////////////
@@ -277,18 +306,27 @@ public class UIPreferencesDialogBuilder {
 			SystemMenuPreferences.PROP_MAIN_MENU_CONFIGURATION }),
 		null, null);
 
-	mainMenuConfSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
-		.getMainMenuConfiguration().name(), (String) null,
-		systemMenuPreferences.getMainMenuConfiguration()));
+	mainMenuConfSelect
+		.addChoiceItem(new ChoiceItem(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.MainMenuConfigurationType."
+					+ systemMenuPreferences
+						.getMainMenuConfiguration()
+						.name()), (String) null,
+			systemMenuPreferences.getMainMenuConfiguration()));
 	for (int i = 0; i < MainMenuConfigurationType.getSize(); i++) {
 	    if (i - systemMenuPreferences.getMainMenuConfiguration().ord() == 0) {
 		continue;
 	    }
-	    mainMenuConfSelect.addChoiceItem(new ChoiceItem(
-		    MainMenuConfigurationType
-			    .getMainMenuConfigurationTypeByOrder(i).name(),
-		    (String) null, MainMenuConfigurationType
-			    .getMainMenuConfigurationTypeByOrder(i)));
+	    mainMenuConfSelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.MainMenuConfigurationType."
+					    + MainMenuConfigurationType
+						    .getMainMenuConfigurationTypeByOrder(
+							    i).name()),
+			    (String) null, MainMenuConfigurationType
+				    .getMainMenuConfigurationTypeByOrder(i)));
 
 	}
 
@@ -304,16 +342,19 @@ public class UIPreferencesDialogBuilder {
 			SystemMenuPreferences.PROP_UIREQUEST_PERSISTANCE }),
 		null, null);
 
-	msgPersistenceSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
-		.getUIRequestPersistance().name(), (String) null,
-		systemMenuPreferences.getUIRequestPersistance()));
+	msgPersistenceSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ systemMenuPreferences.getUIRequestPersistance()
+				.name()), (String) null, systemMenuPreferences
+		.getUIRequestPersistance()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - systemMenuPreferences.getUIRequestPersistance().ord() == 0) {
 		continue;
 	    }
-	    msgPersistenceSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    msgPersistenceSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 
 	}
 
@@ -330,18 +371,26 @@ public class UIPreferencesDialogBuilder {
 		null, null);
 
 	pendingDialogueBuilderSelect
-		.addChoiceItem(new ChoiceItem(systemMenuPreferences
-			.getPendingDialogBuilder().name(), (String) null,
+		.addChoiceItem(new ChoiceItem(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.PendingDialogsBuilderType."
+					+ systemMenuPreferences
+						.getPendingDialogBuilder()
+						.name()), (String) null,
 			systemMenuPreferences.getPendingDialogBuilder()));
 	for (int i = 0; i < PendingDialogsBuilderType.getSize(); i++) {
 	    if (i - systemMenuPreferences.getPendingDialogBuilder().ord() == 0) {
 		continue;
 	    }
-	    pendingDialogueBuilderSelect.addChoiceItem(new ChoiceItem(
-		    PendingDialogsBuilderType
-			    .getPendingDialogsBuilderTypeByOrder(i).name(),
-		    (String) null, PendingDialogsBuilderType
-			    .getPendingDialogsBuilderTypeByOrder(i)));
+	    pendingDialogueBuilderSelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.PendingDialogsBuilderType."
+					    + PendingDialogsBuilderType
+						    .getPendingDialogsBuilderTypeByOrder(
+							    i).name()),
+			    (String) null, PendingDialogsBuilderType
+				    .getPendingDialogsBuilderTypeByOrder(i)));
 
 	}
 
@@ -358,18 +407,26 @@ public class UIPreferencesDialogBuilder {
 		null, null);
 
 	pendingMessageBuilderSelect
-		.addChoiceItem(new ChoiceItem(systemMenuPreferences
-			.getPendingMessageBuilder().name(), (String) null,
+		.addChoiceItem(new ChoiceItem(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.PendingMessageBuilderType."
+					+ systemMenuPreferences
+						.getPendingMessageBuilder()
+						.name()), (String) null,
 			systemMenuPreferences.getPendingMessageBuilder()));
 	for (int i = 0; i < PendingMessageBuilderType.getSize(); i++) {
 	    if (i - systemMenuPreferences.getPendingMessageBuilder().ord() == 0) {
 		continue;
 	    }
-	    pendingMessageBuilderSelect.addChoiceItem(new ChoiceItem(
-		    PendingMessageBuilderType
-			    .getPendingMessageBuilderTypeByOrder(i).name(),
-		    (String) null, PendingMessageBuilderType
-			    .getPendingMessageBuilderTypeByOrder(i)));
+	    pendingMessageBuilderSelect
+		    .addChoiceItem(new ChoiceItem(
+			    userLocaleHelper
+				    .getString("UIPreferencesDialogBuilder.PendingMessageBuilderType."
+					    + PendingMessageBuilderType
+						    .getPendingMessageBuilderTypeByOrder(
+							    i).name()),
+			    (String) null, PendingMessageBuilderType
+				    .getPendingMessageBuilderTypeByOrder(i)));
 
 	}
 
@@ -385,16 +442,19 @@ public class UIPreferencesDialogBuilder {
 			SystemMenuPreferences.PROP_SEARCH_FEATURE_IS_FIRST }),
 		null, null);
 
-	searchIsFirstSelect.addChoiceItem(new ChoiceItem(systemMenuPreferences
-		.getSearchFeatureIsFirst().name(), (String) null,
-		systemMenuPreferences.getSearchFeatureIsFirst()));
+	searchIsFirstSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ systemMenuPreferences.getSearchFeatureIsFirst()
+				.name()), (String) null, systemMenuPreferences
+		.getSearchFeatureIsFirst()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - systemMenuPreferences.getSearchFeatureIsFirst().ord() == 0) {
 		continue;
 	    }
-	    searchIsFirstSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    searchIsFirstSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 
 	}
 
@@ -432,16 +492,20 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_BACKGROUND_COLOR }), null, null);
-	backgroundColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getBackgroundColor().name(), (String) null, visualPreferences
-		.getBackgroundColor()));
+
+	backgroundColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ColorType."
+			+ visualPreferences.getBackgroundColor().name()),
+		(String) null, visualPreferences.getBackgroundColor()));
 	for (int i = 0; i < ColorType.getSize(); i++) {
 	    if (i - visualPreferences.getBackgroundColor().ord() == 0) {
 		continue;
 	    }
-	    backgroundColourSelect.addChoiceItem(new ChoiceItem(ColorType
-		    .getColorTypeByOrder(i).name(), (String) null, ColorType
-		    .getColorTypeByOrder(i)));
+	    backgroundColourSelect.addChoiceItem(new ChoiceItem(
+		    userLocaleHelper
+			    .getString("UIPreferencesDialogBuilder.ColorType."
+				    + ColorType.getColorTypeByOrder(i).name()),
+		    (String) null, ColorType.getColorTypeByOrder(i)));
 	}
 
 	// Select Flashing Resources control
@@ -455,16 +519,19 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_FLASHING_RESOURCES }), null,
 		null);
-	flashingResourcesSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getFlashingResources().name(), (String) null,
-		visualPreferences.getFlashingResources()));
+	flashingResourcesSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ visualPreferences.getFlashingResources().name()),
+		(String) null, visualPreferences.getFlashingResources()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - visualPreferences.getFlashingResources().ord() == 0) {
 		continue;
 	    }
-	    flashingResourcesSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    flashingResourcesSelect.addChoiceItem(new ChoiceItem(
+		    userLocaleHelper
+			    .getString("UIPreferencesDialogBuilder.Status."
+				    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select dayNightMode control
@@ -477,16 +544,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_DAY_NIGHT_MODE }), null, null);
-	dayNightModeSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getDayNightMode().name(), (String) null, visualPreferences
-		.getDayNightMode()));
+	dayNightModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ visualPreferences.getDayNightMode().name()),
+		(String) null, visualPreferences.getDayNightMode()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - visualPreferences.getDayNightMode().ord() == 0) {
 		continue;
 	    }
-	    dayNightModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    dayNightModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select Highlight Color control
@@ -499,16 +568,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_HIGHLIGHT_COLOR }), null, null);
-	highlightColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getHighlightColor().name(), (String) null, visualPreferences
-		.getHighlightColor()));
+	highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ColorType."
+			+ visualPreferences.getHighlightColor().name()),
+		(String) null, visualPreferences.getHighlightColor()));
 	for (int i = 0; i < ColorType.getSize(); i++) {
 	    if (i - visualPreferences.getHighlightColor().ord() == 0) {
 		continue;
 	    }
-	    highlightColourSelect.addChoiceItem(new ChoiceItem(ColorType
-		    .getColorTypeByOrder(i).name(), (String) null, ColorType
-		    .getColorTypeByOrder(i)));
+	    highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ColorType."
+			    + ColorType.getColorTypeByOrder(i).name()),
+		    (String) null, ColorType.getColorTypeByOrder(i)));
 	}
 
 	// Select Window Layout control
@@ -521,16 +592,20 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_WINDOW_LAYOUT }), null, null);
-	windowLayoutSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getWindowLayout().name(), (String) null, visualPreferences
-		.getWindowLayout()));
+
+	windowLayoutSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.WindowLayoutType."
+			+ visualPreferences.getWindowLayout().name()),
+		(String) null, visualPreferences.getWindowLayout()));
 	for (int i = 0; i < WindowLayoutType.getSize(); i++) {
 	    if (i - visualPreferences.getWindowLayout().ord() == 0) {
 		continue;
 	    }
-	    windowLayoutSelect.addChoiceItem(new ChoiceItem(WindowLayoutType
-		    .getWindowLayoutTypeByOrder(i).name(), (String) null,
-		    WindowLayoutType.getWindowLayoutTypeByOrder(i)));
+	    windowLayoutSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.WindowLayoutType."
+			    + WindowLayoutType.getWindowLayoutTypeByOrder(i)
+				    .name()), (String) null, WindowLayoutType
+		    .getWindowLayoutTypeByOrder(i)));
 	}
 
 	// Select Font Family control
@@ -543,16 +618,19 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_FONT_FAMILY }), null, null);
-	fontFamilySelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getFontFamily().name(), (String) null, visualPreferences
-		.getFontFamily()));
+	fontFamilySelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.GenericFontFamily."
+			+ visualPreferences.getFontFamily().name()),
+		(String) null, visualPreferences.getFontFamily()));
 	for (int i = 0; i < GenericFontFamily.getSize(); i++) {
 	    if (i - visualPreferences.getFontFamily().ord() == 0) {
 		continue;
 	    }
-	    fontFamilySelect.addChoiceItem(new ChoiceItem(GenericFontFamily
-		    .getGenericFontFamilyByOrder(i).name(), (String) null,
-		    GenericFontFamily.getGenericFontFamilyByOrder(i)));
+	    fontFamilySelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.GenericFontFamily."
+			    + GenericFontFamily.getGenericFontFamilyByOrder(i)
+				    .name()), (String) null, GenericFontFamily
+		    .getGenericFontFamilyByOrder(i)));
 	}
 
 	// Select brightness control
@@ -565,16 +643,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_BRIGHTNESS }), null, null);
-	brightnessSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getBrightness().name(), (String) null, visualPreferences
-		.getBrightness()));
+	brightnessSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ visualPreferences.getBrightness().name()),
+		(String) null, visualPreferences.getBrightness()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - visualPreferences.getBrightness().ord() == 0) {
 		continue;
 	    }
-	    brightnessSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    brightnessSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select contrast control
@@ -587,16 +667,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_CONTENT_CONTRAST }), null, null);
-	contentContrastSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getContentContrast().name(), (String) null, visualPreferences
-		.getContentContrast()));
+	contentContrastSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ visualPreferences.getContentContrast().name()),
+		(String) null, visualPreferences.getContentContrast()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - visualPreferences.getContentContrast().ord() == 0) {
 		continue;
 	    }
-	    contentContrastSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    contentContrastSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select screen resolution control
@@ -609,16 +691,19 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_SCREEN_RESOLUTION }), null, null);
-	screenResolutionSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getScreenResolution().name(), (String) null, visualPreferences
-		.getScreenResolution()));
+	screenResolutionSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ visualPreferences.getScreenResolution().name()),
+		(String) null, visualPreferences.getScreenResolution()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - visualPreferences.getScreenResolution().ord() == 0) {
 		continue;
 	    }
-	    screenResolutionSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    screenResolutionSelect.addChoiceItem(new ChoiceItem(
+		    userLocaleHelper
+			    .getString("UIPreferencesDialogBuilder.Intensity."
+				    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select cursorSizeSelect control
@@ -631,16 +716,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_CURSOR_SIZE }), null, null);
-	cursorSizeSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getCursorSize().name(), (String) null, visualPreferences
-		.getCursorSize()));
+	cursorSizeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Size."
+			+ visualPreferences.getCursorSize().name()),
+		(String) null, visualPreferences.getCursorSize()));
 	for (int i = 0; i < Size.getSize(); i++) {
 	    if (i - visualPreferences.getCursorSize().ord() == 0) {
 		continue;
 	    }
-	    cursorSizeSelect.addChoiceItem(new ChoiceItem(Size
-		    .getSizeByOrder(i).name(), (String) null, Size
-		    .getSizeByOrder(i)));
+	    cursorSizeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Size."
+			    + Size.getSizeByOrder(i).name()), (String) null,
+		    Size.getSizeByOrder(i)));
 	}
 
 	// Select screenSaverUsageSelect control
@@ -654,16 +741,19 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_SCREEN_SAVER_USAGE }), null,
 		null);
-	screenSaverUsageSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getScreenSaverUsage().name(), (String) null, visualPreferences
-		.getScreenSaverUsage()));
+	screenSaverUsageSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ visualPreferences.getScreenSaverUsage().name()),
+		(String) null, visualPreferences.getScreenSaverUsage()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - visualPreferences.getScreenSaverUsage().ord() == 0) {
 		continue;
 	    }
-	    screenSaverUsageSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    screenSaverUsageSelect.addChoiceItem(new ChoiceItem(
+		    userLocaleHelper
+			    .getString("UIPreferencesDialogBuilder.Status."
+				    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select Font Color control
@@ -676,35 +766,42 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_FONT_COLOR }), null, null);
-	fontColourSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getHighlightColor().name(), (String) null, visualPreferences
-		.getHighlightColor()));
+	fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ColorType."
+			+ visualPreferences.getHighlightColor().name()),
+		(String) null, visualPreferences.getHighlightColor()));
 	for (int i = 0; i < ColorType.getSize(); i++) {
 	    if (i - visualPreferences.getFontColor().ord() == 0) {
 		continue;
 	    }
-	    fontColourSelect.addChoiceItem(new ChoiceItem(ColorType
-		    .getColorTypeByOrder(i).name(), (String) null, ColorType
-		    .getColorTypeByOrder(i)));
+	    fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ColorType."
+			    + ColorType.getColorTypeByOrder(i).name()),
+		    (String) null, ColorType.getColorTypeByOrder(i)));
 	}
 
 	// Select fontSizeSelect control
-	Select1 fontSizeSelect = new Select1(invisibleVisualPreferences,
-		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.FontSizeSelect"),
+	Select1 fontSizeSelect = new Select1(
+		invisibleVisualPreferences,
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.FontSizeSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			VisualPreferences.PROP_FONT_SIZE }), null, null);
-	fontSizeSelect.addChoiceItem(new ChoiceItem(visualPreferences
-		.getFontSize().name(), (String) null, visualPreferences
-		.getFontSize()));
+	fontSizeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Size."
+			+ visualPreferences.getFontSize().name()),
+		(String) null, visualPreferences.getFontSize()));
 	for (int i = 0; i < Size.getSize(); i++) {
 	    if (i - visualPreferences.getFontSize().ord() == 0) {
 		continue;
 	    }
-	    fontSizeSelect.addChoiceItem(new ChoiceItem(Size.getSizeByOrder(i)
-		    .name(), (String) null, Size.getSizeByOrder(i)));
+	    fontSizeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Size."
+			    + Size.getSizeByOrder(i).name()), (String) null,
+		    Size.getSizeByOrder(i)));
 	}
 
 	// ///////////////////////////////////////////////////
@@ -741,16 +838,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_SPEECH_RATE }), null, null);
-	speechRateSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
-		.getSpeechRate().name(), (String) null, auditoryPreferences
-		.getSpeechRate()));
+	speechRateSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ auditoryPreferences.getSpeechRate().name()),
+		(String) null, auditoryPreferences.getSpeechRate()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - auditoryPreferences.getSpeechRate().ord() == 0) {
 		continue;
 	    }
-	    speechRateSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    speechRateSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select voiceGenderSelect control
@@ -763,16 +862,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_VOICE_GENDER }), null, null);
-	voiceGenderSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
-		.getVoiceGender().name(), (String) null, auditoryPreferences
-		.getVoiceGender()));
+	voiceGenderSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.VoiceGender."
+			+ auditoryPreferences.getVoiceGender().name()),
+		(String) null, auditoryPreferences.getVoiceGender()));
 	for (int i = 0; i < VoiceGender.getSize(); i++) {
 	    if (i - auditoryPreferences.getVoiceGender().ord() == 0) {
 		continue;
 	    }
-	    voiceGenderSelect.addChoiceItem(new ChoiceItem(VoiceGender
-		    .getGenderByOrder(i).name(), (String) null, VoiceGender
-		    .getGenderByOrder(i)));
+	    voiceGenderSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.VoiceGender."
+			    + VoiceGender.getGenderByOrder(i).name()),
+		    (String) null, VoiceGender.getGenderByOrder(i)));
 	}
 
 	// Select systemSoundsSelect control
@@ -785,16 +886,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_SYSTEM_SOUNDS }), null, null);
-	systemSoundsSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
-		.getSystemSounds().name(), (String) null, auditoryPreferences
-		.getSystemSounds()));
+	systemSoundsSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ auditoryPreferences.getSystemSounds().name()),
+		(String) null, auditoryPreferences.getSystemSounds()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - auditoryPreferences.getSystemSounds().ord() == 0) {
 		continue;
 	    }
-	    systemSoundsSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    systemSoundsSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select volume control
@@ -805,16 +908,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_VOLUME }), null, null);
-	volumeSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
-		.getVolume().name(), (String) null, auditoryPreferences
-		.getVolume()));
+	volumeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ auditoryPreferences.getVolume().name()),
+		(String) null, auditoryPreferences.getVolume()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - auditoryPreferences.getVolume().ord() == 0) {
 		continue;
 	    }
-	    volumeSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    volumeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select pitch control
@@ -825,35 +930,42 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_PITCH }), null, null);
-	pitchSelect.addChoiceItem(new ChoiceItem(auditoryPreferences.getPitch()
-		.name(), (String) null, auditoryPreferences.getPitch()));
+	pitchSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Intensity."
+			+ auditoryPreferences.getPitch().name()),
+		(String) null, auditoryPreferences.getPitch()));
 	for (int i = 0; i < Intensity.getSize(); i++) {
 	    if (i - auditoryPreferences.getPitch().ord() == 0) {
 		continue;
 	    }
-	    pitchSelect.addChoiceItem(new ChoiceItem(Intensity
-		    .getIntensityByOrder(i).name(), (String) null, Intensity
-		    .getIntensityByOrder(i)));
+	    pitchSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()),
+		    (String) null, Intensity.getIntensityByOrder(i)));
 	}
 
 	// Select keySoundsSelect control
-	Select1 keySoundsSelect = new Select1(invisibleVisualPreferences,
-		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.KeySoundsSelect"),
+	Select1 keySoundsSelect = new Select1(
+		invisibleVisualPreferences,
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.KeySoundsSelect"),
 			(String) null),
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AuditoryPreferences.PROP_KEY_SOUND }), null, null);
-	keySoundsSelect.addChoiceItem(new ChoiceItem(auditoryPreferences
-		.getKeySoundStatus().name(), (String) null, auditoryPreferences
-		.getKeySoundStatus()));
+	keySoundsSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ auditoryPreferences.getKeySoundStatus().name()),
+		(String) null, auditoryPreferences.getKeySoundStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - auditoryPreferences.getKeySoundStatus().ord() == 0) {
 		continue;
 	    }
-	    keySoundsSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    keySoundsSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// ///////////////////////////////////////////////////
@@ -888,16 +1000,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AlertPreferences.PROP_ALERT_OPTION }), null, null);
-	alertSelect.addChoiceItem(new ChoiceItem(alertPreferences
-		.getAlertOption().name(), (String) null, alertPreferences
-		.getAlertOption()));
+	alertSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.AlertType."
+			+ alertPreferences.getAlertOption().name()),
+		(String) null, alertPreferences.getAlertOption()));
 	for (int i = 0; i < AlertType.getSize(); i++) {
 	    if (i - alertPreferences.getAlertOption().ord() == 0) {
 		continue;
 	    }
-	    alertSelect.addChoiceItem(new ChoiceItem(AlertType
-		    .getAlertTypeByOrder(i).name(), (String) null, AlertType
-		    .getAlertTypeByOrder(i)));
+	    alertSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.AlertType."
+			    + AlertType.getAlertTypeByOrder(i).name()),
+		    (String) null, AlertType.getAlertTypeByOrder(i)));
 	}
 
 	// ///////////////////////////////////////////////////
@@ -917,7 +1031,10 @@ public class UIPreferencesDialogBuilder {
 		null, null, null, (Resource) null);
 
 	// vertically
-	new SimpleOutput(invisibleAccessModeGroupPreferences, null, null,
+	new SimpleOutput(
+		invisibleAccessModeGroupPreferences,
+		null,
+		null,
 		userLocaleHelper
 			.getString("UIPreferencesDialogBuilder.SelectAccessMode"));
 
@@ -931,16 +1048,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AccessMode.PROP_VISUAL_MODE_STATUS }), null, null);
-	visualModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
-		.getVisualModeStatus().name(), (String) null,
-		accessModePreferences.getVisualModeStatus()));
+	visualModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ accessModePreferences.getVisualModeStatus().name()),
+		(String) null, accessModePreferences.getVisualModeStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - accessModePreferences.getVisualModeStatus().ord() == 0) {
 		continue;
 	    }
-	    visualModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    visualModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select textualModeSelect control
@@ -953,16 +1072,18 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AccessMode.PROP_TEXTUAL_MODE_STATUS }), null, null);
-	textualModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
-		.getTextualModeStatus().name(), (String) null,
-		accessModePreferences.getTextualModeStatus()));
+	textualModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ accessModePreferences.getTextualModeStatus().name()),
+		(String) null, accessModePreferences.getTextualModeStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - accessModePreferences.getTextualModeStatus().ord() == 0) {
 		continue;
 	    }
-	    textualModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    textualModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select auditoryModeSelect control
@@ -975,16 +1096,20 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AccessMode.PROP_AUDITORY_MODE_STATUS }), null, null);
-	auditoryModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
-		.getAuditoryModeStatus().name(), (String) null,
-		accessModePreferences.getAuditoryModeStatus()));
+	auditoryModeSelect
+		.addChoiceItem(new ChoiceItem(userLocaleHelper
+			.getString("UIPreferencesDialogBuilder.Status."
+				+ accessModePreferences.getAuditoryModeStatus()
+					.name()), (String) null,
+			accessModePreferences.getAuditoryModeStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - accessModePreferences.getAuditoryModeStatus().ord() == 0) {
 		continue;
 	    }
-	    auditoryModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    auditoryModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select olfactoryModeSelect control
@@ -997,16 +1122,20 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AccessMode.PROP_OLFACTORY_MODE_STATUS }), null, null);
-	olfactoryModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
-		.getOlfactoryModeStatus().name(), (String) null,
-		accessModePreferences.getOlfactoryModeStatus()));
+	olfactoryModeSelect.addChoiceItem(new ChoiceItem(
+		userLocaleHelper
+			.getString("UIPreferencesDialogBuilder.Status."
+				+ accessModePreferences
+					.getOlfactoryModeStatus().name()),
+		(String) null, accessModePreferences.getOlfactoryModeStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - accessModePreferences.getOlfactoryModeStatus().ord() == 0) {
 		continue;
 	    }
-	    olfactoryModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    olfactoryModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// Select tactileModeSelect control
@@ -1019,25 +1148,28 @@ public class UIPreferencesDialogBuilder {
 		new PropertyPath(null, false, new String[] {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			AccessMode.PROP_TACTILE_MODE_STATUS }), null, null);
-	tactileModeSelect.addChoiceItem(new ChoiceItem(accessModePreferences
-		.getTactileModeStatus().name(), (String) null,
-		accessModePreferences.getTactileModeStatus()));
+	tactileModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.Status."
+			+ accessModePreferences.getTactileModeStatus().name()),
+		(String) null, accessModePreferences.getTactileModeStatus()));
 	for (int i = 0; i < Status.getSize(); i++) {
 	    if (i - accessModePreferences.getTactileModeStatus().ord() == 0) {
 		continue;
 	    }
-	    tactileModeSelect.addChoiceItem(new ChoiceItem(Status
-		    .getStatusByOrder(i).name(), (String) null, Status
-		    .getStatusByOrder(i)));
+	    tactileModeSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.Status."
+			    + Status.getStatusByOrder(i).name()),
+		    (String) null, Status.getStatusByOrder(i)));
 	}
 
 	// ////////////////////////////////////
 	// UI Preferences Submits
 	// ////////////////////////////////////
 
-	new Submit(submits, new org.universAAL.middleware.ui.rdf.Label(
-		userLocaleHelper.getString("UIPreferencesDialogBuilder.Submit"),
-		(String) null), "submit_uiPreferences");
+	new Submit(submits,
+		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
+			.getString("UIPreferencesDialogBuilder.Submit"),
+			(String) null), "submit_uiPreferences");
 	return f;
     }
 
