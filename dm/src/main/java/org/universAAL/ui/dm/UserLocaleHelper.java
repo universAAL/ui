@@ -142,7 +142,7 @@ public class UserLocaleHelper {
 	case Language.TAIWANESE:
 	    return Locale.TAIWAN;
 	case Language.ISRAELI:
-	    return new Locale("he");
+	    return new Locale("iw");
 	case Language.PORTUGUESE:
 	    return new Locale("pt");
 	case Language.RUSIAN:

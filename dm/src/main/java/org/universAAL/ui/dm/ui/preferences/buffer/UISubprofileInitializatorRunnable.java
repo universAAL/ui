@@ -338,7 +338,8 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	    return Language.norvegian;
 	else if (langCode.equalsIgnoreCase("fr"))
 	    return Language.french;
-	else if (langCode.equalsIgnoreCase("iw"))// check
+	else if (langCode.equalsIgnoreCase("he")||langCode.equalsIgnoreCase("iw"))
+	    //Java uses deprecated two-letter code for hebrw. The Hebrew ("he") language code is rewritten as "iw", 
 	    return Language.israeli;
 	else if (langCode.equalsIgnoreCase("pt"))
 	    return Language.portuguese;
