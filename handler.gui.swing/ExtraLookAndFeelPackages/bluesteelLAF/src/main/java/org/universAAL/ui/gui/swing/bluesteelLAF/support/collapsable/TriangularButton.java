@@ -62,7 +62,7 @@ public class TriangularButton extends JButton {
 	protected void paintComponent(Graphics g) {
 		Graphics2D g2 = ((Graphics2D) g);
 		Dimension d = getSize();
-        float arcSize = 25;
+        float arcSize = d.width * 0.1f;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         Point p1, p2 ,p3, mPoint;
         p1 = new Point(0, d.height);
