@@ -30,7 +30,7 @@ import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.ServiceCallee;
 import org.universAAL.middleware.service.ServiceCaller;
-import org.universAAL.middleware.ui.DialogManager;
+import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
@@ -42,13 +42,13 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
 /**
  * The UICaller implements the interface
- * {@link org.universAAL.middleware.ui.DialogManager}.
+ * {@link org.universAAL.middleware.ui.IDialogManager}.
  * 
  * @author amedrano
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public final class DialogManagerImpl extends UICaller implements DialogManager {
+public final class DialogManagerImpl extends UICaller implements IDialogManager {
 
     /*
      * "The road to the City of Emeralds is paved with yellow brick, so you
@@ -144,7 +144,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
 	uiPreferencesSCallee = new UIPreferencesSCallee(moduleContext,
 		uiPreferencesUICaller);
 
-	// bus = (UIBus) context.getContainer()
+	// bus = (IUIBus) context.getContainer()
 	// .fetchSharedObject(context, UIBusImpl.busFetchParams);
     }
 
@@ -159,7 +159,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * priority of a dialog that is currently shown). Additionally, it adds
      * adaptation parameters.
      * 
-     * @see org.universAAL.middleware.ui.DialogManager#checkNewDialog(UIRequest)
+     * @see org.universAAL.middleware.ui.IDialogManager#checkNewDialog(UIRequest)
      * @param request
      *            The UI request containing a dialog.
      * @return true, if the dialog can be shown directly.
@@ -184,7 +184,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
      * dialog was successfully finished. The dialog manager can then show
      * dialogs that were previously suspended.
      * 
-     * @see org.universAAL.middleware.ui.DialogManager#dialogFinished(String)
+     * @see org.universAAL.middleware.ui.IDialogManager#dialogFinished(String)
      * @param dialogID
      *            ID of the dialog that is now finished.
      */
@@ -257,7 +257,7 @@ public final class DialogManagerImpl extends UICaller implements DialogManager {
     public void communicationChannelBroken() {
 	LogUtils.logError(moduleContext, getClass(),
 		"CommunicationChannelBroken",
-		new String[] { "UIBus Is falling apart! Take cover!" }, null);
+		new String[] { "IUIBus Is falling apart! Take cover!" }, null);
     }
 
     /**

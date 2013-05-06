@@ -23,7 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.ui.DialogManager;
+import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
@@ -33,7 +33,7 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
 
 /**
  * Acts as a buffer to store UI Preferences for logged in users so that
- * {@link DialogManager} does not have to retrieve it from the Profiling Server
+ * {@link IDialogManager} does not have to retrieve it from the Profiling Server
  * when each {@link UIRequest} arrives but instead it retrieves it in some
  * configured time interval.
  * 
