@@ -14,8 +14,11 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.editor;
 
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Set;
 
+import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.PropertyPath;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.owl.Modality;
@@ -25,6 +28,8 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.language.Language;
+import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.AccessMode;
 import org.universAAL.ontology.ui.preferences.AlertPreferences;
@@ -35,7 +40,6 @@ import org.universAAL.ontology.ui.preferences.ContentDensityType;
 import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
 import org.universAAL.ontology.ui.preferences.GenericFontFamily;
 import org.universAAL.ontology.ui.preferences.Intensity;
-import org.universAAL.ontology.ui.preferences.Language;
 import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.PendingMessageBuilderType;
@@ -207,17 +211,36 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_PREFERRED_LANGUAGE }),
 		null, null);
-	// FIXME update after applying new Lang ontology
+	// TODO check update after applying new Lang ontology
 	preferredLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
-		.getPreferredLanguage().name(), (String) null,
+		.getPreferredLanguage().getNativeLabel(), (String) null,
 		gInteractionPrefs.getPreferredLanguage()));
-	for (int i = 0; i < Language.getSize(); i++) {
-	    if (i - gInteractionPrefs.getPreferredLanguage().ord() == 0) {
+
+	// get all available languages
+	Set allLanguagesURIs = OntologyManagement.getInstance()
+		.getNamedSubClasses(Language.MY_URI, true, false);
+
+	Language langInstance = null;
+	String currentLang = null;
+	for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
+	    String currentLangInstanceURI = (String) i.next();
+	    // TODO check if this is ok, iso639 code is at the end of
+	    // currentLangURI that is composed
+	    // (LanguageOntology.NAMESPACE+ico639code.toUpperCase)
+	    currentLang = currentLangInstanceURI
+		    .substring(currentLangInstanceURI
+			    .lastIndexOf(LanguageOntology.NAMESPACE));
+
+	    if (currentLang.equalsIgnoreCase(gInteractionPrefs
+		    .getPreferredLanguage().getIso639code())) {
+		// if this is the value stored in uiPrefs, it was added 1st so
+		// skip it
 		continue;
 	    }
-	    preferredLanguageSelect.addChoiceItem(new ChoiceItem(Language
-		    .getLanguageByOrder(i).name(), (String) null, Language
-		    .getLanguageByOrder(i)));
+	    langInstance = (Language) Language.getInstance(Language.MY_URI,
+		    currentLangInstanceURI);
+	    preferredLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
+		    .getNativeLabel(), (String) null, langInstance));
 	}
 
 	// Select secondary Language control
@@ -231,17 +254,30 @@ public class UIPreferencesDialogBuilder {
 			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 			GeneralInteractionPreferences.PROP_SECONDARY_LANGUAGE }),
 		null, null);
-	// FIXME update after applying new Lang ontology
+	// TODO check update after applying new Lang ontology
 	secondaryLanguageSelect.addChoiceItem(new ChoiceItem(gInteractionPrefs
-		.getSecondaryLanguage().name(), (String) null,
+		.getSecondaryLanguage().getNativeLabel(), (String) null,
 		gInteractionPrefs.getSecondaryLanguage()));
-	for (int i = 0; i < Language.getSize(); i++) {
-	    if (i - gInteractionPrefs.getSecondaryLanguage().ord() == 0) {
+	
+	for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
+	    String currentLangInstanceURI = (String) i.next();
+	    // TODO check if this is ok, iso639 code is at the end of
+	    // currentLangURI that is composed
+	    // (LanguageOntology.NAMESPACE+ico639code.toUpperCase)
+	    currentLang = currentLangInstanceURI
+		    .substring(currentLangInstanceURI
+			    .lastIndexOf(LanguageOntology.NAMESPACE));
+
+	    if (currentLang.equalsIgnoreCase(gInteractionPrefs
+		    .getPreferredLanguage().getIso639code())) {
+		// if this is the value stored in uiPrefs, it was added 1st so
+		// skip it
 		continue;
 	    }
-	    secondaryLanguageSelect.addChoiceItem(new ChoiceItem(Language
-		    .getLanguageByOrder(i).name(), (String) null, Language
-		    .getLanguageByOrder(i)));
+	    langInstance = (Language) Language.getInstance(Language.MY_URI,
+		    currentLangInstanceURI);
+	    secondaryLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
+		    .getNativeLabel(), (String) null, langInstance));
 	}
 
 	// Select content density control

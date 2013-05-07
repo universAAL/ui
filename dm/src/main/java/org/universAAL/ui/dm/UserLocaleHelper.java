@@ -22,7 +22,7 @@ import java.util.Locale;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.Messages;
-import org.universAAL.ontology.ui.preferences.Language;
+import org.universAAL.ontology.language.Language;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 
 /**
@@ -37,7 +37,7 @@ public class UserLocaleHelper {
 
     private static final String MSG_FILE_NAME = "messages.properties";
 
-	/**
+    /**
      * The internationalization file for strings meant to be read by the user.
      */
     private Messages messages;
@@ -61,23 +61,24 @@ public class UserLocaleHelper {
 			    DialogManagerImpl.getModuleContext(),
 			    getClass(),
 			    "getUIPreferencesEditorForm",
-			    new String[] { "Cannot initialize Dialog Manager externalized strings from configuration folder!",
-			    	" Loading from resources"},
-			    e);
+			    new String[] {
+				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
+				    " Loading from resources" }, e);
 	    try {
-	    	URL messagesResource = getClass().getClassLoader().getResource(MSG_FILE_NAME);
-			messages = new Messages(messagesResource,
-					getUserLocaleFromPreferredLanguage());
-		} catch (Exception e1) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "getUIPreferencesEditorForm",
-			    new String[] { "Cannot initialize Dialog Manager externalized strings from Resources!",
-			    	" COME ON! give me a break."},
-			    e1);
-		}
+		URL messagesResource = getClass().getClassLoader().getResource(
+			MSG_FILE_NAME);
+		messages = new Messages(messagesResource,
+			getUserLocaleFromPreferredLanguage());
+	    } catch (Exception e1) {
+		LogUtils
+			.logError(
+				DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"getUIPreferencesEditorForm",
+				new String[] {
+					"Cannot initialize Dialog Manager externalized strings from Resources!",
+					" COME ON! give me a break." }, e1);
+	    }
 	}
     }
 
@@ -94,13 +95,13 @@ public class UserLocaleHelper {
 		.getPreferredLanguage();
 
 	try {
-	    return getLocaleFromLanguage(lang);
+	    return getLocaleFromLanguageIso639code(lang);
 	} catch (Exception e) {
 	    // a locale couldn't be created, Try secondary language.
 	    try {
 		lang = uiPreferencesSubprofile.getInteractionPreferences()
 			.getSecondaryLanguage();
-		return getLocaleFromLanguage(lang);
+		return getLocaleFromLanguageIso639code(lang);
 	    } catch (Exception e1) {
 		// OR
 		// check system property
@@ -117,43 +118,9 @@ public class UserLocaleHelper {
      *            {@link Language}
      * @return {@link Locale}
      */
-    private Locale getLocaleFromLanguage(Language lang) {
-	switch (lang.ord()) {
-	case Language.GERMAN:
-	    return Locale.GERMAN;
-	case Language.ITALIAN:
-	    return Locale.ITALIAN;
-	case Language.GREEK:
-	    return new Locale("el");
-	case Language.SPANISH:
-	    return new Locale("es");
-	case Language.ENGLISH:
-	    return Locale.ENGLISH;
-	case Language.POLISH:
-	    return new Locale("pl");
-	case Language.CROATIAN:
-	    return new Locale("hr");
-	case Language.NORVEGIAN:
-	    return new Locale("no");
-	case Language.DUTCH:
-	    return new Locale("nl");
-	case Language.FRENCH:
-	    return Locale.FRENCH;
-	case Language.TAIWANESE:
-	    return Locale.TAIWAN;
-	case Language.ISRAELI:
-	    return new Locale("iw");
-	case Language.PORTUGUESE:
-	    return new Locale("pt");
-	case Language.RUSIAN:
-	    return new Locale("ru");
-	case Language.HUNGARIAN:
-	    return new Locale("hu");
-	case Language.CHINESE:
-	    return Locale.CHINESE;
-	default:
-	    return null;
-	}
+    private Locale getLocaleFromLanguageIso639code(Language lang) {
+	return new Locale(lang.getIso639code());
+
     }
 
     /**
