@@ -22,6 +22,9 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
+import org.universAAL.ontology.LanguageFactory;
+import org.universAAL.ontology.language.Language;
+import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Caregiver;
 import org.universAAL.ontology.profile.User;
@@ -35,7 +38,6 @@ import org.universAAL.ontology.ui.preferences.ContentDensityType;
 import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
 import org.universAAL.ontology.ui.preferences.GenericFontFamily;
 import org.universAAL.ontology.ui.preferences.Intensity;
-import org.universAAL.ontology.ui.preferences.Language;
 import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.PendingMessageBuilderType;
@@ -154,8 +156,9 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	generalInteractionPreferences
 		.setContentDensity(ContentDensityType.detailed);
 	generalInteractionPreferences
-		.setPreferredLanguage(getLanguageFromLocale());
-	generalInteractionPreferences.setSecondaryLanguage(Language.english);
+		.setPreferredLanguage(getLanguageOntFromSystemSetup());
+	generalInteractionPreferences
+		.setSecondaryLanguage(getLanguageOntEnglish());
 	generalInteractionPreferences.setPreferredModality(Modality.gui);
 	generalInteractionPreferences.setSecondaryModality(Modality.voice);
 	uiPrefsSubProfile
@@ -241,8 +244,9 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	generalInteractionPreferences
 		.setContentDensity(ContentDensityType.detailed);
 	generalInteractionPreferences
-		.setPreferredLanguage(getLanguageFromLocale());
-	generalInteractionPreferences.setSecondaryLanguage(Language.english);
+		.setPreferredLanguage(getLanguageOntFromSystemSetup());
+	generalInteractionPreferences
+		.setSecondaryLanguage(getLanguageOntEnglish());
 	generalInteractionPreferences.setPreferredModality(Modality.web);
 	generalInteractionPreferences.setSecondaryModality(Modality.gui);
 	uiPrefsSubProfile
@@ -311,50 +315,38 @@ public class UISubprofileInitializatorRunnable implements Runnable {
      * @return {@link Language} based on the user.language property defined in
      *         JVM arguments (or, from Locale)
      */
-    private Language getLanguageFromLocale() {
+    private Language getLanguageOntFromSystemSetup() {
 
 	// get language from jvm (system) property or b) from default locale
 	// already in memory
 	String langCode = System.getProperty("user.language", java.util.Locale
 		.getDefault().getLanguage().toLowerCase());
 
-	if (langCode.equalsIgnoreCase("de"))
-	    return Language.german;
-	else if (langCode.equalsIgnoreCase("en"))
-	    return Language.english;
-	else if (langCode.equalsIgnoreCase("es"))
-	    return Language.spanish;
-	else if (langCode.equalsIgnoreCase("nl"))
-	    return Language.dutch;
-	else if (langCode.equalsIgnoreCase("pl"))
-	    return Language.polish;
-	else if (langCode.equalsIgnoreCase("it"))
-	    return Language.italian;
-	else if (langCode.equalsIgnoreCase("el"))
-	    return Language.greek;
-	else if (langCode.equalsIgnoreCase("hr"))
-	    return Language.croatian;
-	else if (langCode.equalsIgnoreCase("no"))
-	    return Language.norvegian;
-	else if (langCode.equalsIgnoreCase("fr"))
-	    return Language.french;
-	else if (langCode.equalsIgnoreCase("he")||langCode.equalsIgnoreCase("iw"))
-	    //Java uses deprecated two-letter code for hebrw. The Hebrew ("he") language code is rewritten as "iw", 
-	    return Language.israeli;
-	else if (langCode.equalsIgnoreCase("pt"))
-	    return Language.portuguese;
-	else if (langCode.equalsIgnoreCase("ru"))
-	    return Language.rusian;
-	else if (langCode.equalsIgnoreCase("hu"))
-	    return Language.hungarian;
-	else if (langCode.equalsIgnoreCase("zh")) {
-	    // taiwaneese and chineese have same language code
-	    if (java.util.Locale.getDefault().getCountry().equalsIgnoreCase(
-		    "TW")) {
-		return Language.taiwanese;
-	    } else
-		return Language.chinese;
-	} else
-	    return Language.english;
+	Language language = new Language();
+	language
+		.setEnglishLabel(java.util.Locale.getDefault().getDisplayName());
+	// FIXME obtain native label from Languages ont by using iso639 code.
+	// Same for english label since getDisplayName returns outputs like:
+	// Spanish (Bolivia)- which is not the same as english label in
+	// Languages ont
+	language.setNativeLabel(java.util.Locale.getDefault().getDisplayName());
+	language.setIso639code(langCode);
+
+	return language;
+    }
+
+    /**
+     * 
+     * @return {@link Language} English
+     */
+    private Language getLanguageOntEnglish() {
+
+	Language language = new Language();
+	language.setEnglishLabel("English");
+
+	language.setNativeLabel("English");
+	language.setIso639code("en");
+
+	return language;
     }
 }
