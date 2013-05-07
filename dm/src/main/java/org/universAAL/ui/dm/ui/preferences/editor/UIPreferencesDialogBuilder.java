@@ -17,6 +17,7 @@ package org.universAAL.ui.dm.ui.preferences.editor;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.PropertyPath;
@@ -29,7 +30,6 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.language.Language;
-import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.AccessMode;
 import org.universAAL.ontology.ui.preferences.AlertPreferences;
@@ -219,26 +219,21 @@ public class UIPreferencesDialogBuilder {
 	// get all available languages
 	Set allLanguagesURIs = OntologyManagement.getInstance()
 		.getNamedSubClasses(Language.MY_URI, true, false);
-
+	//This is to short the URI list
+	allLanguagesURIs = new TreeSet<String>(allLanguagesURIs);
+	
 	Language langInstance = null;
 	String currentLang = null;
 	for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
 	    String currentLangInstanceURI = (String) i.next();
-	    // TODO check if this is ok, iso639 code is at the end of
-	    // currentLangURI that is composed
-	    // (LanguageOntology.NAMESPACE+ico639code.toUpperCase)
-	    currentLang = currentLangInstanceURI
-		    .substring(currentLangInstanceURI
-			    .lastIndexOf(LanguageOntology.NAMESPACE));
-
-	    if (currentLang.equalsIgnoreCase(gInteractionPrefs
+	    langInstance = (Language) Resource.getResource
+	    		(currentLangInstanceURI, currentLangInstanceURI.toLowerCase());
+	    if (langInstance.getIso639code().equalsIgnoreCase(gInteractionPrefs
 		    .getPreferredLanguage().getIso639code())) {
 		// if this is the value stored in uiPrefs, it was added 1st so
 		// skip it
 		continue;
 	    }
-	    langInstance = (Language) Language.getInstance(Language.MY_URI,
-		    currentLangInstanceURI);
 	    preferredLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
 		    .getNativeLabel(), (String) null, langInstance));
 	}
@@ -261,15 +256,11 @@ public class UIPreferencesDialogBuilder {
 	
 	for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
 	    String currentLangInstanceURI = (String) i.next();
-	    // TODO check if this is ok, iso639 code is at the end of
-	    // currentLangURI that is composed
-	    // (LanguageOntology.NAMESPACE+ico639code.toUpperCase)
-	    currentLang = currentLangInstanceURI
-		    .substring(currentLangInstanceURI
-			    .lastIndexOf(LanguageOntology.NAMESPACE));
+	    langInstance = (Language) Resource.getResource
+	    		(currentLangInstanceURI, currentLangInstanceURI.toLowerCase());
 
-	    if (currentLang.equalsIgnoreCase(gInteractionPrefs
-		    .getPreferredLanguage().getIso639code())) {
+	    if (langInstance.getIso639code().equalsIgnoreCase(gInteractionPrefs
+			    .getSecondaryLanguage().getIso639code())) {
 		// if this is the value stored in uiPrefs, it was added 1st so
 		// skip it
 		continue;
