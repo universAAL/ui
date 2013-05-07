@@ -14,17 +14,16 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.buffer;
 
-import java.util.Locale;
-
-import javax.security.auth.callback.LanguageCallback;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.owl.OntologyManagement;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
-import org.universAAL.ontology.LanguageFactory;
 import org.universAAL.ontology.language.Language;
-import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Caregiver;
 import org.universAAL.ontology.profile.User;
@@ -322,31 +321,28 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	String langCode = System.getProperty("user.language", java.util.Locale
 		.getDefault().getLanguage().toLowerCase());
 
-	Language language = new Language();
-	language
-		.setEnglishLabel(java.util.Locale.getDefault().getDisplayName());
-	// FIXME obtain native label from Languages ont by using iso639 code.
-	// Same for english label since getDisplayName returns outputs like:
-	// Spanish (Bolivia)- which is not the same as english label in
-	// Languages ont
-	language.setNativeLabel(java.util.Locale.getDefault().getDisplayName());
-	language.setIso639code(langCode);
-
-	return language;
+	return getLanguajeFromIso639(langCode);
     }
 
+    @SuppressWarnings("rawtypes")
+	public static Language getLanguajeFromIso639(String code){
+    	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
+		for (Iterator i = allLang.iterator(); i.hasNext();) {
+			String uri = (String) i.next();
+			Language l = (Language) Resource.getResource(uri, uri.toLowerCase());
+			if (l.getIso639code().equals(code)){
+				return l;
+			}
+		}
+		return null;
+    }
+    
+    
     /**
      * 
      * @return {@link Language} English
      */
     private Language getLanguageOntEnglish() {
-
-	Language language = new Language();
-	language.setEnglishLabel("English");
-
-	language.setNativeLabel("English");
-	language.setIso639code("en");
-
-	return language;
+    	return getLanguajeFromIso639("en");
     }
 }
