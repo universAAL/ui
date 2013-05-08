@@ -53,14 +53,42 @@ public class UserLocaleHelper {
 	try {
 	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
 		    MSG_FILE_NAME);
-	    messages = new Messages(messagesFile,
-		    getUserLocaleFromPreferredLanguage());
+	    Locale preferred = getUserLocaleFromPreferredLanguage();
+	    messages = new Messages(messagesFile, preferred);
+	    if (messages.getCurrentLocale() == null
+	    		|| !messages.getCurrentLocale().equals(preferred)){
+	    	/*
+	    	 * messages for preferred locale are not available,
+	    	 * try to load the secondary language messages
+	    	 */
+	    	LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+	    			getClass(),
+	    			"Constructor", 
+	    			new String []{ "Cannot initialize messages in ",
+	    		preferred.getDisplayLanguage(),". Trying to load Secundary Language messages."}, null);
+	    	
+	    	Language lang = uiPreferencesSubprofile.getInteractionPreferences()
+	    				.getSecondaryLanguage();
+	    	Locale secondary = getLocaleFromLanguageIso639code(lang);
+	    	messages = new Messages(messagesFile, secondary);
+	    	if (messages.getCurrentLocale() == null
+		    		|| !messages.getCurrentLocale().equals(secondary)){
+	    		/*
+	    		 * No message translation in secondary language either...
+	    		 */
+	    		LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
+		    			getClass(),
+		    			"Constructor", 
+		    			new String []{ "Cannot initialize messages in ",
+		    		secondary.getDisplayLanguage()," either. I'm sorry buddy you're getting default messages."}, null);
+	    	}
+	    }
 	} catch (IOException e) {
 	    LogUtils
 		    .logWarn(
 			    DialogManagerImpl.getModuleContext(),
 			    getClass(),
-			    "getUIPreferencesEditorForm",
+			    "Constructor",
 			    new String[] {
 				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
 				    " Loading from resources" }, e);
@@ -97,7 +125,11 @@ public class UserLocaleHelper {
 	try {
 	    return getLocaleFromLanguageIso639code(lang);
 	} catch (Exception e) {
-	    // a locale couldn't be created, Try secondary language.
+	    /*
+	     *  a locale couldn't be created, Try secondary language.
+	     *  This is highly improbable, unless the hardware is 
+	     *  incompatible with the locale.
+	     */
 	    try {
 		lang = uiPreferencesSubprofile.getInteractionPreferences()
 			.getSecondaryLanguage();
