@@ -321,11 +321,11 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	String langCode = System.getProperty("user.language", java.util.Locale
 		.getDefault().getLanguage().toLowerCase());
 
-	return getLanguajeFromIso639(langCode);
+	return getLanguageFromIso639(langCode);
     }
 
     @SuppressWarnings("rawtypes")
-	public static Language getLanguajeFromIso639(String code){
+	public static Language getLanguageFromIso639(String code){
     	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
 		for (Iterator i = allLang.iterator(); i.hasNext();) {
 			String uri = (String) i.next();
@@ -343,6 +343,6 @@ public class UISubprofileInitializatorRunnable implements Runnable {
      * @return {@link Language} English
      */
     private Language getLanguageOntEnglish() {
-    	return getLanguajeFromIso639("en");
+    	return getLanguageFromIso639("en");
     }
 }
