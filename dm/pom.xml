@@ -100,8 +100,13 @@
 							org.universAAL.ui.dm.dialogManagement,
 							org.universAAL.ui.dm.interfaces,
 							org.universAAL.ui.dm.osgi,
+							org.universAAL.ui.dm.ui.preferences,
+							org.universAAL.ui.dm.ui.preferences.buffer,
+							org.universAAL.ui.dm.ui.preferences.caller.helpers,
+							org.universAAL.ui.dm.ui.preferences.editor,
 							org.universAAL.ui.dm.userInteraction,
 							org.universAAL.ui.dm.userInteraction.mainMenu,
+							org.universAAL.ui.dm.userInteraction.mainMenu.file,
 							org.universAAL.ui.dm.userInteraction.mainMenu.profilable,
 							org.universAAL.ui.dm.userInteraction.messageManagement,
 							org.universAAL.ui.dm.userInteraction.systemMenu</Private-Package>
