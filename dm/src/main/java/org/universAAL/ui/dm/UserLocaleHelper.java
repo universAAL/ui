@@ -53,8 +53,43 @@ public class UserLocaleHelper {
 	try {
 	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
 		    MSG_FILE_NAME);
-	    Locale preferred = getUserLocaleFromPreferredLanguage();
-	    messages = new Messages(messagesFile, preferred);
+	    tryToLoadMessagesForm(messagesFile.toURI().toURL());
+	} catch (Exception e) {
+	    LogUtils
+		    .logWarn(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "Constructor",
+			    new String[] {
+				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
+				    " Loading from resources" }, e);
+	    try {
+		URL messagesResource = getClass().getClassLoader().getResource(
+			MSG_FILE_NAME);
+		tryToLoadMessagesForm(messagesResource);
+	    } catch (Exception e1) {
+		LogUtils
+			.logError(
+				DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"getUIPreferencesEditorForm",
+				new String[] {
+					"Cannot initialize Dialog Manager externalized strings from Resources!",
+					" COME ON! give me a break." }, e1);
+	    }
+	}
+    }
+
+    /**
+     * Helper method, tries to load messages from the specified url, for prederred language. 
+     * If messages are not localized then tries secondary language.
+     * @param url
+     * @throws IllegalArgumentException
+     * @throws IOException
+     */
+    private void tryToLoadMessagesForm(URL url) throws IllegalArgumentException, IOException{
+    	Locale preferred = getUserLocaleFromPreferredLanguage();
+	    messages = new Messages(url, preferred);
 	    if (messages.getCurrentLocale() == null
 	    		|| !messages.getCurrentLocale().equals(preferred)){
 	    	/*
@@ -70,7 +105,7 @@ public class UserLocaleHelper {
 	    	Language lang = uiPreferencesSubprofile.getInteractionPreferences()
 	    				.getSecondaryLanguage();
 	    	Locale secondary = getLocaleFromLanguageIso639code(lang);
-	    	messages = new Messages(messagesFile, secondary);
+	    	messages = new Messages(url, secondary);
 	    	if (messages.getCurrentLocale() == null
 		    		|| !messages.getCurrentLocale().equals(secondary)){
 	    		/*
@@ -83,33 +118,8 @@ public class UserLocaleHelper {
 		    		secondary.getDisplayLanguage()," either. I'm sorry buddy you're getting default messages."}, null);
 	    	}
 	    }
-	} catch (IOException e) {
-	    LogUtils
-		    .logWarn(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "Constructor",
-			    new String[] {
-				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
-				    " Loading from resources" }, e);
-	    try {
-		URL messagesResource = getClass().getClassLoader().getResource(
-			MSG_FILE_NAME);
-		messages = new Messages(messagesResource,
-			getUserLocaleFromPreferredLanguage());
-	    } catch (Exception e1) {
-		LogUtils
-			.logError(
-				DialogManagerImpl.getModuleContext(),
-				getClass(),
-				"getUIPreferencesEditorForm",
-				new String[] {
-					"Cannot initialize Dialog Manager externalized strings from Resources!",
-					" COME ON! give me a break." }, e1);
-	    }
-	}
     }
-
+    
     /**
      * Get the language for the user.
      * 
