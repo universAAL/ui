@@ -29,6 +29,6 @@ public interface UIPreferencesChangeListener {
 	 * Callback when the {@link UIPreferencesSubProfile} is changed.
 	 * @param subProfile the new changed {@link UIPreferencesSubProfile}
 	 */
-	public void chaged(UIPreferencesSubProfile subProfile);
+	public void changedUIPreferences(UIPreferencesSubProfile subProfile);
 
 }

@@ -222,7 +222,7 @@ public class UserDialogManager implements IDialogManager,
 
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	myUIRequests = new TreeSet<String>();
-	chaged(uiPreferencesBuffer.getUIPreferencesSubprofileForUser(user));
+	changedUIPreferences(uiPreferencesBuffer.getUIPreferencesSubprofileForUser(user));
 
     }
 
@@ -958,4 +958,5 @@ public class UserDialogManager implements IDialogManager,
 	    persistencyTimer.cancel();
 	}
     }
+
 }
