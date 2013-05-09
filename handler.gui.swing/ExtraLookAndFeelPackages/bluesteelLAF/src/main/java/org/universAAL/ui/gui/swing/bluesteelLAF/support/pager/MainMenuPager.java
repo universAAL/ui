@@ -63,6 +63,10 @@ public class MainMenuPager extends JPanel {
 	private JPanel pages;
 
 	private BookMarker bm;
+
+	private JButton btnPrev;
+
+	private JButton btnNext;
 	
 	
 	/**
@@ -97,7 +101,7 @@ public class MainMenuPager extends JPanel {
 		// these buttons can be customized
 		Dimension min = new Dimension(ColorLAF.SEPARATOR_SPACE, Integer.MAX_VALUE);
 		
-		JButton btnPrev = new CustomBasicArrowButton(SwingConstants.WEST);//new JButton("<-");
+		btnPrev = new CustomBasicArrowButton(SwingConstants.WEST);
 		btnPrev.setPreferredSize(min);
 		add(btnPrev, BorderLayout.WEST);
 		btnPrev.addActionListener(new ActionListener() {
@@ -115,7 +119,7 @@ public class MainMenuPager extends JPanel {
 			}
 		});
 		
-		JButton btnNext = new CustomBasicArrowButton(SwingConstants.EAST); //new JButton("->");
+		btnNext = new CustomBasicArrowButton(SwingConstants.EAST);
 		btnNext.setPreferredSize(min);
 		add(btnNext, BorderLayout.EAST);
 		btnNext.addActionListener(new ActionListener() {
@@ -168,6 +172,8 @@ public class MainMenuPager extends JPanel {
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup bg;
 		private JRadioButton[] buttons;
+		private String jump;
+		private String page;
 
 		public BookMarker() {
 			this.setOpaque(false);
@@ -193,6 +199,9 @@ public class MainMenuPager extends JPanel {
 				bg.add(buttons[i]);
 				buttons[i].setOpaque(false);
 				buttons[i].setName(Integer.toString(i));
+				if (jump != null) {
+					buttons[i].setToolTipText(jump.replace("\\{0\\}", Integer.toString(i)));
+				}
 				buttons[i].addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
@@ -206,10 +215,37 @@ public class MainMenuPager extends JPanel {
 			}
 			update(currentPage);
 		}
-		
+																																																																																																																																																																																																							
 		public void update(int currentPage) {
 			buttons[currentPage].setSelected(true);
+			if (page!= null) {
+					buttons[currentPage].setToolTipText(
+					page
+					.replace("\\{0\\}", Integer.toString(currentPage)
+							.replace("\\{1\\}", Integer.toString(pages.getComponentCount()))));
+			}
 		}
+
+		void setHelpStrings(String jump, String page) {
+			this.jump = jump;																					
+			this.page = page;
+		}
+		
+	}
+
+
+	/**
+	 * set the help strings for different elements.
+	 * @param next
+	 * @param previous
+	 * @param jump
+	 * @param page
+	 */
+	public void setHelpStrings(String next, String previous,
+			String jump, String page) {
+		btnPrev.setToolTipText(previous);
+		btnNext.setToolTipText(next);
+		bm.setHelpStrings(jump,page);
 		
 	}
 

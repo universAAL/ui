@@ -17,6 +17,9 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JDesktopPane;
@@ -29,9 +32,12 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import org.jdesktop.swingx.JXLoginPane;
 import org.jdesktop.swingx.auth.LoginService;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.ontology.language.Language;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.ColorType;
+import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
 import org.universAAL.ontology.ui.preferences.GenericFontFamily;
 import org.universAAL.ontology.ui.preferences.Intensity;
 import org.universAAL.ontology.ui.preferences.Size;
@@ -58,6 +64,7 @@ public class Init implements InitInterface {
     private JFrame frame;
     private Renderer render;
 	private boolean windowed;
+	private Messages messages;
 
 	/** {@inheritDoc} */
     public void install(Renderer render) {
@@ -87,6 +94,13 @@ public class Init implements InitInterface {
         	.setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
         ToolTipManager.sharedInstance()
     		.setEnabled(Boolean.parseBoolean(render.getProperty(TOOLTIP_ACTIVE, "true")));
+        URL propertiesURL = getClass().getClassLoader().getResource("internationalization.messages.properties");
+        try {
+			messages = new Messages(propertiesURL);
+		} catch (Exception e) {
+			LogUtils.logError(render.getModuleContext(), getClass(),
+					"install", new String[]{"unable to load internationalization Messages."}, e);
+		} 
     }
     
     public ColorLAF getColorLAF(){
@@ -152,6 +166,15 @@ public class Init implements InitInterface {
 		
 	}
 
+	private boolean tryLoadingMessages(Locale l){
+		URL resource = getClass().getClassLoader().getResource("internationalization/messages.properties");
+		try {
+			messages = new Messages(resource, l);
+			return messages.getCurrentLocale().equals(l);
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	/**
 	 * @param currentDialog
@@ -159,6 +182,17 @@ public class Init implements InitInterface {
 	public void processPrefs(UIRequest currentDialog) {
 		VisualPreferences vp = (VisualPreferences) currentDialog
 				.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
+		
+		GeneralInteractionPreferences gip = (GeneralInteractionPreferences) currentDialog
+				.getProperty(UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES);
+		
+		if (gip != null){
+			Language preferred  = gip.getPreferredLanguage();
+			if (!tryLoadingMessages(new Locale(preferred.getIso639code()))){
+				Language secondary = gip.getSecondaryLanguage();
+				tryLoadingMessages(new Locale(secondary.getIso639code()));
+			}
+		}
 
 		if (vp != null){
 //			ColorType bgColor = vp.getBackgroundColor();
@@ -320,5 +354,14 @@ public class Init implements InitInterface {
 				}
 			}
 		}
+	}
+
+	/**
+	 * get the Internationalized message corresponding to the provided Key
+	 * @param key the Key of the message.
+	 * @return the string.
+	 */
+	public String getMessage(String key) {
+		return messages.getString(key);
 	}
 }
