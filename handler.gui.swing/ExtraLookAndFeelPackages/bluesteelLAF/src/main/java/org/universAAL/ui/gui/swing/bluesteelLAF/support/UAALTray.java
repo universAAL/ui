@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingUtilities;
 
 import org.osgi.framework.BundleException;
+import org.universAAL.ui.gui.swing.bluesteelLAF.Init;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
@@ -64,8 +65,9 @@ public class UAALTray {
     
     public PopupMenu getMenu(){
 	PopupMenu popup = new PopupMenu();
+	Init i = Init.getInstance(render);
 	    if (this.render.getCurrentUser() == null){
-		MenuItem logOnItem = new MenuItem("Log On");
+		MenuItem logOnItem = new MenuItem(i.getMessage(MessageKeys.LOG_ON));
 		logOnItem.addActionListener(new ActionListener() {
 		    
 		    public void actionPerformed(ActionEvent e) {
@@ -80,7 +82,7 @@ public class UAALTray {
 		popup.add(logOnItem);
 	    }
 	    else {
-		MenuItem logOffItem = new MenuItem("Log Off");
+		MenuItem logOffItem = new MenuItem(i.getMessage(MessageKeys.LOG_OFF));
 		logOffItem.addActionListener(new ActionListener() {
 		    
 		    public void actionPerformed(ActionEvent e) {
@@ -94,7 +96,7 @@ public class UAALTray {
 		});
 		popup.add(logOffItem);
 	    }
-	    MenuItem exitItem = new MenuItem("Shutdown");
+	    MenuItem exitItem = new MenuItem(i.getMessage(MessageKeys.SHUTDOWN));
 	    exitItem.addActionListener(new ActionListener() {
 	        
 	        public void actionPerformed(ActionEvent e) {

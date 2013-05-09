@@ -30,6 +30,7 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UCCButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton;
+import org.universAAL.ui.gui.swing.bluesteelLAF.support.MessageKeys;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.SystemCollapse;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -39,6 +40,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * @author pabril
+ * @author amedrano
  *
  */
 public class GroupLAF extends GroupModel {
@@ -56,26 +58,42 @@ public class GroupLAF extends GroupModel {
     
     /** {@inheritDoc} */
     public JComponent getNewComponent() {
+    	Init i = Init.getInstance(getRenderer());
     	if (this.isTheMainGroup()
     			&& this.isInMainMenu()){
     		if (UCCButton.uCCPresentInNode()) {
-    			new Submit((Group)fc, new Label("uCC", "system/UCC.png"), UCCButton.SUBMIT_ID);
+    			new Submit((Group)fc, new Label(i.getMessage(MessageKeys.UCC),
+    					"system/UCC.png"), UCCButton.SUBMIT_ID)
+    			.setHelpString(i.getMessage(MessageKeys.UCC_HELP));
     		}
-    		new Submit((Group)fc, new Label("uStore", "system/Ustore.png"), UStoreButton.SUBMIT_ID);
+    		new Submit((Group)fc, new Label(i.getMessage(MessageKeys.USTORE),
+    				"system/Ustore.png"), UStoreButton.SUBMIT_ID)
+    		.setHelpString(i.getMessage(MessageKeys.USTORE_HELP));
     	}
-    	int gap = Init.getInstance(getRenderer()).getColorLAF().getGap();
+    	int gap = i.getColorLAF().getGap();
     	if (this.isTheIOGroup() 
         		&& this.isInMainMenu()) {
     		//XXX get col-row ratio +- form screen resolution.
+    		MainMenuPager mmp = null;
     		if (gap >= 20)
-    			return new MainMenuPager(2,2,gap);
+    			mmp = new MainMenuPager(2,2,gap);
     		if (gap >= 10)
-    			return new MainMenuPager(3, 2, gap);
+    			mmp = new MainMenuPager(3, 2, gap);
     		else
-    			return new MainMenuPager(4, 3, gap);
+    			mmp = new MainMenuPager(4, 3, gap);
+    		
+    		mmp.setHelpStrings(
+    				i.getMessage(MessageKeys.NEXT),
+    				i.getMessage(MessageKeys.PREVIOUS),
+    				i.getMessage(MessageKeys.JUMP_TO),
+    				i.getMessage(MessageKeys.PAGE));
+    		
+    		return mmp;
         }
     	else if (this.isTheMainGroup()) {
-    		return new SystemCollapse(gap);
+    		SystemCollapse sc = new SystemCollapse(gap);
+    		sc.setToolTipText(i.getMessage(MessageKeys.SHOW_MENU));
+    		return sc;
     	}
     	else if (((Group) fc).isRootGroup()) {
     		JPanel p = new JPanel();

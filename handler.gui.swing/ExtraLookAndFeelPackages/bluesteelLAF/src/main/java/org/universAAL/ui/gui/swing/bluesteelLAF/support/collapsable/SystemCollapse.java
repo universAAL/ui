@@ -41,7 +41,7 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JXCollapsiblePane collapsablePanel;
-	private JButton tglbtnSystem;
+	private TriangularButton tglbtnSystem;
 	private JPanel systemPanel;
 	private Color backgroundColor;
 	private int gap;
@@ -155,4 +155,25 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 		this.backgroundColor = backgroundColor;
 	}
 
+	/**
+	 * set the tooltips for the button.
+	 * @param show the text to show when the  menu is hidden
+	 * @param hide the text to show when the menu is shown
+	 */
+	public void setHelpStrings(final String show, final String hide){
+		ActionListener setStrings = new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				if (collapsablePanel.isCollapsed()){
+					tglbtnSystem.setToolTipText(show);
+				} else {
+					tglbtnSystem.setToolTipText(hide);
+				}
+				
+			}
+		};
+		setStrings.actionPerformed(null);
+		tglbtnSystem.addActionListener(setStrings);
+	}
+	
 }
