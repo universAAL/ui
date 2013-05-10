@@ -23,11 +23,13 @@ import javax.swing.JToggleButton;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdivider;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -53,22 +55,19 @@ implements ActionListener {
      */
     public JComponent getNewComponent() {
         JToggleButton tb = new JToggleButton(fc.getLabel().getText(),
-                IconFactory.getIcon(fc.getLabel().getIconURL()),
-                isSelected());
-        tb.addActionListener(this);
-
+                IconFactory.getIcon(fc.getLabel().getIconURL()));
         return tb;
     }
 
     /**
      * Update the {@link JComponent}
-     */
-/*    
-     protected void update() {
-        //TODO set as pressed when displaying the dialog it triggers
+     */ 
+    protected void update() {
     	super.update();
-    }
-*/
+    	if (jc instanceof JToggleButton){
+    		((JToggleButton) jc).setSelected(isSelected());
+    	}
+     }
     
     /**
      * Checks that the current dialog is a successor of the dialog this
@@ -108,9 +107,9 @@ implements ActionListener {
 	         *  This will produce a rendering of a sub-dialog form!
 	         *  It produces the same response as a submit and the
 	         *  Dialog it triggers comes in another UIRequest.
-	         *  TODO use needsSelection() in case of SubdialogTriggers in
-	         *  Repeat Tables, to check if the submitID is ready
 	         */
+
+
 	    getRenderer().getHandler().submit((Submit) fc);
 	        //Renderer.getInstance().getFormManagement().closeCurrentDialog();
 			

@@ -18,7 +18,8 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JButton;
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
@@ -50,11 +51,12 @@ public class SubmitLAF extends SubmitModel {
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		ColorLAF color = ((Init) getRenderer().getInitLAF()).getColorLAF();
-		return getButton(this, (JButton) super.getNewComponent(), color);
+		AbstractButton s = (AbstractButton) super.getNewComponent();
+		return getButton(this, s.getText(), s.getIcon(), color);
 	}
 
 	public static JComponent getButton(Model model,
-			JButton nc, ColorLAF color) {
+			String label, Icon icon, ColorLAF color) {
 		Color normalF;
 		Color normalB;
 		Color enterF;
@@ -77,8 +79,8 @@ public class SubmitLAF extends SubmitModel {
 			clickF = color.getBackLetter();
 			clickB = color.getOverSytem();
 			button = new MyButton(
-					nc.getText(),
-					nc.getIcon(),
+					label,
+					icon,
 					border,
 					normalF,
 					normalB,
@@ -102,8 +104,8 @@ public class SubmitLAF extends SubmitModel {
 			clickF = color.getSelectedLetter();
 			clickB = color.getBackSystem();
 			button = new MyButton(
-					nc.getText(),
-					nc.getIcon(), 
+					label,
+					icon, 
 					border,
 					normalF,
 					normalB,
