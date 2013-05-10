@@ -221,8 +221,8 @@ public class MainMenuPager extends JPanel {
 			if (page!= null) {
 					buttons[currentPage].setToolTipText(
 					page
-					.replace("\\{0\\}", Integer.toString(currentPage)
-							.replace("\\{1\\}", Integer.toString(pages.getComponentCount()))));
+					.replace("\\{0\\}", Integer.toString(currentPage))
+					.replace("\\{1\\}", Integer.toString(pages.getComponentCount())));
 			}
 		}
 
