@@ -53,10 +53,6 @@ dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMe
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java -text svneol=unset#text/plain
 dm/src/main/resources/messages.properties -text
-dm/src/main/resources/messages_de_TODO.properties -text
-dm/src/main/resources/messages_el_TODO.properties -text
-dm/src/main/resources/messages_en.properties -text
-dm/src/main/resources/messages_es_TODO.properties -text
 dm/src/test/java/org/universAAL/plainJava/POJOContainer.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/plainJava/POJOModuleContext.java -text svneol=unset#text/plain
 dm/src/test/java/org/universAAL/ui/dm/tests/DialogPoolCopierTest.java -text svneol=unset#text/plain
