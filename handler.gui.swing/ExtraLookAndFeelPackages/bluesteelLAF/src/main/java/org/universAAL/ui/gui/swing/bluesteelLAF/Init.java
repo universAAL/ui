@@ -17,7 +17,6 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.Color;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
 

@@ -27,7 +27,7 @@ public class CollapsableTest extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private GradientLAF contentPane;
-    private JPanel collapsable;
+    private SystemCollapse collapsable;
 
     /**
      * Launch the application.
@@ -57,6 +57,7 @@ public class CollapsableTest extends JFrame {
 	contentPane.setLayout(new BorderLayout(0, 0));
 
 	collapsable = new SystemCollapse();
+	collapsable.setHelpStrings("show", "hide");
 	// collapsable = new JXCollapsiblePane();
 	// collapsable.setScrollableTracksViewportHeight(false);
 	// collapsable.setMinimumSize(new Dimension(0, 8));
@@ -92,7 +93,8 @@ public class CollapsableTest extends JFrame {
 	});
 	collapsable.add(btnPendingDialogs);
 
-	JPanel panel_1 = new MainMenuPager();
+	MainMenuPager panel_1 = new MainMenuPager();
+	panel_1.setHelpStrings("next", "previous", "jump to page \\{0\\}", "\\{0\\}/\\{1\\}");
 	contentPane.add(panel_1, BorderLayout.CENTER);
 
 	JPanel panel = new JPanel();

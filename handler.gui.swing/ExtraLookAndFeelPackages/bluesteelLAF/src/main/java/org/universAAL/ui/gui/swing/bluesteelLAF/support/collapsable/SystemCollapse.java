@@ -25,10 +25,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 import org.jdesktop.swingx.JXCollapsiblePane;
 import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
@@ -164,11 +164,16 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 		ActionListener setStrings = new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				SwingUtilities.invokeLater(new Runnable() {
+					
+					public void run() {
 				if (collapsablePanel.isCollapsed()){
 					tglbtnSystem.setToolTipText(show);
 				} else {
 					tglbtnSystem.setToolTipText(hide);
 				}
+					}
+				});
 				
 			}
 		};
