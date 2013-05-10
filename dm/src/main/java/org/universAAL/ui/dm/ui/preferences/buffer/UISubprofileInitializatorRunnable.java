@@ -24,6 +24,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.ontology.language.Language;
+import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.Caregiver;
 import org.universAAL.ontology.profile.User;
@@ -339,10 +340,11 @@ public class UISubprofileInitializatorRunnable implements Runnable {
     
     
     /**
-     * 
+     * Get the English Language.
      * @return {@link Language} English
      */
     private Language getLanguageOntEnglish() {
-    	return getLanguageFromIso639("en");
+    	String englishURI =  LanguageOntology.NAMESPACE + "ENGLISH";
+    	return (Language) Resource.getResource(englishURI, englishURI.toLowerCase());
     }
 }
