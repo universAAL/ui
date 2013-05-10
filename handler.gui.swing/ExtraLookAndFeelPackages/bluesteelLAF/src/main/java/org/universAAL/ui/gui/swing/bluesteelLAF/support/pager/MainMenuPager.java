@@ -199,9 +199,7 @@ public class MainMenuPager extends JPanel {
 				bg.add(buttons[i]);
 				buttons[i].setOpaque(false);
 				buttons[i].setName(Integer.toString(i));
-				if (jump != null) {
-					buttons[i].setToolTipText(jump.replace("\\{0\\}", Integer.toString(i)));
-				}
+				
 				buttons[i].addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
@@ -215,15 +213,26 @@ public class MainMenuPager extends JPanel {
 			}
 			update(currentPage);
 		}
-																																																																																																																																																																																																							
+		
+		private void updateHelp(){
+			for (int i = 0; i < buttons.length; i++) {
+				if (jump != null
+						&& i != currentPage) {
+					buttons[i].setToolTipText(jump.replace("\\{0\\}", Integer.toString(i+1)));
+				}
+				if (page!= null
+						&& i == currentPage) {
+					buttons[i].setToolTipText(
+							page
+							.replace("\\{0\\}", Integer.toString(i+1))
+							.replace("\\{1\\}", Integer.toString(pages.getComponentCount())));
+				}
+			}
+		}
+		
 		public void update(int currentPage) {
 			buttons[currentPage].setSelected(true);
-			if (page!= null) {
-					buttons[currentPage].setToolTipText(
-					page
-					.replace("\\{0\\}", Integer.toString(currentPage))
-					.replace("\\{1\\}", Integer.toString(pages.getComponentCount())));
-			}
+			updateHelp();
 		}
 
 		void setHelpStrings(String jump, String page) {
