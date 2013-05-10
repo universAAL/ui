@@ -144,17 +144,19 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	    new SimpleOutput(g, new Label(ulh.getString("PendingDialogBuilder.date"),
 		    null), new PropertyPath(null, false,
 		    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
-	    new SubdialogTrigger(g, new Label(ulh
+	    SubdialogTrigger sdt = new SubdialogTrigger(g, new Label(ulh
 		    .getString("PendingDialogBuilder.switchTo"), null),
-		    SubdialogTrigger.VAR_REPEATABLE_ID)
-		    .setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
+		    SubdialogTrigger.VAR_REPEATABLE_ID);
+	    sdt.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
+	    sdt.setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
 	    // add submits
 	    g = f.getSubmits();
 	    new Submit(g, new Label(ulh.getString("PendingDialogBuilder.ok"), null),
 		    CLOSE_OPEN_DIALOGS_CALL);
 	    new Submit(g,
 		    new Label(ulh.getString("PendingDialogBuilder.abortAll"), null),
-		    ABORT_ALL_OPEN_DIALOGS_CALL);
+		    ABORT_ALL_OPEN_DIALOGS_CALL)
+	    .setHelpString(ulh.getString("PendingDialogBuilder.abortAll.help"));
 	}
 	if (f == null)
 	    f = Form.newMessage(ulh.getString("MenuProvider.pendingDialogs"),

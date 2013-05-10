@@ -129,13 +129,16 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.pendingMessages.help"));
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.pendingDialogs"), ulh
 		    .getString("MenuProvider.pendingDialogs.icon")),
-		    OPEN_DIALOGS_CALL);
+		    OPEN_DIALOGS_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.pendingDialos.help"));
 	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
-		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.exit.help"));
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
@@ -145,19 +148,22 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.mainMenu"), ulh
-		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.mainMenu.help"));
 
 	    if (!ulh.getString("MenuProvider.pendingMessages").equals(
 		    dialogTitle)) {
 		new Submit(stdButtons, new Label(ulh
 			.getString("MenuProvider.pendingMessages"), ulh
 			.getString("MenuProvider.pendingMessages.icon")),
-			MESSAGES_CALL);
+			MESSAGES_CALL)
+		.setHelpString("MenuProvider.pendingMessages.help");
 
 		new Submit(stdButtons, new Label(ulh
 			.getString("MenuProvider.pendingDialogs"), ulh
 			.getString("MenuProvider.pendingDialogs.icon")),
-			OPEN_DIALOGS_CALL);
+			OPEN_DIALOGS_CALL)
+		.setHelpString("MenuProvider.pendingDialogs.help");
 	    }
 	    break;
 	default:

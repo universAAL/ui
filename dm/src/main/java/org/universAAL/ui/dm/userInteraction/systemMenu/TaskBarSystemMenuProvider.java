@@ -145,7 +145,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
-		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.exit.help"));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	case DialogType.MESSAGE:
@@ -154,7 +155,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.mainMenu"), ulh
-		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.mainMenu.help"));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	default:
@@ -168,7 +170,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.pendingMessages.help"));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
@@ -182,7 +185,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 		sentItems.add(dialogId);
 		new Submit(pendingDialogs, new Label(req.getDialogForm()
 			.getTitle(), null), SWITCH_TO_CALL_PREFIX
-			+ Integer.toString(i++));
+			+ Integer.toString(i++))
+		.setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
 	    }
 	} else {
 	    // show a button with different ICON/Message or nothing
