@@ -202,7 +202,8 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		new Submit(g, new Label(ulh.getString("PendingMessageBuilder.ok"), null),
 			CLOSE_MESSAGES_CALL);
 		new Submit(g, new Label(ulh.getString("PendingDialogBuilder.deleteAll"),
-			null), DELETE_ALL_MESSAGES_CALL);
+			null), DELETE_ALL_MESSAGES_CALL)
+		.setHelpString(ulh.getString("PendingDialogBuilder.deleteAll.help"));
 	    }
 	}
 

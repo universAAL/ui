@@ -77,16 +77,18 @@ public Form buildForm() {
 	Group g = f.getIOControls();
 	int i = 0;
 	for (Resource dlgData : dialogs) {
-	    new Submit(g, new Label("Switch to: "
+	    new Submit(g, new Label(ulh.getString("PendingDialogBuilder.switchTo")
 		    + dlgData.getProperty(PROP_DLG_LIST_DIALOG_TITLE),
-		    null), SWITCH_TO_CALL_PREFIX + i++);
+		    null), SWITCH_TO_CALL_PREFIX + i++)
+	    .setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
 	}
 	// a dd submits
 	g = f.getSubmits();
 	new Submit(g, new Label(ulh.getString("PendingDialogBuilderWithSubmits.ok"), null),
 		CLOSE_OPEN_DIALOGS_CALL);
 	new Submit(g, new Label(ulh.getString("PendingDialogBuilder.abortAll"),
-		null), ABORT_ALL_OPEN_DIALOGS_CALL);
+		null), ABORT_ALL_OPEN_DIALOGS_CALL)
+	.setHelpString(ulh.getString("PendingDialogBuilder.abortAll.help"));
     }
     if (f == null)
 	f = Form.newMessage(

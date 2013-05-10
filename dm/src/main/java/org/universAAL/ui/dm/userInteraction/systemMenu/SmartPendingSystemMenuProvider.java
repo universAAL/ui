@@ -131,7 +131,8 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.SYS_MENU:
 	    putPendingXXSubmits(stdButtons);
 	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
-		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL);
+		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.exit.help"));
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
@@ -139,7 +140,8 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.mainMenu"), ulh
-		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL);
+		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.mainMenu.help"));
 	    String dialogTitle = f.getTitle();
 	    if (!ulh.getString("MenuProvider.pendingMessages").equals(
 		    dialogTitle)) {
@@ -157,7 +159,8 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL);
+		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.pendingMessages.help"));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
@@ -165,7 +168,8 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	    new Submit(stdButtons, new Label(ulh
 		    .getString("MenuProvider.pendingDialogs"), ulh
 		    .getString("MenuProvider.pendingDialogs.icon")),
-		    OPEN_DIALOGS_CALL);
+		    OPEN_DIALOGS_CALL)
+	    .setHelpString(ulh.getString("MenuProvider.pendingDialogs.help"));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
