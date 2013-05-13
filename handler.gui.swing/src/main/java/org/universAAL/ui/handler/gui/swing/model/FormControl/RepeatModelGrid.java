@@ -27,6 +27,7 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -72,25 +73,41 @@ public class RepeatModelGrid extends RepeatModel {
 		Repeat r = (Repeat)fc;
 		subDivider = new RepeatSubdivider(r);
 		elems = subDivider.getElems();
-		
-		
-		layout = new GridLayout(0,elems.length);
-		grid = new JPanel(layout);
+		grid = new JPanel();
+		updateLayout();
 		return grid;
 	}
 	
+	private void updateLayout(){
+		layout = new GridLayout(0,elems.length);
+		//TODO implement MyGridLayout which adjusts columns independently.
+		grid.setLayout(layout);
+	}
+	
 	private void reDrawPanel(){
+		update();
+		grid.revalidate();
+	}
+	
+	/** {@ inheritDoc}	 */
+	protected void update(){
 		grid.removeAll();
 		Repeat r = (Repeat)fc;
 		subDivider = new RepeatSubdivider(r);
 		elems = subDivider.getElems();
-		update();
-		grid.revalidate();
+		updateLayout();
+		updateContents();		
 	}
-
-	/** {@ inheritDoc}	 */
-	protected void update() {
+	
+	
+	protected void updateContents() {
 		int ii = 0;
+		for (int i = 0; i < elems.length; i++) {
+			JLabel colLabel = 
+					getRenderer().getModelMapper()
+					.getModelFor(elems[i].getLabel()).getComponent();
+			grid.add(colLabel);
+		}
 		List forms = subDivider.generateSubForms();
 		for (Iterator i = forms.iterator(); i.hasNext();) {
 			Form f = (Form) i.next();
@@ -109,7 +126,7 @@ public class RepeatModelGrid extends RepeatModel {
 	 * See {@link RepeatModelGrid#layout}.
 	 * @return The layout used for the JPanel containing the repeat sub components.
 	 */
-	GridLayout getLayout(){
+	protected GridLayout getLayout(){
 		return layout;
 	}
 	

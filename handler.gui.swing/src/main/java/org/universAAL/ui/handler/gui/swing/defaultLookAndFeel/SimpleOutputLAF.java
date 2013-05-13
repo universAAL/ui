@@ -93,7 +93,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 				JTextComponent tf = (JTextComponent) jc;
 				tf.getAccessibleContext().setAccessibleName(tf.getText());
 				tf.setFont(color.getplain());
-				tf.setPreferredSize(new Dimension(150, 30));
+				//tf.setPreferredSize(new Dimension(150, 30));
 				tf.setForeground(color.getBackMM());
 			}
 	            else if (jc instanceof JLabel) {

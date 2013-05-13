@@ -34,6 +34,11 @@ public class RepeatModel extends GroupModel {
 	 * Place holder for tables
 	 */
     protected RepeatModelTable table;
+    
+	/**
+	 * Place holder for grids
+	 */
+    protected RepeatModelGrid grid;
 
 	/**
      * Constructor
@@ -85,20 +90,6 @@ public class RepeatModel extends GroupModel {
     	return chd.length > 0 && chd[0] instanceof Group;
     }
 
-
-
-    /** {@inheritDoc}*/
-    public JComponent getNewComponent() {
-        if (isATable()) {
-        	table = new RepeatModelTable((Repeat) fc, getRenderer());
-            return table.getJTable();
-        } else {
-        	//TODO: otherwise, the repeat object represents a one 
-        	// column list of simple values
-        }
-        
-        return super.getNewComponent();
-    }
     
     /**
      * Overriding update from {@link GroupModel}
@@ -107,9 +98,13 @@ public class RepeatModel extends GroupModel {
     	if (jc instanceof JTabbedPane) {
     		updateTabbedPanel();
     	}
-    	else if (isATable()){
+    	else if (table != null){
     		table.update();
     		needsLabel = table.needsLabel;
+    	}
+    	else if (grid != null){
+    		grid.update();
+    		needsLabel = grid.needsLabel;
     	}
     	else {
     		super.update();

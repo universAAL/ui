@@ -17,10 +17,13 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
 /**
  * @author pabril
@@ -45,8 +48,14 @@ public class RepeatLAF extends RepeatModel {
 		 * take decision Check for Group children and render JTabbedPane
 		 */
 		if (isATable()) {
-			table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
-			return table.getNewComponent();
+			if (((Repeat)fc).listEntriesEditable() 
+					|| containsSubmits((Repeat)fc)) {
+				grid = new RepeatModelGrid((Repeat) fc, getRenderer());
+				return grid.getNewComponent();
+			} else {
+				table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
+				return table.getNewComponent();
+			}
 		}
 		if (getChildrenType().equals(Group.class)) {
 			/*
@@ -56,6 +65,18 @@ public class RepeatLAF extends RepeatModel {
 		}
 
 		return super.getNewComponent();
+	}
+
+	private boolean containsSubmits(Repeat repeat) {
+		boolean contains = false;
+		FormControl[] fcs = repeat.getChildren();
+		for (int i = 0; i < fcs.length; i++) {
+			if (fcs[i] instanceof Submit){
+				contains = true;
+				return contains;
+			}
+		}
+		return contains;
 	}
 
 }
