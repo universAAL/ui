@@ -126,16 +126,18 @@ public class SimpleOutputModel extends OutputModel {
             return new JCheckBox(fc.getLabel().getText(),
                     IconFactory.getIcon(fc.getLabel().getIconURL()));
         }
-		//if (inFi.getValue() instanceof XMLGregorianCalendar) {}
-		//if (inFi.getValue() instanceof Duration) {}
-/*			if (inFi.getValue() instanceof Integer 
-				|| inFi.getValue() instanceof Long) {
-			
+//		if (content instanceof XMLGregorianCalendar) {
+//			return new JTextField(10);
+//		}
+//		if (content instanceof Duration) {}
+		if (content instanceof Integer 
+				|| content instanceof Long) {
+			return new JTextField(6);
 		}
-		if (inFi.getValue() instanceof Float
-				|| inFi.getValue() instanceof Double) {
-			
-		}*/
+		if (content instanceof Float
+				|| content instanceof Double) {
+			return new JTextField(6);
+		}
 		if (content instanceof Locale) {
 			return new JTextField();
 		}
@@ -165,21 +167,37 @@ public class SimpleOutputModel extends OutputModel {
             cb.setSelected(((Boolean) content).booleanValue());
             cb.setEnabled(false);
         }
-		//if (inFi.getValue() instanceof XMLGregorianCalendar) {}
-		//if (inFi.getValue() instanceof Duration) {}
-/*			if (inFi.getValue() instanceof Integer 
-				|| inFi.getValue() instanceof Long) {
-			
-		}
-		if (inFi.getValue() instanceof Float
-				|| inFi.getValue() instanceof Double) {
-			
-		}*/
-		if (jc instanceof JTextField
-				&& content instanceof Locale) {
-			JTextField tf = (JTextField) jc;
-			tf.setText(((Locale) content).getDisplayLanguage());
-			tf.setEditable(false);
+		//if (content instanceof XMLGregorianCalendar) {}
+        //if (content instanceof Duration) {}
+        if (jc instanceof JTextField
+        		&& content instanceof Integer){
+        	JTextField tf = (JTextField) jc;
+        	tf.setText(((Integer)content).toString());
+        	tf.setEditable(false);
+        }
+        if (jc instanceof JTextField
+        		&& content instanceof Long) {
+        	JTextField tf = (JTextField) jc;
+        	tf.setText(((Long)content).toString());
+        	tf.setEditable(false);
+        }
+        if (jc instanceof JTextField
+        		&& content instanceof Float){
+        	JTextField tf = (JTextField) jc;
+        	tf.setText(((Float)content).toString());
+        	tf.setEditable(false);
+        }
+        if (jc instanceof JTextField
+        		&& content instanceof Double) {
+        	JTextField tf = (JTextField) jc;
+        	tf.setText(((Double)content).toString());
+        	tf.setEditable(false);
+        }
+        if (jc instanceof JTextField
+        		&& content instanceof Locale) {
+        	JTextField tf = (JTextField) jc;
+        	tf.setText(((Locale) content).getDisplayLanguage());
+        	tf.setEditable(false);
 		}
         super.update();
     }

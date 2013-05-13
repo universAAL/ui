@@ -23,13 +23,11 @@ import javax.swing.JToggleButton;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
-import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdivider;
 
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
@@ -109,9 +107,9 @@ implements ActionListener {
 	         *  Dialog it triggers comes in another UIRequest.
 	         */
 
-
+		
 	    getRenderer().getHandler().submit((Submit) fc);
-	        //Renderer.getInstance().getFormManagement().closeCurrentDialog();
+//	        Renderer.getInstance().getFormManagement().closeCurrentDialog();
 			
 		}
     	
