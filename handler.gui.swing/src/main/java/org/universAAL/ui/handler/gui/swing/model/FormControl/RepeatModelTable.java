@@ -30,13 +30,15 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableCellEditor;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJComponentCellRenderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFormControlCellRenderer;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJButtonEditor;
 
 /**
  * Helper Class just to render RepeatTables.
@@ -113,10 +115,10 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 			tableComponent.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			tableComponent.setColumnSelectionAllowed(false);
 			tableComponent.setRowSelectionAllowed(true);
-			TableJComponentCellRenderer tjccre = new TableJComponentCellRenderer(getRenderer());
+			TableFormControlCellRenderer tjccre = new TableFormControlCellRenderer(getRenderer());
 			tableComponent.setDefaultRenderer(
 					Object.class, tjccre);
-			tableComponent.setDefaultEditor(Object.class,tjccre);
+			tableComponent.setDefaultEditor(Object.class,(TableCellEditor) tjccre);
 			tableComponent.getSelectionModel().addListSelectionListener(this);
 		}
 		return tableComponent;
