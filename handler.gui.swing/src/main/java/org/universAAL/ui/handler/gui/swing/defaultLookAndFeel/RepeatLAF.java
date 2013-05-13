@@ -49,7 +49,7 @@ public class RepeatLAF extends RepeatModel {
 		 */
 		if (isATable()) {
 			if (((Repeat)fc).listEntriesEditable() 
-					|| containsSubmits((Repeat)fc)) {
+					|| containsSubmits()) {
 				grid = new RepeatModelGrid((Repeat) fc, getRenderer());
 				return grid.getNewComponent();
 			} else {
@@ -65,18 +65,6 @@ public class RepeatLAF extends RepeatModel {
 		}
 
 		return super.getNewComponent();
-	}
-
-	private boolean containsSubmits(Repeat repeat) {
-		boolean contains = false;
-		FormControl[] fcs = repeat.getChildren();
-		for (int i = 0; i < fcs.length; i++) {
-			if (fcs[i] instanceof Submit){
-				contains = true;
-				return contains;
-			}
-		}
-		return contains;
 	}
 
 }

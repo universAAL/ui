@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
+package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,14 +22,13 @@ import java.awt.Image;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.ui.gui.swing.bluesteelLAF.support.RoundedGradientButton;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
@@ -40,11 +39,11 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 public class RepeatModelGridLAF extends RepeatModelGrid {
 
 	private static final int AUX_BUTTON_SIZE = 20;
-	private ColorLAF color;
+	private static final Color AUX_BUTTON_LIGTH = new Color(204,204,204);;
+	private static final Color AUX_BUTTON_DARK = new Color(173,173,173);
 	
 	public RepeatModelGridLAF(Repeat control, Renderer render) {
 		super(control, render);
-		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
 
 	/** {@inheritDoc} */
@@ -53,10 +52,6 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 		
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-		Component[] buttons = buttonPanel.getComponents();
-		for (int i = 0; i < buttons.length; i++) {
-			setButtonColors((JButton) buttons[i]);
-		}
 		JPanel pannelWithAll = new JPanel();
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
@@ -75,25 +70,15 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 		if (r.listAcceptsNewEntries()) {
 			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Add.png")).getImage() ;  
     	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH);  
-			buttonPanel.add(new AddTableButton(new ImageIcon( newimg )));
+			buttonPanel.add(
+					new RoundedGradientButton(new AddTableButton(new ImageIcon( newimg )), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		if (r.listEntriesDeletable()) {
 			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Remove.png")).getImage() ;  
     	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH); 
-			buttonPanel.add(new DeleteTableButton(new ImageIcon( newimg )));
+			buttonPanel.add(
+					new RoundedGradientButton(new DeleteTableButton(new ImageIcon( newimg )), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		return buttonPanel;
-	}
-	
-	private void setButtonColors(JButton button) {
-		Color border = color.getborderLine();
-		Color normalF = color.getBackLetter();
-		Color normalB = color.getBackSystem();
-		Color enterF = color.getBackLetter();
-		Color enterB = color.getOverSytem();
-		Color clickF = color.getSelectedLetter();
-		Color clickB = color.getBackSystem();
-		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF,
-				enterB, clickF, clickB);
 	}
 }
