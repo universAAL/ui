@@ -45,6 +45,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdi
  * {@link AbstractTableModel}.
  * 
  * @author mtazari
+ * @author amedrano
  * 
  */
 public class RepeatTableModel extends AbstractTableModel {
@@ -165,11 +166,6 @@ public class RepeatTableModel extends AbstractTableModel {
 	return elems[col].getValue();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see javax.swing.table.TableModel#getValueAt(int, int)
-     */
     /**
      * Implements {@link TableModel#getValueAt(int, int)}
      * 
@@ -258,7 +254,6 @@ public class RepeatTableModel extends AbstractTableModel {
     // }
     
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		return (elems[columnIndex] instanceof Input 
 				&& repeat.listEntriesDeletable())
 				|| elems[columnIndex] instanceof Submit;
