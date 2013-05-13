@@ -78,6 +78,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/MediaObjectLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RangeLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java -text svneol=unset#text/plain

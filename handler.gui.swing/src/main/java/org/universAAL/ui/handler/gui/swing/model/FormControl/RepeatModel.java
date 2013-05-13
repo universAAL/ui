@@ -15,13 +15,14 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
+import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -110,4 +111,20 @@ public class RepeatModel extends GroupModel {
     		super.update();
     	}
     }
+    
+	/**
+	 * Tells whether this repeat has or not {@link Submit}s (or {@link SubdialogTrigger}s).
+	 * @return true iff there is a {@link Submit} (or subclass of) as child. 
+	 */
+	public boolean containsSubmits() {
+		boolean contains = false;
+		FormControl[] fcs = ((Repeat)fc).getChildren();
+		for (int i = 0; i < fcs.length; i++) {
+			if (fcs[i] instanceof Submit){
+				contains = true;
+				return contains;
+			}
+		}
+		return contains;
+	}
 }

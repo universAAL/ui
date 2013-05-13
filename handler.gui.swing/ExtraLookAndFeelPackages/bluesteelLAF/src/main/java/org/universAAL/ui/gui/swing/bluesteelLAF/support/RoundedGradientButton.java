@@ -24,6 +24,7 @@ import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.AbstractButton;
@@ -52,7 +53,11 @@ public class RoundedGradientButton extends JButton {
 	protected Color bDark;
 	
 	public RoundedGradientButton(String text, Color light, Color dark) {
-	    super(text);
+		this(text,null,light,dark);
+	}
+	
+	public RoundedGradientButton(String text,Icon icon, Color light, Color dark){
+	    super(text,icon);
 	    this.light = light;
 	    this.dark = dark;
 	    this.bLight = light;
@@ -60,6 +65,15 @@ public class RoundedGradientButton extends JButton {
 	    setBorderPainted(false);
 	    setOpaque(true);
 	    setUI(new UIRoundedGradientButton());
+	}
+	
+	public RoundedGradientButton(AbstractButton button, Color light, Color dark){
+		this(button.getText(),button.getIcon(),light,dark);
+		ActionListener[] a = button.getActionListeners();
+		for (int i = 0; i < a.length; i++) {
+			this.addActionListener(a[i]);
+		}
+		this.setName(button.getName());
 	}
 	
 	protected Border getRaisedBorder() {
