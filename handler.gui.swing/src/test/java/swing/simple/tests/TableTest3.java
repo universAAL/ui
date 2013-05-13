@@ -20,10 +20,10 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelGridLAF;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
-public class TableTest2 extends JFrame {
+public class TableTest3 extends JFrame {
     /**
      * 
      */
@@ -33,11 +33,11 @@ public class TableTest2 extends JFrame {
     private static final String PROP_COL = PREFIX + "column";
 	private static final String SWITCH_TO_CALL_PREFIX = "urn:ui.dm:UICaller:switchTo#";
 
-    private RepeatModelTable rmt;
+    private RepeatModelGrid rmt;
 
     private TestRenderer render;
 
-    public TableTest2() {
+    public TableTest3() {
     	ModuleContext mc = new POJOModuleContext();
 	render = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 
@@ -82,7 +82,7 @@ public class TableTest2 extends JFrame {
 	.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 
 	//rtm = new RepeatTableModel(repeat);
-	rmt = new RepeatModelTableLAF(repeat, render);
+	rmt = new RepeatModelGridLAF(repeat, render);
 //	System.out.println("Table (" + rtm.getColumnCount() + ", "
 //		+ rtm.getRowCount() + ")");
 	getContentPane().add(rmt.getComponent());
@@ -95,7 +95,7 @@ public class TableTest2 extends JFrame {
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());
 	OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
-	TableTest2 m = new TableTest2();
+	TableTest3 m = new TableTest3();
 
 	m.setVisible(true);
 	m.setSize(new Dimension(600, 300));
