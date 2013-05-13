@@ -238,7 +238,7 @@ public class UserDialogManager implements IDialogManager,
     }
 
     /** {@inheritDoc} */
-    public void chaged(UIPreferencesSubProfile subProfile) {
+    public void changedUIPreferences(UIPreferencesSubProfile subProfile) {
 	// update the UIPreferencesSubProfile for current user
 	uiPreferencesSubProfile = subProfile;
 
