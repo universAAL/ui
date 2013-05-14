@@ -92,6 +92,7 @@ public final class Handler extends UIHandler {
 		
 		LogUtils.logDebug(super.owner, getClass(),
 				"adaptationParametersChanged", new String[] {text}, null);
+		render.getFormManagement().adaptationParametertsChanged(dialogID, changedProp, newVal);
 	}
 
 	/** {@ inheritDoc}	 */

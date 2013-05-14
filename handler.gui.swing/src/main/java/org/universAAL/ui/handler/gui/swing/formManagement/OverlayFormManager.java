@@ -146,16 +146,35 @@ public class OverlayFormManager implements FormManager {
 	return requestMap.keySet();
     }
     
-    /**
-     * A mini-Garbage collector to purge the
-     * {@link OverlayFormManager#dialogIDMap} and
-     * {@link OverlayFormManager#requestMap}
-     * 
-     * @author amedrano
-     * 
-     */
-    private class DMGC extends TimerTask {
+    public void missingInput(Input input) {
+		for (Iterator i = requestMap.values().iterator(); i.hasNext();) {
+			FrameManager fm = (FrameManager) i.next();
+			fm.missing(input);
+		}
+		
+	}
 
+	public void adaptationParametertsChanged(String dialogID,
+			String changedProp, Object newVal) {
+		UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
+		if (r != null){
+			((FrameManager) requestMap.get(r)).disposeFrame();
+			requestMap.put(r,
+					new FrameManager(r.getDialogForm(), render.getModelMapper()));
+		}
+		
+	}
+
+	/**
+	 * A mini-Garbage collector to purge the
+	 * {@link OverlayFormManager#dialogIDMap} and
+	 * {@link OverlayFormManager#requestMap}
+	 * 
+	 * @author amedrano
+	 * 
+	 */
+	private class DMGC extends TimerTask {
+	
 	/** {@inheritDoc} */
 	public void run() {
 	    HashSet tbr = new HashSet();
@@ -185,15 +204,7 @@ public class OverlayFormManager implements FormManager {
 		}
 	    }
 	}
-
-    }
-
-	public void missingInput(Input input) {
-		for (Iterator i = requestMap.values().iterator(); i.hasNext();) {
-			FrameManager fm = (FrameManager) i.next();
-			fm.missing(input);
-		}
-		
+	
 	}
 
 }
