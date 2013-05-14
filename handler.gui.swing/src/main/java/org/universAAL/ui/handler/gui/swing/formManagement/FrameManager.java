@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
@@ -81,6 +82,14 @@ public class FrameManager implements Runnable{
     			model.finalizeForm();
     		}
     	}
+    }
+    
+    /**
+     * Relay the missing update to the model.
+     * @param in
+     */
+    public void missing(Input in){
+    	model.updateMissingInput(in);
     }
 
 	/** {@ inheritDoc}	 */

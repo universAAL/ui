@@ -19,7 +19,6 @@ import java.awt.Component;
 import java.util.EventObject;
 
 import javax.swing.AbstractCellEditor;
-import javax.swing.CellEditor;
 import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.event.CellEditorListener;
@@ -43,7 +42,7 @@ implements TableCellEditor
 	private static final long serialVersionUID = -6364850374955049734L;
 
 	private Renderer render;	
-	private DelegateEditor de;
+	//private DelegateEditor de;
 	
 	public TableFormControlCellRenderer(Renderer render) {
 		super();

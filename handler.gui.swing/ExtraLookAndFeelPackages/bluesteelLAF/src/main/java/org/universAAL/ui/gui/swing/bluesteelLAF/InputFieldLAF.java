@@ -65,5 +65,11 @@ public class InputFieldLAF extends InputFieldModel {
 		return super.getNewComponent();
 	}
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

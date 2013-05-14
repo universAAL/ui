@@ -46,7 +46,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see InputField
  */
-public class InputFieldModel extends InputModel implements ChangeListener,
+public abstract class InputFieldModel extends InputModel implements ChangeListener,
 	CaretListener, ActionListener {
 
     /**
@@ -177,7 +177,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
     }
 
     /** {@inheritDoc} */
-    public boolean isValid(JComponent component) {
+    public boolean isValid() {
 	// TODO check input length!
 	return true;
     }
@@ -194,7 +194,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 				/*
 				 * Update Model if valid
 				 */
-				if (isValid((JComponent) e.getSource())) {
+				if (isValid()) {
 					((Input) fc).storeUserInput(Boolean.valueOf((((JCheckBox) e
 							.getSource()).isSelected())));
 				}				
@@ -217,7 +217,7 @@ public class InputFieldModel extends InputModel implements ChangeListener,
 				 */
 				JTextField tf = (JTextField) e.getSource();
 				InputField inFi = (InputField) fc;
-				if (isValid(tf)) {
+				if (isValid()) {
 					try {
 						if (!inFi.isSecret()) {
 							inFi.storeUserInput(tf.getText());

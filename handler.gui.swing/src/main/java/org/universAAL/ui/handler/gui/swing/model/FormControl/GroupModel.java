@@ -17,6 +17,8 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 
 import java.awt.Container;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -39,6 +41,12 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 public class GroupModel extends Model {
 
 
+	/**
+	 * List of Models for children of this group.
+	 */
+	private List children;
+	
+	
     /**
      * Constructor.
      * @param control the {@link Group} which to model.
@@ -79,9 +87,13 @@ public class GroupModel extends Model {
     }
 
     /** {@inheritDoc}*/
-    public boolean isValid(JComponent component) {
-        // TODO: only valid if ALL elements are valid!
-        return true;
+    public boolean isValid() {
+        boolean valid = true;
+        for (Iterator i = children.iterator(); i.hasNext();) {
+			Model m = (Model) i.next();
+			valid = valid & m.isValid();
+		}
+        return valid;
     }
 
     /**
@@ -142,7 +154,7 @@ public class GroupModel extends Model {
                 if (childComponent instanceof JTabbedPane){
                     pane = new JPanel();
                     pane.add(childComponent);
-                    // TODO: test if the above needs more
+                    // XXX: test if the above needs more
                 }
                 else{
                     pane = new JPanel();
@@ -203,39 +215,57 @@ public class GroupModel extends Model {
      * Access to the Model mapper.
      * it will load the {@link JComponent} for a given {@link FormControl}
      * which is a child of the current group.
+     * Adds the located {@link Model} to the list of children.
      * @param fc
      *         the child from which to obtain it's model and {@link JComponent}
      * @return
      *         the {@link JComponent} build by the {@link Model} of the child
      */
     private JComponent getComponentFrom(FormControl fc) {
-
-        return getRenderer().getModelMapper().getModelFor(fc).getComponent();
+    	Model m = getRenderer().getModelMapper().getModelFor(fc);
+    	children.add(m);
+        return m.getComponent();
     }
 
     /**
      * Access to the Model mapper.
      * it will load the {@link JComponent} for a given {@link FormControl}
      * which is a child of the current group, and add it to a {@link Container}.
+     * Adds the located {@link Model} to the list of children.
      * @param fc
      *         the child from which to obtain it's model and {@link JComponent}
      * @param c
      *         the {@link Container} to which to add the {@link JComponent}
      */
     private void addComponentTo(FormControl fc, Container c) {
-        Model m = getRenderer().getModelMapper().getModelFor(fc);
-        JComponent jc = m.getComponent();
-        if (jc != null  ) {
-            if (fc.getLabel() != null) {
-                LabelModel label = getRenderer().getModelMapper().getModelFor(fc.getLabel());
-                if (label.hasInfo() && m.needsLabel()) {
-                    JLabel l = label.getComponent();
-                    l.setLabelFor(jc);
-                    c.add(l);
-                }
-            }
-            c.add(jc);
-        }
+    	Model m = getRenderer().getModelMapper().getModelFor(fc);
+    	children.add(m);
+    	JComponent jc = m.getComponent();
+    	LabelModel label = m.getLabelModel();
+    	if (jc != null  
+    			&&label != null
+    			&& label.hasInfo()
+    			&& m.needsLabel()) {
+    		JLabel l = label.getComponent();
+    		l.setLabelFor(jc);
+    		c.add(l);
+    	}
+    	c.add(jc);
     }
 
+    /**
+     * Find the Model for the {@link FormControl} with the given URI.
+     * @param formControlURI
+     * @return the model or null if not found.
+     */
+    public Model findChildModeFor(String formControlURI){
+    	for (Iterator i = children.iterator(); i.hasNext();) {
+			Model m = (Model) i.next();
+			if (m.correspondsTo(formControlURI)){
+				return m;
+			}
+		}
+    	return null;
+    }
+    
 }

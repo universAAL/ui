@@ -17,7 +17,6 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Image;
 
 import javax.swing.BoxLayout;

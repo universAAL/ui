@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see TextArea
  */
-public class TextAreaModel extends InputModel
+public abstract class TextAreaModel extends InputModel
 implements CaretListener {
 
     /**
@@ -64,7 +64,7 @@ implements CaretListener {
     /**
      * {@inheritDoc}
      */
-    public boolean isValid(JComponent component) {
+    public boolean isValid() {
         /*
          *  TODO Check Validity!
          *  length
@@ -79,7 +79,7 @@ implements CaretListener {
     	TaskQueue.addTask(new Runnable() {
 			public void run() {
 				// update Model if valid
-				if (isValid((JComponent) e.getSource())) {
+				if (isValid()) {
 					((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
 				}
 			}

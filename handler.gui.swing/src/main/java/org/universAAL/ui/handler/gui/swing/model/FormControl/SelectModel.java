@@ -43,7 +43,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Select
  */
-public class SelectModel extends InputModel implements ListSelectionListener {
+public abstract class SelectModel extends InputModel implements ListSelectionListener {
 
 	/**
 	 * the selected items
@@ -133,7 +133,7 @@ public class SelectModel extends InputModel implements ListSelectionListener {
 	/**
      * {@inheritDoc}
      */
-    public boolean isValid(JComponent component) {
+    public boolean isValid() {
         // TODO check validity (in selection models...)
         return true;
     }

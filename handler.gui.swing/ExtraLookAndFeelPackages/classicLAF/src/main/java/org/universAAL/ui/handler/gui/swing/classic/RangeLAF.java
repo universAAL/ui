@@ -64,4 +64,10 @@ public class RangeLAF extends RangeModel {
 	return combined;
     }
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

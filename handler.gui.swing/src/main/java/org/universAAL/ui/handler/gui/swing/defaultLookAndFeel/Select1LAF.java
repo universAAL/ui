@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import javax.swing.JLabel;
+
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
@@ -33,6 +35,12 @@ public class Select1LAF extends Select1Model {
 	 */
 	public Select1LAF(Select1 control, Renderer render) {
 		super(control, render);
+	}
+
+	/** {@inheritDoc} */
+	public void updateAsMissing() {
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(((Init)getRenderer().getInitLAF()).getColorLAF().getAlert());
 	}
 
 }

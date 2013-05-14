@@ -41,5 +41,11 @@ public class RangeLAF extends RangeModel {
         jc.setForeground(c.getborderLineMM());
     }
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

@@ -19,9 +19,15 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Input;
+import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
+import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.InputModel;
 
 /**
  * Model for Forms, all {@link FormLAF} should extend this class
@@ -38,17 +44,32 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 public abstract class FormModel {
 
     /**
-     * Reference to RDF class
+     * Reference to RDF class.
      */
     protected Form form;
 
     /**
-     * The parent dialog of this sub dialog
+     * The parent dialog of this sub dialog.
      */
     private FormModel parent;
 
     /**
-     * the {@link Renderer} instance to which this {@link FormModel} is associated to
+     * The model for the IOGroup.
+     */
+    protected GroupModel ioGroupModel;
+    
+    /**
+     * The model for the systemGroup.
+     */
+    protected GroupModel sysGroupModel;
+    
+    /**
+     * the model for the submitsGroup.
+     */
+    protected GroupModel submitsGroupModel;
+    
+    /**
+     * The {@link Renderer} instance to which this {@link FormModel} is associated to.
      */
     private Renderer render;
     
@@ -60,17 +81,17 @@ public abstract class FormModel {
     private int subDialogLevel;
 
     /**
-     * the name set to IO panel
+     * The name set to IO panel.
      */
     public static final String IO_NAME = "Interaction";
 
     /**
-     * the name set to Submits panel
+     * The name set to Submits panel.
      */
     public static final String SUB_NAME = "Submits";
 
     /**
-     * the name set to System buttons panel
+     * The name set to System buttons panel.
      */
     public static final String SYS_NAME = "System";
 
@@ -78,11 +99,12 @@ public abstract class FormModel {
      * Constructor for a given {@link Form}.
      * Retrieves the parent (if there is any) and computes
      * the depth.
-     * registers the form in the {@link FormModelMapper} to
+     * Registers the form in the {@link FormModelMapper} to
      * be retrieved by successors.
      * @param f
      *     The {@link Form} for which the model is constructed.
-     * @param renderer TODO
+     * @param renderer 
+     * 	   The {@link Renderer} used to access {@link FormManager} and {@link ModelMapper}
      */
     protected FormModel(Form f, Renderer renderer) {
         form = f;
@@ -107,7 +129,7 @@ public abstract class FormModel {
 
     /**
      * Construct the Frame that displays the {@link Form} and 
-     * make it visible
+     * make it visible.
      */
     public abstract void showForm();
 
@@ -118,21 +140,15 @@ public abstract class FormModel {
     protected abstract void terminateDialog();
 
     /**
-     * terminate the current dialog, close the frame, and
+     * Terminate the current dialog, close the frame, and
      * unregister from {@link FormModelMapper}.
      */
     public void finalizeForm() {
-        /*
-         * FIXME this will unregister parent forms URIs
-         * making useless the registering and antecessor lookup.
-         * find where to unRegister (maybe in SubmitModel), or
-         * the map (FormModelMapper) will grow indefinitely!!!
-         */
         terminateDialog();
     }
 
     /**
-     * Get the {@link Form} related to this {@link FormModel}
+     * Get the {@link Form} related to this {@link FormModel}.
      * @return
      *         the {@link Form}
      */
@@ -167,8 +183,8 @@ public abstract class FormModel {
      * {@link Form#getIOControls()} group.
      */
     protected JPanel getIOPanel() {
-        //JComponent jio = new GroupModel(form.getIOControls(), getRenderer()).getComponent();
-    	JComponent jio = getRenderer().getModelMapper().getModelFor(form.getIOControls()).getComponent();
+        ioGroupModel = (GroupModel) getRenderer().getModelMapper().getModelFor(form.getIOControls());
+    	JComponent jio = ioGroupModel.getComponent();
         jio.setName(IO_NAME);
         return (JPanel) jio;
     }
@@ -180,12 +196,12 @@ public abstract class FormModel {
      * {@link Form#getStandardButtons()} group.
      */
     protected JPanel getSystemPanel() {
-        //JComponent jsys = new GroupModel(form.getStandardButtons(), getRenderer()).getComponent();
     	Group standarButtons = form.getStandardButtons();
     	JComponent jsys;
     	if (standarButtons != null) {
-			 jsys = getRenderer().getModelMapper()
-					.getModelFor(standarButtons).getComponent();
+    		 sysGroupModel = (GroupModel) getRenderer().getModelMapper()
+					.getModelFor(standarButtons);
+			 jsys = sysGroupModel.getComponent();
     	}
     	else {
     		jsys = new JPanel();
@@ -195,18 +211,18 @@ public abstract class FormModel {
     }
 
     /**
-     * construct the Submit Panel for the {@link Form}
+     * Construct the Submit Panel for the {@link Form}
      * @return
      *     a {@link JPanel} with all the components inside
      * {@link Form#getSubmits()} group.
      */
     protected JPanel getSubmitPanel() {
-        //JComponent jstd = new GroupModel(form.getSubmits(), getRenderer()).getComponent();
     	Group submits = form.getSubmits();
     	JComponent jstd;
     	if (submits != null) {
-			jstd = getRenderer().getModelMapper().getModelFor(submits)
-					.getComponent();
+    		submitsGroupModel = (GroupModel)getRenderer()
+    				.getModelMapper().getModelFor(submits);
+			jstd = submitsGroupModel.getComponent();
     	}
     	else {
     		jstd = new JPanel();
@@ -216,7 +232,7 @@ public abstract class FormModel {
     }
 
     /**
-     * get the {@link FormModel} parent of the current {@link FormModel}
+     * Get the {@link FormModel} parent of the current {@link FormModel}
      * that has the given depth.
      * @param depth
      *         the desired depth.
@@ -238,7 +254,7 @@ public abstract class FormModel {
     }
 
     /**
-     * construct the IO Panel for the parent with given depth.
+     * Construct the IO Panel for the parent with given depth.
      * @param depth
      *         the desired depth.
      * @return
@@ -255,7 +271,7 @@ public abstract class FormModel {
     }
 
     /**
-     * construct the Submit Panel for the parent with given depth.
+     * Construct the Submit Panel for the parent with given depth.
      * @param depth
      *         the desired depth.
      * @return
@@ -272,7 +288,7 @@ public abstract class FormModel {
     }
 
     /**
-     * get the Depth of the current {@link FormModel}.
+     * Get the Depth of the current {@link FormModel}.
      * @return
      *         depth (A.K.A subdialogLevel)
      * @see FormModel#subDialogLevel
@@ -282,7 +298,7 @@ public abstract class FormModel {
     }
     
     /**
-     * get the {@link Renderer} associated to this {@link FormModel}
+     * Get the {@link Renderer} associated to this {@link FormModel}.
      * @return
      * 		the {@link Renderer}
      */
@@ -291,7 +307,7 @@ public abstract class FormModel {
     }
     
     /**
-     * Get the list of all parent form titles 
+     * Get the list of all parent form titles.
      * @return an array of titles, the first one being the farthest ancestor
      * 	and the last being the current form's title.
      */
@@ -305,5 +321,37 @@ public abstract class FormModel {
     	}
     	return path;
     }
+    
+    /**
+     * Finds the Model for the {@link Input} and instructs it to 
+     * {@link InputModel#updateAsMissing()}.
+     * @param in
+     */
+    public void updateMissingInput(Input in){
+    	InputModel im = (InputModel) findModel(in.getURI());
+    	if (im != null){
+    		im.updateAsMissing();
+    	}
+    }
+    
+    /**
+     * Find the {@link Model} in the children corresponding to the 
+     * {@link FormControl}'s URI
+     * @param URI the URI of the {@link FormControl} to find the model for.
+     * @return the model if found, null otherwise.
+     */
+    public Model findModel(String URI){
+    	Model result;
+    	result = ioGroupModel.findChildModeFor(URI);
+    	if (result == null
+    			&& submitsGroupModel != null){
+    		result = submitsGroupModel.findChildModeFor(URI);
+    	}
+    	if (result == null
+    			&& sysGroupModel != null){
+    		result = sysGroupModel.findChildModeFor(URI);
+    	}
+    	return result;
+    }  
 }
 

@@ -18,6 +18,8 @@
  */
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
+import javax.swing.JComponent;
+
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -56,4 +58,9 @@ public abstract class InputModel extends Model
     public String getAlertString() {
     	return ((Input)fc).getAlertString();
     }
+    
+    /**
+     * Update the {@link JComponent} or the label to notiffy the the user Input is missing.
+     */
+    public abstract void updateAsMissing();
 }

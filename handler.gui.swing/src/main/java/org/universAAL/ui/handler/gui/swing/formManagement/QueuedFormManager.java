@@ -22,6 +22,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.DialogType;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -207,6 +208,12 @@ public final class QueuedFormManager implements FormManager {
 
 	public Collection getAllDialogs() {
 		return dialogQueue;
+	}
+
+
+	public void missingInput(Input input) {
+		dFrame.missing(input);
+		mFrame.missing(input);		
 	}
 
 }

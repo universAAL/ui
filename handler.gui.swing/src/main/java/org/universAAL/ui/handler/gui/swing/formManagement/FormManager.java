@@ -20,6 +20,7 @@ import java.util.Collection;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Handler;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
@@ -32,9 +33,7 @@ public interface FormManager {
 
     /**
      * Callback for incoming dialogs.
-     * this method will decide if this "interruption" should be displayed
-     * at the very same instant that it is received or it should wait for
-     * more important dialogs to terminate.
+     * This method will model and render (if necessary) the {@link Form}.
      * @param oe
      *         {@link UIRequest} that includes the dialog to show
      */
@@ -87,4 +86,11 @@ public interface FormManager {
      * @return a Collection of {@link UIRequest}s
      */
     Collection getAllDialogs();
+    
+    /**
+     * This method is called when a Submit has detected there is a missing input it needs,
+     * therefore the model for that input should be notified (so the user knows).
+     * @param input
+     */
+    void missingInput(Input input);
 }
