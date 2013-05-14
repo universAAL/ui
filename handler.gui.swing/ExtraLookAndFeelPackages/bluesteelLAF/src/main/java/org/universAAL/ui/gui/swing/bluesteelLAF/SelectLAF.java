@@ -16,6 +16,7 @@
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -67,8 +68,9 @@ public class SelectLAF extends SelectModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
+		l.setText(getAlertString());
 	}
 
 }

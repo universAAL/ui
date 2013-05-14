@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 import java.awt.Insets;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -84,8 +85,9 @@ public class TextAreaLAF extends TextAreaModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
+		l.setText(getAlertString());
 	}
 
 }

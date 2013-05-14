@@ -36,6 +36,8 @@ public class LabelModel {
      * The reference to the {@link Renderer} 
      */
     private Renderer render;
+
+	private JLabel jl;
     
     /**
      * Model constructor.
@@ -54,11 +56,13 @@ public class LabelModel {
      *         {@link JLabel} with text and/or icon.
      */
     public JLabel getComponent() {
-        JLabel jl = new JLabel(label.getText());
-        Icon icon = IconFactory.getIcon(label.getIconURL());
-        if (icon != null) {
-            jl.setIcon(icon);
-        }
+    	if (jl == null){
+    		jl = new JLabel(label.getText());
+    		Icon icon = IconFactory.getIcon(label.getIconURL());
+    		if (icon != null) {
+    			jl.setIcon(icon);
+    		}
+    	}
         return jl;
     }
 

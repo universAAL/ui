@@ -18,6 +18,7 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 import java.util.Date;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -67,8 +68,9 @@ public class InputFieldLAF extends InputFieldModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
+		l.setText(getAlertString());
 	}
 
 
