@@ -30,6 +30,7 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
  */
 public class ColorLAF extends DefaultMetalTheme {
 
+	
 	private String fontFamily = "Arial";
 	private int fontSizeBase = 20;
 	private Color fontColor = new Color(0, 0, 0);
@@ -53,9 +54,14 @@ public class ColorLAF extends DefaultMetalTheme {
 	private static Color DialogGradiendBackground1 = new Color(0xe0, 0xe0, 0xe0);
 	private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
 	private static Color SystemBarBackground = new Color(204, 204, 204);
-
+	private static final Color ALERT_COLOR = new Color(0x9B111E);
+	
 	public static int SEPARATOR_SPACE = 50;
 
+	protected Color getAlert(){
+		return ALERT_COLOR;
+	}
+	
 	/** {@inheritDoc} */
 	protected ColorUIResource getPrimary1() {
 		return primary1;

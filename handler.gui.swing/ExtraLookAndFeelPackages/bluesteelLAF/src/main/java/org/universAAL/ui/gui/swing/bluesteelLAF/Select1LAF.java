@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import javax.swing.JLabel;
+
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
@@ -35,8 +37,9 @@ public class Select1LAF extends Select1Model {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
+		l.setText(getAlertString());
 	}
 
 }
