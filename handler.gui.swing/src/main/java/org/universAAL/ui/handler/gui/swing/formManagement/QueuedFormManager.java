@@ -216,4 +216,22 @@ public final class QueuedFormManager implements FormManager {
 		mFrame.missing(input);		
 	}
 
+
+	public void adaptationParametertsChanged(String dialogID,
+			String changedProp, Object newVal) {
+		if (currentDialog != null 
+				&& dialogID.equals(currentDialog.getDialogID())){
+			if (dFrame != null
+					&& !currentDialog.getDialogForm().isMessage()){
+				dFrame.disposeFrame();
+				dFrame = new FrameManager(currentDialog.getDialogForm(), render.getModelMapper());
+			}
+			if (mFrame != null){
+				mFrame.disposeFrame();
+				mFrame = new FrameManager(currentDialog.getDialogForm(), render.getModelMapper());
+			}
+		}
+		
+	}
+
 }

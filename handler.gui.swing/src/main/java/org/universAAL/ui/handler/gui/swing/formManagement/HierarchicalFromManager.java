@@ -189,4 +189,14 @@ public class HierarchicalFromManager implements FormManager {
 	public void missingInput(Input input) {
 		frame.missing(input);
 	}
+
+	public void adaptationParametertsChanged(String dialogID,
+			String changedProp, Object newVal) {
+		if (currentForm != null
+				&& dialogID.equals(currentForm.getDialogID())){
+			disposeFrame();
+			renderFrame(currentForm.getDialogForm());
+		}
+		
+	}
 }

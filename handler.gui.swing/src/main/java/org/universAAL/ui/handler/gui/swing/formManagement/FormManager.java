@@ -93,4 +93,14 @@ public interface FormManager {
      * @param input
      */
     void missingInput(Input input);
+
+	/**
+	 * Callback for when the bus instructs some parameters have changed.
+	 * Default behavior should be to re-render the form.
+	 * @param dialogID
+	 * @param changedProp
+	 * @param newVal
+	 */
+	void adaptationParametertsChanged(String dialogID, String changedProp,
+			Object newVal);
 }
