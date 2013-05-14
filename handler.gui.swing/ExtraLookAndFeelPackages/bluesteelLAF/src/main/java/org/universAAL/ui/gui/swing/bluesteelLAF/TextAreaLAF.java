@@ -82,4 +82,10 @@ public class TextAreaLAF extends TextAreaModel {
 		return ejc;
 	}
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -74,6 +75,12 @@ public class TextAreaLAF extends TextAreaModel {
 		ejc = super.getNewComponent();
 		sp = new JScrollPane(ejc);
 		return sp;
+	}
+
+	/** {@inheritDoc} */
+	public void updateAsMissing() {
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(color.getAlert());
 	}
 
 }

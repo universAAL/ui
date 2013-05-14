@@ -64,4 +64,11 @@ public class SelectLAF extends SelectModel {
     	super.update();
     }
 
+
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

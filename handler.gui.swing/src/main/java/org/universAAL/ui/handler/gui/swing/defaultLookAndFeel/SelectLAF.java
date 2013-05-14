@@ -16,6 +16,7 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -62,6 +63,12 @@ public class SelectLAF extends SelectModel {
 	protected void update() {
 		jc = (JComponent) (jc == sp ? ejc : jc);
 		super.update();
+	}
+
+	/** {@inheritDoc} */
+	public void updateAsMissing() {
+		JLabel l = getLabelModel().getComponent();
+		l.setForeground(((Init)getRenderer().getInitLAF()).getColorLAF().getAlert());
 	}
 
 }

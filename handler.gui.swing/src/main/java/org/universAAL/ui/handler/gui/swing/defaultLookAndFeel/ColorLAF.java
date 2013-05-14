@@ -67,6 +67,10 @@ public final class ColorLAF extends DefaultMetalTheme {
 	private Font plain = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
 	private Font label = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
 
+	protected Color getAlert(){
+		return new Color(255, 0, 0);
+	}
+	
 	/** {@inheritDoc} */
 	protected ColorUIResource getPrimary1() {
 		return primary1;

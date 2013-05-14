@@ -34,7 +34,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Range
  */
-public class RangeModel extends InputModel
+public abstract class RangeModel extends InputModel
 implements ChangeListener {
 
 	/**
@@ -103,7 +103,7 @@ implements ChangeListener {
     /**
      * {@inheritDoc}
      */
-    public boolean isValid(JComponent component) {
+    public boolean isValid() {
         // Swing makes sure it's all ways valid
         // XXX check the above affirmation
         return true;

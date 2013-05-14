@@ -56,6 +56,11 @@ public abstract class Model {
 	 */
 	private Renderer render;
 
+	/**
+	 * The Label Model labeling the Form Control.
+	 */
+	protected LabelModel label;
+
     /**
      * tests if there is a need to render the Label of this
      * {@link FormControl}, as the representation might have already
@@ -174,12 +179,10 @@ public abstract class Model {
      * Test if the {@link JComponent} information provided by
      * the user is valid according to the {@link FormControl}'s
      * definition.
-     * @param component
-     *         JComponent to test
      * @return
      *         true if the data has passed every restriction
      */
-    public abstract boolean isValid(JComponent component);
+    public abstract boolean isValid();
 
     
     /**
@@ -242,4 +245,27 @@ public abstract class Model {
     public Renderer getRenderer() {
     	return render;
     }
+
+	/**
+	 * Checks if this model corresponds to the form control with the given URI.
+	 * @param formControlURI the {@link FormControl}'s URI to check with.
+	 * @return true if the {@link FormControl}'s URI for this model is equal to formControlURI
+	 */
+	public boolean correspondsTo(String formControlURI) {
+		return fc.getURI().equals(formControlURI);
+	}
+
+	/**
+	 * Models (if needed) and returns the {@link LabelModel} for the {@link FormControl}.
+	 * This method May be overridden to personalize Labels for certain {@link FormControl}s.
+	 * @return
+	 */
+	public LabelModel getLabelModel() {
+		if (label != null){
+			label = render.getModelMapper().getModelFor(fc.getLabel());
+		}
+		return label;
+	}
+
+	
 }

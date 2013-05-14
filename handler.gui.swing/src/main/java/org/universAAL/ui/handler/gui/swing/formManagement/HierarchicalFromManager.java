@@ -24,6 +24,7 @@ import java.util.TreeMap;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -183,5 +184,9 @@ public class HierarchicalFromManager implements FormManager {
 
 	public Collection getAllDialogs() {
 		return formMap.values();
+	}
+
+	public void missingInput(Input input) {
+		frame.missing(input);
 	}
 }

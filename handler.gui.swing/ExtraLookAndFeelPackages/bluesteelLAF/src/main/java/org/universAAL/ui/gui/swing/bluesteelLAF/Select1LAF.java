@@ -33,4 +33,10 @@ public class Select1LAF extends Select1Model {
         super(control, render);
     }
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

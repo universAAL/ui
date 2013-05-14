@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Output;
@@ -44,7 +43,7 @@ public abstract class OutputModel extends Model {
      * as the user is not allowed to change its status.
      * @return <code>true</code>
      */
-    public final boolean isValid(JComponent component) {
+    public final boolean isValid() {
         // All outputs are all ways valid!
         return true;
     }

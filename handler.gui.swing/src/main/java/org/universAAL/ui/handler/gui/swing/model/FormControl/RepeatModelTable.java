@@ -38,7 +38,6 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFormControlCellRenderer;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJButtonEditor;
 
 /**
  * Helper Class just to render RepeatTables.

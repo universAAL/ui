@@ -154,4 +154,10 @@ public class Select1LAF extends Select1Model {
 
     }
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

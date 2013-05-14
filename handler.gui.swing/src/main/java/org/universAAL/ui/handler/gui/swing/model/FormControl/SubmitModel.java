@@ -80,7 +80,7 @@ implements ActionListener {
      * a Submit is allways valid.
      * @return <code>true</code>
      */
-    public boolean isValid(JComponent component) {
+    public boolean isValid() {
         //always valid
         return true;
     }
@@ -98,16 +98,17 @@ implements ActionListener {
 		public void run() {
 
 	        Input missing = ((Submit) fc).getMissingInputControl();
-	        if (isValid((JComponent) jc) && missing == null) {
+	        if (isValid() && missing == null) {
 	            getRenderer().getFormManagement().closeCurrentDialog();
 	            getRenderer().getHandler().submit((Submit) fc);
 	        }
-	        //else {
+	        else {
 	            /*
-	             *  TODO Check rest of model(each class)!
+	             *  Check rest of model
 	             *  advice the user about data not being valid
 	             */
-	        //}
+	        	getRenderer().getFormManagement().missingInput(missing);
+	        }
 			
 		}
     	

@@ -17,10 +17,8 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
-import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;

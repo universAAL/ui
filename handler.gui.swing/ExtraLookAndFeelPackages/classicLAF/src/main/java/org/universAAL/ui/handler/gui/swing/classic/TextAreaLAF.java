@@ -90,4 +90,10 @@ public class TextAreaLAF extends TextAreaModel {
 	// Do nothing to avoid super
     }
 
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

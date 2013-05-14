@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
@@ -112,6 +113,10 @@ public class SimpleFormManager implements FormManager {
 			l.add(currentForm);
 		}
 		return l;
+	}
+
+	public void missingInput(Input input) {
+		frame.missing(input);		
 	}
 	
 }
