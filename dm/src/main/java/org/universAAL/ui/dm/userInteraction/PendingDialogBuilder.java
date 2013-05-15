@@ -52,7 +52,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
     /**
      * Prefix of a submission ID to switch to a pending dialog. All pending
      * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
-     * control which atomatically adds index numbers to this prefix.
+     * control which automatically adds index numbers to this prefix.
      */
     public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
 	    + ":switchTo#"; //$NON-NLS-1$
