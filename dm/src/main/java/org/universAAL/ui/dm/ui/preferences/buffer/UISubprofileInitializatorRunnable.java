@@ -87,11 +87,6 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	// check prerequisites - if User does not exist in
 	// Profiling
 	// Server (or is not obtainable) add it
-	// if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
-	// .getUserSucceeded(user)) {
-	// uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
-	// .addUserSucceeded(user);
-	// }
 	boolean userisAssistedPerson = false;
 	User obtainedUser = uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
 		.getUser(user);
@@ -117,10 +112,10 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 
 	UIPreferencesSubProfile filledUISubprofile = null;
 	if (userisAssistedPerson) {
-	    // assisted person has primary modality GUI
+	    // assisted person has primary modality GUI...
 	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
 	} else {
-	    // remote user has primary modality WEB
+	    // remote user has primary modality WEB...
 	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
 	}
 
