@@ -57,7 +57,7 @@ import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
-import org.universAAL.ui.dm.interfaces.UIPreferencesChangeListener;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
@@ -82,7 +82,7 @@ import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider
  *         created: 26-sep-2012 13:03:50
  */
 public class UserDialogManager implements IDialogManager,
-	UIPreferencesChangeListener {
+	IUIPreferencesChangeListener {
 
     /**
      * The time to wait for new requests after a dialog finishes before showing
