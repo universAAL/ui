@@ -30,6 +30,13 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.UserProfile;
 import org.universAAL.ontology.profile.service.ProfilingService;
 
+/**
+ * Communicates with Profiling Server and acts as a helper when initializing
+ * {@link UIPreferencesSubprofile} for a {@link User}
+ * 
+ * @author eandgrg
+ * 
+ */
 public class UIPreferencesSubprofilePrerequisitesHelper {
     public static ModuleContext mc = null;
     public static final String NAMESPACE = "http://ontology.ent.hr/UIPreferencesSubprofilePrerequisitesHelper#";
