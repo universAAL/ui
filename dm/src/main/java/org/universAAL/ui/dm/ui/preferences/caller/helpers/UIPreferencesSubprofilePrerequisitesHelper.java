@@ -46,6 +46,13 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	sc = new DefaultServiceCaller(mc);
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return if the {@link User} existed and was obtained from the Profiling
+     *         Server return true, false otherwise
+     */
+    // TODO currently not used
     public boolean getUserSucceeded(Resource user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
@@ -78,6 +85,12 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return
+     */
+    // TODO currently not used
     public String getUserAsString(Resource user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
@@ -125,14 +138,21 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return if the {@link User} was successfully added in Profiling Server
+     *         return true, false otherwise
+     */
     public boolean addUserSucceeded(User user) {
 	ServiceRequest sr = new ServiceRequest(new ProfilingService(), null);
 	sr.addAddEffect(new String[] { ProfilingService.PROP_CONTROLS }, user);
 
 	ServiceResponse res = sc.call(sr);
 	if (res.getCallStatus() == CallStatus.succeeded) {
-	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded", new Object[] {
-		    "new user: ", user.getURI(), " added." }, null);
+	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded",
+		    new Object[] { "new user: ", user.getURI(), " added." },
+		    null);
 	    return true;
 	} else {
 	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded",
@@ -141,6 +161,11 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return {@link UserProfile} for given {@link User} as String
+     */
     public String getProfileForUserAsString(User user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
@@ -161,6 +186,11 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return {@link UserProfile} for given {@link User}
+     */
     public UserProfile getProfileForUser(User user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
@@ -199,6 +229,12 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @return true if {@link UserProfile} for given {@link User} was obtained,
+     *         false otherwise
+     */
     public boolean getProfileForUserSucceeded(User user) {
 	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
 	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
@@ -210,7 +246,8 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	if (resp.getCallStatus() == CallStatus.succeeded) {
 	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_GETPROFILE);
 	    if (out != null) {
-		LogUtils.logDebug(mc, this.getClass(), "getProfileForUserSucceeded",
+		LogUtils.logDebug(mc, this.getClass(),
+			"getProfileForUserSucceeded",
 			new Object[] { "UserProfile obtained for user "
 				+ user.getURI() }, null);
 		return true;
@@ -231,6 +268,14 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	}
     }
 
+    /**
+     * @param user
+     *            {@link User}
+     * @param userProfile
+     *            {@link UserProfile}
+     * @return true if {@link UserProfile} for given {@link User} was added to
+     *         Profiling Server, false otherwise
+     */
     public boolean addUserProfileToUser(User user, UserProfile userProfile) {
 	ServiceRequest sr = new ServiceRequest(new ProfilingService(), null);
 	sr
