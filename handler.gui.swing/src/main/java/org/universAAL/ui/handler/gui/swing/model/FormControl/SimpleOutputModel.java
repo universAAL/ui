@@ -147,7 +147,7 @@ public class SimpleOutputModel extends OutputModel {
     /**
      * Updating the {@link JComponent} with info
      */
-    protected void update() {
+    public void update() {
     	Object content = ((SimpleOutput) fc).getContent();
         //if (fc.getTypeURI() == (TypeMapper.getDatatypeURI(String.class))) {
         // getTypeURI returns null

@@ -39,7 +39,7 @@ public class MediaObjectLAF extends MediaObjectModel {
 	}
 
 	/** {@inheritDoc} */
-	protected void update() {
+	public void update() {
 		super.update();
 		if (jc instanceof JLabel) {
 			JLabel l = (JLabel) jc;

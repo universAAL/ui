@@ -200,7 +200,11 @@ public abstract class Model {
     	return jc;   	
     };
     
-    protected void update() {
+    /**
+     * Adds all the needed information to the rendered component (in Model view).
+     * In LAF view, it add/updates all LAF components.
+     */
+    public void update() {
 	if (jc != null) {
 	    jc.setName(fc.getURI());
 	    String help = fc.getHelpString();

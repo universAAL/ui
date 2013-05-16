@@ -155,7 +155,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
     /**
      * Updating the InputField
      */
-    protected void update() {
+    public void update() {
 	Object initVal = fc.getValue();
 	if (jc instanceof JCheckBox) {
 	    ((JCheckBox) jc).setSelected(((Boolean) initVal).booleanValue());

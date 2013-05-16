@@ -90,7 +90,7 @@ public class RepeatModelGrid extends RepeatModel {
 	}
 	
 	/** {@ inheritDoc}	 */
-	protected void update(){
+	public void update(){
 		grid.removeAll();
 		Repeat r = (Repeat)fc;
 		subDivider = new RepeatSubdivider(r);

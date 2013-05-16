@@ -15,15 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.FlowLayout;
-
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 
+import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
@@ -46,7 +41,11 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 public class GroupLAF extends GroupModel {
 
 
-    /**
+    private GroupModel wrap;
+
+
+
+	/**
      * Constructor.
      * @param control the {@link Group} which to model
      */
@@ -61,6 +60,7 @@ public class GroupLAF extends GroupModel {
     	Init i = Init.getInstance(getRenderer());
     	if (this.isTheMainGroup()
     			&& this.isInMainMenu()){
+    		// ADD Special Buttons
     		if (UCCButton.uCCPresentInNode()) {
     			new Submit((Group)fc, new Label(i.getMessage(MessageKeys.UCC),
     					"system/UCC.png"), UCCButton.SUBMIT_ID)
@@ -101,7 +101,24 @@ public class GroupLAF extends GroupModel {
         	return p;
         }
         else {
-        	return super.getNewComponent();
+        	LevelRating complexity = ((Group) fc).getComplexity();
+            if (((Group) fc).isRootGroup()
+                    || complexity == LevelRating.none) {
+                wrap = new GroupPanelLAF((Group) fc, getRenderer());
+            }
+            if (complexity == LevelRating.low ) {
+                wrap = new GroupPanelLAF((Group) fc, getRenderer());
+            }
+            if (complexity == LevelRating.middle ) {
+                wrap = new GroupPanelLAF((Group) fc, getRenderer());
+            }
+            if (complexity == LevelRating.high ) {
+                wrap = new GroupPanelLAF((Group) fc, getRenderer());
+            }
+            if (complexity == LevelRating.full) {
+                wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
+            }
+            return wrap.getNewComponent();
         }
     }
 
@@ -112,40 +129,8 @@ public class GroupLAF extends GroupModel {
 	super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
 		int gap = color.getGap();
-        if (jc instanceof JTabbedPane) {
-            /*
-             * Tabbed group
-             */
-            jc.getAccessibleContext();
-            jc.setFont(color.getplain());
-        }
-        else if (!((Group) fc).isRootGroup()) {
-            /*
-             * simple group control
-             */
-            String label;
-            if (fc.getLabel() != null) {
-                label = fc.getLabel().getText();
-            }
-            else {
-                label = "";
-            }
-            //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-            Border line = BorderFactory.createLineBorder(
-            		color.getOrange());
-            TitledBorder title;
-            title = BorderFactory.createTitledBorder
-                    (line, label, 0, 0,
-                    		color.getbold(), 
-                    		color.getborderLineMM());
-            jc.setBorder(title);
-            needsLabel = false;
-            // XXX try add icon
-            if (isInStandardGroup()) {
-            	jc.setLayout(new FlowLayout(FlowLayout.CENTER,gap,gap));
-            } else {
-            	jc.setLayout(new FormLayout(gap));
-            }
+		if (!((Group) fc).isRootGroup()) {
+        	wrap.update();
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){

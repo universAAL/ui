@@ -20,15 +20,11 @@
 package org.universAAL.ui.handler.gui.swing.classic.specialButtons;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.Socket;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.net.UnknownHostException;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Submit;

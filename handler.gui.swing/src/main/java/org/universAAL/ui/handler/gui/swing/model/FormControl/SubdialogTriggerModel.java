@@ -61,7 +61,7 @@ implements ActionListener {
     /**
      * Update the {@link JComponent}
      */ 
-    protected void update() {
+    public void update() {
     	super.update();
     	if (jc instanceof JToggleButton){
     		((JToggleButton) jc).setSelected(isSelected());

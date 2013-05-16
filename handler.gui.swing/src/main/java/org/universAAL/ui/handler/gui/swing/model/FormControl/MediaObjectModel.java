@@ -72,7 +72,7 @@ public class MediaObjectModel extends OutputModel {
 	/**
 	 * Updating the {@link JLabel}
 	 */
-	protected void update() {
+	public void update() {
 
 		super.update();    	
 		MediaObject mo = (MediaObject) fc;

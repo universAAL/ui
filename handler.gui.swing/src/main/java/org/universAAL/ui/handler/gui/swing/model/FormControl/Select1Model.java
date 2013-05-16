@@ -67,7 +67,7 @@ implements  ActionListener {
     /**
      * Update the {@link JComponent}
      */
-    protected void update() {
+    public void update() {
     	//XXX add icons to component!
         if (!((Select) fc).isMultilevel()) {
             Label[] items = ((Select1) fc).getChoices();

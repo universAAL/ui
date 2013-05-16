@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-import javax.swing.JTabbedPane;
-
 import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -29,7 +27,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Repeat
  */
-public class RepeatModel extends GroupModel {
+public abstract class RepeatModel extends GroupModel {
 	
 	/**
 	 * Place holder for tables
@@ -95,11 +93,8 @@ public class RepeatModel extends GroupModel {
     /**
      * Overriding update from {@link GroupModel}
      */
-    protected void update() {
-    	if (jc instanceof JTabbedPane) {
-    		updateTabbedPanel();
-    	}
-    	else if (table != null){
+    public void update() {
+    	if (table != null){
     		table.update();
     		needsLabel = table.needsLabel;
     	}
@@ -107,9 +102,7 @@ public class RepeatModel extends GroupModel {
     		grid.update();
     		needsLabel = grid.needsLabel;
     	}
-    	else {
-    		super.update();
-    	}
+		super.update();
     }
     
 	/**

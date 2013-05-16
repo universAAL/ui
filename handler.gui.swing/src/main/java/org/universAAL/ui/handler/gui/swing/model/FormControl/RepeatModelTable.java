@@ -44,7 +44,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFor
  * @author amedrano
  *
  */
-public class RepeatModelTable extends RepeatModel implements ListSelectionListener{
+public abstract class RepeatModelTable extends RepeatModel implements ListSelectionListener{
 
 
 	/**
@@ -84,7 +84,7 @@ public class RepeatModelTable extends RepeatModel implements ListSelectionListen
 //	}
 
 	/** {@inheritDoc}*/
-	protected void update() {
+	public void update() {
 		FormControl[] selectionControls = repeatTableModel.getSelectionControls();
 		selectionComps = new JComponent[selectionControls.length];
 		Component[] siblings;

@@ -86,7 +86,7 @@ public abstract class SelectModel extends InputModel implements ListSelectionLis
     /**
      * Update the selections
      */
-    protected void update() {
+    public void update() {
     	Label[] items = ((Select) fc).getChoices();
         if (jc instanceof JList) {
             /*
