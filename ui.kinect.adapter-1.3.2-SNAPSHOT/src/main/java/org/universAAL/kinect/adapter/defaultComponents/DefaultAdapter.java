@@ -1,0 +1,52 @@
+/*******************************************************************************
+ * Copyright 2013 Ericsson Nikola Tesla d.d.
+ *
+ * Licensed under both Apache License, Version 2.0 and MIT License.
+ *
+ * See the NOTICE file distributed with this work for additional 
+ * information regarding copyright ownership
+ *	
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ ******************************************************************************/
+package org.universAAL.kinect.adapter.defaultComponents;
+
+import java.util.Collection;
+
+import org.universAAL.kinect.adapter.IMessageBroker.AdapterException;
+import org.universAAL.kinect.adapter.contextBus.AbstractContext;
+import org.universAAL.kinect.adapter.contextBus.IContextPublisher;
+import org.universAAL.kinect.adapter.serviceBus.AbstractService;
+import org.universAAL.kinect.adapter.serviceBus.IServiceCall;
+import org.universAAL.middleware.context.ContextPublisher;
+import org.universAAL.middleware.service.ServiceCaller;
+
+/**
+ * This class is a default implementation of {@link IServiceCall} and
+ * {@link IContextPublisher} for making ServiceCalls and ContextPublishing
+ * 
+ * 
+ */
+public class DefaultAdapter implements IServiceCall, IContextPublisher {
+    private ServiceCaller caller;
+    private ContextPublisher cp;
+
+    public DefaultAdapter(final ServiceCaller caller, final ContextPublisher cp) {
+	super();
+	this.caller = caller;
+	this.cp = cp;
+    }
+
+    public final Collection<?> callservice(final AbstractService ao)
+	    throws AdapterException {
+	return ao.handleResponse(caller.call(ao.getServiceRequest()));
+    }
+
+    public final void publish(final AbstractContext ac) throws AdapterException {
+	cp.publish(ac.getContextEvent());
+    }
+
+}
