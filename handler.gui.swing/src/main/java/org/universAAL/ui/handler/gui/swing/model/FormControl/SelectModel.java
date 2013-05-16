@@ -113,7 +113,7 @@ public abstract class SelectModel extends InputModel implements ListSelectionLis
         super.update();
     }
 
-    private void setSelected() {
+    protected void setSelected() {
 		Object val = ((Select) fc).getValue();
 		if (val instanceof List){
 			selected = new ArrayList((List) val);
@@ -149,7 +149,7 @@ public abstract class SelectModel extends InputModel implements ListSelectionLis
 					Label[] items = ((Select) fc).getChoices();
 					selected.clear();
 					for (int i = 0; i < indexes.length; i++) {
-						selected.add(items[indexes[i]]);
+						selected.add(((ChoiceItem) items[indexes[i]]).getValue());
 					}
 					((Select) fc).storeUserInput(selected);
 				}
