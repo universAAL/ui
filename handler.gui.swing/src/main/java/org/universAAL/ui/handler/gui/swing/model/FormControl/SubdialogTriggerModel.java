@@ -23,6 +23,7 @@ import javax.swing.JToggleButton;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -103,13 +104,21 @@ implements ActionListener {
 		public void run() {
 			/*
 	         *  This will produce a rendering of a sub-dialog form!
-	         *  It produces the same response as a submit and the
-	         *  Dialog it triggers comes in another UIRequest.
+	         *  It produces the same response as a submit  except it doesn't close 
+	         *  the current dialog.
+	         *  The Dialog it triggers comes in another UIRequest.
 	         */
-
-		
-	    getRenderer().getHandler().submit((Submit) fc);
-//	        Renderer.getInstance().getFormManagement().closeCurrentDialog();
+			Input missing = ((Submit) fc).getMissingInputControl();
+	        if (isValid() && missing == null) {
+	            getRenderer().getHandler().submit((Submit) fc);
+	        }
+	        else {
+	            /*
+	             *  Check rest of model
+	             *  advice the user about data not being valid
+	             */
+	        	getRenderer().getFormManagement().missingInput(missing);
+	        }
 			
 		}
     	
