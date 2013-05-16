@@ -34,19 +34,19 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.data.representation.core</artifactId>
+			<artifactId>mw.data.representation.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.ui.core</artifactId>
+			<artifactId>mw.bus.ui.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.service.core</artifactId>
+			<artifactId>mw.bus.service.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.bus.context.core</artifactId>
+			<artifactId>mw.bus.context.osgi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.ontology</groupId>
@@ -78,7 +78,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
-			<artifactId>mw.data.serialization.core</artifactId>
+			<artifactId>mw.data.serialization.osgi</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
