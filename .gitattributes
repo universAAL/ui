@@ -238,6 +238,8 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormCo
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelGrid.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelTable.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/Select1Model.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/Select1RadiobuttonModel.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SelectChecboxModel.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SelectModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SimpleOutputModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SubdialogTriggerModel.java -text
