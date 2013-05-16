@@ -221,6 +221,10 @@ ui.kinect.adapter-1.3.2-SNAPSHOT/.classpath
 ui.kinect.adapter-1.3.2-SNAPSHOT/.project
 ui.kinect.adapter-1.3.2-SNAPSHOT/.settings
 ui.kinect.adapter-1.3.2-SNAPSHOT/target
+ui.kinect.adapter.instance-1.3.2-SNAPSHOT/.classpath
+ui.kinect.adapter.instance-1.3.2-SNAPSHOT/.project
+ui.kinect.adapter.instance-1.3.2-SNAPSHOT/.settings
+ui.kinect.adapter.instance-1.3.2-SNAPSHOT/target
 ui.pom-1.0.2-SNAPSHOT/.classpath
 ui.pom-1.0.2-SNAPSHOT/.project
 ui.pom-1.0.2-SNAPSHOT/.settings
