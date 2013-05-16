@@ -25,11 +25,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
@@ -38,14 +36,13 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
-public class GroupModel extends Model {
+public abstract class GroupModel extends Model {
 
 
 	/**
-	 * List of Models for children of this group.
+	 * List of {@link Model}s for children of this group.
 	 */
-	private List children;
-	
+	protected List children;
 	
     /**
      * Constructor.
@@ -63,28 +60,9 @@ public class GroupModel extends Model {
      *
      *  depending on the complexity (and other factors) of the group
      *
-     * @return {@inheritDoc}
+     * @return always a simple Jpanel() (LAFs should decide which to use).
      * */
-    public JComponent getNewComponent() {
-        LevelRating complexity = ((Group) fc).getComplexity();
-        if (((Group) fc).isRootGroup()
-                || complexity == LevelRating.none) {
-            return simplePannel();
-        }
-        if (complexity == LevelRating.low ) {
-            return simplePannel();
-        }
-        if (complexity == LevelRating.middle ) {
-            return tabbedPanel();
-        }
-        if (complexity == LevelRating.high ) {
-            return tabbedPanel();
-        }
-        if (complexity == LevelRating.full) {
-            return tabbedPanel();
-        }
-        return null;
-    }
+    public abstract JComponent getNewComponent();
 
     /** {@inheritDoc}*/
     public boolean isValid() {
@@ -96,91 +74,9 @@ public class GroupModel extends Model {
         return valid;
     }
 
-    /**
-     * create a simple panel with the children in it
-     * @return
-     *         a {@link JPanel} with all the group's children.
-     */
-    protected JPanel simplePannel() {
-        JPanel pane = new JPanel();
-        return pane;
-    }
-    
-    /**
-     * Update a simple panel with the children in it
-     */
-    protected void updateSimplePanel() {
-        /*
-         * a Simple Group containing FormControls
-         * or one of the main Groups
-         * go into simple panes
-         */
-    	JPanel pane = (JPanel) jc;
-    	pane.setName(fc.getURI());
-    	pane.removeAll();
-        FormControl[] children = ((Group) fc).getChildren();
-        for (int i = 0; i < children.length; i++) {
-            addComponentTo(children[i], pane);
-        }
-    }
-    
-    /**
-     * create a tabbed panel with diferent groups
-     * in different pannels.
-     * @return
-     *         a {@link JTabbedPane} with children groups
-     * as panels
-     */
-    protected JTabbedPane tabbedPanel() {
-        JTabbedPane tp = new JTabbedPane();
-        return tp;
-    }
-    
-    /**
-     * Update a tabbed panel with diferent groups
-     * in different pannels.
-     */
-    protected void updateTabbedPanel() {
-    	JTabbedPane tp = (JTabbedPane) jc;
-    	tp.removeAll();
-    	FormControl[] children = ((Group) fc).getChildren();
-        JPanel pane;
-        for (int i = 0; i < children.length; i++) {
-            if (children[i] instanceof Group) {
-                JComponent childComponent = getComponentFrom(children[i]);
-                if (childComponent instanceof JPanel) {
-                    pane = (JPanel) childComponent;
-                }
-                if (childComponent instanceof JTabbedPane){
-                    pane = new JPanel();
-                    pane.add(childComponent);
-                    // XXX: test if the above needs more
-                }
-                else{
-                    pane = new JPanel();
-                }
-                
-            }
-            else {
-                pane = new JPanel(false);
-                addComponentTo(children[i], pane);
-            }
-            tp.addTab(children[i].getLabel().getText(),
-                    IconFactory.getIcon(children[i].getLabel().getIconURL()),
-                    pane);
-        }
-    }
 
-    /**
-     * Override of Update, so it updates correctly the {@link GroupModel}
-     */
-    protected void update() {
-    	if (jc instanceof JPanel) {
-    		updateSimplePanel();
-    	}
-    	if (jc instanceof JTabbedPane) {
-    		updateTabbedPanel();
-    	}
+    /**{@inheritDoc}*/
+    public void update() {
     	super.update();
     }
     
@@ -221,7 +117,7 @@ public class GroupModel extends Model {
      * @return
      *         the {@link JComponent} build by the {@link Model} of the child
      */
-    private JComponent getComponentFrom(FormControl fc) {
+    protected JComponent getComponentFrom(FormControl fc) {
     	Model m = getRenderer().getModelMapper().getModelFor(fc);
     	children.add(m);
         return m.getComponent();
@@ -237,7 +133,7 @@ public class GroupModel extends Model {
      * @param c
      *         the {@link Container} to which to add the {@link JComponent}
      */
-    private void addComponentTo(FormControl fc, Container c) {
+    protected void addComponentTo(FormControl fc, Container c) {
     	Model m = getRenderer().getModelMapper().getModelFor(fc);
     	children.add(m);
     	JComponent jc = m.getComponent();

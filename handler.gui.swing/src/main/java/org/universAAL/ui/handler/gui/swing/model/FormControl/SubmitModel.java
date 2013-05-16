@@ -65,7 +65,7 @@ implements ActionListener {
     }
 
     /** {@inheritDoc} */
-	protected void update() {
+	public void update() {
 		super.update();
 		SpecialButtonInterface sbi = specialBFactory.getSpecialButton((Submit) fc);
 		if (sbi == null) {

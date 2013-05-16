@@ -72,6 +72,8 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/pom.xml -text svneol=uns
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/FormLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupTabbedPanelLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Init.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/InputFieldLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/LabelLAF.java -text svneol=unset#text/plain
@@ -194,6 +196,8 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/ResourceMapp
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/ColorLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/FormLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupLAF.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupPanelLAF.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupTabbedPanelLAF.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Init.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/InputFieldLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/LabelLAF.java -text
@@ -229,6 +233,8 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManageme
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/UIRequestPriorityComparator.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupModel.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupPanelModel.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupTabbedPanelModel.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/InputFieldModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/InputModel.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/MediaObjectModel.java -text

@@ -112,7 +112,7 @@ public class InputFieldLAF extends InputFieldModel {
     }
 
     @Override
-    protected void update() {
+	public void update() {
 	// Do nothing to avoid super
     }
 

@@ -59,10 +59,10 @@ public class RepeatLAF extends RepeatModel {
 			/*
 			 * children are Group, but not the same length display a tabbedpane
 			 */
-			return tabbedPanel();
+			return new GroupTabbedPanelLAF((Group) fc,getRenderer()).getNewComponent();
 		}
 
-		return super.getNewComponent();
+		return null;
 	}
 
 }

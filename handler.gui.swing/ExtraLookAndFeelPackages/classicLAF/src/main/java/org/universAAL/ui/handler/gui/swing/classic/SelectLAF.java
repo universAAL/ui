@@ -117,7 +117,7 @@ public class SelectLAF extends SelectModel {
     
 
     @Override
-    protected void update() {
+	public void update() {
 	// Do nothing to avoid super
     }
 

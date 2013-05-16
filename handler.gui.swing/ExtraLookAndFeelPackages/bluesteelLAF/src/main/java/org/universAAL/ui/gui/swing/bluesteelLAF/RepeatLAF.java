@@ -50,15 +50,15 @@ public class RepeatLAF extends RepeatModel {
 				table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
 				return table.getNewComponent();
 			}
-        } else if (getChildrenType() != null
-        		&& getChildrenType().equals(Group.class)) {
-            /*
-             * children are Group, but not the same length
-             * display a tabbedpane
-             */
-            return tabbedPanel();
+//        } else if (getChildrenType() != null
+//        		&& getChildrenType().equals(Group.class)) {
+//            /*
+//             * children are Group, but not the same length
+//             * display a tabbedpane
+//             */
+//            return new GroupPanelLAF((Group) fc,getRenderer()).getNewComponent();
         } else {      
-        	return super.getNewComponent();
+        	return null;
         }
     }    
     

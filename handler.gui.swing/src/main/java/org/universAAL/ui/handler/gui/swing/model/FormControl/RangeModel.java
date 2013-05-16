@@ -105,7 +105,6 @@ implements ChangeListener {
      */
     public boolean isValid() {
         // Swing makes sure it's all ways valid
-        // XXX check the above affirmation
         return true;
     }
 

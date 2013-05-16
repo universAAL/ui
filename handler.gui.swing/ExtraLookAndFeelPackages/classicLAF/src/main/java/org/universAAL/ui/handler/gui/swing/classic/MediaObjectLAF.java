@@ -68,7 +68,7 @@ public class MediaObjectLAF extends MediaObjectModel {
     }
 
     @Override
-    protected void update() {
+	public void update() {
 	// Do nothing to avoid super -> TODO set min/max/pref size
     }
 

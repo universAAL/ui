@@ -60,7 +60,7 @@ public class SelectLAF extends SelectModel {
 	}
 
 	/** {@inheritDoc} */
-    protected void update() {
+    public void update() {
 		jc = (JComponent) (jc == sp? ejc:jc);
     	super.update();
     }

@@ -15,75 +15,57 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
+
 import javax.swing.JComponent;
-import javax.swing.JTextArea;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
+import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
-import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
+import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
+ * Specific {@link Model} for {@link Group}s to be rendered as {@link JPanel}.
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
- * @see TextArea
+ * @see Group
  */
-public abstract class TextAreaModel extends InputModel
-implements CaretListener {
-
+public abstract class GroupPanelModel extends GroupModel {
+	
     /**
      * Constructor.
-     * @param control
-     *      the {@link FormControl} which to model.
+     * @param control the {@link Group} which to model.
      */
-    public TextAreaModel(TextArea control, Renderer render) {
+    public GroupPanelModel(Group control, Renderer render) {
         super(control, render);
     }
 
     /**
-     * {@inheritDoc}
+     * create a simple panel with the children in it
      * @return
-     *      a {@link JTextArea}.
+     *         a {@link JPanel} with all the group's children.
      */
     public JComponent getNewComponent() {
-        JTextArea ta = new JTextArea();
-        ta.addCaretListener(this);
-        return ta;
-    }
+        JPanel pane = new JPanel();
+        return pane;
+    }    
 
     /**
-     * {@inheritDoc}
+     * Override of Update, so it updates correctly the {@link GroupPanelModel}
      */
     public void update() {
-    	JTextArea ta = (JTextArea) jc;
-        ta.setText((String) fc.getValue());
-        super.update();
+        /*
+         * a Simple Group containing FormControls
+         * or one of the main Groups
+         * go into simple panes
+         */
+    	JPanel pane = (JPanel) jc;
+    	pane.setName(fc.getURI());
+    	pane.removeAll();
+        FormControl[] children = ((Group) fc).getChildren();
+        for (int i = 0; i < children.length; i++) {
+            addComponentTo(children[i], pane);
+        }
+    	super.update();
     }
     
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isValid() {
-        /*
-         *  TODO Check Validity!
-         *  length
-         */
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void caretUpdate(final CaretEvent e) {
-    	TaskQueue.addTask(new Runnable() {
-			public void run() {
-				// update Model if valid
-				if (isValid()) {
-					((TextArea) fc).storeUserInput(((JTextArea) e.getSource()).getText());
-				}
-			}
-		});
-        
-    }
 }

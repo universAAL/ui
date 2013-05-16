@@ -92,7 +92,7 @@ public class Select1LAF extends Select1Model {
     }
 
     @Override
-    protected void update() {
+	public void update() {
 	// Do nothing to avoid super
     }
 

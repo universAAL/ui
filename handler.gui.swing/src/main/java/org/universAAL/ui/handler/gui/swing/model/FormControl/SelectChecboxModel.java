@@ -76,7 +76,7 @@ implements ActionListener{
 	}
 
 	/**{@inheritDoc}*/
-	protected void update() {
+	public void update() {
 		Component[] comps = panel.getComponents();
 		setSelected();
 		for (int i = 0; i < comps.length; i++) {

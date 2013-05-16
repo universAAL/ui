@@ -76,7 +76,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 	}
 
 	/**{@inheritDoc}*/
-	protected void update() {
+	public void update() {
 		Component[] comps = panel.getComponents();
 		for (int i = 0; i < comps.length; i++) {
 			if (getAssociatedValue((JComponent) comps[i])

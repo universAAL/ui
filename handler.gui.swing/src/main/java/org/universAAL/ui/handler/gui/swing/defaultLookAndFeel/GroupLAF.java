@@ -15,15 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
-import javax.swing.BorderFactory;
-import javax.swing.JTabbedPane;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
+import javax.swing.JComponent;
 
+import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -32,7 +28,8 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
  */
 public class GroupLAF extends GroupModel {
 
-	private ColorLAF color;
+	
+	private GroupModel wrap;
 
 	/**
 	 * Constructor.
@@ -42,45 +39,32 @@ public class GroupLAF extends GroupModel {
 	 */
 	public GroupLAF(Group control, Renderer render) {
 		super(control, render);
-		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
 
 	/** {@inheritDoc} */
 	public void update() {
-		super.update();
-		if (jc instanceof JTabbedPane) {
-			/*
-			 * Tabbed group
-			 */
-			jc.getAccessibleContext();
-			jc.setFont(color.getplain());
-		} 
-		else if (!((Group) fc).isRootGroup()) {
-			/*
-			 * simple group control
-			 */
-			String label;
-			if (fc.getLabel() != null) {
-				label = fc.getLabel().getText();
-			} else {
-				label = "";
-			}
-			// Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-			Border line = BorderFactory.createLineBorder(color.getOrange());
-			TitledBorder title;
-			title = BorderFactory.createTitledBorder(line, label, 0, 0,
-					color.getbold(), color.getborderLineMM());
-			jc.setBorder(title);
-			needsLabel = false;
-			// XXX try add icon
-//			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
-			jc.setLayout(new FormLayout());
-		}
-		else if (this.isTheSubmitGroup()){
-			VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, 5, 5);
-			vfl.setMaximizeOtherDimension(true);
-			jc.setLayout(vfl);
-		}
+		wrap.update();
 	}
+
+	public JComponent getNewComponent() {
+        LevelRating complexity = ((Group) fc).getComplexity();
+        if (((Group) fc).isRootGroup()
+                || complexity == LevelRating.none) {
+            wrap = new GroupPanelLAF((Group) fc, getRenderer());
+        }
+        if (complexity == LevelRating.low ) {
+            wrap = new GroupPanelLAF((Group) fc, getRenderer());
+        }
+        if (complexity == LevelRating.middle ) {
+            wrap = new GroupPanelLAF((Group) fc, getRenderer());
+        }
+        if (complexity == LevelRating.high ) {
+            wrap = new GroupPanelLAF((Group) fc, getRenderer());
+        }
+        if (complexity == LevelRating.full) {
+            wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
+        }
+        return wrap.getNewComponent();
+    }
 
 }

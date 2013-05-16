@@ -21,7 +21,6 @@ package org.universAAL.ui.handler.gui.swing.classic;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
@@ -52,15 +51,8 @@ public class RepeatLAF extends RepeatModel {
         	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
             return table.getNewComponent();
         }
-        if (getChildrenType().equals(Group.class)) {
-            /*
-             * children are Group, but not the same length
-             * display a tabbedpane
-             */
-            return tabbedPanel();
-        }
         
-        return super.getNewComponent();
+        return null;
     }
 
 }

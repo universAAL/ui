@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2011 Universidad Politécnica de Madrid
+ * Copyright 2013 Universidad Politécnica de Madrid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,35 +15,30 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
-import javax.swing.JLabel;
-
-import org.universAAL.middleware.ui.rdf.MediaObject;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupTabbedPanelModel;
 
 /**
- * @author pabril
  * @author amedrano
+ *
  */
-public class MediaObjectLAF extends MediaObjectModel {
+public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param control
-	 *            the {@link MediaObject} which to model
-	 */
-	public MediaObjectLAF(MediaObject control, Renderer render) {
+	private ColorLAF color;
+	
+	public GroupTabbedPanelLAF(Group control, Renderer render) {
 		super(control, render);
+		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
 
-	/** {@inheritDoc} */
 	public void update() {
 		super.update();
-		if (jc instanceof JLabel) {
-			JLabel l = (JLabel) jc;
-			l.setVerticalTextPosition(JLabel.BOTTOM);
-			l.setHorizontalTextPosition(JLabel.CENTER);
-		}
+			/*
+			 * Tabbed group
+			 */
+			jc.getAccessibleContext();
+			jc.setFont(color.getplain());
 	}
+
 }
