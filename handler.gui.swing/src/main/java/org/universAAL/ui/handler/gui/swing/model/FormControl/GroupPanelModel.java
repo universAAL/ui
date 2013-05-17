@@ -59,7 +59,6 @@ public abstract class GroupPanelModel extends GroupModel {
          * go into simple panes
          */
     	JPanel pane = (JPanel) jc;
-    	pane.setName(fc.getURI());
     	pane.removeAll();
         FormControl[] children = ((Group) fc).getChildren();
         for (int i = 0; i < children.length; i++) {

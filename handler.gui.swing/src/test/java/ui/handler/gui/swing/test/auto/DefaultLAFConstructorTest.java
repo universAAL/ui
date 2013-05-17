@@ -15,6 +15,8 @@
  ******************************************************************************/
 package ui.handler.gui.swing.test.auto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import junit.framework.TestCase;
@@ -33,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.middleware.ui.rdf.Range;
+import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
@@ -42,10 +45,15 @@ import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupPanelLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupTabbedPanelLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.InputFieldLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.LabelLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.MediaObjectLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RangeLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelGridLAF;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Select1LAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SelectLAF;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SimpleOutputLAF;
@@ -63,6 +71,9 @@ public class DefaultLAFConstructorTest extends TestCase{
 	Renderer testRender;
 
 	private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
+	private static final String PREFIX = "http://example.com/Dable.owl#";
+    private static final String PROP_TABLE = PREFIX + "table";
+    private static final String PROP_COL = PREFIX + "column";
 	private ModuleContext mc;
 
 	private PropertyPath getPath(String input){
@@ -92,7 +103,23 @@ public class DefaultLAFConstructorTest extends TestCase{
 				null);
 		new GroupLAF(g, testRender).getComponent();	
 	}
-
+	public void testpanelGroup(){
+		Group g = new Group(f.getIOControls(),
+				l,
+				getPath("group1"), 
+				null, 
+				null);
+		new GroupPanelLAF(g, testRender).getComponent();	
+	}
+	public void testTabbedGroup(){
+		Group g = new Group(f.getIOControls(),
+				l,
+				getPath("group1"), 
+				null, 
+				null);
+		new GroupTabbedPanelLAF(g, testRender).getComponent();	
+	}
+	
 	public void testInputField1(){
 		InputField i = new InputField(f.getIOControls(),
 				l,
@@ -158,10 +185,6 @@ public class DefaultLAFConstructorTest extends TestCase{
 								Integer.valueOf(100), true)),
 								Integer.valueOf(50));
 		new RangeLAF(r, testRender).getComponent();
-	}
-
-	public void testRepeat(){
-
 	}
 
 	public void testSelect1(){
@@ -249,5 +272,59 @@ public class DefaultLAFConstructorTest extends TestCase{
 	public void testTextArea3(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, LONG_TEXT);
 		new TextAreaLAF(ta, testRender).getComponent();
+	}
+	
+	public void testRepeat(){
+		Repeat r = getRepeat();
+		new RepeatLAF(r, testRender).getComponent();
+	}
+
+	public void testRepeat1(){
+		Repeat r = getRepeat();
+		new RepeatModelTableLAF(r, testRender).getComponent();
+	}
+	public void testRepeat2(){
+		Repeat r = getRepeat();
+		new RepeatModelGridLAF(r, testRender).getComponent();
+	}
+	
+	private Repeat getRepeat(){
+		List rows = new ArrayList();
+		Resource cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(1));
+		cell.setProperty(PROP_COL + "2", "two");
+		cell.setProperty(PROP_COL + "3", new Float(3));
+		rows.add(cell);
+		// ...
+		cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(2));
+		cell.setProperty(PROP_COL + "2", "three");
+		cell.setProperty(PROP_COL + "3", new Float(4));
+		rows.add(cell);
+		// ...
+		cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(3));
+		cell.setProperty(PROP_COL + "2", "four");
+		cell.setProperty(PROP_COL + "3", new Float(5));
+		rows.add(cell);
+		Resource dataRoot = new Resource();
+		dataRoot.setProperty(PROP_TABLE, rows);
+		Form f = Form.newDialog("test", dataRoot);
+		Repeat repeat = new Repeat(f.getIOControls(), new Label("table", null),
+			new PropertyPath(null, false, new String[] { PROP_TABLE }),
+			null, null);
+		// new Repeat(g, new Label(userDM
+		// .getString("UICaller.pendingDialogs"), null),
+		// new PropertyPath(null, false,
+		// new String[] { PROP_DLG_LIST_DIALOG_LIST }),
+		// null, null);
+		Group row = new Group(repeat, null, null, null, null);
+		new SimpleOutput(row, new Label("col1", null), new PropertyPath(null,
+			false, new String[] { PROP_COL + "1" }), null);
+		new SimpleOutput(row, new Label("col2", null), new PropertyPath(null,
+			false, new String[] { PROP_COL + "2" }), null);
+		new SimpleOutput(row, new Label("col3", null), new PropertyPath(null,
+			false, new String[] { PROP_COL + "3" }), null);
+		return repeat;
 	}
 }
