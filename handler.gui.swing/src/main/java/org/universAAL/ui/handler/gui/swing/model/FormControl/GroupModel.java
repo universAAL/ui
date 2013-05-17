@@ -17,6 +17,7 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 
 import java.awt.Container;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public abstract class GroupModel extends Model {
      */
     public GroupModel(Group control, Renderer render) {
         super(control, render);
+        children = new ArrayList();
     }
 
     /** The {@link JComponent} returned may be either

@@ -68,7 +68,7 @@ public abstract class GroupTabbedPanelModel extends GroupModel {
                 if (childComponent instanceof JPanel) {
                     pane = (JPanel) childComponent;
                 }
-                if (childComponent instanceof JTabbedPane){
+                else if (childComponent instanceof JTabbedPane){
                     pane = new JPanel();
                     pane.add(childComponent);
                     // XXX: test if the above needs more
