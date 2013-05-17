@@ -39,6 +39,8 @@ public class SelectLAF extends SelectModel {
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
+
+	private SelectCheckBoxLAF wrap;
     
     /**
      * Constructor.
@@ -51,24 +53,45 @@ public class SelectLAF extends SelectModel {
    
     /** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		ejc = super.getNewComponent();
 		 if (!((Select) fc).isMultilevel()
-		        	&& sp == null) {
-		        sp = new JScrollPane(ejc);
-		  }
-		 return sp;
+				 //&& ((Select) fc).getChoices().length 
+				 ){
+			 wrap = new SelectCheckBoxLAF((Select)fc, getRenderer());
+			 return wrap.getComponent();
+		 }
+//		 if (!((Select) fc).isMultilevel()
+//		        	&& sp == null) {
+//			 	ejc = super.getNewComponent();
+//		        sp = new JScrollPane(ejc);
+//		        return sp;
+//		  }
+		 else {
+			 return super.getNewComponent();
+		 }
 	}
 
 	/** {@inheritDoc} */
     public void update() {
-		jc = (JComponent) (jc == sp? ejc:jc);
-    	super.update();
+    	if (wrap != null){
+    		wrap.udpate();
+    		needsLabel = wrap.needsLabel();
+    	} 
+    	else {
+    		jc = (JComponent) (jc == sp? ejc:jc);
+    		super.update();
+    	}
     }
 
 
 	@Override
 	public void updateAsMissing() {
-		JLabel l = getLabelModel().getComponent();
+		JLabel l;
+		if (wrap != null) {
+			l = wrap.getLabelModel().getComponent();
+		}
+		else {
+			l = getLabelModel().getComponent();
+		}
 		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
 		l.setText(getAlertString());
 	}

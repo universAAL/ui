@@ -41,7 +41,8 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 public class GroupLAF extends GroupModel {
 
 
-    private GroupModel wrap;
+    private static final int GROUP_NO_THRESHOLD = 4;
+	private GroupModel wrap;
 
 
 
@@ -100,6 +101,14 @@ public class GroupLAF extends GroupModel {
     		p.setOpaque(false);
         	return p;
         }
+    	else if (this.isTheIOGroup()
+            	&& !this.isInMainMenu()
+    			&& containsOnlySubGroups((Group)fc)
+    			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD) {
+    		// a IOGroup, not main menu, that contains more than threshold groups 
+    		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
+    		return wrap.getComponent();
+    	}
         else {
         	LevelRating complexity = ((Group) fc).getComplexity();
             if (((Group) fc).isRootGroup()
@@ -131,16 +140,19 @@ public class GroupLAF extends GroupModel {
 		int gap = color.getGap();
 		if (!((Group) fc).isRootGroup()) {
         	wrap.update();
+        	needsLabel = wrap.needsLabel();
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
-        	if (containsOnlySubGroups((Group)fc)) {
+        	if (containsOnlySubGroups((Group)fc)
+        			&& ((Group)fc).getChildren().length <= GROUP_NO_THRESHOLD) {
         		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         		vfl.setMaximizeOtherDimension(true);
         		jc.setLayout(vfl);
         	} else {
         		jc.setLayout(new FormLayout(gap));
         	}
+		
         }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){

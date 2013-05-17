@@ -141,7 +141,7 @@ public abstract class GroupModel extends Model {
     	JComponent jc = m.getComponent();
     	LabelModel label = m.getLabelModel();
     	if (jc != null  
-    			&&label != null
+    			&& label != null
     			&& label.hasInfo()
     			&& m.needsLabel()) {
     		JLabel l = label.getComponent();

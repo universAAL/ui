@@ -27,7 +27,6 @@ import javax.swing.JPanel;
 import org.universAAL.middleware.ui.rdf.ChoiceItem;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
-import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
@@ -57,7 +56,7 @@ implements ActionListener{
 
 	/**{@inheritDoc}*/
 	public JComponent getNewComponent() {
-		Select1 s1 = (Select1) fc;
+		Select s1 = (Select) fc;
 		if (!s1.isMultilevel()) {
 			panel = new JPanel();
 			Label[] choices = s1.getChoices();
@@ -93,9 +92,9 @@ implements ActionListener{
 	 * @return
 	 */
 	protected Label getLabelFromJComponent(JComponent jc){
-		Label[] choices = ((Select1)fc).getChoices();
+		Label[] choices = ((Select)fc).getChoices();
 		String name = jc.getName();
-		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")));
+		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")+1));
 		return choices[j];
 	}
 

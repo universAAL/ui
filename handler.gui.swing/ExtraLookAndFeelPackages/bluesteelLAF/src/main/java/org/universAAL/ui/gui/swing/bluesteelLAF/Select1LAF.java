@@ -15,8 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
@@ -27,6 +29,8 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
  */
 public class Select1LAF extends Select1Model {
 
+	private Select1Model wrap;
+	
     /**
      * Constructor.
      * @param control the {@link Select1} which to model.
@@ -37,9 +41,36 @@ public class Select1LAF extends Select1Model {
 
 	@Override
 	public void updateAsMissing() {
-		JLabel l = getLabelModel().getComponent();
+		JLabel l;
+		if (wrap != null) {
+			l = wrap.getLabelModel().getComponent();
+		}
+		else {
+			l = getLabelModel().getComponent();
+		}
 		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
 		l.setText(getAlertString());
+	}
+	
+	public JComponent getNewComponent() {
+        if (!((Select) fc).isMultilevel()
+        		&& ((Select)fc).getChoices().length <= 6) {
+            wrap = new Select1RadioButtonLAF((Select1)fc,getRenderer());
+            return wrap.getComponent();
+        } else {
+            return super.getNewComponent();
+        }
+    }
+	
+	/**{@inheritDoc}*/
+	public void update(){
+		if (wrap != null){
+			wrap.update();
+			needsLabel = wrap.needsLabel();
+		}
+		else {
+			super.update();
+		}
 	}
 
 }
