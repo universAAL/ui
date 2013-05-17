@@ -83,6 +83,8 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1RadioButtonLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectCheckBoxLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
@@ -92,6 +94,7 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UCCButton.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ColorBorder.java -text
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ComponentBorder.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/GradientLAF.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ImageMedia.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/KickerButton.java -text
@@ -114,12 +117,14 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/image
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/uaal64x32.png -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/internationalization/messages.properties -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/deprecated/MediaObjectLAF.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/deprecated/SimpleComponentBorder.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/plainJava/POJOModuleContext.java -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/BluesteelLAFConstructorTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/TestRenderer.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/CollapsableTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/ListFonts.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
+handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/TabbedGroupTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/ASL2.0.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/MITX.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/NOTICE.txt -text

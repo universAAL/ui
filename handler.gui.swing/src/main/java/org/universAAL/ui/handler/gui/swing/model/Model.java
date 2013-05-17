@@ -265,7 +265,8 @@ public abstract class Model {
 	 * @return
 	 */
 	public LabelModel getLabelModel() {
-		if (label != null){
+		if (label == null 
+				&& fc.getLabel() != null){
 			label = render.getModelMapper().getModelFor(fc.getLabel());
 		}
 		return label;

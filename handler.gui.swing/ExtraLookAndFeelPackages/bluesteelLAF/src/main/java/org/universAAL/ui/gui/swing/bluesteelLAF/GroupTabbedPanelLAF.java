@@ -15,8 +15,19 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import java.awt.Component;
+import java.awt.Image;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupTabbedPanelModel;
 
 /**
@@ -39,6 +50,47 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
         jc.getAccessibleContext();
         jc.setFont(color.getplain());
+    	JTabbedPane tp = (JTabbedPane) jc;
+    	tp.removeAll();
+    	FormControl[] children = ((Group) fc).getChildren();
+        JPanel pane;
+        for (int i = 0; i < children.length; i++) {
+            if (children[i] instanceof Group) {
+                JComponent childComponent = getComponentFrom(children[i]);
+                if (childComponent instanceof JPanel) {
+                    pane = new JPanel();
+                    Component cs[] = ((JPanel) childComponent).getComponents();
+                    for (int j = 0; j < cs.length; j++) {
+						pane.add(cs[j]);
+					}
+                }
+                else if (childComponent instanceof JTabbedPane){
+                    pane = new JPanel();
+                    ((JTabbedPane) childComponent).setTabPlacement(JTabbedPane.LEFT);
+                    pane.add(childComponent);
+                }
+                else{
+                    pane = new JPanel();
+                }
+                
+            }
+            else {
+                pane = new JPanel(false);
+                addComponentTo(children[i], pane);
+            }
+            // resize Icon
+            Icon icon =IconFactory.getIcon(children[i].getLabel().getIconURL());
+            if (icon != null){
+            	//int square = Toolkit.getDefaultToolkit().getScreenResolution()/72;
+            	int square =25;
+            	Image img = ((ImageIcon) icon).getImage();  
+            	Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
+            	icon  = new ImageIcon( newimg );
+            }
+            tp.addTab(children[i].getLabel().getText(),
+                    icon,
+                    pane);
+        }
 	}
 	
 	

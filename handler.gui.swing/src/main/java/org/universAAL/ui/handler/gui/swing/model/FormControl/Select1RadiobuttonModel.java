@@ -103,7 +103,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 	protected Label getLabelFromJComponent(JComponent jc){
 		Label[] choices = ((Select1)fc).getChoices();
 		String name = jc.getName();
-		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")));
+		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")+1));
 		return choices[j];
 	}
 

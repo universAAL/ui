@@ -17,7 +17,6 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import javax.swing.JComponent;
 
-import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;

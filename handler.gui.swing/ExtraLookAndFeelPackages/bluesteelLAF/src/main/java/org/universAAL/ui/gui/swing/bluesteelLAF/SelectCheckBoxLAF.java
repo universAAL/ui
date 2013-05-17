@@ -15,43 +15,32 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.FlowLayout;
-
-import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectChecboxModel;
 
 /**
  * @author amedrano
  *
  */
-public class GroupPanelLAF extends GroupPanelModel {
+public class SelectCheckBoxLAF extends SelectChecboxModel {
 
-	/**
-	 * @param control
-	 * @param render
-	 */
-	public GroupPanelLAF(Group control, Renderer render) {
+	public SelectCheckBoxLAF(Select control, Renderer render) {
 		super(control, render);
 	}
 
-	/**{@inheritDoc}*/
-	public void update(){
+	public void udpate(){
 		super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-		int gap = color.getGap();
-        /*
-         * simple group control
-         */
-        ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
-        needsLabel = false;
-     
-        if (isInStandardGroup()) {
-        	jc.setLayout(new FlowLayout(FlowLayout.CENTER,gap,gap));
-        } else {
-        	jc.setLayout(new FormLayout(gap));
-        }
+		ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
+		needsLabel = false;
 	}
+	
+	@Override
+	public void updateAsMissing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
