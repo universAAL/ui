@@ -64,7 +64,7 @@ public class GroupLAF extends GroupModel {
         if (complexity == LevelRating.full) {
             wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
         }
-        return wrap.getNewComponent();
+        return wrap.getComponent();
     }
 
 }
