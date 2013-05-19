@@ -193,4 +193,9 @@ public class ColorLAF extends DefaultMetalTheme {
 	public static Color getOverSytem() {
 		return OverSytem;
 	}
+
+	public int getLabelIconSize() {
+		//TODO adjust to font size
+		return 30;
+	}
 }

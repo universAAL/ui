@@ -21,14 +21,12 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -37,7 +35,6 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
@@ -658,13 +655,9 @@ public class ComponentBorder extends AbstractBorder {
     public static void addLabeledBorder(JLabel label,JComponent jc, ColorLAF color){
         if (label != null) {
         	// resize Icon
-        	Icon icon = label.getIcon();
-            if (icon != null){
-            	int square = 25;
-            	Image img = ((ImageIcon) icon).getImage();  
-            	Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
-            	icon  = new ImageIcon( newimg );
-            }
+        	Icon icon = IconFactory.resizeIcon(label.getIcon(), 
+        			color.getLabelIconSize(),
+        			color.getLabelIconSize());
             label.setIcon(icon);
             label.setVerticalTextPosition(JLabel.CENTER);
             label.setHorizontalTextPosition(JLabel.RIGHT);

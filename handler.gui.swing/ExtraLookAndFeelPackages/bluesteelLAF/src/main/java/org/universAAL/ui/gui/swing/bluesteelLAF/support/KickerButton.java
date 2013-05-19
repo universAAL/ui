@@ -30,6 +30,7 @@ import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
 import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 public class KickerButton extends RoundedGradientButton implements ComponentListener{
 	private static final Color DARK_COLOR = new Color (75,183,185);
@@ -60,13 +61,9 @@ public class KickerButton extends RoundedGradientButton implements ComponentList
     }
     
     private void resetIcon() {
-        if (icon != null){ 
-        	Dimension d = getSize();
-        	int square = Math.min(d.width, d.height - ColorLAF.SEPARATOR_SPACE );
-    	    Image img = ((ImageIcon) icon).getImage();  
-    	    Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
-    	    setIcon(new ImageIcon( newimg ));
-    	}
+    	Dimension d = getSize();
+    	int square = Math.min(d.width, d.height - ColorLAF.SEPARATOR_SPACE );
+    	setIcon(IconFactory.resizeIcon(icon, square, square));
     }
     
 	

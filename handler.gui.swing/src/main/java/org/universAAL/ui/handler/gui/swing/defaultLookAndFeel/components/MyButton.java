@@ -28,6 +28,8 @@ import javax.swing.JComponent;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+
 
 /**
  * @author amedrano
@@ -48,13 +50,7 @@ public class MyButton extends JButton {
 	}
 
 	public void scaleIcon( int width, int height){
-	    Icon icon = this.getIcon();
-	    if (icon != null){  	    
-	    	    Image img = ((ImageIcon) icon).getImage() ;  
-	    	    Image newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;  
-	    	    icon = new ImageIcon( newimg );
-	    	    this.setIcon(icon);
-	    	}
+	   setIcon(IconFactory.resizeIcon(getIcon(), width, height));
 	}
 	
 	public static void setMyButtonBehaviour(JButton button, Color border, Color normalF, Color normalB,

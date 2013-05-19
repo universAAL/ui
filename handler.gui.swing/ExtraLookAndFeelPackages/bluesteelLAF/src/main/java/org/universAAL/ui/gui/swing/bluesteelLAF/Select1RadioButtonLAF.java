@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.ui.rdf.Select1;

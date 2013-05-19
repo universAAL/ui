@@ -20,7 +20,6 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
@@ -29,12 +28,13 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.AbstractButton;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.plaf.metal.MetalButtonUI;
+
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
 /**
  * @author amedrano
@@ -85,13 +85,7 @@ public class RoundedGradientButton extends JButton {
 	}
 	
 	protected void scaleIcon(int width, int height){
-	    Icon icon = getIcon();
-	    if (icon != null){  	    
-	    	    Image img = ((ImageIcon) icon).getImage() ;  
-	    	    Image newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;  
-	    	    icon = new ImageIcon( newimg );
-	    	    setIcon(icon);
-	    	}
+	    setIcon(IconFactory.resizeIcon(getIcon(), width, height));
 	}
 	
 	
