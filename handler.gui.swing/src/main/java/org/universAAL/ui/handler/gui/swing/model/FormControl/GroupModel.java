@@ -166,4 +166,20 @@ public abstract class GroupModel extends Model {
     	return null;
     }
     
+	/**
+	 * Tell whether the form control contain only groups.
+	 * @param fc
+	 * @return
+	 */
+	public boolean containsOnlySubGroups() {
+		boolean res = true;
+		FormControl[] children = ((Group)fc).getChildren();
+		for (int i = 0; i < children.length; i++) {
+			if (!(children[i] instanceof Group)) {
+				res = false;
+			}
+		}
+		return res;
+	}
+
 }

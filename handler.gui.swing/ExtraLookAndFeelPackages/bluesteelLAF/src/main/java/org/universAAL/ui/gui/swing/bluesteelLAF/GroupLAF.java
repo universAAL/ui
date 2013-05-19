@@ -144,7 +144,7 @@ public class GroupLAF extends GroupModel {
         }
         else if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
-        	if (containsOnlySubGroups((Group)fc)
+        	if (containsOnlySubGroups()
         			&& ((Group)fc).getChildren().length <= GROUP_NO_THRESHOLD) {
         		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         		vfl.setMaximizeOtherDimension(true);
@@ -161,23 +161,5 @@ public class GroupLAF extends GroupModel {
 			jc.setLayout(vfl);
 		}
     }
-
-
-
-	/**
-	 * @param fc
-	 * @return
-	 */
-	private boolean containsOnlySubGroups(Group fc) {
-		boolean res = true;
-		FormControl[] children = fc.getChildren();
-		for (int i = 0; i < children.length; i++) {
-			if (!(children[i] instanceof Group)) {
-				res = false;
-			}
-		}
-		return res;
-	}
-
 
 }

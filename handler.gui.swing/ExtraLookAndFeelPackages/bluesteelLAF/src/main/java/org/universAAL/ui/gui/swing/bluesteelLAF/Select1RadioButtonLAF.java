@@ -15,9 +15,13 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1RadiobuttonModel;
 
 /**
@@ -34,6 +38,7 @@ public class Select1RadioButtonLAF extends Select1RadiobuttonModel {
 		super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
         ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
+        ((JPanel)jc).setLayout(new FormLayout(color.getGap()));
         needsLabel = false;
 	}
 	
