@@ -103,7 +103,7 @@ public class GroupLAF extends GroupModel {
         }
     	else if (this.isTheIOGroup()
             	&& !this.isInMainMenu()
-    			&& containsOnlySubGroups((Group)fc)
+    			&& containsOnlySubGroups()
     			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD) {
     		// a IOGroup, not main menu, that contains more than threshold groups 
     		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());

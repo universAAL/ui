@@ -15,9 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import java.awt.Dimension;
+
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import org.universAAL.middleware.ui.rdf.FormControl;
@@ -42,7 +45,7 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 
 	@Override
 	public void update() {
-		super.update();
+		//super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
         jc.getAccessibleContext();
         jc.setFont(color.getplain());
@@ -71,13 +74,23 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
                 pane = new JPanel(false);
                 addComponentTo(children[i], pane);
             }
+            // add ScrollPane
+            JScrollPane sp = new JScrollPane(pane,
+            		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+            		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
+            sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
+            sp.setOpaque(false);
+            // sp.setBorder(null);
+            sp.getViewport().setOpaque(false);
             // resize Icon
             Icon icon =IconFactory.getIcon(children[i].getLabel().getIconURL());
+            // finally add Tab
             tp.addTab(children[i].getLabel().getText(),
                     IconFactory.resizeIcon(icon,
                     		color.getLabelIconSize(),
                     		color.getLabelIconSize()),
-                    pane);
+                    sp);
         }
 	}
 	
