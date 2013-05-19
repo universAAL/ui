@@ -15,14 +15,11 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.Image;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 
 /**
@@ -51,15 +48,11 @@ public class LabelLAF extends LabelModel {
         jl.setForeground(c.getborderLineMM());
         jl.setOpaque(false);
         //Resize Icon
-        Icon icon =jl.getIcon();
-        if (icon != null){
-        	//int square = Toolkit.getDefaultToolkit().getScreenResolution()/72;
-        	int square =30;
-        	Image img = ((ImageIcon) icon).getImage();  
-        	Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
-        	icon  = new ImageIcon( newimg );
-        }
-        jl.setIcon(icon);
+        jl.setIcon(
+        		IconFactory.resizeIcon(
+        				jl.getIcon(),
+        				c.getLabelIconSize(),
+        				c.getLabelIconSize()));
         return jl;
     }
 

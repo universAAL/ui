@@ -21,6 +21,7 @@ import java.awt.Component;
 import java.awt.Image;
 
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -73,14 +74,14 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
-			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Add.png")).getImage() ;  
-    	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH);  
-			buttonPanel.add(new AddTableButton(new ImageIcon( newimg )));
+			Icon icon = IconFactory.getIcon("common/Edit/Add.png");
+			icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
+			buttonPanel.add(new AddTableButton(icon));
 		}
 		if (r.listEntriesDeletable()) {
-			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Remove.png")).getImage() ;  
-    	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH); 
-			buttonPanel.add(new DeleteTableButton(new ImageIcon( newimg )));
+			Icon icon = IconFactory.getIcon("common/Edit/Remove.png");
+			icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
+			buttonPanel.add(new DeleteTableButton(icon));
 		}
 		return buttonPanel;
 	}

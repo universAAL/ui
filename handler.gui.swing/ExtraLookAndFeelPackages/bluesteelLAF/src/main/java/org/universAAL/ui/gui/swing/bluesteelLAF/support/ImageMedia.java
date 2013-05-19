@@ -24,6 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import org.universAAL.ui.handler.gui.swing.model.IconFactory;
+
 /**
  * Advanced Image display. This component will scale, center and maintain 
  * within the maximum size the image.
@@ -144,12 +146,8 @@ public class ImageMedia extends JPanel {
     			iconSize.width = Math.min(width, maxIconHeight);
     			iconSize.height = iconSize.width;
     		}
-    		Icon icon = lblImage.getIcon();
-    		Image img = ((ImageIcon) icon).getImage() ;  
-    		Image newimg = img.getScaledInstance( iconSize.width, iconSize.height,
-    				java.awt.Image.SCALE_SMOOTH ) ;  
-    		icon = new ImageIcon( newimg );
-
+    		// Resize icon
+    		Icon icon = IconFactory.resizeIcon(lblImage.getIcon(), iconSize.width, iconSize.height);
     		lblImage.setIcon(icon);
     	}
     }

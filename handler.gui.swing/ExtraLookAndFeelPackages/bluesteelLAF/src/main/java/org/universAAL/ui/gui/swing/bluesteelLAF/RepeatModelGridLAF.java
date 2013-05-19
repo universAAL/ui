@@ -17,10 +17,9 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Image;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -67,16 +66,16 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
-			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Add.png")).getImage() ;  
-    	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH);  
+			Icon icon = IconFactory.getIcon("common/Edit/Add.png");  
+    	    icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
 			buttonPanel.add(
-					new RoundedGradientButton(new AddTableButton(new ImageIcon( newimg )), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
+					new RoundedGradientButton(new AddTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		if (r.listEntriesDeletable()) {
-			Image img = ((ImageIcon) IconFactory.getIcon("common/Edit/Remove.png")).getImage() ;  
-    	    Image newimg = img.getScaledInstance( AUX_BUTTON_SIZE, AUX_BUTTON_SIZE,  java.awt.Image.SCALE_SMOOTH); 
+			Icon icon = IconFactory.getIcon("common/Edit/Remove.png");  
+    	    icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
 			buttonPanel.add(
-					new RoundedGradientButton(new DeleteTableButton(new ImageIcon( newimg )), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
+					new RoundedGradientButton(new DeleteTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		return buttonPanel;
 	}

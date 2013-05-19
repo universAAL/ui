@@ -15,10 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.Image;
-
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -76,15 +73,10 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
             }
             // resize Icon
             Icon icon =IconFactory.getIcon(children[i].getLabel().getIconURL());
-            if (icon != null){
-            	//int square = Toolkit.getDefaultToolkit().getScreenResolution()/72;
-            	int square =25;
-            	Image img = ((ImageIcon) icon).getImage();  
-            	Image newimg = img.getScaledInstance( square, square,  java.awt.Image.SCALE_SMOOTH );  
-            	icon  = new ImageIcon( newimg );
-            }
             tp.addTab(children[i].getLabel().getText(),
-                    icon,
+                    IconFactory.resizeIcon(icon,
+                    		color.getLabelIconSize(),
+                    		color.getLabelIconSize()),
                     pane);
         }
 	}

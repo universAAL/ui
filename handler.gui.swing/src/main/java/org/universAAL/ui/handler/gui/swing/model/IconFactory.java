@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
+import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.Icon;
@@ -60,5 +61,15 @@ public class IconFactory {
 			}
         }
         return null;
+    }
+    
+    public static Icon resizeIcon(Icon icon, int width, int height){
+    	Icon output = null;
+    	if (icon != null){
+        	Image img = ((ImageIcon) icon).getImage();  
+        	Image newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH );  
+        	output  = new ImageIcon( newimg );
+        }
+    	return output;
     }
 }
