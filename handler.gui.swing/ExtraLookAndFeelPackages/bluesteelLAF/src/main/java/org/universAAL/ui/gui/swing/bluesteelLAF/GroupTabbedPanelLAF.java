@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
-import java.awt.Component;
 import java.awt.Image;
 
 import javax.swing.Icon;
@@ -58,11 +57,8 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
             if (children[i] instanceof Group) {
                 JComponent childComponent = getComponentFrom(children[i]);
                 if (childComponent instanceof JPanel) {
-                    pane = new JPanel();
-                    Component cs[] = ((JPanel) childComponent).getComponents();
-                    for (int j = 0; j < cs.length; j++) {
-						pane.add(cs[j]);
-					}
+                    pane = ((JPanel) childComponent);
+                    pane.setBorder(null);
                 }
                 else if (childComponent instanceof JTabbedPane){
                     pane = new JPanel();

@@ -122,7 +122,7 @@ public class ColorLAF extends DefaultMetalTheme {
 	 * @return the {@link Font} to use in labels
 	 */
 	public Font getLabelFont() {
-		return new Font(fontFamily, Font.PLAIN, fontSizeBase - 4);
+		return new Font(fontFamily, Font.PLAIN, fontSizeBase - 2);
 	}
 
 	/** {@inheritDoc} */
