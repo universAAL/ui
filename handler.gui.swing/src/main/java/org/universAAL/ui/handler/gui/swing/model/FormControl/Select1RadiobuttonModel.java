@@ -24,6 +24,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.SwingUtilities;
 
 import org.universAAL.middleware.ui.rdf.ChoiceItem;
 import org.universAAL.middleware.ui.rdf.Label;
@@ -113,13 +114,17 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 	}
 	
 	/**{@inheritDoc}*/
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() instanceof JRadioButton){
-			JRadioButton jrb = (JRadioButton) e.getSource();
-			if (jrb.isSelected()){
-				((Select1) fc).storeUserInput(getAssociatedValue(jrb));
+	public void actionPerformed(final ActionEvent e) {
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				if (e.getSource() instanceof JRadioButton){
+					JRadioButton jrb = (JRadioButton) e.getSource();
+					if (jrb.isSelected()){
+						((Select1) fc).storeUserInput(getAssociatedValue(jrb));
+					}
+				}
 			}
-		}
+		});
 	}
 
 }
