@@ -85,9 +85,15 @@ public class Init implements InitInterface {
         			getClass(), "install",
         			new String[] {"unable to start Tray Icon."}, e);
 		}
-        createDesktop();
+        try {
+			createDesktop();
+		} catch (Exception e1) {
+        	LogUtils.logWarn(render.getModuleContext(), 
+        			getClass(), "install",
+        			new String[] {"unable to start the desktop."}, e1);
+		}
         UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
-        UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 3));
+        UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 2));
         UIManager.put("ToolTip.font", color.getLabelFont());
         ToolTipManager.sharedInstance()
         	.setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
