@@ -98,6 +98,7 @@
                             org.universAAL.ui.handler.gui.swing.dialogManagement</Private-Package>
             <Export-Package>org.universAAL.ui.handler.gui.swing,
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel,
+                            org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components,
                             org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout,
                             org.universAAL.ui.handler.gui.swing.model,
                             org.universAAL.ui.handler.gui.swing.model.special,
