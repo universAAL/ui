@@ -153,7 +153,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	generalInteractionPreferences
 		.setPreferredLanguage(getLanguageOntFromSystemSetup());
 	generalInteractionPreferences
-		.setSecondaryLanguage(getLanguageOntEnglish());
+		.setSecondaryLanguage(getLanguageOntFromSystemSetup());
 	generalInteractionPreferences.setPreferredModality(Modality.gui);
 	generalInteractionPreferences.setSecondaryModality(Modality.voice);
 	uiPrefsSubProfile
@@ -241,7 +241,7 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	generalInteractionPreferences
 		.setPreferredLanguage(getLanguageOntFromSystemSetup());
 	generalInteractionPreferences
-		.setSecondaryLanguage(getLanguageOntEnglish());
+		.setSecondaryLanguage(getLanguageOntFromSystemSetup());
 	generalInteractionPreferences.setPreferredModality(Modality.web);
 	generalInteractionPreferences.setSecondaryModality(Modality.gui);
 	uiPrefsSubProfile
@@ -334,12 +334,12 @@ public class UISubprofileInitializatorRunnable implements Runnable {
     }
     
     
-    /**
-     * Get the English Language.
-     * @return {@link Language} English
-     */
-    private Language getLanguageOntEnglish() {
-    	String englishURI =  LanguageOntology.NAMESPACE + "ENGLISH";
-    	return (Language) Resource.getResource(englishURI, englishURI.toLowerCase());
-    }
+//    /**
+//     * Get the English Language.
+//     * @return {@link Language} English
+//     */
+//    private Language getLanguageOntEnglish() {
+//    	String englishURI =  LanguageOntology.NAMESPACE + "ENGLISH";
+//    	return (Language) Resource.getResource(englishURI, englishURI.toLowerCase());
+//    }
 }
