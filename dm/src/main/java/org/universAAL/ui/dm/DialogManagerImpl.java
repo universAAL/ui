@@ -327,19 +327,29 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     private void stop() {
 	// notify UserDialogManager s about impending shutdown
 	for (UserDialogManager udm : dialogIDMap.values()) {
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UDM for: " + udm.getUserId());
 	    udm.close();
 	}
-	if (serviceCallee != null)
-	    serviceCallee.close();
-	if (serviceCaller != null)
-	    serviceCaller.close();
-	moduleContext = null;
-
-	if (uiPreferencesBuffer != null)
+	if (uiPreferencesBuffer != null) {
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferencesBuffer");
 		uiPreferencesBuffer.stop();
+	}
+	if (serviceCallee != null) {
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping serviceCallee");
+	    serviceCallee.close();
+	}
+	if (serviceCaller != null) {
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping serviceCaller");
+	    serviceCaller.close();
+	}
+    
 	uiPreferencesUICaller = null;
-	if (uiPreferencesSCallee != null)
+	if (uiPreferencesSCallee != null){
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferencesServiceCallee");
 	    uiPreferencesSCallee.close();
+	}
+	
+	moduleContext = null;
     }
 
     /**
@@ -365,8 +375,10 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * Stop the Dialog Manager's instance
      */
     public static void stopDM() {
-	getInstance().stop();
-	singleton = null;
+    	if (singleton != null) {
+    		singleton.stop();
+    		singleton = null;
+    	} 
     }
 
     /**

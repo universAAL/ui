@@ -45,7 +45,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
 	    CallStatus.serviceSpecificFailure);
 
     public UIPreferencesSCallee(ModuleContext mcontext, UIPreferencesUICaller uiPreferencesUICaller ) {
-	super(mcontext, UIPreferencesProvidedService.profiles);
+	super(mcontext, UIPreferencesProvidedService.getProfiles(mcontext));
 	UIPreferencesSCallee.mcontext = mcontext;
 	UIPreferencesSCallee.uiPreferencesUICaller=uiPreferencesUICaller;
     }

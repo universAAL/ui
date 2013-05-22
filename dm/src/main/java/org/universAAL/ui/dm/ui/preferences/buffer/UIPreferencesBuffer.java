@@ -23,6 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.universAAL.middleware.container.ModuleContext;
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.profile.AssistedPerson;
@@ -78,7 +79,7 @@ public class UIPreferencesBuffer {
 		mcontext);
 
 	allLoggedInUsers = new HashSet<User>();
-
+	
     }
 
     /**
@@ -103,9 +104,10 @@ public class UIPreferencesBuffer {
 	    // user in separate thread
 	    UISubprofileInitializatorRunnable uiSubprofileInitializatorRunnable = new UISubprofileInitializatorRunnable(
 		    this, user);
-	    Thread t = new Thread(uiSubprofileInitializatorRunnable);
-	    t.setPriority(Thread.MAX_PRIORITY);
-	    t.start();
+	    uiSubprofileInitializatorRunnable.run();
+//	    Thread t = new Thread(uiSubprofileInitializatorRunnable);
+//	    t.setPriority(Thread.MAX_PRIORITY);
+//	    t.start();
 
 	    // start obtainment timer for all users (logged in in some point in
 	    // time)
@@ -123,6 +125,7 @@ public class UIPreferencesBuffer {
      * Stops the task
      */
     public void stop(){
+    	if (getUIPreferencesTimer != null)
     	getUIPreferencesTimer.cancel();
     }
 
