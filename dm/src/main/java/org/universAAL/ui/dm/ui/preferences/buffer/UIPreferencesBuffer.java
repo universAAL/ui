@@ -118,6 +118,13 @@ public class UIPreferencesBuffer {
 
 	}
     }
+    
+    /**
+     * Stops the task
+     */
+    public void stop(){
+    	getUIPreferencesTimer.cancel();
+    }
 
     /**
      * GetUIPreferencesTask timer
