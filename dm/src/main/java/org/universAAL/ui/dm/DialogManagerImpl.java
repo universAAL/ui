@@ -23,6 +23,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeMap;
+import java.util.concurrent.Semaphore;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -84,7 +85,12 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * The {@link ModuleContext} reference.
      */
     private ModuleContext moduleContext;
-
+    
+    /**
+     * A semaphore to syncronize initialization
+     */
+    private static Semaphore initSem = new Semaphore(0);
+    
     /**
      * The uAAL Service Caller. To call main menu services.
      */
@@ -329,7 +335,8 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    serviceCaller.close();
 	moduleContext = null;
 
-	uiPreferencesBuffer = null;
+	if (uiPreferencesBuffer != null)
+		uiPreferencesBuffer.stop();
 	uiPreferencesUICaller = null;
 	if (uiPreferencesSCallee != null)
 	    uiPreferencesSCallee.close();
@@ -349,6 +356,8 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    singleton = new DialogManagerImpl(mc);
 	    LogUtils.logDebug(mc, DialogManagerImpl.class, "createInstance",
 		    new String[] { "..singleton instance created." }, null);
+		// release all
+		initSem.release(Integer.MAX_VALUE);
 	}
     }
 
@@ -366,21 +375,18 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * @return the singleton Instance, null if not created.
      */
     public static DialogManagerImpl getInstance() {
-	if (singleton == null) {
-	    LogUtils.logDebug(getModuleContext(), DialogManagerImpl.class,
-		    "getInstance",
-		    new String[] { "Singleton instance not yet created." },
-		    null);
+		while (singleton == null) {
+			try {
+				initSem.acquire();
+			} catch (InterruptedException e) {	}
 
-	    createInstance(getModuleContext());
-
-	    if (singleton == null) {
-		LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
-			"getInstance",
-			new String[] { "Could not get singleton instance." },
-			null);
-	    }
-	}
+			if (singleton == null) {
+				LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
+						"getInstance",
+						new String[] { "Could not get singleton instance." },
+						null);
+			}
+		}
 	return singleton;
     }
 
