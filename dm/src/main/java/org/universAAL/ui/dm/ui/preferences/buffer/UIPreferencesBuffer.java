@@ -23,7 +23,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.profile.AssistedPerson;
