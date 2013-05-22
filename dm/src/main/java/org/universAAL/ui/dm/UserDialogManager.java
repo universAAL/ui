@@ -908,7 +908,7 @@ public class UserDialogManager implements IDialogManager,
 	 */
 	public AutoSaverTask() {
 	    userID = user.getLocalName();
-	    getDialogFile().mkdirs();
+	    getDialogFile().getParentFile().mkdirs();
 
 	    storeDLG = new DialogPoolFileStorage(DialogManagerImpl
 		    .getModuleContext(), getDialogFile());

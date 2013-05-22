@@ -113,7 +113,7 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 		}
 		
 		Resource root = (Resource) contentSerializer.deserialize(serialized);
-		if (serialized.length() > 5){
+		if (serialized.length() > 5 && root !=null){
 			List<UIRequest> suspended = (List<UIRequest>) root.getProperty(PROP_SUSPENDED);
 			for (UIRequest uiRequest : suspended) {
 				target.add(uiRequest);
