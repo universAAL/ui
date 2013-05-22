@@ -301,7 +301,8 @@ public class Renderer extends Thread {
      */
     private String getDefaultUserURI(){
     	String user = getProperty(CONFIGURED_USER);
-    	if (!user.isEmpty()) {
+    	if (user != null 
+    			&& !user.isEmpty()) {
     		if (StringUtils.isQualifiedName(user)){
     			//user is a valid URI
     			return user;
