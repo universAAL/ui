@@ -27,10 +27,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingUtilities;
 
-import org.osgi.framework.BundleException;
+
 import org.universAAL.ui.gui.swing.bluesteelLAF.Init;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.osgi.Activator;
 
 /**
  * @author amedrano
@@ -103,12 +102,7 @@ public class UAALTray {
 	        	SwingUtilities.invokeLater(new Runnable() {
 					
 					public void run() {
-						try {
-							Activator.shutdownContainer();
-						} catch (BundleException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+							render.shutdownContainer();
 					}
 				});
 	        }

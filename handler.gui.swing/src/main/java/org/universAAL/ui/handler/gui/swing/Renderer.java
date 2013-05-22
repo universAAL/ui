@@ -146,56 +146,22 @@ public class Renderer extends Thread {
 
 
 	/**
+	 * The Container Manager reference
+	 */
+	private IContainerManager contManager = null;
+
+
+	/**
      * Directory for configuration files.
      */
     private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
     
     /**
-     * Constructor for one Renderer on a certain file.
-     * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
-     * @param propFile {@link File} to use as property file for this {@link Renderer}.
-     */
-    public Renderer(ModuleContext mc, File propFile){
-    	moduleContext = mc;
-    	propertiesFile = propFile; 
-        
-		//Load Properties
-        LogUtils.logDebug(moduleContext, getClass(), 
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"loading properties"}, null);
-        loadProperties();
+	 * Only to be used by TestCases.
+	 */
+	protected Renderer(){  }
 
-        //Create the Model Mapper
-        LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"Initialising ModelMapper"}, null);
-        modelMapper = new ModelMapper(this);
-
-        //Try loading the setted FormManager
-        LogUtils.logDebug(moduleContext, getClass(),
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"selecting Form Manager"}, null);
-        loadFormManager(getProperty(FORM_MANAGEMENT));
-                 
-        //Build the uAAL handler
-    	LogUtils.logDebug(moduleContext, getClass(),
-    			"Constructor for " + propFile.getName(),
-    			new String[]{"starting Handler"}, null);
-        handler = new Handler(this);
-   
-        //Now everything is ready to initialize the LAF
-        LogUtils.logDebug(moduleContext, getClass(), 
-        		"Constructor for " + propFile.getName(),
-        		new String[]{"loading LAF"}, null);
-        initLAF = modelMapper.initializeLAF();
-    }
-    
-    /**
-     * Only to be used by TestCases.
-     */
-    protected Renderer(){  }
-    
-    /**
+	/**
      * Constructor.
      * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
      */
@@ -203,7 +169,66 @@ public class Renderer extends Thread {
     	this(mc, new File(getHomeDir() + RENDERER_CONF)); 
     }
     
+	/**
+     * Constructor.
+     * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+     * @param con the container manager.
+     */
+    public Renderer(ModuleContext mc,IContainerManager con) {
+    	this(mc, new File(getHomeDir() + RENDERER_CONF),con); 
+    }
+    
     /**
+	 * Constructor for one Renderer on a certain file.
+	 * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+	 * @param propFile {@link File} to use as property file for this {@link Renderer}.
+	 */
+	public Renderer(ModuleContext mc, File propFile){
+		this(mc,propFile,null);
+	}
+
+    /**
+	 * Constructor for one Renderer on a certain file with a container manager.
+	 * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+	 * @param propFile {@link File} to use as property file for this {@link Renderer}.
+	 * @param cmanager the container manager that manages the container operations.
+	 */
+	public Renderer(ModuleContext mc, File propFile, IContainerManager cmanager){
+		moduleContext = mc;
+		propertiesFile = propFile; 
+	    contManager  = cmanager;
+		//Load Properties
+	    LogUtils.logDebug(moduleContext, getClass(), 
+	    		"Constructor for " + propFile.getName(),
+	    		new String[]{"loading properties"}, null);
+	    loadProperties();
+	
+	    //Create the Model Mapper
+	    LogUtils.logDebug(moduleContext, getClass(),
+	    		"Constructor for " + propFile.getName(),
+	    		new String[]{"Initialising ModelMapper"}, null);
+	    modelMapper = new ModelMapper(this);
+	
+	    //Try loading the setted FormManager
+	    LogUtils.logDebug(moduleContext, getClass(),
+	    		"Constructor for " + propFile.getName(),
+	    		new String[]{"selecting Form Manager"}, null);
+	    loadFormManager(getProperty(FORM_MANAGEMENT));
+	             
+	    //Build the uAAL handler
+		LogUtils.logDebug(moduleContext, getClass(),
+				"Constructor for " + propFile.getName(),
+				new String[]{"starting Handler"}, null);
+	    handler = new Handler(this);
+	
+	    //Now everything is ready to initialize the LAF
+	    LogUtils.logDebug(moduleContext, getClass(), 
+	    		"Constructor for " + propFile.getName(),
+	    		new String[]{"loading LAF"}, null);
+	    initLAF = modelMapper.initializeLAF();
+	}
+
+	/**
      * Load the {@link FormManager} from name (to be configured in properties file).
      * @param FormManagerClassName the name of the {@link FormManager} to be loaded, if not found {@link SimpleFormManager} will be loaded.
      */
@@ -559,32 +584,46 @@ public class Renderer extends Thread {
 		return RenderStarter.staticContext;
 	}
 	
+	/**
+	 * Callback the container to shutdown.
+	 */
+	public void shutdownContainer() {
+		if (contManager != null){
+			contManager.shutdownContainer();
+		}
+		
+	}
+
 	public static class RenderStarter implements Runnable{
 	
 	private File propFile;
 	private Renderer render;
 	private ModuleContext context;
+	private IContainerManager con;
 	private static ModuleContext staticContext;
 	
 	public RenderStarter(ModuleContext mc){
-	    propFile = null;
-	    context = mc;
-	    staticContext = context;
+	    this(mc,null,null);
 	}
 	
 	public RenderStarter(ModuleContext mc, File prop){
+	    this(mc,prop,null);
+	}
+	
+	public RenderStarter(ModuleContext mc, File prop, IContainerManager cm){
 	    propFile = prop;
 	    context = mc;
+	    con = cm;
 	    staticContext = context;
 	}
 	
 	public void run() {
 	    if (propFile == null){
-		render = new Renderer(context);
+		render = new Renderer(context,con);
 		render.start();
 	    }
 	    else {
-		render = new Renderer(context,propFile);
+		render = new Renderer(context,propFile,con);
 		render.start();
 	    }
 	    
