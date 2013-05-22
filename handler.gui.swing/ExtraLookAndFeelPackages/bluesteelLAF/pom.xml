@@ -65,10 +65,6 @@
       <artifactId>itests</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.universAAL.ui</groupId>
       <artifactId>ui.handler.gui.swing</artifactId>
     </dependency>

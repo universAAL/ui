@@ -26,6 +26,8 @@ import org.osgi.framework.BundleException;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
+import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.ui.handler.gui.swing.IContainerManager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.Renderer.RenderStarter;
 
@@ -34,7 +36,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer.RenderStarter;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */
-public final class Activator implements BundleActivator {
+public final class Activator implements BundleActivator, IContainerManager {
 
 	/**
 	 * the {@link BundleContext} for the handler.newGui bundle
@@ -72,7 +74,7 @@ public final class Activator implements BundleActivator {
 		if (props.length > 0) {
 			renderers = new Renderer.RenderStarter[props.length];
 			for (int i = 0; i < props.length; i++) {
-				renderers[i] = new RenderStarter(Activator.context,props[i]);
+				renderers[i] = new RenderStarter(Activator.context,props[i],this);
 				Activator.context.registerConfigFile(
 						new Object[] {
 								getPropName(props[i]),
@@ -82,7 +84,7 @@ public final class Activator implements BundleActivator {
 		}
 		else {
 			renderers = new Renderer.RenderStarter[1];
-			renderers[0] = new Renderer.RenderStarter(Activator.context);
+			renderers[0] = new Renderer.RenderStarter(Activator.context,null,this);
 			Activator.context.registerConfigFile(
 						new Object[] {
 								"renderer",
@@ -132,7 +134,12 @@ public final class Activator implements BundleActivator {
 		}
 	}
 
-	static public void shutdownContainer() throws BundleException{
-		bundleContext.getBundle(0).stop();
+	public void shutdownContainer(){
+		try {
+			bundleContext.getBundle(0).stop();
+		} catch (BundleException e) {
+			LogUtils.logWarn(context, getClass(),
+					"shutdownContainer", new String[]{"Unable to shutdown container."},e);
+		}
 	}
 }

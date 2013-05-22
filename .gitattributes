@@ -195,6 +195,7 @@ handler.gui.swing/MITX.txt -text
 handler.gui.swing/NOTICE.txt -text svneol=unset#text/plain
 handler.gui.swing/pom.xml -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/IContainerManager.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/ModelMapper.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Renderer.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/ResourceMapper.java -text
