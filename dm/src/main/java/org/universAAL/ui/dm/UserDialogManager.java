@@ -148,7 +148,7 @@ public class UserDialogManager implements IDialogManager,
     private IUIRequestPool messagePool;
 
     /**
-     * Dialog pool, to manage active and suspendend Dialogs (ie: non-message
+     * Dialog pool, to manage active and suspended Dialogs (ie: non-message
      * requests).
      */
     private IUIRequestPool dialogPool;
@@ -260,7 +260,7 @@ public class UserDialogManager implements IDialogManager,
 	adapterList.add(new AdaptorKrakow());
 
 	/*
-	 * Initialise mainMenuProvider
+	 * Initialize mainMenuProvider
 	 */
 	mainMenuProvider = new SearchableAggregatedMainMenuProvider(this);
 	try {
