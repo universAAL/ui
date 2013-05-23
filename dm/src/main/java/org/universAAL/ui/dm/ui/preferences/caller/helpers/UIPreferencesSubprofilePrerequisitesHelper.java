@@ -134,13 +134,27 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 
 	ServiceResponse resp = sc.call(req);
 	if (resp.getCallStatus() == CallStatus.succeeded) {
+
 	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_USERS);
 	    if (out != null) {
+		LogUtils.logDebug(mc, this.getClass(), "getUser", new Object[] {
+			"User: ", user.getURI(),
+			" retrieved from Profiling Server." }, null);
 		return (User) out;
 	    } else {
+		LogUtils.logDebug(mc, this.getClass(), "getUser",
+			new Object[] { "User not found in Profiling Server." },
+			null);
 		return null;
 	    }
 	} else {
+	    LogUtils
+		    .logDebug(
+			    mc,
+			    this.getClass(),
+			    "getUser",
+			    new Object[] { "Call for obtaining user did not succeed." },
+			    null);
 	    return null;
 	}
     }
@@ -158,12 +172,12 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	ServiceResponse res = sc.call(sr);
 	if (res.getCallStatus() == CallStatus.succeeded) {
 	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded",
-		    new Object[] { "new user: ", user.getURI(), " added." },
+		    new Object[] { "New user: ", user.getURI(), " added." },
 		    null);
 	    return true;
 	} else {
 	    LogUtils.logDebug(mc, this.getClass(), "addUserSucceeded",
-		    new Object[] { "callstatus is not succeeded" }, null);
+		    new Object[] { "Call for adding a user to Profiling server did not succeed." }, null);
 	    return false;
 	}
     }
@@ -351,12 +365,12 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 
 	    } catch (Exception e) {
 		LogUtils.logError(mc, this.getClass(), "getUsers",
-			new Object[] { "got exception", e.getMessage() }, e);
+			new Object[] { "Got exception", e.getMessage() }, e);
 		return null;
 	    }
 	} else {
 	    LogUtils.logWarn(mc, this.getClass(), "getUsers",
-		    new Object[] { "callstatus is not succeeded" }, null);
+		    new Object[] { "Callstatus is not succeeded" }, null);
 	    return null;
 	}
     }
