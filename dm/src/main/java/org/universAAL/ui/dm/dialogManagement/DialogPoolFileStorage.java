@@ -30,6 +30,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
 
@@ -112,19 +113,24 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 			return;
 		}
 		
-		Resource root = (Resource) contentSerializer.deserialize(serialized);
-		if (serialized.length() > 5 && root !=null){
-			List<UIRequest> suspended = (List<UIRequest>) root.getProperty(PROP_SUSPENDED);
-			for (UIRequest uiRequest : suspended) {
-				target.add(uiRequest);
-				target.suspend(uiRequest.getDialogID());
-			}
-
-			List<UIRequest> active = (List<UIRequest>) root.getProperty(PROP_ACTIVE);
-			if (active != null)
-				for (UIRequest uiRequest : active) {
+		try {
+			Resource root = (Resource) contentSerializer.deserialize(serialized);
+			if (serialized.length() > 5 && root !=null){
+				List<UIRequest> suspended = (List<UIRequest>) root.getProperty(PROP_SUSPENDED);
+				for (UIRequest uiRequest : suspended) {
 					target.add(uiRequest);
+					target.suspend(uiRequest.getDialogID());
 				}
+
+				List<UIRequest> active = (List<UIRequest>) root.getProperty(PROP_ACTIVE);
+				if (active != null)
+					for (UIRequest uiRequest : active) {
+						target.add(uiRequest);
+					}
+			}
+		} catch (Exception e) {
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(),"read", 
+					new Object[]{"unable to deserilize file: ", file},e);
 		}
 	}
 	
