@@ -20,7 +20,6 @@ dm/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparat
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IAdapter.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IMainMenuProvider.java -text
-dm/src/main/java/org/universAAL/ui/dm/interfaces/ISQLStoreProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java -text svneol=unset#text/plain

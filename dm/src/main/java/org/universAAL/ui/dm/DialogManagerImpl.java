@@ -37,7 +37,6 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
@@ -58,11 +57,33 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
 
     /**
+	 * Prefix for all DM calls (Submits).
+	 */
+	public static final String CALL_PREFIX = "urn:ui.dm:UICaller"; //$NON-NLS-1$
+
+	/**
+	 * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage
+	 * collector.
+	 */
+	private static final long GC_PERIOD = 600000; // 10 min
+
+	/**
+	 * The configHome is the folder where all the DMs config files are to be
+	 * saved.
+	 */
+	private static File configHome;
+
+	/**
      * Singleton instance.
      */
     private static DialogManagerImpl singleton = null;
 
     /**
+	 * A semaphore to syncronize initialization
+	 */
+	private static Semaphore initSem = new Semaphore(0);
+
+	/**
      * Map of {@link UserDialogManager} delegates. Key is the user's URI.
      */
     private Map<String, UserDialogManager> udmMap;
@@ -87,11 +108,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     private ModuleContext moduleContext;
     
     /**
-     * A semaphore to syncronize initialization
-     */
-    private static Semaphore initSem = new Semaphore(0);
-    
-    /**
      * The uAAL Service Caller. To call main menu services.
      */
     private ServiceCaller serviceCaller;
@@ -101,32 +117,15 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
     private ServiceCallee serviceCallee;
 
-    /*
-     * FIXME: initialise ISQLStoreProvider according to config-file (?) and add
-     * accesing methods.
-     */
-    // private StoreProvider m_StoreProvider;
-
     /**
-     * Prefix for all DM calls (Submits).
+     * The Preferences Editor.
      */
-    public static final String CALL_PREFIX = "urn:ui.dm:UICaller"; //$NON-NLS-1$
-
+    private UIPreferencesUICaller uiPreferencesUICaller = null;
+    
     /**
-     * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage
-     * collector.
+     * The component managing the preferences profiles for all users.
      */
-    private static final long GC_PERIOD = 600000; // 10 min
-
-    public static UIPreferencesUICaller uiPreferencesUICaller = null;
-    public static UIPreferencesSCallee uiPreferencesSCallee = null;
-    public static UIPreferencesBuffer uiPreferencesBuffer = null;
-
-    /**
-     * The configHome is the folder where all the DMs config files are to be
-     * saved.
-     */
-    private static File configHome;
+    private UIPreferencesBuffer uiPreferencesBuffer = null;
 
     /**
      * private constructor for creating singleton instance.
@@ -147,17 +146,8 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
 		uiPreferencesBuffer);
 
-	uiPreferencesSCallee = new UIPreferencesSCallee(moduleContext,
-		uiPreferencesUICaller);
-
-	// bus = (IUIBus) context.getContainer()
-	// .fetchSharedObject(context, UIBusImpl.busFetchParams);
     }
 
-    // /** {@inheritDoc} */
-    // public void finalize() throws Throwable {
-    //
-    // }
 
     /**
      * This method is called by the UI bus and determines whether a dialog can
@@ -233,9 +223,18 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	if (udm != null) {
 	    return udm.getSuspendedDialog(dialogID);
 	} else {
-	    LogUtils.logError(moduleContext, getClass(), "getSuspendedDialog",
+	    LogUtils.logWarn(moduleContext, getClass(), "getSuspendedDialog",
 		    new String[] { "Unable to locate UDM for dialog: "
-			    + dialogID }, null);
+			    , dialogID, "scanning all UDMs" }, null);
+	    for (UserDialogManager udmm : udmMap.values()) {
+			UIRequest req = udmm.getSuspendedDialog(dialogID);
+			if (req != null){
+				return req;
+			}
+		    LogUtils.logWarn(moduleContext, getClass(), "getSuspendedDialog",
+			    new String[] { "Unable to locate UDM for dialog: "
+				    , dialogID }, null);
+		}
 	    return null;
 	}
     }
@@ -254,7 +253,11 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	} else {
 	    LogUtils.logError(moduleContext, getClass(), "suspendDialog",
 		    new String[] { "Unable to locate UDM for dialog: "
-			    + dialogID }, null);
+			    + dialogID , "scanning all UDMs" }, null);
+	    for (UserDialogManager udmm : udmMap.values()) {
+			udmm.suspendDialog(dialogID);
+			
+		}
 	}
     }
 
@@ -282,7 +285,10 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	} else {
 	    LogUtils.logError(moduleContext, getClass(), "dialogAborted",
 		    new String[] { "Unable to locate UDM for dialog: "
-			    + dialogID }, null);
+			    + dialogID , "scanning all UDMs" }, null);
+	    for (UserDialogManager udmm : udmMap.values()) {
+			udmm.dialogAborted(dialogID);
+		}
 	}
     }
 
@@ -317,9 +323,22 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	}
     }
 
+    /**
+     * Get the {@link UserDialogManager} for a given userURI
+     * @param userURI 
+     * @return
+     */
     public UserDialogManager getUDM(String userURI) {
 	return udmMap.get(userURI);
 	}
+    
+    /**
+     * Get the {@link UIPreferencesBuffer}.
+     * @return
+     */
+    public UIPreferencesBuffer getUIPreferencesBuffer(){
+    	return uiPreferencesBuffer;
+    }
 
 	/**
      * Method to prepare for DM shutdown.
@@ -343,10 +362,9 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    serviceCaller.close();
 	}
     
-	uiPreferencesUICaller = null;
-	if (uiPreferencesSCallee != null){
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferencesServiceCallee");
-	    uiPreferencesSCallee.close();
+	if (uiPreferencesUICaller != null){
+	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferences Editor");
+	    uiPreferencesUICaller.close();
 	}
 	
 	moduleContext = null;

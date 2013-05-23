@@ -49,6 +49,8 @@ public class UIPreferencesUICaller extends UICaller {
     private UIPreferencesDialogBuilder uiPreferencesDialogBuilder = null;
     private UIPreferencesBuffer uiPreferencesBuffer = null;
 
+	private UIPreferencesSCallee uiPreferencesSCallee;
+
     public UIPreferencesUICaller(ModuleContext mcontext,
 	    UIPreferencesBuffer uiPreferencesBuffer) {
 	super(mcontext);
@@ -56,9 +58,18 @@ public class UIPreferencesUICaller extends UICaller {
 		uiPreferencesBuffer);
 	UIPreferencesUICaller.mcontext = mcontext;
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
+	this.uiPreferencesSCallee = new UIPreferencesSCallee(mcontext, this);
     }
 
-    /*
+    /** {@ inheritDoc}	 */
+	@Override
+	public void close() {
+		super.close();
+		if (uiPreferencesSCallee != null)
+			uiPreferencesSCallee.close();
+	}
+
+	/*
      * (non-Javadoc)
      * 
      * @see org.universAAL.middleware.ui.UICaller#communicationChannelBroken()
