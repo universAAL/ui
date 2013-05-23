@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -76,23 +77,26 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 	
 	/** {@inheritDoc} */
 	public void save(IUIRequestPool pool){
-		Resource root = new Resource();
 		List<UIRequest> active = new ArrayList<UIRequest>(pool.listAllActive());
 		List<UIRequest> suspended = new ArrayList<UIRequest>(pool.listAllSuspended());
-		root.setProperty(PROP_ACTIVE, active);
-		root.setProperty(PROP_SUSPENDED, suspended);
-		String serialized = contentSerializer.serialize(root);
-		
-		//wirting
-		OutputStreamWriter osw;
-		try {
-			osw = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(UTF_8));
-			osw.write(serialized);
-			osw.close();
-		} catch (FileNotFoundException e) {
-			// Highly improbable.
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (active.size() > 0
+				&& suspended.size() > 0){
+			Resource root = new Resource();
+			root.setProperty(PROP_ACTIVE, active);
+			root.setProperty(PROP_SUSPENDED, suspended);
+			String serialized = contentSerializer.serialize(root);
+
+			//wirting
+			OutputStreamWriter osw;
+			try {
+				osw = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(UTF_8));
+				osw.write(serialized);
+				osw.close();
+			} catch (FileNotFoundException e) {
+				// Highly improbable.
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
