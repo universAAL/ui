@@ -63,35 +63,44 @@ public class UIPreferencesProvidedService extends UIPreferencesService {
 	return serverPEditorRestrictions;
     }
 
-	/**
-	 * @param mcontext
-	 * @return
-	 */
-	public static ServiceProfile[] getProfiles(ModuleContext mcontext) {
-		ServiceProfile[] profiles = new ServiceProfile[PROVIDED_SERVICES];
-		OntologyManagement.getInstance().register(
-			mcontext,
-			new SimpleOntology(MY_URI, UIPreferencesService.MY_URI,
-				new ResourceFactoryImpl() {
-				    @Override
-				    public Resource createInstance(String classURI,
-					    String instanceURI, int factoryIndex) {
-					return new UIPreferencesProvidedService(
-						instanceURI);
-				    }
-				}));
+    /**
+     * @param mcontext
+     * @return
+     */
+    public static ServiceProfile[] getProfiles(ModuleContext mcontext) {
+	ServiceProfile[] profiles = new ServiceProfile[PROVIDED_SERVICES];
+	OntologyManagement.getInstance().register(
+		mcontext,
+		new SimpleOntology(MY_URI, UIPreferencesService.MY_URI,
+			new ResourceFactoryImpl() {
+			    @Override
+			    public Resource createInstance(String classURI,
+				    String instanceURI, int factoryIndex) {
+				return new UIPreferencesProvidedService(
+					instanceURI);
+			    }
+			}));
 
-		addRestriction((MergedRestriction) UIPreferencesService
-			.getClassRestrictionsOnProperty(UIPreferencesService.MY_URI,
-				UIPreferencesService.PROP_CONTROLS).copy(),
-			new String[] { UIPreferencesService.PROP_CONTROLS },
-			serverPEditorRestrictions);
-		// Url to be added to configurations/ui.dm/main menu: /UI Preferences
-		// Editor|http://www.ent.hr|http://ontology.universaal.org/InteractionPreferencesProfile.owl#UIPreferencesService
-		profiles[0] = InitialServiceDialog.createInitialDialogProfile(
-			UIPreferencesService.MY_URI, "http://www.ent.hr",
-			"UI Preferences dialog", START_UI);
-		return profiles;
-	}
+	addRestriction((MergedRestriction) UIPreferencesService
+		.getClassRestrictionsOnProperty(UIPreferencesService.MY_URI,
+			UIPreferencesService.PROP_CONTROLS).copy(),
+		new String[] { UIPreferencesService.PROP_CONTROLS },
+		serverPEditorRestrictions);
+	// Url to be added to configurations/ui.dm/main menu: /UI Preferences
+	// Editor|http://www.ent.hr|http://ontology.universaal.org/InteractionPreferencesProfile.owl#UIPreferencesService
+	profiles[0] = InitialServiceDialog.createInitialDialogProfile(
+		UIPreferencesService.MY_URI, "http://www.ent.hr",
+		"UI Preferences dialog", START_UI);
+	return profiles;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.universAAL.middleware.owl.ManagedIndividual#getClassURI()
+     */
+    public String getClassURI() {
+	return MY_URI;
+    }
 
 }
