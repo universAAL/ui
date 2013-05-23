@@ -99,6 +99,7 @@ public class UIPreferencesProvidedService extends UIPreferencesService {
      * 
      * @see org.universAAL.middleware.owl.ManagedIndividual#getClassURI()
      */
+    @Override
     public String getClassURI() {
 	return MY_URI;
     }
