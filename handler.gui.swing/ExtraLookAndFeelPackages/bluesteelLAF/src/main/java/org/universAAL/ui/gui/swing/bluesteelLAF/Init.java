@@ -122,7 +122,9 @@ public class Init implements InitInterface {
 		if (!frame.isVisible()) {
 			frame.setVisible(true);
 		}
-		tray.update();
+		if (tray != null) {
+			tray.update();
+		}
 	}
 	
 	public void userLogOff(User usr) {
