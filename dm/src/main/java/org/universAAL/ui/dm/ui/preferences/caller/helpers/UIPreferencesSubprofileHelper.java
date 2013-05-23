@@ -168,13 +168,13 @@ public class UIPreferencesSubprofileHelper {
 		// TODO same as above comment
 		return null;
 	    } catch (Exception e) {
-		LogUtils.logError(mcontext, this.getClass(), "getSubProfile",
+		LogUtils.logError(mcontext, this.getClass(), "getUIPreferencesSubProfileForUser",
 			new Object[] { "exception: " }, e);
 		return null;
 	    }
 	} else {
 	    LogUtils
-		    .logWarn(mcontext, this.getClass(), "getSubProfile",
+		    .logWarn(mcontext, this.getClass(), "getUIPreferencesSubProfileForUser",
 			    new Object[] { "returned: "
 				    + resp.getCallStatus().name() }, null);
 	    return null;
