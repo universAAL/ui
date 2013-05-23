@@ -99,7 +99,7 @@ public class Init implements InitInterface {
         	.setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
         ToolTipManager.sharedInstance()
     		.setEnabled(Boolean.parseBoolean(render.getProperty(TOOLTIP_ACTIVE, "true")));
-        URL propertiesURL = getClass().getClassLoader().getResource("internationalization.messages.properties");
+        URL propertiesURL = getClass().getClassLoader().getResource("internationalization/messages.properties");
         try {
 			messages = new Messages(propertiesURL);
 		} catch (Exception e) {
