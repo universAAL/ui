@@ -121,9 +121,10 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 			}
 
 			List<UIRequest> active = (List<UIRequest>) root.getProperty(PROP_ACTIVE);
-			for (UIRequest uiRequest : active) {
-				target.add(uiRequest);
-			}
+			if (active != null)
+				for (UIRequest uiRequest : active) {
+					target.add(uiRequest);
+				}
 		}
 	}
 	
