@@ -191,9 +191,9 @@ public class UserDialogManager implements IDialogManager,
      */
     private Semaphore showingSomething = new Semaphore(1);
 
-    public UIPreferencesBuffer uiPreferencesBuffer = null;
+    private UIPreferencesBuffer uiPreferencesBuffer = null;
 
-    UIPreferencesSubProfile uiPreferencesSubProfile = null;
+    private UIPreferencesSubProfile uiPreferencesSubProfile = null;
 
     /**
      * An instance to retrieve, save and autosave the pools.
@@ -217,12 +217,12 @@ public class UserDialogManager implements IDialogManager,
 	// that maybe new user is starting with the interaction so UI
 	// preferences
 	// should be initialized in this step
-	uiPreferencesBuffer
+	this.uiPreferencesBuffer
 		.addUserInitializeUIPreferencesAndStartObtainmentTask(user);
 
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	myUIRequests = new TreeSet<String>();
-	changedUIPreferences(uiPreferencesBuffer.getUIPreferencesSubprofileForUser(user));
+	changedUIPreferences(this.uiPreferencesBuffer.getUIPreferencesSubprofileForUser(user));
 
     }
 
@@ -230,7 +230,8 @@ public class UserDialogManager implements IDialogManager,
      * Close operation, used to close pending tasks.
      */
     void close() {
-	if (uiPreferencesSubProfile.getSystemMenuPreferences()
+	if (uiPreferencesSubProfile != null
+			&& uiPreferencesSubProfile.getSystemMenuPreferences()
 		.getUIRequestPersistance().equals(Status.on)) {
 	    saverTask.cancel();
 	    saverTask.write();
@@ -239,6 +240,11 @@ public class UserDialogManager implements IDialogManager,
 
     /** {@inheritDoc} */
     public void changedUIPreferences(UIPreferencesSubProfile subProfile) {
+    	if (subProfile == null){
+    		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), 
+    				"changedUIPreferences", "A null subprofile has been pased, Ignoring...\n Come on man be legal!");
+    		return;
+    	}
 	// update the UIPreferencesSubProfile for current user
 	uiPreferencesSubProfile = subProfile;
 
