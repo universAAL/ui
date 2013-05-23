@@ -113,8 +113,11 @@ public class Init implements InitInterface {
     }
 
 	public void uninstall() {
-	    tray.dispose();
-	    desktop.setVisible(false);
+		if (tray != null)
+			tray.dispose();
+	    if (desktop != null)
+	    	desktop.setVisible(false);
+	    if (frame != null)
 	    frame.dispose();
 	}
 
@@ -128,9 +131,12 @@ public class Init implements InitInterface {
 	}
 	
 	public void userLogOff(User usr) {
-		tray.update();
-		getDesktop().removeAll();
-		frame.setVisible(false);		
+		if (tray != null)
+			tray.update();
+		if (desktop != null)
+			desktop.removeAll();
+		if (frame != null)
+			frame.setVisible(false);		
 	}
 
 	public void showLoginScreen() {

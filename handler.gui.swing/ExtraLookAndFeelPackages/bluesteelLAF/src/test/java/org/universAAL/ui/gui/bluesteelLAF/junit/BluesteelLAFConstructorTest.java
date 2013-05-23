@@ -53,10 +53,10 @@ import deprecated.MediaObjectLAF;
  */
 public class BluesteelLAFConstructorTest extends TestCase {
 
-    Form f;
-    Label l;
-	ModuleContext mc = new POJOModuleContext();
-    Renderer testRender;
+	static Form f;
+	static Label l;
+	static ModuleContext mc = new POJOModuleContext();
+	static Renderer testRender;
 
     private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
 	private static final String PREFIX = "http://example.com/Dable.owl#";
@@ -69,7 +69,7 @@ public class BluesteelLAFConstructorTest extends TestCase {
 			+ input });
     }
 
-    public void setUp() {
+    static {
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());
 	OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
