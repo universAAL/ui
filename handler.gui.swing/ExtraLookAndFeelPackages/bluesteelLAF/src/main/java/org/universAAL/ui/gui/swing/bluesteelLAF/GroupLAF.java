@@ -19,7 +19,6 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.owl.supply.LevelRating;
-import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -96,11 +95,6 @@ public class GroupLAF extends GroupModel {
     		sc.setToolTipText(i.getMessage(MessageKeys.SHOW_MENU));
     		return sc;
     	}
-    	else if (((Group) fc).isRootGroup()) {
-    		JPanel p = new JPanel();
-    		p.setOpaque(false);
-        	return p;
-        }
     	else if (this.isTheIOGroup()
             	&& !this.isInMainMenu()
     			&& containsOnlySubGroups()
@@ -109,6 +103,11 @@ public class GroupLAF extends GroupModel {
     		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
     		return wrap.getComponent();
     	}
+    	else if (((Group) fc).isRootGroup()) {
+    		JPanel p = new JPanel();
+    		p.setOpaque(false);
+        	return p;
+        }
         else {
         	LevelRating complexity = ((Group) fc).getComplexity();
             if (((Group) fc).isRootGroup()
@@ -135,21 +134,25 @@ public class GroupLAF extends GroupModel {
 
 	/** {@inheritDoc} */
     public void update() {
-	super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
 		int gap = color.getGap();
-		if (!((Group) fc).isRootGroup()) {
+		if (wrap != null) {
         	wrap.update();
         	needsLabel = wrap.needsLabel();
+        } else {
+        	super.update();
+        	if (jc instanceof JPanel){
+        		addToJPanel();
+        	}
         }
-        else if (this.isTheIOGroup()
+        if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
         	if (containsOnlySubGroups()
         			&& ((Group)fc).getChildren().length <= GROUP_NO_THRESHOLD) {
         		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         		vfl.setMaximizeOtherDimension(true);
         		jc.setLayout(vfl);
-        	} else {
+        	} else if (jc instanceof JPanel) {
         		jc.setLayout(new FormLayout(gap));
         	}
         }
@@ -158,15 +161,6 @@ public class GroupLAF extends GroupModel {
         	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
-		}
-		if (jc instanceof MainMenuPager
-				|| jc instanceof SystemCollapse){
-			JPanel pane = (JPanel) jc;
-	    	pane.removeAll();
-	        FormControl[] children = ((Group) fc).getChildren();
-	        for (int i = 0; i < children.length; i++) {
-	            addComponentTo(children[i], pane);
-	        }
 		}
     }
 

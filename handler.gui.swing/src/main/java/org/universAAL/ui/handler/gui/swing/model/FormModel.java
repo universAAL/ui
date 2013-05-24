@@ -15,6 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
+import java.awt.GridLayout;
+
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -186,7 +188,16 @@ public abstract class FormModel {
         ioGroupModel = (GroupModel) getRenderer().getModelMapper().getModelFor(form.getIOControls());
     	JComponent jio = ioGroupModel.getComponent();
         jio.setName(IO_NAME);
-        return (JPanel) jio;
+        if (jio instanceof JPanel){
+        	return (JPanel) jio;
+        }
+        else {
+        	JPanel jp = new JPanel();
+        	jp.add(jio);
+        	jp.setOpaque(false);
+        	jp.setLayout(new GridLayout(1, 1));
+        	return jp;
+        }
     }
 
     /**
