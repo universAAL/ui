@@ -152,13 +152,21 @@ public class GroupLAF extends GroupModel {
         	} else {
         		jc.setLayout(new FormLayout(gap));
         	}
-		
         }
         else if (this.isTheSubmitGroup()
         	&& !this.isInMessage()){
         	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
+		}
+		if (jc instanceof MainMenuPager
+				|| jc instanceof SystemCollapse){
+			JPanel pane = (JPanel) jc;
+	    	pane.removeAll();
+	        FormControl[] children = ((Group) fc).getChildren();
+	        for (int i = 0; i < children.length; i++) {
+	            addComponentTo(children[i], pane);
+	        }
 		}
     }
 
