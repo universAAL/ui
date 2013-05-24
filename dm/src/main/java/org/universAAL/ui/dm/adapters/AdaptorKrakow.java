@@ -25,14 +25,16 @@ public class AdaptorKrakow implements IAdapter {
     public void adapt(UIRequest req) {
 
 	if (req.getAddressedUser().getURI().contains("saied")) {
-	    req.setPresentationModality(Modality.gui);
+	    //req.setPresentationModality(Modality.gui);
+		req.changeProperty(UIRequest.PROP_PRESENTATION_MODALITY, Modality.gui);
 	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(),
 		    "adapt",
 		    new String[] { "forcing gui modality for user saied" },
 		    null);
 	}
 	if (req.getAddressedUser().getURI().contains("jack")) {
-	    req.setPresentationModality(Modality.web);
+	    //req.setPresentationModality(Modality.web);
+		req.changeProperty(UIRequest.PROP_PRESENTATION_MODALITY, Modality.web);
 	    LogUtils
 		    .logInfo(
 			    DialogManagerImpl.getModuleContext(),
