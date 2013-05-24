@@ -10,7 +10,7 @@
   </parent>
   <artifactId>ui.handler.gui.swing.bluesteelLAF</artifactId>
   <version>1.3.3-SNAPSHOT</version>
-<!--   <packaging>bundle</packaging> -->
+  <packaging>bundle</packaging>
   <name>universAAL UI Handler Swing Look and Feel Bluesteel</name>
   <licenses>
     <license>
@@ -82,13 +82,13 @@
   </dependencies>
   <build>
     <plugins>
-<!--       <plugin> -->
-<!--         <groupId>org.apache.felix</groupId> -->
-<!--         <artifactId>maven-bundle-plugin</artifactId> -->
-<!--         <extensions>true</extensions> -->
-<!--         <configuration> -->
-<!--           <instructions> -->
-<!--             <Fragment-Host>ui.handler.gui.swing</Fragment-Host> -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Fragment-Host>ui.handler.gui.swing</Fragment-Host>
 <!--             <Export-Package> -->
 <!--             org.universAAL.ui.gui.swing.bluesteelLAF, -->
 <!--             org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons, -->
@@ -96,9 +96,9 @@
 <!--             org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable, -->
 <!--             org.universAAL.ui.gui.swing.bluesteelLAF.support.pager -->
 <!--             </Export-Package> -->
-<!--           </instructions> -->
-<!--         </configuration> -->
-<!--       </plugin> -->
+          </instructions>
+        </configuration>
+      </plugin>
 <!--       <plugin> -->
 <!--         <groupId>org.codehaus.mojo</groupId> -->
 <!--         <artifactId>build-helper-maven-plugin</artifactId> -->
