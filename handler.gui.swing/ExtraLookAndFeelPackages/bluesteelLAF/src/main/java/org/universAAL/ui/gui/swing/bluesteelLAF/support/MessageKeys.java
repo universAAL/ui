@@ -38,5 +38,6 @@ public interface MessageKeys {
 	String LOG_ON = "tray.logon";
 	String LOG_OFF = "tray.logoff";
 	String SHUTDOWN = "tray.shutdown";
+	String TRAY_NAME = "tray.tooltip";
 
 }
