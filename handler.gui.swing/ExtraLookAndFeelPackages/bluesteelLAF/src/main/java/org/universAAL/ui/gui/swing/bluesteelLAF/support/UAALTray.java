@@ -24,9 +24,12 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.SwingUtilities;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.gui.swing.bluesteelLAF.Init;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -35,7 +38,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author amedrano
  * 
  */
-public class UAALTray implements ActionListener {
+public class UAALTray implements MouseListener {
 
 	private TrayIcon trayIcon;
 	private Renderer render;
@@ -49,15 +52,16 @@ public class UAALTray implements ActionListener {
 			// TODO Change icon
 			Image image = Toolkit.getDefaultToolkit().getImage(
 					getClass().getResource("/images/uaal64x32.png"));
-			trayIcon = new TrayIcon(image, "Tray Demo");
+			trayIcon = new TrayIcon(image);
 			trayIcon.setImageAutoSize(true);
 
 			try {
 				SystemTray tray = SystemTray.getSystemTray();
 				tray.add(trayIcon);
-				trayIcon.addActionListener(this);
+				trayIcon.addMouseListener(this);
 			} catch (AWTException e) {
-				System.err.println("TrayIcon could not be added.");
+				LogUtils.logWarn(render.getModuleContext(), getClass(), 
+						"Constructor", "Tray Icon could not be loaded" );
 			}
 
 		}
@@ -119,6 +123,7 @@ public class UAALTray implements ActionListener {
 
 	public void update() {
 		if (SystemTray.isSupported()) {
+			trayIcon.setToolTip(Init.getInstance(render).getMessage(MessageKeys.TRAY_NAME));
 			trayIcon.setPopupMenu(getMenu());
 		}
 	}
@@ -132,8 +137,10 @@ public class UAALTray implements ActionListener {
 	}
 
 	/** {@ inheritDoc}	 */
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
+
 		if (trayIcon.getPopupMenu() == null){
+			
 			SwingUtilities.invokeLater(new Runnable() {
 				
 				public void run() {
@@ -141,7 +148,20 @@ public class UAALTray implements ActionListener {
 				}
 			});
 		}
-		
 	}
+
+	/** {@ inheritDoc}	 */
+	public void mousePressed(MouseEvent e) {}
+
+	/** {@ inheritDoc}	 */
+	public void mouseReleased(MouseEvent e) {}
+
+	/** {@ inheritDoc}	 */
+	public void mouseEntered(MouseEvent e) {
+		mouseClicked(e);
+	}
+
+	/** {@ inheritDoc}	 */
+	public void mouseExited(MouseEvent e) {}
 
 }
