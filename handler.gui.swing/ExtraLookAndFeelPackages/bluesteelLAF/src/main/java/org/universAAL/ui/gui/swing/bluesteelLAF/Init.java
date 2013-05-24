@@ -56,7 +56,7 @@ public class Init implements InitInterface {
     public static final String CONF_PREFIX = "ui.handler.gui.swing.bluesteelLAF.";
 	private static final String TOOLTIP_ACTIVE = CONF_PREFIX + "tootip.active";
 	private static final String TOOLTIP_DELAY = CONF_PREFIX + "tootip.delay";
-	private static final String WINDOWED = CONF_PREFIX + "windowed";
+	static final String WINDOWED = CONF_PREFIX + "windowed";
 	private ColorLAF color;
     private UAALTray tray;
     private JDesktopPane desktop;
@@ -376,5 +376,13 @@ public class Init implements InitInterface {
 	 */
 	public String getMessage(String key) {
 		return messages.getString(key);
+	}
+	
+	/**
+	 * Tells whether the frame should be full screen or windowed.
+	 * @return
+	 */
+	public boolean isWindowed(){
+		return windowed;
 	}
 }
