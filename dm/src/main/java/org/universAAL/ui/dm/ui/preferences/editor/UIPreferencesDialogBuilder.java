@@ -265,8 +265,6 @@ public class UIPreferencesDialogBuilder {
 		// skip it
 		continue;
 	    }
-	    langInstance = (Language) Language.getInstance(Language.MY_URI,
-		    currentLangInstanceURI);
 	    secondaryLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
 		    .getNativeLabel(), (String) null, langInstance));
 	}
