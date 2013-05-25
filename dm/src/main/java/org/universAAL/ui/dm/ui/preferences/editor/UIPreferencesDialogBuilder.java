@@ -129,12 +129,12 @@ public class UIPreferencesDialogBuilder {
 							    // ordering inputs
 
 	// vertically
-	 new SimpleOutput(
-	 invisibleGroupGeneralInteractionPreferences,
-	 null,
-	 null,
-	 userLocaleHelper
-	 .getString("UIPreferencesDialogBuilder.SelectGeneralInteractionPreferences"));
+//	 new SimpleOutput(
+//	 invisibleGroupGeneralInteractionPreferences,
+//	 null,
+//	 null,
+//	 userLocaleHelper
+//	 .getString("UIPreferencesDialogBuilder.SelectGeneralInteractionPreferences"));
 
 	// Select preferred Modality control
 	Select1 preferredModalitySelect = new Select1(
@@ -313,12 +313,12 @@ public class UIPreferencesDialogBuilder {
 		systemPreferencesGroup, null, null, null, (Resource) null);// This
 
 	// vertically
-	new SimpleOutput(
-		invisibleGroupSystemMenuPreferences,
-		null,
-		null,
-		userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.SelectSystemMenuPreferences"));
+//	new SimpleOutput(
+//		invisibleGroupSystemMenuPreferences,
+//		null,
+//		null,
+//		userLocaleHelper
+//			.getString("UIPreferencesDialogBuilder.SelectSystemMenuPreferences"));
 
 	// Select Main Menu Conf control
 	Select1 mainMenuConfSelect = new Select1(
@@ -505,12 +505,12 @@ public class UIPreferencesDialogBuilder {
 		null, null, null, (Resource) null);// This
 
 	// vertically
-	new SimpleOutput(
-		invisibleVisualPreferences,
-		null,
-		null,
-		userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.SelectVisualPreferences"));
+//	new SimpleOutput(
+//		invisibleVisualPreferences,
+//		null,
+//		null,
+//		userLocaleHelper
+//			.getString("UIPreferencesDialogBuilder.SelectVisualPreferences"));
 
 	// Select Background Color control
 	Select1 backgroundColourSelect = new Select1(
@@ -851,12 +851,12 @@ public class UIPreferencesDialogBuilder {
 		auditoryPreferencesGroup, null, null, null, (Resource) null);
 
 	// vertically
-	new SimpleOutput(
-		invisibleGroupAuditoryPreferences,
-		null,
-		null,
-		userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.SelectAuditoryPreferences"));
+//	new SimpleOutput(
+//		invisibleGroupAuditoryPreferences,
+//		null,
+//		null,
+//		userLocaleHelper
+//			.getString("UIPreferencesDialogBuilder.SelectAuditoryPreferences"));
 
 	// Select speechRate control
 	Select1 speechRateSelect = new Select1(
@@ -1019,12 +1019,12 @@ public class UIPreferencesDialogBuilder {
 		null, null, null, (Resource) null);
 
 	// vertically
-	new SimpleOutput(
-		invisibleGroupAlertPreferences,
-		null,
-		null,
-		userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.SelectAlertPreferences"));
+//	new SimpleOutput(
+//		invisibleGroupAlertPreferences,
+//		null,
+//		null,
+//		userLocaleHelper
+//			.getString("UIPreferencesDialogBuilder.SelectAlertPreferences"));
 
 	// Select alertSelect control
 	Select1 alertSelect = new Select1(invisibleGroupAlertPreferences,
@@ -1066,12 +1066,12 @@ public class UIPreferencesDialogBuilder {
 		null, null, null, (Resource) null);
 
 	// vertically
-	new SimpleOutput(
-		invisibleAccessModeGroupPreferences,
-		null,
-		null,
-		userLocaleHelper
-			.getString("UIPreferencesDialogBuilder.SelectAccessMode"));
+//	new SimpleOutput(
+//		invisibleAccessModeGroupPreferences,
+//		null,
+//		null,
+//		userLocaleHelper
+//			.getString("UIPreferencesDialogBuilder.SelectAccessMode"));
 
 	// Select visualModeSelect control
 	Select1 visualModeSelect = new Select1(
