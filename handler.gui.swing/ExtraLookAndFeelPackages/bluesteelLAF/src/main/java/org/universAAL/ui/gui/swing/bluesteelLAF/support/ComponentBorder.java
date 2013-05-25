@@ -664,19 +664,19 @@ public class ComponentBorder extends AbstractBorder {
             label.setFont(color.getbold());
             label.setForeground(color.getborderLineMM());
             label.setOpaque(true);
+
+            Border line = BorderFactory.createLineBorder(
+            		color.getOrange());
+            Border title;
+            //title = new SimpleComponentBorder((Component) label,jc, line);
+            title = new ComponentBorder(line, label);
+            //title = BorderFactory.createTitledBorder(line, label.getText());
+            jc.setBorder(title);
         }
         else {
-            label = null;
+        	jc.setBorder(BorderFactory.createLineBorder(
+            		color.getOrange()));
         }
-        //Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
-        
-        Border line = BorderFactory.createLineBorder(
-        		color.getOrange());
-        Border title;
-        //title = new SimpleComponentBorder((Component) label,jc, line);
-        title = new ComponentBorder(line, label);
-        //title = BorderFactory.createTitledBorder(line, label.getText());
-        jc.setBorder(title);
     }
 }
 

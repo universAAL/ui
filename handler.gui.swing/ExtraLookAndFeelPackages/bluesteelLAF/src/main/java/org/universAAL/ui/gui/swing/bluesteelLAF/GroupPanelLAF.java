@@ -21,6 +21,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
+import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
 
 /**
@@ -45,7 +46,13 @@ public class GroupPanelLAF extends GroupPanelModel {
         /*
          * simple group control
          */
-        ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
+		LabelModel lm = getLabelModel();
+		if (lm != null) {
+			ComponentBorder.addLabeledBorder(lm.getComponent(), jc, color);
+		}
+		else {
+			ComponentBorder.addLabeledBorder(null, jc, color);
+		}
         needsLabel = false;
      
         if (isInStandardGroup()) {
