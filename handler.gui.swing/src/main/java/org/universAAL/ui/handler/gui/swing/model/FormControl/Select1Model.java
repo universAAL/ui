@@ -74,7 +74,7 @@ implements  ActionListener {
             JComboBox cb = (JComboBox) jc;
             for (int i = 0; i < items.length; i++) {
                 if (((ChoiceItem) items[i]).getValue()
-                        == fc.getValue()) {
+                        .equals( fc.getValue())) {
                     cb.setSelectedIndex(i);
                 }
             }
