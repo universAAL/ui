@@ -833,6 +833,30 @@ public class UIPreferencesDialogBuilder {
 			    + Size.getSizeByOrder(i).name()), (String) null,
 		    Size.getSizeByOrder(i)));
 	}
+	
+	// Select fontSizeSelect control
+	Select1 componentSpacingSelect = new Select1(
+		invisibleVisualPreferences,
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.ComponentSpacingSelect"),
+			(String) null),
+		new PropertyPath(null, false, new String[] {
+			UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+			VisualPreferences.PROP_COMPONENT_SPACING }), null, null);
+	componentSpacingSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ComponentSpacing.Intensity."
+			+ visualPreferences.getComponentSpacing().name()),
+		(String) null, visualPreferences.getComponentSpacing()));
+	for (int i = 0; i < Intensity.getSize(); i++) {
+	    if (i - visualPreferences.getComponentSpacing().ord() == 0) {
+		continue;
+	    }
+	    componentSpacingSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ComponentSpacing.Intensity."
+			    + Intensity.getIntensityByOrder(i).name()), (String) null,
+			    Intensity.getIntensityByOrder(i)));
+	}
 
 	// ///////////////////////////////////////////////////
 	// AuditoryPreferences Group controls START
