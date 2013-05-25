@@ -16,11 +16,13 @@
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 
+import java.awt.Component;
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -138,6 +140,9 @@ public abstract class GroupModel extends Model {
     protected void addComponentTo(FormControl fc, Container c) {
     	Model m = getRenderer().getModelMapper().getModelFor(fc);
     	children.add(m);
+//    	if (m.needsPreNewLine()){
+//    		c.add(getNewLineCompoent());
+//    	}
     	JComponent jc = m.getComponent();
     	LabelModel label = m.getLabelModel();
     	if (jc != null  
@@ -149,9 +154,25 @@ public abstract class GroupModel extends Model {
     		c.add(l);
     	}
     	c.add(jc);
+//    	if (m.needsPostNewLine()){
+//    		c.add(getNewLineCompoent());
+//    	}
     }
 
     /**
+     * adds a component that will force a new line
+	 * @return
+	 */
+	private Component getNewLineCompoent() {
+//		JPanel c = new JPanel();
+//		c.setPreferredSize(new Dimension(Integer.MAX_VALUE, 0));
+//		c.setMinimumSize(new Dimension(0, 0));
+//		c.setOpaque(false);
+		Component c = Box.createHorizontalStrut(Integer.MAX_VALUE);
+		return c;
+	}
+
+	/**
      * Find the Model for the {@link FormControl} with the given URI.
      * @param formControlURI
      * @return the model or null if not found.
