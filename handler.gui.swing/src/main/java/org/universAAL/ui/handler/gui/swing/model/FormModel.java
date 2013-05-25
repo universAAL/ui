@@ -15,8 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model;
 
-import java.awt.GridLayout;
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -184,20 +182,11 @@ public abstract class FormModel {
      *     a {@link JPanel} with all the components inside
      * {@link Form#getIOControls()} group.
      */
-    protected JPanel getIOPanel() {
+    protected JComponent getIOPanel() {
         ioGroupModel = (GroupModel) getRenderer().getModelMapper().getModelFor(form.getIOControls());
     	JComponent jio = ioGroupModel.getComponent();
         jio.setName(IO_NAME);
-        if (jio instanceof JPanel){
-        	return (JPanel) jio;
-        }
-        else {
-        	JPanel jp = new JPanel();
-        	jp.add(jio);
-        	jp.setOpaque(false);
-        	jp.setLayout(new GridLayout(1, 1));
-        	return jp;
-        }
+        return jio;
     }
 
     /**
@@ -206,7 +195,7 @@ public abstract class FormModel {
      *     a {@link JPanel} with all the components inside
      * {@link Form#getStandardButtons()} group.
      */
-    protected JPanel getSystemPanel() {
+    protected JComponent getSystemPanel() {
     	Group standarButtons = form.getStandardButtons();
     	JComponent jsys;
     	if (standarButtons != null) {
@@ -218,7 +207,7 @@ public abstract class FormModel {
     		jsys = new JPanel();
     	}
     	jsys.setName(SYS_NAME);
-    	return (JPanel) jsys;
+    	return jsys;
     }
 
     /**
@@ -227,7 +216,7 @@ public abstract class FormModel {
      *     a {@link JPanel} with all the components inside
      * {@link Form#getSubmits()} group.
      */
-    protected JPanel getSubmitPanel() {
+    protected JComponent getSubmitPanel() {
     	Group submits = form.getSubmits();
     	JComponent jstd;
     	if (submits != null) {
@@ -239,7 +228,7 @@ public abstract class FormModel {
     		jstd = new JPanel();
     	}
     	jstd.setName(SUB_NAME);
-    	return (JPanel) jstd;
+    	return jstd;
     }
 
     /**
@@ -274,7 +263,7 @@ public abstract class FormModel {
      * @see FormModel#subDialogLevel
      * @see FormModel#getIOPanel()
      */
-    protected JPanel getIOPanel(int depth) {
+    protected JComponent getIOPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
         return levelForm != null ?
                 levelForm.getIOPanel()
@@ -291,7 +280,7 @@ public abstract class FormModel {
      * @see FormModel#subDialogLevel
      * @see FormModel#getSubmitPanel()
      */
-    protected JPanel getSubmitPanel(int depth) {
+    protected JComponent getSubmitPanel(int depth) {
         FormModel levelForm = getFormModelOfLevel(depth);
         return levelForm != null ?
                 levelForm.getSubmitPanel()

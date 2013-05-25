@@ -19,7 +19,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.BorderFactory;
@@ -75,8 +74,11 @@ public class FormLAF extends FormModel {
      *         .
      */
     protected JComponent getIOPanelScroll() {
-	JPanel ioPanel = super.getIOPanel();
+	JComponent ioPanel = super.getIOPanel();
 	ioPanel.setOpaque(false);
+	if (!(ioPanel instanceof JPanel)) {
+		return ioPanel;
+	}
 	JScrollPane sp = new JScrollPane(ioPanel,
 		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -95,7 +97,7 @@ public class FormLAF extends FormModel {
      *         {@link JScrollPane}.
      */
     protected JScrollPane getSubmitPanelScroll(int depth) {
-	JPanel submit = super.getSubmitPanel(depth);
+	JComponent submit = super.getSubmitPanel(depth);
 	submit.setOpaque(false);
 	// submit.setLayout(new FormLayout());
 	JScrollPane sp = new JScrollPane(submit,
@@ -116,7 +118,7 @@ public class FormLAF extends FormModel {
      *         {@link JScrollPane}.
      */
     protected JScrollPane getSubmitHorizontalPanelScroll(int depth) {
-	JPanel submit = super.getSubmitPanel(depth);
+	JComponent submit = super.getSubmitPanel(depth);
 	submit.setLayout(new FlowLayout());
 	submit.setOpaque(false);
 	// submit.setLayout(new FormLayout());
@@ -138,17 +140,8 @@ public class FormLAF extends FormModel {
     protected JPanel getHeader() {
 	JPanel header = new JPanel();// new GradientLAF();
 	header.setOpaque(false);
-	// ImageIcon icon = new ImageIcon(
-	// (getClass().getResource("/images/UniversAAl_logo.png")));
-	// icon.setDescription("UniversAAL Logo Image");
-	// JLabel logo = new JLabel(icon);
-	// logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
-	// JComponent nuevo=new GradientLAF();
-	// header.add(logo);
-	// header.add(nuevo);
 	JLabel route = new JLabel();
-	route.setFont(new Font("Arial", Font.PLAIN, 30)); 
-	// TODO Put this FONT in ColourLAF
+	route.setFont(Init.getInstance(getRenderer()).getColorLAF().getbold());
 	String[] path = getTitlePath();
 	StringBuffer r = new StringBuffer(path[0]);
 	for (int i = 1; i < path.length; i++) {
@@ -205,7 +198,7 @@ public class FormLAF extends FormModel {
 		io.getAccessibleContext().setAccessibleName(IO_NAME);
 		JScrollPane sub = getSubmitPanelScroll(0);
 		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-		JPanel sys = getSystemPanel();
+		JComponent sys = getSystemPanel();
 		sys.getAccessibleContext().setAccessibleName(SYS_NAME);
 		frame.add(io, BorderLayout.CENTER);
 		frame.add(sub, BorderLayout.EAST);

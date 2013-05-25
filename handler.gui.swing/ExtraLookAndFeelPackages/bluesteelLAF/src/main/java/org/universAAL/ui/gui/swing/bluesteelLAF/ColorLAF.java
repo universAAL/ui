@@ -116,6 +116,10 @@ public class ColorLAF extends DefaultMetalTheme {
 		return new Font(fontFamily, Font.PLAIN, fontSizeBase);
 	}
 	
+	public Font getHeaderFont(){
+		return new Font(fontFamily, Font.PLAIN, fontSizeBase + 10);
+	}
+	
 	/**
 	 * get the fontColor for any label.
 	 * 
