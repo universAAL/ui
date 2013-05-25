@@ -40,11 +40,21 @@ public abstract class Model {
     protected FormControl fc;
 
     /**
-     * indicates if the {@link FormControl} needs to be
+     * Indicates if the {@link FormControl} needs to be
      * associated with a label.
      * True by default
      */
     protected boolean needsLabel = true;
+    
+    /**
+     * Indicates this component should be in a new line
+     */
+    protected boolean needsPreNewLine = false;
+    
+    /**
+     * Indicates a new line should follow this component.
+     */
+    protected boolean needsPostNewLine = false;
 
     /**
      * The {@link JComponent} being generated.
@@ -71,11 +81,25 @@ public abstract class Model {
         return needsLabel;
     }
 
-    /**
+	/**
+	 * @return the needsPreNewLine
+	 */
+	public boolean needsPreNewLine() {
+		return needsPreNewLine;
+	}
+	
+	/**
+	 * @return the needsPostNewLine
+	 */
+	public boolean needsPostNewLine() {
+		return needsPostNewLine;
+	}
+
+	/**
      * Model constructor.
      * @param control
      *         The RDF component which this Model represents.
-     * @param renderer TODO
+     * @param renderer
      */
     public Model (FormControl control, Renderer renderer) {
         fc = control;
@@ -272,5 +296,22 @@ public abstract class Model {
 		return label;
 	}
 
+	/**
+	 * Calculates the position in the parent group of the modeled {@link FormControl}.
+	 * @return the position the {@link FormControl} was added to the group. 
+	 * 			0 is first, -1 if not calculable (ie, fc is rootgroup).
+	 */
+	public int getPositionInGroup(){
+		Group parent = fc.getParentGroup();
+		if (parent != null){
+			FormControl[] fcs = parent.getChildren();
+			for (int i = 0; i < fcs.length; i++) {
+				if (fcs[i].equals(fc)){
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
 	
 }

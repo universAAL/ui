@@ -91,6 +91,9 @@ public class SimpleOutputLAF extends SimpleOutputModel {
             	JLabel jl = (JLabel) jc;
             	jl.getAccessibleContext().setAccessibleName(jl.getText());
                 jl.setFont(color.getplain());
+                if (getPositionInGroup() == 0){
+                	needsPostNewLine = true;
+                }
             }
         }
         if (jc instanceof JCheckBox) {
