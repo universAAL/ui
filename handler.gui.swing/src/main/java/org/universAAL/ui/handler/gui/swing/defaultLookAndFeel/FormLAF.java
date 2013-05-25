@@ -20,6 +20,7 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -71,7 +72,7 @@ public class FormLAF extends FormModel {
 		 * Dimension(sp.getSize().width, // ioPanel.getPreferredSize().height)
 		 * ioPanel.getHeight())); //FIXME resize Layout+scroll
 		 */
-		JPanel ioPanel = super.getIOPanel();
+		JComponent ioPanel = super.getIOPanel();
 		ioPanel.setLayout(new FormLayout());
 		JScrollPane sp = new JScrollPane(ioPanel,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -86,7 +87,7 @@ public class FormLAF extends FormModel {
 	 *         {@link JScrollPane}.
 	 */
 	protected JScrollPane getSubmitPanelScroll(int depth) {
-		JPanel submit = super.getSubmitPanel(depth);
+		JComponent submit = super.getSubmitPanel(depth);
 		JScrollPane sp = new JScrollPane(submit,
 				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);

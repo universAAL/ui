@@ -15,6 +15,7 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import javax.swing.AbstractButton;
 import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -45,52 +46,28 @@ public class SubmitLAF extends SubmitModel {
 		specialBFactory.add(UCCButton.class);
 		specialBFactory.add(UStoreButton.class);
 	}
-
-	/**
-	 * Set a color behabiour to a button
-	 *
-	 * @param button
-	 *            the button which to add the behaviour
-	 * @param border
-	 *            a {@link Border} for the button in normal status
-	 * @param normalF
-	 *            the foreground colour for normal state
-	 * @param normalB
-	 *            the background colour for normal state
-	 * @param enterF
-	 *            the foreground colour for pressed state
-	 * @param enterB
-	 *            the background colour for pressed state
-	 * @param clickF
-	 *            the foreground colour for clicked state
-	 * @param clickB
-	 *            the background colour for clicked state
-	 */
 	
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
+		AbstractButton s = null;
 		if (isInIOGroup()&& isInMainMenu()){
 			//Kicker
-			KickerButton s = new KickerButton(fc.getLabel().getText(),
+			 s = new KickerButton(fc.getLabel().getText(),
 					IconFactory.getIcon(fc.getLabel().getIconURL()));
-			s.addActionListener(this);
-			return s;
 		}
 		else if (isInStandardGroup()){
 			//system buttons AKA standarbuttons
-			SystemButton s = new SystemButton(fc.getLabel().getText(),
+			s = new SystemButton(fc.getLabel().getText(),
 					IconFactory.getIcon(fc.getLabel().getIconURL()));
-			s.addActionListener(this);
-			return s;
 		}
 		else {
-			//Lo demás inlcuyendo submits, submits en IOgroup 
-			SubmitButton s = new SubmitButton(fc.getLabel().getText(),
+			//the rest including submits, submits en IOgroup 
+			s = new SubmitButton(fc.getLabel().getText(),
 					IconFactory.getIcon(fc.getLabel().getIconURL()));
-			s.addActionListener(this);
-			return s;
 		}
+		s.addActionListener(this);
+		return s;
 	}
 
 	
