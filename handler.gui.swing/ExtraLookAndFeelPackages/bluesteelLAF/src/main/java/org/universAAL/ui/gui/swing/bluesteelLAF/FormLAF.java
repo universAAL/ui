@@ -164,7 +164,7 @@ public class FormLAF extends FormModel {
      */
     public void showForm() {
     	Renderer r = getRenderer();
-//    	((Init) r.getInitLAF()).processPrefs(r.getFormManagement().getCurrentDialog());
+    	((Init) r.getInitLAF()).processPrefs(r.getFormManagement().getCurrentDialog());
 	JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
 	synchronized (desktopPane) {
 	    if (frame == null) {

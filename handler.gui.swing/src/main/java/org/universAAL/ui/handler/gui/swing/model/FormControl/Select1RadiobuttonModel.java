@@ -81,7 +81,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 		Component[] comps = panel.getComponents();
 		for (int i = 0; i < comps.length; i++) {
 			if (getAssociatedValue((JComponent) comps[i])
-					== fc.getValue()){
+					.equals(fc.getValue())){
 				((AbstractButton) comps[i]).setSelected(true);
 			}
 		}
