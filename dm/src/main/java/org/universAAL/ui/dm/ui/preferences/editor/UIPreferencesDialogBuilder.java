@@ -270,6 +270,7 @@ public class UIPreferencesDialogBuilder {
 	}
 
 	// Select content density control
+	// TODO Check labels in choices
 	Select1 contentDensity = new Select1(
 		invisibleGroupGeneralInteractionPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
@@ -299,6 +300,9 @@ public class UIPreferencesDialogBuilder {
 	// ///////////////////////////////////////////////////
 	// SystemMenuPreferences Group controls START
 	// ///////////////////////////////////////////////////
+	/*
+	 * TODO: CHECK ALL!!! refs, they have been copy-pasted from the first group and are not accessible!
+	 */
 	SystemMenuPreferences systemMenuPreferences = uiPreferencesSubprofile
 		.getSystemMenuPreferences();
 
@@ -487,6 +491,10 @@ public class UIPreferencesDialogBuilder {
 	// VisualPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
+	/*
+	 * TODO reorganize the elements, keep color options close, font colors close ...
+	 * even group them, for even better layout!
+	 */
 	VisualPreferences visualPreferences = uiPreferencesSubprofile
 		.getVisualPreferences();
 
@@ -501,7 +509,7 @@ public class UIPreferencesDialogBuilder {
 
 	// vertically
 	new SimpleOutput(
-		invisibleGroupSystemMenuPreferences,
+			invisibleVisualPreferences,
 		null,
 		null,
 		userLocaleHelper
@@ -530,6 +538,54 @@ public class UIPreferencesDialogBuilder {
 		    userLocaleHelper
 			    .getString("UIPreferencesDialogBuilder.ColorType."
 				    + ColorType.getColorTypeByOrder(i).name()),
+		    (String) null, ColorType.getColorTypeByOrder(i)));
+	}
+	
+	// Select Highlight Color control
+	Select1 highlightColourSelect = new Select1(
+		invisibleVisualPreferences,
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.HighlightColourSelect"),
+			(String) null),
+		new PropertyPath(null, false, new String[] {
+			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+			VisualPreferences.PROP_HIGHLIGHT_COLOR }), null, null);
+	highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ColorType."
+			+ visualPreferences.getHighlightColor().name()),
+		(String) null, visualPreferences.getHighlightColor()));
+	for (int i = 0; i < ColorType.getSize(); i++) {
+	    if (i - visualPreferences.getHighlightColor().ord() == 0) {
+		continue;
+	    }
+	    highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ColorType."
+			    + ColorType.getColorTypeByOrder(i).name()),
+		    (String) null, ColorType.getColorTypeByOrder(i)));
+	}
+
+	// Select Font Color control
+	Select1 fontColourSelect = new Select1(
+		invisibleVisualPreferences,
+		new org.universAAL.middleware.ui.rdf.Label(
+			userLocaleHelper
+				.getString("UIPreferencesDialogBuilder.FontColourSelect"),
+			(String) null),
+		new PropertyPath(null, false, new String[] {
+			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+			VisualPreferences.PROP_FONT_COLOR }), null, null);
+	fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		.getString("UIPreferencesDialogBuilder.ColorType."
+			+ visualPreferences.getHighlightColor().name()),
+		(String) null, visualPreferences.getHighlightColor()));
+	for (int i = 0; i < ColorType.getSize(); i++) {
+	    if (i - visualPreferences.getFontColor().ord() == 0) {
+		continue;
+	    }
+	    fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
+		    .getString("UIPreferencesDialogBuilder.ColorType."
+			    + ColorType.getColorTypeByOrder(i).name()),
 		    (String) null, ColorType.getColorTypeByOrder(i)));
 	}
 
@@ -581,30 +637,6 @@ public class UIPreferencesDialogBuilder {
 		    .getString("UIPreferencesDialogBuilder.Status."
 			    + Status.getStatusByOrder(i).name()),
 		    (String) null, Status.getStatusByOrder(i)));
-	}
-
-	// Select Highlight Color control
-	Select1 highlightColourSelect = new Select1(
-		invisibleVisualPreferences,
-		new org.universAAL.middleware.ui.rdf.Label(
-			userLocaleHelper
-				.getString("UIPreferencesDialogBuilder.HighlightColourSelect"),
-			(String) null),
-		new PropertyPath(null, false, new String[] {
-			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
-			VisualPreferences.PROP_HIGHLIGHT_COLOR }), null, null);
-	highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
-		.getString("UIPreferencesDialogBuilder.ColorType."
-			+ visualPreferences.getHighlightColor().name()),
-		(String) null, visualPreferences.getHighlightColor()));
-	for (int i = 0; i < ColorType.getSize(); i++) {
-	    if (i - visualPreferences.getHighlightColor().ord() == 0) {
-		continue;
-	    }
-	    highlightColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
-		    .getString("UIPreferencesDialogBuilder.ColorType."
-			    + ColorType.getColorTypeByOrder(i).name()),
-		    (String) null, ColorType.getColorTypeByOrder(i)));
 	}
 
 	// Select Window Layout control
@@ -781,30 +813,6 @@ public class UIPreferencesDialogBuilder {
 		    (String) null, Status.getStatusByOrder(i)));
 	}
 
-	// Select Font Color control
-	Select1 fontColourSelect = new Select1(
-		invisibleVisualPreferences,
-		new org.universAAL.middleware.ui.rdf.Label(
-			userLocaleHelper
-				.getString("UIPreferencesDialogBuilder.FontColourSelect"),
-			(String) null),
-		new PropertyPath(null, false, new String[] {
-			UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
-			VisualPreferences.PROP_FONT_COLOR }), null, null);
-	fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
-		.getString("UIPreferencesDialogBuilder.ColorType."
-			+ visualPreferences.getHighlightColor().name()),
-		(String) null, visualPreferences.getHighlightColor()));
-	for (int i = 0; i < ColorType.getSize(); i++) {
-	    if (i - visualPreferences.getFontColor().ord() == 0) {
-		continue;
-	    }
-	    fontColourSelect.addChoiceItem(new ChoiceItem(userLocaleHelper
-		    .getString("UIPreferencesDialogBuilder.ColorType."
-			    + ColorType.getColorTypeByOrder(i).name()),
-		    (String) null, ColorType.getColorTypeByOrder(i)));
-	}
-
 	// Select fontSizeSelect control
 	Select1 fontSizeSelect = new Select1(
 		invisibleVisualPreferences,
@@ -855,7 +863,7 @@ public class UIPreferencesDialogBuilder {
 
 	// Select speechRate control
 	Select1 speechRateSelect = new Select1(
-		invisibleVisualPreferences,
+			invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
 				.getString("UIPreferencesDialogBuilder.SpeechRateSelect"),
@@ -879,7 +887,7 @@ public class UIPreferencesDialogBuilder {
 
 	// Select voiceGenderSelect control
 	Select1 voiceGenderSelect = new Select1(
-		invisibleVisualPreferences,
+			invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
 				.getString("UIPreferencesDialogBuilder.VoiceGenderSelect"),
@@ -903,7 +911,7 @@ public class UIPreferencesDialogBuilder {
 
 	// Select systemSoundsSelect control
 	Select1 systemSoundsSelect = new Select1(
-		invisibleVisualPreferences,
+			invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
 				.getString("UIPreferencesDialogBuilder.SystemSoundsSelect"),
@@ -926,7 +934,7 @@ public class UIPreferencesDialogBuilder {
 	}
 
 	// Select volume control
-	Select1 volumeSelect = new Select1(invisibleVisualPreferences,
+	Select1 volumeSelect = new Select1(invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
 			.getString("UIPreferencesDialogBuilder.VolumeSelect"),
 			(String) null),
@@ -948,7 +956,7 @@ public class UIPreferencesDialogBuilder {
 	}
 
 	// Select pitch control
-	Select1 pitchSelect = new Select1(invisibleVisualPreferences,
+	Select1 pitchSelect = new Select1(invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
 			.getString("UIPreferencesDialogBuilder.PitchSelect"),
 			(String) null),
@@ -971,7 +979,7 @@ public class UIPreferencesDialogBuilder {
 
 	// Select keySoundsSelect control
 	Select1 keySoundsSelect = new Select1(
-		invisibleVisualPreferences,
+			invisibleGroupAuditoryPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(
 			userLocaleHelper
 				.getString("UIPreferencesDialogBuilder.KeySoundsSelect"),
@@ -1018,7 +1026,8 @@ public class UIPreferencesDialogBuilder {
 			.getString("UIPreferencesDialogBuilder.SelectAlertPreferences"));
 
 	// Select alertSelect control
-	Select1 alertSelect = new Select1(invisibleVisualPreferences,
+	//TODO check choice Labels
+	Select1 alertSelect = new Select1(invisibleGroupAlertPreferences,
 		new org.universAAL.middleware.ui.rdf.Label(userLocaleHelper
 			.getString("UIPreferencesDialogBuilder.AlertSelect"),
 			(String) null),
