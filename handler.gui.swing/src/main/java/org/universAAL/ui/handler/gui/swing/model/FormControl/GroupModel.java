@@ -202,17 +202,4 @@ public abstract class GroupModel extends Model {
 		}
 		return res;
 	}
-
-	
-	/**
-	 * Adds all children to JPanel JComp
-	 */
-	protected void addToJPanel(){
-		JPanel pane = (JPanel) jc;
-    	pane.removeAll();
-        FormControl[] children = ((Group) fc).getChildren();
-        for (int i = 0; i < children.length; i++) {
-            addComponentTo(children[i], pane);
-        }
-	}
 }

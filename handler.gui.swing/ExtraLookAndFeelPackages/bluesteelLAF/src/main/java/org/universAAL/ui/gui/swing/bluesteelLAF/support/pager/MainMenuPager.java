@@ -211,21 +211,24 @@ public class MainMenuPager extends JPanel {
 					}
 				});
 			}
-			update(currentPage);
+			
+			if (pages.getComponentCount()>0){
+				update(currentPage);
+			}
 		}
 		
 		private void updateHelp(){
 			for (int i = 0; i < buttons.length; i++) {
 				if (jump != null
 						&& i != currentPage) {
-					buttons[i].setToolTipText(jump.replace("\\{0\\}", Integer.toString(i+1)));
+					buttons[i].setToolTipText(jump.replace("{0}", Integer.toString(i+1)));
 				}
 				if (page!= null
 						&& i == currentPage) {
 					buttons[i].setToolTipText(
 							page
-							.replace("\\{0\\}", Integer.toString(i+1))
-							.replace("\\{1\\}", Integer.toString(pages.getComponentCount())));
+							.replace("{0}", Integer.toString(i+1))
+							.replace("{1}", Integer.toString(buttons.length)));
 				}
 			}
 		}

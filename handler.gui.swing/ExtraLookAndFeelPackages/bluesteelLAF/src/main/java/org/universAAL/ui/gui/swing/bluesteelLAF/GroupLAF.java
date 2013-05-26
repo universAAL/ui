@@ -31,6 +31,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
+import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
 
 /**
  * @author pabril
@@ -58,6 +59,9 @@ public class GroupLAF extends GroupModel {
     /** {@inheritDoc} */
     public JComponent getNewComponent() {
     	Init i = Init.getInstance(getRenderer());
+    	/*
+    	 * Modification of Main Menu System Buttons with special buttons.
+    	 */
     	if (this.isTheMainGroup()
     			&& this.isInMainMenu()){
     		// ADD Special Buttons
@@ -70,30 +74,17 @@ public class GroupLAF extends GroupModel {
     				"system/Ustore.png"), UStoreButton.SUBMIT_ID)
     		.setHelpString(i.getMessage(MessageKeys.USTORE_HELP));
     	}
-    	int gap = i.getColorLAF().getGap();
+    	
+    	
+    	/*
+    	 * getting the model.
+    	 */
     	if (this.isTheIOGroup() 
         		&& this.isInMainMenu()) {
-    		//XXX get col-row ratio +- form screen resolution.
-    		MainMenuPager mmp = null;
-    		if (gap >= 20)
-    			mmp = new MainMenuPager(2,2,gap);
-    		if (gap >= 10)
-    			mmp = new MainMenuPager(3, 2, gap);
-    		else
-    			mmp = new MainMenuPager(4, 3, gap);
-    		
-    		mmp.setHelpStrings(
-    				i.getMessage(MessageKeys.NEXT),
-    				i.getMessage(MessageKeys.PREVIOUS),
-    				i.getMessage(MessageKeys.JUMP_TO),
-    				i.getMessage(MessageKeys.PAGE));
-    		
-    		return mmp;
+    		wrap = new MainMenuLAF((Group) fc, getRenderer());
         }
     	else if (this.isTheMainGroup()) {
-    		SystemCollapse sc = new SystemCollapse(gap);
-    		sc.setToolTipText(i.getMessage(MessageKeys.SHOW_MENU));
-    		return sc;
+    		wrap = new SystemMenuLAF((Group) fc, getRenderer());
     	}
     	else if (this.isTheIOGroup()
             	&& !this.isInMainMenu()
@@ -101,12 +92,9 @@ public class GroupLAF extends GroupModel {
     			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD) {
     		// a IOGroup, not main menu, that contains more than threshold groups 
     		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
-    		return wrap.getComponent();
     	}
     	else if (((Group) fc).isRootGroup()) {
-    		JPanel p = new JPanel();
-    		p.setOpaque(false);
-        	return p;
+    		wrap = new TransparentGroupPanel((Group) fc, getRenderer());
         }
         else {
         	LevelRating complexity = ((Group) fc).getComplexity();
@@ -126,8 +114,8 @@ public class GroupLAF extends GroupModel {
             if (complexity == LevelRating.full) {
                 wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
             }
-            return wrap.getComponent();
         }
+    	return wrap.getComponent();
     }
 
 
@@ -139,12 +127,7 @@ public class GroupLAF extends GroupModel {
 		if (wrap != null) {
         	wrap.update();
         	needsLabel = wrap.needsLabel();
-        } else {
-        	super.update();
-        	if (jc instanceof JPanel){
-        		addToJPanel();
-        	}
-        }
+        } 
         if (this.isTheIOGroup()
         	&& !this.isInMainMenu()){
         	if (containsOnlySubGroups()
@@ -161,6 +144,79 @@ public class GroupLAF extends GroupModel {
         	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
+		}
+    }
+    
+    private static class SystemMenuLAF extends GroupPanelModel {
+
+		/**
+		 * @param control
+		 * @param render
+		 */
+		public SystemMenuLAF(Group control, Renderer render) {
+			super(control, render);
+		}
+
+		/** {@ inheritDoc}	 */
+		@Override
+		public JComponent getNewComponent() {
+			Init i = Init.getInstance(getRenderer());
+			SystemCollapse sc = new SystemCollapse(i.getColorLAF().getGap());
+    		sc.setToolTipText(i.getMessage(MessageKeys.SHOW_MENU));
+    		return sc;
+		}
+		
+    }
+    
+    private static class MainMenuLAF extends GroupPanelModel {
+
+		/**
+		 * @param control
+		 * @param render
+		 */
+		public MainMenuLAF(Group control, Renderer render) {
+			super(control, render);
+		}
+		
+		/** {@ inheritDoc}	 */
+		@Override
+		public JComponent getNewComponent() {
+			Init i = Init.getInstance(getRenderer());
+			int gap = i.getColorLAF().getGap();
+			//XXX get col-row ratio +- form screen resolution.
+    		MainMenuPager mmp = null;
+    		if (gap >= 20)
+    			mmp = new MainMenuPager(2,2,gap);
+    		if (gap >= 10)
+    			mmp = new MainMenuPager(3, 2, gap);
+    		else
+    			mmp = new MainMenuPager(4, 3, gap);
+    		
+    		mmp.setHelpStrings(
+    				i.getMessage(MessageKeys.NEXT),
+    				i.getMessage(MessageKeys.PREVIOUS),
+    				i.getMessage(MessageKeys.JUMP_TO),
+    				i.getMessage(MessageKeys.PAGE));
+    		
+    		return mmp;		
+		}
+    }
+    
+    private static class TransparentGroupPanel extends GroupPanelModel {
+
+		/**
+		 * @param control
+		 * @param render
+		 */
+		public TransparentGroupPanel(Group control, Renderer render) {
+			super(control, render);
+		}
+		/** {@ inheritDoc}	 */
+		@Override
+		public JComponent getNewComponent() {
+			JPanel p = new JPanel();
+			p.setOpaque(false);
+			return p;
 		}
     }
 
