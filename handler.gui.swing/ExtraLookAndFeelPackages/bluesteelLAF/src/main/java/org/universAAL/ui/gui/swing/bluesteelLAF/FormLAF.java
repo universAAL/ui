@@ -171,7 +171,7 @@ public class FormLAF extends FormModel {
 	     * MESSAGES
 	     */
 	    if (form.isMessage()) {
-		JScrollPane io = (JScrollPane) getIOPanelScroll();
+		JComponent io = getIOPanelScroll();
 		io.getAccessibleContext().setAccessibleName(IO_NAME);
 		// JScrollPane sub = new JScrollPane(super.getSubmitPanel());
 		JScrollPane sub = getSubmitHorizontalPanelScroll(0);
@@ -194,7 +194,7 @@ public class FormLAF extends FormModel {
 	     */
 	    if (form.isStandardDialog()) {
 		frame.add(getHeader(), BorderLayout.NORTH);
-		JScrollPane io = (JScrollPane) getIOPanelScroll();
+		JComponent io = getIOPanelScroll();
 		io.getAccessibleContext().setAccessibleName(IO_NAME);
 		JScrollPane sub = getSubmitPanelScroll(0);
 		sub.getAccessibleContext().setAccessibleName(SUB_NAME);
