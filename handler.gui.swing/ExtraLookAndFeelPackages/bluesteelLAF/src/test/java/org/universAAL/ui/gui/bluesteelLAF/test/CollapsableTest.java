@@ -94,7 +94,7 @@ public class CollapsableTest extends JFrame {
 	collapsable.add(btnPendingDialogs);
 
 	MainMenuPager panel_1 = new MainMenuPager();
-	panel_1.setHelpStrings("next", "previous", "jump to page \\{0\\}", "\\{0\\}/\\{1\\}");
+	panel_1.setHelpStrings("next", "previous", "jump to page {0}", "{0}/{1}");
 	contentPane.add(panel_1, BorderLayout.CENTER);
 
 	JPanel panel = new JPanel();

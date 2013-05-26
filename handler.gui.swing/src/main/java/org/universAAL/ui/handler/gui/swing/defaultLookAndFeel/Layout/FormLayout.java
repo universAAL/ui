@@ -58,6 +58,8 @@ public class FormLayout implements LayoutManager {
 	private static int PIXELS_PER_FONT_SIZE;
 	private static final int LAYOUT_ITERATIONS = 2;
 	private static final int LABEL_HEIGHT_THRESHOLD = 2;
+	private static final String PRE_NEWLINE = "pre_newline";
+	private static final String POST_NEWLINE = "post_newline";
 	private static int HORIZONAL_UNIT_HEIGHT_LIMIT;
 	
 	static {
@@ -291,6 +293,15 @@ public class FormLayout implements LayoutManager {
 		return (float) screenSize.width / (float) screenSize.height;
 	}
 
+	// TODO: actually create a new row!!
+	static public void setNewLineBefore(JComponent c){
+		c.putClientProperty(PRE_NEWLINE, PRE_NEWLINE);
+	}
+	
+	static public void setNewLineAfter(JComponent c){
+		c.putClientProperty(POST_NEWLINE, POST_NEWLINE);
+	}
+	
 	/**
 	 * Unites each JComponent with it's associated label into a unit. preview:
 	 * <center> <img src="doc-files/FormLayout-units.png" alt="Units"

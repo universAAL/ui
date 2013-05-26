@@ -57,13 +57,13 @@ public class SimpleFormManager implements FormManager {
     }
 
     /** {@inheritDoc} */
-    public synchronized UIRequest getCurrentDialog() {
+    public UIRequest getCurrentDialog() {
         return currentForm;
     }
 
 
     /** {@inheritDoc} */
-    public synchronized void closeCurrentDialog() {
+    public void closeCurrentDialog() {
     	if (currentForm != null) {
     		disposeFrame();
     		currentForm = null;
@@ -71,12 +71,12 @@ public class SimpleFormManager implements FormManager {
     }
 
     /** {@inheritDoc} */
-    public synchronized void flush() {
+    public void flush() {
     	disposeFrame();
     }
 
     /** {@inheritDoc} */
-    public synchronized Resource cutDialog(String dialogID) {
+    public Resource cutDialog(String dialogID) {
     	// Return the Form Data.
     	if (currentForm != null 
     			&& currentForm.getDialogID().equals(dialogID)
@@ -91,23 +91,23 @@ public class SimpleFormManager implements FormManager {
 		return null;
 	}
 
-	public synchronized void setRenderer(Renderer renderer) {
+	public void setRenderer(Renderer renderer) {
 		render = renderer;
 	}
 
-	protected synchronized void renderFrame() {
+	protected void renderFrame() {
 		if (currentForm != null) {
 			frame = new FrameManager(currentForm.getDialogForm(),render.getModelMapper());
 		}
 	}
 	
-	protected synchronized void disposeFrame(){
+	protected void disposeFrame(){
 		if (frame != null) {
     		frame.disposeFrame();
     	}
 	}
 
-	public synchronized Collection getAllDialogs() {
+	public Collection getAllDialogs() {
 		ArrayList l = new ArrayList();
 		if (currentForm != null) {
 			l.add(currentForm);
