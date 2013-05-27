@@ -29,6 +29,7 @@ import java.awt.Toolkit;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -123,7 +124,7 @@ public class FormLAF extends FormModel {
      *         .
      */
     protected JScrollPane getIOPanelScroll() {
-	JPanel ioPanel = super.getIOPanel();
+	JComponent ioPanel = super.getIOPanel();
 	if(vertical){
 	    ioPanel.setLayout(new MyVerticalFlowLayout(vGroupValign,hgap,vgap));
 	}else{
@@ -147,7 +148,7 @@ public class FormLAF extends FormModel {
      *         {@link JScrollPane}.
      */
     protected JScrollPane getSubmitPanelScroll(int depth, boolean vertical) {
-	JPanel submit = super.getSubmitPanel(depth);
+	JComponent submit = super.getSubmitPanel(depth);
 	submit.setLayout(new BoxLayout(submit, vertical?BoxLayout.Y_AXIS:BoxLayout.X_AXIS));
 	JScrollPane sp = new JScrollPane(submit,
 		vertical?JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED:JScrollPane.VERTICAL_SCROLLBAR_NEVER,
@@ -168,7 +169,7 @@ public class FormLAF extends FormModel {
      *         {@link JScrollPane}.
      */
     protected JScrollPane getSystemPanelScroll() {
-	JPanel submit = super.getSystemPanel();
+	JComponent submit = super.getSystemPanel();
 	submit.setLayout(new BoxLayout(submit, BoxLayout.X_AXIS));
 	JScrollPane sp = new JScrollPane(submit,
 		JScrollPane.VERTICAL_SCROLLBAR_NEVER,
