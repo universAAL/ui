@@ -119,7 +119,7 @@ public class SimpleFormManager implements FormManager {
 		frame.missing(input);		
 	}
 
-	public void adaptationParametertsChanged(String dialogID,
+	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		if (currentForm != null
 				&& dialogID.equals(currentForm.getDialogID())){

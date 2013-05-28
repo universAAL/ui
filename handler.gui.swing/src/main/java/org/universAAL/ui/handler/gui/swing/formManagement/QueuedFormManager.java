@@ -217,7 +217,7 @@ public final class QueuedFormManager implements FormManager {
 	}
 
 
-	public void adaptationParametertsChanged(String dialogID,
+	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		if (currentDialog != null 
 				&& dialogID.equals(currentDialog.getDialogID())){
