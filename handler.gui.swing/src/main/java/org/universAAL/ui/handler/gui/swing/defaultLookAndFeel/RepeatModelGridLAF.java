@@ -18,11 +18,9 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Image;
 
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
