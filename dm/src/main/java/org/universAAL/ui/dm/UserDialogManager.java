@@ -96,24 +96,7 @@ public class UserDialogManager implements IDialogManager,
 
     private static final String SYSTEM_PROP_FINALIZE_WAIT = "ui.dm.finalizeWait";
 
-	private static final String SYSTEM_PROP_LOAD_ALL_SERVICES = "ui.dm.loadAllServices";
-
-    // TODO delete after testing, commented when applying ui prefs data
-    // private static final String SYSTEM_PROP_SYSMENUPROVIDER =
-    // "ui.dm.systemMenuProvision";
-    //
-    // private static final String SYS_DEFAULT = "classic";
-    //
-    // private static final String SYS_SMART = "smart";
-    //
-    // private static final String SYS_TASK = "task";
-    //
-    // private static final String SYSTEM_PROP_PDIALOGSBUILDER =
-    // "ui.dm.pendingDialogBuilder";
-    //
-    // private static final String PDD_TABLE = "table";
-    //
-    // private static final String PDD_BUTTON = "buttons";
+    private static final String SYSTEM_PROP_LOAD_ALL_SERVICES = "ui.dm.loadAllServices";
 
     /**
      * {@link User} this {@link UserDialogManager} is targeting.
@@ -140,7 +123,7 @@ public class UserDialogManager implements IDialogManager,
      * The pending Messages Dialog Builder to use.
      */
     private IDialogBuilder pendingDialogsBuilder;
-    
+
     /**
      * Message Pool, suspended Messages are read messages and saved. Active
      * messages are messages not read yet.
@@ -222,7 +205,8 @@ public class UserDialogManager implements IDialogManager,
 
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	myUIRequests = new TreeSet<String>();
-	changedUIPreferences(this.uiPreferencesBuffer.getUIPreferencesSubprofileForUser(user));
+	changedUIPreferences(this.uiPreferencesBuffer
+		.getUIPreferencesSubprofileForUser(user));
 
     }
 
@@ -231,8 +215,8 @@ public class UserDialogManager implements IDialogManager,
      */
     void close() {
 	if (uiPreferencesSubProfile != null
-			&& uiPreferencesSubProfile.getSystemMenuPreferences()
-		.getUIRequestPersistance().equals(Status.on)) {
+		&& uiPreferencesSubProfile.getSystemMenuPreferences()
+			.getUIRequestPersistance().equals(Status.on)) {
 	    saverTask.cancel();
 	    saverTask.write();
 	}
@@ -240,11 +224,13 @@ public class UserDialogManager implements IDialogManager,
 
     /** {@inheritDoc} */
     public void changedUIPreferences(UIPreferencesSubProfile subProfile) {
-    	if (subProfile == null){
-    		LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), 
-    				"changedUIPreferences", "A null subprofile has been pased, Ignoring...\n Come on man be legal!");
-    		return;
-    	}
+	if (subProfile == null) {
+	    LogUtils
+		    .logWarn(DialogManagerImpl.getModuleContext(), getClass(),
+			    "changedUIPreferences",
+			    "A null subprofile has been pased, Ignoring...\n Come on man be legal!");
+	    return;
+	}
 	// update the UIPreferencesSubProfile for current user
 	uiPreferencesSubProfile = subProfile;
 
@@ -290,38 +276,25 @@ public class UserDialogManager implements IDialogManager,
 			    new String[] { "Cannot initialize ProfilableMainMenuProvider!" },
 			    e);
 	}
-	
-	if (System.getProperty(SYSTEM_PROP_LOAD_ALL_SERVICES) != null){
-		try {
-			((AggregatedMainMenuProvider) mainMenuProvider)
+
+	if (System.getProperty(SYSTEM_PROP_LOAD_ALL_SERVICES) != null) {
+	    try {
+		((AggregatedMainMenuProvider) mainMenuProvider)
 			.add(new AllMainMenuProvider(user));
-		} catch (Exception e) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "UserDialogManager",
-			    new String[] { "Cannot initialize AllMainMenuProvider!" },
-			    e);
-		}
+	    } catch (Exception e) {
+		LogUtils
+			.logError(
+				DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"UserDialogManager",
+				new String[] { "Cannot initialize AllMainMenuProvider!" },
+				e);
+	    }
 	}
 
 	/*
 	 * System Menu Behavior
 	 */
-	// TODO: load from UI Preferences
-	// LOAD System Menu provider according to system properties
-	// String smp = System.getProperty(SYSTEM_PROP_SYSMENUPROVIDER,
-	// SYS_DEFAULT);
-
-	// if (smp.equals(SYS_DEFAULT)) {
-	// systemMenuProvider = new ClassicSystemMenuProvider(this);
-	// } else if (smp.equals(SYS_SMART)) {
-	// systemMenuProvider = new SmartPendingSystemMenuProvider(this);
-	// } else if (smp.equals(SYS_TASK)) {
-	// systemMenuProvider = new TaskBarSystemMenuProvider(this);
-	// }
-
 	MainMenuConfigurationType mmct = uiPreferencesSubProfile
 		.getSystemMenuPreferences().getMainMenuConfiguration();
 	if (mmct == MainMenuConfigurationType.classic) {
@@ -335,15 +308,6 @@ public class UserDialogManager implements IDialogManager,
 	/*
 	 * Pending Dialog Builder setting
 	 */
-	// TODO: load from UI PREFERENCES
-	// String pdd = System.getProperty(SYSTEM_PROP_PDIALOGSBUILDER,
-	// PDD_TABLE);
-	// if (pdd.equals(PDD_TABLE)) {
-	// pendingDialogsDialog = PENDING_DIALOGS_TABLE;
-	// } else if (pdd.equals(PDD_BUTTON)) {
-	// pendingDialogsDialog = PENDING_DIALOGS_BUTTONS;
-	// }
-
 	PendingDialogsBuilderType pdbt = uiPreferencesSubProfile
 		.getSystemMenuPreferences().getPendingDialogBuilder();
 	if (pdbt == PendingDialogsBuilderType.table) {
@@ -355,7 +319,7 @@ public class UserDialogManager implements IDialogManager,
 	/*
 	 * Dialog Pool behavior
 	 */
-	// TODO: use dialogPool behavior according o UIPrefSubProf
+	// TODO: use dialogPool behavior according to UIPrefSubProf
 	if (dialogPool == null) {
 	    dialogPool = new NonRedundantDialogPriorityQueue();
 	    // dialogPool = new DialogPriorityQueue();
@@ -369,7 +333,7 @@ public class UserDialogManager implements IDialogManager,
 	/*
 	 * Message Pool behavior
 	 */
-	// TODO: use dialogPool behavior according o UIPrefSubProf
+	// TODO: use dialogPool behavior according to UIPrefSubProf
 	if (messagePool == null) {
 	    messagePool = new DialogPriorityQueue();
 	}
@@ -530,8 +494,8 @@ public class UserDialogManager implements IDialogManager,
 	// a running dialog has been aborted; it's better to send a
 	// message to the user
 	pushDialog(Form.newMessage(userLocaleHelper
-		.getString("UserDialogManager.forcedCancellation"), userLocaleHelper
-		.getString("UserDialogManager.sorryAborted")));
+		.getString("UserDialogManager.forcedCancellation"),
+		userLocaleHelper.getString("UserDialogManager.sorryAborted")));
     }
 
     /**
@@ -817,7 +781,7 @@ public class UserDialogManager implements IDialogManager,
     }
 
     public final void openPendingDialogsDialog() {
-    	pendingDialogsBuilder.showDialog();
+	pendingDialogsBuilder.showDialog();
     }
 
     public final void openPendingMessagedDialog() {
@@ -830,16 +794,17 @@ public class UserDialogManager implements IDialogManager,
     public UIPreferencesSubProfile getUiPreferencesSubProfile() {
 	return uiPreferencesSubProfile;
     }
-    
+
     /**
-     * Get the {@link UserLocaleHelper}, to access internationalized strings
-     * and user locale.
+     * Get the {@link UserLocaleHelper}, to access internationalized strings and
+     * user locale.
+     * 
      * @return the helper.
      */
-    public UserLocaleHelper getLocaleHelper(){
-    	return userLocaleHelper;
+    public UserLocaleHelper getLocaleHelper() {
+	return userLocaleHelper;
     }
-    
+
     /**
      * The task for finalizing a dialog. Waits
      * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} milliseconds before
