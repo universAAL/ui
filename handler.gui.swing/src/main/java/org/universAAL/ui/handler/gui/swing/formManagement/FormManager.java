@@ -101,6 +101,6 @@ public interface FormManager {
 	 * @param changedProp
 	 * @param newVal
 	 */
-	void adaptationParametertsChanged(String dialogID, String changedProp,
+	void adaptationParametersChanged(String dialogID, String changedProp,
 			Object newVal);
 }

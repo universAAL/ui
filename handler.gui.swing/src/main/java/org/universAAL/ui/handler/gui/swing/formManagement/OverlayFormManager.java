@@ -154,7 +154,7 @@ public class OverlayFormManager implements FormManager {
 		
 	}
 
-	public void adaptationParametertsChanged(String dialogID,
+	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
 		if (r != null){
