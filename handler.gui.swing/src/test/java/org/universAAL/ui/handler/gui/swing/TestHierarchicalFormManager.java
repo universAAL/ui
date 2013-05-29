@@ -16,9 +16,9 @@
 package org.universAAL.ui.handler.gui.swing;
 
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager;
+import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager;
 
-public class TestHierarchicalFormManager extends HierarchicalFromManager {
+public class TestHierarchicalFormManager extends HierarchicalFormManager {
 
 	protected void renderFrame(Form f) {
 		//do nothing

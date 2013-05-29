@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.*;
 public class TestRenderer extends Renderer {
 
     public static String SIMPLE_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager";
-    public static String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager";
+    public static String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager";
     public static String QUEUED_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager";
 
    
