@@ -39,8 +39,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 public class OverlayFormManager implements FormManager {
 
     /**
-     * time after wich the Form is considered garbage.
-     * 30 min.
+     * time after wich the Form is considered garbage. 30 min.
      */
     public static final long GARBAGE_PERIOD = 18000;
 
@@ -53,12 +52,12 @@ public class OverlayFormManager implements FormManager {
      * A map to keep all requests
      */
     private Map requestMap;
-    
+
     /**
      * another Map DialogID -> request
      */
     private Map dialogIDMap;
-    
+
     /**
      * yet another map to keep times
      */
@@ -77,28 +76,27 @@ public class OverlayFormManager implements FormManager {
     /**
      * the constructor.
      */
-    public OverlayFormManager(){
+    public OverlayFormManager() {
 	requestMap = new HashMap();
 	dialogIDMap = new HashMap();
 	lastRequest = new HashMap();
 	gbSchedule = new Timer(true);
-	gbSchedule.scheduleAtFixedRate(new DMGC(), GARBAGE_PERIOD, GARBAGE_PERIOD);
+	gbSchedule.scheduleAtFixedRate(new DMGC(), GARBAGE_PERIOD,
+		GARBAGE_PERIOD);
     }
-    
+
     /** {@inheritDoc} */
     public void addDialog(UIRequest oe) {
 	Form f = oe.getDialogForm();
-	if (f.isStandardDialog()
-		|| f.isSystemMenu()) {
+	if (f.isStandardDialog() || f.isSystemMenu()) {
 	    flush();
 	}
-	requestMap.put(oe,
-		new FrameManager(f, render.getModelMapper()));
-	dialogIDMap.put(oe.getDialogID(),oe);
-	lastRequest.put(oe.getDialogID(), Long.valueOf(System.currentTimeMillis()));
+	requestMap.put(oe, new FrameManager(f, render.getModelMapper()));
+	dialogIDMap.put(oe.getDialogID(), oe);
+	lastRequest.put(oe.getDialogID(), Long.valueOf(System
+		.currentTimeMillis()));
 	currentForm = oe;
     }
-
 
     /** {@inheritDoc} */
     public UIRequest getCurrentDialog() {
@@ -114,8 +112,8 @@ public class OverlayFormManager implements FormManager {
 
     /** {@inheritDoc} */
     public void flush() {
-	for (Iterator iterator = requestMap.values().iterator();
-		iterator.hasNext();) {
+	for (Iterator iterator = requestMap.values().iterator(); iterator
+		.hasNext();) {
 	    FrameManager fm = (FrameManager) iterator.next();
 	    fm.disposeFrame();
 	}
@@ -145,36 +143,36 @@ public class OverlayFormManager implements FormManager {
     public Collection getAllDialogs() {
 	return requestMap.keySet();
     }
-    
+
     public void missingInput(Input input) {
-		for (Iterator i = requestMap.values().iterator(); i.hasNext();) {
-			FrameManager fm = (FrameManager) i.next();
-			fm.missing(input);
-		}
-		
+	for (Iterator i = requestMap.values().iterator(); i.hasNext();) {
+	    FrameManager fm = (FrameManager) i.next();
+	    fm.missing(input);
 	}
 
-	public void adaptationParametersChanged(String dialogID,
-			String changedProp, Object newVal) {
-		UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
-		if (r != null){
-			((FrameManager) requestMap.get(r)).disposeFrame();
-			requestMap.put(r,
-					new FrameManager(r.getDialogForm(), render.getModelMapper()));
-		}
-		
+    }
+
+    public void adaptationParametersChanged(String dialogID,
+	    String changedProp, Object newVal) {
+	UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
+	if (r != null) {
+	    ((FrameManager) requestMap.get(r)).disposeFrame();
+	    requestMap.put(r, new FrameManager(r.getDialogForm(), render
+		    .getModelMapper()));
 	}
 
-	/**
-	 * A mini-Garbage collector to purge the
-	 * {@link OverlayFormManager#dialogIDMap} and
-	 * {@link OverlayFormManager#requestMap}
-	 * 
-	 * @author amedrano
-	 * 
-	 */
-	private class DMGC extends TimerTask {
-	
+    }
+
+    /**
+     * A mini-Garbage collector to purge the
+     * {@link OverlayFormManager#dialogIDMap} and
+     * {@link OverlayFormManager#requestMap}
+     * 
+     * @author amedrano
+     * 
+     */
+    private class DMGC extends TimerTask {
+
 	/** {@inheritDoc} */
 	public void run() {
 	    HashSet tbr = new HashSet();
@@ -184,8 +182,7 @@ public class OverlayFormManager implements FormManager {
 		UIRequest r = (UIRequest) dialogIDMap.get(dID);
 		if (r != null) {
 		    if (now.longValue()
-			    - ((Long)lastRequest.get(dID)).longValue()
-			    >= GARBAGE_PERIOD){
+			    - ((Long) lastRequest.get(dID)).longValue() >= GARBAGE_PERIOD) {
 			tbr.add(dID);
 		    }
 		} else {
@@ -195,7 +192,7 @@ public class OverlayFormManager implements FormManager {
 	    for (Iterator i = tbr.iterator(); i.hasNext();) {
 		String dID = (String) i.next();
 		UIRequest r = (UIRequest) dialogIDMap.get(dID);
-		if (r != currentForm){
+		if (r != currentForm) {
 		    FrameManager fm = (FrameManager) requestMap.get(r);
 		    lastRequest.remove(dID);
 		    dialogIDMap.remove(dID);
@@ -204,7 +201,7 @@ public class OverlayFormManager implements FormManager {
 		}
 	    }
 	}
-	
-	}
+
+    }
 
 }
