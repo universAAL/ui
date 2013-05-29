@@ -201,9 +201,12 @@ public class Init implements InitInterface {
 		
 		if (gip != null){
 			Language preferred  = gip.getPreferredLanguage();
-			if (!tryLoadingMessages(new Locale(preferred.getIso639code()))){
+			if (preferred != null
+					&& !tryLoadingMessages(new Locale(preferred.getIso639code()))){
 				Language secondary = gip.getSecondaryLanguage();
-				tryLoadingMessages(new Locale(secondary.getIso639code()));
+				if (secondary != null){
+					tryLoadingMessages(new Locale(secondary.getIso639code()));
+				}
 			}
 		}
 
