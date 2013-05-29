@@ -111,7 +111,7 @@ public final class Activator implements BundleActivator, IContainerManager {
 						+ "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager " + 
 						"the next dialog is the one with the most priority (this is handled by DM "+
 						"so this might cause problems).\n"
-						+ "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFromManager" +
+						+ "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager" +
 						" dialogs are processed one by one, but kept when subdialogs come in so the full hierarchy of dialogs is available.");
 		d.put("LookandFeel.package", "The look and feel package to be used (if not found, defaultLAF package will be used)");
 		d.put("demo.mode", "Configures the Handler in demo Mode, disables Impairment register restrictions (default=true).");

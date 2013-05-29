@@ -36,7 +36,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author amedrano
  *
  */
-public class HierarchicalFromManager implements FormManager {
+public class HierarchicalFormManager implements FormManager {
 
 	/**
      * The internal Map used to map URIs to Forms.
