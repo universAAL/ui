@@ -206,6 +206,8 @@ public class Init implements InitInterface {
 				Language secondary = gip.getSecondaryLanguage();
 				if (secondary != null){
 					tryLoadingMessages(new Locale(secondary.getIso639code()));
+				} else {
+					tryLoadingMessages(Locale.ENGLISH);
 				}
 			}
 		}
