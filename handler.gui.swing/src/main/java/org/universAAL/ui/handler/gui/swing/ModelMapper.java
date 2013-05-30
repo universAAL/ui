@@ -163,7 +163,7 @@ public final class ModelMapper {
 	        		return getModelFor(refObj, parentC);
 	        	} else {
 	        		LogUtils.logError(Renderer.getContext(), getClass(), "getModelFor", 
-	        				new String[]{"This is really akuard,",
+	        				new String[]{"This is really akwuard,",
 	        							 "No Model found...",
 	        							 "not even in DefaultLAFPackage...",
 	        							 "or as any antecesor...",
