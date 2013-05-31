@@ -57,6 +57,7 @@ import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.ontology.location.Location;
+import org.universAAL.ontology.profile.Caregiver;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ri.servicegateway.GatewayPort;
 
@@ -67,14 +68,6 @@ import org.universAAL.ri.servicegateway.GatewayPort;
  */
 public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     private static final long serialVersionUID = -4986118000986648808L;
-    // public static final String UNIVERSAAL_ASSOCIATED_LABEL =
-    // "urn:org.universAAL.dialog:AssociatedLabel";
-    // public static final String UNIVERSAAL_CLOCK_THREAD =
-    // "urn:org.universAAL.dialog:TheClockThread";
-    // public static final String UNIVERSAAL_FORM_CONTROL =
-    // "urn:org.universAAL.dialog:FormControl";
-    // public static final String UNIVERSAAL_PANEL_COLUMNS =
-    // "urn:org.universAAL.dialog:PanelColumns";
     public static final String RENDERER_NAME = "universAAL-Web-HTML-UIHandler";
 
     private MyUIHandler myUIHandler;
@@ -83,7 +76,8 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     private Hashtable<String, UIRequest> readyOutputs; // userUri, UIRequest
     private Hashtable<String, WebIOSession> userSessions; // user, web session
 
-    private Boolean mainMenuRequestedByRemoteUser = false;
+    private VisualPreferencesHelper visualPreferencesHelper;
+
     private ModuleContext mContext;
 
     public HTMLRenderer(final ModuleContext mcontext) {
@@ -92,11 +86,12 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	waitingInputs = new Hashtable<String, Boolean>();
 	readyOutputs = new Hashtable<String, UIRequest>();
 	userSessions = new Hashtable<String, WebIOSession>();
-	myUIHandler = new MyUIHandler(mcontext, getOutputSubscriptionParams(),
+	myUIHandler = new MyUIHandler(mcontext, getHandlerSubscriptionParams(),
 		this);
+	visualPreferencesHelper = new VisualPreferencesHelper();
     }
 
-    private UIHandlerProfile getOutputSubscriptionParams() {
+    private UIHandlerProfile getHandlerSubscriptionParams() {
 	// I am interested in all events with following UIHandlerProfile
 	// restrictions
 	UIHandlerProfile oep = new UIHandlerProfile();
@@ -109,6 +104,21 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return oep;
     }
 
+    /**
+     * When any user has authenticated, this method will change the request
+     * pattern to receive only addressed {@link UIRequest}.
+     * 
+     * @param user
+     *            user for whom the {@link UIRequest} should be addressed to.
+     */
+    private void userAuthenticated(final User user) {
+	UIHandlerProfile oep = getHandlerSubscriptionParams();
+	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+		UIRequest.PROP_ADDRESSED_USER, user));
+
+	myUIHandler.addNewRegParams(oep);
+    }
+
     public final void finish(final String userURI) {
 	this.userSessions.remove(userURI);
 	this.userURIs.remove(userURI);
@@ -116,24 +126,12 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		.logInfo(mContext, this.getClass(), "finish",
 			new Object[] { "Finished user session for userURI:"
 				+ userURI }, null);
+	myUIHandler.unSetCurrentUser(new Caregiver(userURI));
     }
 
     void popMessage(final Form f) {
 	// TODO popup
 
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.handler.web.IWebRenderer#updateScreenResolution(int,
-     * int, int, int)
-     */
-    public void updateScreenResolution(final int max_x, final int max_y,
-	    final int min_x, final int min_y) {
-	// TODO Auto-generated method stub
-	// Is this necessary?
     }
 
     // --RENDERERS-- //Maybe in the future will be moved to other class
@@ -170,6 +168,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		html.append(renderRepeat((Repeat) children[i], assoc));
 		html.append("</fieldset>");
 	    } else if (children[i] instanceof Group) {
+		boolean display = (((Group) children[i]).getLabel() != null);
 		html.append("<fieldset>");
 		if (((Group) children[i]).getLabel() != null) {
 		    html.append("<legend>" + ((Group) children[i]).getLabel()
@@ -177,6 +176,9 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		}
 		html.append(renderGroupControl((Group) children[i], assoc));
 		html.append("</fieldset>");
+		if (display) {
+		    html.append("</fieldset>");
+		}
 	    } else if (children[i] instanceof Submit) {
 		// also instances of SubdialogTrigger can be treated the same
 		html.append(renderSubmitControl((Submit) children[i], assoc));
@@ -541,14 +543,16 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 
 	    userSessions.put(userURI, ses);
 
-	    // FIXME was in version with IO bus:
-	    // event = new InputEvent(new User(userURI), null,
-	    // InputEvent.uAAL_MAIN_MENU_REQUEST);
-	    // o = publish(event, Boolean.TRUE);
-
-	    // added instead above 2 rows when movin to UI bus
+	    // Caregiver is connected with modality web in dm initializator of
+	    // UIPreferences
+	    User loggedUser = new Caregiver(userURI);
 	    // important that following 2 rows are not switched
-	    myUIHandler.userLoggedIn(new User(userURI), null);
+	    myUIHandler.userLoggedIn(loggedUser, null);
+	    // add logged user to subscription parameters of the handler (only
+	    // UIRequests targeting web+logged_user will be delivered to this
+	    // handler)
+	    userAuthenticated(loggedUser);
+
 	    uiReqst = (UIRequest) readyOutputs.remove(userURI);
 
 	    ses.setCurrentUIRequest(uiReqst);
@@ -615,22 +619,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		    }
 		}
 	    }
-	    // build and send the UIResponse
-	    if (mainMenuRequestedByRemoteUser == true) {
-		userSessions.clear();
-		userSessions.put(userURI, ses);
-
-		waitingInputs.clear();
-		readyOutputs.clear();
-		myUIHandler.userDialogIDs.clear();
-
-		myUIHandler.userLoggedIn(new User(userURI), null);
-		uiReqst = (UIRequest) readyOutputs.remove(userURI);
-
-		mainMenuRequestedByRemoteUser = false;
-	    } else {
-		uiReqst = dialogFinished(selectedSubmit, userURI);
-	    }
+	    uiReqst = dialogFinished(selectedSubmit, userURI);
 	    ses.setCurrentUIRequest(uiReqst);
 	}
 
@@ -654,7 +643,16 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	}
 
 	while ((line = reader.readLine()) != null) {
-	    if (line.contains("<!-- Page title -->")) {
+	    if (line.contains("<!-- BackgroundColor -->")) {
+		line = visualPreferencesHelper
+			.determineBackgroundColor(uiReqst);
+	    } else if (line.contains("<!-- Generic-font-family -->")) {
+		line = visualPreferencesHelper.determineFontFamily(uiReqst);
+	    } else if (line.contains("<!-- Font-color -->")) {
+		line = visualPreferencesHelper.determineFontColor(uiReqst);
+	    } else if (line.contains("<!-- Font-size -->")) {
+		line = visualPreferencesHelper.determineFontSize(uiReqst);
+	    } else if (line.contains("<!-- Page title -->")) {
 		line = "<title>" + f.getTitle() + "</title>";
 	    } else if (line.contains("<!-- Title -->")) {
 		line = "<h2>" + f.getTitle() + "</h2>";
@@ -693,7 +691,8 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	out.println(html.toString());
 	LogUtils.logInfo(mContext, this.getClass(), "doPost",
 		new Object[] { "HTML response page rendered." }, null);
-
+	// LogUtils.logDebug(mContext, this.getClass(), "doPost",
+	// new Object[] { "HTML page: \n" + html}, null);
     }
 
     /*
@@ -709,6 +708,15 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	doPost(req, resp);
     }
 
+    /**
+     * Waits for output {@link UIRequest} that comes to be rendered (showed on
+     * the screen to a user).
+     * 
+     * @param userUri
+     *            user
+     * @param first
+     * @return {@link UIRequest}
+     */
     public final UIRequest publish(final UIResponse event, final Boolean first) {
 	UIRequest o = null;
 	synchronized (waitingInputs) {
@@ -719,7 +727,11 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 		try {
 		    LogUtils.logInfo(mContext, this.getClass(), "publish",
 			    new Object[] { "Waiting for Outputs.." }, null);
-		    waitingInputs.wait();
+		       // wait only if readyOutputs is empty. There may be a case
+		    // when some (quick) output was received in meantime
+		    if (readyOutputs.isEmpty()) {
+			waitingInputs.wait();
+		    }
 		    o = (UIRequest) readyOutputs.remove(user);
 		    LogUtils.logInfo(mContext, this.getClass(), "publish",
 			    new Object[] { "Got outputs." }, null);
@@ -738,6 +750,14 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	return o;
     }
 
+    /**
+     * 
+     * @param s
+     *            submit
+     * @param userURI
+     *            user uri
+     * @return output or more specifically {@link UIRequest}
+     */
     public final UIRequest dialogFinished(final Submit s, final String userURI) {
 	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
 		new Object[] { "Dialog finished. User: " + userURI
@@ -758,18 +778,18 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    return this.publish(uiResp, Boolean.FALSE);
 	} else { // else is UIResponse
 	    synchronized (myUIHandler) {
-		UIResponse ie = new UIResponse(
+		UIResponse uiResponse = new UIResponse(
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest().getAddressedUser(),
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest()
 				.getPresentationLocation(), s);
-		if (s.getDialogID().equals(myUIHandler.dialogID)) {
+		if (s.getDialogID().equals(myUIHandler.currentDialogID)) {
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
 		}
-		myUIHandler.dialogFinished(ie);
-		return this.publish(ie, Boolean.FALSE);
+		myUIHandler.dialogFinished(uiResponse);
+		return this.publish(uiResponse, Boolean.FALSE);
 	    }
 	}
     }

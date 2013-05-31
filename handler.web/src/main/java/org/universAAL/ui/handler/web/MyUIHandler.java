@@ -23,7 +23,21 @@
  */
 package org.universAAL.ui.handler.web;
 
+import org.universAAL.ontology.ui.preferences.AccessMode;
+import org.universAAL.ontology.ui.preferences.AlertPreferences;
+import org.universAAL.ontology.ui.preferences.AuditoryPreferences;
+import org.universAAL.ontology.ui.preferences.ColorType;
+import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
+import org.universAAL.ontology.ui.preferences.GenericFontFamily;
+import org.universAAL.ontology.ui.preferences.Intensity;
+import org.universAAL.ontology.ui.preferences.Size;
+import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ontology.ui.preferences.VisualPreferences;
+import org.universAAL.ontology.ui.preferences.WindowLayoutType;
+
+import java.awt.Color;
 import java.util.Hashtable;
+import java.util.Locale;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -31,6 +45,7 @@ import org.universAAL.middleware.ui.owl.DialogType;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.ontology.profile.User;
 
@@ -42,17 +57,27 @@ import org.universAAL.ontology.profile.User;
 public class MyUIHandler extends UIHandler {
     // contains dialogIDs as keys and users as values
     Hashtable<String, String> userDialogIDs = new Hashtable<String, String>();
-    // FIXME this is always NULL!!!!
-    String dialogID = null;
     private IWebRenderer renderer = null;
-
+    String currentDialogID = null;
     private ModuleContext mContext;
 
     protected MyUIHandler(final ModuleContext mcontext,
-	    final UIHandlerProfile initialSubscription, final IWebRenderer renderer) {
+	    final UIHandlerProfile initialSubscription,
+	    final IWebRenderer renderer) {
 	super(mcontext, initialSubscription);
 	this.renderer = renderer;
 	mContext = mcontext;
+    }
+
+    /**
+     * The current User has logged off, re adapt handler to this situation.
+     */
+    public void unSetCurrentUser(final User user) {
+
+	UIHandlerProfile oep = new UIHandlerProfile();
+	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
+		UIRequest.PROP_ADDRESSED_USER, user));
+	this.removeMatchingRegParams(oep);
     }
 
     /*
@@ -64,13 +89,12 @@ public class MyUIHandler extends UIHandler {
      */
     public final void adaptationParametersChanged(final String dialogID,
 	    final String changedProp, final Object newVal) {
-	LogUtils.logInfo(mContext, this.getClass(),
+	LogUtils.logDebug(mContext, this.getClass(),
 		"adaptationParametersChanged",
-		new Object[] { "Adaptation parameters changed for: "
-			+ renderer.getRendererName() }, null);
+		new Object[] { "Adaptation Parameters Changed\n " + dialogID
+			+ " Prop: " + changedProp + "\n prop of type: "
+			+ newVal.getClass().getName() }, null);
 	// this uiRequest comes asynchronously in a new thread
-
-	// min/max - x/y- resolution may have changed
 
 	synchronized (this) {
 	    if (this.userDialogIDs.containsKey(dialogID)) {
@@ -78,47 +102,94 @@ public class MyUIHandler extends UIHandler {
 			.getUserSessions()
 			.get(this.userDialogIDs.get(dialogID)))
 			.getCurrentUIRequest();
-		//TODO remove later, commented according to latest changes in UI Bus 
-//		if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
-//			&& newVal instanceof Integer
-//			&& ((Integer) newVal).intValue() != currentUIRequest
-//				.getScreenResolutionMaxX()) {
-//		    // TODO: handle change of screenResolutionMaxX
-//		    renderer.updateScreenResolution(((Integer) newVal)
-//			    .intValue(), -1, -1, -1);
-//		    currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
-//			    .intValue());
-//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y
-//			.equals(changedProp)
-//			&& newVal instanceof Integer
-//			&& ((Integer) newVal).intValue() != currentUIRequest
-//				.getScreenResolutionMaxY()) {
-//		    // TODO: handle change of screenResolutionMaxY
-//		    renderer.updateScreenResolution(-1, ((Integer) newVal)
-//			    .intValue(), -1, -1);
-//		    currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
-//			    .intValue());
-//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_X
-//			.equals(changedProp)
-//			&& newVal instanceof Integer
-//			&& ((Integer) newVal).intValue() != currentUIRequest
-//				.getScreenResolutionMinX()) {
-//		    // TODO: handle change of screenResolutionMinX
-//		    renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
-//			    .intValue(), -1);
-//		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
-//			    .intValue());
-//		} else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y
-//			.equals(changedProp)
-//			&& newVal instanceof Integer
-//			&& ((Integer) newVal).intValue() != currentUIRequest
-//				.getScreenResolutionMinY()) {
-//		    // TODO: handle change of screenResolutionMinY
-//		    renderer.updateScreenResolution(-1, -1, -1,
-//			    ((Integer) newVal).intValue());
-//		    currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
-//			    .intValue());
-//		}
+
+		if (UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES
+			.equals(changedProp)
+			&& newVal instanceof VisualPreferences)
+		    currentUIRequest.setProperty(
+			    UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+			    changedProp);
+
+		else if (UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES
+			.equals(changedProp)
+			&& newVal instanceof GeneralInteractionPreferences)
+		    currentUIRequest
+			    .setProperty(
+				    UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				    changedProp);
+		else if (UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES
+			.equals(changedProp)
+			&& newVal instanceof AuditoryPreferences)
+		    currentUIRequest
+			    .setProperty(
+				    UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+				    changedProp);
+		else if (UIPreferencesSubProfile.PROP_ACCESS_MODE
+			.equals(changedProp)
+			&& newVal instanceof AccessMode)
+		    currentUIRequest
+			    .setProperty(
+				    UIPreferencesSubProfile.PROP_ACCESS_MODE,
+				    changedProp);
+		else if (UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES
+			.equals(changedProp)
+			&& newVal instanceof VisualPreferences)
+		    currentUIRequest
+			    .setProperty(
+				    UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+				    changedProp);
+		else if (UIPreferencesSubProfile.PROP_ALERT_PREFERENCES
+			.equals(changedProp)
+			&& newVal instanceof AlertPreferences)
+		    currentUIRequest
+			    .setProperty(
+				    UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
+				    changedProp);
+
+
+		// TODO remove later, commented according to latest changes in
+		// UI Bus
+		// if
+		// (UIRequest.PROP_SCREEN_RESOLUTION_MAX_X.equals(changedProp)
+		// && newVal instanceof Integer
+		// && ((Integer) newVal).intValue() != currentUIRequest
+		// .getScreenResolutionMaxX()) {
+		// // TODO: handle change of screenResolutionMaxX
+		// renderer.updateScreenResolution(((Integer) newVal)
+		// .intValue(), -1, -1, -1);
+		// currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
+		// .intValue());
+		// } else if (UIRequest.PROP_SCREEN_RESOLUTION_MAX_Y
+		// .equals(changedProp)
+		// && newVal instanceof Integer
+		// && ((Integer) newVal).intValue() != currentUIRequest
+		// .getScreenResolutionMaxY()) {
+		// // TODO: handle change of screenResolutionMaxY
+		// renderer.updateScreenResolution(-1, ((Integer) newVal)
+		// .intValue(), -1, -1);
+		// currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
+		// .intValue());
+		// } else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_X
+		// .equals(changedProp)
+		// && newVal instanceof Integer
+		// && ((Integer) newVal).intValue() != currentUIRequest
+		// .getScreenResolutionMinX()) {
+		// // TODO: handle change of screenResolutionMinX
+		// renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
+		// .intValue(), -1);
+		// currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+		// .intValue());
+		// } else if (UIRequest.PROP_SCREEN_RESOLUTION_MIN_Y
+		// .equals(changedProp)
+		// && newVal instanceof Integer
+		// && ((Integer) newVal).intValue() != currentUIRequest
+		// .getScreenResolutionMinY()) {
+		// // TODO: handle change of screenResolutionMinY
+		// renderer.updateScreenResolution(-1, -1, -1,
+		// ((Integer) newVal).intValue());
+		// currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
+		// .intValue());
+		// }
 	    }
 	}
     }
@@ -141,7 +212,8 @@ public class MyUIHandler extends UIHandler {
 		Resource data = currentUIRequest.getDialogForm().getData();
 		currentUIRequest = null;
 		return data;
-	    }{
+	    }
+	    {
 		return null;
 	    }
 	}
@@ -160,7 +232,9 @@ public class MyUIHandler extends UIHandler {
 		new Object[] { "Received UIRequest for user: " + user
 			+ " and is of type: " + uiRequest.getDialogType() },
 		null);
-	// FIXME uncomment this log if you want to see whole UIRequest
+	currentDialogID=uiRequest.getDialogID();
+	
+	// uncomment this log if you want to see whole UIRequest
 	// LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
 	// new Object[] { "uiRequest.toStringRecursive(): " +
 	// uiRequest.toStringRecursive() }, null);
@@ -225,7 +299,8 @@ public class MyUIHandler extends UIHandler {
 						+ uiRequest.getDialogType() },
 					null);
 
-			// dec2012, "first" is now always false so here is where main menu has to be read
+			// dec2012, "first" is now always false so here is where
+			// main menu has to be read
 			renderer.getReadyOutputs().put(user, uiRequest);// MAINMENU
 			this.userDialogIDs.put(uiRequest.getDialogID(), user);
 			renderer.getWaitingInputs().notifyAll();
