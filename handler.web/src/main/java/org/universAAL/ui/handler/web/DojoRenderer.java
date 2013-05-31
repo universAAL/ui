@@ -58,6 +58,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.Location;
+import org.universAAL.ontology.profile.Caregiver;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ri.servicegateway.GatewayPort;
 
@@ -68,14 +69,6 @@ import org.universAAL.ri.servicegateway.GatewayPort;
  */
 public class DojoRenderer extends GatewayPort implements IWebRenderer {
     private static final long serialVersionUID = -4986118000986648808L;
-    // public static final String UNIVERSAAL_ASSOCIATED_LABEL =
-    // "urn:org.universAAL.dialog:AssociatedLabel";
-    // public static final String UNIVERSAAL_CLOCK_THREAD =
-    // "urn:org.universAAL.dialog:TheClockThread";
-    // public static final String UNIVERSAAL_FORM_CONTROL =
-    // "urn:org.universAAL.dialog:FormControl";
-    // public static final String UNIVERSAAL_PANEL_COLUMNS =
-    // "urn:org.universAAL.dialog:PanelColumns";
     public static final String RENDERER_NAME = "universAAL-Web-Dojo-UIHandler";
 
     private MyUIHandler myUIHandler;
@@ -86,6 +79,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
     private ModuleContext mContext;
 
+    private VisualPreferencesHelper visualPreferencesHelper;
+
     public DojoRenderer(final ModuleContext mcontext) {
 	super();
 	mContext = mcontext;
@@ -94,7 +89,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	userSessions = new Hashtable<String, WebIOSession>();
 	myUIHandler = new MyUIHandler(mcontext, getHandlerSubscriptionParams(),
 		this);
-
+	visualPreferencesHelper = new VisualPreferencesHelper();
     }
 
     private UIHandlerProfile getHandlerSubscriptionParams() {
@@ -107,12 +102,6 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		.getFixedValueRestriction(UIRequest.PROP_PRESENTATION_LOCATION,
 			new Location(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
 				+ "Internet")));
-
-	// FIXME
-	// User("urn:org.universAAL.aal_space:test_env#jack")));
-	// oep.addRestriction(MergedRestriction.getFixedValueRestriction(
-	// UIRequest.PROP_ADDRESSED_USER, new
-	// User(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "jack")));
 	return oep;
     }
 
@@ -124,10 +113,6 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      *            user for whom the {@link UIRequest} should be addressed to.
      */
     private void userAuthenticated(final User user) {
-	/*
-	 * AddRestriction to subscription, receive only user related dialogs
-	 * request for main menu
-	 */
 	UIHandlerProfile oep = getHandlerSubscriptionParams();
 	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
 		UIRequest.PROP_ADDRESSED_USER, user));
@@ -142,17 +127,13 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 		.logInfo(mContext, this.getClass(), "finish",
 			new Object[] { "Finished user session for userURI:"
 				+ userURI }, null);
+
+	myUIHandler.unSetCurrentUser(new Caregiver(userURI));
     }
 
     void popMessage(final Form f) {
 	// TODO popup
 
-    }
-
-    public void updateScreenResolution(final int max_x, final int max_y, final int min_x,
-	    final int min_y) {
-	// TODO Auto-generated method stub
-	// Is this necessary?
     }
 
     // RENDERERS
@@ -238,7 +219,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	return renderGroupControl(group, assoc, false, vertical);
     }
 
-    private String renderOutputControl(final FormControl ctrl, final boolean mute) {
+    private String renderOutputControl(final FormControl ctrl,
+	    final boolean mute) {
 	Label cl = ctrl.getLabel();
 	StringBuilder html = new StringBuilder();
 	if (cl != null && !mute) {
@@ -579,8 +561,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public final void doPost(final HttpServletRequest req, final HttpServletResponse resp)
-	    throws ServletException, IOException {
+    public final void doPost(final HttpServletRequest req,
+	    final HttpServletResponse resp) throws ServletException,
+	    IOException {
 	UIRequest uiReqst;
 	WebIOSession ses = new WebIOSession();
 	LogUtils.logInfo(mContext, this.getClass(), "doPost",
@@ -616,17 +599,17 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
 	    userSessions.put(userURI, ses);
 
+	    // Caregiver is connected with modality web in dm initializator of
+	    // UIPreferences
+	    User loggedUser = new Caregiver(userURI);
 
-	    User loggedUser = new User(userURI);
+	    myUIHandler.userLoggedIn(loggedUser, null); // requesting main menu
 	    // add logged user to subscription parameters of the handler (only
 	    // UIRequests targeting web+logged_user will be delivered to this
 	    // handler)
-	    // userAuthenticated(loggedUser);
+	    userAuthenticated(loggedUser);
 
-	    // added instead above 2 rows when moving to UI bus
-	    myUIHandler.userLoggedIn(loggedUser, null); // requesting main menu
-
-	    uiReqst = waitForOutput(userURI, false); //waiting for main menu
+	    uiReqst = waitForOutput(userURI, false); // waiting for main menu
 	    // uiReqst = (UIRequest) readyOutputs.remove(userURI);
 
 	    ses.setCurrentUIRequest(uiReqst);
@@ -720,7 +703,16 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	}
 
 	while ((line = reader.readLine()) != null) {
-	    if (line.contains("<!-- Page title -->")) {
+	    if (line.contains("<!-- BackgroundColor -->")) {
+		line = visualPreferencesHelper
+			.determineBackgroundColor(uiReqst);
+	    } else if (line.contains("<!-- Generic-font-family -->")) {
+		line = visualPreferencesHelper.determineFontFamily(uiReqst);
+	    } else if (line.contains("<!-- Font-color -->")) {
+		line = visualPreferencesHelper.determineFontColor(uiReqst);
+	    } else if (line.contains("<!-- Font-size -->")) {
+		line = visualPreferencesHelper.determineFontSize(uiReqst);
+	    } else if (line.contains("<!-- Page title -->")) {
 		line = f.getTitle();
 	    } else if (line.contains("<!-- Title -->")) {
 		line = f.getTitle();
@@ -763,6 +755,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 	out.println(html.toString());
 	LogUtils.logInfo(mContext, this.getClass(), "doPost",
 		new Object[] { "HTML response page rendered." }, null);
+
+	// LogUtils.logDebug(mContext, this.getClass(), "doPost",
+	// new Object[] { "HTML page: \n" + html}, null);
     }
 
     /*
@@ -772,8 +767,9 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest
      * , javax.servlet.http.HttpServletResponse)
      */
-    public final void doGet(final HttpServletRequest req, final HttpServletResponse resp)
-	    throws ServletException, IOException {
+    public final void doGet(final HttpServletRequest req,
+	    final HttpServletResponse resp) throws ServletException,
+	    IOException {
 	doPost(req, resp);
     }
 
@@ -786,7 +782,8 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      * @param first
      * @return {@link UIRequest}
      */
-    public final UIRequest waitForOutput(final String userUri, final Boolean first) {
+    public final UIRequest waitForOutput(final String userUri,
+	    final Boolean first) {
 	UIRequest o = null;
 	synchronized (waitingInputs) {
 	    waitingInputs.put(userUri, first);
@@ -852,7 +849,7 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 			((WebIOSession) this.userSessions.get(userURI))
 				.getCurrentUIRequest()
 				.getPresentationLocation(), s);
-		if (s.getDialogID().equals(myUIHandler.dialogID)) {
+		if (s.getDialogID().equals(myUIHandler.currentDialogID)) {
 		    ((WebIOSession) this.userSessions.get(userURI))
 			    .setCurrentUIRequest(null);
 		}

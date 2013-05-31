@@ -395,6 +395,7 @@ handler.web/src/main/java/org/universAAL/ui/handler/web/DojoRenderer.java -text
 handler.web/src/main/java/org/universAAL/ui/handler/web/HTMLRenderer.java -text
 handler.web/src/main/java/org/universAAL/ui/handler/web/IWebRenderer.java -text
 handler.web/src/main/java/org/universAAL/ui/handler/web/MyUIHandler.java -text
+handler.web/src/main/java/org/universAAL/ui/handler/web/VisualPreferencesHelper.java -text
 handler.web/src/main/java/org/universAAL/ui/handler/web/WebIOSession.java -text
 handler.web/src/main/resources/webhandler/dojobase.html -text
 handler.web/src/main/resources/webhandler/dojoroot/dijit/ColorPalette.js -text
