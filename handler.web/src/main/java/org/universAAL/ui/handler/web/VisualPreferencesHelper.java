@@ -40,6 +40,8 @@ public class VisualPreferencesHelper {
      *         white otherwise or in case color parameter was null
      */
     public String determineBackgroundColor(UIRequest uiReqst) {
+	if (uiReqst == null)
+	    return "#D5EDF7";
 	VisualPreferences vp = (VisualPreferences) uiReqst
 		.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
 	if (vp != null) {
@@ -114,6 +116,8 @@ public class VisualPreferencesHelper {
      * @return
      */
     public String determineFontFamily(UIRequest uiReqst) {
+	if (uiReqst == null)
+	    return "serif";
 	VisualPreferences vp = (VisualPreferences) uiReqst
 		.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
 	if (vp != null) {
@@ -155,6 +159,8 @@ public class VisualPreferencesHelper {
      * @return
      */
     public String determineFontColor(UIRequest uiReqst) {
+	if (uiReqst == null)
+	    return Integer.toHexString(Color.BLACK.getRGB());
 	VisualPreferences vp = (VisualPreferences) uiReqst
 		.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
 	if (vp != null) {
@@ -239,6 +245,8 @@ public class VisualPreferencesHelper {
      * @return
      */
     public String determineFontSize(UIRequest uiReqst) {
+	if (uiReqst == null)
+	    return "medium";
 	VisualPreferences vp = (VisualPreferences) uiReqst
 		.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
 	if (vp != null) {
