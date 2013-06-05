@@ -126,7 +126,6 @@ handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/univer
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/TabbedGroupTest.java -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/ASL2.0.txt -text
-handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/MITX.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/NOTICE.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/pom.xml -text
 handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
@@ -386,7 +385,6 @@ handler.web/ASL2.0.txt -text
 handler.web/LICENSE-BSD-Dojo.txt -text
 handler.web/LICENSE-JGCL.txt -text
 handler.web/LICENSE-MIT11-Bouncycastle.txt -text
-handler.web/MITX.txt -text
 handler.web/NOTICE.txt -text
 handler.web/artifact_manual.composite -text
 handler.web/pom.xml -text
