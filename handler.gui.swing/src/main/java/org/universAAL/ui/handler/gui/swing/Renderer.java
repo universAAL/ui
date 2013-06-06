@@ -34,6 +34,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.OverlayFormManager;
@@ -348,7 +349,7 @@ public class Renderer extends Thread {
     public void run() {
     	String user = getDefaultUserURI();
     	if (user != null){
-    		User u = new User(user);
+    		User u = new AssistedPerson(user);
     		logInUser(u);
     	}
     	else {
@@ -538,7 +539,7 @@ public class Renderer extends Thread {
 	new Thread(){
 
 	    public void run() {
-		User u = new User(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user);
+		User u = new AssistedPerson(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user);
 		handler.setCurrentUser(u);		
 	    }
 	    
