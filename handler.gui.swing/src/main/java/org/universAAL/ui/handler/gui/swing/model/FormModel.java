@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.model;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -79,6 +80,11 @@ public abstract class FormModel {
      * is 0, else is the number of parents.
      */
     private int subDialogLevel;
+
+	/**
+	 * optional reference to the original request.
+	 */
+	private UIRequest request;
 
     /**
      * The name set to IO panel.
@@ -321,6 +327,22 @@ public abstract class FormModel {
     	}
     	return path;
     }
+
+	/**
+	 * Set the Original Request.
+	 * @param request
+	 */
+	public void setRequest(UIRequest request) {
+		this.request = request;
+	}
+	
+	/**
+	 * Get the original Request.
+	 * @return
+	 */
+	protected UIRequest getRequest(){
+		return this.request;
+	}
     
     /**
      * Finds the Model for the {@link Input} and instructs it to 

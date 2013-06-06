@@ -91,7 +91,7 @@ public class OverlayFormManager implements FormManager {
 	if (f.isStandardDialog() || f.isSystemMenu()) {
 	    flush();
 	}
-	requestMap.put(oe, new FrameManager(f, render.getModelMapper()));
+	requestMap.put(oe, new FrameManager(oe, render.getModelMapper()));
 	dialogIDMap.put(oe.getDialogID(), oe);
 	lastRequest.put(oe.getDialogID(), Long.valueOf(System
 		.currentTimeMillis()));
@@ -157,7 +157,7 @@ public class OverlayFormManager implements FormManager {
 	UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
 	if (r != null) {
 	    ((FrameManager) requestMap.get(r)).disposeFrame();
-	    requestMap.put(r, new FrameManager(r.getDialogForm(), render
+	    requestMap.put(r, new FrameManager(r, render
 		    .getModelMapper()));
 	}
 

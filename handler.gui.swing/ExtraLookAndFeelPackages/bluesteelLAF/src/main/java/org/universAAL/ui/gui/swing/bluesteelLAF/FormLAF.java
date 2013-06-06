@@ -33,6 +33,7 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF;
@@ -156,8 +157,10 @@ public class FormLAF extends FormModel {
      * render the frame for the {@link Form}.
      */
     public void showForm() {
-    	Renderer r = getRenderer();
-    	((Init) r.getInitLAF()).processPrefs(r.getFormManagement().getCurrentDialog());
+    	UIRequest rq = getRequest();
+    	if (rq != null){
+    		((Init) getRenderer().getInitLAF()).processPrefs(getRequest());
+    	}
 	JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
 	synchronized (desktopPane) {
 	    if (frame == null) {
