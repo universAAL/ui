@@ -47,6 +47,7 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
+import org.universAAL.ui.dm.DialogManagerImpl;
 
 /**
  * Initializes {@link UIPreferencesSubprofile} based on stereotype data for
@@ -86,15 +87,38 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	// check prerequisites - if User does not exist in
 	// Profiling
 	// Server (or is not obtainable) add it
-	boolean userisAssistedPerson = false;
+	boolean userIsRemoteCaregiver = false;
 	User obtainedUser = uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
 		.getUser(user);
 	if (obtainedUser == null) {
 	    uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
 		    .addUserSucceeded(user);
+	    LogUtils
+		    .logInfo(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "run",
+			    new String[] { "User not retrieved from Profiling Server so it is (added and) considered AssistedPerson." },
+			    null);
 	} else {
-	    if (obtainedUser instanceof AssistedPerson)
-		userisAssistedPerson = true;
+	    if (obtainedUser instanceof Caregiver) {
+		userIsRemoteCaregiver = true;
+		LogUtils
+			.logInfo(
+				DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"run",
+				new String[] { "User retrieved from Profiling Server and recognized as Caregiver (remote user)." },
+				null);
+	    } else {
+		LogUtils
+			.logInfo(
+				DialogManagerImpl.getModuleContext(),
+				getClass(),
+				"run",
+				new String[] { "User retrieved from Profiling Server and recognized as not Caregiver -> so Assisted Person." },
+				null);
+	    }
 	}
 
 	if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
@@ -110,12 +134,12 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 		+ "SubprofileUIPreferences");
 
 	UIPreferencesSubProfile filledUISubprofile = null;
-	if (userisAssistedPerson) {
-	    // assisted person has primary modality GUI...
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
-	} else {
+	if (userIsRemoteCaregiver) {
 	    // remote user has primary modality WEB...
 	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
+	} else {
+	    // assisted person has primary modality GUI...
+	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
 	}
 
 	// connecting filled in ui subprofile to user
@@ -320,25 +344,27 @@ public class UISubprofileInitializatorRunnable implements Runnable {
     }
 
     @SuppressWarnings("rawtypes")
-	public static Language getLanguageFromIso639(String code){
-    	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
-		for (Iterator i = allLang.iterator(); i.hasNext();) {
-			String uri = (String) i.next();
-			Language l = (Language) Resource.getResource(uri, uri.toLowerCase());
-			if (l.getIso639code().equals(code)){
-				return l;
-			}
-		}
-		return null;
+    public static Language getLanguageFromIso639(String code) {
+	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(
+		Language.MY_URI, true, false);
+	for (Iterator i = allLang.iterator(); i.hasNext();) {
+	    String uri = (String) i.next();
+	    Language l = (Language) Resource
+		    .getResource(uri, uri.toLowerCase());
+	    if (l.getIso639code().equals(code)) {
+		return l;
+	    }
+	}
+	return null;
     }
-    
-    
-//    /**
-//     * Get the English Language.
-//     * @return {@link Language} English
-//     */
-//    private Language getLanguageOntEnglish() {
-//    	String englishURI =  LanguageOntology.NAMESPACE + "English";
-//    	return (Language) Resource.getResource(englishURI, englishURI.toLowerCase());
-//    }
+
+    // /**
+    // * Get the English Language.
+    // * @return {@link Language} English
+    // */
+    // private Language getLanguageOntEnglish() {
+    // String englishURI = LanguageOntology.NAMESPACE + "English";
+    // return (Language) Resource.getResource(englishURI,
+    // englishURI.toLowerCase());
+    // }
 }

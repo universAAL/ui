@@ -84,6 +84,15 @@ public class AdapterUIPreferences implements IAdapter {
 	// set alert preferences
 	uiRequest.setProperty(UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
 		uiPreferencesSubProfile.getAlertPreferences());
+	
+	LogUtils
+	.logInfo(
+		DialogManagerImpl.getModuleContext(),
+		getClass(),
+		"adapt",
+		new String[] { "Presentation modality: "+ uiPreferencesSubProfile
+			.getInteractionPreferences().getPreferredModality().getLocalName() },
+		null);
 
 	// only thing that remains from from UI Preferences ontology (version
 	// 1.3.6-SNAPSHOT) is system menu preferences but since this is used
