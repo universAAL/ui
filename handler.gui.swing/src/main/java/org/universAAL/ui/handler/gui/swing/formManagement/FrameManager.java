@@ -18,6 +18,7 @@ package org.universAAL.ui.handler.gui.swing.formManagement;
 import javax.swing.JFrame;
 
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
@@ -53,15 +54,18 @@ public class FrameManager implements Runnable{
      */
     private ModelMapper mp;
 
+	private UIRequest request;
+
     /**
      * Constructor.
      * Sets the actual rendering of the {@link Form} in motion
-     * @param f
-     *         {@link Form} to be rendered
+     * @param req
+     *         the {@link UIRequest} to be rendered.
      * @param mp the mapper to use for locating classes
-     */
-    public FrameManager(final Form f, final ModelMapper mp) {
-    	form = f;
+     */    
+    public FrameManager(final UIRequest req, final ModelMapper mp ){
+    	this.request = req;
+    	this.form = req.getDialogForm();
     	this.mp = mp;
     	if (CONCURRENT_MODELING_DISPLAY) {
 			Thread t = new Thread(this);
@@ -101,6 +105,9 @@ public class FrameManager implements Runnable{
 	    	LogUtils.logDebug(Renderer.getContext(), getClass(), "run", 
 	    			new String[]{"Starting Rendering"}, null);
 	    	synchronized (model) {
+	    		if (request != null){
+	    			model.setRequest(request);
+	    		}
 	    		model.showForm();
 	    	}
 	    }		

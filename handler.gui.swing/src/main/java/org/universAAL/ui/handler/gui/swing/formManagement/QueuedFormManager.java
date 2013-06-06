@@ -135,11 +135,12 @@ public final class QueuedFormManager implements FormManager {
 		/*
 		 * if its a message, just render message
 		 */
-		mFrame = new FrameManager(((UIRequest) dialogQueue.poll())
-			.getDialogForm(), render.getModelMapper());
+		mFrame = new FrameManager(
+				((UIRequest) dialogQueue.poll()),
+				render.getModelMapper());
 	    } else {
 		currentDialog = (UIRequest) dialogQueue.poll();
-		dFrame = new FrameManager(currentDialog.getDialogForm(), render
+		dFrame = new FrameManager(currentDialog, render
 			.getModelMapper());
 	    }
 	}
@@ -204,12 +205,12 @@ public final class QueuedFormManager implements FormManager {
 		&& dialogID.equals(currentDialog.getDialogID())) {
 	    if (dFrame != null && !currentDialog.getDialogForm().isMessage()) {
 		dFrame.disposeFrame();
-		dFrame = new FrameManager(currentDialog.getDialogForm(), render
+		dFrame = new FrameManager(currentDialog, render
 			.getModelMapper());
 	    }
 	    if (mFrame != null) {
 		mFrame.disposeFrame();
-		mFrame = new FrameManager(currentDialog.getDialogForm(), render
+		mFrame = new FrameManager(currentDialog, render
 			.getModelMapper());
 	    }
 	}

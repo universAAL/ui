@@ -71,7 +71,7 @@ public class HierarchicalFormManager implements FormManager {
 	if (f.getParentDialogURI() != null) {
 	    tree.putChild(f.getParentDialogURI(), f.getURI());
 	}
-	renderFrame(f);
+	renderFrame(currentForm);
     }
 
     /** {@inheritDoc} */
@@ -177,11 +177,11 @@ public class HierarchicalFormManager implements FormManager {
     /**
      * Render the frame.
      * 
-     * @param f
+     * @param req
      *            the {@link Form} to be rendered
      */
-    protected void renderFrame(Form f) {
-	frame = new FrameManager(f, render.getModelMapper());
+    protected void renderFrame(UIRequest req) {
+	frame = new FrameManager(req, render.getModelMapper());
     }
 
     /**
@@ -205,7 +205,7 @@ public class HierarchicalFormManager implements FormManager {
 	    String changedProp, Object newVal) {
 	if (currentForm != null && dialogID.equals(currentForm.getDialogID())) {
 	    disposeFrame();
-	    renderFrame(currentForm.getDialogForm());
+	    renderFrame(currentForm);
 	}
 
     }
