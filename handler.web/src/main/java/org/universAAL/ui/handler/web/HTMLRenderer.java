@@ -817,6 +817,11 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
     public final String getRendererName() {
 	return RENDERER_NAME;
     }
+    
+    public void dispose(){
+	myUIHandler.close();
+	mContext=null;
+    }
 
     /**
      * 

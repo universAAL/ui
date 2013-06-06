@@ -40,4 +40,6 @@ public interface IWebRenderer {
     Hashtable<String, WebIOSession> getUserSessions();
 
     public abstract String getRendererName();
+    
+    public abstract void dispose();
 }

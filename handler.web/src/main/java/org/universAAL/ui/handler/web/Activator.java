@@ -51,6 +51,8 @@ public class Activator implements BundleActivator, ServiceListener {
     /** The mcontext. {@link ModuleContext} */
     private static ModuleContext mcontext;
 
+    IWebRenderer renderer;
+
     /*
      * (non-Javadoc)
      * 
@@ -81,7 +83,7 @@ public class Activator implements BundleActivator, ServiceListener {
 	new Thread() {
 	    public void run() {
 		// Use one of HTMLRenderer or DojoHandler for rendering
-		IWebRenderer renderer = new DojoRenderer(mcontext);
+		renderer = new DojoRenderer(mcontext);
 		// IWebRenderer renderer = new HTMLRenderer(mcontext);
 		Activator.context.registerService(GatewayPort.class.getName(),
 			renderer, null);
@@ -101,6 +103,8 @@ public class Activator implements BundleActivator, ServiceListener {
     public final void stop(final BundleContext arg0) throws Exception {
 	LogUtils.logInfo(Activator.mcontext, this.getClass(), "stop",
 		new Object[] { "Web UI Handler stopped." }, null);
+	renderer.dispose();
+	mcontext = null;
     }
 
     /*

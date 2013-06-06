@@ -120,32 +120,27 @@ public class MyUIHandler extends UIHandler {
 		else if (UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES
 			.equals(changedProp)
 			&& newVal instanceof AuditoryPreferences)
-		    currentUIRequest
-			    .setProperty(
-				    UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-				    changedProp);
+		    currentUIRequest.setProperty(
+			    UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+			    changedProp);
 		else if (UIPreferencesSubProfile.PROP_ACCESS_MODE
 			.equals(changedProp)
 			&& newVal instanceof AccessMode)
-		    currentUIRequest
-			    .setProperty(
-				    UIPreferencesSubProfile.PROP_ACCESS_MODE,
-				    changedProp);
+		    currentUIRequest.setProperty(
+			    UIPreferencesSubProfile.PROP_ACCESS_MODE,
+			    changedProp);
 		else if (UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES
 			.equals(changedProp)
 			&& newVal instanceof VisualPreferences)
-		    currentUIRequest
-			    .setProperty(
-				    UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-				    changedProp);
+		    currentUIRequest.setProperty(
+			    UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+			    changedProp);
 		else if (UIPreferencesSubProfile.PROP_ALERT_PREFERENCES
 			.equals(changedProp)
 			&& newVal instanceof AlertPreferences)
-		    currentUIRequest
-			    .setProperty(
-				    UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
-				    changedProp);
-
+		    currentUIRequest.setProperty(
+			    UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
+			    changedProp);
 
 		// TODO remove later, commented according to latest changes in
 		// UI Bus
@@ -232,8 +227,8 @@ public class MyUIHandler extends UIHandler {
 		new Object[] { "Received UIRequest for user: " + user
 			+ " and is of type: " + uiRequest.getDialogType() },
 		null);
-	currentDialogID=uiRequest.getDialogID();
-	
+	currentDialogID = uiRequest.getDialogID();
+
 	// uncomment this log if you want to see whole UIRequest
 	// LogUtils.logInfo(mContext, this.getClass(), "handleUICall",
 	// new Object[] { "uiRequest.toStringRecursive(): " +
@@ -242,22 +237,21 @@ public class MyUIHandler extends UIHandler {
 	// new comment: when new UIRequest comes lock the waiting inputs
 	synchronized (renderer.getWaitingInputs()) {
 	    Boolean first = (Boolean) renderer.getWaitingInputs().remove(user);
-	    LogUtils.logDebug(mContext, this.getClass(), "handleUICall",
-		    new Object[] { "First Input is received: " + first }, null);
-	    // log.debug("-------FIRST: {}", first);
+
 	    if (first != null) {
+		LogUtils.logDebug(mContext, this.getClass(), "handleUICall",
+			new Object[] { "Input for the user: " + user
+				+ " was received." }, null);
 		if (first.booleanValue()) {
 		    LogUtils
 			    .logDebug(
 				    mContext,
 				    this.getClass(),
 				    "handleUICall",
-				    new Object[] { "First Input is not null and the user remove result is: "
-					    + first.booleanValue() }, null);
-		    // log
-		    // .debug("-------FIRST not null: {}", first
-		    // .booleanValue());
-		    renderer.getReadyOutputs().put(user, uiRequest);// MAINMENU
+				    new Object[] { "Main menu was being waited for and now it is received." },
+				    null);
+
+		    renderer.getReadyOutputs().put(user, uiRequest);// MAINMEN
 		    // when
 		    // asked
 		    this.userDialogIDs.put(uiRequest.getDialogID(), user);
@@ -268,11 +262,9 @@ public class MyUIHandler extends UIHandler {
 				    mContext,
 				    this.getClass(),
 				    "handleUICall",
-				    new Object[] { "First Input is not null and the user remove result is: "
-					    + first.booleanValue() }, null);
-		    // log
-		    // .debug("-------FIRST not null: {}", first
-		    // .booleanValue());
+				    new Object[] { "Output other than main menu was being waited for and now it is received." },
+				    null);
+
 		    if (!uiRequest.getDialogType().equals(DialogType.sysMenu)) {
 			LogUtils
 				.logDebug(
