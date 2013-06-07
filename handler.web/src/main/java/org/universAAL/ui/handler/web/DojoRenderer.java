@@ -606,17 +606,16 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
 	    myUIHandler.userLoggedIn(loggedUser, null); // requesting main menu
 
-	    while (uiReqst == null) {
-		uiReqst = waitForOutput(userURI, false); // waiting for
-		// main menu
-	    }
-	    ses.setCurrentUIRequest(uiReqst);
-
 	    // add logged user to subscription parameters of the UI handler
 	    // (only
 	    // UIRequests targeting web+logged_user will be delivered to this
 	    // handler)
 	    userAuthenticated(loggedUser);
+
+	    uiReqst = waitForOutput(userURI, false); // waiting for
+	    // main menu
+
+	    ses.setCurrentUIRequest(uiReqst);
 
 	} else {
 	    ses = (WebIOSession) userSessions.get(userURI);
@@ -834,8 +833,15 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     public final UIRequest dialogFinished(final Submit s, final String userURI) {
 	LogUtils.logInfo(mContext, this.getClass(), "dialogFinished",
 		new Object[] { "Dialog finished. User: " + userURI
-			+ " pressed a button." }, null);
+			+ " pressed a button :" + s.getLocalName() }, null);
 	if (s == null) {
+	    LogUtils
+		    .logDebug(
+			    mContext,
+			    this.getClass(),
+			    "dialogFinished",
+			    new Object[] { "Selected submit is null - could not be obtained from current sesion-Form association. Returning current UIRequest." },
+			    null);
 	    return this.userSessions.get(userURI).getCurrentUIRequest();
 	}
 
