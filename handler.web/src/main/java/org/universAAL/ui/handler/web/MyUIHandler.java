@@ -23,31 +23,23 @@
  */
 package org.universAAL.ui.handler.web;
 
-import org.universAAL.ontology.ui.preferences.AccessMode;
-import org.universAAL.ontology.ui.preferences.AlertPreferences;
-import org.universAAL.ontology.ui.preferences.AuditoryPreferences;
-import org.universAAL.ontology.ui.preferences.ColorType;
-import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
-import org.universAAL.ontology.ui.preferences.GenericFontFamily;
-import org.universAAL.ontology.ui.preferences.Intensity;
-import org.universAAL.ontology.ui.preferences.Size;
-import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
-import org.universAAL.ontology.ui.preferences.VisualPreferences;
-import org.universAAL.ontology.ui.preferences.WindowLayoutType;
-
-import java.awt.Color;
 import java.util.Hashtable;
-import java.util.Locale;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.ui.owl.DialogType;
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UIHandlerProfile;
-import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.owl.DialogType;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ontology.ui.preferences.AccessMode;
+import org.universAAL.ontology.ui.preferences.AlertPreferences;
+import org.universAAL.ontology.ui.preferences.AuditoryPreferences;
+import org.universAAL.ontology.ui.preferences.GeneralInteractionPreferences;
+import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ontology.ui.preferences.VisualPreferences;
 
 /**
  * @author <a href="mailto:alfiva@itaca.upv.es">Alvaro Fides Valero</a>
