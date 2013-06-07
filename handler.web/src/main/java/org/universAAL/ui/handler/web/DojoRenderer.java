@@ -564,17 +564,18 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
     public final void doPost(final HttpServletRequest req,
 	    final HttpServletResponse resp) throws ServletException,
 	    IOException {
-	UIRequest uiReqst;
-	WebIOSession ses = new WebIOSession();
-	LogUtils.logInfo(mContext, this.getClass(), "doPost",
-		new Object[] { "received HTTP Servlet Request " + req }, null);
-
+	UIRequest uiReqst = null;
+	WebIOSession ses;
 	// BEGIN AUTHENTICATION BLOCK
 	// Check if user is authorized
 	if (!handleAuthorization(req, resp)) {
-	    LogUtils.logInfo(mContext, this.getClass(), "doPost",
-		    new Object[] { "Received unauthorized HTTP request!" },
-		    null);
+	    LogUtils
+		    .logInfo(
+			    mContext,
+			    this.getClass(),
+			    "doPost",
+			    new Object[] { "Received unauthorized HTTP request. Now requesting credentials!" },
+			    null);
 	    return;
 	}
 	String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
@@ -596,23 +597,27 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 			    "doPost",
 			    new Object[] { "Starting interaction and session with user: "
 				    + userURI }, null);
-
+	    ses = new WebIOSession();
 	    userSessions.put(userURI, ses);
 
 	    // Caregiver is connected with modality web in dm initializator of
-	    // UIPreferences
+	    // UIPreferences so instead User class, class Caregiver is used
 	    User loggedUser = new Caregiver(userURI);
 
 	    myUIHandler.userLoggedIn(loggedUser, null); // requesting main menu
-	    // add logged user to subscription parameters of the handler (only
+
+	    while (uiReqst == null) {
+		uiReqst = waitForOutput(userURI, false); // waiting for
+		// main menu
+	    }
+	    ses.setCurrentUIRequest(uiReqst);
+
+	    // add logged user to subscription parameters of the UI handler
+	    // (only
 	    // UIRequests targeting web+logged_user will be delivered to this
 	    // handler)
 	    userAuthenticated(loggedUser);
 
-	    uiReqst = waitForOutput(userURI, false); // waiting for main menu
-	    // uiReqst = (UIRequest) readyOutputs.remove(userURI);
-
-	    ses.setCurrentUIRequest(uiReqst);
 	} else {
 	    ses = (WebIOSession) userSessions.get(userURI);
 	    // Fill the form inputs with the request data
@@ -790,27 +795,31 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
 
 	    while (o == null) {
 		try {
-		    LogUtils.logInfo(mContext, this.getClass(), "publish",
-			    new Object[] { "Waiting for Outputs.." }, null);
+		    LogUtils.logDebug(mContext, this.getClass(),
+			    "waitForOutput",
+			    new Object[] { "Waiting for UIRequest." }, null);
 		    // wait only if readyOutputs is empty. There may be a case
 		    // when some (quick) output was received in meantime
 		    if (readyOutputs.isEmpty()) {
 			waitingInputs.wait();
 		    }
 		    o = (UIRequest) readyOutputs.remove(userUri);
-		    LogUtils.logInfo(mContext, this.getClass(), "publish",
-			    new Object[] { "Got outputs." }, null);
+
 		} catch (InterruptedException e) {
 		    LogUtils
 			    .logError(
 				    mContext,
 				    this.getClass(),
-				    "publish",
-				    new Object[] { "Exception while waiting for Outputs" },
+				    "waitForOutput",
+				    new Object[] { "Exception while waiting for UIRequest." },
 				    e);
 		}
 	    }
 	}
+	LogUtils.logInfo(mContext, this.getClass(), "waitForOutput",
+		new Object[] { "Got UIRequest of type: " + o.getDialogType()
+			+ " carrying form with title: "
+			+ o.getDialogForm().getTitle() }, null);
 	return o;
     }
 
@@ -882,6 +891,11 @@ public class DojoRenderer extends GatewayPort implements IWebRenderer {
      */
     public final String getRendererName() {
 	return RENDERER_NAME;
+    }
+
+    public void dispose() {
+	myUIHandler.close();
+	mContext = null;
     }
 
     /**
