@@ -1,7 +1,6 @@
 * text=auto !eol
 dm/ASL2.0.txt -text
 dm/LICENSE-CPL-JUnit.txt -text
-dm/LICENSE-JGCL.txt -text
 dm/NOTICE.txt -text
 dm/pom.xml -text
 dm/src/main/java/org/universAAL/ui/dm/DMServiceCaller.java -text svneol=unset#text/plain
@@ -380,8 +379,6 @@ handler.sms/src/main/java/org/universAAL/ui/handler/sms/osgi/SmsSender.java -tex
 handler.sms/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIntegrationTest.java -text
 handler.web/ASL2.0.txt -text
 handler.web/LICENSE-BSD-Dojo.txt -text
-handler.web/LICENSE-JGCL.txt -text
-handler.web/LICENSE-MIT11-Bouncycastle.txt -text
 handler.web/NOTICE.txt -text
 handler.web/artifact_manual.composite -text
 handler.web/pom.xml -text
