@@ -63,7 +63,6 @@ dm/src/test/resources/prof_main_menu.txt -text svneol=unset#text/plain
 handler.gui.swing/.checkstyle -text
 handler.gui.swing/ASL2.0.txt -text
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/ASL2.0.txt -text svneol=unset#text/plain
-handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/MITX.txt -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/NOTICE.txt -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/pom.xml -text svneol=unset#text/plain
 handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java -text svneol=unset#text/plain

@@ -27,6 +27,5 @@ Licensed under the Lesser General Public License 2.1
 
 III. License Summary
 - Apache License 2.0
-- MIT License
 - Common Public License 1.0
 - JGCL - Java Geometry Class Library
