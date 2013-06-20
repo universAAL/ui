@@ -30,6 +30,7 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
  * UI Preferences Editor dialog provider. Sends {@link UIRequest} containing the
@@ -49,7 +50,7 @@ public class UIPreferencesUICaller extends UICaller {
     private UIPreferencesDialogBuilder uiPreferencesDialogBuilder = null;
     private UIPreferencesBuffer uiPreferencesBuffer = null;
 
-	private UIPreferencesSCallee uiPreferencesSCallee;
+    private UIPreferencesSCallee uiPreferencesSCallee;
 
     public UIPreferencesUICaller(ModuleContext mcontext,
 	    UIPreferencesBuffer uiPreferencesBuffer) {
@@ -61,15 +62,15 @@ public class UIPreferencesUICaller extends UICaller {
 	this.uiPreferencesSCallee = new UIPreferencesSCallee(mcontext, this);
     }
 
-    /** {@ inheritDoc}	 */
-	@Override
-	public void close() {
-		super.close();
-		if (uiPreferencesSCallee != null)
-			uiPreferencesSCallee.close();
-	}
+    /** {@ inheritDoc} */
+    @Override
+    public void close() {
+	super.close();
+	if (uiPreferencesSCallee != null)
+	    uiPreferencesSCallee.close();
+    }
 
-	/*
+    /*
      * (non-Javadoc)
      * 
      * @see org.universAAL.middleware.ui.UICaller#communicationChannelBroken()
@@ -114,15 +115,15 @@ public class UIPreferencesUICaller extends UICaller {
 
 		submit = null;
 	    }
-	} catch (Exception e) { 
-		/*
-	     * FIXME: user may not be registered
-	     *  and the following might give a NullPointerException
+	} catch (Exception e) {
+	    /*
+	     * FIXME: user may not be registered and the following might give a
+	     * NullPointerException
 	     */
-		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
-		.getLocaleHelper();
-	    showMessageScreen(addressedUser, 
-		    ulh.getString("UIPreferencesUICaller.UnknownServiceError"));
+	    UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(
+		    addressedUser.getURI()).getLocaleHelper();
+	    showMessageScreen(addressedUser, ulh
+		    .getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
     }
 
@@ -145,7 +146,8 @@ public class UIPreferencesUICaller extends UICaller {
     }
 
     /**
-     * Handle submit UI preferences data
+     * Handle submit UI preferences data, and refresh Java JVM user.language
+     * based on the one defined in the {@link UIPreferencesSubprofile}
      * 
      * @param uiResponse
      *            user input
@@ -175,6 +177,35 @@ public class UIPreferencesUICaller extends UICaller {
 	    uiPreferencesBuffer.uiPreferencesSubprofileHelper
 		    .changeSubProfile(updatedUIPreferencesSubProfile);
 
+	    // refresh user.properties in JVM also (so that other uAAL apps can
+	    // retrieve most recent status)
+	    String langLabel = null;
+	    try {
+		langLabel = updatedUIPreferencesSubProfile
+			.getInteractionPreferences().getPreferredLanguage()
+			.getNativeLabel();
+	    } catch (Exception e) {
+		LogUtils
+			.logError(
+				mcontext,
+				this.getClass(),
+				"handleSubmit",
+				new Object[] {
+					"Unable to get language label from preffered language within user ui preferences subprofile",
+					e }, null);
+	    }
+	    //if user lang was obtainable and is different than one currently set in JVM change it
+	    if (langLabel != null && !langLabel.equalsIgnoreCase(System.getProperty("user.language")))
+		System.setProperty("user.language", langLabel);
+	    else
+		LogUtils
+			.logWarn(
+				mcontext,
+				this.getClass(),
+				"handleSubmit",
+				new Object[] { "JVM user.language property not refreshed with UI Preferences subprofile. Old value remained." },
+				null);
+
 	    // refresh local buffer with new data also
 	    uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(
 		    addressedUser, updatedUIPreferencesSubProfile);
@@ -187,13 +218,13 @@ public class UIPreferencesUICaller extends UICaller {
 				    e }, null);
 
 	    /*
-	     * FIXME: user may not be registered
-	     *  and the following might give a NullPointerException
+	     * FIXME: user may not be registered and the following might give a
+	     * NullPointerException
 	     */
-		UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(addressedUser.getURI())
-		.getLocaleHelper();
-	    showMessageScreen(addressedUser, 
-		    ulh.getString("UIPreferencesUICaller.UnknownServiceError"));
+	    UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(
+		    addressedUser.getURI()).getLocaleHelper();
+	    showMessageScreen(addressedUser, ulh
+		    .getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
 
     }
