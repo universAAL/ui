@@ -3,6 +3,11 @@ dm/.project
 dm/.settings
 dm/bin
 dm/target
+handler.web/.classpath
+handler.web/.project
+handler.web/.settings
+handler.web/bin
+handler.web/target
 pom/.classpath
 pom/.project
 pom/.settings
