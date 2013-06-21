@@ -1,0 +1,33 @@
+universAAL Classic Look and Feel Package for UI SWING Handler
+
+Copyright 2012-2014 UPM, http://www.upm.es
+Universidad Politécnica de Madrid 
+
+Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
+Instituto Tecnologico de Aplicaciones de Comunicacion 
+Avanzadas - Grupo Tecnologias para la Salud y el 
+Bienestar (TSB)
+
+I. Included Software
+
+Software developed by Universidad Politécnica de 
+Madrid within the universAAL project.
+
+
+II. Used Software
+
+This product uses software developed at
+The Apache Software Foundation (http://www.apache.org/).
+Licensed under the Apache License 2.0.
+
+This product uses software developed at
+Junit (http://www.junit.org/).
+Licensed under Common Public License 1.0.
+
+This product uses software developed at
+The OPS4J (http://www.ops4j.org)
+Licensed under the Apache License 2.0.
+
+III. License Summary
+- Apache License 2.0
+- Common Public License 1.0
