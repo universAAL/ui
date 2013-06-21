@@ -222,6 +222,11 @@ ui.handler.web-1.3.2-SNAPSHOT/.project
 ui.handler.web-1.3.2-SNAPSHOT/.settings
 ui.handler.web-1.3.2-SNAPSHOT/bin
 ui.handler.web-1.3.2-SNAPSHOT/target
+ui.handler.web-1.3.4-SNAPSHOT/.classpath
+ui.handler.web-1.3.4-SNAPSHOT/.project
+ui.handler.web-1.3.4-SNAPSHOT/.settings
+ui.handler.web-1.3.4-SNAPSHOT/bin
+ui.handler.web-1.3.4-SNAPSHOT/target
 ui.kinect.adapter-1.3.2-SNAPSHOT/.classpath
 ui.kinect.adapter-1.3.2-SNAPSHOT/.project
 ui.kinect.adapter-1.3.2-SNAPSHOT/.settings
