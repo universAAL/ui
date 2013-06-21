@@ -32,3 +32,8 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+resource.server/.classpath
+resource.server/.project
+resource.server/.settings
+resource.server/bin
+resource.server/target
