@@ -123,9 +123,16 @@ public class Renderer extends Thread {
      */
     private FormManager fm;
 
+    /**
+     * The properties file.
+     */
     private File propertiesFile;
 
-
+    /**
+     * The last version loaded of Properties file.
+     */
+    private long propertiesVersion;
+    
 	/**
 	 * The configuration properties read from the file.
 	 */
@@ -261,9 +268,11 @@ public class Renderer extends Thread {
         	try {
         		fis = new FileInputStream(propertiesFile);
         		properties.load(fis);
+        		propertiesVersion = propertiesFile.lastModified();
         		fis.close();
         	} catch (FileNotFoundException e) {
         		storeProperties();
+        		propertiesVersion = propertiesFile.lastModified();        		
         	} catch (Exception e) {
         		LogUtils.logError(moduleContext, getClass(),
         				"loadProperties",
@@ -276,6 +285,16 @@ public class Renderer extends Thread {
         }
     }
 
+    /**
+     * Checks for updates the properties file, and updates the properties.
+     */
+    protected void checkPropertiesVersion() {
+    	if (propertiesFile != null
+    			&& (propertiesVersion != propertiesFile.lastModified())){
+    		loadProperties();
+    	}
+    }
+    
     /**
      * Save the current properties in the file.
      */
@@ -383,6 +402,7 @@ public class Renderer extends Thread {
      * @see Renderer#properties
      */
     public final String getProperty(String string) {
+    	checkPropertiesVersion();
         try {
             return (String) properties.get(string);
         } catch (Exception e) {
@@ -401,6 +421,7 @@ public class Renderer extends Thread {
      * @see Renderer#properties
      */
     public final String getProperty(String value, String defaultVal) {
+    	checkPropertiesVersion();
         try {
         	if (properties.contains(value)) {
         		return (String) properties.get(value);
