@@ -291,7 +291,19 @@ public class Renderer extends Thread {
     protected void checkPropertiesVersion() {
     	if (propertiesFile != null
     			&& (propertiesVersion != propertiesFile.lastModified())){
+    		String oldLAF = properties.getProperty(ModelMapper.LAFPackageProperty);
+    		String oldFM = properties.getProperty(FORM_MANAGEMENT);
     		loadProperties();
+    		if (!oldLAF.equals(properties.getProperty(ModelMapper.LAFPackageProperty))){
+    			//Reload LAF
+    			initLAF.uninstall();
+    			initLAF = modelMapper.initializeLAF();
+    		}
+    		if (!oldFM.equals(properties.getProperty(FORM_MANAGEMENT))){
+    			//Reload FM
+    			loadFormManager(properties.getProperty(FORM_MANAGEMENT));
+    		}
+    		//XXX Location, and Demo mode are not updated in the handler
     	}
     }
     
