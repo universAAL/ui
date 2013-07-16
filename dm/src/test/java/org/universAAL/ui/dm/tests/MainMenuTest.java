@@ -20,6 +20,7 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -27,14 +28,13 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.service.owl.ServiceBusOntology;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.util.Constants;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 
 public class MainMenuTest extends TestCase {
 
     protected static Resource user;
-    ModuleContext mc = new POJOModuleContext();
+    ModuleContext mc = new JUnitModuleContext();
 
     public void setUp() {
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());

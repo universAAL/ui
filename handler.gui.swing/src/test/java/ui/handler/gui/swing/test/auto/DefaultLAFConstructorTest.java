@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.IntRestriction;
@@ -41,7 +42,6 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF;
@@ -84,7 +84,7 @@ public class DefaultLAFConstructorTest extends TestCase{
 	}
 	
 	public void setUp(){
-	    mc = new POJOModuleContext();
+	    mc = new JUnitModuleContext();
 	    new Renderer.RenderStarter(mc);
 	    
 		OntologyManagement.getInstance().register(mc,new DataRepOntology());

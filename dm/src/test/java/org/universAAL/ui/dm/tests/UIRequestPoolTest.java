@@ -21,6 +21,7 @@ import java.util.Random;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -30,7 +31,6 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 public abstract class UIRequestPoolTest extends TestCase {
@@ -40,7 +40,7 @@ public abstract class UIRequestPoolTest extends TestCase {
 
     public abstract IUIRequestPool initialisePool();
 
-    ModuleContext mc = new POJOModuleContext();
+    ModuleContext mc = new JUnitModuleContext();
 
     public void setUp() {
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());

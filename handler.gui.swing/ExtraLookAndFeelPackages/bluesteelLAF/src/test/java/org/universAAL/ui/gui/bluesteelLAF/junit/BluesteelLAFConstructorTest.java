@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.IntRestriction;
@@ -41,9 +42,22 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.plainJava.POJOModuleContext;
+import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.GroupLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.GroupPanelLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.GroupTabbedPanelLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.InputFieldLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.LabelLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.RangeLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.RepeatLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelGridLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelTableLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.Select1LAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.SelectLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.SimpleOutputLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.SubmitLAF;
+import org.universAAL.ui.gui.swing.bluesteelLAF.TextAreaLAF;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.gui.swing.bluesteelLAF.*;
 
 import deprecated.MediaObjectLAF;
 
@@ -55,7 +69,7 @@ public class BluesteelLAFConstructorTest extends TestCase {
 
 	static Form f;
 	static Label l;
-	static ModuleContext mc = new POJOModuleContext();
+	static ModuleContext mc = new JUnitModuleContext();
 	static Renderer testRender;
 
     private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
