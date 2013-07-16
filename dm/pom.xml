@@ -23,10 +23,19 @@
     <maven.compile.target>1.5</maven.compile.target>
   </properties>
   <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  	</dependency>
     <dependency>
-      <groupId>org.universAAL.support</groupId>
-      <artifactId>itests</artifactId>
+      <groupId>org.universAAL.middleware</groupId>
+      <artifactId>mw.container.junit</artifactId>
+      <scope>test</scope>
     </dependency>
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.osgi.core</artifactId>
+      </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.osgi</artifactId>

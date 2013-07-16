@@ -17,6 +17,7 @@ package ui.handler.gui.swing.test.auto;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.DataRepOntology;
@@ -27,7 +28,6 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.ModelMapper;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
@@ -54,7 +54,7 @@ public class ModelMapperTest extends TestCase {
 	private ModuleContext mc;
 
 	public void setUp() {
-	    mc = new POJOModuleContext();
+	    mc = new JUnitModuleContext();
 	    
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
 		OntologyManagement.getInstance().register(mc, new UIBusOntology());

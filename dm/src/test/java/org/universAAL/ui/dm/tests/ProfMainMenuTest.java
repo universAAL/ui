@@ -3,6 +3,7 @@ package org.universAAL.ui.dm.tests;
 import java.io.InputStream;
 import java.util.Iterator;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
@@ -17,7 +18,6 @@ import org.universAAL.ontology.profile.ui.mainmenu.MenuProfileOntology;
 import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.vcard.VCardOntology;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
@@ -26,7 +26,7 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 public class ProfMainMenuTest extends MainMenuTest {
 
 	public void setUp(){
-		mc = new POJOModuleContext();
+		mc = new JUnitModuleContext();
 		mc.getContainer().shareObject(mc,
 				new TurtleSerializer(),
 				new Object[] { MessageContentSerializer.class.getName() });

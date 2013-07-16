@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -18,7 +19,6 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.TestRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
@@ -38,7 +38,7 @@ public class TableTest2 extends JFrame {
     private TestRenderer render;
 
     public TableTest2() {
-    	ModuleContext mc = new POJOModuleContext();
+    	ModuleContext mc = new JUnitModuleContext();
 	render = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 
 	List rows = new ArrayList();
@@ -90,7 +90,7 @@ public class TableTest2 extends JFrame {
     }
 
     public static void main(String[] arg) {
-	ModuleContext mc = new POJOModuleContext();
+	ModuleContext mc = new JUnitModuleContext();
 
 	OntologyManagement.getInstance().register(mc, new DataRepOntology());
 	OntologyManagement.getInstance().register(mc, new UIBusOntology());

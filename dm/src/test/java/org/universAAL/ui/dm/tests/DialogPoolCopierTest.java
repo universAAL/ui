@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
@@ -34,7 +35,6 @@ import org.universAAL.ontology.profile.ui.mainmenu.MenuProfileOntology;
 import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.vcard.VCardOntology;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.dm.dialogManagement.DialogPoolCopier;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
@@ -46,10 +46,10 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  */
 public class DialogPoolCopierTest extends TestCase {
 	
-	private POJOModuleContext mc;
+	private JUnitModuleContext mc;
 
 	public void setUp(){
-		mc = new POJOModuleContext();
+		mc = new JUnitModuleContext();
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
     	OntologyManagement.getInstance().register(mc, new UIBusOntology());

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -19,11 +20,9 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.gui.bluesteelLAF.junit.TestRenderer;
 import org.universAAL.ui.gui.swing.bluesteelLAF.GroupTabbedPanelLAF;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 public class TabbedGroupTest extends JFrame {
 
@@ -47,7 +46,7 @@ public class TabbedGroupTest extends JFrame {
 
 	Form f;
     Label l;
-	ModuleContext mc = new POJOModuleContext();
+	ModuleContext mc = new JUnitModuleContext();
     Renderer testRender;
 
     private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";

@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
+import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -35,7 +36,6 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.vcard.VCardOntology;
-import org.universAAL.plainJava.POJOModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestFMRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
@@ -53,7 +53,7 @@ public class SubdialogAntecessorTest extends TestCase {
     Renderer testRender;
     
     public void setUp() {
-    	ModuleContext mc = new POJOModuleContext();
+    	ModuleContext mc = new JUnitModuleContext();
     	new Renderer.RenderStarter(mc);
     		
     	OntologyManagement.getInstance().register(mc, new DataRepOntology());
