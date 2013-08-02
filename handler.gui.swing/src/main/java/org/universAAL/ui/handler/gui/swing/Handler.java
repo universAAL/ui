@@ -134,7 +134,7 @@ public final class Handler extends UIHandler {
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
         userAuthenticated(currentUser);
-        userLoggedIn(currentUser, render.whereAmI());
+        userLoggedIn(currentUser, render.getRendererLocation());
         render.getInitLAF().userLogIn(currentUser);
     }
     
@@ -181,7 +181,7 @@ public final class Handler extends UIHandler {
         dialogFinished(
                 new UIResponse(
                         currentUser,
-                        render.whereAmI(),
+                        render.getRendererLocation(),
                         submit));
     }
 
