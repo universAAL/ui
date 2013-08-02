@@ -126,7 +126,9 @@ public abstract class SelectModel extends InputModel implements ListSelectionLis
 		}
 		else {
 			selected = new ArrayList();
-			selected.add(val);
+			if (val != null) {
+				selected.add(val);
+			}
 		}
 	}
 
