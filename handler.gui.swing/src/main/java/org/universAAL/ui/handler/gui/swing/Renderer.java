@@ -26,6 +26,7 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.StringUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
@@ -258,7 +259,7 @@ public class Renderer extends Thread {
         properties = new Properties();
         properties.put(DEMO_MODE, "true");
         properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        properties.put(GUI_LOCATION, "Unknown");
+        properties.put(GUI_LOCATION, "urn:org.universAAL.aal_space:test_environment#Unknown");
         properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
         /*
          * Try to load from file, if not create file from defaults.
@@ -364,7 +365,7 @@ public class Renderer extends Thread {
     			//user is a valid URI
     			return user;
     		} else {
-    			user = user.replaceAll("\\W", "_");
+    			user = user.replaceAll("\\W", "_").toLowerCase();
     			return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user;
     		}
     	}
@@ -511,19 +512,6 @@ public class Renderer extends Thread {
     }
 
     /**
-     * Get the location where the handler is displaying the dialogs.
-     * @return
-     *         location of the handler's display
-     */
-    public final AbsLocation whereAmI() {
-        /*
-         *  Read Location from properties
-         *  XXX other location process?
-         */
-        return new Location(getProperty(GUI_LOCATION));
-    }
-
-    /**
 	 * Get the {@link FormManager} being used,
 	 * useful to access the current UIResquest
 	 * and current form.
@@ -581,7 +569,11 @@ public class Renderer extends Thread {
     }
     
     public final AbsLocation getRendererLocation(){
-    	AbsLocation loc = new Location(getProperty(GUI_LOCATION));
+    	/*
+    	 *  Read Location from properties
+    	 *  XXX other location process?
+    	 */
+    	AbsLocation loc =  (AbsLocation) Resource.getResource(Location.MY_URI, getProperty(GUI_LOCATION));
     	return loc;
     }
     
