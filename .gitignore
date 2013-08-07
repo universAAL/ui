@@ -42,6 +42,10 @@ resource.server/.project
 resource.server/.settings
 resource.server/bin
 resource.server/target
+ui.internationalization.util/.classpath
+ui.internationalization.util/.project
+ui.internationalization.util/.settings
+ui.internationalization.util/target
 ui.kinect.adapter.instance/.classpath
 ui.kinect.adapter.instance/.project
 ui.kinect.adapter.instance/.settings

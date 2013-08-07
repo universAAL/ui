@@ -20,6 +20,7 @@
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
     <module>../resource.server</module>
+	<module>../ui.internationalization.util</module>
     <module>../ui.kinect.adapter</module>
     <module>../ui.kinect.adapter.instance</module>
   </modules>

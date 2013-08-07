@@ -1322,6 +1322,8 @@ resource.server/src/main/java/org/universAAL/ui/resource/server/Activator.java -
 resource.server/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
 resource.server/src/main/resources/www/tst.txt -text
 resource.server/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
+ui.internationalization.util/pom.xml -text
+ui.internationalization.util/src/main/java/org/universAAL/ui/internationalization/util/MessageLocaleHelper.java -text
 ui.kinect.adapter.instance/ASL2.0.txt -text
 ui.kinect.adapter.instance/NOTICE.txt -text
 ui.kinect.adapter.instance/pom.xml -text
