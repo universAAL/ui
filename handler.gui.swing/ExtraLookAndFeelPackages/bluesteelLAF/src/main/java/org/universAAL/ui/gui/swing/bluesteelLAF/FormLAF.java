@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,7 +159,7 @@ public class FormLAF extends FormModel {
     public void showForm() {
     	UIRequest rq = getRequest();
     	if (rq != null){
-    		((Init) getRenderer().getInitLAF()).processPrefs(getRequest());
+    		((Init) getRenderer().getInitLAF()).processPrefs(rq);
     	}
 	JDesktopPane desktopPane = Init.getInstance(getRenderer()).getDesktop();
 	synchronized (desktopPane) {
