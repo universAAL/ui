@@ -1,10 +1,14 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * Licensed under both Apache License, Version 2.0 and MIT License.
- *
  * See the NOTICE file distributed with this work for additional 
  * information regarding copyright ownership
+ *	
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *	
+ * http://www.apache.org/licenses/LICENSE-2.0
  *	
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -30,7 +34,6 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
  * UI Preferences Editor dialog provider. Sends {@link UIRequest} containing the
@@ -194,8 +197,11 @@ public class UIPreferencesUICaller extends UICaller {
 					"Unable to get language label from preffered language within user ui preferences subprofile",
 					e }, null);
 	    }
-	    //if user lang was obtainable and is different than one currently set in JVM change it
-	    if (langLabel != null && !langLabel.equalsIgnoreCase(System.getProperty("user.language")))
+	    // if user lang was obtainable and is different than one currently
+	    // set in JVM change it
+	    if (langLabel != null
+		    && !langLabel.equalsIgnoreCase(System
+			    .getProperty("user.language")))
 		System.setProperty("user.language", langLabel);
 	    else
 		LogUtils
