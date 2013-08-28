@@ -68,6 +68,10 @@
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.languages</artifactId>
     </dependency>
+	<dependency>
+		<groupId>org.universAAL.ui</groupId>
+		<artifactId>ui.internationalization.util</artifactId>
+	</dependency>
     <dependency>
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.profile.ui.preferences</artifactId>

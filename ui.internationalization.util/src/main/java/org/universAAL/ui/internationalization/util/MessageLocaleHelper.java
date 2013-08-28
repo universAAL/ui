@@ -71,7 +71,7 @@ public class MessageLocaleHelper {
      * {@link URL} points to a defaultMessage properties file (eg:
      * messages.properties).
      */
-    private List messagesLocationAlternatives;
+    private List<URL> messagesLocationAlternatives;
 
     /**
      * The {@link UIPreferencesSubProfile} reference.
@@ -113,7 +113,7 @@ public class MessageLocaleHelper {
      * @throws Exception
      * @see {@link MessageLocaleHelper#reloadMessages()}
      */
-    public MessageLocaleHelper(ModuleContext mc, User user, List urlList)
+    public MessageLocaleHelper(ModuleContext mc, User user, List<URL> urlList)
 	    throws Exception {
 	if (mc == null || user == null || urlList == null) {
 	    throw new IllegalArgumentException();
@@ -135,7 +135,7 @@ public class MessageLocaleHelper {
      * @see {@link MessageLocaleHelper#reloadMessages()}
      */
     public MessageLocaleHelper(ModuleContext mc,
-	    UIPreferencesSubProfile uiPreferencesSubprofile, List urlList)
+	    UIPreferencesSubProfile uiPreferencesSubprofile, List<URL> urlList)
 	    throws Exception {
 	if (mc == null || uiPreferencesSubprofile == null || urlList == null) {
 	    throw new IllegalArgumentException();
@@ -357,7 +357,7 @@ public class MessageLocaleHelper {
 	    } catch (Exception e1) {
 		// OR
 		// check system property
-		// check default systemlocale?
+		// check default system locale?
 		// if everything else fails then english?
 		return Locale.ENGLISH;
 	    }
