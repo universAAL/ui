@@ -285,7 +285,7 @@ public class MessageLocaleHelper {
 
     /**
      * Helper method, tries to load messages from the specified url, for
-     * prederred language. If messages are not localized then tries secondary
+     * preferred language. If messages are not localized then tries secondary
      * language.
      * 
      * @param url
