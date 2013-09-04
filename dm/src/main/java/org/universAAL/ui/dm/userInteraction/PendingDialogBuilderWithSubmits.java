@@ -25,8 +25,8 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Alternative without tables
@@ -35,67 +35,75 @@ import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder implements ISubmitGroupListener {
+public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder
+	implements ISubmitGroupListener {
 
-/**
- * The constructor will build the form and send the request to the user.
- * 
- * @param udm
- */
-public PendingDialogBuilderWithSubmits(UserDialogManager udm) {
-    super(udm);
-}
-
-public Form buildForm() {
-    // a list with information about a dialog in RDF-form:
-    // title, date, dialog ID
-	UserLocaleHelper ulh = userDM.getLocaleHelper();
-    List<Resource> dialogs = new ArrayList<Resource>();
-    sentItems = new ArrayList<String>();
-    Form f = null;
-    List<UIRequest> allDialogs = new ArrayList<UIRequest>();
-    allDialogs.addAll(dialogPool.listAllSuspended());
-    allDialogs.addAll(dialogPool.listAllActive());
-    for (UIRequest req : allDialogs) {
-	Form tmp = req.getDialogForm();
-	Resource aux = new Resource();
-	aux.setProperty(PROP_DLG_LIST_DIALOG_DATE, tmp
-		.getCreationTime());
-	aux.setProperty(PROP_DLG_LIST_DIALOG_TITLE, tmp.getTitle());
-	aux.setProperty(PROP_DLG_LIST_DIALOG_ID, tmp.getDialogID());
-	dialogs.add(aux);
-	sentItems.add(req.getDialogID());
+    /**
+     * The constructor will build the form and send the request to the user.
+     * 
+     * @param udm
+     */
+    public PendingDialogBuilderWithSubmits(UserDialogManager udm) {
+	super(udm);
     }
-    // if there are dialogs available for the current user,
-    // create a new form with a list of all dialogs
-    if (!dialogs.isEmpty()) {
-	Resource msgList = new Resource();
-	msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
-	msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
-		msgList);
-	Group g = f.getIOControls();
-	int i = 0;
-	for (Resource dlgData : dialogs) {
-	    new Submit(g, new Label(ulh.getString("PendingDialogBuilder.switchTo")
-		    + dlgData.getProperty(PROP_DLG_LIST_DIALOG_TITLE),
-		    null), SWITCH_TO_CALL_PREFIX + i++)
-	    .setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
+
+    public Form buildForm() {
+	// a list with information about a dialog in RDF-form:
+	// title, date, dialog ID
+	MessageLocaleHelper ulh = userDM.getLocaleHelper();
+	List<Resource> dialogs = new ArrayList<Resource>();
+	sentItems = new ArrayList<String>();
+	Form f = null;
+	List<UIRequest> allDialogs = new ArrayList<UIRequest>();
+	allDialogs.addAll(dialogPool.listAllSuspended());
+	allDialogs.addAll(dialogPool.listAllActive());
+	for (UIRequest req : allDialogs) {
+	    Form tmp = req.getDialogForm();
+	    Resource aux = new Resource();
+	    aux.setProperty(PROP_DLG_LIST_DIALOG_DATE, tmp.getCreationTime());
+	    aux.setProperty(PROP_DLG_LIST_DIALOG_TITLE, tmp.getTitle());
+	    aux.setProperty(PROP_DLG_LIST_DIALOG_ID, tmp.getDialogID());
+	    dialogs.add(aux);
+	    sentItems.add(req.getDialogID());
 	}
-	// a dd submits
-	g = f.getSubmits();
-	new Submit(g, new Label(ulh.getString("PendingDialogBuilderWithSubmits.ok"), null),
-		CLOSE_OPEN_DIALOGS_CALL);
-	new Submit(g, new Label(ulh.getString("PendingDialogBuilder.abortAll"),
-		null), ABORT_ALL_OPEN_DIALOGS_CALL)
-	.setHelpString(ulh.getString("PendingDialogBuilder.abortAll.help"));
+	// if there are dialogs available for the current user,
+	// create a new form with a list of all dialogs
+	if (!dialogs.isEmpty()) {
+	    Resource msgList = new Resource();
+	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
+	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
+	    f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
+		    msgList);
+	    Group g = f.getIOControls();
+	    int i = 0;
+	    for (Resource dlgData : dialogs) {
+		new Submit(
+			g,
+			new Label(
+				ulh.getString("PendingDialogBuilder.switchTo")
+					+ dlgData
+						.getProperty(PROP_DLG_LIST_DIALOG_TITLE),
+				null), SWITCH_TO_CALL_PREFIX + i++)
+			.setHelpString(ulh
+				.getString("PendingDialogBuilder.switchTo.help"));
+	    }
+	    // a dd submits
+	    g = f.getSubmits();
+	    new Submit(g, new Label(ulh
+		    .getString("PendingDialogBuilderWithSubmits.ok"), null),
+		    CLOSE_OPEN_DIALOGS_CALL);
+	    new Submit(g, new Label(ulh
+		    .getString("PendingDialogBuilder.abortAll"), null),
+		    ABORT_ALL_OPEN_DIALOGS_CALL).setHelpString(ulh
+		    .getString("PendingDialogBuilder.abortAll.help"));
+	}
+	if (f == null)
+	    f = Form
+		    .newMessage(
+			    ulh.getString("MenuProvider.pendingDialogs"),
+			    ulh
+				    .getString("PendingDialogBuilderWithSubmits.noPendingDialogs"));
+	return f;
     }
-    if (f == null)
-	f = Form.newMessage(
-		ulh.getString("MenuProvider.pendingDialogs"), ulh
-			.getString("PendingDialogBuilderWithSubmits.noPendingDialogs"));
-    return f;
-}
-
 
 }

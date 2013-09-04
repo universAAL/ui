@@ -32,8 +32,8 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * UI Preferences Editor dialog provider. Sends {@link UIRequest} containing the
@@ -123,9 +123,9 @@ public class UIPreferencesUICaller extends UICaller {
 	     * FIXME: user may not be registered and the following might give a
 	     * NullPointerException
 	     */
-	    UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(
-		    addressedUser.getURI()).getLocaleHelper();
-	    showMessageScreen(addressedUser, ulh
+	    MessageLocaleHelper mlocaleHelper = DialogManagerImpl.getInstance()
+		    .getUDM(addressedUser.getURI()).getLocaleHelper();
+	    showMessageScreen(addressedUser, mlocaleHelper
 		    .getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
     }
@@ -227,9 +227,10 @@ public class UIPreferencesUICaller extends UICaller {
 	     * FIXME: user may not be registered and the following might give a
 	     * NullPointerException
 	     */
-	    UserLocaleHelper ulh = DialogManagerImpl.getInstance().getUDM(
-		    addressedUser.getURI()).getLocaleHelper();
-	    showMessageScreen(addressedUser, ulh
+	    MessageLocaleHelper messageLocaleHelper = DialogManagerImpl
+		    .getInstance().getUDM(addressedUser.getURI())
+		    .getLocaleHelper();
+	    showMessageScreen(addressedUser, messageLocaleHelper
 		    .getString("UIPreferencesUICaller.UnknownServiceError"));
 	}
 

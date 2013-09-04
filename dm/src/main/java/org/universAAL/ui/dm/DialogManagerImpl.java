@@ -57,33 +57,35 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
 
     /**
-	 * Prefix for all DM calls (Submits).
-	 */
-	public static final String CALL_PREFIX = "urn:ui.dm:UICaller"; //$NON-NLS-1$
+     * Prefix for all DM calls (Submits).
+     */
+    public static final String CALL_PREFIX = "urn:ui.dm:UICaller"; //$NON-NLS-1$
 
-	/**
-	 * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage
-	 * collector.
-	 */
-	private static final long GC_PERIOD = 600000; // 10 min
+    /**
+     * Execution period for the {@link DialogManagerImpl#dialogIDMap} Garbage
+     * collector.
+     */
+    private static final long GC_PERIOD = 600000; // 10 min
 
-	/**
-	 * The configHome is the folder where all the DMs config files are to be
-	 * saved.
-	 */
-	private static File configHome;
+    /**
+     * The configHome is the folder where all the DMs config files are to be
+     * saved.
+     */
+    private static File configHome;
 
-	/**
+    private static final String MSG_FILE_NAME = "messages.properties";
+
+    /**
      * Singleton instance.
      */
     private static DialogManagerImpl singleton = null;
 
     /**
-	 * A semaphore to syncronize initialization
-	 */
-	private static Semaphore initSem = new Semaphore(0);
+     * A semaphore to syncronize initialization
+     */
+    private static Semaphore initSem = new Semaphore(0);
 
-	/**
+    /**
      * Map of {@link UserDialogManager} delegates. Key is the user's URI.
      */
     private Map<String, UserDialogManager> udmMap;
@@ -106,7 +108,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * The {@link ModuleContext} reference.
      */
     private ModuleContext moduleContext;
-    
+
     /**
      * The uAAL Service Caller. To call main menu services.
      */
@@ -121,7 +123,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * The Preferences Editor.
      */
     private UIPreferencesUICaller uiPreferencesUICaller = null;
-    
+
     /**
      * The component managing the preferences profiles for all users.
      */
@@ -147,7 +149,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 		uiPreferencesBuffer);
 
     }
-
 
     /**
      * This method is called by the UI bus and determines whether a dialog can
@@ -224,17 +225,18 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    return udm.getSuspendedDialog(dialogID);
 	} else {
 	    LogUtils.logWarn(moduleContext, getClass(), "getSuspendedDialog",
-		    new String[] { "Unable to locate UDM for dialog: "
-			    , dialogID, "scanning all UDMs" }, null);
+		    new String[] { "Unable to locate UDM for dialog: ",
+			    dialogID, "scanning all UDMs" }, null);
 	    for (UserDialogManager udmm : udmMap.values()) {
-			UIRequest req = udmm.getSuspendedDialog(dialogID);
-			if (req != null){
-				return req;
-			}
-		    LogUtils.logWarn(moduleContext, getClass(), "getSuspendedDialog",
-			    new String[] { "Unable to locate UDM for dialog: "
-				    , dialogID }, null);
+		UIRequest req = udmm.getSuspendedDialog(dialogID);
+		if (req != null) {
+		    return req;
 		}
+		LogUtils.logWarn(moduleContext, getClass(),
+			"getSuspendedDialog",
+			new String[] { "Unable to locate UDM for dialog: ",
+				dialogID }, null);
+	    }
 	    return null;
 	}
     }
@@ -252,12 +254,13 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    udm.suspendDialog(dialogID);
 	} else {
 	    LogUtils.logError(moduleContext, getClass(), "suspendDialog",
-		    new String[] { "Unable to locate UDM for dialog: "
-			    + dialogID , "scanning all UDMs" }, null);
+		    new String[] {
+			    "Unable to locate UDM for dialog: " + dialogID,
+			    "scanning all UDMs" }, null);
 	    for (UserDialogManager udmm : udmMap.values()) {
-			udmm.suspendDialog(dialogID);
-			
-		}
+		udmm.suspendDialog(dialogID);
+
+	    }
 	}
     }
 
@@ -284,11 +287,12 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    dialogIDMap.remove(dialogID);
 	} else {
 	    LogUtils.logError(moduleContext, getClass(), "dialogAborted",
-		    new String[] { "Unable to locate UDM for dialog: "
-			    + dialogID , "scanning all UDMs" }, null);
+		    new String[] {
+			    "Unable to locate UDM for dialog: " + dialogID,
+			    "scanning all UDMs" }, null);
 	    for (UserDialogManager udmm : udmMap.values()) {
-			udmm.dialogAborted(dialogID);
-		}
+		udmm.dialogAborted(dialogID);
+	    }
 	}
     }
 
@@ -325,48 +329,55 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
     /**
      * Get the {@link UserDialogManager} for a given userURI
-     * @param userURI 
+     * 
+     * @param userURI
      * @return
      */
     public UserDialogManager getUDM(String userURI) {
 	return udmMap.get(userURI);
-	}
-    
-    /**
-     * Get the {@link UIPreferencesBuffer}.
-     * @return
-     */
-    public UIPreferencesBuffer getUIPreferencesBuffer(){
-    	return uiPreferencesBuffer;
     }
 
-	/**
+    /**
+     * Get the {@link UIPreferencesBuffer}.
+     * 
+     * @return
+     */
+    public UIPreferencesBuffer getUIPreferencesBuffer() {
+	return uiPreferencesBuffer;
+    }
+
+    /**
      * Method to prepare for DM shutdown.
      */
     private void stop() {
 	// notify UserDialogManager s about impending shutdown
 	for (UserDialogManager udm : dialogIDMap.values()) {
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UDM for: " + udm.getUserId());
+	    LogUtils.logDebug(moduleContext, getClass(), "stop",
+		    "Stopping UDM for: " + udm.getUserId());
 	    udm.close();
 	}
 	if (uiPreferencesBuffer != null) {
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferencesBuffer");
-		uiPreferencesBuffer.stop();
+	    LogUtils.logDebug(moduleContext, getClass(), "stop",
+		    "Stopping UIPreferencesBuffer");
+	    uiPreferencesBuffer.stop();
 	}
 	if (serviceCallee != null) {
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping serviceCallee");
+	    LogUtils.logDebug(moduleContext, getClass(), "stop",
+		    "Stopping serviceCallee");
 	    serviceCallee.close();
 	}
 	if (serviceCaller != null) {
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping serviceCaller");
+	    LogUtils.logDebug(moduleContext, getClass(), "stop",
+		    "Stopping serviceCaller");
 	    serviceCaller.close();
 	}
-    
-	if (uiPreferencesUICaller != null){
-	    LogUtils.logDebug(moduleContext, getClass(), "stop", "Stopping UIPreferences Editor");
+
+	if (uiPreferencesUICaller != null) {
+	    LogUtils.logDebug(moduleContext, getClass(), "stop",
+		    "Stopping UIPreferences Editor");
 	    uiPreferencesUICaller.close();
 	}
-	
+
 	moduleContext = null;
     }
 
@@ -384,8 +395,8 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    singleton = new DialogManagerImpl(mc);
 	    LogUtils.logDebug(mc, DialogManagerImpl.class, "createInstance",
 		    new String[] { "..singleton instance created." }, null);
-		// release all
-		initSem.release(Integer.MAX_VALUE);
+	    // release all
+	    initSem.release(Integer.MAX_VALUE);
 	}
     }
 
@@ -393,10 +404,10 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * Stop the Dialog Manager's instance
      */
     public static void stopDM() {
-    	if (singleton != null) {
-    		singleton.stop();
-    		singleton = null;
-    	} 
+	if (singleton != null) {
+	    singleton.stop();
+	    singleton = null;
+	}
     }
 
     /**
@@ -405,18 +416,19 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * @return the singleton Instance, null if not created.
      */
     public static DialogManagerImpl getInstance() {
-		while (singleton == null) {
-			try {
-				initSem.acquire();
-			} catch (InterruptedException e) {	}
+	while (singleton == null) {
+	    try {
+		initSem.acquire();
+	    } catch (InterruptedException e) {
+	    }
 
-			if (singleton == null) {
-				LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
-						"getInstance",
-						new String[] { "Could not get singleton instance." },
-						null);
-			}
-		}
+	    if (singleton == null) {
+		LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
+			"getInstance",
+			new String[] { "Could not get singleton instance." },
+			null);
+	    }
+	}
 	return singleton;
     }
 
@@ -457,15 +469,15 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	DialogManagerImpl.configHome = configHome;
     }
 
-	/**
-	 * A mini-Garbage collector to purge the
-	 * {@link DialogManagerImpl#dialogIDMap}
-	 * 
-	 * @author amedrano
-	 * 
-	 */
-	private class DMGC extends TimerTask {
-	
+    /**
+     * A mini-Garbage collector to purge the
+     * {@link DialogManagerImpl#dialogIDMap}
+     * 
+     * @author amedrano
+     * 
+     */
+    private class DMGC extends TimerTask {
+
 	/** {@inheritDoc} */
 	@Override
 	public void run() {
@@ -482,6 +494,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 		dialogIDMap.remove(key);
 	    }
 	}
-	
-	}
+
+    }
 }

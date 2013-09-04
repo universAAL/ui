@@ -33,9 +33,9 @@ import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Build a form that list all pending messages for a user. Manage the
@@ -130,7 +130,7 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
     }
 
     private Form buildForm() {
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	Form f = null;
 	Collection<UIRequest> pendingMessages = new ArrayList<UIRequest>(
 		messagePool.listAllSuspended());
@@ -168,57 +168,66 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		Resource msgList = new Resource();
 		msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
 		msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
-		f = Form.newDialog(
-			ulh.getString("PendingMessageBuilder.pendingMessages"), msgList);
+		f = Form.newDialog(messageLocaleHelper
+			.getString("PendingMessageBuilder.pendingMessages"),
+			msgList);
 		Group g = f.getIOControls();
-		g = new Repeat(g, new Label(ulh
-			.getString("PendingMessageBuilder.pendingMessages"), null),
-			new PropertyPath(null, false,
-				new String[] { PROP_MSG_LIST_MESSAGE_LIST }),
-			null, null);
+		g = new Repeat(g, new Label(messageLocaleHelper
+			.getString("PendingMessageBuilder.pendingMessages"),
+			null), new PropertyPath(null, false,
+			new String[] { PROP_MSG_LIST_MESSAGE_LIST }), null,
+			null);
 		((Repeat) g).banEntryAddition();
 		((Repeat) g).banEntryDeletion();
 		((Repeat) g).banEntryEdit();
 		// dummy group needed if more than one form control is going
 		// to be added as child of the repeat
 		g = new Group(g, null, null, null, null);
-		new SimpleOutput(g, new Label(ulh
+		new SimpleOutput(g, new Label(messageLocaleHelper
 			.getString("PendingMessageBuilder.subject"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
 			null);
-		new SimpleOutput(g, new Label(
-			ulh.getString("PendingMessageBuilder.date"), null),
+		new SimpleOutput(g, new Label(messageLocaleHelper
+			.getString("PendingMessageBuilder.date"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
 			null);
-		new SimpleOutput(g, new Label(ulh
+		new SimpleOutput(g, new Label(messageLocaleHelper
 			.getString("PendingMessageBuilder.message"), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_BODY }),
 			null);
 		// add submits
 		g = f.getSubmits();
-		new Submit(g, new Label(ulh.getString("PendingMessageBuilder.ok"), null),
+		new Submit(g, new Label(messageLocaleHelper
+			.getString("PendingMessageBuilder.ok"), null),
 			CLOSE_MESSAGES_CALL);
-		new Submit(g, new Label(ulh.getString("PendingDialogBuilder.deleteAll"),
-			null), DELETE_ALL_MESSAGES_CALL)
-		.setHelpString(ulh.getString("PendingDialogBuilder.deleteAll.help"));
+		new Submit(g, new Label(messageLocaleHelper
+			.getString("PendingDialogBuilder.deleteAll"), null),
+			DELETE_ALL_MESSAGES_CALL)
+			.setHelpString(messageLocaleHelper
+				.getString("PendingDialogBuilder.deleteAll.help"));
 	    }
 	}
 
 	// if there are no messages available, create a new message saying
 	// exactly that, so that the user knows that there are no messages
 	if (f == null)
-	    f = Form.newMessage(ulh.getString("PendingMessageBuilder.pendingMessages"),
-		    ulh.getString("PendingMessageBuilder.noPendingMessages"));
+	    f = Form
+		    .newMessage(
+			    messageLocaleHelper
+				    .getString("PendingMessageBuilder.pendingMessages"),
+			    messageLocaleHelper
+				    .getString("PendingMessageBuilder.noPendingMessages"));
 	return f;
     }
 
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
-	return userDM.getLocaleHelper().getString("PendingMessageBuilder.noPendingMessages")
-		.equals(msgContent)
-		&& userDM.getLocaleHelper().getString("PendingMessageBuilder.pendingMessages").equals(
+	return userDM.getLocaleHelper().getString(
+		"PendingMessageBuilder.noPendingMessages").equals(msgContent)
+		&& userDM.getLocaleHelper().getString(
+			"PendingMessageBuilder.pendingMessages").equals(
 			formTitle);
     }
 

@@ -18,10 +18,7 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.ui.preferences.editor;
 
-import java.io.File;
-import java.net.URL;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
@@ -59,6 +56,7 @@ import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.LocalizedMessagesURLProvider;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
@@ -82,14 +80,12 @@ public class UIPreferencesDialogBuilder {
      * {@link Language} contained in {@link UIPreferencesSubProfile}
      */
     private MessageLocaleHelper messageLocaleHelper;
-    private static final String MSG_FILE_NAME = "messages.properties";
 
     public static UIPreferencesBuffer uiPreferencesBuffer = null;
-    private List<URL> urlListForObtainingLocalizedMessages = null;
 
     public UIPreferencesDialogBuilder(UIPreferencesBuffer uiPreferencesBuffer) {
 	UIPreferencesDialogBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
-	urlListForObtainingLocalizedMessages = getUrlListForObtainingLocalizedMessages();
+
     }
 
     /**
@@ -109,7 +105,8 @@ public class UIPreferencesDialogBuilder {
 	try {
 	    messageLocaleHelper = new MessageLocaleHelper(
 		    UIPreferencesBuffer.mcontext, uiPreferencesSubprofile,
-		    urlListForObtainingLocalizedMessages);
+		    new LocalizedMessagesURLProvider()
+			    .getUrlListForObtainingLocalizedMessages());
 	} catch (Exception e) {
 	    LogUtils
 		    .logWarn(
@@ -1309,52 +1306,4 @@ public class UIPreferencesDialogBuilder {
 	return f;
     }
 
-    /**
-     * Initializes Url List for obtaining localized messages.
-     * 
-     * @return list of urls where localized messages could be found
-     */
-    public List<URL> getUrlListForObtainingLocalizedMessages() {
-	List<URL> urlList = null;
-	/*
-	 * Get the messages
-	 */
-	URL messagesFileURL = null;
-	try {
-	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
-		    MSG_FILE_NAME);
-
-	    messagesFileURL = messagesFile.toURI().toURL();
-
-	} catch (Exception e) {
-	    LogUtils
-		    .logWarn(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "initializeUrlListForObtainingLocalizedMessages",
-			    new String[] {
-				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
-				    " Loading from resources" }, e);
-
-	}
-	URL messagesResource = null;
-	try {
-	    messagesResource = getClass().getClassLoader().getResource(
-		    MSG_FILE_NAME);
-
-	} catch (Exception e1) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "initializeUrlListForObtainingLocalizedMessages",
-			    new String[] {
-				    "Cannot initialize Dialog Manager externalized strings from Resources!",
-				    " COME ON! give me a break." }, e1);
-	}
-
-	urlList = java.util.Arrays.asList(messagesFileURL, messagesResource);
-
-	return urlList;
-    }
 }
