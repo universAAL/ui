@@ -27,8 +27,8 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * @author amedrano
@@ -92,7 +92,7 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 	    userDM.openPendingMessagedDialog();
 	}
 	if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-	   userDM.openPendingDialogsDialog();
+	    userDM.openPendingDialogsDialog();
 	}
 
     }
@@ -121,49 +121,63 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	Form f = request.getDialogForm();
 	Group stdButtons = f.getStandardButtons();
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 
-	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.pendingMessages.help"));
-	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingDialogs"), ulh
-		    .getString("MenuProvider.pendingDialogs.icon")),
-		    OPEN_DIALOGS_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.pendingDialos.help"));
-	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
-		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.exit.help"));
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.pendingMessages"),
+		    messageLocaleHelper
+			    .getString("MenuProvider.pendingMessages.icon")),
+		    MESSAGES_CALL).setHelpString(messageLocaleHelper
+		    .getString("MenuProvider.pendingMessages.help"));
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.pendingDialogs"),
+		    messageLocaleHelper
+			    .getString("MenuProvider.pendingDialogs.icon")),
+		    OPEN_DIALOGS_CALL).setHelpString(messageLocaleHelper
+		    .getString("MenuProvider.pendingDialos.help"));
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.exit"), messageLocaleHelper
+		    .getString("MenuProvider.exit.icon")), EXIT_CALL)
+		    .setHelpString(messageLocaleHelper
+			    .getString("MenuProvider.exit.help"));
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
-	    break;		
+	    break;
 	case DialogType.STD_DIALOG:
 	    String dialogTitle = f.getTitle();
 
-	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.mainMenu"), ulh
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.mainMenu"), messageLocaleHelper
 		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.mainMenu.help"));
+		    .setHelpString(messageLocaleHelper
+			    .getString("MenuProvider.mainMenu.help"));
 
-	    if (!ulh.getString("MenuProvider.pendingMessages").equals(
-		    dialogTitle)) {
-		new Submit(stdButtons, new Label(ulh
-			.getString("MenuProvider.pendingMessages"), ulh
-			.getString("MenuProvider.pendingMessages.icon")),
+	    if (!messageLocaleHelper.getString("MenuProvider.pendingMessages")
+		    .equals(dialogTitle)) {
+		new Submit(
+			stdButtons,
+			new Label(
+				messageLocaleHelper
+					.getString("MenuProvider.pendingMessages"),
+				messageLocaleHelper
+					.getString("MenuProvider.pendingMessages.icon")),
 			MESSAGES_CALL)
-		.setHelpString("MenuProvider.pendingMessages.help");
+			.setHelpString("MenuProvider.pendingMessages.help");
 
-		new Submit(stdButtons, new Label(ulh
-			.getString("MenuProvider.pendingDialogs"), ulh
-			.getString("MenuProvider.pendingDialogs.icon")),
+		new Submit(
+			stdButtons,
+			new Label(
+				messageLocaleHelper
+					.getString("MenuProvider.pendingDialogs"),
+				messageLocaleHelper
+					.getString("MenuProvider.pendingDialogs.icon")),
 			OPEN_DIALOGS_CALL)
-		.setHelpString("MenuProvider.pendingDialogs.help");
+			.setHelpString("MenuProvider.pendingDialogs.help");
 	    }
 	    break;
 	default:

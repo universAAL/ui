@@ -34,10 +34,10 @@ import org.universAAL.middleware.ui.rdf.SubdialogTrigger;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.IDialogBuilder;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Build a form that list all pending dialogs for a user. Manage the interaction
@@ -47,7 +47,8 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilder {
+public class PendingDialogBuilder implements ISubmitGroupListener,
+	IDialogBuilder {
 
     /**
      * Prefix of a submission ID to switch to a pending dialog. All pending
@@ -102,7 +103,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
     public Form buildForm() {
 	// a list with information about a dialog in RDF-form:
 	// title, date, dialog ID
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	List<Resource> dialogs = new ArrayList<Resource>();
 	sentItems = new ArrayList<String>();
 	Form f = null;
@@ -124,10 +125,10 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	    Resource msgList = new Resource();
 	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	    f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
-		    msgList);
+	    f = Form.newDialog(messageLocaleHelper
+		    .getString("MenuProvider.pendingDialogs"), msgList);
 	    Group g = f.getIOControls();
-	    g = new Repeat(g, new Label(ulh
+	    g = new Repeat(g, new Label(messageLocaleHelper
 		    .getString("MenuProvider.pendingDialogs"), null),
 		    new PropertyPath(null, false,
 			    new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
@@ -138,29 +139,37 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	    // dummy group needed if more than one form control is going to
 	    // be added as child of the repeat
 	    g = new Group(g, null, null, null, null);
-	    new SimpleOutput(g, new Label(ulh.getString("PendingDialogBuilder.subject"),
-		    null), new PropertyPath(null, false,
-		    new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
-	    new SimpleOutput(g, new Label(ulh.getString("PendingDialogBuilder.date"),
-		    null), new PropertyPath(null, false,
-		    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
-	    SubdialogTrigger sdt = new SubdialogTrigger(g, new Label(ulh
-		    .getString("PendingDialogBuilder.switchTo"), null),
+	    new SimpleOutput(g, new Label(messageLocaleHelper
+		    .getString("PendingDialogBuilder.subject"), null),
+		    new PropertyPath(null, false,
+			    new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
+	    new SimpleOutput(g, new Label(messageLocaleHelper
+		    .getString("PendingDialogBuilder.date"), null),
+		    new PropertyPath(null, false,
+			    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
+	    SubdialogTrigger sdt = new SubdialogTrigger(g, new Label(
+		    messageLocaleHelper
+			    .getString("PendingDialogBuilder.switchTo"), null),
 		    SubdialogTrigger.VAR_REPEATABLE_ID);
 	    sdt.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
-	    sdt.setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
+	    sdt.setHelpString(messageLocaleHelper
+		    .getString("PendingDialogBuilder.switchTo.help"));
 	    // add submits
 	    g = f.getSubmits();
-	    new Submit(g, new Label(ulh.getString("PendingDialogBuilder.ok"), null),
+	    new Submit(g, new Label(messageLocaleHelper
+		    .getString("PendingDialogBuilder.ok"), null),
 		    CLOSE_OPEN_DIALOGS_CALL);
-	    new Submit(g,
-		    new Label(ulh.getString("PendingDialogBuilder.abortAll"), null),
+	    new Submit(g, new Label(messageLocaleHelper
+		    .getString("PendingDialogBuilder.abortAll"), null),
 		    ABORT_ALL_OPEN_DIALOGS_CALL)
-	    .setHelpString(ulh.getString("PendingDialogBuilder.abortAll.help"));
+		    .setHelpString(messageLocaleHelper
+			    .getString("PendingDialogBuilder.abortAll.help"));
 	}
 	if (f == null)
-	    f = Form.newMessage(ulh.getString("MenuProvider.pendingDialogs"),
-		    ulh.getString("MenuProvider.noPendingDialogs"));
+	    f = Form.newMessage(messageLocaleHelper
+		    .getString("MenuProvider.pendingDialogs"),
+		    messageLocaleHelper
+			    .getString("MenuProvider.noPendingDialogs"));
 	return f;
     }
 
@@ -178,7 +187,8 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
     /** {@inheritDoc} */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"handling:" , submissionID}, null);
+	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+		"handle", new String[] { "handling:", submissionID }, null);
 	if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
 	    dialogPool.removeAll();
 	}
@@ -201,6 +211,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
      * Switch to a specific pending dialog. This method is called from the
      * dialog presenting the list of pending dialogs when the user selects the
      * appropriate button.
+     * 
      * @param selectionIndex
      *            Index of the selected pending dialog.
      */
@@ -208,6 +219,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	String dialogID = sentItems.get(selectionIndex);
 	userDM.resumeUIRequest(dialogPool.get(dialogID));
     }
+
     /*
      * Old Implementation:
      */
@@ -238,14 +250,14 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
      * } }
      */
 
-	/** {@inheritDoc} */
-	public void showDialog() {
-		Form pdForm = buildForm();
-		if (pdForm != null) {
-		    userDM.add(this);
-		    userDM.pushDialog(pdForm);
-		}
-		
+    /** {@inheritDoc} */
+    public void showDialog() {
+	Form pdForm = buildForm();
+	if (pdForm != null) {
+	    userDM.add(this);
+	    userDM.pushDialog(pdForm);
 	}
+
+    }
 
 }

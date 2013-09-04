@@ -35,7 +35,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Adds a search widget to the main menu, making it searchable.
@@ -102,7 +102,8 @@ public class SearchableAggregatedMainMenuProvider extends
      * Filters {@link SearchableAggregatedMainMenuProvider#mmGroup} with
      * searchStr, and resends the new main menu.
      * 
-     * @param mmGroup the main menu group to filter.
+     * @param mmGroup
+     *            the main menu group to filter.
      * @return the number of results after filtering.
      */
     @SuppressWarnings( { "rawtypes" })
@@ -151,21 +152,22 @@ public class SearchableAggregatedMainMenuProvider extends
 	    }
 	} else {
 	    Group mmGroup = super.getMainMenu(user, location, systemForm);
-	    if (filter(mmGroup) == 0){
-	    	//no results, resetting 
-	    	searchString = null;
-	    	return this.getMainMenu(user, location, systemForm);
-	    	/*
-	    	 * XXX instead of showing the original main menu:
-	    	 * 1) add CloudNotComplyException
-	    	 * 2) add throws CloudNotComplyException to IMainMenuProvider interface
-	    	 * 3) capture the exception in UserDialogManager (and abort pushing the dialog)
-	    	 * 4) show a message|subdialog saying there are no results 
-	    	 * 		(if message, delete "remember" option).
-	    	 */
+	    if (filter(mmGroup) == 0) {
+		// no results, resetting
+		searchString = null;
+		return this.getMainMenu(user, location, systemForm);
+		/*
+		 * XXX instead of showing the original main menu: 1) add
+		 * CloudNotComplyException 2) add throws CloudNotComplyException
+		 * to IMainMenuProvider interface 3) capture the exception in
+		 * UserDialogManager (and abort pushing the dialog) 4) show a
+		 * message|subdialog saying there are no results (if message,
+		 * delete "remember" option).
+		 */
 	    }
-	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString("SearchableAggregatedMainMenuProvider.back"),
-		    null), BACK_CALL);
+	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString(
+		    "SearchableAggregatedMainMenuProvider.back"), null),
+		    BACK_CALL);
 	    return mmGroup;
 	}
     }
@@ -177,16 +179,24 @@ public class SearchableAggregatedMainMenuProvider extends
      * @return
      */
     private Group addSearch(Group parent) {
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
-	Group g = new Group(parent, new Label(ulh
-		.getString("SearchableAggregatedMainMenuProvider.search"), null), null, null, null);
+	MessageLocaleHelper ulh = userDM.getLocaleHelper();
+	Group g = new Group(
+		parent,
+		new Label(
+			ulh
+				.getString("SearchableAggregatedMainMenuProvider.search"),
+			null), null, null, null);
 	InputField in = new InputField(g, null, new PropertyPath(null, false,
 		new String[] { PROP_SEARCH_STRING }), MergedRestriction
 		.getAllValuesRestrictionWithCardinality(PROP_SEARCH_STRING,
 			TypeMapper.getDatatypeURI(String.class), 1, 1), null);
 	in.setMaxLength(20);
-	new Submit(g, new Label(ulh.getString("SearchableAggregatedMainMenuProvider.search"), null),
-		SEARCH_CALL).addMandatoryInput(in);
+	new Submit(
+		g,
+		new Label(
+			ulh
+				.getString("SearchableAggregatedMainMenuProvider.search"),
+			null), SEARCH_CALL).addMandatoryInput(in);
 	return g;
     }
 }

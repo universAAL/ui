@@ -71,6 +71,7 @@ import org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuil
 import org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider;
 import org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider;
 import org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Dialog Management per user. This delegate of {@link DialogManagerImpl} cares
@@ -166,7 +167,7 @@ public class UserDialogManager implements IDialogManager,
      * Helper to determine {@link Locale} for the {@linkUser} from preferred
      * {@linkLanguage} contained in {@link UIPreferencesSubProfile}
      */
-    private UserLocaleHelper userLocaleHelper;
+    private MessageLocaleHelper messageLocaleHelper;
 
     /**
      * A {@link Semaphore} to synchronize showSomething and handleUIRequest,
@@ -234,7 +235,21 @@ public class UserDialogManager implements IDialogManager,
 	// update the UIPreferencesSubProfile for current user
 	uiPreferencesSubProfile = subProfile;
 
-	userLocaleHelper = new UserLocaleHelper(subProfile);
+	try {
+	    messageLocaleHelper = new MessageLocaleHelper(DialogManagerImpl
+		    .getModuleContext(), uiPreferencesSubProfile,
+		    new LocalizedMessagesURLProvider()
+			    .getUrlListForObtainingLocalizedMessages());
+	} catch (Exception e) {
+	    LogUtils
+		    .logWarn(
+			    DialogManagerImpl.getModuleContext(),
+			    getClass(),
+			    "changedUIPreferences",
+			    new String[] { "Cannot initialize Dialog Manager externalized strings!" },
+			    e);
+
+	}
 
 	/*
 	 * generate the adapter List XXX: these can be also defined by
@@ -493,9 +508,11 @@ public class UserDialogManager implements IDialogManager,
 	messagePool.close(dialogID);
 	// a running dialog has been aborted; it's better to send a
 	// message to the user
-	pushDialog(Form.newMessage(userLocaleHelper
-		.getString("UserDialogManager.forcedCancellation"),
-		userLocaleHelper.getString("UserDialogManager.sorryAborted")));
+	pushDialog(Form
+		.newMessage(messageLocaleHelper
+			.getString("UserDialogManager.forcedCancellation"),
+			messageLocaleHelper
+				.getString("UserDialogManager.sorryAborted")));
     }
 
     /**
@@ -594,7 +611,7 @@ public class UserDialogManager implements IDialogManager,
     /** {@inheritDoc} */
     public final synchronized void getMainMenu(Resource user,
 	    AbsLocation location) {
-	Form mmf = Form.newSystemMenu(userLocaleHelper
+	Form mmf = Form.newSystemMenu(messageLocaleHelper
 		.getString("UserDialogManager.universaalMainMenu"));
 	mainMenuProvider.getMainMenu(user, location, mmf);
 	add(mainMenuProvider);
@@ -753,7 +770,7 @@ public class UserDialogManager implements IDialogManager,
 	}
 	// TODO: adjust LevelRating, Locale, PrivacyLevel to user preferences!
 	UIRequest req = new UIRequest(user, form, LevelRating.none,
-		userLocaleHelper.getUserLocaleFromPreferredLanguage(),
+		messageLocaleHelper.getUserLocaleFromPreferredLanguage(),
 		PrivacyLevel.insensible);
 	addSystemMenu(req);
 
@@ -796,13 +813,13 @@ public class UserDialogManager implements IDialogManager,
     }
 
     /**
-     * Get the {@link UserLocaleHelper}, to access internationalized strings and
-     * user locale.
+     * Get the {@link MessageLocaleHelper}, to access internationalized strings
+     * and user locale.
      * 
      * @return the helper.
      */
-    public UserLocaleHelper getLocaleHelper() {
-	return userLocaleHelper;
+    public MessageLocaleHelper getLocaleHelper() {
+	return messageLocaleHelper;
     }
 
     /**

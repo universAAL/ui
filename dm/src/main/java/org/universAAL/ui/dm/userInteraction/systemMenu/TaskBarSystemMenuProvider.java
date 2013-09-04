@@ -30,10 +30,10 @@ import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.UserLocaleHelper;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
+import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Like @link SmartSystemMenuProvider but pending dialogs are shown in the
@@ -138,25 +138,28 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
      * universAAL.middleware.ui.UIRequest)
      */
     public Group getSystemMenu(UIRequest request) {
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	sentItems.clear();
 	Form f = request.getDialogForm();
 	Group stdButtons = f.getStandardButtons();
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
-	    new Submit(stdButtons, new Label(ulh.getString("MenuProvider.exit"),
-		    ulh.getString("MenuProvider.exit.icon")), EXIT_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.exit.help"));
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.exit"), messageLocaleHelper
+		    .getString("MenuProvider.exit.icon")), EXIT_CALL)
+		    .setHelpString(messageLocaleHelper
+			    .getString("MenuProvider.exit.help"));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
 	    break;
 	case DialogType.STD_DIALOG:
-	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.mainMenu"), ulh
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.mainMenu"), messageLocaleHelper
 		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.mainMenu.help"));
+		    .setHelpString(messageLocaleHelper
+			    .getString("MenuProvider.mainMenu.help"));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	default:
@@ -166,19 +169,22 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
     }
 
     private void putPendingXXSubmits(Group stdButtons) {
-		UserLocaleHelper ulh = userDM.getLocaleHelper();
+	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
-	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")), MESSAGES_CALL)
-	    .setHelpString(ulh.getString("MenuProvider.pendingMessages.help"));
+	    new Submit(stdButtons, new Label(messageLocaleHelper
+		    .getString("MenuProvider.pendingMessages"),
+		    messageLocaleHelper
+			    .getString("MenuProvider.pendingMessages.icon")),
+		    MESSAGES_CALL).setHelpString(messageLocaleHelper
+		    .getString("MenuProvider.pendingMessages.help"));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
-	    Group pendingDialogs = new Group(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingDialogs"), null), null, null,
-		    null);
+	    Group pendingDialogs = new Group(stdButtons, new Label(
+		    messageLocaleHelper
+			    .getString("MenuProvider.pendingDialogs"), null),
+		    null, null, null);
 	    int i = 0;
 	    for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
 		String dialogId = req.getDialogID();
@@ -186,7 +192,8 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 		new Submit(pendingDialogs, new Label(req.getDialogForm()
 			.getTitle(), null), SWITCH_TO_CALL_PREFIX
 			+ Integer.toString(i++))
-		.setHelpString(ulh.getString("PendingDialogBuilder.switchTo.help"));
+			.setHelpString(messageLocaleHelper
+				.getString("PendingDialogBuilder.switchTo.help"));
 	    }
 	} else {
 	    // show a button with different ICON/Message or nothing
