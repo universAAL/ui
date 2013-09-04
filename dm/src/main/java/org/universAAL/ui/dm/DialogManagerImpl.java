@@ -73,8 +73,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
     private static File configHome;
 
-    private static final String MSG_FILE_NAME = "messages.properties";
-
     /**
      * Singleton instance.
      */
