@@ -58,8 +58,6 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	super(context, getPermanentSubscriptions());
 	this.mcontext = context;
 
-	clearLocationTask.activate();
-
     }
 
     private static ContextEventPattern[] getPermanentSubscriptions() {
@@ -108,6 +106,8 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	// urn:org.universAAL.aal_space:test_environment#livingRoom
 
 	userLocation = (Location) (event.getRDFObject());
+	clearLocationTask.cancel();
+	clearLocationTask.startTimer();
     }
 
     /*
@@ -147,7 +147,8 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	/**
 	 * The timer daemon to save UIRequests periodically.
 	 */
-	private Timer clearLocationTimer;
+	private Timer clearLocationTaskTimer;
+	Long clearLocationPeriod;
 
 	private static final String SYSTEM_PROP_CLEAR_LOCATION_PERIOD = "ui.dm.adapter.location.clear.wait";
 	private static final String DEFAULT_CLEAR_LOCATION_PERIOD = "300000";
@@ -157,20 +158,19 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	 * Constructor.
 	 */
 	public ClearLocationTask() {
-
-	}
-
-	public void activate() {
-	    Long clearLocationPeriod = Long.parseLong(System.getProperty(
+	    clearLocationPeriod = Long.parseLong(System.getProperty(
 		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
 		    DEFAULT_CLEAR_LOCATION_PERIOD));
-	    Timer clearLocationTimer = new Timer(true);
-	    clearLocationTimer.schedule(new ClearLocationTask(),
+	}
+
+	public void startTimer() {
+	    clearLocationTaskTimer = new Timer(true);
+	    clearLocationTaskTimer.schedule(new ClearLocationTask(),
 		    CLEAR_LOCATION_DELAY, clearLocationPeriod);
 	}
 
 	public void stop() {
-	    clearLocationTimer.cancel();
+	    clearLocationTaskTimer.cancel();
 	}
 
 	@Override
