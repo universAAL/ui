@@ -99,7 +99,7 @@ public class AdapterUIPreferences implements IAdapter {
 		null);
 
 	// only thing that remains from from UI Preferences ontology (version
-	// 1.3.6-SNAPSHOT) is system menu preferences but since this is used
+	// 2.0.1-SNAPSHOT) is system menu preferences but since this is used
 	// only in ui.dm it is not added to UIRequest and shipped towards
 	// UIHandlers
 
