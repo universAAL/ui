@@ -46,6 +46,7 @@ import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
+import org.universAAL.ui.dm.adapters.AdapterUserLocation;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
@@ -252,8 +253,7 @@ public class UserDialogManager implements IDialogManager,
 	}
 
 	/*
-	 * generate the adapter List XXX: these can be also defined by
-	 * uiPrefSubProf options...
+	 * generate the adapter List
 	 */
 	adapterList = new ArrayList<IAdapter>();
 
@@ -265,6 +265,9 @@ public class UserDialogManager implements IDialogManager,
 	// To be removed when above is working ok otherwise this will override
 	// things?
 	adapterList.add(new AdaptorKrakow());
+	
+	//add user location (if available)
+	adapterList.add(new AdapterUserLocation(DialogManagerImpl.getModuleContext()));
 
 	/*
 	 * Initialize mainMenuProvider
