@@ -365,6 +365,14 @@ public class MessageLocaleHelper {
     }
 
     /**
+     * Get the selected Locale for the messages.
+     * @return the selected message locale, null if default is selected.
+     */
+    public final Locale getSelectedMessageLocale(){
+    		return messages.getCurrentLocale();
+    }
+    
+    /**
      * 
      * @param lang
      *            {@link Language}
