@@ -32,27 +32,15 @@
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>javax.servlet</artifactId>
-      <version>1.0.0</version>
-      <scope>provided</scope>
-    </dependency>
+ 	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>
+		<version>2.5</version>
+		<scope>provided</scope>
+	</dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.data.representation.osgi</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.bus.context.osgi</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.universAAL.middleware</groupId>
-      <artifactId>mw.bus.service.osgi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
