@@ -37,6 +37,10 @@ pom/.classpath
 pom/.project
 pom/.settings
 pom/target
+pom/ui.karaf.feature/.classpath
+pom/ui.karaf.feature/.project
+pom/ui.karaf.feature/.settings
+pom/ui.karaf.feature/target
 resource.server/.classpath
 resource.server/.project
 resource.server/.settings

@@ -1316,6 +1316,10 @@ handler.web/src/main/resources/webhandler/img/universAAL_logo.png -text
 handler.web/src/main/resources/webhandler/img/universaal-logo-white.png -text
 handler.web/src/test/java/org/universAAL/ui/handler/web/test/ArtifactIntegrationTest.java -text
 pom/pom.xml -text
+pom/ui.karaf.feature/ASL2.0.txt -text
+pom/ui.karaf.feature/NOTICE.txt -text
+pom/ui.karaf.feature/pom.xml -text
+pom/ui.karaf.feature/src/features/features.xml -text
 resource.server/ASL2.0.txt -text
 resource.server/NOTICE.txt -text
 resource.server/pom.xml -text
