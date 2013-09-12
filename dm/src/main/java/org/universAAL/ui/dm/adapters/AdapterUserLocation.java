@@ -106,7 +106,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	// urn:org.universAAL.aal_space:test_environment#livingRoom
 
 	userLocation = (Location) (event.getRDFObject());
-	clearLocationTask.cancel();
+	clearLocationTask.stop();
 	clearLocationTask.startTimer();
     }
 
@@ -152,7 +152,6 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
 	private static final String SYSTEM_PROP_CLEAR_LOCATION_PERIOD = "ui.dm.adapter.location.clear.wait";
 	private static final String DEFAULT_CLEAR_LOCATION_PERIOD = "300000";
-	private static final long CLEAR_LOCATION_DELAY = 300000;
 
 	/**
 	 * Constructor.
@@ -161,12 +160,12 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	    clearLocationPeriod = Long.parseLong(System.getProperty(
 		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
 		    DEFAULT_CLEAR_LOCATION_PERIOD));
+	    clearLocationTaskTimer = new Timer(true);
 	}
 
 	public void startTimer() {
-	    clearLocationTaskTimer = new Timer(true);
 	    clearLocationTaskTimer.schedule(new ClearLocationTask(),
-		    CLEAR_LOCATION_DELAY, clearLocationPeriod);
+		    clearLocationPeriod);
 	}
 
 	public void stop() {
