@@ -46,6 +46,7 @@ import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
+import org.universAAL.ui.dm.adapters.AdapterUserImpairments;
 import org.universAAL.ui.dm.adapters.AdapterUserLocation;
 import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
@@ -265,9 +266,17 @@ public class UserDialogManager implements IDialogManager,
 	// To be removed when above is working ok otherwise this will override
 	// things?
 	adapterList.add(new AdaptorKrakow());
-	
-	//add user location (if available)
-	adapterList.add(new AdapterUserLocation(DialogManagerImpl.getModuleContext()));
+
+	// add user location (if available)
+	adapterList.add(new AdapterUserLocation(DialogManagerImpl
+		.getModuleContext()));
+
+	// TODO add user impairments
+	// adapterList.add(new AdapterUserImpairments(accessImpairments));
+
+	// TODO change default dialog privacy comming from the app (and apply
+	// new one - based on some user defined rule or similar)
+	// adapterList.add(new AdapterDialogPrivacyLevel(newDialogPrivacyLevel));
 
 	/*
 	 * Initialize mainMenuProvider
@@ -753,7 +762,7 @@ public class UserDialogManager implements IDialogManager,
      * @param req
      *            the {@link UIRequest} to be sent by the DM.
      */
-    public void pushUIRequst(UIRequest req) {
+    public void pushUIRequest(UIRequest req) {
 	if (req != null) {
 	    myUIRequests.add(req.getDialogID());
 	    DialogManagerImpl.getInstance().sendUIRequest(req);
@@ -771,7 +780,8 @@ public class UserDialogManager implements IDialogManager,
 	if (current != null) {
 	    dialogPool.suspend(current.getDialogID());
 	}
-	// TODO: adjust LevelRating, Locale, PrivacyLevel to user preferences!
+	// TODO: adjust dialogPriority and dialogPrivacy od DM messages to
+	// possible user preferences!
 	UIRequest req = new UIRequest(user, form, LevelRating.none,
 		messageLocaleHelper.getUserLocaleFromPreferredLanguage(),
 		PrivacyLevel.insensible);
@@ -781,7 +791,7 @@ public class UserDialogManager implements IDialogManager,
 
 	addListeners(req);
 
-	pushUIRequst(req);
+	pushUIRequest(req);
     }
 
     /**
