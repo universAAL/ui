@@ -30,13 +30,13 @@
 		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/0.7.2</bundle>
 		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
 			so leaving them in resolved state is enough-->
-		<bundle start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.0</bundle>
+		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.0</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing.classicLAF" description="The UI Swing Handler's LAF plugin for clasic look and feel."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-UI.handler.gui.swing</feature>	
-		<bundle>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.0</bundle>
+		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.0</bundle>
 	</feature>
 <!--
 	<feature name="uAAL-UI.resource.server" description="The UI Resource Server."
