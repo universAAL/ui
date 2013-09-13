@@ -21,7 +21,7 @@
 	<feature name="uAAL-UI.handler.gui.swing" description="The UI Swing Handler."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-MW</feature>
-		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.0</bundle>
+		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.1-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing.BluesteelLAF" description="The UI Swing Handler's LAF plugin for BlueSteel look and feel."
@@ -30,26 +30,26 @@
 		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/0.7.2</bundle>
 		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
 			so leaving them in resolved state is enough-->
-		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.0</bundle>
+		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.1-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing.classicLAF" description="The UI Swing Handler's LAF plugin for clasic look and feel."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-UI.handler.gui.swing</feature>	
-		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.0</bundle>
+		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.1-SNAPSHOT</bundle>
 	</feature>
 <!--
 	<feature name="uAAL-UI.resource.server" description="The UI Resource Server."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-MW</feature>
-		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/2.0.0</bundle>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/2.0.1-SNAPSHOT</bundle>
 	</feature>
 -->
 	
 	<feature name="uAAL-UI.handler.web" description="The UI Web Handler."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-RI.Service.Gateway</feature>
-		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web/2.0.0</bundle>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web/2.0.1-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.DM" description="The UI Dialog Manager"
@@ -59,7 +59,9 @@
 		<feature>uAAL-Ont.Impairment</feature>
 		<feature>uAAL-Ont.Profile.userId</feature>
 		<!-- <feature>uAAL-ctxt.Profiling.Server</feature> -->
-		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/2.0.0</bundle>
+		
+		<bundle start-level='74'>wrap:mvn:org.universAAL.ui/ui.internationalization.util/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/2.0.1-SNAPSHOT</bundle>
 	</feature>
 		
 </features>
