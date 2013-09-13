@@ -240,7 +240,7 @@ public class UserDialogManager implements IDialogManager,
 	try {
 	    messageLocaleHelper = new MessageLocaleHelper(DialogManagerImpl
 		    .getModuleContext(), uiPreferencesSubProfile,
-		    new LocalizedMessagesURLProvider()
+		    LocalizedMessagesURLProvider.getInstance()
 			    .getUrlListForObtainingLocalizedMessages());
 	} catch (Exception e) {
 	    LogUtils
@@ -276,7 +276,8 @@ public class UserDialogManager implements IDialogManager,
 
 	// TODO change default dialog privacy comming from the app (and apply
 	// new one - based on some user defined rule or similar)
-	// adapterList.add(new AdapterDialogPrivacyLevel(newDialogPrivacyLevel));
+	// adapterList.add(new
+	// AdapterDialogPrivacyLevel(newDialogPrivacyLevel));
 
 	/*
 	 * Initialize mainMenuProvider

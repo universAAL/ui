@@ -35,8 +35,16 @@ import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder;
  */
 public class LocalizedMessagesURLProvider {
 
+    private static LocalizedMessagesURLProvider singleton = null;
+
     public LocalizedMessagesURLProvider() {
 
+    }
+
+    public static LocalizedMessagesURLProvider getInstance() {
+	if (singleton == null)
+	    singleton = new LocalizedMessagesURLProvider();
+	return singleton;
     }
 
     private static final String MSG_FILE_NAME = "messages.properties";

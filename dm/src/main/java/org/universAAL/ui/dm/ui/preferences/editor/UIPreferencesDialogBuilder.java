@@ -105,7 +105,7 @@ public class UIPreferencesDialogBuilder {
 	try {
 	    messageLocaleHelper = new MessageLocaleHelper(
 		    UIPreferencesBuffer.mcontext, uiPreferencesSubprofile,
-		    new LocalizedMessagesURLProvider()
+		    LocalizedMessagesURLProvider.getInstance()
 			    .getUrlListForObtainingLocalizedMessages());
 	} catch (Exception e) {
 	    LogUtils
