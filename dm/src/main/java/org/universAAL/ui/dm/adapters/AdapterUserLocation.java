@@ -159,7 +159,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 			    getClass(),
 			    "adapt",
 			    new String[] { "Setting user location as presentation location: "
-				    + userLocation.toStringRecursive() }, null);
+				    + userLocation.getURI() }, null);
 	}
     }
 
