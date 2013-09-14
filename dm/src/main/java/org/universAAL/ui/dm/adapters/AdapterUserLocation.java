@@ -124,7 +124,19 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
 	    // start countdown to delete the location
 	    new ClearLocation();
+	} else {
+	    LogUtils
+		    .logDebug(
+			    mcontext,
+			    getClass(),
+			    "handleContextEvent",
+			    new Object[] { "\nReceived context event carrying location for user: "
+				    + event.getRDFSubject()
+				    + "\n instead for user "
+				    + user.getURI()
+				    + " so discarrding the event." }, null);
 	}
+
     }
 
     /*
