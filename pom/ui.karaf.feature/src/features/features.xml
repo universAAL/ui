@@ -26,7 +26,9 @@
 	
 	<feature name="uAAL-UI.handler.gui.swing.BluesteelLAF" description="The UI Swing Handler's LAF plugin for BlueSteel look and feel."
 		version="${pom.version}" resolver='(obr)'>
-		<feature>uAAL-UI.handler.gui.swing</feature>	
+		<feature>uAAL-UI.handler.gui.swing</feature>
+		<feature>uAAL-Ont.Profile.ui.preferences</feature>		
+		<feature>uAAL-Ont.Recommendation</feature>	
 		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/0.7.2</bundle>
 		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
 			so leaving them in resolved state is enough-->
@@ -35,7 +37,8 @@
 	
 	<feature name="uAAL-UI.handler.gui.swing.classicLAF" description="The UI Swing Handler's LAF plugin for clasic look and feel."
 		version="${pom.version}" resolver='(obr)'>
-		<feature>uAAL-UI.handler.gui.swing</feature>	
+		<feature>uAAL-UI.handler.gui.swing</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
 		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.1-SNAPSHOT</bundle>
 	</feature>
 <!--
