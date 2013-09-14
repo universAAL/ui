@@ -40,5 +40,9 @@
       <groupId>org.universAAL.ui</groupId>
       <artifactId>ui.handler.gui.swing</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.recommendations</artifactId>
+    </dependency>
   </dependencies>
 </project>

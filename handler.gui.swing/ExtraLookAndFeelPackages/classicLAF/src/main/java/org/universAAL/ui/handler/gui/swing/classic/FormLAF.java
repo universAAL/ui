@@ -57,7 +57,7 @@ public class FormLAF extends FormModel {
      * internal accounting for the frame being displayed.
      */
     private JFrame frame = null;
-
+    public static boolean legacyHint=false;
     protected static boolean vertical=false;
     public static final int H_CENTER=0;
     public static final int H_LEFT=1;
@@ -80,6 +80,7 @@ public class FormLAF extends FormModel {
 	super(f, render);
 	Object value=f.getProperty(PROP_LAYOUT_HINT);
 	if(value!=null && value instanceof String){
+	    legacyHint=true;
 	    String hint=(String)value;
 	    vertical=hint.toLowerCase().contains("vertical");
 	    constant=hint.toLowerCase().contains("constant");
