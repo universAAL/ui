@@ -233,54 +233,48 @@ public class MessageLocaleHelper {
      * @throws Exception
      */
     public void reloadMessages() throws Exception {
-	/*
-	 * Get the messages
-	 */
-	int i = 0;
-	Messages secondaryM = null;
-	Messages defaultM = null;
-	while (i < messagesLocationAlternatives.size()) {
-	    URL lookingIn = (URL) messagesLocationAlternatives.get(i);
-	    int res = -1;
-	    try {
-		res = tryToLoadMessagesForm(lookingIn);
-	    } catch (Exception e) {
-		LogUtils.logWarn(context, getClass(), "reloadMessages",
-			new String[] { "Alternative invalid: ",
-				lookingIn.toString() }, e);
-		i++;
-	    }
-	    if (res == PRIMARY) {
-		return;
-	    }
-	    if (res == SECONDARY && secondaryM == null) {
-		secondaryM = messages;
-		i++;
-	    }
-	    if (res == DEFAULT && defaultM == null) {
-		defaultM = messages;
-		i++;
-	    }
-	    if (i >= messagesLocationAlternatives.size()) {
-		if (secondaryM != null) {
-		    messages = secondaryM;
-		    LogUtils
-			    .logInfo(context, getClass(), "reloadMessages",
-				    "I'm sorry could only find secondary Language messages.");
-		    return;
-		}
-		if (defaultM != null) {
-		    messages = defaultM;
-		    LogUtils.logInfo(context, getClass(), "reloadMessages",
-			    "I'm sorry buddy you're getting default messages.");
-		    return;
-		} else {
-		    LogUtils
-			    .logError(context, getClass(), "reloadMessages",
-				    "Not even default messages found!!! Take cover! This is about to explode!!!");
-		}
-	    }
-	}
+    	/*
+    	 * Get the messages
+    	 */
+    	Messages secondaryM = null;
+    	Messages defaultM = null;
+    	for (Iterator i = messagesLocationAlternatives.iterator(); i.hasNext();) {
+    		URL lookingIn = (URL) i.next();
+    		int res = -1;
+    		try {
+    			res = tryToLoadMessagesForm(lookingIn);
+    		} catch (Exception e) {
+    			LogUtils.logWarn(context, getClass(), "reloadMessages",
+    					new String[] { "Alternative invalid: ",
+    				lookingIn.toString() }, e);
+    		}
+    		if (res == PRIMARY) {
+    			return;
+    		}
+    		if (res == SECONDARY && secondaryM == null) {
+    			secondaryM = messages;
+    		}
+    		if (res == DEFAULT && defaultM == null) {
+    			defaultM = messages;
+    		}
+    	}
+    	if (secondaryM != null) {
+    		messages = secondaryM;
+    		LogUtils
+    		.logInfo(context, getClass(), "reloadMessages",
+    				"I'm sorry could only find secondary Language messages.");
+    		return;
+    	}
+    	if (defaultM != null) {
+    		messages = defaultM;
+    		LogUtils.logInfo(context, getClass(), "reloadMessages",
+    				"I'm sorry buddy you're getting default messages.");
+    		return;
+    	} else {
+    		LogUtils
+    		.logError(context, getClass(), "reloadMessages",
+    				"Not even default messages found!!! Take cover! This is about to explode!!!");
+    	}
     }
 
     /**
@@ -302,9 +296,9 @@ public class MessageLocaleHelper {
 	     * messages for preferred locale are not available, try to load the
 	     * secondary language messages
 	     */
-	    LogUtils.logInfo(context, getClass(), "Constructor", new String[] {
+	    LogUtils.logTrace(context, getClass(), "Constructor", new String[] {
 		    "Cannot initialize messages in ",
-		    preferred.getDisplayLanguage(), "from ", url.toString(),
+		    preferred.getDisplayLanguage(), " from ", url.toString(),
 		    "\n. Trying to load Secundary Language messages." }, null);
 
 	    Language lang = uiPreferencesSubprofile.getInteractionPreferences()
@@ -316,7 +310,7 @@ public class MessageLocaleHelper {
 		/*
 		 * No message translation in secondary language either...
 		 */
-		LogUtils.logInfo(context, getClass(), "Constructor",
+		LogUtils.logTrace(context, getClass(), "Constructor",
 			new String[] { "Cannot initialize messages in ",
 				secondary.getDisplayLanguage(), " either." },
 			null);
