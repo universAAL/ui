@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Universidad Politécnica de Madrid
+ * Copyright 2013 Universidad Politï¿½cnica de Madrid
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,20 @@
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.util.Iterator;
 
+
+import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.ontology.recommendations.HorizontalAlignment;
+import org.universAAL.ontology.recommendations.HorizontalLayout;
+import org.universAAL.ontology.recommendations.VerticalAlignment;
+import org.universAAL.ontology.recommendations.VerticalLayout;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
 
@@ -55,10 +64,52 @@ public class GroupPanelLAF extends GroupPanelModel {
 		}
         needsLabel = false;
      
+        LayoutManager layout;
+        int alignment = FlowLayout.CENTER;
+        
         if (isInStandardGroup()) {
-        	jc.setLayout(new FlowLayout(FlowLayout.CENTER,gap,gap));
+        	layout = new FlowLayout(FlowLayout.CENTER,gap,gap);
         } else {
-        	jc.setLayout(new FormLayout(gap));
+        	layout = new FormLayout(gap);
         }
+        
+        for (Iterator i = fc.getAppearanceRecommendations().iterator(); i.hasNext();) {
+			Recommendation r = (Recommendation) i.next();
+			if (r.getClassURI().equals(VerticalLayout.MY_URI)){
+				layout = new VerticalFlowLayout();
+			}
+			if (r.getClassURI().equals(HorizontalLayout.MY_URI)){
+				layout = new FlowLayout();
+			}
+			if (r.equals(HorizontalAlignment.left)){
+				alignment = FlowLayout.LEFT;
+			}
+			if (r.equals(HorizontalAlignment.center)){
+				alignment = FlowLayout.CENTER;
+			}
+			if (r.equals(HorizontalAlignment.right)){
+				alignment = FlowLayout.RIGHT;
+			}
+			if (r.equals(VerticalAlignment.top)){
+				alignment = VerticalFlowLayout.TOP;
+			}
+			if (r.equals(VerticalAlignment.middle)){
+				alignment = VerticalFlowLayout.CENTER;
+			}
+			if (r.equals(VerticalAlignment.bottom)){
+				alignment = VerticalFlowLayout.BOTTOM;
+			}
+		}
+        if (layout instanceof FlowLayout){
+        	((FlowLayout) layout).setAlignment(alignment);
+        	((FlowLayout) layout).setHgap(gap);
+        	((FlowLayout) layout).setVgap(gap);
+        }
+        if (layout instanceof VerticalFlowLayout){
+        	((VerticalFlowLayout) layout).setAlignment(alignment);
+        	((VerticalFlowLayout) layout).setHgap(gap);
+        	((VerticalFlowLayout) layout).setVgap(gap);
+        }
+        jc.setLayout(layout);
 	}
 }
