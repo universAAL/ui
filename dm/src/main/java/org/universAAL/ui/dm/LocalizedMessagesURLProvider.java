@@ -71,7 +71,7 @@ public class LocalizedMessagesURLProvider {
 		    .logWarn(
 			    DialogManagerImpl.getModuleContext(),
 			    getClass(),
-			    "initializeUrlListForObtainingLocalizedMessages",
+			    "getUrlListForObtainingLocalizedMessages",
 			    new String[] {
 				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
 				    " Loading from resources" }, e);
