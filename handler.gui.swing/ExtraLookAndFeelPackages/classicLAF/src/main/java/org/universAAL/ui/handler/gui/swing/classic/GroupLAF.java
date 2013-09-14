@@ -20,17 +20,26 @@
 package org.universAAL.ui.handler.gui.swing.classic;
 
 import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.recommendations.HorizontalAlignment;
+import org.universAAL.ontology.recommendations.HorizontalLayout;
+import org.universAAL.ontology.recommendations.VerticalAlignment;
+import org.universAAL.ontology.recommendations.VerticalLayout;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton;
 import org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
@@ -71,6 +80,56 @@ public class GroupLAF extends GroupModel {
 	     * Vertical:	0 0 1 1 0 0 1 1
 	     * Switch:		0 1 0 1 0 1 0 1
 	     * V Layout ->	0 1 1 0 0 0 1 1
+	     */
+	    /*
+	    LayoutManager layout;
+        int alignment = FlowLayout.CENTER;
+        
+        // set default behaviour
+        if (isInStandardGroup()) {
+        	layout = new FlowLayout(FlowLayout.CENTER,gap,gap);
+        } else {
+        	layout = new FormLayout(gap);
+        }
+        
+        for (Iterator i = fc.getAppearanceRecommendations().iterator(); i.hasNext();) {
+			Recommendation r = (Recommendation) i.next();
+			if (r.getClassURI().equals(VerticalLayout.MY_URI)){
+				layout = new VerticalFlowLayout();
+			}
+			if (r.getClassURI().equals(HorizontalLayout.MY_URI)){
+				layout = new FlowLayout();
+			}
+			if (r.equals(HorizontalAlignment.left)){
+				alignment = FlowLayout.LEFT;
+			}
+			if (r.equals(HorizontalAlignment.center)){
+				alignment = FlowLayout.CENTER;
+			}
+			if (r.equals(HorizontalAlignment.right)){
+				alignment = FlowLayout.RIGHT;
+			}
+			if (r.equals(VerticalAlignment.top)){
+				alignment = VerticalFlowLayout.TOP;
+			}
+			if (r.equals(VerticalAlignment.middle)){
+				alignment = VerticalFlowLayout.CENTER;
+			}
+			if (r.equals(VerticalAlignment.bottom)){
+				alignment = VerticalFlowLayout.BOTTOM;
+			}
+		}
+        if (layout instanceof FlowLayout){
+        	((FlowLayout) layout).setAlignment(alignment);
+        	((FlowLayout) layout).setHgap(hgap);
+        	((FlowLayout) layout).setVgap(vgap);
+        }
+        if (layout instanceof VerticalFlowLayout){
+        	((VerticalFlowLayout) layout).setAlignment(alignment);
+        	((VerticalFlowLayout) layout).setHgap(hgap);
+        	((VerticalFlowLayout) layout).setVgap(vgap);
+        }
+        jc.setLayout(layout);
 	     */
 	    if( (FormLAF.constant && FormLAF.vertical) || ( !FormLAF.constant && ( switchMe != FormLAF.vertical ) ) ){
 		panel.setLayout(new MyVerticalFlowLayout(FormLAF.vGroupValign, FormLAF.hgap, FormLAF.vgap));

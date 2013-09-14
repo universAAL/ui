@@ -78,6 +78,10 @@
       <groupId>org.universAAL.ontology</groupId>
       <artifactId>ont.profile.ui.preferences</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.recommendations</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
