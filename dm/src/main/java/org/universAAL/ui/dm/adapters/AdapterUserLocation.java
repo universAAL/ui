@@ -49,11 +49,6 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
     AbsLocation userLocation = null;
 
-    /**
-     * An instance to clear current (and last) published user location.
-     */
-    private ClearLocationTask clearLocationTask;
-
     public AdapterUserLocation(ModuleContext context) {
 	super(context, getPermanentSubscriptions());
 	this.mcontext = context;
