@@ -106,8 +106,9 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	// urn:org.universAAL.aal_space:test_environment#livingRoom
 
 	userLocation = (Location) (event.getRDFObject());
-	clearLocationTask.stop();
-	clearLocationTask.startTimer();
+
+	// start countdown to delete the location
+	new ClearLocation();
     }
 
     /*
@@ -143,39 +144,30 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
      * @author eandgrg
      * 
      */
-    class ClearLocationTask extends TimerTask {
-	/**
-	 * The timer daemon to save UIRequests periodically.
-	 */
-	private Timer clearLocationTaskTimer;
+    class ClearLocation {
+	private Timer timer;
 	Long clearLocationPeriod;
 
 	private static final String SYSTEM_PROP_CLEAR_LOCATION_PERIOD = "ui.dm.adapter.location.clear.wait";
 	private static final String DEFAULT_CLEAR_LOCATION_PERIOD = "300000";
 
 	/**
-	 * Constructor.
+	 * Constructor. Start countdown timer to delete the location info of the
+	 * user.
 	 */
-	public ClearLocationTask() {
+	public ClearLocation() {
 	    clearLocationPeriod = Long.parseLong(System.getProperty(
 		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
 		    DEFAULT_CLEAR_LOCATION_PERIOD));
-	    clearLocationTaskTimer = new Timer(true);
+	    timer = new Timer(true);
+	    timer.schedule(new ClearLocationTask(), clearLocationPeriod);
 	}
 
-	public void startTimer() {
-	    clearLocationTaskTimer.schedule(new ClearLocationTask(),
-		    clearLocationPeriod);
-	}
-
-	public void stop() {
-	    clearLocationTaskTimer.cancel();
-	}
-
-	@Override
-	public void run() {
-	    userLocation = null;
-
+	class ClearLocationTask extends TimerTask {
+	    public void run() {
+		userLocation = null;
+		timer.cancel(); // Terminate the timer thread
+	    }
 	}
 
     }
