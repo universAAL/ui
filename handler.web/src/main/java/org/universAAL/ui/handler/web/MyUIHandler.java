@@ -32,7 +32,6 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.owl.DialogType;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.AccessMode;
 import org.universAAL.ontology.ui.preferences.AlertPreferences;
@@ -141,7 +140,7 @@ public class MyUIHandler extends UIHandler {
 		// && newVal instanceof Integer
 		// && ((Integer) newVal).intValue() != currentUIRequest
 		// .getScreenResolutionMaxX()) {
-		// // TODO: handle change of screenResolutionMaxX
+		// handle change of screenResolutionMaxX
 		// renderer.updateScreenResolution(((Integer) newVal)
 		// .intValue(), -1, -1, -1);
 		// currentUIRequest.setScreenResolutionMaxX(((Integer) newVal)
@@ -151,7 +150,7 @@ public class MyUIHandler extends UIHandler {
 		// && newVal instanceof Integer
 		// && ((Integer) newVal).intValue() != currentUIRequest
 		// .getScreenResolutionMaxY()) {
-		// // TODO: handle change of screenResolutionMaxY
+		// handle change of screenResolutionMaxY
 		// renderer.updateScreenResolution(-1, ((Integer) newVal)
 		// .intValue(), -1, -1);
 		// currentUIRequest.setScreenResolutionMaxY(((Integer) newVal)
@@ -161,7 +160,7 @@ public class MyUIHandler extends UIHandler {
 		// && newVal instanceof Integer
 		// && ((Integer) newVal).intValue() != currentUIRequest
 		// .getScreenResolutionMinX()) {
-		// // TODO: handle change of screenResolutionMinX
+		// handle change of screenResolutionMinX
 		// renderer.updateScreenResolution(-1, -1, ((Integer) newVal)
 		// .intValue(), -1);
 		// currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
@@ -171,7 +170,7 @@ public class MyUIHandler extends UIHandler {
 		// && newVal instanceof Integer
 		// && ((Integer) newVal).intValue() != currentUIRequest
 		// .getScreenResolutionMinY()) {
-		// // TODO: handle change of screenResolutionMinY
+		// handle change of screenResolutionMinY
 		// renderer.updateScreenResolution(-1, -1, -1,
 		// ((Integer) newVal).intValue());
 		// currentUIRequest.setScreenResolutionMinX(((Integer) newVal)
@@ -234,73 +233,10 @@ public class MyUIHandler extends UIHandler {
 		LogUtils.logDebug(mContext, this.getClass(), "handleUICall",
 			new Object[] { "Input for the user: " + user
 				+ " was received." }, null);
-		if (first.booleanValue()) {
-		    LogUtils
-			    .logDebug(
-				    mContext,
-				    this.getClass(),
-				    "handleUICall",
-				    new Object[] { "Main menu was being waited for and now it is received." },
-				    null);
-
-		    renderer.getReadyOutputs().put(user, uiRequest);// MAINMEN
-		    // when
-		    // asked
-		    this.userDialogIDs.put(uiRequest.getDialogID(), user);
-		    renderer.getWaitingInputs().notifyAll();
-		} else {
-		    LogUtils
-			    .logDebug(
-				    mContext,
-				    this.getClass(),
-				    "handleUICall",
-				    new Object[] { "Output other than main menu was being waited for and now it is received." },
-				    null);
-
-		    if (!uiRequest.getDialogType().equals(DialogType.sysMenu)) {
-			LogUtils
-				.logDebug(
-					mContext,
-					this.getClass(),
-					"handleUICall",
-					new Object[] { "First dialog is not System Menu: "
-						+ uiRequest.getDialogType() },
-					null);
-			// log.debug("-------not sysMenu -> {}", uiRequest
-			// .getDialogType());
-			renderer.getReadyOutputs().put(user, uiRequest);// not
-			// MAINMENU
-			this.userDialogIDs.put(uiRequest.getDialogID(), user);
-			renderer.getWaitingInputs().notifyAll();
-		    } else {
-
-			LogUtils
-				.logDebug(
-					mContext,
-					this.getClass(),
-					"handleUICall",
-					new Object[] { "Received dialog is System Menu: "
-						+ uiRequest.getDialogType() },
-					null);
-
-			// dec2012, "first" is now always false so here is where
-			// main menu has to be read
-			renderer.getReadyOutputs().put(user, uiRequest);// MAINMENU
-			this.userDialogIDs.put(uiRequest.getDialogID(), user);
-			renderer.getWaitingInputs().notifyAll();
-		    }
-		}
-	    } else {
-		LogUtils.logDebug(mContext, this.getClass(), "handleUICall",
-			new Object[] { "First Input is null!" }, null);
-		// log.debug("-------FIRST IS null ");
-		renderer.getReadyOutputs().put(user, uiRequest);// MAINMENU(or
-		// not)
-		// when not asked
-		// (recoveries)
-		this.userDialogIDs.put(uiRequest.getDialogID(), user);
-		renderer.getWaitingInputs().notifyAll();
 	    }
+	    renderer.getReadyOutputs().put(user, uiRequest);
+	    this.userDialogIDs.put(uiRequest.getDialogID(), user);
+	    renderer.getWaitingInputs().notifyAll();
 	}
     }
 
