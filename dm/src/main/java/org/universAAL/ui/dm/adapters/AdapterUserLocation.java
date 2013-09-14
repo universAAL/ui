@@ -93,7 +93,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 		new Object[] { "\nReceived context event.\nRDF Subject type:\n"
 			+ event.getRDFSubject().getType()
 			+ "\nRDF Predicate:\n" + event.getRDFPredicate()
-			+ "\ngetRDFObject().toString:\n"
+			+ "\nuser location:\n"
 			+ event.getRDFObject().toString() + "\n" }, null);
 
 	// above will print something like:
@@ -102,7 +102,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	// http://ontology.universAAL.org/Profile.owl#User
 	// RDF Predicate:
 	// http://ontology.universaal.org/PhThing.owl#hasLocation
-	// getRDFObject().toString():
+	// user location:
 	// urn:org.universAAL.aal_space:test_environment#livingRoom
 
 	userLocation = (Location) (event.getRDFObject());
