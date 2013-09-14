@@ -20,7 +20,8 @@
 	
 	<feature name="uAAL-UI.handler.gui.swing" description="The UI Swing Handler."
 		version="${pom.version}" resolver='(obr)'>
-		<feature>uAAL-MW</feature>
+		<feature>uAAL-Ont.PhWorld</feature>
+		<feature>uAAL-Ont.Impairment</feature>
 		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.1-SNAPSHOT</bundle>
 	</feature>
 	
