@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +15,19 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import java.util.Iterator;
+
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import org.universAAL.middleware.owl.ManagedIndividual;
+import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.recommendations.Layout;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UCCButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.MessageKeys;
@@ -89,7 +95,8 @@ public class GroupLAF extends GroupModel {
     	else if (this.isTheIOGroup()
             	&& !this.isInMainMenu()
     			&& containsOnlySubGroups()
-    			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD) {
+    			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD
+    			&& !hasLayoutRecommendation()) {
     		// a IOGroup, not main menu, that contains more than threshold groups 
     		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
     	}
@@ -117,6 +124,25 @@ public class GroupLAF extends GroupModel {
         }
     	return wrap.getComponent();
     }
+
+
+
+	/**
+	 * Check if the model has any recommendation regarding Layout.
+	 * @return true if there are {@link Layout} type recommendation.
+	 */
+	private boolean hasLayoutRecommendation() {
+		Iterator it = fc.getAppearanceRecommendations().iterator();
+		boolean found = false;
+		while (it.hasNext()
+				&& !found) {
+			Recommendation r = (Recommendation) it.next();
+			if (ManagedIndividual.checkCompatibility(Layout.MY_URI, r.getClassURI())){
+				found = true;
+			}
+		}
+		return found;
+	}
 
 
 
