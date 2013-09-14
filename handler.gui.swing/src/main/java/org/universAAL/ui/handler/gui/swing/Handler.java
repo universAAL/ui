@@ -144,7 +144,9 @@ public final class Handler extends UIHandler {
      */
     public void unSetCurrentUser() {
 	if (currentUser != null){
-	    UIHandlerProfile oep = new UIHandlerProfile();
+		UIHandlerProfile oep = getPermanentSubscriptions(
+        		Boolean.parseBoolean(render.getProperty(Renderer.DEMO_MODE))
+        		, render.getRendererLocation());
 	    oep.addRestriction(MergedRestriction
 		    .getFixedValueRestriction(
 			    UIRequest.PROP_ADDRESSED_USER,
@@ -221,6 +223,7 @@ public final class Handler extends UIHandler {
     	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
     			UIRequest.PROP_PRESENTATION_LOCATION,
     			location));
+    	oep.setSupportedInputModalities(new Modality[]{Modality.gui});
     	return oep;
     }
 }
