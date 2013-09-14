@@ -269,7 +269,7 @@ public class UserDialogManager implements IDialogManager,
 
 	// add user location (if available)
 	adapterList.add(new AdapterUserLocation(DialogManagerImpl
-		.getModuleContext()));
+		.getModuleContext(), user));
 
 	// TODO add user impairments
 	// adapterList.add(new AdapterUserImpairments(accessImpairments));

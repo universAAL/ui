@@ -28,6 +28,7 @@ import org.universAAL.middleware.context.ContextEventPattern;
 import org.universAAL.middleware.context.ContextSubscriber;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.supply.AbsLocation;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
@@ -47,19 +48,23 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
      */
     private ModuleContext mcontext;
 
-    AbsLocation userLocation = null;
+    private AbsLocation userLocation = null;
 
-    public AdapterUserLocation(ModuleContext context) {
-	super(context, getPermanentSubscriptions());
+    private Resource user = null;
+
+    public AdapterUserLocation(ModuleContext context, Resource user) {
+	super(context, getPermanentSubscriptions(user));
 	this.mcontext = context;
+	this.user = user;
 
     }
 
-    private static ContextEventPattern[] getPermanentSubscriptions() {
+    private static ContextEventPattern[] getPermanentSubscriptions(
+	    Resource forUser) {
 	ContextEventPattern contextEventPattern = new ContextEventPattern();
 	contextEventPattern.addRestriction(MergedRestriction
-		.getAllValuesRestriction(ContextEvent.PROP_RDF_SUBJECT,
-			User.MY_URI));
+		.getFixedValueRestriction(ContextEvent.PROP_RDF_SUBJECT,
+			forUser));
 	contextEventPattern.addRestriction(MergedRestriction
 		.getFixedValueRestriction(ContextEvent.PROP_RDF_PREDICATE,
 			User.PROP_PHYSICAL_LOCATION));
@@ -69,7 +74,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
     /*
      * (non-Javadoc)
      * 
-     * @seeorg.universAAL.middleware.context.ContextSubscriber#
+     * @see org.universAAL.middleware.context.ContextSubscriber#
      * communicationChannelBroken()
      */
     public void communicationChannelBroken() {
@@ -84,26 +89,42 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
      * (org.universAAL.middleware.context.ContextEvent)
      */
     public void handleContextEvent(ContextEvent event) {
-	LogUtils.logInfo(mcontext, getClass(), "handleContextEvent",
-		new Object[] { "\nReceived context event.\nRDF Subject type:\n"
-			+ event.getRDFSubject().getType()
-			+ "\nRDF Predicate:\n" + event.getRDFPredicate()
-			+ "\nuser location:\n"
-			+ event.getRDFObject().toString() + "\n" }, null);
+	// one additional safety that should not allow only location update if
+	// belongs to the correct user
+	if (user.getURI().equals(event.getRDFSubject().getURI())) {
+	    LogUtils.logInfo(mcontext, getClass(), "handleContextEvent",
+		    new Object[] { "\n User var: " + user.toStringRecursive()
+			    + "\nReceived context event for user: "
+			    + event.getRDFSubject() + "\nRDF Subject type:\n"
+			    + event.getRDFSubject().getType()
+			    + "\nRDF Predicate:\n" + event.getRDFPredicate()
+			    + "\nuser location:\n"
+			    + event.getRDFObject().toString() + "\n" }, null);
+	    // mw.container.osgi[org.universAAL.ui.dm] :
+	    // AdapterUserLocation->handleContextEvent():
+	    // User var: org.universAAL.ontology.profile.AssistedPerson
+	    // URI: urn:org.universAAL.aal_space:test_environment#saied
+	    // Properties (Key-Value): (size: 1)
+	    // * K http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+	    // * V List
+	    // org.universAAL.middleware.rdf.Resource
+	    // URI: http://ontology.universAAL.org/Profile.owl#AssistedPerson
+	    // Properties (Key-Value): (size: 0)
+	    //
+	    // Received context event for user:
+	    // urn:org.universAAL.aal_space:test_environment#saied
+	    // RDF Subject type:
+	    // http://ontology.universAAL.org/Profile.owl#User
+	    // RDF Predicate:
+	    // http://ontology.universaal.org/PhThing.owl#hasLocation
+	    // user location:
+	    // urn:org.universAAL.aal_space:test_environment#london
 
-	// above will print something like:
-	// Received context event.
-	// RDF Subject type:
-	// http://ontology.universAAL.org/Profile.owl#User
-	// RDF Predicate:
-	// http://ontology.universaal.org/PhThing.owl#hasLocation
-	// user location:
-	// urn:org.universAAL.aal_space:test_environment#livingRoom
+	    userLocation = (Location) (event.getRDFObject());
 
-	userLocation = (Location) (event.getRDFObject());
-
-	// start countdown to delete the location
-	new ClearLocation();
+	    // start countdown to delete the location
+	    new ClearLocation();
+	}
     }
 
     /*
@@ -160,8 +181,14 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
 	class ClearLocationTask extends TimerTask {
 	    public void run() {
+
 		userLocation = null;
 		timer.cancel(); // Terminate the timer thread
+		LogUtils.logDebug(mcontext, getClass(), "run",
+			new String[] { "ClearLocationTask finished for user: "
+				+ user.getURI() + " after: "
+				+ clearLocationPeriod + " milliseconds." },
+			null);
 	    }
 	}
 
