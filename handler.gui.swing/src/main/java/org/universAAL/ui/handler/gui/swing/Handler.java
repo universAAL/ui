@@ -126,8 +126,8 @@ public final class Handler extends UIHandler {
     }
 
     /**
-     * Change the current User.
-     * and adapt handlerprofile to the user.
+     * Change the current {@link User}.
+     * and adapt {@link UIHandlerProfile} to the {@link User}.
      * @param currentUser
      *          the user to be the current user.
      */
