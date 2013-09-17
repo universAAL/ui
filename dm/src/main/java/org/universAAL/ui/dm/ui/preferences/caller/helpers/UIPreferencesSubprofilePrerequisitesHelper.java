@@ -319,7 +319,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	    return true;
 	} else {
 	    LogUtils.logDebug(mc, this.getClass(), "addUserProfileToUser",
-		    new Object[] { "callstatus is not succeeded" }, null);
+		    new Object[] { "call status: not succeeded" }, null);
 	    return false;
 	}
     }
