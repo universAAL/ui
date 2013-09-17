@@ -133,7 +133,7 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 			}
 		} catch (Exception e) {
 			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(),"read", 
-					new Object[]{"unable to deserilize file: ", file},e);
+					new Object[]{"unable to deserialize file: ", file},e);
 		}
 	}
 	
