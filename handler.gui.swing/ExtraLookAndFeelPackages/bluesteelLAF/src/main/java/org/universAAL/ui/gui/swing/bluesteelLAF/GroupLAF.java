@@ -21,7 +21,6 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.universAAL.middleware.owl.ManagedIndividual;
-import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -97,7 +96,8 @@ public class GroupLAF extends GroupModel {
     			&& containsOnlySubGroups()
     			&& ((Group)fc).getChildren().length > GROUP_NO_THRESHOLD
     			&& !hasLayoutRecommendation()) {
-    		// a IOGroup, not main menu, that contains more than threshold groups 
+    		// a IOGroup, not main menu, that contains more than threshold groups,
+    		// and no layout recomendations are set.
     		wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
     	}
     	else if (((Group) fc).isRootGroup()) {
@@ -137,9 +137,8 @@ public class GroupLAF extends GroupModel {
 		while (it.hasNext()
 				&& !found) {
 			Recommendation r = (Recommendation) it.next();
-			if (ManagedIndividual.checkCompatibility(Layout.MY_URI, r.getClassURI())){
-				found = true;
-			}
+			found =
+					ManagedIndividual.checkCompatibility(Layout.MY_URI, r.getClassURI());
 		}
 		return found;
 	}
