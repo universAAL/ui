@@ -79,7 +79,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     private static DialogManagerImpl singleton = null;
 
     /**
-     * A semaphore to syncronize initialization
+     * A semaphore to synchronize initialization
      */
     private static Semaphore initSem = new Semaphore(0);
 
