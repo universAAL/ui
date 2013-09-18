@@ -547,7 +547,7 @@ public class Renderer extends Thread {
     
     
     /**
-     * Check if a user-password pair is resgistered.
+     * Check if a user-password pair is registered.
      * If it is this method will set the current user, 
      * and initiate the handler business.
      * @param user userID trying to authenticate
