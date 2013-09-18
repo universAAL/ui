@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import javax.swing.JComponent;
 
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
