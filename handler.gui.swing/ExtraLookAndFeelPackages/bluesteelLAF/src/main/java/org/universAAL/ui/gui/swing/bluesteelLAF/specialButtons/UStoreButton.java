@@ -48,7 +48,6 @@ public class UStoreButton implements SpecialButtonInterface {
 		public void run(){
 			// open webbrowser uStore url
 			try {
-				//Set your page url in this string. For eg, I m using URL for Google Search engine
 				String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
 				java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
 			}
