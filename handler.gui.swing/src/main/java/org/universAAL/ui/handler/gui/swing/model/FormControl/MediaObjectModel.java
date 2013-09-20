@@ -16,11 +16,20 @@
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.Dimension;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
@@ -31,7 +40,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.JLabelWA
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see MediaObject
  */
-public class MediaObjectModel extends OutputModel {
+public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 
 	/**
 	 * Constructor.
@@ -66,6 +75,9 @@ public class MediaObjectModel extends OutputModel {
 		    	jl.addComponentListener(new JLabelWAVPlayer(mo.getContentURL()));
 		    	return jl;
 		}
+		if (mo.getContentType().equalsIgnoreCase("text/html")){
+			return new JEditorPane();
+		}
 		return new JLabel(fc.getLabel().getText());
 	}
 
@@ -94,6 +106,42 @@ public class MediaObjectModel extends OutputModel {
 				jc.setMinimumSize(new Dimension(x, y));
 			}
 		}
+		if (jc instanceof JEditorPane){
+			JEditorPane jep = (JEditorPane) jc;
+			jep.setEditable(false);
+			jep.setContentType(mo.getContentType());
+			try {
+				URL url = new URL(mo.getContentURL());
+				jep.setPage(url);
+			} catch (MalformedURLException e) {
+				LogUtils.logWarn(
+						getRenderer().getModuleContext(), 
+						getClass(), "upedate", 
+						new String[]{"There is a problem with the content definition"}, e);
+			} catch (IOException e) {
+				LogUtils.logWarn(
+						getRenderer().getModuleContext(), 
+						getClass(), "upedate", 
+						new String[]{"There is a problem with the content"}, e);
+			}
+			jep.addHyperlinkListener(this);
+		}
+	}
+
+	/** {@ inheritDoc}	 */
+	public void hyperlinkUpdate(HyperlinkEvent event) {
+		if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+			try {
+				java.awt.Desktop.getDesktop().browse(event.getURL().toURI() );
+			}
+			catch (Exception ex) {
+				LogUtils.logInfo(
+						getRenderer().getModuleContext(), 
+						getClass(), "hyperlinkUpdate", 
+						new String[]{"unable to openlink."}, ex);
+			}
+		}
+		
 	}
 
 	/*
