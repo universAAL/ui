@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -447,11 +447,16 @@ public class UserDialogManager implements IDialogManager,
 		 */
 		messagePool.add(request);
 		isReady = messagePool.hasToChange();
-		messagePool.getNextUIRequest();
-		// if message is ready, suspend current dialog or message.
+		// if message is ready, suspend current dialog.
 		if (isReady && current != null) {
-		    dialogPool.suspend(current.getDialogID());
+			dialogPool.suspend(current.getDialogID());
+			/*
+			 * only current dialog is suspended, if there is a current message then
+			 * it has to remain active, so it appears again after this more priority
+			 * message is shown.
+			 */
 		}
+		messagePool.getNextUIRequest();
 	    } else {
 		/*
 		 * if it is a dialog, then add to dialogPoll check it this
@@ -461,7 +466,7 @@ public class UserDialogManager implements IDialogManager,
 		 */
 		dialogPool.add(request);
 		isReady = dialogPool.hasToChange()
-			&& messagePool.getCurrent() == null;
+			&& (messagePool.getCurrent() == null);
 		if (isReady && current != null) {
 		    dialogPool.suspend(current.getDialogID());
 		}
