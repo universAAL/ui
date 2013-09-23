@@ -259,7 +259,7 @@ public class Renderer extends Thread {
         properties = new Properties();
         properties.put(DEMO_MODE, "true");
         properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-        properties.put(GUI_LOCATION, "urn:org.universAAL.aal_space:test_environment#Unknown");
+        properties.put(GUI_LOCATION, "Unknown");
         properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
         /*
          * Try to load from file, if not create file from defaults.
@@ -573,7 +573,7 @@ public class Renderer extends Thread {
     	 *  Read Location from properties
     	 *  XXX other location process?
     	 */
-    	AbsLocation loc =  (AbsLocation) Resource.getResource(Location.MY_URI, getProperty(GUI_LOCATION));
+    	AbsLocation loc =  (AbsLocation) Resource.getResource(Location.MY_URI, Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+getProperty(GUI_LOCATION));
     	return loc;
     }
     
