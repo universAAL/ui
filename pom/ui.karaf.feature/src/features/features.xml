@@ -42,13 +42,13 @@
 		<feature>uAAL-Ont.Recommendation</feature>	
 		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.1-SNAPSHOT</bundle>
 	</feature>
-<!--
+
 	<feature name="uAAL-UI.resource.server" description="The UI Resource Server."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-MW</feature>
 		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/2.0.1-SNAPSHOT</bundle>
 	</feature>
--->
+
 	
 	<feature name="uAAL-UI.handler.web" description="The UI Web Handler."
 		version="${pom.version}" resolver='(obr)'>
