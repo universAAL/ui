@@ -21,6 +21,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
@@ -86,9 +87,16 @@ public class RepeatSubdivider {
 		if (repeatData instanceof List) {
 			repeatList = (List) repeatData;
 		}
-		if (repeatList.isEmpty())
+		if (repeatData == null) {
+			// it is not initialised
+			repeatList = new ArrayList();
+		}
+		
+		if (repeatList == null) {
 			throw new IllegalArgumentException(
 					"Referenced Path for Repeat is not a list");
+		}
+			
 		int index = 0;
 		for (Iterator i = repeatList.iterator(); i.hasNext();) {
 			Resource res = (Resource) i.next();
