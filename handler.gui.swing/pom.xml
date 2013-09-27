@@ -77,6 +77,10 @@
       <artifactId>ont.impairment</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.recommendations</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.osgi</artifactId>
     </dependency>
