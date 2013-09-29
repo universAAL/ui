@@ -202,8 +202,10 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Init.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/InputFieldLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/LabelLAF.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/AbstractUnitLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/BorderedScrolPaneLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/FormLayout.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/GridUnitLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-halfspaces.png -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-preview.png -text
@@ -359,6 +361,7 @@ handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text
 handler.gui.swing/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfTestExtensionOfGroup.java -text
 handler.gui.swing/src/test/java/swing/simple/tests/FormLayoutTest.java -text svneol=unset#text/plain
+handler.gui.swing/src/test/java/swing/simple/tests/GridLayoutTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest2.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest3.java -text svneol=unset#text/plain

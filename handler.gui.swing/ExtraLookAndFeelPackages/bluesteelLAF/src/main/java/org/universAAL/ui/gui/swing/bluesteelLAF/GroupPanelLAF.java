@@ -22,6 +22,7 @@ import java.util.Iterator;
 
 import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.ontology.recommendations.GridLayout;
 import org.universAAL.ontology.recommendations.HorizontalAlignment;
 import org.universAAL.ontology.recommendations.HorizontalLayout;
 import org.universAAL.ontology.recommendations.VerticalAlignment;
@@ -29,6 +30,7 @@ import org.universAAL.ontology.recommendations.VerticalLayout;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.GridUnitLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
 import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
@@ -80,6 +82,9 @@ public class GroupPanelLAF extends GroupPanelModel {
 			}
 			if (r.getClassURI().equals(HorizontalLayout.MY_URI)){
 				layout = new FlowLayout();
+			}
+			if (r.getClassURI().equals(GridLayout.MY_URI)){
+				layout = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
 			}
 			if (r.equals(HorizontalAlignment.left)){
 				alignment = FlowLayout.LEFT;
