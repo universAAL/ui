@@ -28,6 +28,7 @@
 	<feature name="uAAL-UI.handler.gui.swing" description="The UI Swing Handler."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-Ont.PhWorld</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
 		<feature>uAAL-Ont.Impairment</feature>
 		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.1-SNAPSHOT</bundle>
 	</feature>
@@ -36,7 +37,6 @@
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-UI.handler.gui.swing</feature>
 		<feature>uAAL-Ont.Profile.ui.preferences</feature>		
-		<feature>uAAL-Ont.Recommendation</feature>	
 		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/0.9.2</bundle>
 		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
 			so leaving them in resolved state is enough-->
