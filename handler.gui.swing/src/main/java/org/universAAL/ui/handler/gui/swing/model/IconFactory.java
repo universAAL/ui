@@ -54,7 +54,7 @@ public class IconFactory {
             		return new ImageIcon(ur);
             	}
 			} catch (Exception e) {
-				LogUtils.logDebug(
+				LogUtils.logWarn(
 						Renderer.getContext(),
 						IconFactory.class, "getIcon",
 						new String[] {"unable to load Image:" + url}, e);

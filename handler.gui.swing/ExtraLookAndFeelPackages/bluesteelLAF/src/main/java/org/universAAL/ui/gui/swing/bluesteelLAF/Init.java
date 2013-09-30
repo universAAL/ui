@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,11 @@ public class Init implements InitInterface {
 	private static final String TOOLTIP_ACTIVE = CONF_PREFIX + "tootip.active";
 	private static final String TOOLTIP_DELAY = CONF_PREFIX + "tootip.delay";
 	static final String WINDOWED = CONF_PREFIX + "windowed";
+	static final String WINDOWED_WIDTH = WINDOWED + ".width";
+	static final String WINDOWED_HEIGHT = WINDOWED + ".height";
+	static final String WINDOWED_X = WINDOWED + ".x";
+	static final String WINDOWED_Y = WINDOWED + ".y";
+
 	private ColorLAF color;
     private UAALTray tray;
     private JDesktopPane desktop;
@@ -160,6 +165,13 @@ public class Init implements InitInterface {
 	    	desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	    	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 	    	frame.setUndecorated(true);
+	    } else {
+	    	frame.setResizable(true);
+	    	frame.setBounds(
+	    			Integer.valueOf(render.getProperty(WINDOWED_X, "0")),
+	    			Integer.valueOf(render.getProperty(WINDOWED_Y, "0")),
+	    			Integer.valueOf(render.getProperty(WINDOWED_WIDTH, "800")),
+	    			Integer.valueOf(render.getProperty(WINDOWED_HEIGHT, "600")));
 	    }
 	    frame.setVisible(true);
 	}

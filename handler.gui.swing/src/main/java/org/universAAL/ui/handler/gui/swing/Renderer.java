@@ -403,7 +403,7 @@ public class Renderer extends Thread {
         /*
          * Save property file
          */
-        //storeProperties(); // this will delete the comments!!
+        storeProperties(); // this will delete the comments!!
     }
 
     /**
@@ -425,7 +425,7 @@ public class Renderer extends Thread {
     
     /**
      * Access to the property file.
-     * @param value
+     * @param key
      *         Key of property to access
      * @param defaultVal
      * 		   default value for the propertie if isn't int he property file.
@@ -433,19 +433,36 @@ public class Renderer extends Thread {
      *         String Value of the property.
      * @see Renderer#properties
      */
-    public final String getProperty(String value, String defaultVal) {
+    public final String getProperty(String key, String defaultVal) {
     	checkPropertiesVersion();
         try {
-        	if (properties.contains(value)) {
-        		return (String) properties.get(value);
+        	if (properties.get(key) != null) {
+        		return (String) properties.get(key);
         	}
         	else {
-        		properties.put(value, defaultVal);
+        		properties.put(key, defaultVal);
         		return defaultVal;
         	}
         } catch (Exception e) {
             return "";
         }
+    }
+    
+    /**
+     * Update the property file.
+     * @param key
+     *         Key of property to access
+     * @param newValue
+     * 		   New value for the property.
+     * @see Renderer#properties
+     */
+    public final void setProperty (String key, String newValue){
+    	checkPropertiesVersion();
+    	try{
+    		properties.setProperty(key, newValue);
+    	} catch (Exception e){
+    		LogUtils.logError(moduleContext, getClass(), "setProperty", new String[]{"Unable to set Property "}, e);
+    	}
     }
 
     /**
@@ -595,17 +612,10 @@ public class Renderer extends Thread {
 	    return homeDir;
 	}
 
-//	public static void logDebug(Class claz, String text, Throwable e) {
-//		if (RenderStarter.staticContext != null) {
-//			LogUtils.logDebug(RenderStarter.staticContext, claz, "logDebug", new String[] {text}, e);
-//		}
-//		else {
-//			System.err.println("[Debug]" + text);
-//			if (e != null)
-//			    System.err.print(e);
-//		}
-//	}
-
+	/**
+	 * Get the {@link ModuleContext} for the {@link Renderer}.
+	 * @return the {@link ModuleContext}.
+	 */
 	public static ModuleContext getContext(){
 		return RenderStarter.staticContext;
 	}
@@ -620,6 +630,11 @@ public class Renderer extends Thread {
 		
 	}
 
+	/**
+	 * A bootstrap class to start Renderer(s).
+	 * @author amedrano
+	 *
+	 */
 	public static class RenderStarter implements Runnable{
 	
 	private File propFile;
