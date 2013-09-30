@@ -17,6 +17,7 @@ package org.universAAL.ui.gui.swing.bluesteelLAF;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
@@ -32,6 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
@@ -257,7 +259,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 	    frame.fadeIn();
 	    desktopPane.revalidate();
 	    desktopPane.repaint();
-	    desktopPane.addComponentListener(this);
+	    desktopPane.getParent().addComponentListener(this);
 	}
     }
 
@@ -292,7 +294,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 	    frame = null;
 	    // frame.getContentPane().removeAll();
 	}
-	desktopPane.removeComponentListener(this);
+	desktopPane.getParent().removeComponentListener(this);
     }
 
     private Border createFrameBorder() {
@@ -302,17 +304,18 @@ public class FormLAF extends FormModel implements ComponentListener {
     }
 
 	/** {@ inheritDoc}	 */
-	public void componentResized(ComponentEvent e) {
-			frame.setSize(frame.getParent().getSize());
-			frame.revalidate();
-			if (((Init)getRenderer().getInitLAF()).isWindowed()){
-				Rectangle r = frame.getParent().getBounds();
-				getRenderer().setProperty(Init.WINDOWED_X, Integer.toString(r.x));
-				getRenderer().setProperty(Init.WINDOWED_Y, Integer.toString(r.y));
-				getRenderer().setProperty(Init.WINDOWED_WIDTH, Integer.toString(r.width));
-				getRenderer().setProperty(Init.WINDOWED_HEIGHT, Integer.toString(r.height));
-			}
-	}
+    public void componentResized(ComponentEvent e) {
+    	Component parent = SwingUtilities.getWindowAncestor(frame);
+    	frame.setSize(frame.getParent().getSize());
+    	frame.revalidate();
+    	if (((Init)getRenderer().getInitLAF()).isWindowed()){
+    		Rectangle r = parent.getBounds();
+    		getRenderer().setProperty(Init.WINDOWED_X, Integer.toString(r.x));
+    		getRenderer().setProperty(Init.WINDOWED_Y, Integer.toString(r.y));
+    		getRenderer().setProperty(Init.WINDOWED_WIDTH, Integer.toString(r.width));
+    		getRenderer().setProperty(Init.WINDOWED_HEIGHT, Integer.toString(r.height));
+    	}
+    }
 
 	/** {@ inheritDoc}	 */
 	public void componentMoved(ComponentEvent e) {}
