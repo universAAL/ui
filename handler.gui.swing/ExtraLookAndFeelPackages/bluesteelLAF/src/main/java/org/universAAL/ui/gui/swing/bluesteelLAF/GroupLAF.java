@@ -170,6 +170,13 @@ public class GroupLAF extends GroupModel {
         	vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);
 		}
+        else if (this.isInMainMenu() 
+        		&& !this.isTheIOGroup()
+        		&& !this.isTheMainGroup()
+        		&& !this.isTheSubmitGroup()){
+        	jc.setOpaque(false);
+    		jc.setLayout(new FormLayout(gap));
+        }
     }
     
     private static class SystemMenuLAF extends GroupPanelModel {

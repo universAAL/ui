@@ -19,6 +19,9 @@ import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.util.Iterator;
 
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+
 
 import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -59,7 +62,9 @@ public class GroupPanelLAF extends GroupPanelModel {
          */
 		LabelModel lm = getLabelModel();
 		if (lm != null) {
-			ComponentBorder.addLabeledBorder(lm.getComponent(), jc, color);
+			JLabel l = lm.getComponent();
+			l.setOpaque(jc.isOpaque());
+			ComponentBorder.addLabeledBorder(l, jc, color);
 		}
 		else {
 			ComponentBorder.addLabeledBorder(null, jc, color);
@@ -69,7 +74,8 @@ public class GroupPanelLAF extends GroupPanelModel {
         LayoutManager layout;
         int alignment = FlowLayout.CENTER;
         
-        if (isInStandardGroup()) {
+        if (this.isTheMainGroup()
+        		|| this.isTheSubmitGroup()) {
         	layout = new FlowLayout(FlowLayout.CENTER,gap,gap);
         } else {
         	layout = new FormLayout(gap);
