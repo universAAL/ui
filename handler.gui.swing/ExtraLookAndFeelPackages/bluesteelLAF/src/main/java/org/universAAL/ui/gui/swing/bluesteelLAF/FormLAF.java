@@ -19,7 +19,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -50,7 +53,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
  * @see FormModel
  */
 @SuppressWarnings("unused")
-public class FormLAF extends FormModel {
+public class FormLAF extends FormModel implements ComponentListener {
     private static final Color GRAY = new Color(0, 51, 255);
     /**
      * internal accounting for the frame being displayed.
@@ -254,6 +257,7 @@ public class FormLAF extends FormModel {
 	    frame.fadeIn();
 	    desktopPane.revalidate();
 	    desktopPane.repaint();
+	    desktopPane.addComponentListener(this);
 	}
     }
 
@@ -288,6 +292,7 @@ public class FormLAF extends FormModel {
 	    frame = null;
 	    // frame.getContentPane().removeAll();
 	}
+	desktopPane.removeComponentListener(this);
     }
 
     private Border createFrameBorder() {
@@ -295,4 +300,26 @@ public class FormLAF extends FormModel {
 	Border loweredbevel = BorderFactory.createLoweredBevelBorder();
 	return BorderFactory.createCompoundBorder(raisedbevel, loweredbevel);
     }
+
+	/** {@ inheritDoc}	 */
+	public void componentResized(ComponentEvent e) {
+			frame.setSize(frame.getParent().getSize());
+			frame.revalidate();
+			if (((Init)getRenderer().getInitLAF()).isWindowed()){
+				Rectangle r = frame.getParent().getBounds();
+				getRenderer().setProperty(Init.WINDOWED_X, Integer.toString(r.x));
+				getRenderer().setProperty(Init.WINDOWED_Y, Integer.toString(r.y));
+				getRenderer().setProperty(Init.WINDOWED_WIDTH, Integer.toString(r.width));
+				getRenderer().setProperty(Init.WINDOWED_HEIGHT, Integer.toString(r.height));
+			}
+	}
+
+	/** {@ inheritDoc}	 */
+	public void componentMoved(ComponentEvent e) {}
+
+	/** {@ inheritDoc}	 */
+	public void componentShown(ComponentEvent e) {}
+
+	/** {@ inheritDoc}	 */
+	public void componentHidden(ComponentEvent e) {}
 }
