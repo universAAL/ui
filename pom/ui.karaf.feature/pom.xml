@@ -10,7 +10,7 @@
   <artifactId>ui.karaf.feature</artifactId>
   <groupId>org.universAAL.ui</groupId>
   <version>2.0.1-SNAPSHOT</version>
-  <name>universAAL Karaf Feature Ontologies</name>
+  <name>universAAL UI Karaf Feature</name>
   <properties>
     <commons-beanutils-version>1.8.3</commons-beanutils-version>
     <commons-codec-version>1.4</commons-codec-version>
