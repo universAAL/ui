@@ -2889,6 +2889,315 @@ ui.handler.gui.swing-1.3.3-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto
 ui.handler.gui.swing-1.3.3-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
 ui.handler.gui.swing-1.3.3-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/SimpleManagementTest.java -text svneol=unset#text/plain
 ui.handler.gui.swing-1.3.3-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecessorTest.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/.checkstyle -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ASL2.0.txt -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/ASL2.0.txt -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/NOTICE.txt -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/pom.xml -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/FormLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupTabbedPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Init.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/InputFieldLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/LabelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RangeLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1RadioButtonLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectCheckBoxLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SubmitLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/TextAreaLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UCCButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ColorBorder.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ComponentBorder.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/GradientLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ImageMedia.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/KickerButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/MessageKeys.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/RoundedGradientButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/SubmitButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/SystemButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/TableColors.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/RoundedPolygon.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/CustomBasicArrowButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/MainMenuPager.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/Page.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/UniversAAl_logo.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/images/uaal64x32.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/main/resources/internationalization/messages.properties -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/deprecated/MediaObjectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/deprecated/SimpleComponentBorder.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/BluesteelLAFConstructorTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/TestRenderer.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/CollapsableTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/FormTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/ListFonts.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/bluesteelLAF/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/TabbedGroupTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/ASL2.0.txt -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/NOTICE.txt -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/pom.xml -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/FormLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/Init.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/Select1LAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SimpleOutputLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/specialButtons/uCCButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/java/org/universAAL/ui/handler/gui/swing/classic/specialButtons/uStoreButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/Invisible_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_bright.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_green_dark.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/button_white_bright.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uAALmicro.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/main/uaal.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/Invisible_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_green_bright.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_green_dark.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/button_white_bright.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/uAALmicro.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/org/universAAL/ui/handler/gui/swing/classic/uaal.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Health_button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Agenda_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Safety_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Init.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/UniversAAl_logo.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Health_button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/NOTICE.txt -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/pom.xml -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/IContainerManager.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/ModelMapper.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/Renderer.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/ResourceMapper.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/ColorLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/FormLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupTabbedPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Init.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/InputFieldLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/LabelLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/AbstractUnitLayout.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/BorderedScrolPaneLayout.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/FormLayout.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/GridUnitLayout.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-halfspaces.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-preview.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-spaces.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-units.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout.svg -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Login.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/MediaObjectLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RangeLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelGridLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelTableLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Select1LAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SelectLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SimpleOutputLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubdialogTriggerLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubmitLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TextAreaLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/MyButton.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FormManager.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FrameManager.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/HierarchicalFormManager.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/OverlayFormManager.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/QueuedFormManager.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/SimpleFormManager.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/UIRequestPriorityComparator.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupPanelModel.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/GroupTabbedPanelModel.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/InputFieldModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/InputModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/MediaObjectModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/OutputModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RangeModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelGrid.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelTable.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/Select1Model.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/Select1RadiobuttonModel.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SelectChecboxModel.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SelectModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SimpleOutputModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SubdialogTriggerModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/SubmitModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/TextAreaModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/support/RepeatSubdivider.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/support/TaskQueue.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/support/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/JLabelWAVPlayer.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/RepeatTableModel.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableFormControlCellRenderer.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableJButtonEditor.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/FormModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/IconFactory.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/InitInterface.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/LabelModel.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/Model.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/ExitButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonFactory.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonInterface.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/model/special/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/Activator.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/osgi/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/package.html -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Behavioral_Analizer.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Conatct_Manager.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Food_Shop.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Health.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Health2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Medication.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Nutritional_Advisor.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Personal_Agenda.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Personal_Safety.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/app/Safety_Home.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Dialogs/Accept.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Dialogs/Alert.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Dialogs/Deny.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Dialogs/Tip.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Dialogs/Tip2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Add.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Copy.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Cut.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Edit.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Paste.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Redo.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Remove.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Search.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Undo.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Zoom[!!-~]in.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Edit/Zoom[!!-~]out.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Close.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Delete.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/File[!!-~]new.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/File.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/File2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Lock.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Print.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Save.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/File/Unlock.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Configuration.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Down.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Favorite.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Home.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Reload.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Right.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Search.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/Up.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Navigation/left.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Camera.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Cart.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Desktop.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Desktop2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Mail.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Power.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Telephon.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/User.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/Wireless.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Office/World.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/FF[!!-~]2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/FF.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/FR.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/FR2.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/Pause.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/Play.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/Record.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Playback/Stop.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Web/Facebook.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Web/Linkdin.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Web/Twitter.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/common/Web/Youtube.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/Dialogs.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/EXIT.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/Home.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/PendingMsg.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/UCC.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/icons/system/Ustore.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/main/Button_UCC_Sm.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/main/Footer.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/main/Invisible_Button.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/main/resources/main/UniversAAl_logo.png -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/TestFMRenderer.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/TestHierarchicalFormManager.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/TestRenderer.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/TestSimpleFM.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfGroup.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutput.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfSimpleOutputLAF.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TestExtensionOfTestExtensionOfGroup.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/swing/simple/tests/FormLayoutTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/swing/simple/tests/GridLayoutTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/swing/simple/tests/TableTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/swing/simple/tests/TableTest2.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/swing/simple/tests/TableTest3.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/DefaultLAFConstructorTest.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/ModelMapperTest.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/SimpleManagementTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing-2.0.1-SNAPSHOT/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecessorTest.java -text
 ui.handler.gui.swing.bluesteelLAF-1.2.2-SNAPSHOT/ASL2.0.txt -text svneol=unset#text/plain
 ui.handler.gui.swing.bluesteelLAF-1.2.2-SNAPSHOT/MITX.txt -text svneol=unset#text/plain
 ui.handler.gui.swing.bluesteelLAF-1.2.2-SNAPSHOT/NOTICE.txt -text svneol=unset#text/plain
