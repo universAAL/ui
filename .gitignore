@@ -257,6 +257,10 @@ ui.handler.web-1.3.4-SNAPSHOT/.project
 ui.handler.web-1.3.4-SNAPSHOT/.settings
 ui.handler.web-1.3.4-SNAPSHOT/bin
 ui.handler.web-1.3.4-SNAPSHOT/target
+ui.internationalization.util-2.0.1-SNAPSHOT/.classpath
+ui.internationalization.util-2.0.1-SNAPSHOT/.project
+ui.internationalization.util-2.0.1-SNAPSHOT/.settings
+ui.internationalization.util-2.0.1-SNAPSHOT/target
 ui.kinect.adapter-1.3.2-SNAPSHOT/.classpath
 ui.kinect.adapter-1.3.2-SNAPSHOT/.project
 ui.kinect.adapter-1.3.2-SNAPSHOT/.settings
