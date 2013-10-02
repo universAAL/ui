@@ -3356,6 +3356,65 @@ ui.handler.gui.swing.bluesteelLAF-1.3.3-SNAPSHOT/src/test/java/org/universAAL/ui
 ui.handler.gui.swing.bluesteelLAF-1.3.3-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/ListFonts.java -text svneol=unset#text/plain
 ui.handler.gui.swing.bluesteelLAF-1.3.3-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
 ui.handler.gui.swing.bluesteelLAF-1.3.3-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/TabbedGroupTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/ASL2.0.txt -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/NOTICE.txt -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/pom.xml -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/FormLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/GroupTabbedPanelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Init.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/InputFieldLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/LabelLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/MediaObjectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RangeLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/Select1RadioButtonLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectCheckBoxLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/SubmitLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/TextAreaLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UCCButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ColorBorder.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ComponentBorder.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/GradientLAF.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/ImageMedia.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/KickerButton.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/MessageKeys.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/RoundedGradientButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/SubmitButton.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/SystemButton.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/TableColors.java -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/RoundedPolygon.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/CustomBasicArrowButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/MainMenuPager.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/Page.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/package.html -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/resources/images/UniversAAl_logo.png -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/resources/images/uaal64x32.png -text
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/main/resources/internationalization/messages.properties -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/deprecated/MediaObjectLAF.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/deprecated/SimpleComponentBorder.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/BluesteelLAFConstructorTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/junit/TestRenderer.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/CollapsableTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/FormTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/ListFonts.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/MainMenuPagerTest.java -text svneol=unset#text/plain
+ui.handler.gui.swing.bluesteelLAF-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/gui/bluesteelLAF/test/TabbedGroupTest.java -text svneol=unset#text/plain
 ui.handler.gui.swing.classicLAF-0.1.2-SNAPSHOT/pom.xml -text
 ui.handler.gui.swing.classicLAF-0.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java -text
 ui.handler.gui.swing.classicLAF-0.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/handler/gui/swing/classic/FormLAF.java -text
