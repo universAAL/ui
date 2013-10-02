@@ -301,6 +301,10 @@ ui.internationalization.util-2.0.1-SNAPSHOT/.classpath
 ui.internationalization.util-2.0.1-SNAPSHOT/.project
 ui.internationalization.util-2.0.1-SNAPSHOT/.settings
 ui.internationalization.util-2.0.1-SNAPSHOT/target
+ui.karaf.feature-2.0.1-SNAPSHOT/.classpath
+ui.karaf.feature-2.0.1-SNAPSHOT/.project
+ui.karaf.feature-2.0.1-SNAPSHOT/.settings
+ui.karaf.feature-2.0.1-SNAPSHOT/target
 ui.kinect.adapter-1.3.2-SNAPSHOT/.classpath
 ui.kinect.adapter-1.3.2-SNAPSHOT/.project
 ui.kinect.adapter-1.3.2-SNAPSHOT/.settings
