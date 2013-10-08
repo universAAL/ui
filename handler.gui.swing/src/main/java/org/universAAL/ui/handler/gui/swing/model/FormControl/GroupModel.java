@@ -171,21 +171,6 @@ public abstract class GroupModel extends Model {
 		Component c = Box.createHorizontalStrut(Integer.MAX_VALUE);
 		return c;
 	}
-
-	/**
-     * Find the Model for the {@link FormControl} with the given URI.
-     * @param formControlURI
-     * @return the model or null if not found.
-     */
-    public Model findChildModeFor(String formControlURI){
-    	for (Iterator i = children.iterator(); i.hasNext();) {
-			Model m = (Model) i.next();
-			if (m.correspondsTo(formControlURI)){
-				return m;
-			}
-		}
-    	return null;
-    }
     
 	/**
 	 * Tell whether the form control contain only groups.

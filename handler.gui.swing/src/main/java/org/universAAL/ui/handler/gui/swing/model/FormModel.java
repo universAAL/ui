@@ -350,30 +350,11 @@ public abstract class FormModel {
      * @param in
      */
     public void updateMissingInput(Input in){
-    	InputModel im = (InputModel) findModel(in.getURI());
+    	InputModel im = (InputModel) render.getModelMapper()
+    			.getModelFor(form.searchFormControl(in.getURI()));
     	if (im != null){
     		im.updateAsMissing();
     	}
     }
-    
-    /**
-     * Find the {@link Model} in the children corresponding to the 
-     * {@link FormControl}'s URI
-     * @param URI the URI of the {@link FormControl} to find the model for.
-     * @return the model if found, null otherwise.
-     */
-    public Model findModel(String URI){
-    	Model result;
-    	result = ioGroupModel.findChildModeFor(URI);
-    	if (result == null
-    			&& submitsGroupModel != null){
-    		result = submitsGroupModel.findChildModeFor(URI);
-    	}
-    	if (result == null
-    			&& sysGroupModel != null){
-    		result = sysGroupModel.findChildModeFor(URI);
-    	}
-    	return result;
-    }  
 }
 
