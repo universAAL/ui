@@ -167,7 +167,7 @@ public class GridUnitLayout extends AbstractUnitLayout implements LayoutManager 
 			
 			//Vector rowHeights = new Vector();
 			int N = units.size();
-			rowHeights = new int[(N/cols) + 1 ];
+			rowHeights = new int[((N + cols - 1)/cols)];
 			for (int i = 0; i < rowHeights.length; i++) {
 				rowHeights[i]=0;
 			}
