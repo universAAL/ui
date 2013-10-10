@@ -34,14 +34,13 @@ public class TextAreaModel extends InputModel {
 	}
 
 	/** {@ inheritDoc}	 */
-	public StringBuffer generateHTML() {
-		// TODO Auto-generated method stub
-		return null;
+	public StringBuffer generateInputHTML() {
+		return singleTag("textarea", inputProperties);
 	}
 
 	/** {@ inheritDoc}	 */
 	public boolean updateInput(String[] value) {
-		// TODO Auto-generated method stub
+		return ((TextArea)fe).storeUserInput(value[0]);
 		
 	}
 
