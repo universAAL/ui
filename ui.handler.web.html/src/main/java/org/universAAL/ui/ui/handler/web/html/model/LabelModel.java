@@ -39,8 +39,7 @@ public class LabelModel extends Model {
 
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateHTML() {
-		// TODO Auto-generated method stub
-		return null;
+		return getImgText();
 	}
 
 	/**

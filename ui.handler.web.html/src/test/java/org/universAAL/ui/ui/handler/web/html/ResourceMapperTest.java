@@ -17,6 +17,8 @@
 package org.universAAL.ui.ui.handler.web.html;
 
 
+import java.io.File;
+
 import junit.framework.TestCase;
 
 /**
@@ -26,14 +28,22 @@ import junit.framework.TestCase;
 public class ResourceMapperTest extends TestCase {
 
 
+	/**
+	 * 
+	 */
+	private static final String CACHE = "./target/cache";
+
 	public void test() {
-		String s = ResourceMapper.cached("./target/cache", getClass().getClassLoader().getResource("default.css"));
-		String s2 = ResourceMapper.cached("./target/cache", getClass().getClassLoader().getResource("default.css"));
+		String s = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
+		String s2 = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
 		assertEquals(s, s2);
+		assertTrue(new File(CACHE+"/"+ s).exists());
 		
-		s = ResourceMapper.cached("./target/cache", "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
-		s2 = ResourceMapper.cached("./target/cache", "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
+		s = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
+		s2 = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
 		assertEquals(s, s2);
+
+		assertTrue(new File(CACHE+"/"+ s).exists());
 	}
 
 }

@@ -263,7 +263,7 @@ public class ResourceMapper {
 			super();
 			this.is = is;
 			this.file = file;
-			new Thread(this, "Retriever for " + file.getName());
+			new Thread(this, "Retriever for " + file.getName()).start();
 		}
 
 		/** {@ inheritDoc}	 */
