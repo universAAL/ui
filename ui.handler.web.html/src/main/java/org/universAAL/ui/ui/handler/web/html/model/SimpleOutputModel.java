@@ -41,6 +41,7 @@ public class SimpleOutputModel extends OutputModel {
 		Properties p = new Properties();
 		p.put("readonly", null);
 		p.put("name", fe.getURI());
+		p.put("title", getTitle());
 		InputFieldModel.setTypeProperties(p, ((SimpleOutput)fe).getContent() );
 		StringBuffer label = getLabelModel().getLabelFor(p.getProperty("name"));;
 		return label.append(singleTag("input", p));
