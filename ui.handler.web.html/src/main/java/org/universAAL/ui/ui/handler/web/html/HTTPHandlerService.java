@@ -115,9 +115,7 @@ public class HTTPHandlerService extends GatewayPort {
 				defaults.put(SERVICE_URL, "/universAAL");
 		        defaults.put(RESOURCES_LOC, homeDir + "/" + "resources");
 		        defaults.put(CSS_LOCATION, 
-		        		ResourceMapper.cached(
-		        		(String) properties.getProperty(RESOURCES_LOC),
-		        		this.getClass().getClassLoader().getResource("default.css")));
+		        		this.getClass().getClassLoader().getResource("default.css").toString());
 		        defaults.put(TIMEOUT, "300000");
 				
 			}
