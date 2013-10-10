@@ -48,20 +48,19 @@ public class HTMLHandlerActivator implements BundleActivator {
 						new File(home.getAbsolutePath(), HTTPHandlerService.CONF_FILENAME+".properties"));
 				httpHS.register();
 			}
-		}, "UI Handler Web HTML ignition");
+		}, "UI Handler Web HTML ignition").start();
 		
 		LogUtils.logDebug(mcontext, getClass(), "start", "Started.");
 	}
 
 
 	public void stop(BundleContext arg0) throws Exception {
-		LogUtils.logDebug(mcontext, getClass(), "start", "Stopping.");
+		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopping.");
 		/*
 		 * close uAAL stuff
 		 */
 		httpHS.unregister();
-		LogUtils.logDebug(mcontext, getClass(), "start", "Stopped.");
-
+		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopped.");
 	}
 
 	private static Hashtable getDescription(){

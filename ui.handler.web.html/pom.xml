@@ -10,6 +10,7 @@
 
   <artifactId>ui.handler.web.html</artifactId>
   <version>2.0.2-SNAPSHOT</version>
+  <packaging>bundle</packaging>
 
 
   <properties>
@@ -63,6 +64,10 @@
 			<extensions>true</extensions>
 			<configuration>
 				<instructions>
+		            <Bundle-Name>${project.name}</Bundle-Name>
+		            <Bundle-Activator>org.universAAL.ui.handler.web.Activator</Bundle-Activator>
+		            <Bundle-Description>${project.description}</Bundle-Description>
+		            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 					<Bundle-Activator>org.universAAL.ui.ui.handler.web.html.osgi.HTMLHandlerActivator</Bundle-Activator>
 					<Export-Package>org.universAAL.ui.ui.handler.web.html</Export-Package>
 					<Private-Package>

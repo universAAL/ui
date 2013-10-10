@@ -112,10 +112,10 @@ public abstract class UpdatedPropertiesFile extends Properties {
      * @throws IOException 
      */
     protected void storeProperties() throws IOException {
-        	FileOutputStream fos = null;
-        	fos = new FileOutputStream(propertiesFile);
-        	super.store( fos, getComments());
-        	fos.close();
+    	propertiesFile.getParentFile().mkdirs();
+    	FileOutputStream fos = new FileOutputStream(propertiesFile);
+    	super.store( fos, getComments());
+    	fos.close();
     }
 
 	/**
