@@ -43,6 +43,7 @@ public class SubmitModel extends FormControlModel {
 		p.put("type", "submit");
 		p.put("name", SUBMIT_NAME);
 		p.put("value", fe.getURI());
+		p.put("title", getTitle());
 		return singleTag("input", p);
 	}
 
