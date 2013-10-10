@@ -23,6 +23,8 @@ import java.util.Set;
 
 import org.universAAL.middleware.ui.rdf.FormElement;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
+import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
+import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
 
 /**
  * @author amedrano
@@ -130,5 +132,23 @@ public abstract class Model {
 		}
 		a.append(">");
 		return a;
+	}
+	
+	/**
+	 * Create a {@link Properties} instance with a src key pointing to the cached resource.
+	 * @param url
+	 * @return
+	 */
+	public Properties getSRCProp(String url){
+		Properties p = new Properties();
+		if (url != null && !url.isEmpty()) {
+			// cache Icon 
+			String cachedIcon = ResourceMapper.cached(
+					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC), 
+					url);
+			if (!cachedIcon.isEmpty())
+				p.put("src", cachedIcon);
+		}
+		return p;
 	}
 }

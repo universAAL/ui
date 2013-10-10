@@ -18,6 +18,7 @@ package org.universAAL.ui.ui.handler.web.html.model;
 
 import java.util.Properties;
 
+import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
@@ -43,11 +44,21 @@ public class SubmitModel extends FormControlModel {
 		p.put("type", "submit");
 		p.put("name", SUBMIT_NAME);
 		p.put("value", fe.getURI());
-		//TODO how to put image?, maybe as an anchored img?
 		String ltext = getTitle();
 		if (ltext != null && !ltext.isEmpty())
 			p.put("title", ltext);
-		//TODO put special properties to button (when kicker) and img
+		// put special classes to button (eg when kicker)
+		if (isInStandardGroup()){
+			p.put("class", "standardButton");
+		}
+		if (isInSubmitGroup()){
+			p.put("class", "submitButton");
+		}
+		if (isInIOGroup()){
+			if (isInMainMenu())
+			p.put("class", "kickerButton");
+		}
+		
 		return tag("button", getLabelModel().getImgText(),p);
 	}
 
@@ -58,5 +69,25 @@ public class SubmitModel extends FormControlModel {
 		getRenderer().getFormManagement().closeCurrentDialog();
         getRenderer().getHandler().submit((Submit) fe);
 	}
+	
+	protected StringBuffer getButtonContent(){
+		StringBuffer a = new StringBuffer();
+		// TODO go through recommendations to find alignment.
+		//default
+		a.append(getIcon());
+		if (((Label)fe).getText() != null) {
+			a.append(((Label)fe).getText());
+		}
+		return a;
+	}
 
+	private StringBuffer getIcon(){
+		Properties p = getSRCProp(((Label)fe).getIconURL());
+		if (p.contains("src")){
+			p.put("class", "buttonIMG");
+			return singleTag("img", p);
+		}
+		else 
+			return new StringBuffer();
+	}
 }

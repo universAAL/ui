@@ -75,18 +75,12 @@ public class LabelModel extends Model {
 	}
 
 	private StringBuffer getIcon(){
-		String url =((Label)fe).getIconURL();
-		if (url != null && !url.isEmpty()) {
-			// cache Icon 
-			String cachedIcon = ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC), 
-					((Label)fe).getIconURL());
-			Properties p = new Properties();
-			if (!cachedIcon.isEmpty())
-				p.put("src", cachedIcon);
+		Properties p = getSRCProp(((Label)fe).getIconURL());
+		if (p.contains("src")){
 			p.put("class", "labelIMG");
 			return singleTag("img", p);
 		}
-		return new StringBuffer();
+		else 
+			return new StringBuffer();
 	}
 }

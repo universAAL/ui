@@ -55,7 +55,7 @@ public class GroupModel extends FormControlModel {
 			}
 			if (isInSubmitGroup()
 					&& isInMainMenu()){
-				return generateKikerGroup();
+				return generateKickerGroup();
 			}
 		} 
 		return generateNormal();
@@ -74,13 +74,13 @@ public class GroupModel extends FormControlModel {
 		LabelModel lm = (LabelModel) getModelFor(g.getLabel());
 		StringBuffer legend = tag("legend", lm.getImgText(), null);
 		
-		return tag("filedset", legend.append(getDivContent(child)), null);
+		return tag("filedset", legend.append(getHorizontalContent(child)), null);
 	}
 
 	/**
 	 * @return
 	 */
-	private StringBuffer generateKikerGroup() {
+	private StringBuffer generateKickerGroup() {
 	// displaying with table...
 		Group g = (Group) fe;
 		FormControl[] child = g.getChildren();
@@ -103,7 +103,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "IOControlsGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getDivContent(child), p);
+		return tag("div", getHorizontalContent(child), p);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "StandardGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getDivContent(child), p);
+		return tag("div", getHorizontalContent(child), p);
 	}
 
 	/**
@@ -130,13 +130,22 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "SubmitsGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getDivContent(child), p);
+		return tag("div", getHorizontalContent(child), p);
 	}
 
-	protected StringBuffer getDivContent(FormControl[] child){
+	protected StringBuffer getHorizontalContent(FormControl[] child){
 		StringBuffer html = new StringBuffer();
 		for (int i = 0; i < child.length; i++) {
 			html.append(getModelFor(child[i]).generateHTML());
+		}
+		return html;
+	}
+	
+	protected StringBuffer getVerticalContent(FormControl[] child){
+		StringBuffer html = new StringBuffer();
+		for (int i = 0; i < child.length; i++) {
+			html.append(getModelFor(child[i]).generateHTML());
+			html.append(singleTag("br", null));
 		}
 		return html;
 	}

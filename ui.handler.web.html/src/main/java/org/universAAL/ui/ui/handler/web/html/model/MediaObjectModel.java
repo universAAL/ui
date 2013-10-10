@@ -42,7 +42,7 @@ public class MediaObjectModel extends OutputModel {
 	public StringBuffer generateHTML() {
 		MediaObject mo = (MediaObject) fe;
 		if (mo.getContentType().startsWith("image")) {
-			Properties p = new Properties();
+			Properties p = getSRCProp(mo.getContentURL());
 			String title = getTitle();
 			if (!title.isEmpty())			
 				p.put("title", getTitle());
@@ -50,39 +50,26 @@ public class MediaObjectModel extends OutputModel {
 			p.put("height", Integer.toString(mo.getResolutionPreferredY()));
 			//TODO set Alt Text with label
 			//TODO set sizes in style from recommendations
-			
-			p.put("src", ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC),
-					mo.getContentURL()));
 			return singleTag("img", p);
 		}
 		if (mo.getContentType().startsWith("audio")){
 			Properties p = new Properties();
-			p.put("autoplay", null);
-			Properties src = new Properties();
-			src.put("src", ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC),
-					mo.getContentURL()));
+			p.put("autoplay", "");
+			Properties src = getSRCProp(mo.getContentURL());
 			return tag("audio", singleTag("source", src).append(singleTag("embed", src)), p);
 		}
 		if (mo.getContentType().startsWith("video")){
 			Properties p = new Properties();
-			p.put("autoplay", null);
+			p.put("autoplay", "");
 			p.put("width", Integer.toString(mo.getResolutionPreferredX()));
 			p.put("height", Integer.toString(mo.getResolutionPreferredY()));
 			//TODO set sizes in style from recommendations
-			Properties src = new Properties();
-			src.put("src", ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC),
-					mo.getContentURL()));
+			Properties src = getSRCProp(mo.getContentURL());
 			return tag("video", singleTag("source", src).append(singleTag("embed", src)), p);
 		}
 		if (mo.getContentType().equalsIgnoreCase("text/html")){
-			Properties p = new Properties();
-			p.put("src", ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC),
-					mo.getContentURL()));
-			p.put("seamless", null);
+			Properties p = getSRCProp(mo.getContentURL());
+			p.put("seamless", "");
 			//TODO set sizes in style from recommendations
 			return tag("iframe","",p);
 			
