@@ -63,8 +63,13 @@
 			<extensions>true</extensions>
 			<configuration>
 				<instructions>
-					<Bundle-Activator>org.universAAL.ui.ui.handler.web.html.osgi.ProjectActivator</Bundle-Activator>
+					<Bundle-Activator>org.universAAL.ui.ui.handler.web.html.osgi.HTMLHandlerActivator</Bundle-Activator>
 					<Export-Package>org.universAAL.ui.ui.handler.web.html</Export-Package>
+					<Private-Package>
+					org.universAAL.ui.ui.handler.web.html.fm,
+					org.universAAL.ui.ui.handler.web.html.model,
+					org.universAAL.ui.ui.handler.web.html.osgi
+					</Private-Package>
 				</instructions>
 			</configuration>
 		</plugin>
