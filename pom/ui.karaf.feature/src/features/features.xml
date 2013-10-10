@@ -2,10 +2,10 @@
 <features name="universAAL-UI" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
 
 	<!-- Change version of repository accordingly -->
-	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/2.0.1-SNAPSHOT/xml/features</repository>
-	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/2.0.1-SNAPSHOT/xml/features</repository>
-	<repository>mvn:org.universAAL.security/security.karaf.feature/2.0.1-SNAPSHOT/xml/features</repository>
-	<repository>mvn:org.universAAL.ri/ri.karaf.feature/2.0.1-SNAPSHOT/xml/features</repository>
+	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/2.0.2-SNAPSHOT/xml/features</repository>
+	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/2.0.2-SNAPSHOT/xml/features</repository>
+	<repository>mvn:org.universAAL.security/security.karaf.feature/2.0.2-SNAPSHOT/xml/features</repository>
+	<repository>mvn:org.universAAL.ri/ri.karaf.feature/2.0.2-SNAPSHOT/xml/features</repository>
 
 <feature name="mini-Jetty" description="Jetty libraries used by several libraries in universAAL"
 	 resolver='(obr)'>
@@ -30,7 +30,7 @@
 		<feature>uAAL-Ont.PhWorld</feature>
 		<feature>uAAL-Ont.Recommendation</feature>	
 		<feature>uAAL-Ont.Impairment</feature>
-		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/2.0.2-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing.BluesteelLAF" description="The UI Swing Handler's LAF plugin for BlueSteel look and feel."
@@ -40,27 +40,33 @@
 		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/0.9.2</bundle>
 		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
 			so leaving them in resolved state is enough-->
-		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/2.0.2-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing.classicLAF" description="The UI Swing Handler's LAF plugin for clasic look and feel."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-UI.handler.gui.swing</feature>
 		<feature>uAAL-Ont.Recommendation</feature>	
-		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/2.0.2-SNAPSHOT</bundle>
 	</feature>
 
 	<feature name="uAAL-UI.resource.server" description="The UI Resource Server."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-MW</feature>
-		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/2.0.2-SNAPSHOT</bundle>
 	</feature>
 
 	
 	<feature name="uAAL-UI.handler.web" description="The UI Web Handler."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-RI.Service.Gateway</feature>
-		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web/2.0.2-SNAPSHOT</bundle>
+	</feature>
+	
+		<feature name="uAAL-UI.handler.web.html" description="The New UI Web Handler."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-RI.Service.Gateway</feature>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web.html/2.0.2-SNAPSHOT</bundle>
 	</feature>
 	
 	<feature name="uAAL-UI.DM" description="The UI Dialog Manager"
@@ -71,8 +77,8 @@
 		<feature>uAAL-Ont.Profile.userId</feature>
 		<!-- <feature>uAAL-ctxt.Profiling.Server</feature> -->
 		
-		<bundle start-level='74'>wrap:mvn:org.universAAL.ui/ui.internationalization.util/2.0.1-SNAPSHOT</bundle>
-		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/2.0.1-SNAPSHOT</bundle>
+		<bundle start-level='74'>wrap:mvn:org.universAAL.ui/ui.internationalization.util/2.0.2-SNAPSHOT</bundle>
+		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/2.0.2-SNAPSHOT</bundle>
 	</feature>
 		
 </features>
