@@ -27,6 +27,8 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  */
 public class SimpleOutputModel extends OutputModel {
 
+	private static final int TA_THRESHOLD = 20;
+
 	/**
 	 * @param fe
 	 * @param render
@@ -43,9 +45,17 @@ public class SimpleOutputModel extends OutputModel {
 		String title = getTitle();
 		if (!title.isEmpty())
 			p.put("title", title);
-		InputFieldModel.setTypeProperties(p, ((SimpleOutput)fe).getContent() );
-		StringBuffer label = getLabelModel().getLabelFor(p.getProperty("name"));;
-		return label.append(singleTag("input", p));
+		StringBuffer content;
+		Object val = ((SimpleOutput)fe).getValue();
+		if (val instanceof String
+				&& ((String)val).length() > TA_THRESHOLD){
+			content = tag("textarea", (String) val, p);
+		} else {
+			InputFieldModel.setTypeProperties(p, ((SimpleOutput)fe).getContent() );
+			content = singleTag("input", p);
+		}
+		StringBuffer label = getLabelModel().getLabelFor(fe.getURI());
+		return label.append(content);
 	}
 
 }
