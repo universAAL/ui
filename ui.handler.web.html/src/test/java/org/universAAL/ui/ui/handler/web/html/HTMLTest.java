@@ -21,7 +21,7 @@ public class HTMLTest
         				Model.tag("body", 
         						Model.tag("h1", "Hello World!", null), null)
         		),null);
-        assertEquals("<html><head><title>Testing Page</title></head><body><h1>Hello World!</h1></body></html>",
+        assertEquals("<HTML><HEAD><TITLE>Testing Page</TITLE></HEAD><BODY><H1>Hello World!</H1></BODY></HTML>",
         		html.toString());
     }
     
@@ -35,7 +35,7 @@ public class HTMLTest
     	
     	StringBuffer html = Model.tag("input", "giveme Input", p);
     	
-    	assertEquals("<input name=\"email\" maxlength=\"50\" size=\"40\" type=\"text\">giveme Input</input>",
+    	assertEquals("<INPUT name=\"email\" maxlength=\"50\" size=\"40\" type=\"text\">giveme Input</INPUT>",
     			html.toString());
     	
     }
