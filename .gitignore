@@ -46,6 +46,10 @@ resource.server/.project
 resource.server/.settings
 resource.server/bin
 resource.server/target
+ui.handler.web.html/.classpath
+ui.handler.web.html/.project
+ui.handler.web.html/.settings
+ui.handler.web.html/target
 ui.internationalization.util/.classpath
 ui.internationalization.util/.project
 ui.internationalization.util/.settings
