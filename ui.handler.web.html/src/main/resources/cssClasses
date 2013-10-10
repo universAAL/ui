@@ -1,3 +1,6 @@
 RootGroup 					IDs: {MainMenuButtonsGroup, IOControlsGroup, StandardGroup, SubmitsGroup} 
 labelIMG
 missingInput
+button:standardButton
+button:submitButton
+button:kickerButton
