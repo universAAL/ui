@@ -16,6 +16,12 @@
 
 package org.universAAL.ui.ui.handler.web.html.model;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
@@ -35,8 +41,26 @@ public class RepeatModel extends GroupModel {
 
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateHTML() {
-		// TODO Auto-generated method stub
-		return super.generateHTML();
+		List Vforms = ((Repeat)fe).virtualFormExpansion();
+		int i = 0;
+		StringBuffer table = new StringBuffer();
+		for (Iterator it = Vforms.iterator(); it.hasNext();) {
+			Form f = (Form) it.next();
+			StringBuffer rowHTML = new StringBuffer();
+			FormControl[] fcs = f.getIOControls().getChildren();
+			for (int col = 0; col < fcs.length; col++) {
+					rowHTML.append(
+							tag("td",
+									getModelFor(fcs[i]).generateHTML(),
+									null));
+			}
+			table.append(
+					tag("tr", rowHTML, null)
+					);
+		}
+		Properties p = new Properties();
+		p.put("class", "repeat");
+		return tag("table", table, p);
 	}
 
 }
