@@ -61,7 +61,7 @@ public class GroupModel extends FormControlModel {
 		return generateNormal();
 	}
 	
-	private Model getModelFor(FormElement e){
+	protected Model getModelFor(FormElement e){
 		return getRenderer().getModelMapper().getModelFor(e);
 	}
 
@@ -90,7 +90,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "MainMenuButtonsGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getTableContent(child, cols), p);
+		return tag("table", getTableContent(child, cols), p);
 	}
 
 	/**
