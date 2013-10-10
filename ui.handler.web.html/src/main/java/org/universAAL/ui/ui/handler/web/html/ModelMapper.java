@@ -20,6 +20,8 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.FormElement;
 import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.ui.ui.handler.web.html.model.FormModel;
+import org.universAAL.ui.ui.handler.web.html.model.LabelModel;
 import org.universAAL.ui.ui.handler.web.html.model.Model;
 
 /**
@@ -49,7 +51,7 @@ public final class ModelMapper {
     /**
      * Suffix for all look and feel classes.
      */
-    private static String LAFSuffix = "MODEL";
+    private static String LAFSuffix = "Model";
     
     /**
      * Renderer instance.
@@ -135,26 +137,23 @@ public final class ModelMapper {
 
 		Object model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
 		if (model == null) {
-			// If not found, try to find the model for superclass.        
-			Class parentC = refObjClass.getSuperclass();
-			// avoid looking for non-renderable FormControls
-			if (parentC != FormControl.class 
-					&& parentC != Form.class
-					&& parentC != Label.class
-					&& parentC != Object.class ) {
-				LogUtils.logDebug(render.getModuleContext(), getClass(), "getModelFor", 
-						new String[]{"lookig for Antecesor"}, null);
-				return getModelFor(refObj, parentC);
-			} else {
-				LogUtils.logError(render.getModuleContext(), getClass(), "getModelFor", 
-						new String[]{"This is really awkward,",
-					"No Model found...",
-					"not even in DefaultLAFPackage...",
-					"or as any antecesor...",
-				"COME ON!!"}, null);
-			}
-
-		}
+            // If not found, try to find the model for superclass.        
+        	Class parentC = refObjClass.getSuperclass();
+    		// avoid looking for non-renderable FormControls
+        	if (parentC != FormElement.class
+        			&& parentC != Object.class ) {
+        		LogUtils.logDebug(render.getModuleContext(), getClass(), "getModelFor", 
+        				new String[]{"lookig for Antecesor"}, null);
+        		return getModelFor(refObj, parentC);
+        	} else {
+        		LogUtils.logError(render.getModuleContext(), getClass(), "getModelFor", 
+        				new String[]{"This is really akwuard,",
+        							 "No Model found...",
+        							 "not even in DefaultLAFPackage...",
+        							 "or as any antecesor...",
+        							 "COME ON!!"}, null);
+        	}
+        }
 		return  model;
 	}
 

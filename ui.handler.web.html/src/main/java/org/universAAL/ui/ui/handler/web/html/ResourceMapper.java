@@ -66,7 +66,10 @@ public class ResourceMapper {
 	 */
 	public static String cached(String cacheFolder, String url) {
 		URL search = search(url);
-		return cached(cacheFolder, search);
+		if (search != null)
+			return cached(cacheFolder, search);
+		else
+			return url;
 	}
 
 	/**
@@ -80,6 +83,8 @@ public class ResourceMapper {
 	 * @return the cached location.
 	 */
 	public static String cached(String cacheFolder, URL resource) {
+		if (resource == null)
+			return null;
 		String extension = resource.getFile();
 		if (extension != null) {
 			extension = extension.substring(extension.lastIndexOf('.'));
@@ -204,9 +209,12 @@ public class ResourceMapper {
 	 */
 	static private URL checkFolder(String url) {
 		URL urlFile;
+		File confDirFile = getConfigHome();
+		if (confDirFile == null)
+			return null;
 		try {
 			urlFile = new URL("file://"
-					+ HTTPHandlerService.getHomeDir().replace('\\', '/')
+					+ confDirFile.getAbsolutePath().replace('\\', '/')
 					+ url.replace('\\', '/'));
 
 			File resourceFile = new File(urlFile.getFile());
@@ -224,6 +232,17 @@ public class ResourceMapper {
 		}
 	}
 
+	private static File getConfigHome(){
+		if (mc == null)
+			return null;
+		File[] conf = mc.listConfigFiles(mc);
+		if (conf != null
+				&& conf.length>0)
+			return conf[0].getParentFile();
+		else
+			return null;
+	}
+	
 	/**
 	 * Searched for the specified url in the JAR.
 	 * 
@@ -232,6 +251,9 @@ public class ResourceMapper {
 	 * @return the {@link URL} of the resource if found, null otherwise.
 	 */
 	static private URL searchResources(String url) {
+		if (url == null|| url.isEmpty()){
+			return null;
+		}
 		int i = 0;
 		URL resource = null;
 		while (i < resourceFolders.length && resource == null) {

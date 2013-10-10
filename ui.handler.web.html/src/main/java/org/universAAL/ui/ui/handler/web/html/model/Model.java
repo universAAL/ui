@@ -120,7 +120,8 @@ public abstract class Model {
 				Entry e = (Entry) i.next();
 				a.append(" ");
 				a.append(e.getKey());
-				if (e.getValue() != null){
+				if (e.getValue() != null
+						&& !e.getValue().equals("")){
 					a.append("=\"");
 					a.append(e.getValue());
 					a.append("\"");

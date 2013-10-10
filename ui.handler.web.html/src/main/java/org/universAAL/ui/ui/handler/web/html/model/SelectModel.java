@@ -58,7 +58,7 @@ public class SelectModel extends InputModel {
 	}
 	
 	private StringBuffer selectHTML(){
-		inputProperties.put("multiple", null);
+		inputProperties.put("multiple", "");
 		return tag("select", selectOptionsHTML(), inputProperties);
 	}
 	
@@ -88,10 +88,11 @@ public class SelectModel extends InputModel {
 			Properties p = new Properties();
 			p.put("value", Integer.toString(i));
 			if (selected.contains(((ChoiceItem)opts[i]).getValue())) {
-				p.put("selected", null);
+				p.put("selected", "");
 			}
+			LabelModel lm = ((LabelModel)getRenderer().getModelMapper().getModelFor(opts[i]));
 			options.append(tag("option",
-					((LabelModel)getRenderer().getModelMapper().getModelFor(opts[i])).getImgText(),
+					lm.getImgText(),
 					p));
 		}
 		return options;

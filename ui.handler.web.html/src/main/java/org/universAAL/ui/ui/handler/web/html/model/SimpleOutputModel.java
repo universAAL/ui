@@ -18,7 +18,6 @@ package org.universAAL.ui.ui.handler.web.html.model;
 
 import java.util.Properties;
 
-import org.universAAL.middleware.ui.rdf.Output;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
@@ -32,16 +31,18 @@ public class SimpleOutputModel extends OutputModel {
 	 * @param fe
 	 * @param render
 	 */
-	public SimpleOutputModel(Output fe, HTMLUserGenerator render) {
+	public SimpleOutputModel(SimpleOutput fe, HTMLUserGenerator render) {
 		super(fe, render);
 	}
 
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateHTML() {
 		Properties p = new Properties();
-		p.put("readonly", null);
+		p.put("readonly", "");
 		p.put("name", fe.getURI());
-		p.put("title", getTitle());
+		String title = getTitle();
+		if (!title.isEmpty())
+			p.put("title", title);
 		InputFieldModel.setTypeProperties(p, ((SimpleOutput)fe).getContent() );
 		StringBuffer label = getLabelModel().getLabelFor(p.getProperty("name"));;
 		return label.append(singleTag("input", p));

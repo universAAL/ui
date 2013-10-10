@@ -43,8 +43,12 @@ public class SubmitModel extends FormControlModel {
 		p.put("type", "submit");
 		p.put("name", SUBMIT_NAME);
 		p.put("value", fe.getURI());
-		p.put("title", getTitle());
-		return singleTag("input", p);
+		//TODO how to put image?, maybe as an anchored img?
+		String ltext = getTitle();
+		if (ltext != null && !ltext.isEmpty())
+			p.put("title", ltext);
+		//TODO put special properties to button (when kicker) and img
+		return tag("button", getLabelModel().getImgText(),p);
 	}
 
 	/**

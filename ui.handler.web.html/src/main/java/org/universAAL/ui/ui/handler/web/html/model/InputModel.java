@@ -42,8 +42,12 @@ public abstract class InputModel extends FormControlModel {
 		if (isErroneousOrMissing()){
 			inputProperties.put("class", "missingInput");
 		}
-		inputProperties.put("title", ((Input)fe).getHelpString());
-		inputProperties.put("placeholder", ((Input)fe).getHintString());
+		String hlp = ((Input)fe).getHelpString();
+		if (hlp != null)
+			inputProperties.put("title", hlp);
+		String hnt = ((Input)fe).getHintString();
+		if (hnt !=null)
+			inputProperties.put("placeholder", hnt);
 	}
 
 	/**
@@ -64,7 +68,7 @@ public abstract class InputModel extends FormControlModel {
 			p.put("class", "missingInput");
 			missing = tag("b", ((Input)fe).getAlertString(), p); 
 		}
-		return label.append(generateHTML()).append(missing);
+		return label.append(generateInputHTML()).append(missing);
 	}
 	
 	/**

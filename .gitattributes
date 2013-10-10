@@ -1435,8 +1435,11 @@ ui.handler.web.html/src/main/resources/icons/system/Home.png -text
 ui.handler.web.html/src/main/resources/icons/system/PendingMsg.png -text
 ui.handler.web.html/src/main/resources/icons/system/UCC.png -text
 ui.handler.web.html/src/main/resources/icons/system/Ustore.png -text
+ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/DefaultModelConstructorTest.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/HTMLTest.java -text
+ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/ModelMapperTest.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/ResourceMapperTest.java -text
+ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/support/TestGenerator.java -text svneol=unset#text/plain
 ui.internationalization.util/pom.xml -text
 ui.internationalization.util/src/main/java/org/universAAL/ui/internationalization/util/MessageLocaleHelper.java -text
 ui.internationalization.util/src/test/java/org/universAAL/ui/internationalizaion/tests/TestSearch.java -text svneol=unset#text/plain

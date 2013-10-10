@@ -51,12 +51,13 @@ public class RepeatModel extends GroupModel {
 			for (int col = 0; col < fcs.length; col++) {
 					rowHTML.append(
 							tag("td",
-									getModelFor(fcs[i]).generateHTML(),
+									getModelFor(fcs[col]).generateHTML(),
 									null));
 			}
 			table.append(
 					tag("tr", rowHTML, null)
 					);
+			i++;
 		}
 		Properties p = new Properties();
 		p.put("class", "repeat");
