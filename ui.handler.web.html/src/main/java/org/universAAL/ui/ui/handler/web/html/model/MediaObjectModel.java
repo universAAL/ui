@@ -43,7 +43,9 @@ public class MediaObjectModel extends OutputModel {
 		MediaObject mo = (MediaObject) fe;
 		if (mo.getContentType().startsWith("image")) {
 			Properties p = new Properties();
-			p.put("title", getTitle());
+			String title = getTitle();
+			if (!title.isEmpty())			
+				p.put("title", getTitle());
 			p.put("width", Integer.toString(mo.getResolutionPreferredX()));
 			p.put("height", Integer.toString(mo.getResolutionPreferredY()));
 			//TODO set Alt Text with label

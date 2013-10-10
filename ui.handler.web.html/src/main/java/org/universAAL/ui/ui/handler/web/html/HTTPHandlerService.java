@@ -113,7 +113,7 @@ public class HTTPHandlerService extends GatewayPort {
 			
 			protected void addDefaults(Properties defaults) {
 				defaults.put(SERVICE_URL, "/universAAL");
-		        defaults.put(RESOURCES_LOC, homeDir + "/" + "resources");
+		        defaults.put(RESOURCES_LOC, homeDir + "/resources");
 		        defaults.put(CSS_LOCATION, 
 		        		this.getClass().getClassLoader().getResource("default.css").toString());
 		        defaults.put(TIMEOUT, "300000");
@@ -170,7 +170,7 @@ public class HTTPHandlerService extends GatewayPort {
 	private HTMLUserGenerator getGenerator(String user) {
 		User u = (User) Resource.getResource(User.MY_URI, user);
 		if (!generatorPool.contains(u)){
-			generatorPool.put(u, new HTMLUserGenerator(this, u));
+			generatorPool.put(u, new HTMLUserGenerator(getContext(), properties, u));
 		}
 		if (!watchDogKennel.contains(u)){
 			watchDogKennel.put(u, new Watchdog(u));
@@ -202,18 +202,6 @@ public class HTTPHandlerService extends GatewayPort {
 			resp.sendRedirect(url());
 		}
 
-	}
-	
-	public Properties getProperties(){
-		return properties;
-	}
-
-	/**
-	 * Get the configuration directory.
-	 * @return the home directory (ends with "/")
-	 */
-	public static String getHomeDir() {
-	    return homeDir;
 	}
 	
 	private class Watchdog extends TimerTask{

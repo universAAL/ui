@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 
 import org.universAAL.middleware.container.ModuleContext;
@@ -36,6 +37,7 @@ import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.ui.handler.web.html.fm.FormManager;
 import org.universAAL.ui.ui.handler.web.html.fm.SimpleFormManager;
+import org.universAAL.ui.ui.handler.web.html.model.FormModel;
 import org.universAAL.ui.ui.handler.web.html.model.InputModel;
 import org.universAAL.ui.ui.handler.web.html.model.Model;
 import org.universAAL.ui.ui.handler.web.html.model.SubmitModel;
@@ -79,17 +81,22 @@ public class HTMLUserGenerator {
      * Form Logic Manager. it will decide
      * which Form to show when.
      */
-    private FormManager fm;
+    protected FormManager fm;
 
 	/**
 	 * The parent service that contains the properties.
 	 */
-	private HTTPHandlerService httpService;
+	protected Properties properties;
 
 	/**
 	 * the set of missing inputs of the last form.
 	 */
-	private Set missingInputs;
+	protected Set missingInputs;
+
+	/**
+	 * Reference to the module context to Log.
+	 */
+	private ModuleContext mcontext;
     
     /**
 	 * Only to be used by TestCases.
@@ -99,11 +106,13 @@ public class HTMLUserGenerator {
     
     /**
 	 * Constructor for one Renderer on a certain file.
-	 * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
+     * @param mc TODO
      * @param usr the user for which this renderer is working.
+     * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
 	 */
-	public HTMLUserGenerator(HTTPHandlerService httpService, User usr){
-		this.httpService = httpService;
+	public HTMLUserGenerator(ModuleContext mc, Properties props, User usr){
+		this.mcontext = mc;
+		this.properties = props;
 	
 	    //Create the Model Mapper
 	    LogUtils.logDebug(getModuleContext(), getClass(),
@@ -134,7 +143,7 @@ public class HTMLUserGenerator {
      * @see HTMLUserGenerator#moduleContext
      */
     public final ModuleContext getModuleContext() {
-        return httpService.getContext();
+        return mcontext;
     }
 
     /**
@@ -154,7 +163,7 @@ public class HTMLUserGenerator {
      * @see HTMLUserGenerator#properties
      */
     public final String getProperty(String key) {
-    	return httpService.getProperties().getProperty(key);
+    	return properties.getProperty(key);
     }
     
     /**
@@ -168,7 +177,7 @@ public class HTMLUserGenerator {
      * @see HTMLUserGenerator#properties
      */
     public final String getProperty(String key, String defaultVal) {
-    	return httpService.getProperties().getProperty(key, defaultVal);
+    	return properties.getProperty(key, defaultVal);
     }
 
     /**
@@ -261,12 +270,20 @@ public class HTMLUserGenerator {
 		while (getFormManagement().getCurrentDialog() == null){
 			handler.userLoggedIn(getCurrentUser(), getUserLocation());
 			if (getFormManagement().getCurrentDialog() == null){
+				FormManager fm = getFormManagement();
 				try {
-					getFormManagement().wait();
+					synchronized (fm) {
+						fm.wait();
+					}
 				} catch (InterruptedException e) {}
 			}
 		}
-		return getModelMapper().getModelFor(getCurrentForm()).generateHTML().toString();
+		FormModel fm = (FormModel) getModelMapper().getModelFor(getCurrentForm()); 
+		if (fm == null){
+			LogUtils.logError(getModuleContext(), getClass(), "getHTML", "unable to map Form");
+			return getHTML();
+		}
+		return fm.generateHTML().toString();
 	}
 
 	/**

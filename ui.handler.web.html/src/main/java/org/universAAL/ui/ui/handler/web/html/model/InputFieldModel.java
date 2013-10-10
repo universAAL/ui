@@ -36,7 +36,7 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  * @author amedrano
  * 
  */
-public abstract class InputFieldModel extends InputModel {
+public class InputFieldModel extends InputModel {
 
 	/**
 	 * @param fe
@@ -51,8 +51,7 @@ public abstract class InputFieldModel extends InputModel {
 		boolean res = false;
 		try {
 			InputField i = (InputField) fe;
-			if (i.isOfPrimitiveType() 
-					&& strings.length > 0) {
+			if ( strings.length > 0) {
 				Object val = i.getValue();
 				if (i.isOfBooleanType()){
 					res = i.storeUserInput(Boolean.valueOf(strings[0]));
@@ -111,13 +110,11 @@ public abstract class InputFieldModel extends InputModel {
 	 */
 	public StringBuffer generateInputHTML() {
 		InputField i = (InputField) fe;
-		if (i.isOfPrimitiveType()) {
-			Object val = i.getValue();
-			setTypeProperties(inputProperties, val);
-			if (i.isSecret()){
-				inputProperties.put("type", "password");
-			} 
-		}
+		Object val = i.getValue();
+		setTypeProperties(inputProperties, val);
+		if (i.isSecret()){
+			inputProperties.put("type", "password");
+		} 
 		StringBuffer defaultInput = new StringBuffer();
 		if (i.isOfBooleanType()){
 			Properties defInProp = new Properties();
@@ -136,7 +133,8 @@ public abstract class InputFieldModel extends InputModel {
 	public static void setTypeProperties(Properties prop, Object val) {
 		// Default.
 		prop.put("type", "text");
-		if (val != null){
+		if (val != null
+				&& !val.toString().isEmpty()){
 			prop.put("value", val.toString());
 		}
 
@@ -144,7 +142,7 @@ public abstract class InputFieldModel extends InputModel {
 			prop.put("type", "checkbox");
 			prop.put("value", "true");
 			if (((Boolean)val).booleanValue()){
-				prop.put("checked", null);
+				prop.put("checked", "");
 			}
 		}
 		if (val instanceof XMLGregorianCalendar){
