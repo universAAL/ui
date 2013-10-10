@@ -43,20 +43,6 @@ implements ChangeListener {
 	 */
     private static final int SPINNER_SLIDER_THRESHOLD = 25;
     
-    /**
-     * Minimum value by the model.
-     */
-	private int mnValue;
-	
-	/**
-     * Maximum value by the model.
-     */
-	private int mxValue;
-	
-	/**
-     * Actual value by the model.
-     */
-	private int initValue;
 
     /**
      * Constructor.
@@ -64,11 +50,6 @@ implements ChangeListener {
      */
     public RangeModel(Range control, Renderer render) {
         super(control, render);
-        Comparable min_Value = ((Range) fc).getMinValue();
-        mnValue = ((Integer) min_Value).intValue();
-        Comparable max_Value = ((Range) fc).getMaxValue();
-        mxValue = ((Integer) max_Value).intValue();
-        initValue = ((Integer) fc.getValue()).intValue();
     }
 
     /**
@@ -77,13 +58,14 @@ implements ChangeListener {
      * @return {@inheritDoc}
      */
     public JComponent getNewComponent() {
-        if ((mxValue - mnValue) < SPINNER_SLIDER_THRESHOLD) {
+    	Range r = (Range)fc;
+        if (r.getRangeLength() < SPINNER_SLIDER_THRESHOLD) {
             JSpinner spinner = new JSpinner(getSpinnerModel());
             spinner.addChangeListener(this);
             return spinner;
         }
         else {
-            JSlider slider = new JSlider(mnValue, mxValue, initValue);
+            JSlider slider = new JSlider(0, r.getRangeLength(), r.getStepsValue());
             slider.addChangeListener(this);
             return slider;
         }
@@ -94,10 +76,11 @@ implements ChangeListener {
      * @return
      */
     private SpinnerModel getSpinnerModel() {
-        return new SpinnerNumberModel(initValue,
-                mnValue,
-                mxValue,
-                ((Range) fc).getStep().intValue());
+    	Range r = (Range)fc;
+        return new SpinnerNumberModel((Number) r.getValue(),
+                r.getMinValue(),
+                r.getMaxValue(),
+                r.getStep());
     }
     
     /**
@@ -115,15 +98,15 @@ implements ChangeListener {
     public void stateChanged(final ChangeEvent e) {
     	TaskQueue.addTask(new Runnable() {
     		public void run() {
-    			int value;
     			// Check UserInput Type is Integer!
     			if (e.getSource() instanceof JSpinner) {
-    				value = ((Integer) ((JSpinner) e.getSource()).getValue()).intValue();
+    				 Object value = ((JSpinner) e.getSource()).getValue();
+    				 ((Range)fc).storeUserInput(value);
     			}
     			else {
-    				value = ((JSlider) e.getSource()).getValue();
+    				int value = ((JSlider) e.getSource()).getValue();
+    				((Range)fc).storeUserInput(((Range)fc).stepValue(value));
     			}
-    			((Range) fc).storeUserInput(new Integer(value));
     		}
     	});
     }
