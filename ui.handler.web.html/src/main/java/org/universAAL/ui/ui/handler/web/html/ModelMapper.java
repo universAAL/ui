@@ -166,6 +166,8 @@ public final class ModelMapper {
      *         the found LAF extension for the component.
      */
     public Model getModelFor(FormElement fe) {
+    	if (fe == null)
+    		return null;
         return (Model) getModelFor(fe, fe.getClass());
     }
 

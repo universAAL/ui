@@ -77,7 +77,11 @@
       <version>2.5</version>
       <scope>provided</scope>
     </dependency>
-            
+    <dependency>
+    	<groupId>org.universAAL.ui</groupId>
+    	<artifactId>ui.internationalization.util</artifactId>
+    	<scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

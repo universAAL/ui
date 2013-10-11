@@ -48,11 +48,11 @@ public class GroupModel extends FormControlModel {
 			if (isInStandardGroup()){
 				return genetareStandard();
 			}
-			if (isInSubmitGroup()
+			if (isInIOGroup()
 					&& !isInMainMenu()){
 				return generateIO();
 			}
-			if (isInSubmitGroup()
+			if (isInIOGroup()
 					&& isInMainMenu()){
 				return generateKickerGroup();
 			}
@@ -70,9 +70,11 @@ public class GroupModel extends FormControlModel {
 	private StringBuffer generateNormal() {
 		Group g = (Group) fe;
 		FormControl[] child = g.getChildren();
-		LabelModel lm = (LabelModel) getModelFor(g.getLabel());
-		StringBuffer legend = tag("legend", lm.getImgText(), null);
-		
+		StringBuffer legend = new StringBuffer();
+		if (g.getLabel() != null) {
+			LabelModel lm = (LabelModel) getModelFor(g.getLabel());
+			legend.append(tag("legend", lm.getImgText(), null));
+		}
 		return tag("filedset", legend.append(getContentAccordingToRecommendations(child)), null);
 	}
 
