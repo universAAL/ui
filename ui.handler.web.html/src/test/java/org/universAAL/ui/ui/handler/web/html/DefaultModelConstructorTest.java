@@ -45,7 +45,17 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
-import org.universAAL.ui.ui.handler.web.html.model.*;
+import org.universAAL.ui.ui.handler.web.html.model.GroupModel;
+import org.universAAL.ui.ui.handler.web.html.model.InputFieldModel;
+import org.universAAL.ui.ui.handler.web.html.model.LabelModel;
+import org.universAAL.ui.ui.handler.web.html.model.MediaObjectModel;
+import org.universAAL.ui.ui.handler.web.html.model.RangeModel;
+import org.universAAL.ui.ui.handler.web.html.model.RepeatModel;
+import org.universAAL.ui.ui.handler.web.html.model.Select1Model;
+import org.universAAL.ui.ui.handler.web.html.model.SelectModel;
+import org.universAAL.ui.ui.handler.web.html.model.SimpleOutputModel;
+import org.universAAL.ui.ui.handler.web.html.model.SubmitModel;
+import org.universAAL.ui.ui.handler.web.html.model.TextAreaModel;
 import org.universAAL.ui.ui.handler.web.html.support.TestGenerator;
 
 
@@ -90,6 +100,13 @@ public class DefaultModelConstructorTest extends TestCase{
 		}
 	}
 	
+	/** {@ inheritDoc}	 */
+	protected void tearDown() throws Exception {
+		pw.flush();
+		super.tearDown();
+	}
+
+
 	public void testGroup(){
 		Group g = new Group(f.getIOControls(),
 				l,
@@ -97,7 +114,6 @@ public class DefaultModelConstructorTest extends TestCase{
 				null, 
 				null);
 		pw.println(new GroupModel(g, testRender).generateHTML());	
-		pw.flush();
 	}
 
 	
@@ -108,7 +124,6 @@ public class DefaultModelConstructorTest extends TestCase{
 				null,
 				null);
 		pw.println(new InputFieldModel(i, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testInputField2(){
 		InputField i = new InputField(f.getIOControls(),
@@ -117,7 +132,6 @@ public class DefaultModelConstructorTest extends TestCase{
 				null,
 				new String (""));
 		pw.println(new InputFieldModel(i, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testInputField3(){
 		InputField i = new InputField(f.getIOControls(),
@@ -127,7 +141,6 @@ public class DefaultModelConstructorTest extends TestCase{
 				new String("lala"));
 		i.setSecret();
 		pw.println(new InputFieldModel(i, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testInputField4(){
 		InputField i = new InputField(f.getIOControls(),
@@ -136,19 +149,16 @@ public class DefaultModelConstructorTest extends TestCase{
 				null,
 				new Locale("en"));
 		pw.println(new InputFieldModel(i, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testLabel(){
 		pw.println(new LabelModel(l, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testMediaObject(){
 		pw.println(new MediaObjectModel(
 				new MediaObject(f.getIOControls(), l, "image/png", "app/Health2.png")
 				, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testRange1(){
@@ -161,7 +171,6 @@ public class DefaultModelConstructorTest extends TestCase{
 								Integer.valueOf(12), true)),
 								Integer.valueOf(5));
 		pw.println(new RangeModel(r, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testRange2(){
 		Range r = new Range(
@@ -173,14 +182,12 @@ public class DefaultModelConstructorTest extends TestCase{
 								Integer.valueOf(100), true)),
 								Integer.valueOf(50));
 		pw.println(new RangeModel(r, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testSelect1(){
 		Select1 s1 = new Select1(f.getIOControls(), l, getPath("Select1"), null, "Opt2");
 		s1.generateChoices(new String[] { "Opt1", "Opt2", "Opt3" });
 		pw.println(new Select1Model(s1, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testSelect(){
@@ -194,7 +201,6 @@ public class DefaultModelConstructorTest extends TestCase{
 				Integer.valueOf(10),
 				Integer.valueOf(12)});
 		pw.println(new SelectModel(s, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSelectBis(){
 		Select s = new Select(f.getIOControls(), l, getPath("Select"), null,
@@ -208,38 +214,31 @@ public class DefaultModelConstructorTest extends TestCase{
 				Integer.valueOf(10),
 				Integer.valueOf(12)});
 		pw.println(new SelectModel(s, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testSimpleOutput1(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "");
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSimpleOutput2(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Boolean.TRUE);
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSimpleOutput3(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "hello world");
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSimpleOutput4(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Locale.ENGLISH);
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSimpleOutput5(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Integer.valueOf(5));
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testSimpleOutput6(){
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, LONG_TEXT);
 		pw.println(new SimpleOutputModel(so, testRender).generateHTML());
-		pw.flush();
 	}
 
 /*	public void testSubdialogTrigger(){
@@ -253,34 +252,28 @@ public class DefaultModelConstructorTest extends TestCase{
 	public void testSubmit(){
 		Submit s = new Submit(f.getSubmits(), l, "some#Id");
 		pw.println(new SubmitModel(s, testRender).generateHTML());
-		pw.flush();
 	}
 
 	public void testTextArea(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, null);
 		pw.println(new TextAreaModel(ta, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testTextArea1(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "");
 		pw.println(new TextAreaModel(ta, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testTextArea2(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "some text");
 		pw.println(new TextAreaModel(ta, testRender).generateHTML());
-		pw.flush();
 	}
 	public void testTextArea3(){
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, LONG_TEXT);
 		pw.println(new TextAreaModel(ta, testRender).generateHTML());
-		pw.flush();
 	}
 	
 	public void testRepeat(){
 		Repeat r = getRepeat();
 		pw.println(new RepeatModel(r, testRender).generateHTML());
-		pw.flush();
 	}
 	
 	private Repeat getRepeat(){

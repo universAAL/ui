@@ -21,7 +21,6 @@ import java.util.Properties;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
-import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
 /**
@@ -44,6 +43,9 @@ public abstract class FormControlModel extends Model {
 		String title = getTitle();
 		if (!title.isEmpty())			
 			fcProps.put("title", getTitle());
+		String cssStyle = recModel.getFullCSSStyle();
+		if (!cssStyle.isEmpty())
+			fcProps.put("style", cssStyle);
 	}
 
 	/**

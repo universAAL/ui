@@ -42,6 +42,8 @@ public abstract class Model {
 	 */
 	private HTMLUserGenerator render;
 	
+	
+	protected RecommendationModel recModel; 
 	/**
 	 * @param fe
 	 * @param render
@@ -50,6 +52,7 @@ public abstract class Model {
 		super();
 		this.fe = fe;
 		this.render = render;
+		this.recModel = new RecommendationModel(this.fe); 
 	}
 	
 	/**
