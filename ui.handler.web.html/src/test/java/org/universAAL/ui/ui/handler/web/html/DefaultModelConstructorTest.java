@@ -18,6 +18,7 @@ package org.universAAL.ui.ui.handler.web.html;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,10 +94,17 @@ public class DefaultModelConstructorTest extends TestCase{
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");
 		testRender = new TestGenerator(mc);
+		File f = new File("./target/cache/modelConstructor.htm");
+		
 		try {
-			pw = new PrintWriter(new File("./target/cache/modelConstructor.htm"));
+			if (!f.exists()){
+				f.getParentFile().mkdirs();
+				f.createNewFile();
+			}
+			pw = new PrintWriter(f);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
