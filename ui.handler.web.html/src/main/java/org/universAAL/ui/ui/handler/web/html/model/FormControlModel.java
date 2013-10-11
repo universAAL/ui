@@ -16,9 +16,12 @@
 
 package org.universAAL.ui.ui.handler.web.html.model;
 
+import java.util.Properties;
+
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
 /**
@@ -28,6 +31,7 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 public abstract class FormControlModel extends Model {
 
 	private LabelModel label;
+	protected Properties fcProps;
 	
 	/**
 	 * @param fe
@@ -35,6 +39,11 @@ public abstract class FormControlModel extends Model {
 	 */
 	public FormControlModel(FormControl fe, HTMLUserGenerator render) {
 		super(fe, render);
+		fcProps = new Properties();
+		fcProps.put("name", fe.getURI());
+		String title = getTitle();
+		if (!title.isEmpty())			
+			fcProps.put("title", getTitle());
 	}
 
 	/**
@@ -59,6 +68,13 @@ public abstract class FormControlModel extends Model {
 		return hintAndHelp;
 	}
 
+	public abstract StringBuffer generateHTMLWithoutLabel();
+	
+	public StringBuffer generateHTML(){
+		StringBuffer label = getLabelModel().getLabelFor(fcProps.getProperty("name"));
+		return label.append(generateHTMLWithoutLabel());
+	}
+	
 	/**
 	 * test whether this {@link FormControl} is in a Message type dialog.
 	 * 

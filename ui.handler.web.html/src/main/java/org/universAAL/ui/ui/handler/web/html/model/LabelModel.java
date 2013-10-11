@@ -75,7 +75,8 @@ public class LabelModel extends Model {
 	}
 
 	private StringBuffer getIcon(){
-		Properties p = getSRCProp(((Label)fe).getIconURL());
+		Properties p = new Properties();
+		 addSRCProp(p, ((Label)fe).getIconURL());
 		if (p.contains("src")){
 			p.put("class", "labelIMG");
 			return singleTag("img", p);

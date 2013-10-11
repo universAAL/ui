@@ -178,4 +178,10 @@ public class GroupModel extends FormControlModel {
 		return table;
 	}
 
+	/** {@ inheritDoc}	 */
+	public StringBuffer generateHTMLWithoutLabel() {
+		// Not Used
+		return null;
+	}
+
 }

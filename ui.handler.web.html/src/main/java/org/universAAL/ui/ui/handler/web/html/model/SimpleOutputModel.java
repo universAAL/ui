@@ -38,24 +38,19 @@ public class SimpleOutputModel extends OutputModel {
 	}
 
 	/** {@ inheritDoc}	 */
-	public StringBuffer generateHTML() {
-		Properties p = new Properties();
-		p.put("readonly", "");
-		p.put("name", fe.getURI());
-		String title = getTitle();
-		if (!title.isEmpty())
-			p.put("title", title);
+	public StringBuffer generateHTMLWithoutLabel() {
+		fcProps.put("readonly", "");
+		
 		StringBuffer content;
 		Object val = ((SimpleOutput)fe).getValue();
 		if (val instanceof String
 				&& ((String)val).length() > TA_THRESHOLD){
-			content = tag("textarea", (String) val, p);
+			content = tag("textarea", (String) val, fcProps);
 		} else {
-			InputFieldModel.setTypeProperties(p, ((SimpleOutput)fe).getContent() );
-			content = singleTag("input", p);
+			InputFieldModel.setInputTypeProperties(fcProps, ((SimpleOutput)fe).getContent() );
+			content = singleTag("input", fcProps);
 		}
-		StringBuffer label = getLabelModel().getLabelFor(fe.getURI());
-		return label.append(content);
+		return content;
 	}
 
 }

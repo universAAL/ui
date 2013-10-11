@@ -27,9 +27,6 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  */
 public abstract class InputModel extends FormControlModel {
 
-	protected Properties inputProperties;
-
-
 	/**
 	 * Constructor.
 	 * @param fe
@@ -37,17 +34,15 @@ public abstract class InputModel extends FormControlModel {
 	 */
 	public InputModel(Input fe, HTMLUserGenerator render) {
 		super(fe, render);
-		inputProperties = new Properties();
-		inputProperties.put("name", fe.getURI());
 		if (isErroneousOrMissing()){
-			inputProperties.put("class", "missingInput");
+			fcProps.put("class", "missingInput");
 		}
 		String hlp = ((Input)fe).getHelpString();
 		if (hlp != null)
-			inputProperties.put("title", hlp);
+			fcProps.put("title", hlp);
 		String hnt = ((Input)fe).getHintString();
 		if (hnt !=null)
-			inputProperties.put("placeholder", hnt);
+			fcProps.put("placeholder", hnt);
 	}
 
 	/**
@@ -59,8 +54,7 @@ public abstract class InputModel extends FormControlModel {
 	 */
 	public abstract boolean updateInput(String[] strings);
 	
-	public StringBuffer generateHTML() {
-		StringBuffer label = getLabelModel().getLabelFor(inputProperties.getProperty("name"));
+	public StringBuffer generateHTMLWithoutLabel() {
 
 		StringBuffer missing = new StringBuffer();
 		if (isErroneousOrMissing()){
@@ -68,7 +62,7 @@ public abstract class InputModel extends FormControlModel {
 			p.put("class", "missingInput");
 			missing = tag("b", ((Input)fe).getAlertString(), p); 
 		}
-		return label.append(generateInputHTML()).append(missing);
+		return generateInputHTML().append(missing);
 	}
 	
 	/**
