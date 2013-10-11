@@ -17,9 +17,6 @@
 package org.universAAL.ui.ui.handler.web.html.model;
 
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -111,26 +108,28 @@ public class InputFieldModel extends InputModel {
 	public StringBuffer generateInputHTML() {
 		InputField i = (InputField) fe;
 		Object val = i.getValue();
-		setTypeProperties(inputProperties, val);
+		setInputTypeProperties(fcProps, val);
 		if (i.isSecret()){
-			inputProperties.put("type", "password");
+			fcProps.put("type", "password");
 		} 
 		StringBuffer defaultInput = new StringBuffer();
 		if (i.isOfBooleanType()){
 			Properties defInProp = new Properties();
 			defInProp.put("type", "hidden");
-			defInProp.put("name", inputProperties.get("name"));
+			defInProp.put("name", fcProps.get("name"));
 			defInProp.put("value", "false");
 			defaultInput.append(singleTag("input",defInProp ));
 		}
-		return singleTag("input", inputProperties).append(defaultInput);
+		return singleTag("input", fcProps).append(defaultInput);
 	}
 
 	/**
+	 * Add properties to input properties. According to type of val
+	 * the type and value of the input will be generated.
 	 * @param prop the properties to edit
 	 * @param val the value to work with.
 	 */
-	public static void setTypeProperties(Properties prop, Object val) {
+	public static void setInputTypeProperties(Properties prop, Object val) {
 		// Default.
 		prop.put("type", "text");
 		if (val != null

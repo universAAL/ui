@@ -82,12 +82,19 @@ public class SubmitModel extends FormControlModel {
 	}
 
 	private StringBuffer getIcon(){
-		Properties p = getSRCProp(((Label)fe).getIconURL());
+		Properties p = new Properties();
+		addSRCProp(p, ((Label)fe).getIconURL());
 		if (p.contains("src")){
 			p.put("class", "buttonIMG");
 			return singleTag("img", p);
 		}
 		else 
 			return new StringBuffer();
+	}
+
+	/** {@ inheritDoc}	 */
+	public StringBuffer generateHTMLWithoutLabel() {
+		// no label needed
+		return generateHTML();
 	}
 }

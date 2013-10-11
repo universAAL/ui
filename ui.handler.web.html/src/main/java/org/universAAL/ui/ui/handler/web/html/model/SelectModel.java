@@ -58,8 +58,8 @@ public class SelectModel extends InputModel {
 	}
 	
 	private StringBuffer selectHTML(){
-		inputProperties.put("multiple", "");
-		return tag("select", selectOptionsHTML(), inputProperties);
+		fcProps.put("multiple", "");
+		return tag("select", selectOptionsHTML(), fcProps);
 	}
 	
 	protected StringBuffer selectOptionsHTML(){

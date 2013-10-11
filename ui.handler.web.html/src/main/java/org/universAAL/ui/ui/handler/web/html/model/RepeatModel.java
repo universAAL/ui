@@ -27,7 +27,7 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
 /**
  * @author amedrano
- *
+ * 
  */
 public class RepeatModel extends GroupModel {
 
@@ -39,29 +39,27 @@ public class RepeatModel extends GroupModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTML() {
-		List Vforms = ((Repeat)fe).virtualFormExpansion();
+		List Vforms = ((Repeat) fe).virtualFormExpansion();
 		int i = 0;
 		StringBuffer table = new StringBuffer();
+		// TODO add label (spanning first row and row headers,
 		for (Iterator it = Vforms.iterator(); it.hasNext();) {
 			Form f = (Form) it.next();
 			StringBuffer rowHTML = new StringBuffer();
 			FormControl[] fcs = f.getIOControls().getChildren();
 			for (int col = 0; col < fcs.length; col++) {
-					rowHTML.append(
-							tag("td",
-									getModelFor(fcs[col]).generateHTML(),
-									null));
+				rowHTML.append(tag("td",
+				// don't add labels on cells
+						((FormControlModel) getModelFor(fcs[col]))
+								.generateHTMLWithoutLabel(), null));
 			}
-			table.append(
-					tag("tr", rowHTML, null)
-					);
+			table.append(tag("tr", rowHTML, null));
 			i++;
 		}
-		Properties p = new Properties();
-		p.put("class", "repeat");
-		return tag("table", table, p);
+		fcProps.put("class", "repeat");
+		return tag("table", table, fcProps);
 	}
 
 }

@@ -35,7 +35,7 @@ public class TextAreaModel extends InputModel {
 
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateInputHTML() {
-		return tag("textarea", ((TextArea)fe).getValue().toString(), inputProperties);
+		return tag("textarea", ((TextArea)fe).getValue().toString(), fcProps);
 	}
 
 	/** {@ inheritDoc}	 */

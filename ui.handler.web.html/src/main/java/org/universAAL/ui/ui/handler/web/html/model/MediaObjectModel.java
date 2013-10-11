@@ -21,8 +21,6 @@ import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
-import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
-import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
 
 /**
  * @author amedrano
@@ -39,41 +37,38 @@ public class MediaObjectModel extends OutputModel {
 	}
 
 	/** {@ inheritDoc}	 */
-	public StringBuffer generateHTML() {
+	public StringBuffer generateHTMLWithoutLabel() {
 		MediaObject mo = (MediaObject) fe;
 		if (mo.getContentType().startsWith("image")) {
-			Properties p = getSRCProp(mo.getContentURL());
-			String title = getTitle();
-			if (!title.isEmpty())			
-				p.put("title", getTitle());
-			p.put("width", Integer.toString(mo.getResolutionPreferredX()));
-			p.put("height", Integer.toString(mo.getResolutionPreferredY()));
+			addSRCProp(fcProps, mo.getContentURL());
+			if (mo.getResolutionPreferredX() > 0)
+				fcProps.put("width", Integer.toString(mo.getResolutionPreferredX()));
+			if (mo.getResolutionPreferredY() > 0)
+				fcProps.put("height", Integer.toString(mo.getResolutionPreferredY()));
 			//TODO set Alt Text with label
 			//TODO set sizes in style from recommendations
-			return singleTag("img", p);
+			return singleTag("img", fcProps);
 		}
 		if (mo.getContentType().startsWith("audio")){
-			Properties p = new Properties();
-			p.put("autoplay", "");
-			Properties src = getSRCProp(mo.getContentURL());
-			return tag("audio", singleTag("source", src).append(singleTag("embed", src)), p);
+			fcProps.put("autoplay", "");
+			Properties src = new Properties();
+			 addSRCProp(null, mo.getContentURL());
+			return tag("audio", singleTag("source", src).append(singleTag("embed", src)), fcProps);
 		}
 		if (mo.getContentType().startsWith("video")){
-			Properties p = new Properties();
-			p.put("autoplay", "");
-			p.put("width", Integer.toString(mo.getResolutionPreferredX()));
-			p.put("height", Integer.toString(mo.getResolutionPreferredY()));
+			fcProps.put("autoplay", "");
+			fcProps.put("width", Integer.toString(mo.getResolutionPreferredX()));
+			fcProps.put("height", Integer.toString(mo.getResolutionPreferredY()));
 			//TODO set sizes in style from recommendations
-			Properties src = getSRCProp(mo.getContentURL());
-			return tag("video", singleTag("source", src).append(singleTag("embed", src)), p);
+			Properties src = new Properties();
+			addSRCProp(null, mo.getContentURL());
+			return tag("video", singleTag("source", src).append(singleTag("embed", src)), fcProps);
 		}
 		if (mo.getContentType().equalsIgnoreCase("text/html")){
-			Properties p = getSRCProp(mo.getContentURL());
-			p.put("seamless", "");
+			addSRCProp(fcProps, mo.getContentURL());
+			fcProps.put("seamless", "");
 			//TODO set sizes in style from recommendations
-			return tag("iframe","",p);
-			
-			
+			return tag("iframe","",fcProps);
 		}
 		return new StringBuffer();
 	}

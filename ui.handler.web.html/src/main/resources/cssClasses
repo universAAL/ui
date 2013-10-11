@@ -1,6 +1,7 @@
-RootGroup 					IDs: {MainMenuButtonsGroup, IOControlsGroup, StandardGroup, SubmitsGroup} 
-labelIMG
-missingInput
+div:RootGroup 					IDs: {MainMenuButtonsGroup, IOControlsGroup, StandardGroup, SubmitsGroup} 
+div:labelIMG
+input:missingInput
 button:standardButton
 button:submitButton
 button:kickerButton
+table:repeat

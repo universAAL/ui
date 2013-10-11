@@ -42,7 +42,7 @@ public class Select1Model extends SelectModel {
 	}
 
 	private StringBuffer selectHTML(){
-		return tag("select", selectOptionsHTML(), inputProperties);
+		return tag("select", selectOptionsHTML(), fcProps);
 	}
 	
 	/** {@ inheritDoc}	 */

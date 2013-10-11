@@ -36,13 +36,13 @@ public class RangeModel extends InputModel {
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateInputHTML() { 
 		Range r = (Range) fe;
-		inputProperties.put("type", "range");
-		inputProperties.put("min", "0");
-		inputProperties.put("max", Integer.toString(r.getRangeLength()));
-		inputProperties.put("step", "1");
-		inputProperties.put("value", Integer.toString(r.getStepsValue()));
+		fcProps.put("type", "range");
+		fcProps.put("min", "0");
+		fcProps.put("max", Integer.toString(r.getRangeLength()));
+		fcProps.put("step", "1");
+		fcProps.put("value", Integer.toString(r.getStepsValue()));
 		
-		return singleTag("input", inputProperties);
+		return singleTag("input", fcProps);
 	}
 
 	/** {@ inheritDoc}	 */
