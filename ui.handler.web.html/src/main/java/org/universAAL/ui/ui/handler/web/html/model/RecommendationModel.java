@@ -127,7 +127,10 @@ public class RecommendationModel {
 	}
 	
 	public String getCSSStyle(){
-		return style;
+		if (style != null)
+			return style;
+		else 
+			return "";
 	}
 	
 	public String getFullCSSStyle(){
