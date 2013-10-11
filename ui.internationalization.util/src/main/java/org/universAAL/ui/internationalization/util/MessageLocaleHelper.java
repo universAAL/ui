@@ -332,30 +332,32 @@ public class MessageLocaleHelper {
      *         {@link UIPreferencesSubProfile}.
      */
     public final Locale getUserLocaleFromPreferredLanguage() {
-	// find REAL USER's LOCALE
-    	Language lang = null;
-	try {
-		uiPreferencesSubprofile.getInteractionPreferences()
-				.getPreferredLanguage();
-	    return getLocaleFromLanguageIso639code(lang);
-	} catch (Exception e) {
-	    /*
-	     * a locale couldn't be created, Try secondary language. This is
-	     * highly improbable, unless the hardware is incompatible with the
-	     * locale.
-	     */
-	    try {
-		lang = uiPreferencesSubprofile.getInteractionPreferences()
-			.getSecondaryLanguage();
-		return getLocaleFromLanguageIso639code(lang);
-	    } catch (Exception e1) {
-		// OR
-		// check system property
-		// check default system locale?
-		// if everything else fails then english?
-		return Locale.ENGLISH;
-	    }
-	}
+    	// find REAL USER's LOCALE
+    	if (uiPreferencesSubprofile.getInteractionPreferences() == null)
+    		return Locale.ENGLISH;
+    	Language lang = uiPreferencesSubprofile.getInteractionPreferences()
+    			.getPreferredLanguage();
+
+    	try {
+    		return getLocaleFromLanguageIso639code(lang);
+    	} catch (Exception e) {
+    		/*
+    		 * a locale couldn't be created, Try secondary language. This is
+    		 * highly improbable, unless the hardware is incompatible with the
+    		 * locale.
+    		 */
+    		try {
+    			lang = uiPreferencesSubprofile.getInteractionPreferences()
+    					.getSecondaryLanguage();
+    			return getLocaleFromLanguageIso639code(lang);
+    		} catch (Exception e1) {
+    			// OR
+    			// check system property
+    			// check default system locale?
+    			// if everything else fails then english?
+    			return Locale.ENGLISH;
+    		}
+    	}
     }
 
     /**
