@@ -51,7 +51,7 @@ public class FormModel extends Model {
 		StringBuffer title = tag("title", ((Form)fe).getTitle(), null);
 		Properties charP = new Properties();
 		charP.put("charset", "UTF-8");
-		StringBuffer charset = singleTag("meda", charP);
+		StringBuffer charset = singleTag("meta", charP);
 		/*
 		<head>
 			<link rel="stylesheet" type="text/css" href="####">
@@ -87,7 +87,7 @@ public class FormModel extends Model {
 		
 		//General Form
 		Properties formP = new Properties();
-		formP.put("action", "./"+ getRenderer().getProperty(HTTPHandlerService.SERVICE_URL));
+		formP.put("action", "."+ getRenderer().getProperty(HTTPHandlerService.SERVICE_URL));
 //		formP.put("name", ((Form)fe).getDialogID());
 		formP.put("method", "post");
 		StringBuffer form = tag("form", dID.append(groups), formP);
