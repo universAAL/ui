@@ -1,7 +1,9 @@
 UI Handler Web html based
 
 Copyright 2013 Universidad Politécnica de Madrid http://www.upm.es
-
+ 				Life Supporting Technologies
+Copyright 2013 Fraunhofer IGD, http://www.igd.fraunhofer.de
+				Institute for Computer Graphics Research
 
 I. Included Software
 
