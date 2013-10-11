@@ -22,6 +22,7 @@ import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
@@ -45,6 +46,27 @@ public class RepeatModel extends GroupModel {
 		int i = 0;
 		StringBuffer table = new StringBuffer();
 		// TODO add label (spanning first row and row headers,
+			FormControl[] headFCs = ((Repeat) fe).getChildren();
+			if (headFCs[0] instanceof Group){
+				headFCs = ((Group) headFCs[0]).getChildren();
+			}
+		StringBuffer title = getLabelModel().getImgText();
+		if (title.length() > 0){
+			Properties head = new Properties();
+			head.put("class", "repeatLabel");
+			if (headFCs.length > 1)
+				head.put("colspan", Integer.toString(headFCs.length));
+			table.append(tag("tr", tag("th", title, head), null));
+		}
+		StringBuffer th = new StringBuffer();
+		for (int j = 0; j < headFCs.length; j++) {
+			FormControlModel fcm = (FormControlModel) getRenderer().getModelMapper().getModelFor(headFCs[j]);
+			StringBuffer label = fcm.getLabelModel().getImgText();
+			Properties lp = new Properties();
+			lp.put("class", "repeatColLabel");
+			th.append(tag("th", label, lp));
+		}
+		table.append(tag("tr", th, null));
 		for (Iterator it = Vforms.iterator(); it.hasNext();) {
 			Form f = (Form) it.next();
 			StringBuffer rowHTML = new StringBuffer();

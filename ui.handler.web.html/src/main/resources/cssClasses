@@ -5,3 +5,5 @@ button:standardButton
 button:submitButton
 button:kickerButton
 table:repeat
+th:repeatLabel
+th:repeatColLabel
