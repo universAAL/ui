@@ -333,10 +333,9 @@ public class MessageLocaleHelper {
      */
     public final Locale getUserLocaleFromPreferredLanguage() {
 	// find REAL USER's LOCALE
-	Language lang = uiPreferencesSubprofile.getInteractionPreferences()
-		.getPreferredLanguage();
-
 	try {
+		Language lang = uiPreferencesSubprofile.getInteractionPreferences()
+				.getPreferredLanguage();
 	    return getLocaleFromLanguageIso639code(lang);
 	} catch (Exception e) {
 	    /*
