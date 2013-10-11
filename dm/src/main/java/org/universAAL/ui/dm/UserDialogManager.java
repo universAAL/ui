@@ -48,7 +48,6 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.adapters.AdapterUserImpairments;
 import org.universAAL.ui.dm.adapters.AdapterUserLocation;
-import org.universAAL.ui.dm.adapters.AdaptorKrakow;
 import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
 import org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue;
@@ -261,11 +260,6 @@ public class UserDialogManager implements IDialogManager,
 	// add UI preferences adapter that enriches UIrequest with
 	// UIPreferencesSupprofile data
 	adapterList.add(new AdapterUIPreferences(uiPreferencesSubProfile));
-
-	// FIXME temp tweak for krakow 2 modalities forced jack-web, saied-gui.
-	// To be removed when above is working ok otherwise this will override
-	// things?
-	adapterList.add(new AdaptorKrakow());
 
 	// add user location (if available)
 	adapterList.add(new AdapterUserLocation(DialogManagerImpl

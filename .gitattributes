@@ -11,7 +11,6 @@ dm/src/main/java/org/universAAL/ui/dm/adapters/AdapterDialogPrivacyLevel.java -t
 dm/src/main/java/org/universAAL/ui/dm/adapters/AdapterUIPreferences.java -text
 dm/src/main/java/org/universAAL/ui/dm/adapters/AdapterUserImpairments.java -text
 dm/src/main/java/org/universAAL/ui/dm/adapters/AdapterUserLocation.java -text
-dm/src/main/java/org/universAAL/ui/dm/adapters/AdaptorKrakow.java -text
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
