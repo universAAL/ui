@@ -28,8 +28,6 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  *
  */
 public class GroupModel extends FormControlModel {
-
-	//TODO apply Layout Recommendations to groups.
 	
 	/**
 	 * @param fe
@@ -74,7 +72,7 @@ public class GroupModel extends FormControlModel {
 		LabelModel lm = (LabelModel) getModelFor(g.getLabel());
 		StringBuffer legend = tag("legend", lm.getImgText(), null);
 		
-		return tag("filedset", legend.append(getHorizontalContent(child)), null);
+		return tag("filedset", legend.append(getContentAccordingToRecommendations(child)), null);
 	}
 
 	/**
@@ -103,7 +101,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "IOControlsGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getHorizontalContent(child), p);
+		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
 	/**
@@ -116,7 +114,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "StandardGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getHorizontalContent(child), p);
+		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
 	/**
@@ -130,7 +128,7 @@ public class GroupModel extends FormControlModel {
 		p.put("id", "SubmitsGroup");
 		p.put("class", "RootGroup");
 		
-		return tag("div", getHorizontalContent(child), p);
+		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
 	protected StringBuffer getHorizontalContent(FormControl[] child){
@@ -178,6 +176,21 @@ public class GroupModel extends FormControlModel {
 		return table;
 	}
 
+	protected StringBuffer getContentAccordingToRecommendations(FormControl[] child){
+		if (recModel.isHorizontalLayout()){
+			return getHorizontalContent(child);
+		}
+		if  (recModel.isVerticalLayout()){
+			return getVerticalContent(child);
+		}
+		if (recModel.getGridLayoutCols() > 0){
+			return getTableContent(child, recModel.getGridLayoutCols());
+		}
+		//detault to Horizontal
+		return getHorizontalContent(child);
+	}
+	
+	
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateHTMLWithoutLabel() {
 		// Not Used

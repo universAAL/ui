@@ -20,8 +20,6 @@ import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
-import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
-import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
 
 /**
  * @author amedrano
@@ -70,6 +68,9 @@ public class LabelModel extends Model {
 			a.append(((Label)fe).getText());
 		}
 		Properties p = new Properties();
+		String cssStyle = recModel.getCSSStyle();
+		if (!cssStyle.isEmpty())
+			p.put("style", cssStyle);
 		p.put("for", id);
 		return tag("label", a, p);
 	}
@@ -79,6 +80,9 @@ public class LabelModel extends Model {
 		 addSRCProp(p, ((Label)fe).getIconURL());
 		if (p.contains("src")){
 			p.put("class", "labelIMG");
+			String cssStyle = recModel.getCSSStyle();
+			if (!cssStyle.isEmpty())
+				p.put("style", cssStyle);
 			return singleTag("img", p);
 		}
 		else 

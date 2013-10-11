@@ -19,7 +19,6 @@ import junit.framework.TestCase;
 
 import org.universAAL.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.rdf.Resource;
@@ -28,7 +27,9 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
-import org.universAAL.ui.ui.handler.web.html.model.*;
+import org.universAAL.ui.ui.handler.web.html.model.FormModel;
+import org.universAAL.ui.ui.handler.web.html.model.LabelModel;
+import org.universAAL.ui.ui.handler.web.html.model.SimpleOutputModel;
 import org.universAAL.ui.ui.handler.web.html.support.TestGenerator;
 
 /**
@@ -154,11 +155,11 @@ public class ModelMapperTest extends TestCase {
 //		assertTrue(mp.getModelFor(teteog) instanceof GroupModel);
 //	}
 
-	private void warn() {
-		LogUtils.logWarn(mc, getClass(), "testing",
-				new String[] {"some errors may appear continued,",
-			" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
-				null);
-		
-	}
+//	private void warn() {
+//		LogUtils.logWarn(mc, getClass(), "testing",
+//				new String[] {"some errors may appear continued,",
+//			" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
+//				null);
+//		
+//	}
 }

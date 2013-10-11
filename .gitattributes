@@ -1352,6 +1352,7 @@ ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/Me
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/Model.java -text
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/OutputModel.java -text
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RangeModel.java -text
+ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RecommendationModel.java -text svneol=unset#text/plain
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RepeatModel.java -text
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/Select1Model.java -text
 ui.handler.web.html/src/main/java/org/universAAL/ui/ui/handler/web/html/model/SelectModel.java -text
