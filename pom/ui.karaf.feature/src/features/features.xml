@@ -66,6 +66,7 @@
 		<feature name="uAAL-UI.handler.web.html" description="The New UI Web Handler."
 		version="${pom.version}" resolver='(obr)'>
 		<feature>uAAL-RI.Service.Gateway</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
 		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web.html/2.0.2-SNAPSHOT</bundle>
 	</feature>
 	
