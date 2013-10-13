@@ -168,7 +168,7 @@ public class HTTPHandlerService extends GatewayPort {
 	 * @param user
 	 * @return
 	 */
-	private HTMLUserGenerator getGenerator(String user) {
+	private synchronized HTMLUserGenerator getGenerator(String user) {
 		User u = (User) Resource.getResource(User.MY_URI, user);
 		if (!generatorPool.contains(u)){
 			generatorPool.put(u, new HTMLUserGenerator(getContext(), properties, u));
