@@ -133,6 +133,10 @@ public class HTMLUserGenerator {
 				"starting Handler");
 	    handler = new Handler(this, usr);
 	    missingInputs = new HashSet();
+	    
+	    //Requesting MainMenu for this user
+	    LogUtils.logDebug(mcontext, getClass(), "Constructor for " + usr.getURI(), "requesting Main Menu");
+	    handler.userLoggedIn(usr, getUserLocation());
 	}
 
 
@@ -269,7 +273,6 @@ public class HTMLUserGenerator {
 	 */
 	public String getHTML() {
 		while (getFormManagement().getCurrentDialog() == null){
-			handler.userLoggedIn(getCurrentUser(), getUserLocation());
 			if (getFormManagement().getCurrentDialog() == null){
 				FormManager fm = getFormManagement();
 				try {
