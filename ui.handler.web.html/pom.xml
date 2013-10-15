@@ -10,6 +10,7 @@
 
   <artifactId>ui.handler.web.html</artifactId>
   <version>2.0.2-SNAPSHOT</version>
+  <name>universAAL UI HTML5 Web Handler</name>
   <packaging>bundle</packaging>
 
 
