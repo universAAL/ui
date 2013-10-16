@@ -47,10 +47,12 @@ public class SimpleFormManager implements FormManager {
 //    private HTMLUserGenerator render;
 
     /** {@inheritDoc} */
-    public synchronized void addDialog(UIRequest oe) {
-	currentForm = oe;
-	// add to available forms
-	this.notifyAll();
+    public void addDialog(UIRequest oe) {
+    	synchronized (this) {
+    		currentForm = oe;
+    		// add to available forms
+    		this.notifyAll();
+    	}
     }
 
     /** {@inheritDoc} */
