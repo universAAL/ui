@@ -74,7 +74,11 @@ public abstract class FormControlModel extends Model {
 	public abstract StringBuffer generateHTMLWithoutLabel();
 	
 	public StringBuffer generateHTML(){
-		StringBuffer label = getLabelModel().getLabelFor(fcProps.getProperty("name"));
+		LabelModel lm = getLabelModel();
+		StringBuffer label = new StringBuffer();
+		if (lm != null){
+			label.append(getLabelModel().getLabelFor(fcProps.getProperty("name")));
+		}
 		return label.append(generateHTMLWithoutLabel());
 	}
 	

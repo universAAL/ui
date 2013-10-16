@@ -272,15 +272,14 @@ public class HTMLUserGenerator {
 	 * @return
 	 */
 	public String getHTML() {
-		while (getFormManagement().getCurrentDialog() == null){
-			if (getFormManagement().getCurrentDialog() == null){
-				FormManager fm = getFormManagement();
+		synchronized (fm) {
+		while (fm.getCurrentDialog() == null){
+			if (fm.getCurrentDialog() == null){
 				try {
-					synchronized (fm) {
-						fm.wait();
-					}
+					fm.wait();
 				} catch (InterruptedException e) {}
 			}
+		}
 		}
 		FormModel fm = (FormModel) getModelMapper().getModelFor(getCurrentForm()); 
 		if (fm == null){
@@ -296,7 +295,7 @@ public class HTMLUserGenerator {
 	 */
 	public void processInput(Map parameters){
 		//Check the current form is the sentForm
-		Form f = getFormManagement().getCurrentDialog()
+		Form f = fm.getCurrentDialog()
 				.getDialogForm();
 		if (f.getURI().equals(parameters.get(HIDEN_DIALOG_NAME))){
 			missingInputs.clear();

@@ -28,6 +28,7 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.ui.handler.web.html.fm.FormManager;
 /**
  * Main uAAL interfacing class.
  * The {@link Handler} is responsible of interfacing with universAAL, it will handle
@@ -108,7 +109,8 @@ public final class Handler extends UIHandler {
      * the user's circumstances.
      */
     public void handleUICall(UIRequest req) {
-        render.getFormManagement().addDialog(req);
+    	FormManager fm = render.getFormManagement();
+    	fm.addDialog(req);
     }
 
     /**

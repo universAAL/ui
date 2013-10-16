@@ -20,6 +20,7 @@ package org.universAAL.ui.ui.handler.web.html.model;
 import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
 import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
@@ -66,18 +67,23 @@ public class FormModel extends Model {
 		if (((Form)fe).isStandardDialog()
 				|| ((Form)fe).isSystemMenu()) {
 			// Standard Group
+			Group g = ((Form) fe).getStandardButtons();
 			groups.append(getRenderer().getModelMapper()
-					.getModelFor(((Form) fe).getStandardButtons())
+					.getModelFor(g)
 					.generateHTML());
 		}
 		// Submits Group
-		groups.append(
-				getRenderer().getModelMapper().getModelFor(((Form)fe).getSubmits()).generateHTML());
-		
+		Group submits = ((Form)fe).getSubmits();
+		if (submits != null) {
+			groups.append(getRenderer().getModelMapper().getModelFor(submits)
+					.generateHTML());
+		}
 		// IO Group
-		groups.append(
-				getRenderer().getModelMapper().getModelFor(((Form)fe).getIOControls()).generateHTML());
-		
+		Group iog = ((Form)fe).getIOControls();
+		if (iog != null) {
+			groups.append(getRenderer().getModelMapper().getModelFor(iog)
+					.generateHTML());
+		}
 		// Dialog Id Hidden
 		Properties dp = new Properties();
 		dp.put("type", "hidden");
