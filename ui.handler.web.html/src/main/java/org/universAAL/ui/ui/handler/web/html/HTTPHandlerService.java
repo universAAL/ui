@@ -76,18 +76,18 @@ public class HTTPHandlerService extends GatewayPort {
     /**
      * The properties file.
      */
-    private UpdatedPropertiesFile properties;
+    private static UpdatedPropertiesFile properties;
   
 
 	/**
 	 * The pool of <{@link User}, {@link HTMLUserGenerator}>.
 	 */
-	private Hashtable generatorPool;
+	private static Hashtable generatorPool = new Hashtable();
 	
 	/**
 	 * The pool of <{@link User}, {@link Watchdog}>, to keep all watch dogs leased.
 	 */
-	private Hashtable watchDogKennel;
+	private static Hashtable watchDogKennel= new Hashtable();
 	
 	/**
      * Directory for configuration files.
@@ -115,10 +115,18 @@ public class HTTPHandlerService extends GatewayPort {
 			protected void addDefaults(Properties defaults) {
 				defaults.put(SERVICE_URL, "/universAAL");
 		        defaults.put(RESOURCES_LOC, homeDir + "/resources");
-		        defaults.put(CSS_LOCATION, 
-		        		this.getClass().getClassLoader().getResource("default.css").toString());
+		        //copy the css somewhere and use that 
+		        try {
+					File defCSSF = new File(homeDir, "default.css");
+					new ResourceMapper.Retreiver(this.getClass().getClassLoader().getResource("default.css").openStream(), defCSSF);
+					defaults.put(CSS_LOCATION, 
+							defCSSF.getAbsolutePath());
+				} catch (IOException e) {
+					LogUtils.logWarn(getContext(), getClass(), "addDefaults",
+							new String[]{"unable to copy CSS default file."}, e);
+					defaults.put(CSS_LOCATION,"default.css");
+				}
 		        defaults.put(TIMEOUT, "300000");
-				
 			}
 		};
 		//Load Properties
@@ -131,8 +139,6 @@ public class HTTPHandlerService extends GatewayPort {
 			LogUtils.logError(getContext(), getClass(), "constructor",
 					new String[] {"unable to read properties file"}, e);
 		}
-	    generatorPool = new Hashtable();
-	    watchDogKennel = new Hashtable();
 	}
 
 	/** {@ inheritDoc}	 */
@@ -176,7 +182,7 @@ public class HTTPHandlerService extends GatewayPort {
 		if (!watchDogKennel.contains(u)){
 			watchDogKennel.put(u, new Watchdog(u));
 		}
-		else {
+		else if (watchDogKennel.get(u) != null) {
 			((Watchdog)watchDogKennel.get(u)).liveForAnotherDay();
 		}
 		return (HTMLUserGenerator) generatorPool.get(u);
@@ -194,11 +200,6 @@ public class HTTPHandlerService extends GatewayPort {
 			HTMLUserGenerator ug = getGenerator(user);
 			// gather input and send it to the bus if applicable
 			ug.processInput(req.getParameterMap());
-			// send the latest Available form for the user
-//			PrintWriter os = resp.getWriter();
-//			os.print(ug.getHTML());
-//			os.flush();
-//			os.close();
 			//Redirect to Get
 			resp.sendRedirect(url());
 		}
@@ -234,6 +235,7 @@ public class HTTPHandlerService extends GatewayPort {
 				if (ug != null)
 					ug.finish();
 				generatorPool.remove(user);
+				LogUtils.logInfo(getContext(), getClass(), "run", "Timeout for user: " + user.getURI());
 			}
 			timer.cancel();
 			watchDogKennel.remove(user);
