@@ -171,6 +171,7 @@ public class GroupModel extends FormControlModel {
 				} else {
 					rowHTML.append(tag("td", "", null));
 				}
+				i++;
 			}
 			table.append(
 					tag("tr", rowHTML, null)
