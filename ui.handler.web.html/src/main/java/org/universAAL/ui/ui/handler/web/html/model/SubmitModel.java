@@ -85,7 +85,7 @@ public class SubmitModel extends FormControlModel {
 	private StringBuffer getIcon(){
 		Properties p = new Properties();
 		addSRCProp(p, ((Label)fe).getIconURL());
-		if (p.contains("src")){
+		if (p.containsKey("src")){
 			p.put("class", "buttonIMG");
 			return singleTag("img", p);
 		}

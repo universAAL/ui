@@ -294,6 +294,9 @@ public class HTMLUserGenerator {
 	 * @param parameters
 	 */
 	public void processInput(Map parameters){
+		if (fm.getCurrentDialog()==null){
+			return;
+		}
 		//Check the current form is the sentForm
 		Form f = fm.getCurrentDialog()
 				.getDialogForm();

@@ -76,18 +76,18 @@ public class HTTPHandlerService extends GatewayPort {
     /**
      * The properties file.
      */
-    private static UpdatedPropertiesFile properties;
+    private UpdatedPropertiesFile properties;
   
 
 	/**
 	 * The pool of <{@link User}, {@link HTMLUserGenerator}>.
 	 */
-	private static Hashtable generatorPool = new Hashtable();
+	private Hashtable generatorPool = new Hashtable();
 	
 	/**
 	 * The pool of <{@link User}, {@link Watchdog}>, to keep all watch dogs leased.
 	 */
-	private static Hashtable watchDogKennel= new Hashtable();
+	private Hashtable watchDogKennel= new Hashtable();
 	
 	/**
      * Directory for configuration files.
@@ -120,7 +120,7 @@ public class HTTPHandlerService extends GatewayPort {
 					File defCSSF = new File(homeDir, "default.css");
 					new ResourceMapper.Retreiver(this.getClass().getClassLoader().getResource("default.css").openStream(), defCSSF);
 					defaults.put(CSS_LOCATION, 
-							defCSSF.getAbsolutePath());
+							defCSSF.toURI().toString());
 				} catch (IOException e) {
 					LogUtils.logWarn(getContext(), getClass(), "addDefaults",
 							new String[]{"unable to copy CSS default file."}, e);
@@ -176,10 +176,10 @@ public class HTTPHandlerService extends GatewayPort {
 	 */
 	private synchronized HTMLUserGenerator getGenerator(String user) {
 		User u = (User) Resource.getResource(User.MY_URI, user);
-		if (!generatorPool.contains(u)){
+		if (!generatorPool.containsKey(u)){
 			generatorPool.put(u, new HTMLUserGenerator(getContext(), properties, u));
 		}
-		if (!watchDogKennel.contains(u)){
+		if (!watchDogKennel.containsKey(u)){
 			watchDogKennel.put(u, new Watchdog(u));
 		}
 		else if (watchDogKennel.get(u) != null) {
@@ -244,7 +244,8 @@ public class HTTPHandlerService extends GatewayPort {
 	}
 
 	/** {@ inheritDoc} */
-	public boolean unregister() {
+	public synchronized boolean unregister() {
+		LogUtils.logDebug(getContext(), getClass(), "unregistring", "un resigtring the html handler gateway port");
 		watchDogKennel.clear();
 		for (Iterator i = generatorPool.values().iterator(); i.hasNext();) {
 			HTMLUserGenerator ug = (HTMLUserGenerator) i.next();
