@@ -1440,6 +1440,7 @@ ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/FullForm
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/HTMLTest.java -text
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/ModelMapperTest.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/ResourceMapperTest.java -text
+ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/TimerTest.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/support/TestGenerator.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/resources/messages.properties -text svneol=unset#text/plain
 ui.internationalization.util/pom.xml -text

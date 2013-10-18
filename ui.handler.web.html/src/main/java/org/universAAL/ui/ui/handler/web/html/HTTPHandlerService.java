@@ -18,13 +18,17 @@
 package org.universAAL.ui.ui.handler.web.html;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -151,10 +155,47 @@ public class HTTPHandlerService extends GatewayPort {
 		return properties.getProperty(SERVICE_URL);
 	}
 
+	private void doGetFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String fileName = request.getPathInfo();
+//		if(fileName == null || fileName.equals("")){
+//			throw new ServletException("File Name can't be null or empty");
+//		}
+		LogUtils.logInfo(getContext(), getClass(), "doGetFile", "getting request for: "+ fileName);
+		
+		File file = new File(properties.getProperty(RESOURCES_LOC)+fileName);
+		if(!file.exists()){
+			throw new ServletException("File doesn't exists on server.");
+		}
+
+		InputStream fis = new FileInputStream(file);
+
+		String mimeType = getServletContext().getMimeType(file.getAbsolutePath());
+		response.setContentType(mimeType != null? mimeType:"application/octet-stream");
+		response.setContentLength((int) file.length());
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+
+		OutputStream os       = response.getOutputStream();
+		byte[] bufferData = new byte[1024];
+		int read=0;
+		while((read = fis.read(bufferData))!= -1){
+			os.write(bufferData, 0, read);
+		}
+		os.flush();
+		os.close();
+		fis.close();
+	}
+
+	
     /** {@ inheritDoc}	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		if (handleAuthorization(req, resp)) {
+			String fileName = req.getPathInfo();
+			if(fileName != null && !fileName.isEmpty()){
+				doGetFile(req, resp);
+				return;
+			}
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("text/html");
 			String authHeader = req.getHeader("Authorization");
@@ -206,25 +247,29 @@ public class HTTPHandlerService extends GatewayPort {
 
 	}
 	
-	private class Watchdog extends TimerTask{
+	private class Watchdog implements Runnable{
 		
 		private User user;
-		private Timer timer;
+		private ScheduledThreadPoolExecutor stpe;
+		private ScheduledFuture sf;
 
 		/**
 		 * 
 		 */
 		public Watchdog(User u) {
 			user = u;
+			stpe = new ScheduledThreadPoolExecutor(1);
 			reschedule();
 		}
+		
 		private void reschedule(){
-			timer = new Timer("Web session WatchDog for user " + user.getURI(), true);
-			timer.schedule(this, Long.parseLong(properties.getProperty(TIMEOUT)));
+			sf = stpe.schedule(this, 
+					Long.parseLong((String) properties.get(TIMEOUT)),
+					TimeUnit.MILLISECONDS);
 		}
 		
 		public void liveForAnotherDay(){
-			timer.cancel();
+			sf.cancel(true);
 			reschedule();
 		}
 		
@@ -237,7 +282,7 @@ public class HTTPHandlerService extends GatewayPort {
 				generatorPool.remove(user);
 				LogUtils.logInfo(getContext(), getClass(), "run", "Timeout for user: " + user.getURI());
 			}
-			timer.cancel();
+			sf.cancel(true);
 			watchDogKennel.remove(user);
 		}
 		
