@@ -49,7 +49,7 @@ public class InputFieldModel extends InputModel {
 		boolean res = false;
 		try {
 			InputField i = (InputField) fe;
-			if ( strings.length > 0) {
+			if ( strings != null && strings.length > 0) {
 				Object val = i.getValue();
 				if (i.isOfBooleanType()){
 					res = i.storeUserInput(Boolean.valueOf(strings[0]));
@@ -77,6 +77,9 @@ public class InputFieldModel extends InputModel {
 								"updateInput", "unable to convert \"" 
 								+ strings[0]+ "\" to XMLGregorianCalendar");
 					}
+				}
+				if(val == null || !res){
+					res=i.storeUserInput(strings);
 				}
 			}
 		} catch (Exception e) {

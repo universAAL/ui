@@ -53,7 +53,7 @@ public class Select1Model extends SelectModel {
 		try {
 			return 
 					s.storeUserInput(((ChoiceItem)opts[Integer.parseInt(value[0])]).getValue());
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			return false;
 		}
 	}
