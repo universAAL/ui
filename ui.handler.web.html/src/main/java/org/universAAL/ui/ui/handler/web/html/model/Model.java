@@ -146,11 +146,19 @@ public abstract class Model {
 	public void addSRCProp(Properties p, String url){
 		if (url != null && !url.isEmpty()) {
 			// cache Icon 
-			String cachedIcon = ResourceMapper.cached(
-					getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC), 
-					url);
+			String cachedIcon = getCachedURL(url);
 			if (!cachedIcon.isEmpty())
 				p.put("src", cachedIcon);
 		}
+	}
+	
+	protected String getCachedURL(String url){
+		String cachedCSS = ResourceMapper.cached(
+				render.getProperty(HTTPHandlerService.RESOURCES_LOC),
+				url);
+		if (cachedCSS!= null && !cachedCSS.isEmpty())
+			return render.getProperty(HTTPHandlerService.SERVICE_URL) + "/" +cachedCSS;
+		else
+			return cachedCSS;
 	}
 }

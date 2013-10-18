@@ -44,10 +44,7 @@ public class FormModel extends Model {
 		Properties cssP = new Properties();
 		cssP.put("rel", "stylesheet");
 		cssP.put("type", "text/css");
-		String cachedCSS = ResourceMapper.cached(
-				getRenderer().getProperty(HTTPHandlerService.RESOURCES_LOC),
-				getRenderer().getProperty(HTTPHandlerService.CSS_LOCATION));
-		cssP.put("href", cachedCSS);
+		cssP.put("href", getCachedURL(getRenderer().getProperty(HTTPHandlerService.CSS_LOCATION)));
 		StringBuffer css = singleTag("link", cssP);
 		StringBuffer title = tag("title", ((Form)fe).getTitle(), null);
 		Properties charP = new Properties();
