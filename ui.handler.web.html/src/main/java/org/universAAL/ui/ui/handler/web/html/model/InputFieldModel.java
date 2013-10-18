@@ -79,7 +79,7 @@ public class InputFieldModel extends InputModel {
 					}
 				}
 				if(val == null || !res){
-					res=i.storeUserInput(strings);
+					res=i.storeUserInput(strings[0]);
 				}
 			}
 		} catch (Exception e) {
