@@ -300,7 +300,8 @@ public class HTMLUserGenerator {
 		//Check the current form is the sentForm
 		Form f = fm.getCurrentDialog()
 				.getDialogForm();
-		if (f.getURI().equals(parameters.get(HIDEN_DIALOG_NAME))){
+		String[] hidden = (String[]) parameters.get(HIDEN_DIALOG_NAME);
+		if (f.getURI().equals(hidden[0])){
 			missingInputs.clear();
 			for (Iterator i = parameters.entrySet().iterator(); i.hasNext();) {
 				Entry e = (Entry) i.next();
@@ -314,7 +315,7 @@ public class HTMLUserGenerator {
 				}
 			}
 			// check if there is missing input, and resend.
-			Submit s = (Submit) f.searchFormControl((String) parameters.get(SubmitModel.SUBMIT_NAME));
+			Submit s = (Submit) f.searchFormControl(((String[]) parameters.get(SubmitModel.SUBMIT_NAME))[0]);
 			missingInputs.addAll(s.getMissingInputControls());
 			if (missingInputs.isEmpty()){
 				//call the submitID and Finish dialog?

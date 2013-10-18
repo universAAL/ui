@@ -61,7 +61,9 @@ public abstract class InputModel extends FormControlModel {
 		if (isErroneousOrMissing()){
 			Properties p = new Properties();
 			p.put("class", "missingInput");
-			missing = tag("b", ((Input)fe).getAlertString(), p); 
+			String aS =  ((Input)fe).getAlertString();
+			if (aS != null)
+				missing = tag("b",aS, p); 
 		}
 		return generateInputHTML().append(missing);
 	}
