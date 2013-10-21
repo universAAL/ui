@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.dm.userInteraction.MessageConstants;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -169,11 +170,11 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
 		msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
 		f = Form.newDialog(messageLocaleHelper
-			.getString("PendingMessageBuilder.pendingMessages"),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
 			msgList);
 		Group g = f.getIOControls();
 		g = new Repeat(g, new Label(messageLocaleHelper
-			.getString("PendingMessageBuilder.pendingMessages"),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
 			null), new PropertyPath(null, false,
 			new String[] { PROP_MSG_LIST_MESSAGE_LIST }), null,
 			null);
@@ -184,30 +185,30 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 		// to be added as child of the repeat
 		g = new Group(g, null, null, null, null);
 		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString("PendingMessageBuilder.subject"), null),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_SUBJECT), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
 			null);
 		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString("PendingMessageBuilder.date"), null),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_DATE), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
 			null);
 		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString("PendingMessageBuilder.message"), null),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_MESSAGE), null),
 			new PropertyPath(null, false,
 				new String[] { PROP_MSG_LIST_MESSAGE_BODY }),
 			null);
 		// add submits
 		g = f.getSubmits();
 		new Submit(g, new Label(messageLocaleHelper
-			.getString("PendingMessageBuilder.ok"), null),
+			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_OK), null),
 			CLOSE_MESSAGES_CALL);
 		new Submit(g, new Label(messageLocaleHelper
-			.getString("PendingDialogBuilder.deleteAll"), null),
+			.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL), null),
 			DELETE_ALL_MESSAGES_CALL)
 			.setHelpString(messageLocaleHelper
-				.getString("PendingDialogBuilder.deleteAll.help"));
+				.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL_HELP));
 	    }
 	}
 
@@ -217,17 +218,17 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 	    f = Form
 		    .newMessage(
 			    messageLocaleHelper
-				    .getString("PendingMessageBuilder.pendingMessages"),
+				    .getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
 			    messageLocaleHelper
-				    .getString("PendingMessageBuilder.noPendingMessages"));
+				    .getString(MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES));
 	return f;
     }
 
     private boolean isIgnorableMessage(Object msgContent, String formTitle) {
 	return userDM.getLocaleHelper().getString(
-		"PendingMessageBuilder.noPendingMessages").equals(msgContent)
+		MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES).equals(msgContent)
 		&& userDM.getLocaleHelper().getString(
-			"PendingMessageBuilder.pendingMessages").equals(
+			MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES).equals(
 			formTitle);
     }
 

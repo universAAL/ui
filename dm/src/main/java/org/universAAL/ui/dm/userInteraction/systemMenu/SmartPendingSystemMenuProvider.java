@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
+import org.universAAL.ui.dm.userInteraction.MessageConstants;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -131,22 +132,22 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	case DialogType.SYS_MENU:
 	    putPendingXXSubmits(stdButtons);
 	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString("MenuProvider.exit"), messageLocaleHelper
-		    .getString("MenuProvider.exit.icon")), EXIT_CALL)
+		    .getString(MessageConstants.MENU_PROVIDER_EXIT), messageLocaleHelper
+		    .getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)), EXIT_CALL)
 		    .setHelpString(messageLocaleHelper
-			    .getString("MenuProvider.exit.help"));
+			    .getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
 	    break;
 	case DialogType.MESSAGE:
 	case DialogType.SUBDIALOG:
 	    break;
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString("MenuProvider.mainMenu"), messageLocaleHelper
-		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
+		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU), messageLocaleHelper
+		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)), MENU_CALL)
 		    .setHelpString(messageLocaleHelper
-			    .getString("MenuProvider.mainMenu.help"));
+			    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
 	    String dialogTitle = f.getTitle();
-	    if (!messageLocaleHelper.getString("MenuProvider.pendingMessages")
+	    if (!messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES)
 		    .equals(dialogTitle)) {
 		putPendingXXSubmits(stdButtons);
 	    }
@@ -161,19 +162,19 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	MessageLocaleHelper ulh = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingMessages"), ulh
-		    .getString("MenuProvider.pendingMessages.icon")),
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES), ulh
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
 		    MESSAGES_CALL).setHelpString(ulh
-		    .getString("MenuProvider.pendingMessages.help"));
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(ulh
-		    .getString("MenuProvider.pendingDialogs"), ulh
-		    .getString("MenuProvider.pendingDialogs.icon")),
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), ulh
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
 		    OPEN_DIALOGS_CALL).setHelpString(ulh
-		    .getString("MenuProvider.pendingDialogs.help"));
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP));
 	} else {
 	    // show a button with different ICON/Message or nothing
 	}

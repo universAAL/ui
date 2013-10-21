@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,216 +48,221 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  *         created: 26-sep-2012 13:03:50
  */
 public class PendingDialogBuilder implements ISubmitGroupListener,
-	IDialogBuilder {
+		IDialogBuilder {
 
-    /**
-     * Prefix of a submission ID to switch to a pending dialog. All pending
-     * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
-     * control which automatically adds index numbers to this prefix.
-     */
-    public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
-	    + ":switchTo#"; //$NON-NLS-1$
-    public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE
-	    + "dlgDate"; //$NON-NLS-1$
-    public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE
-	    + "dlgList"; //$NON-NLS-1$
-    public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE
-	    + "dlgTitle"; //$NON-NLS-1$
-    public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
-	    + "dlgDialogID"; //$NON-NLS-1$
-    public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
-	    + "dlgListSentItems"; //$NON-NLS-1$
-    /**
-     * The submission ID to close the dialog that shows all pending dialogs.
-     */
-    public static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#closeOpenDialogs"; //$NON-NLS-1$
-    /**
-     * The submission ID to abort all open dialogs. A button with this
-     * functionality is available in the dialog showing the list of all pending
-     * dialogs.
-     */
-    public static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#abortAllOpenDialogs"; //$NON-NLS-1$
-    /**
-     * The DialogPool containing all dialogs for the user.
-     */
-    protected IUIRequestPool dialogPool;
+	/**
+	 * Prefix of a submission ID to switch to a pending dialog. All pending
+	 * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
+	 * control which automatically adds index numbers to this prefix.
+	 */
+	public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
+			+ ":switchTo#"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE
+			+ "dlgDate"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE
+			+ "dlgList"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE
+			+ "dlgTitle"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
+			+ "dlgDialogID"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
+			+ "dlgListSentItems"; //$NON-NLS-1$
+	/**
+	 * The submission ID to close the dialog that shows all pending dialogs.
+	 */
+	public static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
+			+ "#closeOpenDialogs"; //$NON-NLS-1$
+	/**
+	 * The submission ID to abort all open dialogs. A button with this
+	 * functionality is available in the dialog showing the list of all pending
+	 * dialogs.
+	 */
+	public static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
+			+ "#abortAllOpenDialogs"; //$NON-NLS-1$
+	/**
+	 * The DialogPool containing all dialogs for the user.
+	 */
+	protected IUIRequestPool dialogPool;
 
-    /**
-     * the list of Dialog Id sent
-     */
-    protected List<String> sentItems;
-    protected UserDialogManager userDM;
+	/**
+	 * the list of Dialog Id sent
+	 */
+	protected List<String> sentItems;
+	protected UserDialogManager userDM;
 
-    /**
-     * The constructor will build the form and send the request to the user.
-     * 
-     * @param udm
-     */
-    public PendingDialogBuilder(UserDialogManager udm) {
-	dialogPool = udm.getDialogPool();
-	userDM = udm;
-    }
-
-    public Form buildForm() {
-	// a list with information about a dialog in RDF-form:
-	// title, date, dialog ID
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	List<Resource> dialogs = new ArrayList<Resource>();
-	sentItems = new ArrayList<String>();
-	Form f = null;
-	List<UIRequest> allDialogs = new ArrayList<UIRequest>();
-	allDialogs.addAll(dialogPool.listAllSuspended());
-	allDialogs.addAll(dialogPool.listAllActive());
-	for (UIRequest req : allDialogs) {
-	    Form tmp = req.getDialogForm();
-	    Resource aux = new Resource();
-	    aux.setProperty(PROP_DLG_LIST_DIALOG_DATE, tmp.getCreationTime());
-	    aux.setProperty(PROP_DLG_LIST_DIALOG_TITLE, tmp.getTitle());
-	    aux.setProperty(PROP_DLG_LIST_DIALOG_ID, tmp.getDialogID());
-	    dialogs.add(aux);
-	    sentItems.add(req.getDialogID());
-	}
-	// if there are dialogs available for the current user,
-	// create a new form with a list of all dialogs
-	if (!dialogs.isEmpty()) {
-	    Resource msgList = new Resource();
-	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
-	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	    f = Form.newDialog(messageLocaleHelper
-		    .getString("MenuProvider.pendingDialogs"), msgList);
-	    Group g = f.getIOControls();
-	    g = new Repeat(g, new Label(messageLocaleHelper
-		    .getString("MenuProvider.pendingDialogs"), null),
-		    new PropertyPath(null, false,
-			    new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
-		    null);
-	    ((Repeat) g).banEntryAddition();
-	    ((Repeat) g).banEntryDeletion();
-	    ((Repeat) g).banEntryEdit();
-	    // dummy group needed if more than one form control is going to
-	    // be added as child of the repeat
-	    g = new Group(g, null, null, null, null);
-	    new SimpleOutput(g, new Label(messageLocaleHelper
-		    .getString("PendingDialogBuilder.subject"), null),
-		    new PropertyPath(null, false,
-			    new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
-	    new SimpleOutput(g, new Label(messageLocaleHelper
-		    .getString("PendingDialogBuilder.date"), null),
-		    new PropertyPath(null, false,
-			    new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
-	    SubdialogTrigger sdt = new SubdialogTrigger(g, new Label(
-		    messageLocaleHelper
-			    .getString("PendingDialogBuilder.switchTo"), null),
-		    SubdialogTrigger.VAR_REPEATABLE_ID);
-	    sdt.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
-	    sdt.setHelpString(messageLocaleHelper
-		    .getString("PendingDialogBuilder.switchTo.help"));
-	    // add submits
-	    g = f.getSubmits();
-	    new Submit(g, new Label(messageLocaleHelper
-		    .getString("PendingDialogBuilder.ok"), null),
-		    CLOSE_OPEN_DIALOGS_CALL);
-	    new Submit(g, new Label(messageLocaleHelper
-		    .getString("PendingDialogBuilder.abortAll"), null),
-		    ABORT_ALL_OPEN_DIALOGS_CALL)
-		    .setHelpString(messageLocaleHelper
-			    .getString("PendingDialogBuilder.abortAll.help"));
-	}
-	if (f == null)
-	    f = Form.newMessage(messageLocaleHelper
-		    .getString("MenuProvider.pendingDialogs"),
-		    messageLocaleHelper
-			    .getString("MenuProvider.noPendingDialogs"));
-	return f;
-    }
-
-    /** {@inheritDoc} */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(ABORT_ALL_OPEN_DIALOGS_CALL);
-	s.add(CLOSE_OPEN_DIALOGS_CALL);
-	for (int i = 0; i < sentItems.size(); i++) {
-	    s.add(SWITCH_TO_CALL_PREFIX + Integer.toString(i));
-	}
-	return s;
-    }
-
-    /** {@inheritDoc} */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		"handle", new String[] { "handling:", submissionID }, null);
-	if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
-	    dialogPool.removeAll();
-	}
-	if (CLOSE_OPEN_DIALOGS_CALL.equals(submissionID)) {
-	    userDM.showSomething();
-	}
-	if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
-	    int idx = -1;
-	    try {
-		idx = Integer.parseInt(submissionID
-			.substring(SWITCH_TO_CALL_PREFIX.length()));
-	    } catch (Exception e) {
-		idx = -1;
-	    }
-	    switchTo(idx);
-	}
-    }
-
-    /**
-     * Switch to a specific pending dialog. This method is called from the
-     * dialog presenting the list of pending dialogs when the user selects the
-     * appropriate button.
-     * 
-     * @param selectionIndex
-     *            Index of the selected pending dialog.
-     */
-    private void switchTo(int selectionIndex) {
-	String dialogID = sentItems.get(selectionIndex);
-	userDM.resumeUIRequest(dialogPool.get(dialogID));
-    }
-
-    /*
-     * Old Implementation:
-     */
-    /*
-     * void switchTo(Resource user, Resource data, int selectionIndex) { if
-     * (user == null || data == null) return;
-     * 
-     * Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS); List<?> sentItems
-     * = (o instanceof List<?>) ? (List<?>) o : null; if (sentItems == null)
-     * return;
-     * 
-     * o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST); List<?> remaining = (o
-     * instanceof List<?>) ? (List<?>) o : null; boolean allRemoved = remaining
-     * == null || remaining.isEmpty();
-     * 
-     * int selected = -1; for (Iterator<?> i = sentItems.iterator();
-     * i.hasNext();) { o = i.next(); if (o == null) continue; String dialogID =
-     * o.toString(); if (allRemoved || getMessage(dialogID, remaining) == null)
-     * { synchronized (waitingDialogs) { UIRequest oe =
-     * waitingDialogs.get(dialogID); if (oe != null &&
-     * user.equals(oe.getAddressedUser())) { waitingDialogs.remove(dialogID);
-     * abortDialog(dialogID); } } } else if (++selected == selectionIndex) {
-     * synchronized (waitingDialogs) { UIRequest oe =
-     * waitingDialogs.get(dialogID); if (oe != null &&
-     * user.equals(oe.getAddressedUser())) { addAdaptationParams(oe,
-     * getQueryString(user.getURI())); waitingDialogs.remove(dialogID);
-     * runningDialogs.put(user.getURI(), oe); resumeDialog(dialogID, oe); } } }
-     * } }
-     */
-
-    /** {@inheritDoc} */
-    public void showDialog() {
-	Form pdForm = buildForm();
-	if (pdForm != null) {
-	    userDM.add(this);
-	    userDM.pushDialog(pdForm);
+	/**
+	 * The constructor will build the form and send the request to the user.
+	 * 
+	 * @param udm
+	 */
+	public PendingDialogBuilder(UserDialogManager udm) {
+		dialogPool = udm.getDialogPool();
+		userDM = udm;
 	}
 
-    }
+	public Form buildForm() {
+		// a list with information about a dialog in RDF-form:
+		// title, date, dialog ID
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		List<Resource> dialogs = new ArrayList<Resource>();
+		sentItems = new ArrayList<String>();
+		Form f = null;
+		List<UIRequest> allDialogs = new ArrayList<UIRequest>();
+		allDialogs.addAll(dialogPool.listAllSuspended());
+		allDialogs.addAll(dialogPool.listAllActive());
+		for (UIRequest req : allDialogs) {
+			Form tmp = req.getDialogForm();
+			Resource aux = new Resource();
+			aux.setProperty(PROP_DLG_LIST_DIALOG_DATE, tmp.getCreationTime());
+			aux.setProperty(PROP_DLG_LIST_DIALOG_TITLE, tmp.getTitle());
+			aux.setProperty(PROP_DLG_LIST_DIALOG_ID, tmp.getDialogID());
+			dialogs.add(aux);
+			sentItems.add(req.getDialogID());
+		}
+		// if there are dialogs available for the current user,
+		// create a new form with a list of all dialogs
+		if (!dialogs.isEmpty()) {
+			Resource msgList = new Resource();
+			msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
+			msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
+			f = Form.newDialog(messageLocaleHelper
+					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), msgList);
+			Group g = f.getIOControls();
+			g = new Repeat(g,
+					new Label(messageLocaleHelper
+							.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
+					new PropertyPath(null, false,
+							new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
+					null);
+			((Repeat) g).banEntryAddition();
+			((Repeat) g).banEntryDeletion();
+			((Repeat) g).banEntryEdit();
+			// dummy group needed if more than one form control is going to
+			// be added as child of the repeat
+			g = new Group(g, null, null, null, null);
+			new SimpleOutput(g,
+					new Label(messageLocaleHelper
+							.getString(MessageConstants.PENDING_DIALOG_BUILDER_SUBJECT), null),
+					new PropertyPath(null, false,
+							new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
+			new SimpleOutput(g, new Label(
+					messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_DATE),
+					null), new PropertyPath(null, false,
+					new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
+			SubdialogTrigger sdt = new SubdialogTrigger(
+					g,
+					new Label(messageLocaleHelper
+							.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO), null),
+					SubdialogTrigger.VAR_REPEATABLE_ID);
+			sdt.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
+			sdt.setHelpString(messageLocaleHelper
+					.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
+			// add submits
+			g = f.getSubmits();
+			new Submit(g, new Label(
+					messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_OK),
+					null), CLOSE_OPEN_DIALOGS_CALL);
+			new Submit(
+					g,
+					new Label(messageLocaleHelper
+							.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL), null),
+					ABORT_ALL_OPEN_DIALOGS_CALL)
+					.setHelpString(messageLocaleHelper
+							.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL_HELP));
+		}
+		if (f == null)
+			f = Form.newMessage(messageLocaleHelper
+					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
+					messageLocaleHelper
+							.getString(MessageConstants.MENU_PROVIDER_NO_PENDING_DIALOGS));
+		return f;
+	}
+
+	/** {@inheritDoc} */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(ABORT_ALL_OPEN_DIALOGS_CALL);
+		s.add(CLOSE_OPEN_DIALOGS_CALL);
+		for (int i = 0; i < sentItems.size(); i++) {
+			s.add(SWITCH_TO_CALL_PREFIX + Integer.toString(i));
+		}
+		return s;
+	}
+
+	/** {@inheritDoc} */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+				"handle", new String[] { "handling:", submissionID }, null);
+		if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
+			dialogPool.removeAll();
+		}
+		if (CLOSE_OPEN_DIALOGS_CALL.equals(submissionID)) {
+			userDM.showSomething();
+		}
+		if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
+			int idx = -1;
+			try {
+				idx = Integer.parseInt(submissionID
+						.substring(SWITCH_TO_CALL_PREFIX.length()));
+			} catch (Exception e) {
+				idx = -1;
+			}
+			switchTo(idx);
+		}
+	}
+
+	/**
+	 * Switch to a specific pending dialog. This method is called from the
+	 * dialog presenting the list of pending dialogs when the user selects the
+	 * appropriate button.
+	 * 
+	 * @param selectionIndex
+	 *            Index of the selected pending dialog.
+	 */
+	private void switchTo(int selectionIndex) {
+		String dialogID = sentItems.get(selectionIndex);
+		userDM.resumeUIRequest(dialogPool.get(dialogID));
+	}
+
+	/*
+	 * Old Implementation:
+	 */
+	/*
+	 * void switchTo(Resource user, Resource data, int selectionIndex) { if
+	 * (user == null || data == null) return;
+	 * 
+	 * Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS); List<?> sentItems
+	 * = (o instanceof List<?>) ? (List<?>) o : null; if (sentItems == null)
+	 * return;
+	 * 
+	 * o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST); List<?> remaining = (o
+	 * instanceof List<?>) ? (List<?>) o : null; boolean allRemoved = remaining
+	 * == null || remaining.isEmpty();
+	 * 
+	 * int selected = -1; for (Iterator<?> i = sentItems.iterator();
+	 * i.hasNext();) { o = i.next(); if (o == null) continue; String dialogID =
+	 * o.toString(); if (allRemoved || getMessage(dialogID, remaining) == null)
+	 * { synchronized (waitingDialogs) { UIRequest oe =
+	 * waitingDialogs.get(dialogID); if (oe != null &&
+	 * user.equals(oe.getAddressedUser())) { waitingDialogs.remove(dialogID);
+	 * abortDialog(dialogID); } } } else if (++selected == selectionIndex) {
+	 * synchronized (waitingDialogs) { UIRequest oe =
+	 * waitingDialogs.get(dialogID); if (oe != null &&
+	 * user.equals(oe.getAddressedUser())) { addAdaptationParams(oe,
+	 * getQueryString(user.getURI())); waitingDialogs.remove(dialogID);
+	 * runningDialogs.put(user.getURI(), oe); resumeDialog(dialogID, oe); } } }
+	 * } }
+	 */
+
+	/** {@inheritDoc} */
+	public void showDialog() {
+		Form pdForm = buildForm();
+		if (pdForm != null) {
+			userDM.add(this);
+			userDM.pushDialog(pdForm);
+		}
+
+	}
 
 }
