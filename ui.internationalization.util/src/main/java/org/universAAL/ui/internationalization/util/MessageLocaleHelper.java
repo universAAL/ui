@@ -369,7 +369,7 @@ public class MessageLocaleHelper {
     }
     
     /**
-     * 
+     * Get the {@link Locale} instance for a given language.
      * @param lang
      *            {@link Language}
      * @return {@link Locale}
@@ -388,5 +388,31 @@ public class MessageLocaleHelper {
      */
     public final String getString(String key) {
 	return messages.getString(key);
+    }
+    
+    /**
+     * Like {@link MessageLocaleHelper#getString(String)}, This method will 
+     * get the internationalization string for a given key.
+     * Aditionally it will subsitude the variables defined like "{n}" with the 
+     * String in the index n of the substitutions parameter.
+     * <br>
+     * Eg: for a properties file conaining: <br>
+     * <code>key=page \{0\} of \{1\} </code>
+     * <br>
+     * this code: <br>
+     * <pre><code> {@link MessageLocaleHelper} mlh = ...
+     * mlh.getString("key",new String[]{"1","10"});
+     * </code></pre>
+     * will return: <code>"page 1 of 10"<code>
+     * @param key
+     * @param substitutions
+     * @return
+     */
+    public String getString(String key, String[] substitutions){
+    	String raw = getString(key);
+    	for (int i = 0; i < substitutions.length; i++) {
+			raw = raw.replace("{" + Integer.toString(i) + "}", substitutions[i]);
+		}
+    	return raw;
     }
 }
