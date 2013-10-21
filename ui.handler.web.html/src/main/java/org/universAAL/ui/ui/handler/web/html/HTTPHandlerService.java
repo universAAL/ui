@@ -96,7 +96,7 @@ public class HTTPHandlerService extends GatewayPort {
 	/**
      * Directory for configuration files.
      */
-    private static String homeDir = "./"; 
+    private String homeDir = "./"; 
     
 
 	/**

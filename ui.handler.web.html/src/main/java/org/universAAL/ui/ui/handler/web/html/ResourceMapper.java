@@ -34,7 +34,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * @author amedrano
  * 
  */
-public class ResourceMapper {
+public final class ResourceMapper {
 
 	/**
 	 * The folders where the resources should be allocated, whether it is in the
@@ -95,8 +95,8 @@ public class ResourceMapper {
 		String coded = Integer.toString(resource.toString().hashCode())
 				+ extension;
 		File cached = new File(cacheFolder, coded);
-		if (!cached.exists()) {
-			cached.getParentFile().mkdirs();
+		if (!cached.exists()
+				&& cached.getParentFile().mkdirs()) {
 			// copy
 			try {
 				new Retreiver(resource.openStream(), cached);
@@ -307,6 +307,7 @@ public class ResourceMapper {
 				os.write(buffer, 0, bytesRead);
 			}
 			is.close();
+			os.flush();
 			os.close();
 			if (!work){
 				file.delete();
