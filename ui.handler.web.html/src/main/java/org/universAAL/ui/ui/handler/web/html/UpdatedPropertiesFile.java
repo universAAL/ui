@@ -38,12 +38,12 @@ public abstract class UpdatedPropertiesFile extends Properties {
     /**
      * The properties file.
      */
-    private static File propertiesFile;
+    private File propertiesFile;
 
     /**
      * The last version loaded of Properties file.
      */
-    private static long propertiesVersion;
+    private long propertiesVersion;
     
     /**
      * Get the comments for the Property file.
@@ -113,10 +113,11 @@ public abstract class UpdatedPropertiesFile extends Properties {
      * @throws IOException 
      */
     protected void storeProperties() throws IOException {
-    	propertiesFile.getParentFile().mkdirs();
-    	FileOutputStream fos = new FileOutputStream(propertiesFile);
-    	super.store( fos, getComments());
-    	fos.close();
+    	if (propertiesFile.getParentFile().mkdirs()){
+    		FileOutputStream fos = new FileOutputStream(propertiesFile);
+    		super.store( fos, getComments());
+    		fos.close();
+    	}
     }
 
 	/**
