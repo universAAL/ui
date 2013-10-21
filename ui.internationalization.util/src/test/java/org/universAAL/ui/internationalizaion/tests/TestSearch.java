@@ -217,4 +217,17 @@ public class TestSearch extends TestCase {
 		assertEquals("def",mlh.getString(LANG));
 		assertEquals("loc3",mlh.getString(LOC));
 	}
+	public void test7() {
+		List<URL> l = new ArrayList<URL>();
+		l.add(getLoc("loc3"));
+		MessageLocaleHelper mlh = null;
+		try {
+			mlh = new MessageLocaleHelper(mc, getProfile2(), l);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+		}
+		assertEquals("page 1 of 10",mlh.getString("key", new String[]{"1","10"}));
+	}
 }
