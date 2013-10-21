@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,7 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
+import org.universAAL.ui.dm.userInteraction.MessageConstants;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -166,7 +167,7 @@ public class SearchableAggregatedMainMenuProvider extends
 		 */
 	    }
 	    new Submit(mmGroup, new Label(userDM.getLocaleHelper().getString(
-		    "SearchableAggregatedMainMenuProvider.back"), null),
+		    MessageConstants.SEARCHABLE_AGGREGATED_MAIN_MENU_PROVIDER_BACK), null),
 		    BACK_CALL);
 	    return mmGroup;
 	}
@@ -184,7 +185,7 @@ public class SearchableAggregatedMainMenuProvider extends
 		parent,
 		new Label(
 			ulh
-				.getString("SearchableAggregatedMainMenuProvider.search"),
+				.getString(MessageConstants.SEARCHABLE_AGGREGATED_MAIN_MENU_PROVIDER_SEARCH),
 			null), null, null, null);
 	InputField in = new InputField(g, null, new PropertyPath(null, false,
 		new String[] { PROP_SEARCH_STRING }), MergedRestriction
@@ -195,7 +196,7 @@ public class SearchableAggregatedMainMenuProvider extends
 		g,
 		new Label(
 			ulh
-				.getString("SearchableAggregatedMainMenuProvider.search"),
+				.getString(MessageConstants.SEARCHABLE_AGGREGATED_MAIN_MENU_PROVIDER_SEARCH),
 			null), SEARCH_CALL).addMandatoryInput(in);
 	return g;
     }

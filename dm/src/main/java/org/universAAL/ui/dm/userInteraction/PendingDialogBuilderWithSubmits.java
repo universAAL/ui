@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder
 	    Resource msgList = new Resource();
 	    msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 	    msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-	    f = Form.newDialog(ulh.getString("MenuProvider.pendingDialogs"),
+	    f = Form.newDialog(ulh.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
 		    msgList);
 	    Group g = f.getIOControls();
 	    int i = 0;
@@ -80,29 +80,29 @@ public class PendingDialogBuilderWithSubmits extends PendingDialogBuilder
 		new Submit(
 			g,
 			new Label(
-				ulh.getString("PendingDialogBuilder.switchTo")
+				ulh.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO)
 					+ dlgData
 						.getProperty(PROP_DLG_LIST_DIALOG_TITLE),
 				null), SWITCH_TO_CALL_PREFIX + i++)
 			.setHelpString(ulh
-				.getString("PendingDialogBuilder.switchTo.help"));
+				.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
 	    }
 	    // a dd submits
 	    g = f.getSubmits();
 	    new Submit(g, new Label(ulh
-		    .getString("PendingDialogBuilderWithSubmits.ok"), null),
+		    .getString(MessageConstants.PENDING_DIALOG_BUILDER_WITH_SUBMITS_OK), null),
 		    CLOSE_OPEN_DIALOGS_CALL);
 	    new Submit(g, new Label(ulh
-		    .getString("PendingDialogBuilder.abortAll"), null),
+		    .getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL), null),
 		    ABORT_ALL_OPEN_DIALOGS_CALL).setHelpString(ulh
-		    .getString("PendingDialogBuilder.abortAll.help"));
+		    .getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL_HELP));
 	}
 	if (f == null)
 	    f = Form
 		    .newMessage(
-			    ulh.getString("MenuProvider.pendingDialogs"),
+			    ulh.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
 			    ulh
-				    .getString("PendingDialogBuilderWithSubmits.noPendingDialogs"));
+				    .getString(MessageConstants.PENDING_DIALOG_BUILDER_WITH_SUBMITS_NO_PENDING_DIALOGS));
 	return f;
     }
 

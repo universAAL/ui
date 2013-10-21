@@ -34,6 +34,7 @@ dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogB
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java -text
+dm/src/main/java/org/universAAL/ui/dm/userInteraction/MessageConstants.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain

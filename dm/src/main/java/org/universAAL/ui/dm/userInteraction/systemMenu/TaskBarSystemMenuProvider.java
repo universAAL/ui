@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad Politécnica de Madrid
+ * Copyright 2012 Universidad Politï¿½cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
+import org.universAAL.ui.dm.userInteraction.MessageConstants;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
@@ -145,10 +146,10 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	switch (f.getDialogType().ord()) {
 	case DialogType.SYS_MENU:
 	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString("MenuProvider.exit"), messageLocaleHelper
-		    .getString("MenuProvider.exit.icon")), EXIT_CALL)
+		    .getString(MessageConstants.MENU_PROVIDER_EXIT), messageLocaleHelper
+		    .getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)), EXIT_CALL)
 		    .setHelpString(messageLocaleHelper
-			    .getString("MenuProvider.exit.help"));
+			    .getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	case DialogType.MESSAGE:
@@ -156,10 +157,10 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	    break;
 	case DialogType.STD_DIALOG:
 	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString("MenuProvider.mainMenu"), messageLocaleHelper
-		    .getString("MenuProvider.mainMenu.icon")), MENU_CALL)
+		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU), messageLocaleHelper
+		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)), MENU_CALL)
 		    .setHelpString(messageLocaleHelper
-			    .getString("MenuProvider.mainMenu.help"));
+			    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
 	    putPendingXXSubmits(stdButtons);
 	    break;
 	default:
@@ -172,9 +173,9 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
 	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
 	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString("MenuProvider.pendingMessages"),
+		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
 		    messageLocaleHelper
-			    .getString("MenuProvider.pendingMessages.icon")),
+			    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
 		    MESSAGES_CALL).setHelpString(messageLocaleHelper
 		    .getString("MenuProvider.pendingMessages.help"));
 	} else {
@@ -183,7 +184,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
 	    Group pendingDialogs = new Group(stdButtons, new Label(
 		    messageLocaleHelper
-			    .getString("MenuProvider.pendingDialogs"), null),
+			    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
 		    null, null, null);
 	    int i = 0;
 	    for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
@@ -193,7 +194,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 			.getTitle(), null), SWITCH_TO_CALL_PREFIX
 			+ Integer.toString(i++))
 			.setHelpString(messageLocaleHelper
-				.getString("PendingDialogBuilder.switchTo.help"));
+				.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
 	    }
 	} else {
 	    // show a button with different ICON/Message or nothing
