@@ -1445,6 +1445,8 @@ ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/Resource
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/TimerTest.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/java/org/universAAL/ui/ui/handler/web/html/support/TestGenerator.java -text svneol=unset#text/plain
 ui.handler.web.html/src/test/resources/messages.properties -text svneol=unset#text/plain
+ui.internationalization.util/ASL2.0.txt -text svneol=unset#text/plain
+ui.internationalization.util/NOTICE.txt -text svneol=unset#text/plain
 ui.internationalization.util/pom.xml -text
 ui.internationalization.util/src/main/java/org/universAAL/ui/internationalization/util/MessageLocaleHelper.java -text
 ui.internationalization.util/src/test/java/org/universAAL/ui/internationalizaion/tests/TestSearch.java -text svneol=unset#text/plain
