@@ -45,6 +45,7 @@ import org.universAAL.ontology.ui.preferences.MainMenuConfigurationType;
 import org.universAAL.ontology.ui.preferences.PendingDialogsBuilderType;
 import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.adapters.AdapterMessageInternationalization;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
 import org.universAAL.ui.dm.adapters.AdapterUserImpairments;
 import org.universAAL.ui.dm.adapters.AdapterUserLocation;
@@ -257,6 +258,9 @@ public class UserDialogManager implements IDialogManager,
 	 */
 	adapterList = new ArrayList<IAdapter>();
 
+	//add Internationalization of Message buttons
+	adapterList.add(new AdapterMessageInternationalization(messageLocaleHelper));
+	
 	// add UI preferences adapter that enriches UIrequest with
 	// UIPreferencesSupprofile data
 	adapterList.add(new AdapterUIPreferences(uiPreferencesSubProfile));
