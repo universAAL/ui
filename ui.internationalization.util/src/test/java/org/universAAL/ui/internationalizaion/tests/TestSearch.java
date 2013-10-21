@@ -96,6 +96,19 @@ public class TestSearch extends TestCase {
 		ps.setInteractionPreferences(gip);
 		return ps;
 	}
+
+	private UIPreferencesSubProfile getProfile2(){
+		GeneralInteractionPreferences gip = new GeneralInteractionPreferences();
+		gip.setPreferredLanguage(getLanguageFromIso639("de"));
+		gip.setSecondaryLanguage(getLanguageFromIso639("de"));
+		
+		assertNotNull(gip.getPreferredLanguage());
+		assertNotNull(gip.getSecondaryLanguage());
+		
+		UIPreferencesSubProfile ps = new UIPreferencesSubProfile();
+		ps.setInteractionPreferences(gip);
+		return ps;
+	}
 	
 	private URL getLoc(String loc){
 		URL url = getClass().getClassLoader().getResource(loc+"/messages.properties");
@@ -187,5 +200,21 @@ public class TestSearch extends TestCase {
 		}
 		assertEquals("es",mlh.getString(LANG));
 		assertEquals("loc2",mlh.getString(LOC));
+	}
+	
+	public void test6() {
+		// primary == secondary, only default
+		List<URL> l = new ArrayList<URL>();
+		l.add(getLoc("loc3"));
+		MessageLocaleHelper mlh = null;
+		try {
+			mlh = new MessageLocaleHelper(mc, getProfile2(), l);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+		}
+		assertEquals("def",mlh.getString(LANG));
+		assertEquals("loc3",mlh.getString(LOC));
 	}
 }
