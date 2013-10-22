@@ -38,7 +38,7 @@ public class Select1Model extends SelectModel {
 
 	/** {@ inheritDoc}	 */
 	public StringBuffer generateInputHTML() {
-		// XXX only select, have second rendering option with checkboxes.
+		// XXX only select, have second rendering option with radiobuttons.
 		return selectHTML();
 	}
 

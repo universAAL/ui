@@ -46,11 +46,18 @@ public class LabelModel extends Model {
 	 */
 	public StringBuffer getImgText() {
 		StringBuffer a = new StringBuffer();
-		// TODO go through recommendations to find alignment.
-		//default
+		if (recModel.hasHorizontalLeftAlignment()
+				|| !recModel.hasHorizontalRightAlignment()){
+			// icon first for left alignment
+			a.append(getIcon());
+		}
 		a.append(getIcon());
 		if (((Label)fe).getText() != null) {
 			a.append(((Label)fe).getText());
+		}
+		if (recModel.hasHorizontalRightAlignment()){
+			// icon last for right alignment
+			a.append(getIcon());
 		}
 		return a;
 	}
@@ -62,11 +69,17 @@ public class LabelModel extends Model {
 	 */
 	public StringBuffer getLabelFor(String id) {
 		StringBuffer a = new StringBuffer();
-		// TODO go through recommendations to find alignment.
-		//default
-		a.append(getIcon());
+		if (recModel.hasHorizontalLeftAlignment()
+				|| !recModel.hasHorizontalRightAlignment()){
+			// icon first for left alignment
+			a.append(getIcon());
+		}
 		if (((Label)fe).getText() != null) {
 			a.append(((Label)fe).getText());
+		}
+		if (recModel.hasHorizontalRightAlignment()){
+			// icon last for right alignment
+			a.append(getIcon());
 		}
 		Properties p = new Properties();
 		String cssStyle = recModel.getCSSStyle();
