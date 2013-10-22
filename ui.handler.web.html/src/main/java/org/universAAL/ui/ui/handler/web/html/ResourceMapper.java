@@ -96,7 +96,7 @@ public final class ResourceMapper {
 				+ extension;
 		File cached = new File(cacheFolder, coded);
 		if (!cached.exists()
-				&& cached.getParentFile().mkdirs()) {
+				|| cached.getParentFile().mkdirs()) {
 			// copy
 			try {
 				new Retreiver(resource.openStream(), cached);
