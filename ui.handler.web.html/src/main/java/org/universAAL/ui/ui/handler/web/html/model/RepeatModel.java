@@ -46,19 +46,20 @@ public class RepeatModel extends GroupModel {
 		List Vforms = ((Repeat) fe).virtualFormExpansion();
 		int i = 0;
 		StringBuffer table = new StringBuffer();
-		// TODO add label (spanning first row and row headers,
 			FormControl[] headFCs = ((Repeat) fe).getChildren();
 			if (headFCs[0] instanceof Group){
 				headFCs = ((Group) headFCs[0]).getChildren();
 			}
 		StringBuffer title = getLabelModel().getImgText();
 		if (title.length() > 0){
+			//  add label (spanning first row)
 			Properties head = new Properties();
 			head.put("class", "repeatLabel");
 			if (headFCs.length > 1)
 				head.put("colspan", Integer.toString(headFCs.length));
 			table.append(tag("tr", tag("th", title, head), null));
 		}
+		// and row headers
 		StringBuffer th = new StringBuffer();
 		for (int j = 0; j < headFCs.length; j++) {
 			FormControlModel fcm = (FormControlModel) getRenderer().getModelMapper().getModelFor(headFCs[j]);

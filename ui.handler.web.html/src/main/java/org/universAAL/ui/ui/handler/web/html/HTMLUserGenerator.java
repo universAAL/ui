@@ -107,7 +107,7 @@ public class HTMLUserGenerator {
     
     /**
 	 * Constructor for one Renderer on a certain file.
-     * @param mc TODO
+     * @param mc the {@link ModuleContext} to work in uAAL.
      * @param usr the user for which this renderer is working.
      * @param mc the {@link ModuleContext} to create {@link UIHandler} and send logs
 	 */

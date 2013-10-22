@@ -140,8 +140,8 @@ public abstract class Model {
 	
 	/**
 	 * Create a {@link Properties} instance with a src key pointing to the cached resource.
-	 * @param p TODO
-	 * @param url
+	 * @param p the properties to which to add the src property.
+	 * @param url the url of the original content.
 	 */
 	public void addSRCProp(Properties p, String url){
 		if (url != null && !url.isEmpty()) {
