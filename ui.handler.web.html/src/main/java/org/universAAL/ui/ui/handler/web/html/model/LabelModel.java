@@ -51,7 +51,6 @@ public class LabelModel extends Model {
 			// icon first for left alignment
 			a.append(getIcon());
 		}
-		a.append(getIcon());
 		if (((Label)fe).getText() != null) {
 			a.append(((Label)fe).getText());
 		}
