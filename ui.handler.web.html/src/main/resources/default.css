@@ -742,8 +742,9 @@ list-style:disc;}
 }
 
 .itemForm{
-	width:100%;	
-	text-align:center;
+	
+	clear:both; 
+	
 }
 
 #IOControlsGroup fieldset>fieldset{
@@ -755,28 +756,72 @@ list-style:disc;}
 }
 
 #IOControlsGroup label{ 
-	clear:both; 
+	
+	
+	
 	color: #000;    
 	font-size: 0.9em;
     font-weight: bold;
 }
 
+#IOControlsGroup fieldset fieldset fieldset fieldset label, #IOControlsGroup fieldset fieldset fieldset label{
+	font-size: 1.1em;
+}
+
+
+
 .itemForm label{
-	width:100px;
-	text-align:right;
-	margin: 5px;
-	padding: 5px;
+	
 	float:left;
-	background:#FF6;
-	width:100px;
+	width:25%;
+	margin:3px;
+	padding:3px;
+	text-align:right;
+}
+
+
+#IOControlsGroup.RootGroup fieldset fieldset fieldset legend{
+    font-size: 1.15em;
+    margin: 0 0 0 15%;
+    text-decoration: underline;
+}
+
+#IOControlsGroup textarea{
+	 font-family: Verdana;
+    font-size: 0.9em;
 }
 
 .itemForm input, .itemForm select, .itemForm textarea{
 	float:left;
-	margin: 5px;
-	padding: 5px;
+	margin: 3px;
+	padding: 3px;
+	border: 1px solid #999;
+	border-radius:5px;
 }
 
 #IOControlsGroup{
 	clear:both;
+}
+
+table.repeat{
+	border:0;
+}
+
+table.repeat td{
+	border-bottom:1px #ccc solid;	
+}
+
+table th.repeatLabel{
+	background:#3b8993;
+	color: #FFF;
+	font-size:1.3em;
+	font-weight:normal;
+}
+
+
+table th.repeatColLabel{
+	background:#3b8993;
+	color: #EEEEEE;
+    font-size: 1em;
+    font-weight: normal;
 }
