@@ -75,7 +75,7 @@ public class GroupModel extends FormControlModel {
 			LabelModel lm = (LabelModel) getModelFor(g.getLabel());
 			legend.append(tag("legend", lm.getImgText(), null));
 		}
-		return tag("filedset", legend.append(getContentAccordingToRecommendations(child)), null);
+		return tag("fieldset", legend.append(getContentAccordingToRecommendations(child)), null);
 	}
 
 	/**

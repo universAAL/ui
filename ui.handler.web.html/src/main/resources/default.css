@@ -693,3 +693,90 @@ margin:0px 0 0 20px;
 padding:2px 0px 2px 0;
 border:none;
 list-style:disc;}
+
+
+
+/***--------------------------------------------------------------------------------------  */
+
+.standardButton, .submitButton{
+	background:#ccc;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-weight: bold;
+	padding: 5px 15px;
+	margin: 5px 10px;
+	color: #666;
+}
+
+.submitButton:hover , .standardButton:hover {
+	background: #3b8993;
+	border: 3px solid #fff;	/*#16525a;*/
+	margin: 3px 8px;
+	color:#fff;
+}
+
+.standardButton img{ vertical-align:middle; padding:0 2px 0 0;} 
+
+#StandardGroup{
+	//border:1px solid #ff0000;
+	float:left;
+}
+
+#SubmitsGroup{
+	float:right;
+}
+
+#IOControlsGroup fieldset{
+	border-top:1px solid #3b8993;
+	border-left:1px solid #3b8993;
+	border-bottom:0;
+	border-right:0;
+	border-top-left-radius: 10px 10px;
+	font-weight:bold;
+	color:#16525a;
+    margin: 5px 10px -15px 5px;
+    padding: 20px 20px 35px;
+	clear:both;
+	text-align:left;
+	
+}
+
+.itemForm{
+	width:100%;	
+	text-align:center;
+}
+
+#IOControlsGroup fieldset>fieldset{
+	border:0;
+	padding:0;
+	margin:0;
+	color:#333;
+	font-size:0.9em;
+}
+
+#IOControlsGroup label{ 
+	clear:both; 
+	color: #000;    
+	font-size: 0.9em;
+    font-weight: bold;
+}
+
+.itemForm label{
+	width:100px;
+	text-align:right;
+	margin: 5px;
+	padding: 5px;
+	float:left;
+	background:#FF6;
+	width:100px;
+}
+
+.itemForm input, .itemForm select, .itemForm textarea{
+	float:left;
+	margin: 5px;
+	padding: 5px;
+}
+
+#IOControlsGroup{
+	clear:both;
+}
