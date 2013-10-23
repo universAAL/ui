@@ -21,6 +21,8 @@ import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.recommendations.HorizontalAlignment;
+import org.universAAL.ontology.recommendations.VerticalLayout;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
 /**
@@ -51,13 +53,18 @@ public class SubmitModel extends FormControlModel {
 		// put special classes to button (eg when kicker)
 		if (isInStandardGroup()){
 			p.put("class", "standardButton");
+			((Submit)fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
+			((Submit)fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
 		}
 		if (isInSubmitGroup()){
 			p.put("class", "submitButton");
 		}
 		if (isInIOGroup()){
-			if (isInMainMenu())
-			p.put("class", "kickerButton");
+			if (isInMainMenu()) {
+				p.put("class", "kickerButton");
+				((Submit)fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
+				((Submit)fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
+			}
 		}
 		
 		return tag("button", getLabelModel().getImgText(),p);

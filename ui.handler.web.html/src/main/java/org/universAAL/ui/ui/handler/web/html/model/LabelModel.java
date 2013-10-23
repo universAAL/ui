@@ -46,19 +46,33 @@ public class LabelModel extends Model {
 	 */
 	public StringBuffer getImgText() {
 		StringBuffer a = new StringBuffer();
-		if (recModel.hasHorizontalLeftAlignment()
-				|| !recModel.hasHorizontalRightAlignment()){
-			// icon first for left alignment
-			a.append(getIcon());
-		}
+		StringBuffer icon = getIcon();
+		StringBuffer text = new StringBuffer();
 		if (((Label)fe).getText() != null) {
-			a.append(((Label)fe).getText());
+			text.append(((Label)fe).getText());
 		}
-		if (recModel.hasHorizontalRightAlignment()){
-			// icon last for right alignment
-			a.append(getIcon());
+		
+		if (icon.length()>0){
+			if (recModel.isHorizontalLayout()
+					|| !recModel.isVerticalLayout()){
+				if (recModel.hasHorizontalLeftAlignment()
+						|| !recModel.hasHorizontalRightAlignment()){
+					a.append(icon).append(text);
+				} else {
+					a.append(text).append(icon);
+				}
+			}else {
+				if (recModel.hasVerticalTopAlignment()
+						|| !recModel.hasVerticalBottomAlignment()){
+					a.append(icon).append(singleTag("br", null)).append(text);
+				}else {
+					a.append(text).append(singleTag("br", null)).append(icon);
+				}
+			}
+			return a;
+		}else {
+			return text;
 		}
-		return a;
 	}
 	
 	/**
