@@ -49,6 +49,7 @@ import org.universAAL.ontology.location.LocationOntology;
 import org.universAAL.ontology.phThing.PhThingOntology;
 import org.universAAL.ontology.profile.ProfileOntology;
 import org.universAAL.ontology.profile.userid.UserIDProfileOntology;
+import org.universAAL.ontology.recommendations.RecommendationsOntology;
 import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.ui.preferences.AccessMode;
@@ -102,6 +103,7 @@ public class FullFormGeneratorTest extends TestCase {
 		OntologyManagement.getInstance().register(mc, new LanguageOntology());
 		OntologyManagement.getInstance().register(mc,
 				new UIPreferencesProfileOntology());
+		OntologyManagement.getInstance().register(mc, new RecommendationsOntology());
 
 		testRender = new TestGenerator(mc);
 		File f = new File("./target/cache/UIPrefences.htm");
