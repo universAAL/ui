@@ -118,7 +118,7 @@ public class HTTPHandlerService extends GatewayPort {
 			
 			protected void addDefaults(Properties defaults) {
 				defaults.put(SERVICE_URL, "/universAAL");
-		        defaults.put(RESOURCES_LOC, homeDir + "/resources");
+		        defaults.put(RESOURCES_LOC, homeDir + File.separator + "resources");
 		        //copy the css somewhere and use that 
 		        try {
 					File defCSSF = new File(homeDir, "default.css");

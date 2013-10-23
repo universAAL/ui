@@ -298,20 +298,22 @@ public final class ResourceMapper {
 		/** {@ inheritDoc}	 */
 		public void run() {
 			try {
-			
-			FileOutputStream os = new FileOutputStream(file);
-			byte[] buffer = new byte[4096];
-			int bytesRead;
-			while (((bytesRead = is.read(buffer)) != -1) 
-					&& work){
-				os.write(buffer, 0, bytesRead);
-			}
-			is.close();
-			os.flush();
-			os.close();
-			if (!work){
-				file.delete();
-			}
+				if (file.getParentFile().exists()
+						|| file.getParentFile().mkdirs()){
+					FileOutputStream os = new FileOutputStream(file);
+					byte[] buffer = new byte[4096];
+					int bytesRead;
+					while (((bytesRead = is.read(buffer)) != -1) 
+							&& work){
+						os.write(buffer, 0, bytesRead);
+					}
+					is.close();
+					os.flush();
+					os.close();
+					if (!work){
+						file.delete();
+					}
+				}
 		} catch (FileNotFoundException e) {
 			if (mc != null)
 				LogUtils.logError(
