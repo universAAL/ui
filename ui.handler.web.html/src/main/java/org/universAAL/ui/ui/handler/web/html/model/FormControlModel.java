@@ -79,7 +79,9 @@ public abstract class FormControlModel extends Model {
 		if (lm != null){
 			label.append(getLabelModel().getLabelFor(fcProps.getProperty("name")));
 		}
-		return label.append(generateHTMLWithoutLabel());
+		Properties p = new Properties();
+		p.put("class", "itemForm");
+		return tag("div", label.append(generateHTMLWithoutLabel()), p);
 	}
 	
 	/**
