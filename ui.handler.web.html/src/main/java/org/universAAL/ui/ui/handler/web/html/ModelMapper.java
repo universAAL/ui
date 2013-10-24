@@ -107,11 +107,11 @@ public final class ModelMapper {
                     .newInstance(new Object[] { constructorParameter, render } );
         } catch (Exception e) {
             if (render.getModuleContext() != null) {
-            	LogUtils.logError(render.getModuleContext(),
+            	LogUtils.logWarn(render.getModuleContext(),
             			getClass(),
             			"tryToLoadClass", 
             			new String[]{"Could not find Class: ",
-            		LAFPackage + "." + getStringLAFClass(constructorParamClass)}, e);
+            		LAFPackage + "." + getStringLAFClass(constructorParamClass)}, null);
             }
             return null;
         }
@@ -148,10 +148,9 @@ public final class ModelMapper {
         		return getModelFor(refObj, parentC);
         	} else {
         		LogUtils.logError(render.getModuleContext(), getClass(), "getModelFor", 
-        				new String[]{"This is really akwuard,",
-        							 "No Model found...",
-        							 "not even in DefaultLAFPackage...",
-        							 "or as any antecesor...",
+        				new String[]{"This is really awkward, ",
+        							 "No Model found... ",
+        							 "or as any antecesor... ",
         							 "COME ON!!"}, null);
         	}
         }
