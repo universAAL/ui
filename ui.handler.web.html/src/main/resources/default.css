@@ -26,523 +26,7 @@ body {
 h1 {
 display:none;}
 
-
-/* ------------------------ GENERAL -----------------------*/
-
-#fondo_izq{
-background-image:url(grafismos/fondo_left.gif);
-background-position:left;
-background-repeat:repeat-y;
-width:997px;
-}
-
-#fondo_drcha{
-background-image:url(grafismos/fondo_right.gif);
-background-position:right;
-background-repeat:repeat-y;
-width: 969px;
-}
-
-/* ----------------------- CABECERA ---------------------- */
-
-
-.cabecera{
-height:200px;
-width:919px;
-margin:0px;
-padding:0px;
-
-
-}
-
-	#texto {
-		background-image:url(../images/backgroundHeaderRed.jpg);
-	 	background-repeat: repeat-x;
-		width: 163px;
-		height: 200px;
-		padding: 0px;
-		float: left;
-		text-align: right;
-	}
-	
-
-	
-	#logos{
-		width:726px;
-		height:100px;
-		float: right;
-		background-position: left;
-		padding :75px 10px 25px 10px;
-		background-image:url(../images/backgroundHeaderRight.jpg);
-		background-repeat: repeat-x;
-		text-align:right;
-	}
-	
-	#address {
-		margin-top: 70%;
-		font-size: 9pt;
-	}
-
-	#upm, #fundacion, #etsit {float:right;}
-
-	#upm img, #etsit img, #fundacion img {border: none;}
-
-
-	
-
-
-	
-	
-/* ----------------------- CENTRAL ---------------------- */
-			#central{
-			width:919px;
-			height:630px;
-			background-color:#FFFFFF;
-			text-align:left;
-			}
-						
-			.contenido{
-			width:919px;
-			margin:0px;
-			/* background-color:yellow; */
-			}
-			
-			.contenido a
-			{
-				color: #CC0000;
-			}
-		
-			.mainContent {
-				width: 723px;
-				float: right;
-				font-size: 0.85em;
-				line-height:17px;
-				padding: 14px 10px 10px 10px ;
-				text-align: left;
-			}
-			
-			.mainContent img {
-				margin: 5px 5px 5px 0px;
-				border: 0px;
-			}
-			
-			.mainContent ul li {
-				padding: 5px 0px;
-			}
-			
-			
-			.seccion {
-			width:500px;
-			float:left;
-			color:#555;
-			text-align:justify;
-			border-right: 1px solid #E5E5E5;
-			padding-right: 10px;
-			padding-top:8px;
-			min-height:500px;
-			}
-			
-			.seccion2{
-			width:98%;
-			float:left;
-			text-align:justify;
-			padding:8px 0px 10px 0;
-			min-height:500px;}
-			h2{
-			font-size:1.2 em;
-			font-weight:bold;
-			color: #CC0000;
-			margin-top:10px;}
-			
-			/* ----------------------- NOTICIAS ---------------------- */
-			
-			h3{
-			font-size: 1.3em;
-			font-weight:bold;
-			color:#CC0000;
-			margin:0px;
-			}
-			
-			#novedades, #estamos {
-			width:180px;
-			height:320px;
-			clear:right;
-			float:right;
-			margin:22px 5px 0 0px;
-			padding:0px;
-			padding-right: 10px;
-			font-size: 0.85em;
-			background-image:url(grafismos/news_izq.gif);
-			background-position:top left;
-			background-repeat:no-repeat;
-			border: 0px;
-			text-align:left;
-			line-height:14px;
-			}
-			
-			#estamos{
-			padding-top:30px;}
-			
-				
-				#novedades ul{
-				text-decoration:none;
-				padding:20px 0;
-				margin:0px;
-				}
-				#noticias ul.inferior{
-				background-image:none;}
-				#novedades li{
-				text-decoration:none;
-				font-weight: normal;
-				color:#666;
-				list-style:none;
-				}
-				#novedades li.title{
-				text-decoration:none;
-				background-image:url(grafismos/flecha.gif);
-				background-repeat:no-repeat;
-				font-weight: bold;
-				color:#CC0000;
-				margin:0px;
-				padding:0px;
-				}
-				#novedades a:link, #novedades a:visited{
-				color:#666666;}
-				#novedades a:hover{
-				color:#CC0000;}
-			
-			
-			/* ----------------------- PDF ---------------------- */
-				#pdf{
-				width:202px;
-				height:150px;
-				clear:right;
-				float:right;
-				margin:20px 0 0 0px;
-				padding:0px;
-				font-size:10px;
-				text-align:left;
-				background-image:url(grafismos/news_izq.gif);
-				background-position:top left;
-				background-repeat:no-repeat;
-				}
-			
-				#pdf_centro{
-				width:173px;
-				height:150px;
-				background-image:url(grafismos/news_centro.gif);
-				background-repeat:repeat-x;
-				padding:20px 5px 5px 5px;
-				margin-left:10px;
-				text-align:justify;
-				color:#666;}
-				
-				#pdf_drcha{
-				width:202px;
-				height:150px;
-				background-image:url(grafismos/news_drcha.gif);
-				background-repeat:no-repeat;
-				background-position:top right;
-				}
-				
-				#pdf a:link, #pdf a:visited{
-				color:#666;}
-				#pdf a:hover{
-				color:#000;}
-			
-			/* ----------------------- MENU 1 ------------------------- */
-			
-			.menu {
-			width:163px;
-			float:left;
-			margin: 0px;
-			clear: right;
-			padding:0px;
-			color:#888;
-			text-align:left;
-			}
-			
-			.menu ol {
-				margin: 0px;
-				padding: 0px;
-			}
-			
-			.menu li.linkSeccion{
-			list-style: none;
-			margin: 0;
-			text-align: left;
-			padding: 0px;
-			}
-			
-			
-				.menu li.seccionActual{
-				color: #fff;
-				background-color:#888;
-				padding: 8px 0 8px 0px;
-				text-indent:10px;
-				
-				}
-				.menu li.seccionActual2{
-				padding:0px 0 5px 0px;
-				color:#cc0000;
-				font-size:0.8em;}
-				
-				.submenuActual{
-				margin: 0px;
-				width:100%;
-				display:block;
-				padding:0px 0 0px 0;
-				border-bottom: 1px solid #E5E5E5;
-				background-color:#CCCCCC;
-				}
-				
-				li.submenuActual, ul.submenuActual{
-				padding-top:10px;
-				margin-top:10px;
-				background-color:#FFFFFF;
-				width:100%;
-				
-				}
-				
-				.fondo_gris{
-				margin: 0px;
-				width:500px;
-				padding:2px;
-				border-bottom: 1px solid #E5E5E5;
-				background-color:#CCCCCC;
-				
-				}
-				/*.menu li.seccionActual a {
-				color: white;
-				}
-				*/
-				.menu ul.linkSeccion2{
-				margin:0px;
-				padding:0px;
-				}
-				.menu li.linkSeccion2{
-				list-style: none;
-				margin: 0px;
-				text-align: left;
-				margin-left: 10px;
-				height:20px;
-				color:#666;
-				font-size:0.8em;
-				
-
-				
-				}
-				.container .contenido .menu .linkSeccion2 a, .container .contenido .menu .linkSeccion2 a:visited {
-				text-decoration: none;
-				margin:0px;
-				padding:0px;
-				border:none;
-				color:#666666;
-				font-size:0.85em;
-				}
-				.container .contenido .menu .linkSeccion2 a:hover {
-				text-decoration: underline;
-				margin:0px;
-				padding:0px;
-				font-size:0.85em;
-				background-color: #FFFFFF;
-				color: #CC0000;
-				}
-			.menu li a{
-			display: block;
-			padding: 3px 0 3px 10px;
-			text-decoration: none;
-			border-bottom: 1px solid #E5E5E5;
-			height:27px;
-			width:153px;
-			margin:0px;
-			}
-			
-			.menu li a:link, .menu li a:visited { color: #333;}
-			
-			.menu li a:hover{
-			color: #fff;
-			background-color:#CC0000;
-			height:27px;
-			width:153px;
-			padding: 3px 0 3px 10px;
-			}
-			
-			ul.submenu {
-				background-color: #EEEEEE;
-				list-style: none;
-				margin: 0px;
-				padding: 0px;
-			}
-			
-			li.subsection {
-			list-style: none;
-			margin: 0;
-			text-align: left;
-			color: #333;
-			font-size: 0.8em;
-	
-			
-			}
-			
-			li.subsection a
-			{
-				display: block;
-				text-decoration: none;
-				border-bottom: 1px solid #E5E5E5;
-			
-			}
-			
-			/* ----------------------- MENU 2 ------------------------- */
-			
-			#menu2{
-			margin:0px;
-			padding: 0px;
-			width: 146px;
-			height:150px;
-			}
-			
-			#menu2 li{
-			list-style: none;
-			margin-bottom:5px;
-			text-align: left;
-			height:22px;
-			}
-			
-			#menu2 li a{
-			display: block;
-			padding:5px 0px 2px 15px;
-			text-decoration: none;
-			height:18px;
-			background-color:#eef5d7;
-			}
-			
-			#menu2 li a:link, #menu2 li a:visited {
-			color: #669900;
-			font-weight:bold; }
-			
-			#menu2 li a:hover{
-			border-color: #fff;
-			color: #fff;
-			background-color:#669900;
-			height:18px;
-			font-weight:bold;
-			}
-			
-
-/* ----------------------- PIE PAGINA ---------------------- */
-
-.pie{
-height:70px;
-width:100%; 
-clear: both;
-padding-top: 40px;
-font-size: 0.75em;
-color:#555;
-text-align:center;
-}
-
-.pie a:link, .pie a:visited{
-color:#555;
-}
-.pie a:hover{
-color:#CC0000;}
-
-#logos_pie{
-width:100%;
-text-align:center;
-padding-top:10px;}
-
-#logos_pie img{
-border:none;
-padding:0 5px 0 5px;}
-
-
-/*------------------------------ DIREC--------------------------*/
-#direc{
-width:125px;
-clear:right;
-float:left;
-margin:0px;
-padding:0px;
-color:#555;
-padding:10px;
-font-size:10px;
-text-align:right;
-border-right: 1px solid #ccc;
-}
-
-
-
-#red {
-	color: #CC0000;
-}
-
-.escondida {
-	display: none;
-}
-
-.submenu {
- display: none;
-}
-
-
-#despedida {
- text-align: center;
- margin: 0em;
-}
-
-#firma {
- display:block;
- padding: 2em 0em 2em 0em;
- margin: 0em 0em 1em 0em;
- text-align: right;
- font-weight: bold;
-}
-
-#firma span {
- font-weight: normal;
-}
-
-
-
-.ultimaNovedad {
- margin: 0em 0em 2em 0em;
-}
-
-.bold{
-font-weight:bold;}
-
-.fecha {
- color: #CC0000;
- font-weight:bold;
- margin-bottom:10px;
-}
-
-.novedad {
- margin: 0em 0em 1em 0em;
-}
-
-ul li ul li {
- margin: 0.3em 0em 0.3em 0em;
-}
-
-.destacado {
- color: #CC0000;
-}
-
-/* ------------------------- IMAGENES ---------------------*/
-
-				 
-#fotoTeresa {
- float: right;
- margin: 0em 0em 0em 0.5em;
-}		
-
-#imagen {
- width: 100%;
- text-align: center;
-}		 
+	 
 /*--------------------------- LINKS --------------------*/
 a {
 color: #CC0000;
@@ -553,99 +37,6 @@ a:hover {text-decoration: underline;}
 
 a:visited {color: #CC0000;}
 
-
-a.rojo:link{
-text-decoration:underline;
-color:#ff0031}
-
-a.rojo:visited, a.rojo:hover {
-text-decoration:underline;
-color:#ff0031}
-
-/*-------------------------CURSOS----------------------------*/
-#cursos_title{
-height:23px;
-background-color: #CC0000;
-font-weight:bold;
-border-bottom:4px solid white;
-padding:8px 0 0 8px;
-margin-top:40px;
-font-size:0.85em;
-color:#FFFFFF;}
-
-
-#cursos ul{
-margin:0px;
-padding:0px;
-list-style:none;font-size:0.9em;
-line-height:15px;}
-#cursos li{
-border-bottom:4px solid #fff;
-background-color: #EFEFEF;
-border-top: none;
-padding:10px 8px;
-}
-
-.cursos_title{
-font-size:1.1em;
-font-weight:bold;
-}
-
-.cursos_title_gris{
-color:#666666;
-font-size:1.2em;
-padding-bottom:2px;
-}
-#ruta{
-text-align:right;
-float:right;
-font-size:0.85em;
-margin-top:12px;}
-
-#ruta a:link, #ruta a:visited{
-color:#555;}
-#ruta a:hover{
-color:#555;
-text-decoration:underline;}
-
-ol li{
-padding-bottom:8px;
-font-size:0.9em;
-line-height:16px;}
-
-.horarios td{
-height:25px;
-background-color: #666;
-color:#fff;
-padding: 2px 0 2px 8px;
-}
-
-.horarios_gris td {
-background-color:#F4F4F4;
-padding:3px 0 3px 8px;
-border-bottom:1px solid #CCCCCC;
-height:20px;
-vertical-align:top;}
-
-.horarios_blanco td{
-background-color:#FFFFFF;
-padding:2px 0 2px 8px;
-height:20px;
-border-bottom: 1px solid #ccc;
-vertical-align:top;
-}
-
-
-/*--------------------- SEMINARIOS ----------------------------*/
-img.sponsor {
-	padding: 0px 10px;
-}
-
-.container .contenido .mainContent .seccion2 img{
-float:right;
-padding-left:15px;}
-
-/* -------------------------ENLACES------------*/
 #links{
 width:50%;
 display:block;
@@ -676,29 +67,11 @@ list-style:none;
 font-size:0.8em;
 height:15px;}
 
-.container .contenido .mainContent .seccion2 img {
-margin:0px;
-padding:0px 0 0 10px;
-float:right;
-}
-
-.container .contenido .mainContent .seccion2 #cursos #none .none .none{
-border:0px;
-padding:2px 0 2px 0;
-border:none;
-font-size:1em;}
-
-.container .contenido .mainContent .seccion2 #cursos #none .none .none2{
-margin:0px 0 0 20px;
-padding:2px 0px 2px 0;
-border:none;
-list-style:disc;}
-
 
 
 /***--------------------------------------------------------------------------------------  */
 
-.standardButton, .submitButton{
+.standardButton, .submitButton, .kickerButton{
 	background:#ccc;
 	border-radius: 5px;
 	border: 1px solid #999;
@@ -708,14 +81,21 @@ list-style:disc;}
 	color: #666;
 }
 
-.submitButton:hover , .standardButton:hover {
+.submitButton:hover , .standardButton:hover, .kickerButton:hover {
 	background: #3b8993;
 	border: 3px solid #fff;	/*#16525a;*/
 	margin: 3px 8px;
 	color:#fff;
 }
 
-.standardButton img{ vertical-align:middle; padding:0 2px 0 0;} 
+#MainMenuButtonsGroup.RootGroup fieldset  input{
+	margin:0 5px;
+}
+
+.standardButton img{ vertical-align:middle; padding:0 2px 0 0; max-height:50px;} 
+
+.kickerButton{ width:100%;}
+
 
 #StandardGroup{
 	//border:1px solid #ff0000;
@@ -724,6 +104,43 @@ list-style:disc;}
 
 #SubmitsGroup{
 	float:right;
+}
+
+#MainMenuButtonsGroup fieldset{
+    border: 1px solid #3B8993;
+    border-radius: 5px 5px 5px 5px;
+    clear: both;
+    color: #16525A;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0 0 0 10px;
+    padding: 4px 0;
+    text-align: left;
+    width: 99%;
+
+}
+
+#MainMenuButtonsGroup.RootGroup fieldset button.kickerButton{
+
+    background:#ccc;
+	border-radius: 5px;
+	border: 1px solid #999;
+	font-weight: bold;
+	padding: 2px 10px;
+	margin: 2px 5px;
+	color: #666;
+
+	width:auto;
+
+}
+
+#MainMenuButtonsGroup.RootGroup fieldset button.kickerButton:hover{
+	//margin:0;
+	background: #3b8993;
+	border: 2px solid #fff;	/*#16525a;*/
+	margin: 1px 7px;
+	color:#fff;
+
 }
 
 #IOControlsGroup fieldset{
@@ -824,4 +241,11 @@ table th.repeatColLabel{
 	color: #EEEEEE;
     font-size: 1em;
     font-weight: normal;
+}
+
+
+button img{
+ max-height: 50px;
+    max-width: 50px;
+    vertical-align: middle;
 }
