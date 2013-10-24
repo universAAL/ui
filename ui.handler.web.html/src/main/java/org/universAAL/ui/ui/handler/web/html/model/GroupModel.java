@@ -188,7 +188,7 @@ public class GroupModel extends FormControlModel {
 			return getVerticalContent(child);
 		}
 		if (recModel.getGridLayoutCols() > 0){
-			return getTableContent(child, recModel.getGridLayoutCols());
+			return tag("table", getTableContent(child, recModel.getGridLayoutCols()), null);
 		}
 		//detault to Horizontal
 		return getHorizontalContent(child);
