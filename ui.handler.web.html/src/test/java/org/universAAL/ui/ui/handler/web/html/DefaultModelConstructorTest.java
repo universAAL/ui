@@ -47,6 +47,8 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.middleware.ui.rdf.TextArea;
+import org.universAAL.ontology.recommendations.GridLayout;
+import org.universAAL.ontology.recommendations.RecommendationsOntology;
 import org.universAAL.ui.ui.handler.web.html.model.GroupModel;
 import org.universAAL.ui.ui.handler.web.html.model.InputFieldModel;
 import org.universAAL.ui.ui.handler.web.html.model.LabelModel;
@@ -90,6 +92,7 @@ public class DefaultModelConstructorTest extends TestCase{
 	    
 		OntologyManagement.getInstance().register(mc,new DataRepOntology());
 		OntologyManagement.getInstance().register(mc,new UIBusOntology());
+		OntologyManagement.getInstance().register(mc,new RecommendationsOntology());
 
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");
@@ -122,6 +125,19 @@ public class DefaultModelConstructorTest extends TestCase{
 				getPath("group1"), 
 				null, 
 				null);
+		pw.println(new GroupModel(g, testRender).generateHTML());	
+	}
+	
+	public void testGridGroup(){
+		Group g = new Group(f.getIOControls(),
+				l,
+				getPath("group1"), 
+				null, 
+				null);
+		g.addAppearanceRecommendation(new GridLayout(4, 0));
+		for (int i = 0; i < 40; i++) {
+			new SimpleOutput(g, null, null, Integer.valueOf(i));
+		}
 		pw.println(new GroupModel(g, testRender).generateHTML());	
 	}
 
