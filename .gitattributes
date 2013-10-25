@@ -208,6 +208,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/FormLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/GridUnitLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java -text svneol=unset#text/plain
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalUnitLayout.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-halfspaces.png -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-preview.png -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/doc-files/FormLayout-spaces.png -text
@@ -366,6 +367,7 @@ handler.gui.swing/src/test/java/swing/simple/tests/GridLayoutTest.java -text svn
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest2.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/swing/simple/tests/TableTest3.java -text svneol=unset#text/plain
+handler.gui.swing/src/test/java/swing/simple/tests/VertivalUnitLayoutTest.java -text svneol=unset#text/plain
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/DefaultLAFConstructorTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ModelMapperTest.java -text
 handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
