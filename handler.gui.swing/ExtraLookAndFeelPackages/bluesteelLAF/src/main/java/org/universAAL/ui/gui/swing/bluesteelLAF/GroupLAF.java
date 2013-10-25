@@ -15,7 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -26,7 +29,12 @@ import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.recommendations.GridLayout;
+import org.universAAL.ontology.recommendations.HorizontalAlignment;
+import org.universAAL.ontology.recommendations.HorizontalLayout;
 import org.universAAL.ontology.recommendations.Layout;
+import org.universAAL.ontology.recommendations.VerticalAlignment;
+import org.universAAL.ontology.recommendations.VerticalLayout;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UCCButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.MessageKeys;
@@ -34,7 +42,9 @@ import org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.SystemCollap
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.GridUnitLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalUnitLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
 
@@ -146,38 +156,86 @@ public class GroupLAF extends GroupModel {
 
 
 	/** {@inheritDoc} */
-    public void update() {
-		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-		int gap = color.getGap();
-		if (wrap != null) {
-        	wrap.update();
-        	needsLabel = wrap.needsLabel();
-        } 
-        if (this.isTheIOGroup()
-        	&& !this.isInMainMenu()){
-        	if (containsOnlySubGroups()
-        			&& ((Group)fc).getChildren().length <= GROUP_NO_THRESHOLD) {
-        		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
-        		vfl.setMaximizeOtherDimension(true);
-        		jc.setLayout(vfl);
-        	} else if (jc instanceof JPanel) {
-        		jc.setLayout(new FormLayout(gap));
-        	}
-        }
-        else if (this.isTheSubmitGroup()
-        	&& !this.isInMessage()){
-        	VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
-        	vfl.setMaximizeOtherDimension(true);
-			jc.setLayout(vfl);
+	public void update() {
+	    ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
+	    int gap = color.getGap();
+	    if (wrap != null) {
+		wrap.update();
+		needsLabel = wrap.needsLabel();
+	    } 
+	    if (this.isTheIOGroup()
+		    && !this.isInMainMenu()){
+		if (containsOnlySubGroups()
+			&& ((Group)fc).getChildren().length <= GROUP_NO_THRESHOLD) {
+		    VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
+		    vfl.setMaximizeOtherDimension(true);
+		    jc.setLayout(vfl);
+		} else if (jc instanceof JPanel) {
+		    jc.setLayout(new FormLayout(gap));
 		}
-        else if (this.isInMainMenu() 
-        		&& !this.isTheIOGroup()
-        		&& !this.isTheMainGroup()
-        		&& !this.isTheSubmitGroup()){
-        	jc.setOpaque(false);
-    		jc.setLayout(new FormLayout(gap));
-        }
-    }
+	    }
+	    else if (this.isTheSubmitGroup()
+		    && !this.isInMessage()){
+		VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, gap, gap);
+		vfl.setMaximizeOtherDimension(true);
+		jc.setLayout(vfl);
+	    }
+	    else if (this.isInMainMenu() 
+		    && !this.isTheIOGroup()
+		    && !this.isTheMainGroup()
+		    && !this.isTheSubmitGroup()){
+		jc.setOpaque(false);
+		jc.setLayout(new FormLayout(gap));
+	    }
+	    
+	    // apply Layout Recommendataions
+	    LayoutManager lm = null;
+	    int alignment  = -1;
+	    List<Recommendation> l = fc.getAppearanceRecommendations();
+	    for (Recommendation r : l) {
+		if (ManagedIndividual.checkMembership(VerticalLayout.MY_URI, r)) {
+		    lm = new VerticalUnitLayout(gap);
+		}
+		if (ManagedIndividual.checkMembership(HorizontalLayout.MY_URI, r)) {
+		    lm = new FlowLayout();
+		}
+		if (ManagedIndividual.checkMembership(GridLayout.MY_URI, r)) {
+		    lm = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
+		}
+		if (r.equals(HorizontalAlignment.left)) {
+		    alignment = FlowLayout.LEFT;
+		}
+		if (r.equals(HorizontalAlignment.center)) {
+		    alignment = FlowLayout.CENTER;
+		}
+		if (r.equals(HorizontalAlignment.right)) {
+		    alignment = FlowLayout.RIGHT;
+		}
+		if (r.equals(VerticalAlignment.top)) {
+		    alignment = VerticalFlowLayout.TOP;
+		}
+		if (r.equals(VerticalAlignment.middle)) {
+		    alignment = VerticalFlowLayout.CENTER;
+		}
+		if (r.equals(VerticalAlignment.bottom)) {
+		    alignment = VerticalFlowLayout.BOTTOM;
+		}
+	    }
+	    if (lm instanceof FlowLayout) {
+		if (alignment >= 0)
+		    ((FlowLayout) lm).setAlignment(alignment);
+		((FlowLayout) lm).setHgap(gap);
+		((FlowLayout) lm).setVgap(gap);
+	    }
+	    if (lm instanceof VerticalFlowLayout) {
+		if (alignment >= 0)
+		    ((VerticalFlowLayout) lm).setAlignment(alignment);
+		((VerticalFlowLayout) lm).setHgap(gap);
+		((VerticalFlowLayout) lm).setVgap(gap);
+	    }
+	    if (lm != null)
+		jc.setLayout(lm);
+	}
     
     private static class SystemMenuLAF extends GroupPanelModel {
 
