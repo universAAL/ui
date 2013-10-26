@@ -295,6 +295,9 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 				jc.setLocation(x, y);
 			}
 		}
+		public boolean isHorizontal(){
+		    return isHorizontal;
+		}
 	}
 
 	class Row {

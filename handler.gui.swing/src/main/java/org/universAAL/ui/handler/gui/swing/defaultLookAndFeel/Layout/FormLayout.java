@@ -76,7 +76,7 @@ public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 			if (parent.getSize().width != 0) {
 				maxWidth = parent.getSize().width - insets.left - insets.right;
 			}
-			if (parent.getParent() != null
+			else if (parent.getParent() != null
 					&& parent.getParent() instanceof JViewport
 					&& ((JViewport) parent.getParent()).getSize().width > 0) {
 				JViewport vp = ((JViewport) parent.getParent());
