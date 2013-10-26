@@ -19,7 +19,6 @@ import javax.swing.border.SoftBevelBorder;
 
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.GridUnitLayout;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalUnitLayout;
 
 public class VertivalUnitLayoutTest extends JFrame {
