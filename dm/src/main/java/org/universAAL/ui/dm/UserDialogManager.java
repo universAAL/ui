@@ -662,7 +662,8 @@ public class UserDialogManager implements IDialogManager,
      */
     public final synchronized void suspendDialog(String dialogID) {
 	dialogPool.suspend(dialogID);
-	if (current.getDialogID().equals(dialogID)) {
+	if (current != null
+		&& current.getDialogID().equals(dialogID)) {
 	    current = null;
 	}
 	// request data through CutDialog
