@@ -9359,6 +9359,11 @@ ui.pom-2.0.1-SNAPSHOT/ui.karaf.feature/ASL2.0.txt -text
 ui.pom-2.0.1-SNAPSHOT/ui.karaf.feature/NOTICE.txt -text
 ui.pom-2.0.1-SNAPSHOT/ui.karaf.feature/pom.xml -text
 ui.pom-2.0.1-SNAPSHOT/ui.karaf.feature/src/features/features.xml -text
+ui.pom-2.0.2-SNAPSHOT/pom.xml -text
+ui.pom-2.0.2-SNAPSHOT/ui.karaf.feature/ASL2.0.txt -text
+ui.pom-2.0.2-SNAPSHOT/ui.karaf.feature/NOTICE.txt -text
+ui.pom-2.0.2-SNAPSHOT/ui.karaf.feature/pom.xml -text
+ui.pom-2.0.2-SNAPSHOT/ui.karaf.feature/src/features/features.xml -text
 ui.resource.server-1.1.2-SNAPSHOT/LICENSE.txt -text
 ui.resource.server-1.1.2-SNAPSHOT/pom.xml -text
 ui.resource.server-1.1.2-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
