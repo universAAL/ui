@@ -337,6 +337,10 @@ ui.handler.web-2.0.2-SNAPSHOT/.project
 ui.handler.web-2.0.2-SNAPSHOT/.settings
 ui.handler.web-2.0.2-SNAPSHOT/bin
 ui.handler.web-2.0.2-SNAPSHOT/target
+ui.handler.web.html-2.0.2-SNAPSHOT/.classpath
+ui.handler.web.html-2.0.2-SNAPSHOT/.project
+ui.handler.web.html-2.0.2-SNAPSHOT/.settings
+ui.handler.web.html-2.0.2-SNAPSHOT/target
 ui.internationalization.util-2.0.1-SNAPSHOT/.classpath
 ui.internationalization.util-2.0.1-SNAPSHOT/.project
 ui.internationalization.util-2.0.1-SNAPSHOT/.settings
