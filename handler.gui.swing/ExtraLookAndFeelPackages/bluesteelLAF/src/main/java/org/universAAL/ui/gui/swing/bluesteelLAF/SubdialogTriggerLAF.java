@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2012 Universidad PolitÈcnica de Madrid
+ * Copyright 2012 Universidad Polit√©cnica de Madrid
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 			s.addActionListener(this);
 		}
 		else {
-			//Lo dem·s inlcuyendo submits, submits en IOgroup 
+			//the re√©t including submits, and submits in IOgroup 
 			s = new SubmitButton(fc.getLabel().getText(),
 					IconFactory.getIcon(fc.getLabel().getIconURL()));
 			s.addActionListener(this);
