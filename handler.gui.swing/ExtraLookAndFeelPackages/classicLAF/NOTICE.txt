@@ -1,7 +1,7 @@
 universAAL Classic Look and Feel Package for UI SWING Handler
 
 Copyright 2012-2014 UPM, http://www.upm.es
-Universidad Politécnica de Madrid 
+Universidad PolitÃ©cnica de Madrid 
 
 Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
 Instituto Tecnologico de Aplicaciones de Comunicacion 
@@ -10,7 +10,7 @@ Bienestar (TSB)
 
 I. Included Software
 
-Software developed by Universidad Politécnica de 
+Software developed by Universidad PolitÃ©cnica de 
 Madrid within the universAAL project.
 
 

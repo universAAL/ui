@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Universidad Polit�cnica de Madrid
+ * Copyright 2013 Universidad Politécnica de Madrid
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
  * See the NOTICE file distributed with this work for additional 
