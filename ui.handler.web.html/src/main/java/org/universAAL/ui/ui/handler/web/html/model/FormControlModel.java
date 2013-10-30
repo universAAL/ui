@@ -19,6 +19,7 @@ package org.universAAL.ui.ui.handler.web.html.model;
 
 import java.util.Properties;
 
+import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Group;
@@ -197,6 +198,15 @@ public abstract class FormControlModel extends Model {
 			label = (LabelModel) getRenderer().getModelMapper().getModelFor(((FormControl) fe).getLabel());
 		}
 		return label;
+	}
+	
+	/**
+	 * Checks if the value will be accepted as class c.
+	 * @param c
+	 * @return
+	 */
+	protected boolean isOfType(Class c){
+	    return TypeMapper.getJavaClass(((FormControl)fe).getTypeURI()) == c;
 	}
 
 }
