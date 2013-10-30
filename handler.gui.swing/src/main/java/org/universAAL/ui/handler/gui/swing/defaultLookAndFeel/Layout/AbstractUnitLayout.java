@@ -325,7 +325,10 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
 				int myWidth = u.getPreferredSize().width;
-				myWidth = myWidth * ratio / currentPrefWidth;
+				if (currentPrefWidth > 0) {
+				    myWidth = myWidth * ratio
+					    / currentPrefWidth;
+				}
 				u.setSize(new Dimension(myWidth, maxHeight));
 			}
 		}
