@@ -20,6 +20,7 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.rdf.TypeMapper;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -63,4 +64,13 @@ public abstract class InputModel extends Model
      * Update the {@link JComponent} or the label to notiffy the the user Input is missing.
      */
     public abstract void updateAsMissing();
+    
+    /**
+     * Checks if the value will be accepted as class c.
+     * @param c
+     * @return
+     */
+    protected boolean isOfType(Class c){
+		return TypeMapper.getJavaClass(fc.getTypeURI()) == c;
+    }
 }

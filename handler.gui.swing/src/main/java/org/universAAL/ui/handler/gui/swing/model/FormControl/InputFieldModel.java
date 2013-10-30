@@ -20,11 +20,14 @@ package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Locale;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
@@ -94,13 +97,13 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 	    cb.addChangeListener(this);
 	    return cb;
 	}
-	if (inFi.getValue() instanceof String && !inFi.isSecret()) {
+	if (isOfType(String.class) && !inFi.isSecret()) {
 	    /*
 	     * the input requested is a normal text field
 	     */
 	    return normalTextField(maxLength);
 	}
-	if (inFi.getValue() instanceof String && inFi.isSecret()) {
+	if (isOfType(String.class) && inFi.isSecret()) {
 	    /*
 	     * the input requested is a password field
 	     */
@@ -113,18 +116,23 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 	    pf.addCaretListener(this);
 	    return pf;
 	}
-	// if (inFi.getValue() instanceof XMLGregorianCalendar) {}
-	// if (inFi.getValue() instanceof Duration) {}
-	/*
-	 * if (inFi.getValue() instanceof Integer || inFi.getValue() instanceof
-	 * Long) {
-	 * 
-	 * } if (inFi.getValue() instanceof Float || inFi.getValue() instanceof
-	 * Double) {
-	 * 
-	 * }
-	 */
-	if (inFi.getValue() instanceof Locale) {
+	
+	
+	// if (isOfType(XMLGregorianCalendar.class) ) {}
+	// if (isOfType(Duration.class) ) {}
+
+	if (isOfType(Integer.class) || isOfType(Long.class)) {
+	    JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getIntegerInstance());
+	    ftf.addCaretListener(this);
+	    return ftf;
+	} 
+	if (isOfType(Float.class) || isOfType(Double.class)) {
+	    JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getNumberInstance());
+	    ftf.addCaretListener(this);
+	    return ftf;
+	}
+
+	if (isOfType(Locale.class)) {
 	    JComboBox lcb = new JComboBox(Locale.getAvailableLocales());
 	    lcb.addActionListener(this);
 	    return lcb;
@@ -218,20 +226,51 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 				JTextField tf = (JTextField) e.getSource();
 				InputField inFi = (InputField) fc;
 				if (isValid()) {
-					try {
+					if (tf instanceof JFormattedTextField) {
+					    JFormattedTextField ftf = (JFormattedTextField) tf;
+					    try {
+						ftf.commitEdit();
+						castAndStore(ftf.getText());
+					    } catch (ParseException e1) {
+					    }
+					}else {
+					    try {
 						if (!inFi.isSecret()) {
-							inFi.storeUserInput(tf.getText());
+						    castAndStore(tf
+							    .getText());
 						} else {
-							inFi.storeUserInput(((JPasswordField) tf).getPassword());
+						    castAndStore(new String(((JPasswordField) tf)
+							    .getPassword()));
 						}
-					} catch (NullPointerException e1) {
-						inFi.storeUserInput("");
+					    } catch (NullPointerException e1) {
+						castAndStore("");
+					    }
 					}
 				}
 			}
 		});
     }
 
+    private boolean castAndStore(String val){
+	InputField inFi = (InputField) fc;
+	if (isOfType(Boolean.class)){
+	    return inFi.storeUserInput(Boolean.valueOf(val));
+	}
+	if (isOfType(Integer.class)){
+	    return inFi.storeUserInput(Integer.decode(val));
+	}
+	if (isOfType(Long.class)){
+	    return inFi.storeUserInput(Long.decode(val));
+	}
+	if (isOfType(Float.class)){
+	    return inFi.storeUserInput(Float.valueOf(val));
+	}
+	if (isOfType(Double.class)){
+	    return inFi.storeUserInput(Double.valueOf(val));
+	}
+	return inFi.storeUserInput(val);
+    }
+    
     /**
      * Input will be stored each time the user changes the status of
      * an Input
