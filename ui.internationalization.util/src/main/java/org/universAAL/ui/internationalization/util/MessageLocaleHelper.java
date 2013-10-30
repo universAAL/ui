@@ -61,6 +61,8 @@ public class MessageLocaleHelper {
     private static final int SECONDARY = 1;
     private static final int DEFAULT = 2;
 
+    private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+
     /**
      * The internationalization file for strings meant to be read by the user.
      */
@@ -292,31 +294,47 @@ public class MessageLocaleHelper {
 	messages = new Messages(url, preferred);
 	if (messages.getCurrentLocale() == null
 		|| !messages.getCurrentLocale().equals(preferred)) {
-	    /*
-	     * messages for preferred locale are not available, try to load the
-	     * secondary language messages
-	     */
-	    LogUtils.logTrace(context, getClass(), "Constructor", new String[] {
-		    "Cannot initialize messages in ",
-		    preferred.getDisplayLanguage(), " from ", url.toString(),
-		    "\n. Trying to load Secundary Language messages." }, null);
-
-	    Language lang = uiPreferencesSubprofile.getInteractionPreferences()
-		    .getSecondaryLanguage();
-	    Locale secondary = getLocaleFromLanguageIso639code(lang);
-	    messages = new Messages(url, secondary);
-	    if (messages.getCurrentLocale() == null
-		    || !messages.getCurrentLocale().equals(secondary)) {
 		/*
-		 * No message translation in secondary language either...
+		 * messages for preferred locale are not available, try to load the
+		 * secondary language messages
 		 */
-		LogUtils.logTrace(context, getClass(), "Constructor",
-			new String[] { "Cannot initialize messages in ",
-				secondary.getDisplayLanguage(), " either." },
+	    if (uiPreferencesSubprofile != null
+		    && uiPreferencesSubprofile.getInteractionPreferences() != null
+		    && uiPreferencesSubprofile.getInteractionPreferences().getSecondaryLanguage() != null) {
+		/*
+		 * Only try loading secondary languages if it is defined.
+		 */
+		LogUtils.logTrace(
+			context,
+			getClass(),
+			"tryToLoadMessagesForm",
+			new String[] { "Cannot load messages in ",
+				preferred.getDisplayLanguage(), " from ",
+				url.toString(),
+				"\n. Trying to load Secundary Language messages." },
 			null);
+		Language lang = uiPreferencesSubprofile
+			.getInteractionPreferences().getSecondaryLanguage();
+		Locale secondary = getLocaleFromLanguageIso639code(lang);
+		messages = new Messages(url, secondary);
+		if (messages.getCurrentLocale() == null
+			|| !messages.getCurrentLocale().equals(secondary)) {
+		    /*
+		     * No message translation in secondary language either...
+		     */
+		    LogUtils.logTrace(
+			    context,
+			    getClass(),
+			    "Constructor",
+			    new String[] { "Cannot initialize messages in ",
+				    secondary.getDisplayLanguage(), " either." },
+			    null);
+		    return DEFAULT;
+		} else if (messages.getCurrentLocale() != null) {
+		    return SECONDARY;
+		}
+	    } else {
 		return DEFAULT;
-	    } else if (messages.getCurrentLocale() != null) {
-		return SECONDARY;
 	    }
 	} else if (messages.getCurrentLocale() != null) {
 	    return PRIMARY;
@@ -333,8 +351,10 @@ public class MessageLocaleHelper {
      */
     public final Locale getUserLocaleFromPreferredLanguage() {
     	// find REAL USER's LOCALE
-    	if (uiPreferencesSubprofile.getInteractionPreferences() == null)
-    		return Locale.ENGLISH;
+    	if (uiPreferencesSubprofile == null
+    		|| uiPreferencesSubprofile.getInteractionPreferences() == null
+    		|| uiPreferencesSubprofile.getInteractionPreferences().getPreferredLanguage() == null)
+    		return DEFAULT_LOCALE;
     	Language lang = uiPreferencesSubprofile.getInteractionPreferences()
     			.getPreferredLanguage();
 
@@ -355,7 +375,7 @@ public class MessageLocaleHelper {
     			// check system property
     			// check default system locale?
     			// if everything else fails then english?
-    			return Locale.ENGLISH;
+    			return DEFAULT_LOCALE;
     		}
     	}
     }
