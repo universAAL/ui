@@ -54,20 +54,20 @@ public class InputFieldModel extends InputModel {
 				if (i.isOfBooleanType()){
 					res = i.storeUserInput(Boolean.valueOf(strings[0]));
 				}
-				if (val instanceof Integer) {
+				if (isOfType(Integer.class)) {
 					res = i.storeUserInput(Integer.decode(strings[0]));
 				}
-				if (val instanceof Long){
+				if (isOfType(Long.class)){
 					res = i.storeUserInput(Long.decode(strings[0]));				
 				}
-				if (val instanceof Float){
+				if (isOfType(Float.class)){
 					res = i.storeUserInput(new Float(Float.parseFloat(strings[0])));
 					
 				}
-				if (val instanceof Double){
+				if (isOfType(Double.class)){
 					res = i.storeUserInput(new Double(Double.parseDouble(strings[0])));
 				}
-				if (val instanceof XMLGregorianCalendar){
+				if (isOfType(XMLGregorianCalendar.class)){
 					try {
 						val = DatatypeFactory.newInstance().newXMLGregorianCalendar(strings[0]);
 						res = i.storeUserInput(val);
