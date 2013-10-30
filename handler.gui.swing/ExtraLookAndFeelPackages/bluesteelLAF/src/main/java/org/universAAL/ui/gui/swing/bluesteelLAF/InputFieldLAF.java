@@ -15,14 +15,20 @@
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF;
 
+import java.awt.event.ActionEvent;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.jdesktop.swingx.JXDatePicker;
+import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.InputField;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
@@ -61,7 +67,8 @@ public class InputFieldLAF extends InputFieldModel {
 		if (inFi.getValue() instanceof XMLGregorianCalendar) {
 			Date d = ((XMLGregorianCalendar)(inFi.getValue()))
 					.toGregorianCalendar().getTime();
-			return new JXDatePicker(d);
+			JXDatePicker dp = new JXDatePicker(d);
+			return dp;
 		}
 		return super.getNewComponent();
 	}
@@ -71,6 +78,24 @@ public class InputFieldLAF extends InputFieldModel {
 		JLabel l = getLabelModel().getComponent();
 		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
 		l.setText(getAlertString());
+	}
+
+	/** {@ inheritDoc}	 */
+	public void actionPerformed(ActionEvent e) {
+	   if (e.getSource() instanceof JXDatePicker){
+	       JXDatePicker dp = (JXDatePicker) e.getSource();
+	       try {
+		GregorianCalendar c = new GregorianCalendar();
+		   c.setTime(dp.getDate());
+		   XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+		   ((Input)fc).storeUserInput(date);
+	    } catch (DatatypeConfigurationException e1) {
+		LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "actionPerformed",
+			new String[]{"could not translate date to XMLGregorianCalendar"}, e1);
+	    }
+	   } else {
+	    super.actionPerformed(e);
+	   }
 	}
 
 
