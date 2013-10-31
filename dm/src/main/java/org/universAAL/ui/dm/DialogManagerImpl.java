@@ -37,7 +37,9 @@ import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller;
+import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
@@ -143,7 +145,9 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	serviceCaller = new DMServiceCaller(context);
 	serviceCallee = new SCallee(context);
 
-	uiPreferencesBuffer = new UIPreferencesBufferPoller(moduleContext);
+//	uiPreferencesBuffer = new UIPreferencesBufferPoller(moduleContext);
+//	uiPreferencesBuffer = new UIPreferencesBufferNoUpdate(moduleContext);
+	uiPreferencesBuffer = new UIPreferencesBufferSubscriptor(moduleContext);
 	uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
 		uiPreferencesBuffer);
 

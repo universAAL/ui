@@ -30,6 +30,7 @@ dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/IUIPreferencesBuffer.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java -text
