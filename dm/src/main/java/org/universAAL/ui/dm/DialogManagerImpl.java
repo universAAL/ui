@@ -36,7 +36,8 @@ import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 
@@ -125,7 +126,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     /**
      * The component managing the preferences profiles for all users.
      */
-    private UIPreferencesBuffer uiPreferencesBuffer = null;
+    private IUIPreferencesBuffer uiPreferencesBuffer = null;
 
     /**
      * private constructor for creating singleton instance.
@@ -142,7 +143,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	serviceCaller = new DMServiceCaller(context);
 	serviceCallee = new SCallee(context);
 
-	uiPreferencesBuffer = new UIPreferencesBuffer(moduleContext);
+	uiPreferencesBuffer = new UIPreferencesBufferPoller(moduleContext);
 	uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
 		uiPreferencesBuffer);
 
@@ -340,7 +341,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * 
      * @return
      */
-    public UIPreferencesBuffer getUIPreferencesBuffer() {
+    public IUIPreferencesBuffer getUIPreferencesBuffer() {
 	return uiPreferencesBuffer;
     }
 

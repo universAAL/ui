@@ -27,7 +27,8 @@ dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.ja
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestPool.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestStore.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
-dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBuffer.java -text
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/IUIPreferencesBuffer.java -text svneol=unset#text/plain
+dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializatorRunnable.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java -text

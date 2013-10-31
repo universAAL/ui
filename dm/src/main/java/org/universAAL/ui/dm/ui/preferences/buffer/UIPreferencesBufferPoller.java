@@ -44,13 +44,12 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * @author eandgrg
  * 
  */
-public class UIPreferencesBuffer {
+public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
     /**
      * {@link ModuleContext}
      */
-    public static ModuleContext mcontext;
-    public UIPreferencesSubprofilePrerequisitesHelper uiPreferencesSubprofilePrerequisitesHelper = null;
-    public UIPreferencesSubprofileHelper uiPreferencesSubprofileHelper = null;
+    ModuleContext mcontext;
+    private UIPreferencesSubprofileHelper uiPreferencesSubprofileHelper = null;
     private Map<User, UIPreferencesSubProfile> userCurrentUIPreferencesSubProfileMap = null;
 
     /**
@@ -68,16 +67,14 @@ public class UIPreferencesBuffer {
      */
     private Set<User> allLoggedInUsers = null;
 
-    public UIPreferencesBuffer(ModuleContext mcontext) {
-	UIPreferencesBuffer.mcontext = mcontext;
+    public UIPreferencesBufferPoller(ModuleContext mcontext) {
+	mcontext = mcontext;
 
 	// Hashtable is synchonized, Hashmap not. Hashtable object cannot accept
 	// null (for K or V). If it previously contained a mapping for the
 	// key, the old value is replaced by the specified value.
 	userCurrentUIPreferencesSubProfileMap = new Hashtable<User, UIPreferencesSubProfile>();
 
-	uiPreferencesSubprofilePrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(
-		mcontext);
 	uiPreferencesSubprofileHelper = new UIPreferencesSubprofileHelper(
 		mcontext);
 
@@ -85,18 +82,8 @@ public class UIPreferencesBuffer {
 	
     }
 
-    /**
-     * Checks if {@link UIPreferencesSubProfile} has already been initialized
-     * for a given {@link User}. If not initialization bill be done and
-     * 
-     * @param user
-     *            {@link User}
-     * @param isAssistedPerson
-     *            if the {@link User} is {@link AssistedPerson} or not.
-     *            Important for UI preferences initialization.
-     */
-    public void addUserInitializeUIPreferencesAndStartObtainmentTask(
-	    final User user) {
+    /** {@ inheritDoc}	 */
+    public void addUser(final User user) {
 
 	// if this set already contains user, false will be returned which means
 	// ui preferences have already been initialized for this user and task
@@ -112,21 +99,21 @@ public class UIPreferencesBuffer {
 //	    t.setPriority(Thread.MAX_PRIORITY);
 //	    t.start();
 
-	    // start obtainment timer for all users (logged in in some point in
-	    // time)
-	    getUIPreferencesTimer = new Timer(true);
-	    Long period = Long
-		    .parseLong(System.getProperty(CONTACT_PROF_SERVER_WAIT,
-			    CONTACT_PROF_SERVER_DEFAULT_WAIT));
-	    getUIPreferencesTimer.scheduleAtFixedRate(
-		    new GetUIPreferencesTask(), period, period);
+	    if (getUIPreferencesTimer == null) {
+		// start obtainment timer for all users (logged in in some point in
+		// time)
+		getUIPreferencesTimer = new Timer(true);
+		Long period = Long.parseLong(System.getProperty(
+			CONTACT_PROF_SERVER_WAIT,
+			CONTACT_PROF_SERVER_DEFAULT_WAIT));
+		getUIPreferencesTimer.scheduleAtFixedRate(
+			new GetUIPreferencesTask(), period, period); 
+	    }
 
 	}
     }
     
-    /**
-     * Stops the task
-     */
+    /** {@ inheritDoc}	 */
     public void stop(){
     	if (getUIPreferencesTimer != null)
     	getUIPreferencesTimer.cancel();
@@ -137,16 +124,16 @@ public class UIPreferencesBuffer {
      * 
      */
     private class GetUIPreferencesTask extends TimerTask {
-	Iterator<User> it = null;
-	User tempUser = null;
-	UIPreferencesSubProfile tempUISubPrefProfile = null;
 
 	/** {@inheritDoc} */
 	@Override
 	public void run() {
+	    Iterator<User> it = null;
+	    User tempUser = null;
 	    it = allLoggedInUsers.iterator();
 	    // obtain ui preferences for all logged in users
 	    while (it.hasNext()) {
+		UIPreferencesSubProfile tempUISubPrefProfile = null;
 		tempUser = it.next();
 
 		// fire service call to Profiling Server to obtain
@@ -164,9 +151,7 @@ public class UIPreferencesBuffer {
 	}
     }
 
-    /**
-     * @return the {@link UIPreferencesSubProfile} or null
-     */
+    /** {@ inheritDoc}	 */
     public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user) {
 	return userCurrentUIPreferencesSubProfileMap.get(user);
     }
@@ -177,22 +162,17 @@ public class UIPreferencesBuffer {
      * @return status, if this set already contains the user, the call leaves
      *         the set unchanged and returns false
      */
-    public boolean addLoggedInUsers(User userToAdd) {
+    private boolean addLoggedInUsers(User userToAdd) {
 	return this.allLoggedInUsers.add(userToAdd);
     }
 
-    /**
-     * Associates the specified {@link UIPreferencesSubProfile} with the
-     * specified {@link User} If the map previously contained a mapping for the
-     * key, the old value is replaced by the specified value.
-     * 
-     * @return the old {@link UIPreferencesSubProfile} that was associated with
-     *         the {@link User} or null if there was no mapping
-     */
+    /** {@ inheritDoc}	 */
     public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(
 	    User key, UIPreferencesSubProfile uiPrefSubprof) {
-	return this.userCurrentUIPreferencesSubProfileMap.put(key,
+	UIPreferencesSubProfile old =  this.userCurrentUIPreferencesSubProfileMap.put(key,
 		uiPrefSubprof);
+	uiPreferencesSubprofileHelper.changeSubProfile(uiPrefSubprof);
+	return old;
 
     }
 

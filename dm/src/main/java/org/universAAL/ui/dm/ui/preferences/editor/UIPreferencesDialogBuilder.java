@@ -57,7 +57,7 @@ import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.LocalizedMessagesURLProvider;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -81,9 +81,9 @@ public class UIPreferencesDialogBuilder {
      */
     private MessageLocaleHelper messageLocaleHelper;
 
-    public static UIPreferencesBuffer uiPreferencesBuffer = null;
+    public static IUIPreferencesBuffer uiPreferencesBuffer = null;
 
-    public UIPreferencesDialogBuilder(UIPreferencesBuffer uiPreferencesBuffer) {
+    public UIPreferencesDialogBuilder(IUIPreferencesBuffer uiPreferencesBuffer) {
 	UIPreferencesDialogBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
 
     }
@@ -104,7 +104,7 @@ public class UIPreferencesDialogBuilder {
 
 	try {
 	    messageLocaleHelper = new MessageLocaleHelper(
-		    UIPreferencesBuffer.mcontext, uiPreferencesSubprofile,
+		    DialogManagerImpl.getModuleContext(), uiPreferencesSubprofile,
 		    LocalizedMessagesURLProvider.getInstance()
 			    .getUrlListForObtainingLocalizedMessages());
 	} catch (Exception e) {

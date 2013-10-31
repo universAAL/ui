@@ -52,6 +52,7 @@ import org.universAAL.ontology.ui.preferences.VisualPreferences;
 import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper;
 
 /**
  * Initializes {@link UIPreferencesSubprofile} based on stereotype data for
@@ -77,14 +78,15 @@ public class UISubprofileInitializatorRunnable implements Runnable {
      */
     private ModuleContext mcontext;
     private User user;
-    private UIPreferencesBuffer uiPreferencesBuffer;
+    private IUIPreferencesBuffer uiPreferencesBuffer;
+    private UIPreferencesSubprofilePrerequisitesHelper uIPSPPrerequisitesHelper;
 
     public UISubprofileInitializatorRunnable(
-	    UIPreferencesBuffer uiPreferencesBuffer, final User user) {
-	mcontext = UIPreferencesBuffer.mcontext;
+	    IUIPreferencesBuffer uiPreferencesBuffer, final User user) {
+	mcontext = DialogManagerImpl.getModuleContext();
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
 	this.user = user;
-
+	uIPSPPrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(mcontext);
     }
 
     public void run() {
@@ -92,10 +94,10 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	// Profiling
 	// Server (or is not obtainable) add it
 	boolean userIsRemoteCaregiver = false;
-	User obtainedUser = uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	User obtainedUser = uIPSPPrerequisitesHelper
 		.getUser(user);
 	if (obtainedUser == null) {
-	    uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	    uIPSPPrerequisitesHelper
 		    .addUserSucceeded(user);
 	    LogUtils
 		    .logInfo(
@@ -125,9 +127,9 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	    }
 	}
 
-	if (!uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	if (!uIPSPPrerequisitesHelper
 		.getProfileForUserSucceeded(user)) {
-	    uiPreferencesBuffer.uiPreferencesSubprofilePrerequisitesHelper
+	    uIPSPPrerequisitesHelper
 		    .addUserProfileToUser(user, new UserProfile(user.getURI()
 			    + "UserProfileByDM"));
 	}
@@ -147,7 +149,8 @@ public class UISubprofileInitializatorRunnable implements Runnable {
 	}
 
 	// connecting filled in ui subprofile to user
-	uiPreferencesBuffer.uiPreferencesSubprofileHelper.addSubprofileToUser(
+	//FIXME check the change
+	uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(
 		user, filledUISubprofile);
 
 	// also store this new ui subprofile in buffer. why not when already
