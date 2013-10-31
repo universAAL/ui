@@ -68,7 +68,7 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
     private Set<User> allLoggedInUsers = null;
 
     public UIPreferencesBufferPoller(ModuleContext mcontext) {
-	mcontext = mcontext;
+	this.mcontext = mcontext;
 
 	// Hashtable is synchonized, Hashmap not. Hashtable object cannot accept
 	// null (for K or V). If it previously contained a mapping for the
@@ -89,16 +89,18 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
 	// ui preferences have already been initialized for this user and task
 	// for obtainment started
 	if (addLoggedInUsers(user)) {
-
-	    // initialize UIPReferencesSubprofile with stereotype data for given
-	    // user in separate thread
-	    UISubprofileInitializatorRunnable uiSubprofileInitializatorRunnable = new UISubprofileInitializatorRunnable(
-		    this, user);
-	    uiSubprofileInitializatorRunnable.run();
-//	    Thread t = new Thread(uiSubprofileInitializatorRunnable);
-//	    t.setPriority(Thread.MAX_PRIORITY);
-//	    t.start();
-
+	    UIPreferencesSubprofileHelper helper = new UIPreferencesSubprofileHelper(mcontext);
+	    UIPreferencesSubProfile sp = helper
+	    	.getUIPreferencesSubProfileForUser(user);
+	    if (sp == null){
+		// no UIPreferencesSubProfile:
+		// initialize UIPReferencesSubprofile with stereotype data for given
+		sp = new UISubprofileInitializator(
+			user).getInitializedUIPreferencesSubprofile();
+		userCurrentUIPreferencesSubProfileMap.put(user, sp);
+		helper.addSubprofileToUser(user, sp);
+	    }
+	    userCurrentUIPreferencesSubProfileMap.put(user, sp);
 	    if (getUIPreferencesTimer == null) {
 		// start obtainment timer for all users (logged in in some point in
 		// time)

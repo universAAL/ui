@@ -32,6 +32,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
@@ -119,14 +120,29 @@ public class UIPreferencesUICaller extends UICaller {
 		submit = null;
 	    }
 	} catch (Exception e) {
-	    /*
-	     * FIXME: user may not be registered and the following might give a
-	     * NullPointerException
-	     */
-	    MessageLocaleHelper mlocaleHelper = DialogManagerImpl.getInstance()
-		    .getUDM(addressedUser.getURI()).getLocaleHelper();
-	    showMessageScreen(addressedUser, mlocaleHelper
-		    .getString("UIPreferencesUICaller.UnknownServiceError"));
+	    LogUtils.logError(mcontext, 
+		    getClass(), 
+		    "handleUIResponse", 
+		    new String[]{"Unable to update UIPreferencesProfile"},
+		    e);
+
+	    if (addressedUser != null) {	    
+	    UserDialogManager udm = DialogManagerImpl
+			.getInstance().getUDM(addressedUser.getURI());
+		if (udm != null) {
+		    MessageLocaleHelper mlocaleHelper = udm.getLocaleHelper();
+		    showMessageScreen(
+			    addressedUser,
+			    mlocaleHelper
+			    .getString("UIPreferencesUICaller.UnknownServiceError"));
+		}
+		else {
+		    LogUtils.logWarn(mcontext, 
+			    getClass(), 
+			    "handleUIResponse", 
+			    "userNotRegistered");
+		}
+	    }
 	}
     }
 
@@ -176,10 +192,6 @@ public class UIPreferencesUICaller extends UICaller {
 	    updatedUIPreferencesSubProfile = (UIPreferencesSubProfile) uiResponse
 		    .getSubmittedData();
 
-	    // store new ui subprof in Profiling server -by service call-
-	    //FIXME Check this change
-	    uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(addressedUser,updatedUIPreferencesSubProfile);
-
 	    // refresh user.properties in JVM also (so that other uAAL apps can
 	    // retrieve most recent status)
 	    String langLabel = null;
@@ -212,26 +224,33 @@ public class UIPreferencesUICaller extends UICaller {
 				new Object[] { "JVM user.language property not refreshed with UI Preferences subprofile. Old value remained." },
 				null);
 
-	    // refresh local buffer with new data also
+	    // refresh buffer with new data
 	    uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(
 		    addressedUser, updatedUIPreferencesSubProfile);
 
 	} catch (Exception e) {
 	    LogUtils
 		    .logError(mcontext, this.getClass(), "handleSubmit",
-			    new Object[] {
-				    "Unknown error processing the user input",
-				    e }, null);
+			    new String[] {
+				    "Unknown error processing the user input" }, e);
 
-	    /*
-	     * FIXME: user may not be registered and the following might give a
-	     * NullPointerException
-	     */
-	    MessageLocaleHelper messageLocaleHelper = DialogManagerImpl
-		    .getInstance().getUDM(addressedUser.getURI())
-		    .getLocaleHelper();
-	    showMessageScreen(addressedUser, messageLocaleHelper
-		    .getString("UIPreferencesUICaller.UnknownServiceError"));
+	    if (addressedUser != null) {	    
+	    UserDialogManager udm = DialogManagerImpl
+			.getInstance().getUDM(addressedUser.getURI());
+		if (udm != null) {
+		    MessageLocaleHelper mlocaleHelper = udm.getLocaleHelper();
+		    showMessageScreen(
+			    addressedUser,
+			    mlocaleHelper
+			    .getString("UIPreferencesUICaller.UnknownServiceError"));
+		}
+		else {
+		    LogUtils.logWarn(mcontext, 
+			    getClass(), 
+			    "handleUIResponse", 
+			    "userNotRegistered");
+		}
+	    }
 	}
 
     }

@@ -72,91 +72,80 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * 
  */
 
-public class UISubprofileInitializatorRunnable implements Runnable {
+public class UISubprofileInitializator {
     /**
      * {@link ModuleContext}
      */
     private ModuleContext mcontext;
     private User user;
-    private IUIPreferencesBuffer uiPreferencesBuffer;
     private UIPreferencesSubprofilePrerequisitesHelper uIPSPPrerequisitesHelper;
 
-    public UISubprofileInitializatorRunnable(
-	    IUIPreferencesBuffer uiPreferencesBuffer, final User user) {
+    public UISubprofileInitializator(
+	    final User user) {
 	mcontext = DialogManagerImpl.getModuleContext();
-	this.uiPreferencesBuffer = uiPreferencesBuffer;
 	this.user = user;
 	uIPSPPrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(mcontext);
     }
 
-    public void run() {
+    public UIPreferencesSubProfile getInitializedUIPreferencesSubprofile(){
 	// check prerequisites - if User does not exist in
-	// Profiling
-	// Server (or is not obtainable) add it
-	boolean userIsRemoteCaregiver = false;
-	User obtainedUser = uIPSPPrerequisitesHelper
-		.getUser(user);
-	if (obtainedUser == null) {
-	    uIPSPPrerequisitesHelper
-		    .addUserSucceeded(user);
-	    LogUtils
-		    .logInfo(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "run",
-			    new String[] { "User not retrieved from Profiling Server so it is (added and) considered AssistedPerson." },
-			    null);
-	} else {
-	    if (obtainedUser instanceof Caregiver) {
-		userIsRemoteCaregiver = true;
-		LogUtils
-			.logInfo(
-				DialogManagerImpl.getModuleContext(),
-				getClass(),
-				"run",
-				new String[] { "User retrieved from Profiling Server and recognized as Caregiver (remote user)." },
-				null);
-	    } else {
-		LogUtils
-			.logInfo(
-				DialogManagerImpl.getModuleContext(),
-				getClass(),
-				"run",
-				new String[] { "User retrieved from Profiling Server and recognized as not Caregiver -> so Assisted Person." },
-				null);
-	    }
-	}
+		// Profiling
+		// Server (or is not obtainable) add it
+		boolean userIsRemoteCaregiver = false;
+		User obtainedUser = uIPSPPrerequisitesHelper
+			.getUser(user);
+		if (obtainedUser == null) {
+		    uIPSPPrerequisitesHelper
+			    .addUserSucceeded(user);
+		    LogUtils
+			    .logInfo(
+				    DialogManagerImpl.getModuleContext(),
+				    getClass(),
+				    "run",
+				    new String[] { "User not retrieved from Profiling Server so it is (added and) considered AssistedPerson." },
+				    null);
+		} else {
+		    if (obtainedUser instanceof Caregiver) {
+			userIsRemoteCaregiver = true;
+			LogUtils
+				.logInfo(
+					DialogManagerImpl.getModuleContext(),
+					getClass(),
+					"run",
+					new String[] { "User retrieved from Profiling Server and recognized as Caregiver (remote user)." },
+					null);
+		    } else {
+			LogUtils
+				.logInfo(
+					DialogManagerImpl.getModuleContext(),
+					getClass(),
+					"run",
+					new String[] { "User retrieved from Profiling Server and recognized as not Caregiver -> so Assisted Person." },
+					null);
+		    }
+		}
 
-	if (!uIPSPPrerequisitesHelper
-		.getProfileForUserSucceeded(user)) {
-	    uIPSPPrerequisitesHelper
-		    .addUserProfileToUser(user, new UserProfile(user.getURI()
-			    + "UserProfileByDM"));
-	}
+		if (!uIPSPPrerequisitesHelper
+			.getProfileForUserSucceeded(user)) {
+		    uIPSPPrerequisitesHelper
+			    .addUserProfileToUser(user, new UserProfile(user.getURI()
+				    + "UserProfileByDM"));
+		}
 
-	// create ui subprofile
-	UIPreferencesSubProfile uiSubprofile = new UIPreferencesSubProfile(user
-		.getURI()
-		+ "SubprofileUIPreferences");
+		// create ui subprofile
+		UIPreferencesSubProfile uiSubprofile = new UIPreferencesSubProfile(user
+			.getURI()
+			+ "SubprofileUIPreferences");
 
-	UIPreferencesSubProfile filledUISubprofile = null;
-	if (userIsRemoteCaregiver) {
-	    // remote user has primary modality WEB...
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
-	} else {
-	    // assisted person has primary modality GUI...
-	    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
-	}
-
-	// connecting filled in ui subprofile to user
-	//FIXME check the change
-	uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(
-		user, filledUISubprofile);
-
-	// also store this new ui subprofile in buffer. why not when already
-	// here.
-	uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(user,
-		filledUISubprofile);
+		UIPreferencesSubProfile filledUISubprofile = null;
+		if (userIsRemoteCaregiver) {
+		    // remote user has primary modality WEB...
+		    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
+		} else {
+		    // assisted person has primary modality GUI...
+		    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
+		}
+		return filledUISubprofile;
     }
 
     /**
