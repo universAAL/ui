@@ -23,11 +23,11 @@ dm/src/main/java/org/universAAL/ui/dm/interfaces/IDialogBuilder.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IMainMenuProvider.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java -text
+dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesBuffer.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestPool.java -text
 dm/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestStore.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
-dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/IUIPreferencesBuffer.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java -text svneol=unset#text/plain
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java -text
 dm/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java -text svneol=unset#text/plain

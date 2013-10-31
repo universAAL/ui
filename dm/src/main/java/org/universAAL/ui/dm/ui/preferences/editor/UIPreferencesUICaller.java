@@ -33,7 +33,7 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
-import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**

@@ -31,6 +31,9 @@ import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
@@ -175,6 +178,10 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
 	UIPreferencesSubProfile old = this.userCurrentUIPreferencesSubProfileMap
 		.put(key, uiPrefSubprof);
 	uiPreferencesSubprofileHelper.changeSubProfile(uiPrefSubprof);
+	IUIPreferencesChangeListener udm = DialogManagerImpl.getInstance().getUDM(key.getURI());
+	if (udm != null) {
+	    udm.changedUIPreferences(uiPrefSubprof);
+	}
 	return old;
 
     }

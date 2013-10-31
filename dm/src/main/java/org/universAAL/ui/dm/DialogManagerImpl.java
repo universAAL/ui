@@ -36,9 +36,7 @@ import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.ontology.profile.User;
-import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer;
 import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor;
 import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
@@ -137,22 +135,34 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
     private DialogManagerImpl(ModuleContext context) {
 	super(context);
-	moduleContext = context;
-	udmMap = new TreeMap<String, UserDialogManager>();
-	dialogIDMap = new HashMap<String, UserDialogManager>();
-	gbSchedule = new Timer(true);
-	gbSchedule.scheduleAtFixedRate(new DMGC(), GC_PERIOD, GC_PERIOD);
-	serviceCaller = new DMServiceCaller(context);
-	serviceCallee = new SCallee(context);
-
-//	uiPreferencesBuffer = new UIPreferencesBufferPoller(moduleContext);
-//	uiPreferencesBuffer = new UIPreferencesBufferNoUpdate(moduleContext);
-	uiPreferencesBuffer = new UIPreferencesBufferSubscriptor(moduleContext);
-	uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
-		uiPreferencesBuffer);
-
+	synchronized (this) {
+	    moduleContext = context;
+	    udmMap = new TreeMap<String, UserDialogManager>();
+	    dialogIDMap = new HashMap<String, UserDialogManager>();
+	    gbSchedule = new Timer(true);
+	    gbSchedule.scheduleAtFixedRate(new DMGC(), GC_PERIOD, GC_PERIOD);
+	    serviceCaller = new DMServiceCaller(context);
+	    serviceCallee = new SCallee(context);
+	    //	uiPreferencesBuffer = new UIPreferencesBufferPoller(moduleContext);
+	    //	uiPreferencesBuffer = new UIPreferencesBufferNoUpdate(moduleContext);
+	    uiPreferencesBuffer = new UIPreferencesBufferSubscriptor(
+		    moduleContext);
+	    uiPreferencesUICaller = new UIPreferencesUICaller(moduleContext,
+		    uiPreferencesBuffer);
+	    notifyAll();
+	}
     }
 
+    private void checkIsStarted(){
+	synchronized (this) {
+	    while (uiPreferencesUICaller == null){
+		try {
+		    this.wait();
+		} catch (InterruptedException e) {}
+	    }
+	}
+    }
+    
     /**
      * This method is called by the UI bus and determines whether a dialog can
      * be shown directly (e.g. by comparing the dialogs priority with the
@@ -165,6 +175,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * @return true, if the dialog can be shown directly.
      */
     public boolean checkNewDialog(UIRequest request) {
+	checkIsStarted();
 	if (request != null) {
 	    String uURI = request.getAddressedUser().getURI();
 	    UserDialogManager udm = udmMap.get(uURI);
@@ -189,6 +200,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      *            ID of the dialog that is now finished.
      */
     public void dialogFinished(String dialogID) {
+	checkIsStarted();
 	UserDialogManager udm = dialogIDMap.get(dialogID);
 	if (udm != null) {
 	    udm.dialogFinished(dialogID);
@@ -202,6 +214,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
     /** {@inheritDoc} */
     public void getMainMenu(Resource user, AbsLocation location) {
+	checkIsStarted();
 	if (user != null) {
 	    String uURI = user.getURI();
 	    if (!udmMap.containsKey(uURI)) {
@@ -223,6 +236,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * @return the suspended {@link UIRequest}, null if not found.
      */
     public UIRequest getSuspendedDialog(String dialogID) {
+	checkIsStarted();
 	UserDialogManager udm = dialogIDMap.get(dialogID);
 	if (udm != null) {
 	    return udm.getSuspendedDialog(dialogID);
@@ -252,6 +266,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      *            ID of the dialog.
      */
     public void suspendDialog(String dialogID) {
+	checkIsStarted();
 	UserDialogManager udm = dialogIDMap.get(dialogID);
 	if (udm != null) {
 	    udm.suspendDialog(dialogID);
@@ -284,6 +299,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
     @Override
     public void dialogAborted(String dialogID) {
+	checkIsStarted();
 	UserDialogManager udm = dialogIDMap.get(dialogID);
 	if (udm != null) {
 	    udm.dialogAborted(dialogID);
@@ -302,6 +318,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     /** {@inheritDoc} */
     @Override
     public void handleUIResponse(UIResponse response) {
+	checkIsStarted();
 	if (response == null) {
 	    LogUtils.logError(moduleContext, getClass(), "handleUIResponse",
 		    new String[] { "Null Response" }, null);
@@ -337,6 +354,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * @return
      */
     public UserDialogManager getUDM(String userURI) {
+	checkIsStarted();
 	return udmMap.get(userURI);
     }
 
