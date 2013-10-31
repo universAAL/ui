@@ -15,7 +15,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package org.universAAL.ui.dm.ui.preferences.buffer;
+package org.universAAL.ui.dm.interfaces;
 
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;

@@ -24,6 +24,9 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
@@ -74,6 +77,11 @@ public class UIPreferencesBufferNoUpdate implements IUIPreferencesBuffer {
     /** {@ inheritDoc}	 */
     public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(
 	    User key, UIPreferencesSubProfile uiPrefSubprof) {
+
+	IUIPreferencesChangeListener udm = DialogManagerImpl.getInstance().getUDM(key.getURI());
+	if (udm != null) {
+	    udm.changedUIPreferences(uiPrefSubprof);
+	}
 	if (!uiPSPMap.containsKey(key)){
 	    uiPSPMap.put(key, uiPrefSubprof);
 	    caller.addSubprofileToUser(key, uiPrefSubprof);

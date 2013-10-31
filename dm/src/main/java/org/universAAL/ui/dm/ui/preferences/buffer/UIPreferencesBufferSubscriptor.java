@@ -29,6 +29,9 @@ import org.universAAL.middleware.context.ContextSubscriber;
 import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
+import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
@@ -129,6 +132,10 @@ public class UIPreferencesBufferSubscriptor extends ContextSubscriber
 	}
 	if (key != null){
 	    uiPSPMap.put(key, uiPSP);
+		IUIPreferencesChangeListener udm = DialogManagerImpl.getInstance().getUDM(key.getURI());
+		if (udm != null) {
+		    udm.changedUIPreferences(uiPSP);
+		}
 	}
     }
 
