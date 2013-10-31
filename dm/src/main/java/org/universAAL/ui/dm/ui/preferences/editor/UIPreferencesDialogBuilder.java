@@ -57,7 +57,6 @@ import org.universAAL.ontology.ui.preferences.VoiceGender;
 import org.universAAL.ontology.ui.preferences.WindowLayoutType;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.LocalizedMessagesURLProvider;
-import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -81,13 +80,6 @@ public class UIPreferencesDialogBuilder {
      */
     private MessageLocaleHelper messageLocaleHelper;
 
-    public static IUIPreferencesBuffer uiPreferencesBuffer = null;
-
-    public UIPreferencesDialogBuilder(IUIPreferencesBuffer uiPreferencesBuffer) {
-	UIPreferencesDialogBuilder.uiPreferencesBuffer = uiPreferencesBuffer;
-
-    }
-
     /**
      * 
      * @param user
@@ -97,7 +89,8 @@ public class UIPreferencesDialogBuilder {
     public Form getUIPreferencesEditorForm(User user) {
 
 	// fetch the subprofile for given (current) User
-	UIPreferencesSubProfile uiPreferencesSubprofile = uiPreferencesBuffer
+	UIPreferencesSubProfile uiPreferencesSubprofile = 
+		DialogManagerImpl.getInstance().getUIPreferencesBuffer()
 		.getUIPreferencesSubprofileForUser(user);
 
 	// initialize message locale helper
