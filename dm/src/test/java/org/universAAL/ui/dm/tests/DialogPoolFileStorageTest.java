@@ -29,6 +29,7 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.serialization.MessageContentSerializer;
 import org.universAAL.middleware.serialization.MessageContentSerializerEx;
 import org.universAAL.middleware.serialization.turtle.TurtleSerializer;
+import org.universAAL.middleware.serialization.turtle.TurtleUtil;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.owl.PrivacyLevel;
 import org.universAAL.middleware.ui.owl.UIBusOntology;
@@ -65,14 +66,15 @@ public class DialogPoolFileStorageTest extends TestCase {
 				new Object[] { MessageContentSerializerEx.class.getName() });
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
 		OntologyManagement.getInstance().register(mc, new MenuProfileOntology());
+		TurtleUtil.moduleContext = mc;
 	}
 	
 	public void testWrite(){
