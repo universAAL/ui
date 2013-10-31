@@ -177,8 +177,6 @@ public class UserDialogManager implements IDialogManager,
      */
     private Semaphore showingSomething = new Semaphore(1);
 
-    private IUIPreferencesBuffer uiPreferencesBuffer = null;
-
     private UIPreferencesSubProfile uiPreferencesSubProfile = null;
 
     /**
@@ -198,16 +196,15 @@ public class UserDialogManager implements IDialogManager,
 	    IUIPreferencesBuffer uiPreferencesBuffer) {
 	this.user = user;
 	currentUserLocation = location;
-	this.uiPreferencesBuffer = uiPreferencesBuffer;
 	// since this constructor is called when obtaining main menu, this means
 	// that maybe new user is starting with the interaction so UI
 	// preferences
 	// should be initialized in this step
-	this.uiPreferencesBuffer.addUser(user);
+	uiPreferencesBuffer.addUser(user);
 
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	myUIRequests = new TreeSet<String>();
-	changedUIPreferences(this.uiPreferencesBuffer
+	changedUIPreferences(uiPreferencesBuffer
 		.getUIPreferencesSubprofileForUser(user));
 
     }

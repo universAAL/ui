@@ -59,8 +59,7 @@ public class UIPreferencesUICaller extends UICaller {
     public UIPreferencesUICaller(ModuleContext mcontext,
 	    IUIPreferencesBuffer uiPreferencesBuffer) {
 	super(mcontext);
-	this.uiPreferencesDialogBuilder = new UIPreferencesDialogBuilder(
-		uiPreferencesBuffer);
+	this.uiPreferencesDialogBuilder = new UIPreferencesDialogBuilder();
 	UIPreferencesUICaller.mcontext = mcontext;
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
 	this.uiPreferencesSCallee = new UIPreferencesSCallee(mcontext, this);
