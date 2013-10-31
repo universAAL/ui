@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
@@ -47,7 +48,6 @@ import org.universAAL.ontology.ui.preferences.Status;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.adapters.AdapterMessageInternationalization;
 import org.universAAL.ui.dm.adapters.AdapterUIPreferences;
-import org.universAAL.ui.dm.adapters.AdapterUserImpairments;
 import org.universAAL.ui.dm.adapters.AdapterUserLocation;
 import org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage;
 import org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue;
@@ -57,10 +57,10 @@ import org.universAAL.ui.dm.interfaces.IDialogBuilder;
 import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.ISystemMenuProvider;
+import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 import org.universAAL.ui.dm.interfaces.IUIRequestStore;
-import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilder;
 import org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits;
 import org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider;
@@ -177,7 +177,7 @@ public class UserDialogManager implements IDialogManager,
      */
     private Semaphore showingSomething = new Semaphore(1);
 
-    private UIPreferencesBuffer uiPreferencesBuffer = null;
+    private IUIPreferencesBuffer uiPreferencesBuffer = null;
 
     private UIPreferencesSubProfile uiPreferencesSubProfile = null;
 
@@ -195,7 +195,7 @@ public class UserDialogManager implements IDialogManager,
      *            the initial location for this user.
      */
     public UserDialogManager(User user, AbsLocation location,
-	    UIPreferencesBuffer uiPreferencesBuffer) {
+	    IUIPreferencesBuffer uiPreferencesBuffer) {
 	this.user = user;
 	currentUserLocation = location;
 	this.uiPreferencesBuffer = uiPreferencesBuffer;
@@ -203,8 +203,7 @@ public class UserDialogManager implements IDialogManager,
 	// that maybe new user is starting with the interaction so UI
 	// preferences
 	// should be initialized in this step
-	this.uiPreferencesBuffer
-		.addUserInitializeUIPreferencesAndStartObtainmentTask(user);
+	this.uiPreferencesBuffer.addUser(user);
 
 	listeners = new TreeMap<String, ISubmitGroupListener>();
 	myUIRequests = new TreeSet<String>();

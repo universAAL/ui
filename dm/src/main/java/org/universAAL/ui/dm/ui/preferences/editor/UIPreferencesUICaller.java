@@ -32,7 +32,7 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.DialogManagerImpl;
-import org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBuffer;
+import org.universAAL.ui.dm.ui.preferences.buffer.IUIPreferencesBuffer;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
@@ -51,12 +51,12 @@ public class UIPreferencesUICaller extends UICaller {
     private static ModuleContext mcontext;
 
     private UIPreferencesDialogBuilder uiPreferencesDialogBuilder = null;
-    private UIPreferencesBuffer uiPreferencesBuffer = null;
+    private IUIPreferencesBuffer uiPreferencesBuffer = null;
 
     private UIPreferencesSCallee uiPreferencesSCallee;
 
     public UIPreferencesUICaller(ModuleContext mcontext,
-	    UIPreferencesBuffer uiPreferencesBuffer) {
+	    IUIPreferencesBuffer uiPreferencesBuffer) {
 	super(mcontext);
 	this.uiPreferencesDialogBuilder = new UIPreferencesDialogBuilder(
 		uiPreferencesBuffer);
@@ -177,8 +177,8 @@ public class UIPreferencesUICaller extends UICaller {
 		    .getSubmittedData();
 
 	    // store new ui subprof in Profiling server -by service call-
-	    uiPreferencesBuffer.uiPreferencesSubprofileHelper
-		    .changeSubProfile(updatedUIPreferencesSubProfile);
+	    //FIXME Check this change
+	    uiPreferencesBuffer.changeCurrentUIPreferencesSubProfileForUser(addressedUser,updatedUIPreferencesSubProfile);
 
 	    // refresh user.properties in JVM also (so that other uAAL apps can
 	    // retrieve most recent status)
