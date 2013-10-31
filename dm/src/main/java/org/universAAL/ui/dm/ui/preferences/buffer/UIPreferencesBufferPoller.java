@@ -29,11 +29,9 @@ import java.util.TimerTask;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.ui.IDialogManager;
 import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.ontology.profile.AssistedPerson;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
-import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper;
 
 /**
  * Acts as a buffer to store UI Preferences for logged in users so that
@@ -79,46 +77,49 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
 		mcontext);
 
 	allLoggedInUsers = new HashSet<User>();
-	
+
     }
 
-    /** {@ inheritDoc}	 */
+    /** {@ inheritDoc} */
     public void addUser(final User user) {
 
 	// if this set already contains user, false will be returned which means
 	// ui preferences have already been initialized for this user and task
 	// for obtainment started
 	if (addLoggedInUsers(user)) {
-	    UIPreferencesSubprofileHelper helper = new UIPreferencesSubprofileHelper(mcontext);
+	    UIPreferencesSubprofileHelper helper = new UIPreferencesSubprofileHelper(
+		    mcontext);
 	    UIPreferencesSubProfile sp = helper
-	    	.getUIPreferencesSubProfileForUser(user);
-	    if (sp == null){
+		    .getUIPreferencesSubProfileForUser(user);
+	    if (sp == null) {
 		// no UIPreferencesSubProfile:
-		// initialize UIPReferencesSubprofile with stereotype data for given
-		sp = new UISubprofileInitializator(
-			user).getInitializedUIPreferencesSubprofile();
+		// initialize UIPReferencesSubprofile with stereotype data for
+		// given
+		sp = new UISubprofileInitializator(user)
+			.getInitializedUIPreferencesSubprofile();
 		userCurrentUIPreferencesSubProfileMap.put(user, sp);
 		helper.addSubprofileToUser(user, sp);
 	    }
 	    userCurrentUIPreferencesSubProfileMap.put(user, sp);
 	    if (getUIPreferencesTimer == null) {
-		// start obtainment timer for all users (logged in in some point in
+		// start obtainment timer for all users (logged in in some point
+		// in
 		// time)
 		getUIPreferencesTimer = new Timer(true);
 		Long period = Long.parseLong(System.getProperty(
 			CONTACT_PROF_SERVER_WAIT,
 			CONTACT_PROF_SERVER_DEFAULT_WAIT));
 		getUIPreferencesTimer.scheduleAtFixedRate(
-			new GetUIPreferencesTask(), period, period); 
+			new GetUIPreferencesTask(), period, period);
 	    }
 
 	}
     }
-    
-    /** {@ inheritDoc}	 */
-    public void stop(){
-    	if (getUIPreferencesTimer != null)
-    	getUIPreferencesTimer.cancel();
+
+    /** {@ inheritDoc} */
+    public void stop() {
+	if (getUIPreferencesTimer != null)
+	    getUIPreferencesTimer.cancel();
     }
 
     /**
@@ -153,7 +154,7 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
 	}
     }
 
-    /** {@ inheritDoc}	 */
+    /** {@ inheritDoc} */
     public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user) {
 	return userCurrentUIPreferencesSubProfileMap.get(user);
     }
@@ -168,11 +169,11 @@ public class UIPreferencesBufferPoller implements IUIPreferencesBuffer {
 	return this.allLoggedInUsers.add(userToAdd);
     }
 
-    /** {@ inheritDoc}	 */
+    /** {@ inheritDoc} */
     public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(
 	    User key, UIPreferencesSubProfile uiPrefSubprof) {
-	UIPreferencesSubProfile old =  this.userCurrentUIPreferencesSubProfileMap.put(key,
-		uiPrefSubprof);
+	UIPreferencesSubProfile old = this.userCurrentUIPreferencesSubProfileMap
+		.put(key, uiPrefSubprof);
 	uiPreferencesSubprofileHelper.changeSubProfile(uiPrefSubprof);
 	return old;
 
