@@ -32,7 +32,7 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * @author amedrano
  *
  */
-public class UIPreferncesBufferNoUpdate implements IUIPreferencesBuffer {
+public class UIPreferencesBufferNoUpdate implements IUIPreferencesBuffer {
 
     private ModuleContext context;
     private UIPreferencesSubprofileHelper caller;
@@ -42,7 +42,7 @@ public class UIPreferncesBufferNoUpdate implements IUIPreferencesBuffer {
     /**
      * Constructor.
      */
-    public UIPreferncesBufferNoUpdate(ModuleContext ctxt) {
+    public UIPreferencesBufferNoUpdate(ModuleContext ctxt) {
 	this.context = ctxt;
 	this.caller = new UIPreferencesSubprofileHelper(context);
 	this.uiPSPMap = new HashMap<User, UIPreferencesSubProfile>();
