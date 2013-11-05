@@ -36,7 +36,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
-import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ri.servicegateway.GatewayPort;
 
@@ -200,7 +199,7 @@ public class HTTPHandlerService extends GatewayPort {
 			resp.setContentType("text/html");
 			String authHeader = req.getHeader("Authorization");
 			String[] userPass = getUserAndPass(authHeader);
-			String user = (String) userURIs.get(userPass[0]);
+			User user = (User) loggedUsers.get(userPass[0]);
 			HTMLUserGenerator ug = getGenerator(user);
 			// send the latest Available form for the user
 			PrintWriter os = resp.getWriter();
@@ -215,8 +214,7 @@ public class HTTPHandlerService extends GatewayPort {
 	 * @param user
 	 * @return
 	 */
-	private synchronized HTMLUserGenerator getGenerator(String user) {
-		User u = (User) Resource.getResource(User.MY_URI, user);
+	private synchronized HTMLUserGenerator getGenerator(User u) {
 		if (!generatorPool.containsKey(u)){
 			generatorPool.put(u, new HTMLUserGenerator(getContext(), properties, u));
 		}
@@ -237,7 +235,7 @@ public class HTTPHandlerService extends GatewayPort {
 			resp.setContentType("text/html");
 			String authHeader = req.getHeader("Authorization");
 			String[] userPass = getUserAndPass(authHeader);
-			String user = (String) userURIs.get(userPass[0]);
+			User user = (User) loggedUsers.get(userPass[0]);
 			HTMLUserGenerator ug = getGenerator(user);
 			// gather input and send it to the bus if applicable
 			ug.processInput(req.getParameterMap());
