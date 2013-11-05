@@ -121,7 +121,7 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 
     public final void finish(final String userURI) {
 	this.userSessions.remove(userURI);
-	this.userURIs.remove(userURI);
+	this.loggedUsers.remove(userURI);
 	LogUtils
 		.logInfo(mContext, this.getClass(), "finish",
 			new Object[] { "Finished user session for userURI:"
@@ -522,7 +522,8 @@ public class HTMLRenderer extends GatewayPort implements IWebRenderer {
 	    return;
 	}
 	String[] userAndPass = getUserAndPass(req.getHeader("Authorization"));
-	String userURI = userURIs.get(userAndPass[0]);
+	User user = loggedUsers.get(userAndPass[0]);
+	String userURI = user.getURI();
 	// END AUTHENTICATION BLOCK, this block can be replaced by below
 	// hardcoded line/user for e.g. testing purposes
 	// String userURI = Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX

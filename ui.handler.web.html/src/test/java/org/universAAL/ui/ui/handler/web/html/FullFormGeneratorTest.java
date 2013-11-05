@@ -48,8 +48,8 @@ import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.location.LocationOntology;
 import org.universAAL.ontology.phThing.PhThingOntology;
 import org.universAAL.ontology.profile.ProfileOntology;
-import org.universAAL.ontology.profile.userid.UserIDProfileOntology;
 import org.universAAL.ontology.recommendations.RecommendationsOntology;
+import org.universAAL.ontology.security.SecurityOntology;
 import org.universAAL.ontology.shape.ShapeOntology;
 import org.universAAL.ontology.space.SpaceOntology;
 import org.universAAL.ontology.ui.preferences.AccessMode;
@@ -99,7 +99,7 @@ public class FullFormGeneratorTest extends TestCase {
 		OntologyManagement.getInstance().register(mc, new VCardOntology());
 		OntologyManagement.getInstance().register(mc, new ProfileOntology());
 		OntologyManagement.getInstance().register(mc,
-				new UserIDProfileOntology());
+				new SecurityOntology());
 		OntologyManagement.getInstance().register(mc, new LanguageOntology());
 		OntologyManagement.getInstance().register(mc,
 				new UIPreferencesProfileOntology());
