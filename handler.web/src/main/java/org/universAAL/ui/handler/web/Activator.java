@@ -73,7 +73,7 @@ public class Activator implements BundleActivator, ServiceListener {
 		+ org.universAAL.middleware.rdf.TypeMapper.class.getName()
 		+ ")";
 	context.addServiceListener(this, filter);
-	ServiceReference[] references = context.getServiceReferences(null,
+	ServiceReference[] references = context.getServiceReferences((String)null,
 		filter);
 	for (int i = 0; references != null && i < references.length; i++) {
 	    this.serviceChanged(new ServiceEvent(ServiceEvent.REGISTERED,
