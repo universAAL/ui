@@ -79,9 +79,13 @@ public class FileMainMenuProvider implements IMainMenuProvider {
 			getClass(), "handleUIResponse",
 			new Object[] { "Trying to call: ",
 				response.getSubmissionID() }, null);
-		ServiceResponse sResp = DialogManagerImpl.getServiceCaller().call(sr);
-		if (!sResp.getCallStatus().equals(CallStatus.succeeded)){
-		    UIServiceResponseNotifyer.tellUser(userDM, sResp);
+		try {
+		    ServiceResponse sResp = DialogManagerImpl.getServiceCaller().call(sr);
+		    if (!sResp.getCallStatus().equals(CallStatus.succeeded)){
+		        UIServiceResponseNotifyer.tellUser(userDM, sResp);
+		    }
+		} catch (Exception e) {
+		    UIServiceResponseNotifyer.tellUser(userDM, e);
 		}
 	    }
 	}

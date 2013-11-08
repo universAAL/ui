@@ -82,4 +82,19 @@ public class UIServiceResponseNotifyer {
     static public void tellUser(User usr, ServiceResponse sResp) {
 	tellUser(DialogManagerImpl.getInstance().getUDM(usr.getURI()), sResp);
     }
+    
+    static public void tellUser(UserDialogManager userDM, Exception e){
+	if (e != null) {
+	    StringBuffer reason = new StringBuffer();
+	    reason.append(userDM.getLocaleHelper().getString(
+		    "MainMenuProvider.exception"));
+	    reason.append(e.toString());
+	    userDM.pushDialog(Form.newMessage(userDM.getLocaleHelper()
+		    .getString("MainMenuProvider.exception.title"), reason.toString()));
+	}
+    }
+    
+    static public void tellUser(User usr, Exception e){
+	tellUser(DialogManagerImpl.getInstance().getUDM(usr.getURI()), e);
+    }
 }
