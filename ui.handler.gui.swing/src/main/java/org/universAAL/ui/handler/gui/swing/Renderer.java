@@ -25,6 +25,7 @@ import java.util.Properties;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.StringUtils;
+import org.universAAL.middleware.managers.api.AALSpaceManager;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIHandler;
@@ -578,9 +579,17 @@ public class Renderer extends Thread {
     public final boolean authenticate(final String user, final String password){
 	UserPaswordAuthenticatorClient apac = new UserPaswordAuthenticatorClient(moduleContext);
 	User u = apac.authenticate(user, password);
+	apac.close();
 	if (u != null){
 	    AuthenticationPublisher ap = new AuthenticationPublisher(moduleContext);
-	    ap.authenticate(u, new Device()); // TODO: find  current device
+	    // find  current device
+	    AALSpaceManager aalSM = (AALSpaceManager) moduleContext.getContainer()
+		    .fetchSharedObject(moduleContext, new String[] { AALSpaceManager.class.getName()});
+	    String devURI  = null;
+	    if (aalSM != null)
+		devURI = aalSM.getMyPeerCard().toURI().toString();
+	    //publish Authentication event
+	    ap.authenticate(u, new Device(devURI)); 
 	    ap.close();
 	    handler.setCurrentUser(u);	
 	    return true;
