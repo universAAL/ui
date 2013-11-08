@@ -520,11 +520,11 @@ public class UserDialogManager implements IDialogManager,
 	messagePool.close(dialogID);
 	// a running dialog has been aborted; it's better to send a
 	// message to the user
-	pushDialog(Form
-		.newMessage(messageLocaleHelper
-			.getString("UserDialogManager.forcedCancellation"),
-			messageLocaleHelper
-				.getString("UserDialogManager.sorryAborted")));
+//	pushDialog(Form
+//		.newMessage(messageLocaleHelper
+//			.getString("UserDialogManager.forcedCancellation"),
+//			messageLocaleHelper
+//				.getString("UserDialogManager.sorryAborted")));
     }
 
     /**
