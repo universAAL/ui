@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -26,13 +27,17 @@ import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
 import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.service.CallStatus;
 import org.universAAL.middleware.service.ServiceRequest;
+import org.universAAL.middleware.service.ServiceResponse;
+import org.universAAL.middleware.service.owls.process.ProcessOutput;
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
+import org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer;
 
 /**
  * @author amedrano
@@ -74,7 +79,10 @@ public class FileMainMenuProvider implements IMainMenuProvider {
 			getClass(), "handleUIResponse",
 			new Object[] { "Trying to call: ",
 				response.getSubmissionID() }, null);
-		DialogManagerImpl.getServiceCaller().call(sr);
+		ServiceResponse sResp = DialogManagerImpl.getServiceCaller().call(sr);
+		if (!sResp.getCallStatus().equals(CallStatus.succeeded)){
+		    UIServiceResponseNotifyer.tellUser(userDM, sResp);
+		}
 	    }
 	}
     }

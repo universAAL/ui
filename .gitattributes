@@ -44,6 +44,7 @@ ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWit
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AllMainMenuProvider.java -text
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/UIServiceResponseNotifyer.java -text svneol=unset#text/plain
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java -text svneol=unset#text/plain
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java -text svneol=unset#text/plain
 ui.dm/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java -text svneol=unset#text/plain
