@@ -28,11 +28,6 @@ handler.sms/.project
 handler.sms/.settings
 handler.sms/bin
 handler.sms/target
-handler.web/.classpath
-handler.web/.project
-handler.web/.settings
-handler.web/bin
-handler.web/target
 pom/.classpath
 pom/.project
 pom/.settings
