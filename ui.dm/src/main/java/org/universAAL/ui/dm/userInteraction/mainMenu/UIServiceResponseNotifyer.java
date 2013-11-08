@@ -47,26 +47,29 @@ public class UIServiceResponseNotifyer {
 	    reason.append(userDM.getLocaleHelper().getString(
 		    "MainMenuProvider.notFound"));
 	    reason.append("\n\t" + sResp.getCallStatus().name());
-	    for (Object obj : sResp.getOutputs()) {
-		if (obj instanceof ProcessOutput) {
-		    ProcessOutput po = (ProcessOutput) obj;
-		    reason.append("\n\t\t[ ");
-		    reason.append(po.getParameterValue());
-		    reason.append(" ]");
-		} else if (obj instanceof List) {
-		    List outputLists = (List) obj;
-		    for (Object lo : outputLists) {
-			if (lo instanceof ProcessOutput) {
-			    ProcessOutput po = (ProcessOutput) obj;
-			    reason.append("\n\t\t[ ");
-			    reason.append(po.getParameterValue());
-			    reason.append(" ]");
-			} else {
-			    reason.append("\n\t\t[ ");
-			    reason.append(lo);
-			    reason.append(" ]");
-			}
+	    List outputs = sResp.getOutputs();
+	    if (outputs != null) {
+		for (Object obj : outputs) {
+		    if (obj instanceof ProcessOutput) {
+			ProcessOutput po = (ProcessOutput) obj;
+			reason.append("\n\t\t[ ");
+			reason.append(po.getParameterValue());
+			reason.append(" ]");
+		    } else if (obj instanceof List) {
+			List outputLists = (List) obj;
+			for (Object lo : outputLists) {
+			    if (lo instanceof ProcessOutput) {
+				ProcessOutput po = (ProcessOutput) obj;
+				reason.append("\n\t\t[ ");
+				reason.append(po.getParameterValue());
+				reason.append(" ]");
+			    } else {
+				reason.append("\n\t\t[ ");
+				reason.append(lo);
+				reason.append(" ]");
+			    }
 
+			}
 		    }
 		}
 	    }
