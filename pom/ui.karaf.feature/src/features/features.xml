@@ -32,6 +32,7 @@
 		<feature>uAAL-Ont.PhWorld</feature>
 		<feature>uAAL-Ont.Recommendation</feature>	
 		<feature>uAAL-Ont.Impairment</feature>
+		<feature>uAAL-Security.Authenticator.UserPassword.Client</feature>
 		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/${ui.handler.gui.swing.version}</bundle>
 	</feature>
 	
