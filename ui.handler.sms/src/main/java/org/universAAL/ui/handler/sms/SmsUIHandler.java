@@ -1,6 +1,8 @@
 /*******************************************************************************
  * Copyright 2012 Ericsson Nikola Tesla d.d.
- *
+ * Copyright 2013 Universidad Politécnica de Madrid
+ * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +34,6 @@ import org.universAAL.middleware.owl.supply.LevelRating;
 import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
-import org.universAAL.ui.handler.sms.osgi.SmsSender;
 
 /**
  * SMS UI Handler. Handles dialogs containing sms message and a number to send
@@ -44,9 +45,11 @@ import org.universAAL.ui.handler.sms.osgi.SmsSender;
  */
 public class SmsUIHandler extends UIHandler {
 
-    public SmsUIHandler(final ModuleContext mcontext) {
-	super(mcontext, getPermanentSubscriptions());
+    private ISMSSender smsSender;
 
+    public SmsUIHandler(final ModuleContext mcontext, ISMSSender backendSender) {
+	super(mcontext, getPermanentSubscriptions());
+	this.smsSender = backendSender;
     }
 
     /**
@@ -61,6 +64,7 @@ public class SmsUIHandler extends UIHandler {
 	 */
 	UIHandlerProfile oep = new UIHandlerProfile();
 
+	//TODO re model restrictions (only for message type, etc...)
 	MergedRestriction mr = new MergedRestriction();
 	mr.addRestriction(new AllValuesFromRestriction(
 		UIRequest.PROP_HAS_ACCESS_IMPAIRMENT, new Enumeration(
@@ -89,7 +93,7 @@ public class SmsUIHandler extends UIHandler {
 	Form f = uiRequest.getDialogForm();
 	String number = (String) f.getIOControls().getChildren()[0].getValue();
 	String message = (String) f.getIOControls().getChildren()[1].getValue();
-	SmsSender.getInstance().sendMessage(number, message);
+	smsSender.sendMessage(number, message);
     }
 
     @Override
@@ -100,12 +104,12 @@ public class SmsUIHandler extends UIHandler {
     @Override
     public void adaptationParametersChanged(final String dialogID,
 	    final String changedProp, final Object newVal) {
-	// TODO Auto-generated method stub
+	// Nothing
     }
 
     @Override
     public final Resource cutDialog(final String dialogID) {
-	// TODO Auto-generated method stub
+	// Nothing
 	return null;
     }
 }

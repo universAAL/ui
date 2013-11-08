@@ -6,7 +6,7 @@
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
     <version>2.0.3-SNAPSHOT</version>
-    <relativePath>../../../pom</relativePath>
+    <relativePath>../../../ui.pom</relativePath>
   </parent>
   <artifactId>ui.handler.gui.swing.bluesteelLAF</artifactId>
   <version>2.0.3-SNAPSHOT</version>
@@ -51,9 +51,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</connection>
-    <developerConnection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</developerConnection>
-    <url>${svn.base.url}handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</url>
+    <connection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</connection>
+    <developerConnection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</developerConnection>
+    <url>${svn.base.url}ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</url>
   </scm>
   <dependencies>
     <dependency>

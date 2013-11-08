@@ -6,7 +6,7 @@
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
     <version>2.0.3-SNAPSHOT</version>
-    <relativePath>../pom/pom.xml</relativePath>
+    <relativePath>../ui.pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.kinect.adapter</artifactId>
   <version>2.0.3-SNAPSHOT</version>
