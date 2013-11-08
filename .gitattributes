@@ -231,6 +231,7 @@ handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookA
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubmitLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TextAreaLAF.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/MyButton.java -text
+handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/SimpleLogin.java -text svneol=unset#text/plain
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/package.html -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FormManager.java -text
 handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/formManagement/FrameManager.java -text
@@ -353,6 +354,9 @@ handler.gui.swing/src/main/resources/icons/system/Home.png -text
 handler.gui.swing/src/main/resources/icons/system/PendingMsg.png -text
 handler.gui.swing/src/main/resources/icons/system/UCC.png -text
 handler.gui.swing/src/main/resources/icons/system/Ustore.png -text
+handler.gui.swing/src/main/resources/login.messages.properties -text svneol=unset#text/plain
+handler.gui.swing/src/main/resources/login.messages_en.properties -text svneol=unset#text/plain
+handler.gui.swing/src/main/resources/login.messages_es.properties -text svneol=unset#text/plain
 handler.gui.swing/src/main/resources/main/Button_UCC_Sm.png -text
 handler.gui.swing/src/main/resources/main/Footer.png -text
 handler.gui.swing/src/main/resources/main/Invisible_Button.png -text

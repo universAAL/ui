@@ -34,8 +34,11 @@ import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.Location;
+import org.universAAL.ontology.phThing.Device;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.security.authenticator.client.AuthenticationPublisher;
+import org.universAAL.security.authenticator.client.UserPaswordAuthenticatorClient;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager;
 import org.universAAL.ui.handler.gui.swing.formManagement.OverlayFormManager;
@@ -573,16 +576,16 @@ public class Renderer extends Thread {
      * 	false otherwise.
      */
     public final boolean authenticate(final String user, final String password){
-	// TODO: implement user authentication mechanism
-	new Thread(){
-
-	    public void run() {
-		User u = new AssistedPerson(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user);
-		handler.setCurrentUser(u);		
-	    }
-	    
-	}.start();
-	return true;
+	UserPaswordAuthenticatorClient apac = new UserPaswordAuthenticatorClient(moduleContext);
+	User u = apac.authenticate(user, password);
+	if (u != null){
+	    AuthenticationPublisher ap = new AuthenticationPublisher(moduleContext);
+	    ap.authenticate(u, new Device()); // TODO: find  current device
+	    ap.close();
+	    handler.setCurrentUser(u);	
+	    return true;
+	}
+	return false;
     }
     
     public final AbsLocation getRendererLocation(){
