@@ -1,6 +1,8 @@
 /*******************************************************************************
  * Copyright 2012 Ericsson Nikola Tesla d.d.
- *
+ * Copyright 2013 Universidad Politécnica de Madrid
+ * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package org.universAAL.ui.handler.sms.osgi;
+package net.vsms.bulksms;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,6 +31,8 @@ import java.util.Properties;
 
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
+import org.universAAL.ui.handler.sms.ISMSSender;
+import org.universAAL.ui.handler.sms.SMSActivator;
 
 /**
  * Responsible for sending given sms message via designated server to desired
@@ -37,7 +41,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * @author eandgrg
  * 
  */
-public final class SmsSender {
+public final class SmsSender implements ISMSSender {
 
     private static final File confHome = new File(new BundleConfigHome(
 	    "ui.handler.sms").getAbsolutePath());
@@ -46,12 +50,10 @@ public final class SmsSender {
     private String server;
     private boolean doSend;
 
-    private static SmsSender singleton = null;
-
     /**
      * using singleton pattern
      */
-    private SmsSender() {
+    public SmsSender() {
 	Properties prop = new Properties();
 	try {
 	    InputStream in = new FileInputStream(new File(confHome,
@@ -61,7 +63,7 @@ public final class SmsSender {
 	} catch (IOException e) {
 	    LogUtils
 		    .logWarn(
-			    Activator.getModuleContext(),
+			    SMSActivator.getModuleContext(),
 			    getClass(),
 			    "constructor",
 			    new Object[] { "Configuration file for sms handler not found > using default values " },
@@ -72,18 +74,6 @@ public final class SmsSender {
 	server = prop.getProperty("server",
 		"http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0");
 	doSend = Boolean.parseBoolean(prop.getProperty("send.enable", "true"));
-    }
-
-    /**
-     * Access method to the singleton Object
-     * 
-     * @return singleton instance
-     */
-    public static SmsSender getInstance() {
-	if (singleton == null) {
-	    singleton = new SmsSender();
-	}
-	return singleton;
     }
 
     /**
@@ -190,15 +180,7 @@ public final class SmsSender {
 	return status;
     }
 
-    /**
-     * Sends text to specified number.
-     * 
-     * @param number
-     *            number to send text (sms), should include country code
-     * @param text
-     *            text to send
-     * @return if message is send or not
-     */
+    /** {@ inheritDoc}	 */
     public void sendMessage(final String number, final String text) {
 	try {
 	    // Construct data
@@ -213,7 +195,7 @@ public final class SmsSender {
 	    // example request:
 	    // http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0?username=universAAL&password=
 	    // universaal&message=test sms handler message&msisdn=385913653092
-	    LogUtils.logInfo(Activator.getModuleContext(), getClass(),
+	    LogUtils.logInfo(SMSActivator.getModuleContext(), getClass(),
 		    "sendMessage()",
 		    new Object[] { "Call url to send sms (message in hex): "
 			    + server + "?" + data }, null);
@@ -238,11 +220,11 @@ public final class SmsSender {
 		while ((line = rd.readLine()) != null) {
 		    result.append(line);
 		}
-		LogUtils.logInfo(Activator.getModuleContext(), getClass(),
+		LogUtils.logInfo(SMSActivator.getModuleContext(), getClass(),
 			"sendMessage()", new Object[] { "Result from server:"
 				+ result }, null);
 
-		LogUtils.logInfo(Activator.getModuleContext(), getClass(),
+		LogUtils.logInfo(SMSActivator.getModuleContext(), getClass(),
 			"sendMessage()",
 			new Object[] { "Result status from server:"
 				+ getBulkSMSsendStatus(new String(result)) },

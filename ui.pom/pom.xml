@@ -14,21 +14,22 @@
   <name>universAAL UI Framework</name>
   <description>The set of artefacts realizing the universAAL User Interaction Management framework.</description>
   <modules>
-    <module>../dm</module>
-    <module>../handler.gui.swing</module>
-    <module>../handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</module>
-    <module>../handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
-    <module>../resource.server</module>
+    <module>../ui.dm</module>
+    <module>../ui.resource.server</module>
+    <module>../ui.handler.gui.swing</module>
+    <module>../ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</module>
+    <module>../ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
     <module>../ui.handler.web.html</module>
+    <module>../ui.handler.sms</module>
     <module>../ui.internationalization.util</module>
     <module>../ui.kinect.adapter</module>
     <module>../ui.kinect.adapter.instance</module>
     <module>ui.karaf.feature</module>
   </modules>
   <scm>
-    <connection>${svn.base}/pom</connection>
-    <developerConnection>${svn.base}/pom</developerConnection>
-    <url>${svn.base.url}pom</url>
+    <connection>${svn.base}/${project.artifactId}</connection>
+    <developerConnection>${svn.base}/${project.artifactId}</developerConnection>
+    <url>${svn.base.url}${project.artifactId}</url>
   </scm>
   <properties>
     <remoteOBR></remoteOBR>

@@ -6,7 +6,7 @@
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
     <version>2.0.3-SNAPSHOT</version>
-    <relativePath>../../../pom</relativePath>
+    <relativePath>../../../ui.pom</relativePath>
   </parent>
   <groupId>org.universAAL.ui</groupId>
   <artifactId>ui.handler.gui.swing.classicLAF</artifactId>
@@ -31,9 +31,9 @@
     </developer>
   </developers>
   <scm>
-    <connection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</connection>
-    <developerConnection>${svn.base}/handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</developerConnection>
-    <url>${svn.base.url}handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</url>
+    <connection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</connection>
+    <developerConnection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</developerConnection>
+    <url>${svn.base.url}ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</url>
   </scm>
   <dependencies>
     <dependency>
