@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.pattern.LogEvent;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.StringUtils;
@@ -504,8 +505,38 @@ public class Renderer extends Thread {
     	User u = getCurrentUser();
     	handler.unSetCurrentUser();
     	getInitLAF().userLogOff(u);
+    	// send de Authentication event
+    	new Thread(new DeauthenticateRunnable(moduleContext, u), "ui.handler.gui.swing-Deauthentication").start();
+    
     }
 
+    private static class DeauthenticateRunnable implements Runnable {
+
+	private ModuleContext moduleContext;
+	private User u;
+
+	/**
+	 * 
+	 */
+	public DeauthenticateRunnable(ModuleContext mc, User u) {
+	    this.moduleContext = mc;
+	    this.u = u;
+	}
+
+	public void run() {
+	    AuthenticationPublisher ap = new AuthenticationPublisher(moduleContext);
+	    // find  current device
+	    AALSpaceManager aalSM = (AALSpaceManager) moduleContext.getContainer()
+		    .fetchSharedObject(moduleContext, new String[] { AALSpaceManager.class.getName()});
+	    String devURI  = null;
+	    if (aalSM != null)
+		devURI = aalSM.getMyPeerCard().toURI().toString();
+	    //publish Deauthentication event
+	    ap.deauthenticate(u, new Device(devURI)); 
+	    ap.close();
+	}
+    }
+    
     /**
      * Check if impairment is listed as present impairments for the
      * current user and form.
@@ -591,7 +622,7 @@ public class Renderer extends Thread {
 	    //publish Authentication event
 	    ap.authenticate(u, new Device(devURI)); 
 	    ap.close();
-	    handler.setCurrentUser(u);	
+	    logInUser(u);
 	    return true;
 	}
 	return false;
