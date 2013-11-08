@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +34,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.universAAL.middleware.container.utils.Messages;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
 public class Login extends JFrame {
@@ -45,11 +47,18 @@ public class Login extends JFrame {
     private JTextField userField;
     private JPasswordField passwordField;
     private Renderer render;
+    private Messages messages;
 
     public Login(Renderer render) {
 	this.render = render;
     	setTitle("Login");
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	try {
+	    messages = new Messages(getClass().getClassLoader().getResource("login.messages.properties"));
+	} catch (IllegalArgumentException e1) {
+	    e1.printStackTrace();
+	} catch (IOException e1) {
+	    e1.printStackTrace();
+	}
 	setBounds(100, 100, 295, 162);
 	setResizable(false);
 	contentPane = new JPanel();
@@ -66,7 +75,7 @@ public class Login extends JFrame {
 //	gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 	panel.setLayout(gbl_panel);
 	
-	JLabel lblUser = new JLabel("User:");
+	JLabel lblUser = new JLabel(messages.getString("login.username"));
 	GridBagConstraints gbc_lblUser = new GridBagConstraints();
 	gbc_lblUser.anchor = GridBagConstraints.EAST;
 	gbc_lblUser.insets = new Insets(0, 0, 5, 5);
@@ -92,7 +101,7 @@ public class Login extends JFrame {
 	panel.add(userField, gbc_userField);
 	userField.setColumns(10);
 	
-	JLabel lblPassword = new JLabel("Password:");
+	JLabel lblPassword = new JLabel(messages.getString("login.password"));
 	GridBagConstraints gbc_lblPassword = new GridBagConstraints();
 	gbc_lblPassword.anchor = GridBagConstraints.EAST;
 	gbc_lblPassword.insets = new Insets(0, 0, 0, 5);
@@ -120,13 +129,14 @@ public class Login extends JFrame {
 	contentPane.add(panel_1, BorderLayout.SOUTH);
 	panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 	
-	JButton btnLogin = new JButton("Login");
+	JButton btnLogin = new JButton(messages.getString("login.login"));
 	btnLogin.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    tryAuthentication();
 		}
 	});
 	panel_1.add(btnLogin);
+	getRootPane().setDefaultButton(btnLogin);
     }
     
     private void tryAuthentication(){

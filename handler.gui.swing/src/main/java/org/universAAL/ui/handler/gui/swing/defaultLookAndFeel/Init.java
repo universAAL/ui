@@ -15,13 +15,16 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.gui.swing.Renderer;
+import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.SimpleLogin;
 import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
@@ -64,20 +67,25 @@ public class Init implements InitInterface {
 	// TODO Auto-generated method stub
 
     }
-    
+
     /** {@inheritDoc} */
-	public void userLogOff(User usr) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-    /** {@inheritDoc} */
-    public void showLoginScreen() {
-	JFrame login = new Login(render);
-	login.pack();
-	login.setVisible(true);
+    public void userLogOff(User usr) {
+	// TODO Auto-generated method stub
+
     }
 
-
+    /** {@inheritDoc} */
+    public void showLoginScreen() {
+//	JFrame login = new Login(render);
+//	login.pack();
+//	login.setVisible(true);
+	try {
+	    JDialog login = new SimpleLogin(render);
+	    login.pack();
+	    login.setVisible(true);
+	} catch (Exception e) {
+	    LogUtils.logError(render.getModuleContext(), getClass(), "showLoginScreen", new String[]{"unable to start dialog. "}, e);
+	}
+    }
 
 }
