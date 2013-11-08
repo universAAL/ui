@@ -28,6 +28,7 @@ import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 
 /**
@@ -52,7 +53,6 @@ public class AggregatedMainMenuProvider implements IMainMenuProvider {
     				this.getClass(), "handle",
     				new String [] {"no Main Menu Provider for call:",  response.getSubmissionID()}, 
     				null);
-    		
     	}
     }
 
