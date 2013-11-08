@@ -15,7 +15,6 @@
   <description>The set of artefacts realizing the universAAL User Interaction Management framework.</description>
   <modules>
     <module>../dm</module>
-    <module>../handler.web</module>
     <module>../handler.gui.swing</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF</module>
     <module>../handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</module>
