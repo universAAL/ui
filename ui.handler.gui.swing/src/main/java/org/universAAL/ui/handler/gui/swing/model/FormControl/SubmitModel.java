@@ -89,7 +89,7 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubmitTask(), "SubmitTask:" + fc.getLabel().getText()).start();
+    	new Thread(new SubmitTask(), "SubmitTask:" + fc.getURI());
     }
 
     class SubmitTask implements Runnable {
