@@ -13,6 +13,9 @@
   <packaging>bundle</packaging>
   <name>universAAL UI Handler SMS</name>
   <description>UI Handler that sends application output as SMS</description>
+  <properties>
+  	   <separatedGroupIds>org.universAAL.middleware</separatedGroupIds>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.support</groupId>
@@ -53,4 +56,15 @@
       </plugin>
     </plugins>
   </build>
+  <profiles>
+  <profile>
+    <id>uAAL-Test-Runtime</id>
+    <dependencies>
+      <dependency>
+        <groupId>org.universAAL.ui</groupId>
+        <artifactId>ui.dm</artifactId>
+      </dependency>
+    </dependencies>
+  </profile>
+  </profiles>
 </project>
