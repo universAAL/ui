@@ -95,7 +95,7 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + fc.getLabel().getText()).start();
+    	new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + ((Submit) fc).getID());
     }
 
     class SubdialgoTriggerTask implements Runnable {
