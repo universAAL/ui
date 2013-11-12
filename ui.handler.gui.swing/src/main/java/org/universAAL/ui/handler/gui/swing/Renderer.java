@@ -22,7 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.log4j.pattern.LogEvent;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.container.utils.StringUtils;
@@ -37,8 +36,8 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.util.Constants;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.phThing.Device;
-import org.universAAL.ontology.profile.User;
 import org.universAAL.ontology.profile.AssistedPerson;
+import org.universAAL.ontology.profile.User;
 import org.universAAL.security.authenticator.client.AuthenticationPublisher;
 import org.universAAL.security.authenticator.client.UserPaswordAuthenticatorClient;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
