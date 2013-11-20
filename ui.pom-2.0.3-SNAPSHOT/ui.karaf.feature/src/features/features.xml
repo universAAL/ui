@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="universAAL-UI" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+	<!-- Respositories -->
+	<repository>mvn:org.universAAL.middleware/mw.karaf.feature/${mw.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.security/security.karaf.feature/${security.karaf.feature.version}/xml/features</repository>
+	<repository>mvn:org.universAAL.remote/ri.karaf.feature/${ri.karaf.feature.version}/xml/features</repository>
+
+<feature name="mini-Jetty" description="Jetty libraries used by several libraries in universAAL"
+	 resolver='(obr)'>
+		<bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-jetty-bundle/1.0.5</bundle>
+		<bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-spi/1.0.5</bundle>
+        <bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-api/1.0.5</bundle>
+</feature>
+
+<feature name="uAAL-UI" description="The UI FW based on the Middleware 2.0"
+		version="${pom.version}" resolver='(obr)'>
+		<!-- Load all features -->
+		<feature>uAAL-UI.DM</feature>
+		<feature>uAAL-UI.handler.web.html</feature>
+		<feature>uAAL-UI.resource.server</feature>
+		<feature>uAAL-UI.handler.gui.swing</feature>
+		<feature>uAAL-UI.handler.gui.swing.BluesteelLAF</feature>
+		<feature>uAAL-UI.handler.gui.swing.classicLAF</feature>
+	</feature>
+	
+	<feature name="uAAL-UI.handler.gui.swing" description="The UI Swing Handler."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-Ont.PhWorld</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
+		<feature>uAAL-Ont.Impairment</feature>
+		<feature>uAAL-Security.Authenticator.UserPassword.Client</feature>
+		<bundle start-level='76' start='true'>mvn:org.universAAL.ui/ui.handler.gui.swing/${ui.handler.gui.swing.version}</bundle>
+	</feature>
+	
+	<feature name="uAAL-UI.handler.gui.swing.BluesteelLAF" description="The UI Swing Handler's LAF plugin for BlueSteel look and feel."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-UI.handler.gui.swing</feature>
+		<feature>uAAL-Ont.Profile.ui.preferences</feature>		
+		<bundle>mvn:org.ufacekit.osgi/swingx.osgi/${swingx.osgi.version}</bundle>
+		<!-- fragments like ui.handler.gui.swing.bluesteelLAF cannot be started 
+			so leaving them in resolved state is enough-->
+		<bundle start-level='77' start='false'>mvn:org.universAAL.ui/ui.handler.gui.swing.bluesteelLAF/${ui.handler.gui.swing.bluesteelLAF.version}</bundle>
+	</feature>
+	
+	<feature name="uAAL-UI.handler.gui.swing.classicLAF" description="The UI Swing Handler's LAF plugin for clasic look and feel."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-UI.handler.gui.swing</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
+		<bundle start-level='77'>wrap:mvn:org.universAAL.ui/ui.handler.gui.swing.classicLAF/${ui.handler.gui.swing.classicLAF.version}</bundle>
+	</feature>
+
+	<feature name="uAAL-UI.resource.server" description="The UI Resource Server."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-MW</feature>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.resource.server/${ui.resource.server.version}</bundle>
+	</feature>
+	
+	<feature name="uAAL-UI.handler.web.html" description="The New UI Web Handler."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-RI.Service.Gateway</feature>
+		<feature>uAAL-Ont.Recommendation</feature>	
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web.html/${ui.handler.web.html.version}</bundle>
+	</feature>
+	
+	<feature name="uAAL-UI.Internationalization" description="UI Internationalization utility."
+		version="${pom.version}" resolver='(obr)'>
+		<bundle start-level='74'>wrap:mvn:org.universAAL.ui/ui.internationalization.util/${ui.internationalization.util.version}</bundle>
+	</feature>
+	
+	<feature name="uAAL-UI.DM" description="The UI Dialog Manager"
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-Ont.Profile.ui.mainmenu</feature>
+		<feature>uAAL-Ont.Profile.ui.preferences</feature>
+		<feature>uAAL-Ont.Impairment</feature>
+		<feature>uAAL-Ont.Profile.userId</feature>
+		<!-- <feature>uAAL-ctxt.Profiling.Server</feature> -->
+		<feature>uAAL-UI.Internationalization</feature>
+		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/${ui.dm.version}</bundle>
+	</feature>
+		
+</features>
