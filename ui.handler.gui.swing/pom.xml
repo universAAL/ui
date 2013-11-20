@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>2.0.3-SNAPSHOT</version>
+    <version>2.0.4-SNAPSHOT</version>
     <relativePath>../ui.pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.handler.gui.swing</artifactId>
-  <version>2.0.3-SNAPSHOT</version>
+  <version>2.0.4-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL UI Handler Swing</name>
   <description>Swing based GUI Handler</description>
