@@ -12001,3 +12001,10 @@ ui.resource.server-2.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/resource/serve
 ui.resource.server-2.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
 ui.resource.server-2.0.2-SNAPSHOT/src/main/resources/www/tst.txt -text
 ui.resource.server-2.0.2-SNAPSHOT/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
+ui.resource.server-2.0.3-SNAPSHOT/ASL2.0.txt -text
+ui.resource.server-2.0.3-SNAPSHOT/NOTICE.txt -text
+ui.resource.server-2.0.3-SNAPSHOT/pom.xml -text
+ui.resource.server-2.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
+ui.resource.server-2.0.3-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
+ui.resource.server-2.0.3-SNAPSHOT/src/main/resources/www/tst.txt -text
+ui.resource.server-2.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIntegrationTest.java -text
