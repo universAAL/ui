@@ -338,6 +338,11 @@ ui.handler.sms-1.2.1-SNAPSHOT/.project
 ui.handler.sms-1.2.1-SNAPSHOT/.settings
 ui.handler.sms-1.2.1-SNAPSHOT/bin
 ui.handler.sms-1.2.1-SNAPSHOT/target
+ui.handler.sms-2.0.3-SNAPSHOT/.classpath
+ui.handler.sms-2.0.3-SNAPSHOT/.project
+ui.handler.sms-2.0.3-SNAPSHOT/.settings
+ui.handler.sms-2.0.3-SNAPSHOT/bin
+ui.handler.sms-2.0.3-SNAPSHOT/target
 ui.handler.web-1.0.2-SNAPSHOT/.classpath
 ui.handler.web-1.0.2-SNAPSHOT/.project
 ui.handler.web-1.0.2-SNAPSHOT/.settings
