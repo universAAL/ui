@@ -76,6 +76,7 @@
             <Bundle-Activator>org.universAAL.ui.resource.server.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+			<Import-Package>org.osgi.framework;version="[1,2)",*</Import-Package>
             <Private-Package>org.universAAL.ui.resource.server</Private-Package>
           </instructions>
         </configuration>
