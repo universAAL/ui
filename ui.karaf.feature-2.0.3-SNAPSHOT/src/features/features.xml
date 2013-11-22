@@ -74,8 +74,6 @@
 		<feature>uAAL-Ont.Profile.ui.mainmenu</feature>
 		<feature>uAAL-Ont.Profile.ui.preferences</feature>
 		<feature>uAAL-Ont.Impairment</feature>
-		<feature>uAAL-Ont.Profile.userId</feature>
-		<!-- <feature>uAAL-ctxt.Profiling.Server</feature> -->
 		<feature>uAAL-UI.Internationalization</feature>
 		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/${ui.dm.version}</bundle>
 	</feature>
