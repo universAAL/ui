@@ -139,7 +139,7 @@ public class UIPreferencesSubprofilePrerequisitesHelper {
 	ServiceResponse resp = sc.call(req);
 	if (resp.getCallStatus() == CallStatus.succeeded) {
 
-	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_USERS);
+	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_USER);
 	    if (out != null) {
 		LogUtils.logDebug(mc, this.getClass(), "getUser", new Object[] {
 			"User: ", user.getURI(),
