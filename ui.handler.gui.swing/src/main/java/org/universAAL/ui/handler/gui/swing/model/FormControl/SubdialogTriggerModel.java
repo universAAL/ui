@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JComponent;
 import javax.swing.JToggleButton;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Input;
@@ -95,7 +96,7 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + ((Submit) fc).getID());
+    	new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + ((Submit) fc).getID()).start();
     }
 
     class SubdialgoTriggerTask implements Runnable {
@@ -117,6 +118,7 @@ implements ActionListener {
 	             *  Check rest of model
 	             *  advice the user about data not being valid
 	             */
+	            LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run", "There are missing or invalid input controls.");
 	        	getRenderer().getFormManagement().missingInput(missing);
 	        }
 			

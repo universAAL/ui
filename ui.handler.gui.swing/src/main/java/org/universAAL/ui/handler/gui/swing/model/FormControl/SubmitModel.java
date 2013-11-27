@@ -22,6 +22,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Input;
 import org.universAAL.middleware.ui.rdf.Submit;
@@ -89,7 +90,7 @@ implements ActionListener {
      * {@inheritDoc}
      */
     public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubmitTask(), "SubmitTask:" + ((Submit) fc).getID());
+    	new Thread(new SubmitTask(), "SubmitTask:" + ((Submit) fc).getID()).start();
     }
 
     class SubmitTask implements Runnable {
@@ -107,6 +108,7 @@ implements ActionListener {
 	             *  Check rest of model
 	             *  advice the user about data not being valid
 	             */
+	            LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run", "There are missing or invalid input controls.");
 	        	getRenderer().getFormManagement().missingInput(missing);
 	        }
 			
