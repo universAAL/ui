@@ -23,6 +23,7 @@ import java.util.Locale;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UICaller;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIRequest;
@@ -260,7 +261,7 @@ public class UIPreferencesUICaller extends UICaller {
      * @see
      * org.universAAL.middleware.ui.UICaller#dialogAborted(java.lang.String)
      */
-    public void dialogAborted(String dialogID) {
+    public void dialogAborted(String dialogID, Resource data) {
 	LogUtils.logDebug(mcontext, this.getClass(), "dialogAborted",
 		new Object[] { "Dialog aborted, doing nothing...", }, null);
 

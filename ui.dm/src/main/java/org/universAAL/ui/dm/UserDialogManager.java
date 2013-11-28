@@ -515,7 +515,7 @@ public class UserDialogManager implements IDialogManager,
      * 
      * @param dialogID
      */
-    public void dialogAborted(String dialogID) {
+    public void dialogAborted(String dialogID, Resource data) {
 	dialogPool.close(dialogID);
 	messagePool.close(dialogID);
 	// a running dialog has been aborted; it's better to send a
