@@ -298,11 +298,11 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      *            the dialogID of the dialog to be aborted
      */
     @Override
-    public void dialogAborted(String dialogID) {
+    public void dialogAborted(String dialogID, Resource data) {
 	checkIsStarted();
 	UserDialogManager udm = dialogIDMap.get(dialogID);
 	if (udm != null) {
-	    udm.dialogAborted(dialogID);
+	    udm.dialogAborted(dialogID,data);
 	    dialogIDMap.remove(dialogID);
 	} else {
 	    LogUtils.logError(moduleContext, getClass(), "dialogAborted",
@@ -310,7 +310,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 			    "Unable to locate UDM for dialog: " + dialogID,
 			    "scanning all UDMs" }, null);
 	    for (UserDialogManager udmm : udmMap.values()) {
-		udmm.dialogAborted(dialogID);
+		udmm.dialogAborted(dialogID,data);
 	    }
 	}
     }
