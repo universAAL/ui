@@ -213,7 +213,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     }
 
     /** {@inheritDoc} */
-    public void getMainMenu(Resource user, AbsLocation location) {
+    public void userLogIn(Resource user, AbsLocation location) {
 	checkIsStarted();
 	if (user != null) {
 	    String uURI = user.getURI();
@@ -223,7 +223,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    } else {
 		udmMap.get(uURI).setCurrentUserLocation(location);
 	    }
-	    udmMap.get(uURI).getMainMenu(user, location);
+	    udmMap.get(uURI).userLogIn(user, location);
 	}
     }
 
