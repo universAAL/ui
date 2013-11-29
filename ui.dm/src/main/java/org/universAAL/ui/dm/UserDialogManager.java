@@ -621,13 +621,10 @@ public class UserDialogManager implements IDialogManager,
     }
 
     /** {@inheritDoc} */
-    public final synchronized void getMainMenu(Resource user,
+    public final synchronized void userLogIn(Resource user,
 	    AbsLocation location) {
-	Form mmf = Form.newSystemMenu(messageLocaleHelper
-		.getString("UserDialogManager.universaalMainMenu"));
-	mainMenuProvider.getMainMenu(user, location, mmf);
-	add(mainMenuProvider);
-	pushDialog(mmf);
+	setCurrentUserLocation(location);
+	showSomething();
     }
 
     /**
@@ -799,7 +796,11 @@ public class UserDialogManager implements IDialogManager,
      * Trigger a main menu.
      */
     public final void showMainMenu() {
-	getMainMenu(user, currentUserLocation);
+	Form mmf = Form.newSystemMenu(messageLocaleHelper
+		.getString("UserDialogManager.universaalMainMenu"));
+	mainMenuProvider.getMainMenu(user, currentUserLocation, mmf);
+	add(mainMenuProvider);
+	pushDialog(mmf);
     }
 
     /**
