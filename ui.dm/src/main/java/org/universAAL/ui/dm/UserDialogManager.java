@@ -518,13 +518,10 @@ public class UserDialogManager implements IDialogManager,
     public void dialogAborted(String dialogID, Resource data) {
 	dialogPool.close(dialogID);
 	messagePool.close(dialogID);
-	// a running dialog has been aborted; it's better to send a
-	// message to the user
-//	pushDialog(Form
-//		.newMessage(messageLocaleHelper
-//			.getString("UserDialogManager.forcedCancellation"),
-//			messageLocaleHelper
-//				.getString("UserDialogManager.sorryAborted")));
+	if (dialogID.equals(current.getDialogID())){
+	    current = null;
+	    showSomething();
+	}
     }
 
     /**
