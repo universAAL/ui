@@ -389,7 +389,7 @@ ui.handler.sms/src/main/java/net/vsms/bulksms/SmsSender.java -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/ISMSSender.java -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SMSActivator.java -text
 ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
-ui.handler.sms/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIntegrationTest.java -text
+ui.handler.sms/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIT.java -text
 ui.handler.web.html/ASL2.0.txt -text
 ui.handler.web.html/NOTICE.txt -text
 ui.handler.web.html/pom.xml -text
