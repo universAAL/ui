@@ -1,4 +1,4 @@
-package org.universAAL.ui.kinect.adapter.test;
+package org.universAAL.ui.kinect.adapter.instance.test;
 
 import org.universAAL.itests.IntegrationTest;
 
@@ -8,8 +8,7 @@ import org.universAAL.itests.IntegrationTest;
  * @author rotgier
  * 
  */
-public class ArtifactIntegrationTest extends IntegrationTest {
-
+public class ArtifactIT extends IntegrationTest {
 
     public void testComposite() {
 	logAllBundles();
