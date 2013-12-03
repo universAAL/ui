@@ -518,7 +518,7 @@ ui.kinect.adapter.instance/NOTICE.txt -text
 ui.kinect.adapter.instance/pom.xml -text
 ui.kinect.adapter.instance/src/main/java/org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java -text
 ui.kinect.adapter.instance/src/main/java/org/universAAL/kinect/adapter/instance/osgi/Activator.java -text
-ui.kinect.adapter.instance/src/test/java/org/universAAL/ui/kinect/adapter/instance/test/ArtifactIntegrationTest.java -text
+ui.kinect.adapter.instance/src/test/java/org/universAAL/ui/kinect/adapter/instance/test/ArtifactIT.java -text
 ui.kinect.adapter.instance/src/test/resources/log4j.properties -text
 ui.kinect.adapter/ASL2.0.txt -text
 ui.kinect.adapter/NOTICE.txt -text
@@ -539,7 +539,7 @@ ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/Abstrac
 ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/IServiceCall.java -text
 ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/QueryService.java -text
 ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/RequestService.java -text
-ui.kinect.adapter/src/test/java/org/universAAL/ui/kinect/adapter/test/ArtifactIntegrationTest.java -text
+ui.kinect.adapter/src/test/java/org/universAAL/ui/kinect/adapter/test/ArtifactIT.java -text
 ui.kinect.adapter/src/test/resources/log4j.properties -text
 ui.pom/pom.xml -text
 ui.pom/ui.karaf.feature/ASL2.0.txt -text
