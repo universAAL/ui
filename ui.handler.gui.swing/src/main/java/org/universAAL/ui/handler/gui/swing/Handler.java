@@ -219,8 +219,6 @@ public final class Handler extends UIHandler {
     		oep.addRestriction(mr);
     	}
     	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
-    			UIRequest.PROP_PRESENTATION_MODALITY, Modality.gui)); 
-    	oep.addRestriction(MergedRestriction.getFixedValueRestriction(
     			UIRequest.PROP_PRESENTATION_LOCATION,
     			location));
     	oep.setSupportedInputModalities(new Modality[]{Modality.gui});
