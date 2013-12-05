@@ -547,10 +547,15 @@ public class UserDialogManager implements IDialogManager,
      * Then check dialogs, as a last resort show main menu.
      */
     public void showSomething() {
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		"showSomething",
-		new String[] { "Nothing to show, Trying to show something" },
-		null);
+	try {
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+	    	"showSomething",
+	    	new String[] { "Nothing to show, Trying to show something" },
+	    	null);
+	} catch (Exception e) {
+	    // the DM is probably shutting down just abort.
+	    return;
+	}
 	Collection<UIRequest> suspendedDialogs = dialogPool.listAllSuspended();
 	// show other message, dialog or system menu
 	// if there isn't one already...

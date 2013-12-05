@@ -444,10 +444,11 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	    }
 
 	    if (singleton == null) {
-		LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
-			"getInstance",
-			new String[] { "Could not get singleton instance." },
-			null);
+//		LogUtils.logError(getModuleContext(), DialogManagerImpl.class,
+//			"getInstance",
+//			new String[] { "Could not get singleton instance." },
+//			null);
+		throw new RuntimeException("Unable to locate DialogManager's Singleton");
 	    }
 	}
 	return singleton;
