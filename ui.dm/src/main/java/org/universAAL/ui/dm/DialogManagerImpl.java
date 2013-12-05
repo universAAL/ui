@@ -371,12 +371,19 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      * Method to prepare for DM shutdown.
      */
     private void stop() {
+	
+	
 	// notify UserDialogManager s about impending shutdown
 	for (UserDialogManager udm : dialogIDMap.values()) {
 	    LogUtils.logDebug(moduleContext, getClass(), "stop",
 		    "Stopping UDM for: " + udm.getUserId());
 	    udm.close();
 	}
+	
+	//Disconnect from bus
+	close();
+	
+	//Disconnect all Callers, Callees and Context subscribers
 	if (uiPreferencesBuffer != null) {
 	    LogUtils.logDebug(moduleContext, getClass(), "stop",
 		    "Stopping UIPreferencesBuffer");
