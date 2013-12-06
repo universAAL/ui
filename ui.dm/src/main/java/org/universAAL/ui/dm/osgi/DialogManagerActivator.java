@@ -17,15 +17,13 @@ package org.universAAL.ui.dm.osgi;
 
 import java.io.File;
 
-import org.osgi.framework.BundleActivator;
-import org.osgi.framework.BundleContext;
+import org.universAAL.middleware.container.ModuleActivator;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.dm.DialogManagerImpl;
 
-public class DialogManagerActivator extends Thread implements BundleActivator {
+public class DialogManagerActivator implements ModuleActivator, Runnable {
 
     private static ModuleContext mContext;
 
@@ -44,12 +42,9 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
     }
 
     /** {@inheritDoc} */
-    public void start(BundleContext context) throws Exception {
-	mContext = uAALBundleContainer.THE_CONTAINER
-		.registerModule(new Object[] { context });
-	// ServiceReference sref = context
-	// .getServiceReference(MessageContentSerializer.class.getName());
-	start();
+    public void start(ModuleContext context) throws Exception {
+	mContext = context;
+	new Thread(this, "DialogManagerInitializationThread").start();
 
 	LogUtils.logInfo(mContext, this.getClass(), "start",
 		new Object[] { "DM started." }, null);
@@ -57,7 +52,7 @@ public class DialogManagerActivator extends Thread implements BundleActivator {
     }
 
     /** {@inheritDoc} */
-    public void stop(BundleContext arg0) throws Exception {
+    public void stop(ModuleContext arg0) throws Exception {
     	DialogManagerImpl.stopDM();
 	LogUtils.logInfo(mContext, this.getClass(), "stop",
 		new Object[] { "DM stopped." }, null);
