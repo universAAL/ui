@@ -41,19 +41,13 @@
       <artifactId>itests</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.felix</groupId>
+      <groupId>org.osgi</groupId>
       <artifactId>org.osgi.core</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.felix</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
-      <exclusions>
-        <exclusion>
-          <artifactId>javax.servlet</artifactId>
-          <groupId>org.apache.felix</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+  	<dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.compendium</artifactId>
+  	</dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.http.jetty</artifactId>
