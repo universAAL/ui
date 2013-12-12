@@ -6,13 +6,6 @@
 	<repository>mvn:org.universAAL.ontology/ont.karaf.feature/${ont.karaf.feature.version}/xml/features</repository>
 	<repository>mvn:org.universAAL.security/security.karaf.feature/${security.karaf.feature.version}/xml/features</repository>
 	<repository>mvn:org.universAAL.remote/ri.karaf.feature/${ri.karaf.feature.version}/xml/features</repository>
-
-	<feature name="mini-Jetty" description="Jetty libraries used by several libraries in universAAL"
-		 resolver='(obr)'>
-			<bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-jetty-bundle/1.0.5</bundle>
-			<bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-spi/1.0.5</bundle>
-	        <bundle start-level='76' start='true'>mvn:org.ops4j.pax.web/pax-web-api/1.0.5</bundle>
-	</feature>
 	
 	<feature name="uAAL-UI.handler.gui.swing" description="The UI Swing Handler."
 		version="${pom.version}" resolver='(obr)'>
