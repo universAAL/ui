@@ -1,6 +1,8 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
- *
+ * Copyright 2013 Universidad Politécnica de Madrid
+ * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
+ * 
  * See the NOTICE file distributed with this work for additional 
  * information regarding copyright ownership
  *	
@@ -18,8 +20,9 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.adapters;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
@@ -35,14 +38,19 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.dm.interfaces.IAdapter;
 
 /**
- * Acts as context subscriber to location of a {@link User} and adds this
- * location info to the {@link UIRequest}. IT always adds a last user location
- * as the most recent location.
+ * Acts as context subscriber to location of a given {@link User} and adds this
+ * location info to all {@link UIRequest}s for that user. It adds the last user location
+ * as presentation location. This location may not be added if the information ({@link ContextEvent})
+ * is not received, or if an amount of {@link AdapterUserLocation#SYSTEM_PROP_CLEAR_LOCATION_PERIOD time}
+ * has elapsed since the last event.
  * 
  * @author eandgrg
+ * @author amedrano
  */
 public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
+    private static final String SYSTEM_PROP_CLEAR_LOCATION_PERIOD = "ui.dm.adapter.location.clear.wait";
+    private static final String DEFAULT_CLEAR_LOCATION_PERIOD = "300000";
     /**
      * Module context reference
      */
@@ -52,11 +60,15 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
     private Resource user = null;
 
+    private ScheduledThreadPoolExecutor sched;
+
+    private ScheduledFuture<?> task;
+
     public AdapterUserLocation(ModuleContext context, Resource user) {
 	super(context, getPermanentSubscriptions(user));
 	this.mcontext = context;
 	this.user = user;
-
+	this.sched = new ScheduledThreadPoolExecutor(1);
     }
 
     private static ContextEventPattern[] getPermanentSubscriptions(
@@ -71,28 +83,21 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	return new ContextEventPattern[] { contextEventPattern };
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.universAAL.middleware.context.ContextSubscriber#
-     * communicationChannelBroken()
-     */
+
+    /** {@ inheritDoc}	 */
     public void communicationChannelBroken() {
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.middleware.context.ContextSubscriber#handleContextEvent
-     * (org.universAAL.middleware.context.ContextEvent)
-     */
+    /** {@ inheritDoc}	 */
     public void handleContextEvent(ContextEvent event) {
 	// one additional safety that should not allow only location update if
 	// belongs to the correct user
 	if (user.getURI().equals(event.getRDFSubject().getURI())) {
-	    LogUtils.logInfo(mcontext, getClass(), "handleContextEvent",
+	    LogUtils.logInfo(
+		    mcontext,
+		    getClass(),
+		    "handleContextEvent",
 		    new Object[] { "\n User var: " + user.toStringRecursive()
 			    + "\nReceived context event for user: "
 			    + event.getRDFSubject() + "\nRDF Subject type:\n"
@@ -123,29 +128,29 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	    userLocation = (Location) (event.getRDFObject());
 
 	    // start countdown to delete the location
-	    new ClearLocation();
+	    // new ClearLocation();
+	    task.cancel(true);
+
+	    long clearLocationPeriod = Long.parseLong(System.getProperty(
+		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
+		    DEFAULT_CLEAR_LOCATION_PERIOD));
+	    task = sched.schedule(new ClearLocationTask(), clearLocationPeriod,
+		    TimeUnit.MILLISECONDS);
 	} else {
-	    LogUtils
-		    .logDebug(
-			    mcontext,
-			    getClass(),
-			    "handleContextEvent",
-			    new Object[] { "\nReceived context event carrying location for user: "
-				    + event.getRDFSubject()
-				    + "\n instead for user "
-				    + user.getURI()
-				    + " so discarrding the event." }, null);
+	    LogUtils.logDebug(
+		    mcontext,
+		    getClass(),
+		    "handleContextEvent",
+		    new Object[] { "\nReceived context event carrying location for user: "
+			    + event.getRDFSubject()
+			    + "\n instead for user "
+			    + user.getURI() + " so discarrding the event." },
+		    null);
 	}
 
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
-     * .ui.UIRequest)
-     */
+    /** {@ inheritDoc} */
     public void adapt(UIRequest uiRequest) {
 	// only add user location if it was obtained in the last e.g. 5 minutes
 	// (configured in system.properties in
@@ -153,56 +158,30 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	if (userLocation != null) {
 	    uiRequest.setPresentationLocation(userLocation);
 
-	    LogUtils
-		    .logInfo(
-			    mcontext,
-			    getClass(),
-			    "adapt",
-			    new String[] { "Setting user location as presentation location: "
-				    + userLocation.getURI() }, null);
+	    LogUtils.logInfo(
+		    mcontext,
+		    getClass(),
+		    "adapt",
+		    new String[] { "Setting user location as presentation location: "
+			    + userLocation.getURI() }, null);
 	}
     }
 
     /**
      * 
-     * The task for clearing the most current (and last) user location. Waits
-     * some predefined amount of time (read from system properties) before
-     * clearing it.
+     * The task for clearing the most current (and last) user location. It is
+     * executed after some predefined amount of time (read from system
+     * properties) before clearing it.
      * 
      * @author eandgrg
      * 
      */
-    class ClearLocation {
-	private Timer timer;
-	Long clearLocationPeriod;
-
-	private static final String SYSTEM_PROP_CLEAR_LOCATION_PERIOD = "ui.dm.adapter.location.clear.wait";
-	private static final String DEFAULT_CLEAR_LOCATION_PERIOD = "300000";
-
-	/**
-	 * Constructor. Start countdown timer to delete the location info of the
-	 * user.
-	 */
-	public ClearLocation() {
-	    clearLocationPeriod = Long.parseLong(System.getProperty(
-		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
-		    DEFAULT_CLEAR_LOCATION_PERIOD));
-	    timer = new Timer(true);
-	    timer.schedule(new ClearLocationTask(), clearLocationPeriod);
+    class ClearLocationTask implements Runnable {
+	public void run() {
+	    userLocation = null;
+	    LogUtils.logDebug(mcontext, getClass(), "run",
+		    new String[] { "ClearLocationTask finished for user: "
+			    + user.getURI() }, null);
 	}
-
-	class ClearLocationTask extends TimerTask {
-	    public void run() {
-
-		userLocation = null;
-		timer.cancel(); // Terminate the timer thread
-		LogUtils.logDebug(mcontext, getClass(), "run",
-			new String[] { "ClearLocationTask finished for user: "
-				+ user.getURI() + " after: "
-				+ clearLocationPeriod + " milliseconds." },
-			null);
-	    }
-	}
-
     }
 }
