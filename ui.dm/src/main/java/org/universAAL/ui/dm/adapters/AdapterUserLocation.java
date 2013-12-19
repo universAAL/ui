@@ -129,7 +129,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 
 	    // start countdown to delete the location
 	    // new ClearLocation();
-	    task.cancel(true);
+	    if(task!=null)task.cancel(true);
 
 	    long clearLocationPeriod = Long.parseLong(System.getProperty(
 		    SYSTEM_PROP_CLEAR_LOCATION_PERIOD,
