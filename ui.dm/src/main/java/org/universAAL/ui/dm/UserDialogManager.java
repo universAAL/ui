@@ -811,6 +811,10 @@ public class UserDialogManager implements IDialogManager,
     public final void refreshMainMenu() {
 	if (current.getDialogForm().getDialogType().equals(DialogType.sysMenu)) {
 	    showMainMenu();
+	} else {
+	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "refresh Main menu",
+		    "tryed to reload main menu, but the current dialog is not a main menu it is a "
+	    + current.getDialogForm().getDialogType());
 	}
     }
 
