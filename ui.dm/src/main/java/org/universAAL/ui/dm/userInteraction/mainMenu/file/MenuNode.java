@@ -127,7 +127,7 @@ public class MenuNode {
 	MenuNode aux, cur = this;
 	String[] pathArr = path.split("/");
 	// the first path elem is normally ""
-	int offset = ("".equals(pathArr[0]) ? 1 : 0);
+	int offset = pathArr.length == 0? 0 : ("".equals(pathArr[0]) ? 1 : 0);
 	// skip existing nodes
 	int i = offset;
 	while (i < pathArr.length) {
