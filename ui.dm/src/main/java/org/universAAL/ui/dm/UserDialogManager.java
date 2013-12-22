@@ -747,7 +747,7 @@ public class UserDialogManager implements IDialogManager,
 	if (this.currentUserLocation != currentUserLocation) {
 	    this.currentUserLocation = currentUserLocation;
 	    if (current != null) {
-		resumeUIRequest(current);
+		adaptationParametersChanged(User.PROP_PHYSICAL_LOCATION);
 	    } else {
 		showSomething();
 	    }
@@ -965,6 +965,22 @@ public class UserDialogManager implements IDialogManager,
 
 	public void stop() {
 	    persistencyTimer.cancel();
+	}
+    }
+
+    /**
+     * change the AdaptationParameters of the current dialog.
+     * 
+     * @param parameter the parameter that has changed.
+     */
+    public void adaptationParametersChanged(String parameter) {
+	if (current != null) {
+	    // make (update) adaptation parameters again
+	    makeAdaptations(current);
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+		    "adaptationParametersChanged", new String[] { "updating UIRequest:",
+		current.getDialogForm().getTitle() }, null);
+	    DialogManagerImpl.getInstance().adaptationParametersChanged(current, parameter);
 	}
     }
 
