@@ -184,6 +184,13 @@ public class SCallee extends ServiceCallee {
     }
 
     private ServiceResponse addEntry(User user, MenuEntry entry) {
+	if (entry.getPath() == null || entry.getPath().size() <= 0
+		|| entry.getClassURI() == null || entry.getClassURI().isEmpty()
+		|| entry.getServiceClass()== null){
+	    // invalid entry
+	    LogUtils.logError(context, getClass(), "addEntry", createLogMessage("Illegal MenuEntry ", user, entry), null);
+	    return new ServiceResponse(CallStatus.serviceSpecificFailure);
+	}
 	// add the menu entry: load the contents of the config file, add the
 	// entry, and then save the file again
 	try {

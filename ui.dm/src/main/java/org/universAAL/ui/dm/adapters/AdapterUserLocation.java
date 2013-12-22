@@ -35,6 +35,8 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.ontology.location.Location;
 import org.universAAL.ontology.profile.User;
+import org.universAAL.ui.dm.DialogManagerImpl;
+import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.IAdapter;
 
 /**
@@ -125,7 +127,16 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	    // user location:
 	    // urn:org.universAAL.aal_space:test_environment#london
 
-	    userLocation = (Location) (event.getRDFObject());
+	    Location newUserLocation = (Location) (event.getRDFObject());
+	    
+	    if (!newUserLocation.equals(userLocation)){
+		userLocation = newUserLocation;
+		// Tell the bus that the current Dialog should be reallocated
+		UserDialogManager  udm = DialogManagerImpl.getInstance().getUDM(user.getURI());
+		if (udm != null){
+		    udm.setCurrentUserLocation(newUserLocation);
+		}
+	    }
 
 	    // start countdown to delete the location
 	    // new ClearLocation();
