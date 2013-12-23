@@ -364,7 +364,7 @@ public class UserDialogManager implements IDialogManager,
 	// messagePool = new DialogPriorityQueue();
 	// DialogPoolCopier.copy(old, messagePool);
 	// }
-	messageListener = new MessageListener(messagePool);
+	messageListener = new MessageListener(this);
 
 	/*
 	 * Persistence Setting
@@ -812,7 +812,7 @@ public class UserDialogManager implements IDialogManager,
 	if (current.getDialogForm().getDialogType().equals(DialogType.sysMenu)) {
 	    showMainMenu();
 	} else {
-	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "refresh Main menu",
+	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "refreshMainMenu",
 		    "tryed to reload main menu, but the current dialog is not a main menu it is a "
 	    + current.getDialogForm().getDialogType());
 	}
