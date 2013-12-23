@@ -28,6 +28,7 @@ import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
@@ -810,6 +811,9 @@ public class UserDialogManager implements IDialogManager,
      */
     public final void refreshMainMenu() {
 	if (current.getDialogForm().getDialogType().equals(DialogType.sysMenu)) {
+	    // abort current dialog (current main menu)
+	    DialogManagerImpl.getInstance().abortDialog(current.getDialogID());
+	    //show a new Main Menu
 	    showMainMenu();
 	} else {
 	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "refreshMainMenu",

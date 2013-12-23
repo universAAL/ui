@@ -298,12 +298,17 @@ public class SCallee extends ServiceCallee {
     }
 
     private void refreshMainMenu(String userURI) {
+	LogUtils.logDebug(context, getClass(), "refreshMainMenu", "trying to refresh main menu for " + userURI );
 	DialogManagerImpl dm = DialogManagerImpl.getInstance();
-	if (dm == null)
+	if (dm == null) {
+	    LogUtils.logError(context, getClass(), "refreshMainMenu", "no singleton instance found: WTF!!!" );
 	    return;
+	}
 	UserDialogManager udm = dm.getUDM(userURI);
-	if (udm == null)
+	if (udm == null) {
+	    LogUtils.logError(context, getClass(), "refreshMainMenu", "no UserDialogManager found for the given user" );
 	    return;
+	}
 	udm.refreshMainMenu();
     }
 
