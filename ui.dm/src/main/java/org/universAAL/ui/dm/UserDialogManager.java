@@ -626,7 +626,9 @@ public class UserDialogManager implements IDialogManager,
     public final synchronized void userLogIn(Resource user,
 	    AbsLocation location) {
 	setCurrentUserLocation(location);
-	showSomething();
+	if (current == null) {
+	    showSomething();
+	}
     }
 
     /**
@@ -747,10 +749,8 @@ public class UserDialogManager implements IDialogManager,
 	if (this.currentUserLocation != currentUserLocation) {
 	    this.currentUserLocation = currentUserLocation;
 	    if (current != null) {
-		adaptationParametersChanged(User.PROP_PHYSICAL_LOCATION);
-	    } else {
-		showSomething();
-	    }
+		adaptationParametersChanged(UIRequest.PROP_PRESENTATION_LOCATION);
+	    } 
 	}
     }
 
@@ -841,6 +841,22 @@ public class UserDialogManager implements IDialogManager,
      */
     public MessageLocaleHelper getLocaleHelper() {
 	return messageLocaleHelper;
+    }
+
+    /**
+     * change the AdaptationParameters of the current dialog.
+     * 
+     * @param parameter the parameter that has changed.
+     */
+    public void adaptationParametersChanged(String parameter) {
+        if (current != null) {
+            // make (update) adaptation parameters again
+            makeAdaptations(current);
+            LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+        	    "adaptationParametersChanged", new String[] { "updating UIRequest:",
+        	current.getDialogForm().getTitle() }, null);
+            DialogManagerImpl.getInstance().adaptationParametersChanged(current, parameter);
+        }
     }
 
     /**
@@ -965,22 +981,6 @@ public class UserDialogManager implements IDialogManager,
 
 	public void stop() {
 	    persistencyTimer.cancel();
-	}
-    }
-
-    /**
-     * change the AdaptationParameters of the current dialog.
-     * 
-     * @param parameter the parameter that has changed.
-     */
-    public void adaptationParametersChanged(String parameter) {
-	if (current != null) {
-	    // make (update) adaptation parameters again
-	    makeAdaptations(current);
-	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		    "adaptationParametersChanged", new String[] { "updating UIRequest:",
-		current.getDialogForm().getTitle() }, null);
-	    DialogManagerImpl.getInstance().adaptationParametersChanged(current, parameter);
 	}
     }
 
