@@ -20,6 +20,7 @@ import java.util.TreeSet;
 
 import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.ui.dm.UserDialogManager;
 import org.universAAL.ui.dm.interfaces.ISubmitGroupListener;
 import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
@@ -37,9 +38,15 @@ public class MessageListener implements ISubmitGroupListener {
      * change the message status.
      */
     private IUIRequestPool messagePool;
-
-    public MessageListener(IUIRequestPool messagePool) {
-	this.messagePool = messagePool;
+    
+    /**
+     * Reference to the udm to call {@link UserDialogManager#showSomething()}. 
+     */
+    private UserDialogManager udm;
+    
+    public MessageListener(UserDialogManager udm) {
+	this.messagePool = udm.getMessagePool();
+	this.udm = udm;
     }
 
     /** {@inheritDoc} */
@@ -61,7 +68,7 @@ public class MessageListener implements ISubmitGroupListener {
 	} else if (Form.ACK_MESSAGE_KEEP.equals(submissionID)) {
 	    messagePool.suspend(dialogID);
 	}
-
+	udm.showSomething();
     }
 
 }
