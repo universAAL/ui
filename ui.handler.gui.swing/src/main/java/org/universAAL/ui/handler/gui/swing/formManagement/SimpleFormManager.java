@@ -78,8 +78,9 @@ public class SimpleFormManager implements FormManager {
 	// Return the Form Data.
 	if (currentForm != null && currentForm.getDialogID().equals(dialogID)
 		&& currentForm.getDialogForm() != null) {
+	    Resource data = currentForm.getDialogForm().getData();
 	    closeCurrentDialog();
-	    return currentForm.getDialogForm().getData();
+	    return data;
 	}
 	return null;
     }
