@@ -87,9 +87,12 @@ public final class Handler extends UIHandler {
 	public void adaptationParametersChanged(String dialogID,
 			String changedProp, Object newVal) {
 		String text = "Adaptation Parameters Changed\n";
-		text += dialogID + " Prop: " + changedProp + "\n";
-		text += "prop of type: " + newVal.getClass().getName();
-		
+		if (changedProp != null && !changedProp.isEmpty()) {
+		    text += dialogID + " Prop: " + changedProp + "\n";
+		}
+		if (newVal != null) {
+		    text += "prop of type: " + newVal.getClass().getName();
+		}
 		LogUtils.logDebug(super.owner, getClass(),
 				"adaptationParametersChanged", new String[] {text}, null);
 		render.getFormManagement().adaptationParametersChanged(dialogID, changedProp, newVal);
