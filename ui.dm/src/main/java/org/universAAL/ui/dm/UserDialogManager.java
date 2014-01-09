@@ -691,6 +691,9 @@ public class UserDialogManager implements IDialogManager,
 	}
 	if (req != null) {
 	    req.setCollectedInput(response.getSubmittedData());
+	    if (req == current){
+		current = null;
+	    }
 	}
 	if (listeners.containsKey(submissionID)) {
 	    ISubmitGroupListener sgl = listeners.get(submissionID);
