@@ -22,6 +22,7 @@ package org.universAAL.ui.dm.userInteraction.mainMenu.profilable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -124,21 +125,21 @@ public class RDFMainMenu extends MainMenu {
 	return (Resource) contentSerializer.deserialize(serialized);
     }
 
-    public Resource readMenu(File file) {
+    public Resource readMenu(File file) throws FileNotFoundException {
 	try {
 	    InputStream in = new FileInputStream(file);
 	    Resource r = readMenu(in);
 	    in.close();
 	    return r;
+	} catch (FileNotFoundException e){
+	  throw e;  
 	} catch (Exception e) {
 	     LogUtils
 	     .logError(
 	     context,
 	     RDFMainMenu.class,
 	     "readMenu",
-	     new Object[] { "file: " + file.getName()
-	    	 + "does not exist."
-	     },
+	     new Object[] { "Unexpected error while reading file: " + file.getName() },
 	     e);
 	     throw new RuntimeException(e.getMessage());
 	}
