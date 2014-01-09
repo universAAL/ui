@@ -316,6 +316,10 @@ public class HTMLUserGenerator {
 			}
 			// check if there is missing input, and resend.
 			Submit s = (Submit) f.searchFormControl(((String[]) parameters.get(SubmitModel.SUBMIT_NAME))[0]);
+			if (s == null){
+			    LogUtils.logError(mcontext, getClass(), "ProcessInput", "Could not determine submit");
+			    return;			    
+			}
 			missingInputs.addAll(s.getMissingInputControls());
 			if (missingInputs.isEmpty()){
 				//call the submitID and Finish dialog?
