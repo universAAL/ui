@@ -80,9 +80,9 @@ public class OverlayFormManager implements FormManager {
 	requestMap = new HashMap();
 	dialogIDMap = new HashMap();
 	lastRequest = new HashMap();
-	gbSchedule = new Timer(true);
-	gbSchedule.scheduleAtFixedRate(new DMGC(), GARBAGE_PERIOD,
-		GARBAGE_PERIOD);
+//	gbSchedule = new Timer(true);
+//	gbSchedule.scheduleAtFixedRate(new DMGC(), GARBAGE_PERIOD,
+//		GARBAGE_PERIOD);
     }
 
     /** {@inheritDoc} */
@@ -106,7 +106,9 @@ public class OverlayFormManager implements FormManager {
     /** {@inheritDoc} */
     public void closeCurrentDialog() {
 	if (currentForm != null) {
+	    String dID = currentForm.getDialogID();
 	    currentForm = null;
+	    derender(dID);
 	}
     }
 
@@ -127,7 +129,12 @@ public class OverlayFormManager implements FormManager {
 	// Return the Form Data.
 	UIRequest r = (UIRequest) dialogIDMap.get(dialogID);
 	if (r != null) {
-	    return r.getDialogForm().getData();
+	    Resource data = r.getDialogForm().getData();
+	    if (r == currentForm){
+		currentForm = null;
+	    }
+	    derender(dialogID);
+	    return data;
 	}
 	return null;
     }
@@ -160,7 +167,6 @@ public class OverlayFormManager implements FormManager {
 	    requestMap.put(r, new FrameManager(r, render
 		    .getModelMapper()));
 	}
-
     }
 
     /**
@@ -191,17 +197,24 @@ public class OverlayFormManager implements FormManager {
 	    }
 	    for (Iterator i = tbr.iterator(); i.hasNext();) {
 		String dID = (String) i.next();
-		UIRequest r = (UIRequest) dialogIDMap.get(dID);
-		if (r != currentForm) {
-		    FrameManager fm = (FrameManager) requestMap.get(r);
-		    lastRequest.remove(dID);
-		    dialogIDMap.remove(dID);
-		    requestMap.remove(r);
-		    fm.disposeFrame();
-		}
+		derender(dID);
 	    }
 	}
 
+    }
+
+    /**
+     * @param dID
+     */
+    private void derender(String dID) {
+	UIRequest r = (UIRequest) dialogIDMap.get(dID);
+	if (r != currentForm) {
+	    FrameManager fm = (FrameManager) requestMap.get(r);
+	    lastRequest.remove(dID);
+	    dialogIDMap.remove(dID);
+	    requestMap.remove(r);
+	    fm.disposeFrame();
+	}
     }
 
 }
