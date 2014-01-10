@@ -167,8 +167,9 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	// (configured in system.properties in
 	// ui.dm.adapter.location.clear.wait)
 	if (userLocation != null) {
-	    uiRequest.setPresentationLocation(userLocation);
-
+	    //uiRequest.setPresentationLocation(userLocation);
+	    uiRequest.changeProperty(UIRequest.PROP_PRESENTATION_LOCATION, userLocation);
+	    
 	    LogUtils.logInfo(
 		    mcontext,
 		    getClass(),
