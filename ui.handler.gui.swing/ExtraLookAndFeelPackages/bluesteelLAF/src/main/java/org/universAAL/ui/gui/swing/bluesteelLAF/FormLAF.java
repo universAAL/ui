@@ -306,9 +306,11 @@ public class FormLAF extends FormModel implements ComponentListener {
 	/** {@ inheritDoc}	 */
     public void componentResized(ComponentEvent e) {
     	Component parent = SwingUtilities.getWindowAncestor(frame);
-    	frame.setSize(frame.getParent().getSize());
-    	frame.revalidate();
-    	if (((Init)getRenderer().getInitLAF()).isWindowed() 
+    	if (internalFrame == null) {
+	    frame.setSize(frame.getParent().getSize());
+	    frame.revalidate();
+	}
+	if (((Init)getRenderer().getInitLAF()).isWindowed() 
     		&& parent != null){
     		Rectangle r = parent.getBounds();
     		getRenderer().setProperty(Init.WINDOWED_X, Integer.toString(r.x));
