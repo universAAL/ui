@@ -28,7 +28,6 @@ import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.supply.AbsLocation;
@@ -563,9 +562,13 @@ public class UserDialogManager implements IDialogManager,
 	if (!messagePool.listAllActive().isEmpty()
 		&& messagePool.getCurrent() == null) {
 	    // show next message
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), 
+		    "showSomething", "a pending message will be shown");
 	    resumeUIRequest(messagePool.getNextUIRequest());
 	} else if (!dialogPool.listAllActive().isEmpty() && current == null) {
 	    // there are pending new dialogs
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), 
+		    "showSomething", "a pending dialog will be shown");
 	    resumeUIRequest(dialogPool.getNextUIRequest());
 	} else if (current == null && !suspendedDialogs.isEmpty()) {
 	    /*
@@ -577,12 +580,19 @@ public class UserDialogManager implements IDialogManager,
 	    // "Resuming suspended", null);
 	    Iterator<UIRequest> i = suspendedDialogs.iterator();
 	    dialogPool.unsuspend(i.next().getDialogID());
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), 
+		    "showSomething", "a suspended dialog will be shown");
 	    resumeUIRequest(dialogPool.getNextUIRequest());
 	} else if (current == null) {
 	    /*
 	     * no more dialogs, or active messages to show => show main menu
 	     */
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), 
+		    "showSomething", "the main menu will be shown");
 	    showMainMenu();
+	} else {
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), 
+		    "showSomething", "there is already a current dialog shown, not showing anything.");
 	}
     }
 
