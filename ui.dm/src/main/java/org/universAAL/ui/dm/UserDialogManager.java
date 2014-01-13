@@ -639,6 +639,8 @@ public class UserDialogManager implements IDialogManager,
 	setCurrentUserLocation(location);
 	if (current == null) {
 	    showSomething();
+	} else {
+	    resumeUIRequest(current);
 	}
     }
 
