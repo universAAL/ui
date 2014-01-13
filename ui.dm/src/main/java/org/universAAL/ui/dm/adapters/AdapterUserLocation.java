@@ -135,6 +135,8 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 		UserDialogManager  udm = DialogManagerImpl.getInstance().getUDM(user.getURI());
 		if (udm != null){
 		    udm.setCurrentUserLocation(newUserLocation);
+		} else {
+		    LogUtils.logError(mcontext, getClass(), "handleContextEvent", "unable to locate UDM for user: " +user.getURI());
 		}
 	    }
 

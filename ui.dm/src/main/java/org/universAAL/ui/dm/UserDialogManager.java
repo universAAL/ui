@@ -763,6 +763,9 @@ public class UserDialogManager implements IDialogManager,
      */
     public final void setCurrentUserLocation(AbsLocation currentUserLocation) {
 	if (this.currentUserLocation != currentUserLocation) {
+	    LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "setCurrentUseLocation", 
+		    "updating user Location form: " + this.currentUserLocation.getURI() 
+		    + "\n to: " +currentUserLocation.getURI());
 	    this.currentUserLocation = currentUserLocation;
 	    if (current != null) {
 		adaptationParametersChanged(UIRequest.PROP_PRESENTATION_LOCATION);
