@@ -698,13 +698,13 @@ public class UserDialogManager implements IDialogManager,
 	UIRequest req = dialogPool.get(dialogID);
 	if (req == null) {
 	    req = messagePool.get(dialogID);
+	}else{
+	    dialogPool.suspend(dialogID);
 	}
 	if (req != null) {
 	    req.setCollectedInput(response.getSubmittedData());
-	    if (req == current){
-		current = null;
-	    }
 	}
+	current = null;
 	if (listeners.containsKey(submissionID)) {
 	    ISubmitGroupListener sgl = listeners.get(submissionID);
 	    listeners.clear();
