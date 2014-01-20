@@ -1,3 +1,8 @@
+resource.server/.classpath
+resource.server/.project
+resource.server/.settings
+resource.server/bin
+resource.server/target
 ui.dm/.classpath
 ui.dm/.project
 ui.dm/.settings
