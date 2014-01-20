@@ -12799,6 +12799,118 @@ ui.handler.web.html-2.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/we
 ui.handler.web.html-2.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/TimerTest.java -text svneol=unset#text/plain
 ui.handler.web.html-2.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/support/TestGenerator.java -text svneol=unset#text/plain
 ui.handler.web.html-2.0.3-SNAPSHOT/src/test/resources/messages.properties -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/ASL2.0.txt -text
+ui.handler.web.html-2.0.4-SNAPSHOT/NOTICE.txt -text
+ui.handler.web.html-2.0.4-SNAPSHOT/pom.xml -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/HTMLUserGenerator.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/HTTPHandlerService.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/Handler.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/ModelMapper.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/ResourceMapper.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/UpdatedPropertiesFile.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/fm/FormManager.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/fm/SimpleFormManager.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/FormControlModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/FormModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/GroupModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/InputFieldModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/InputModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/LabelModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/MediaObjectModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/Model.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/OutputModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RangeModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RecommendationModel.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/RepeatModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/Select1Model.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/SelectModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/SimpleOutputModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/SubdialogTriggerModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/SubmitModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/model/TextAreaModel.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/ui/handler/web/html/osgi/HTMLHandlerActivator.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/cssClasses -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/default.css -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Behavioral_Analizer.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Conatct_Manager.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Food_Shop.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Health.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Health2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Medication.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Nutritional_Advisor.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Personal_Agenda.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Personal_Safety.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/app/Safety_Home.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Dialogs/Accept.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Dialogs/Alert.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Dialogs/Deny.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Dialogs/Tip.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Dialogs/Tip2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Add.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Copy.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Cut.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Edit.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Paste.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Redo.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Remove.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Search.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Undo.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Zoom[!!-~]in.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Edit/Zoom[!!-~]out.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Close.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Delete.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/File[!!-~]new.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/File.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/File2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Lock.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Print.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Save.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/File/Unlock.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Configuration.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Down.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Favorite.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Home.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Reload.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Right.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Search.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/Up.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Navigation/left.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Camera.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Cart.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Desktop.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Desktop2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Mail.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Power.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Telephon.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/User.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/Wireless.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Office/World.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/FF[!!-~]2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/FF.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/FR.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/FR2.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/Pause.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/Play.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/Record.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Playback/Stop.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Web/Facebook.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Web/Linkdin.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Web/Twitter.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/common/Web/Youtube.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/Dialogs.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/EXIT.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/Home.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/PendingMsg.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/UCC.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/main/resources/icons/system/Ustore.png -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/DefaultModelConstructorTest.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/FullFormGeneratorTest.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/HTMLTest.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/ModelMapperTest.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/ResourceMapperTest.java -text
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/TimerTest.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/ui/handler/web/html/support/TestGenerator.java -text svneol=unset#text/plain
+ui.handler.web.html-2.0.4-SNAPSHOT/src/test/resources/messages.properties -text svneol=unset#text/plain
 ui.internationalization.util-2.0.1-SNAPSHOT/pom.xml -text
 ui.internationalization.util-2.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/internationalization/util/MessageLocaleHelper.java -text
 ui.internationalization.util-2.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/internationalizaion/tests/TestSearch.java -text svneol=unset#text/plain
