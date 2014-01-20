@@ -13137,6 +13137,13 @@ ui.kinect.adapter.instance-2.0.3-SNAPSHOT/src/main/java/org/universAAL/kinect/ad
 ui.kinect.adapter.instance-2.0.3-SNAPSHOT/src/main/java/org/universAAL/kinect/adapter/instance/osgi/Activator.java -text
 ui.kinect.adapter.instance-2.0.3-SNAPSHOT/src/test/java/org/universAAL/ui/kinect/adapter/instance/test/ArtifactIntegrationTest.java -text
 ui.kinect.adapter.instance-2.0.3-SNAPSHOT/src/test/resources/log4j.properties -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/ASL2.0.txt -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/NOTICE.txt -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/pom.xml -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/src/main/java/org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/src/main/java/org/universAAL/kinect/adapter/instance/osgi/Activator.java -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/kinect/adapter/instance/test/ArtifactIT.java -text
+ui.kinect.adapter.instance-2.0.4-SNAPSHOT/src/test/resources/log4j.properties -text
 ui.pom-1.0.2-SNAPSHOT/pom.xml -text
 ui.pom-1.1.2-SNAPSHOT/pom.xml -text
 ui.pom-1.2.1-SNAPSHOT/pom.xml -text
