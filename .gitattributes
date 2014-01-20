@@ -12350,6 +12350,17 @@ ui.internationalization.util-2.0.3-SNAPSHOT/src/test/resources/loc1/messages_es.
 ui.internationalization.util-2.0.3-SNAPSHOT/src/test/resources/loc2/messages.properties -text svneol=unset#text/plain
 ui.internationalization.util-2.0.3-SNAPSHOT/src/test/resources/loc2/messages_es.properties -text svneol=unset#text/plain
 ui.internationalization.util-2.0.3-SNAPSHOT/src/test/resources/loc3/messages.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/ASL2.0.txt -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/NOTICE.txt -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/pom.xml -text
+ui.internationalization.util-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/internationalization/util/MessageLocaleHelper.java -text
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/internationalizaion/tests/TestSearch.java -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc1/messages.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc1/messages_en.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc1/messages_es.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc2/messages.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc2/messages_es.properties -text svneol=unset#text/plain
+ui.internationalization.util-2.0.4-SNAPSHOT/src/test/resources/loc3/messages.properties -text svneol=unset#text/plain
 ui.karaf.feature-2.0.1-SNAPSHOT/ASL2.0.txt -text
 ui.karaf.feature-2.0.1-SNAPSHOT/NOTICE.txt -text
 ui.karaf.feature-2.0.1-SNAPSHOT/pom.xml -text
