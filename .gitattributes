@@ -12974,6 +12974,10 @@ ui.karaf.feature-2.0.3-SNAPSHOT/ASL2.0.txt -text
 ui.karaf.feature-2.0.3-SNAPSHOT/NOTICE.txt -text
 ui.karaf.feature-2.0.3-SNAPSHOT/pom.xml -text
 ui.karaf.feature-2.0.3-SNAPSHOT/src/features/features.xml -text
+ui.karaf.feature-2.0.4-SNAPSHOT/ASL2.0.txt -text
+ui.karaf.feature-2.0.4-SNAPSHOT/NOTICE.txt -text
+ui.karaf.feature-2.0.4-SNAPSHOT/pom.xml -text
+ui.karaf.feature-2.0.4-SNAPSHOT/src/features/features.xml -text
 ui.kinect.adapter-1.3.2-SNAPSHOT/ASL2.0.txt -text
 ui.kinect.adapter-1.3.2-SNAPSHOT/MITX.txt -text
 ui.kinect.adapter-1.3.2-SNAPSHOT/NOTICE.txt -text
