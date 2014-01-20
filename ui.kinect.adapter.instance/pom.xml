@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>2.0.4-SNAPSHOT</version>
+    <version>3.0.0</version>
     <relativePath>../ui.pom/pom.xml</relativePath>
   </parent>
   <artifactId>ui.kinect.adapter.instance</artifactId>
-  <version>2.0.4-SNAPSHOT</version>
+  <version>3.0.0</version>
   <packaging>bundle</packaging>
   <name>universAAL UI kinect adapter instance</name>
   <description>An adapter for non universAAL devices.</description>
@@ -19,10 +19,10 @@
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests</artifactId>
     </dependency>
-  	<dependency>
-        <groupId>org.osgi</groupId>
-        <artifactId>org.osgi.core</artifactId>
-  	</dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.universAAL.middleware</groupId>
       <artifactId>mw.container.osgi</artifactId>
