@@ -13,6 +13,12 @@
   <packaging>pom</packaging>
   <name>universAAL UI Framework</name>
   <description>The set of artefacts realizing the universAAL User Interaction Management framework.</description>
+	<distributionManagement>
+		<site>
+			<id>depot.universaal.org</id>
+			<url>${uaal.site.url}ui/ui.pom</url>
+		</site>
+	</distributionManagement>
   <modules>
     <module>../ui.dm</module>
     <module>../ui.resource.server</module>
