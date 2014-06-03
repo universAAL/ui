@@ -183,11 +183,10 @@ public final class Handler extends UIHandler {
      *       the {@link Submit} button model pressed.
      */
     public void submit(Submit submit) {
-        dialogFinished(
-                new UIResponse(
-                        currentUser,
-                        render.getRendererLocation(),
-                        submit));
+        if (currentUser != null && render != null && submit != null) {
+			dialogFinished(new UIResponse(currentUser,
+					render.getRendererLocation(), submit));
+		}
     }
 
     
