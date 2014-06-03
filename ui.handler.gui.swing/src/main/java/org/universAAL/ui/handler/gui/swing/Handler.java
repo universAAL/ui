@@ -186,6 +186,9 @@ public final class Handler extends UIHandler {
         if (currentUser != null && render != null && submit != null) {
 			dialogFinished(new UIResponse(currentUser,
 					render.getRendererLocation(), submit));
+		} else {
+			LogUtils.logError(owner, this.getClass(), "submit",
+					"an unexpected error ocured: either currentUser or renderer or submit is null");
 		}
     }
 
