@@ -450,6 +450,10 @@ ui.internationalization.util-2.0.4-SNAPSHOT/.classpath
 ui.internationalization.util-2.0.4-SNAPSHOT/.project
 ui.internationalization.util-2.0.4-SNAPSHOT/.settings
 ui.internationalization.util-2.0.4-SNAPSHOT/target
+ui.internationalization.util-3.0.1-SNAPSHOT/.classpath
+ui.internationalization.util-3.0.1-SNAPSHOT/.project
+ui.internationalization.util-3.0.1-SNAPSHOT/.settings
+ui.internationalization.util-3.0.1-SNAPSHOT/target
 ui.karaf.feature-2.0.1-SNAPSHOT/.classpath
 ui.karaf.feature-2.0.1-SNAPSHOT/.project
 ui.karaf.feature-2.0.1-SNAPSHOT/.settings
