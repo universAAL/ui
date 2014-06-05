@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0</version>
     <relativePath>../../../ui.pom</relativePath>
   </parent>
   <artifactId>ui.handler.gui.swing.bluesteelLAF</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <packaging>bundle</packaging>
   <name>universAAL UI Handler Swing Look and Feel Bluesteel</name>
   <licenses>

@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.1.0</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>ui.karaf.feature</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <name>universAAL UI Karaf Feature</name>
   <scm>
     <connection>${svn.base}/ui.pom/${project.artifactId}</connection>
