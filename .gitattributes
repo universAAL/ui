@@ -13313,3 +13313,10 @@ ui.resource.server-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/resource/serve
 ui.resource.server-2.0.4-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
 ui.resource.server-2.0.4-SNAPSHOT/src/main/resources/www/tst.txt -text
 ui.resource.server-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIT.java -text
+ui.resource.server-3.0.1-SNAPSHOT/ASL2.0.txt -text
+ui.resource.server-3.0.1-SNAPSHOT/NOTICE.txt -text
+ui.resource.server-3.0.1-SNAPSHOT/pom.xml -text
+ui.resource.server-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/Activator.java -text
+ui.resource.server-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/resource/server/ResourceServer.java -text
+ui.resource.server-3.0.1-SNAPSHOT/src/main/resources/www/tst.txt -text
+ui.resource.server-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/resource/server/test/ArtifactIT.java -text
