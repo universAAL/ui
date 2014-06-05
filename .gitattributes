@@ -1909,6 +1909,73 @@ ui.dm-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/ProfMainMenuTest.j
 ui.dm-2.0.4-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/UIRequestPoolTest.java -text svneol=unset#text/plain
 ui.dm-2.0.4-SNAPSHOT/src/test/resources/main_menu_en.txt -text svneol=unset#text/plain
 ui.dm-2.0.4-SNAPSHOT/src/test/resources/prof_main_menu.txt -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/ASL2.0.txt -text
+ui.dm-3.0.1-SNAPSHOT/LICENSE-CPL-JUnit.txt -text
+ui.dm-3.0.1-SNAPSHOT/NOTICE.txt -text
+ui.dm-3.0.1-SNAPSHOT/pom.xml -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/DMServiceCaller.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/DialogManagerImpl.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/LocalizedMessagesURLProvider.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/UserDialogManager.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdapterDialogPrivacyLevel.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdapterMessageInternationalization.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdapterUIPreferences.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdapterUserImpairments.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/adapters/AdapterUserLocation.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IAdapter.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IDialogBuilder.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IMainMenuProvider.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesBuffer.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestPool.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/interfaces/IUIRequestStore.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/osgi/DialogManagerActivator.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogBuilder.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/MessageConstants.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/AllMainMenuProvider.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/UIServiceResponseNotifyer.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java -text
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/main/resources/messages.properties -text
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/DialogPoolCopierTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/DialogPoolFileStorageTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/DialogPriorityQueueTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/MainMenuTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/ProfMainMenuTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/dm/tests/UIRequestPoolTest.java -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/resources/main_menu_en.txt -text svneol=unset#text/plain
+ui.dm-3.0.1-SNAPSHOT/src/test/resources/prof_main_menu.txt -text svneol=unset#text/plain
 ui.dm.mobile-1.0.2-SNAPSHOT/artifact_manual.composite -text
 ui.dm.mobile-1.0.2-SNAPSHOT/pom.xml -text
 ui.dm.mobile-1.0.2-SNAPSHOT/src/main/java/org/universAAL/ui/dm/mobile/Activator.java -text svneol=unset#text/plain
