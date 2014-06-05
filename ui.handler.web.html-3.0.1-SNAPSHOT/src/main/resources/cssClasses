@@ -1,0 +1,10 @@
+div:RootGroup 					IDs: {MainMenuButtonsGroup, IOControlsGroup, StandardGroup, SubmitsGroup} 
+div:labelIMG
+input:missingInput
+b:missingInput
+button:standardButton
+button:submitButton
+button:kickerButton
+table:repeat
+th:repeatLabel
+th:repeatColLabel
