@@ -1,0 +1,51 @@
+@prefix ns: <http://ontology.universaal.org/Lighting.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://ontology.universaal.org/UIMainMenuProfile.owl#> .
+_:BN000000 :hasEntry (
+     [
+       :hasVendor <http://www.tsbtecnologias.es> ;
+       a :MenuEntry ;
+       :hasPath (
+         [
+           rdfs:label "LTBA UI"^^xsd:string
+         ]
+       ) ;
+       :hasServiceClass
+<http://ontologies.universAAL.com/LTBAUI.owl#LTBAUIProvider>
+     ]
+     [
+       :hasVendor <http://depot.universAAL.com> ;
+       a :MenuEntry ;
+       :hasPath (
+         [
+           rdfs:label "Medication Manager"^^xsd:string
+         ]
+       ) ;
+       :hasServiceClass
+<http://ontologies.universAAL.com/MedicationManagerService.owl#MedicationManagerButtonService>
+     ]
+     [
+       :hasVendor <http://www.anco.gr> ;
+       a :MenuEntry ;
+       :hasPath (
+         [
+           rdfs:label "Agenda"^^xsd:string
+         ]
+       ) ;
+       :hasServiceClass
+<http://ontology.universAAL.org/PersonalAgenda.owl#CalendarUIService>
+     ]
+     [
+       :hasVendor <http://www.tsb.upv.es/> ;
+       a :MenuEntry ;
+       :hasPath (
+         [
+           rdfs:label "Nutritional Advisor"^^xsd:string
+         ]
+       ) ;
+       :hasServiceClass
+<http://ontology.universAAL.org/Nutrition.owl#NutritionService>
+     ]
+   ) ;
+   a :MenuProfile .

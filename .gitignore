@@ -1,3 +1,8 @@
+ui.dm/.classpath
+ui.dm/.project
+ui.dm/.settings
+ui.dm/bin
+ui.dm/target
 ui.internationalization.util/.classpath
 ui.internationalization.util/.project
 ui.internationalization.util/.settings
