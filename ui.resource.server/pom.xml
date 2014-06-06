@@ -26,11 +26,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <scm>
-    <connection>${svn.base}/resource.server</connection>
-    <developerConnection>${svn.base}/resource.server</developerConnection>
-    <url>${svn.base.url}resource.server</url>
-  </scm>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
