@@ -166,32 +166,6 @@ ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/serv
 ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
 ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Agenda_Button.png -text
 ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/src/main/resources/services/Personal_Safety_Button.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/pom.xml -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/ColorLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/FormLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/GroupLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Init.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/InputFieldLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/LabelLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/MediaObjectLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RangeLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/RepeatModelTableLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/Select1LAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SelectLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SimpleOutputLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubdialogTriggerLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/SubmitLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/TextAreaLAF.java -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/java/org/universAAL/ui/handler/gui/swing/defaultBasedLAF/package.html -text svneol=unset#text/plain
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Button_UCC_Sm.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Footer.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/Invisible_Button.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/main/UniversAAl_logo.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Health_button.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Nutritional_Advisor_Button.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Agenda_Button.png -text
-ui.handler.gui.swing/ExtraLookAndFeelPackages/defaultBasedLAF/src/main/resources/services/Personal_Safety_Button.png -text
 ui.handler.gui.swing/NOTICE.txt -text svneol=unset#text/plain
 ui.handler.gui.swing/pom.xml -text
 ui.handler.gui.swing/src/main/java/org/universAAL/ui/handler/gui/swing/Handler.java -text
