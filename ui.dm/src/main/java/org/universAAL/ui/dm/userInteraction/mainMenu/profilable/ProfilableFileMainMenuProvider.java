@@ -48,7 +48,7 @@ public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
 
     public static File getMainMenuFile(String userURI) {
 	userURI = userURI.substring(userURI.lastIndexOf("#") + 1);
-	return new File(DialogManagerImpl.getConfigHome(), PROF_FILE_PREFIX + userURI
+	return new File(DialogManagerImpl.getModuleContext().getConfigHome(), PROF_FILE_PREFIX + userURI
 		+ ".txt");
     }
 }

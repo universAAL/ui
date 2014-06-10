@@ -61,7 +61,7 @@ public class LocalizedMessagesURLProvider {
 	 */
 	URL messagesFileURL = null;
 	try {
-	    File messagesFile = new File(DialogManagerImpl.getConfigHome(),
+	    File messagesFile = new File(DialogManagerImpl.getModuleContext().getConfigHome(),
 		    MSG_FILE_NAME);
 
 	    messagesFileURL = messagesFile.toURI().toURL();

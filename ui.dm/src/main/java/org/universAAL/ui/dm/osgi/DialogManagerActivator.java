@@ -32,10 +32,6 @@ public class DialogManagerActivator implements ModuleActivator, Runnable {
      * blocking initialization of this bundle.
      */
     public void run() {
-
-	// contextSubscriber = new ContextSubscriber(mContext);
-    	DialogManagerImpl.setConfigHome(
-    			new File(new BundleConfigHome(mContext.getID()).getAbsolutePath()));
     	
     	DialogManagerImpl.createInstance(mContext);
     
