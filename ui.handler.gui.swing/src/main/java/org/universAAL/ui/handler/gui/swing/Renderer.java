@@ -167,7 +167,7 @@ public class Renderer extends Thread {
 	/**
      * Directory for configuration files.
      */
-    private static String homeDir = "./"; // TODO: obtain config files/dir from Module context
+    protected static File homeDir; 
     
     /**
 	 * Only to be used by TestCases.
@@ -210,6 +210,7 @@ public class Renderer extends Thread {
 		moduleContext = mc;
 		propertiesFile = propFile; 
 	    contManager  = cmanager;
+	    homeDir = moduleContext.getConfigHome();
 		//Load Properties
 	    LogUtils.logDebug(moduleContext, getClass(), 
 	    		"Constructor for " + propFile.getName(),
@@ -324,7 +325,7 @@ public class Renderer extends Thread {
 				        "Configuration file for SWING Renderer");
 				fos.close();
 			} catch (FileNotFoundException e1) {
-				File dir = new File(getHomeDir());
+				File dir = getHomeDir();
 	            if (!dir.exists()) {
 	                if (dir.mkdir()) {
 	                	storeProperties();
@@ -635,22 +636,12 @@ public class Renderer extends Thread {
     	AbsLocation loc =  (AbsLocation) Resource.getResource(Location.MY_URI, Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX+getProperty(GUI_LOCATION));
     	return loc;
     }
-    
-    /**
-	 * Only to be called by container activator.
-	 * Initialize the configuration home path.
-	 * @param absolutePath
-	 *         Absolute path to configuration directory
-	 */
-	public static void setHome(String absolutePath) {
-	    homeDir = absolutePath + "/";
-	}
 
 	/**
 	 * Get the configuration directory.
 	 * @return the home directory (ends with "/")
 	 */
-	public static String getHomeDir() {
+	public static File getHomeDir() {
 	    return homeDir;
 	}
 
