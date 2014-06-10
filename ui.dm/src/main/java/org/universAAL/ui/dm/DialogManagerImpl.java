@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.dm;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
