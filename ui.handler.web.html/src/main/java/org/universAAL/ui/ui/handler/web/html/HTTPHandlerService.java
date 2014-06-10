@@ -101,7 +101,7 @@ public class HTTPHandlerService extends GatewayPort {
 	/**
 	 * @param mcontext
 	 */
-	public HTTPHandlerService(ModuleContext mcontext, File prop) {
+	public HTTPHandlerService(final ModuleContext mcontext, File prop) {
 		super(mcontext);
 		homeDir = prop.getParent();
 		properties = new UpdatedPropertiesFile(prop) {
@@ -117,7 +117,7 @@ public class HTTPHandlerService extends GatewayPort {
 			
 			protected void addDefaults(Properties defaults) {
 				defaults.put(SERVICE_URL, "/universAAL");
-		        defaults.put(RESOURCES_LOC, homeDir + File.separator + "resources");
+		        defaults.put(RESOURCES_LOC, mcontext.getDataFolder().getAbsoluteFile() + "resources");
 		        //copy the css somewhere and use that 
 		        try {
 					File defCSSF = new File(homeDir, "default.css");
