@@ -37,6 +37,7 @@ public class TestRenderer extends Renderer {
         modelMapper = new ModelMapper(this);
         loadFormManager(FromManager);
         initLAF = modelMapper.initializeLAF();
+        homeDir = moduleContext.getConfigHome();
 	}
 	
 	/**

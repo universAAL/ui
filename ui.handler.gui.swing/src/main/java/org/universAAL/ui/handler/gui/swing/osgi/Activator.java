@@ -25,7 +25,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.osgi.uAALBundleContainer;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.gui.swing.IContainerManager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -43,11 +42,6 @@ public final class Activator implements BundleActivator, IContainerManager {
 	 */
 	public static ModuleContext context = null;
 
-	/**
-	 * the home directory where to store the config files.
-	 */
-	public BundleConfigHome home = null;
-
 	private Renderer.RenderStarter[] renderers;
 
 	private ThreadGroup tGroup;
@@ -58,12 +52,10 @@ public final class Activator implements BundleActivator, IContainerManager {
 	public void start(BundleContext context) throws Exception {
 		tGroup = new ThreadGroup("Swing Handler Threads");
 		bundleContext =  context;
-		home = new BundleConfigHome(bundleContext.getBundle().getSymbolicName());
 		BundleContext[] bc = { bundleContext };
 		Activator.context = uAALBundleContainer.THE_CONTAINER
 				.registerModule(bc);
-		Renderer.setHome(home.getAbsolutePath());
-		File dir = new File(home.getAbsolutePath());
+		File dir = Activator.context.getConfigHome();
 		File[] props = dir.listFiles(new FileFilter() {
 
 			public boolean accept(File pathname) {
@@ -75,21 +67,21 @@ public final class Activator implements BundleActivator, IContainerManager {
 			renderers = new Renderer.RenderStarter[props.length];
 			for (int i = 0; i < props.length; i++) {
 				renderers[i] = new RenderStarter(Activator.context,props[i],this);
-				Activator.context.registerConfigFile(
-						new Object[] {
-								getPropName(props[i]),
-								"Configure and instance in the UI.Handler.gui.swing component",
-								Activator.getDescription()});
+//				Activator.context.registerConfigFile(
+//						new Object[] {
+//								getPropName(props[i]),
+//								"Configure and instance in the UI.Handler.gui.swing component",
+//								Activator.getDescription()});
 			}
 		}
 		else {
 			renderers = new Renderer.RenderStarter[1];
 			renderers[0] = new Renderer.RenderStarter(Activator.context,null,this);
-			Activator.context.registerConfigFile(
-						new Object[] {
-								"renderer",
-								"Configure the UI.Handler.gui.swing component",
-								Activator.getDescription()});
+//			Activator.context.registerConfigFile(
+//						new Object[] {
+//								"renderer",
+//								"Configure the UI.Handler.gui.swing component",
+//								Activator.getDescription()});
 		}
 		/*
 		 *  Vadim - put renderer creation in a separate thread,
@@ -101,31 +93,31 @@ public final class Activator implements BundleActivator, IContainerManager {
 		}
 	}
 	
-	private static Hashtable getDescription(){
-		Hashtable d = new Hashtable();
-		d.put("gui.location", "the location of the handler itself. it is a URI");
-		d.put("queued.forms",
-				"The Class which handles incoming dialogs. It can be either of these three options:\n"
-						+ "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager"+
-						"(default) first come, first serve, only one dialog at a time.\n"
-						+ "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager " + 
-						"the next dialog is the one with the most priority (this is handled by DM "+
-						"so this might cause problems).\n"
-						+ "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager" +
-						" dialogs are processed one by one, but kept when subdialogs come in so the full hierarchy of dialogs is available.");
-		d.put("LookandFeel.package", "The look and feel package to be used (if not found, defaultLAF package will be used)");
-		d.put("demo.mode", "Configures the Handler in demo Mode, disables Impairment register restrictions (default=true).");
-		d.put("default.user", " if set, the handler automatically logs in for this user, if not (default) user will be asked to provide credentials.");
-		return d;
-	}
-	
-	private String getPropName(File file){
-		int start = 0;
-		if (file.getName().contains(File.pathSeparator)){
-			start = file.getName().indexOf(File.pathSeparator) +1;
-		}
-		return file.getName().substring(start, file.getName().indexOf('.')-1);
-	}
+//	private static Hashtable getDescription(){
+//		Hashtable d = new Hashtable();
+//		d.put("gui.location", "the location of the handler itself. it is a URI");
+//		d.put("queued.forms",
+//				"The Class which handles incoming dialogs. It can be either of these three options:\n"
+//						+ "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager"+
+//						"(default) first come, first serve, only one dialog at a time.\n"
+//						+ "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager " + 
+//						"the next dialog is the one with the most priority (this is handled by DM "+
+//						"so this might cause problems).\n"
+//						+ "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager" +
+//						" dialogs are processed one by one, but kept when subdialogs come in so the full hierarchy of dialogs is available.");
+//		d.put("LookandFeel.package", "The look and feel package to be used (if not found, defaultLAF package will be used)");
+//		d.put("demo.mode", "Configures the Handler in demo Mode, disables Impairment register restrictions (default=true).");
+//		d.put("default.user", " if set, the handler automatically logs in for this user, if not (default) user will be asked to provide credentials.");
+//		return d;
+//	}
+//	
+//	private String getPropName(File file){
+//		int start = 0;
+//		if (file.getName().contains(File.pathSeparator)){
+//			start = file.getName().indexOf(File.pathSeparator) +1;
+//		}
+//		return file.getName().substring(start, file.getName().indexOf('.')-1);
+//	}
 
 	/** {@inheritDoc} */
 	public void stop(BundleContext arg0) throws Exception {

@@ -134,7 +134,7 @@ public class ResourceMapper {
 	static private URL checkFolder(String url) {
 		URL urlFile;
 		try {
-			urlFile = new URL("file://" + Renderer.getHomeDir().replace('\\', '/') + url.replace('\\', '/'));
+			urlFile = new URL("file://" + Renderer.getHomeDir().getAbsolutePath().replace('\\', '/') + url.replace('\\', '/'));
 
 			File resourceFile = new File(urlFile.getFile());
 			//Activator.logDebug("Looking for: " + urlFile.toString() + ".", null);
