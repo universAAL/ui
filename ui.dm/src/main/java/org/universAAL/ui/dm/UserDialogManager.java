@@ -976,12 +976,12 @@ public class UserDialogManager implements IDialogManager,
 	}
 
 	public File getDialogFile() {
-	    return new File(DialogManagerImpl.getConfigHome(),
+	    return new File(DialogManagerImpl.getModuleContext().getDataFolder(),
 		    PERSISTENCY_FOLDER + userID + DIALOG_EXT);
 	}
 
 	public File getMessageFile() {
-	    return new File(DialogManagerImpl.getConfigHome(),
+	    return new File(DialogManagerImpl.getModuleContext().getDataFolder(),
 		    PERSISTENCY_FOLDER + userID + MESSAGE_EXT);
 	}
 

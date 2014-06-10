@@ -153,9 +153,9 @@ public class FileMainMenuProvider implements IMainMenuProvider {
     	userID = userID.substring(userID.lastIndexOf("#") + 1);
     	String lang = userDM.getLocaleHelper()
     			.getUserLocaleFromPreferredLanguage().getLanguage();
-    	File f = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + "_" + lang
+    	File f = new File(DialogManagerImpl.getModuleContext().getConfigHome(),filePrefix + userID + "_" + lang
     			+ ".txt");
-    	File f2 = new File(DialogManagerImpl.getConfigHome(),filePrefix + userID + ".txt");
+    	File f2 = new File(DialogManagerImpl.getModuleContext().getConfigHome(),filePrefix + userID + ".txt");
     	if (f2.exists()){
     		return f2;
     	} else {

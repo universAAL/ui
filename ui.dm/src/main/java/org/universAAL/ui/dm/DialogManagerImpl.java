@@ -69,12 +69,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
     private static final long GC_PERIOD = 600000; // 10 min
 
     /**
-     * The configHome is the folder where all the DMs config files are to be
-     * saved.
-     */
-    private static File configHome;
-
-    /**
      * Singleton instance.
      */
     private static DialogManagerImpl singleton = null;
@@ -477,25 +471,6 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
      */
     public static ModuleContext getModuleContext() {
 	return getInstance().moduleContext;
-    }
-
-    /**
-     * Get the config folder.
-     * 
-     * @return the configHome
-     */
-    public static File getConfigHome() {
-	return configHome;
-    }
-
-    /**
-     * This should only be called form an activator.
-     * 
-     * @param configHome
-     *            set the configHome folder.
-     */
-    public static void setConfigHome(File configHome) {
-	DialogManagerImpl.configHome = configHome;
     }
 
     /**
