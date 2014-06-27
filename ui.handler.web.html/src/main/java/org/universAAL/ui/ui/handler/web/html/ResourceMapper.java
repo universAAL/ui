@@ -236,12 +236,7 @@ public final class ResourceMapper {
 	private static File getConfigHome(){
 		if (mc == null)
 			return null;
-		File[] conf = mc.listConfigFiles(mc);
-		if (conf != null
-				&& conf.length>0)
-			return conf[0].getParentFile();
-		else
-			return null;
+		return mc.getConfigHome();
 	}
 	
 	/**
