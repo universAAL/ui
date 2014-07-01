@@ -103,7 +103,7 @@ public class RoundedGradientButton extends JButton {
 		  if(!getBounds().equals(base)) {
 		      Dimension s = getSize();
 		      base = getBounds();
-		      shape = new RoundRectangle2D.Float(0,0,s.width-1,s.height-1,17,17);
+		      shape = new RoundRectangle2D.Float(0,0,s.width,s.height,17,17);
 		    }
 		  return shape;
 	  }
