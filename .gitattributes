@@ -106,6 +106,8 @@ ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/uni
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/SystemButton.java -text
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/TableColors.java -text
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java -text svneol=unset#text/plain
+ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UIGradientButton.java -text svneol=unset#text/plain
+ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/UIRoundedRectangleButton.java -text svneol=unset#text/plain
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/RoundedPolygon.java -text svneol=unset#text/plain
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java -text svneol=unset#text/plain
 ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java/org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java -text svneol=unset#text/plain
