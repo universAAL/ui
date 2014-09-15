@@ -674,7 +674,7 @@ public class Renderer extends Thread {
 	private Renderer render;
 	private ModuleContext context;
 	private IContainerManager con;
-	private static ModuleContext staticContext;
+	static ModuleContext staticContext;
 	
 	public RenderStarter(ModuleContext mc){
 	    this(mc,null,null);

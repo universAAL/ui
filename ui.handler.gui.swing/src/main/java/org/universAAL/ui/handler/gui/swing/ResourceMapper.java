@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.universAAL.middleware.container.ModuleContext;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 
@@ -31,6 +32,11 @@ import org.universAAL.middleware.container.utils.LogUtils;
  */
 public class ResourceMapper {
 
+	
+	static ModuleContext context = Renderer.RenderStarter.staticContext;
+	
+	static File configDir = context.getConfigHome();
+	
 	/**
 	 * The folders where the resources should be allocated, whether it is in the confDir or
 	 * in the resources (inside the JAR).
@@ -53,7 +59,7 @@ public class ResourceMapper {
 		
 		URL resource;
 		try {
-			LogUtils.logDebug(Renderer.getContext(), 
+			LogUtils.logDebug(context, 
 					ResourceMapper.class, "search",
 					new String[]{"Looking for " + url}, null);
 			resource = new URL(url);
@@ -61,13 +67,13 @@ public class ResourceMapper {
 				return resource;
 			}
 			else {
-				LogUtils.logWarn(Renderer.getContext(), 
+				LogUtils.logWarn(context, 
 						ResourceMapper.class, "search",
 						new String[]{"url: " + url + " seems not to exists, or it is not accessible"}, null);
 				return null;
 			}
 		} catch (MalformedURLException e) {
-			LogUtils.logDebug(Renderer.getContext(), 
+			LogUtils.logDebug(context, 
 					ResourceMapper.class, "search",
 					new String[]{"Looking for " + url + " in folders"}, null);
 			resource = searchFolder(url);
@@ -75,12 +81,12 @@ public class ResourceMapper {
 				return resource;
 			}
 			else {
-				LogUtils.logDebug(Renderer.getContext(), 
+				LogUtils.logDebug(context, 
 						ResourceMapper.class, "search",
 						new String[]{"Looking for " + url + " in resources"}, null);
 				URL retVal = searchResources(url);
 				if (retVal == null)
-				LogUtils.logWarn(Renderer.getContext(), 
+				LogUtils.logWarn(context, 
 						ResourceMapper.class, "search",
 						new String[]{"Resource " + url + " not found"}, null);
 				return retVal;
@@ -134,7 +140,7 @@ public class ResourceMapper {
 	static private URL checkFolder(String url) {
 		URL urlFile;
 		try {
-			urlFile = new URL("file://" + Renderer.getHomeDir().getAbsolutePath().replace('\\', '/') + url.replace('\\', '/'));
+			urlFile = new URL("file://" + configDir.getAbsolutePath().replace('\\', '/') + url.replace('\\', '/'));
 
 			File resourceFile = new File(urlFile.getFile());
 			//Activator.logDebug("Looking for: " + urlFile.toString() + ".", null);
