@@ -689,6 +689,8 @@ public class Renderer extends Thread {
 	    context = mc;
 	    con = cm;
 	    staticContext = context;
+	    ResourceMapper.context = context;
+            ResourceMapper.configDir = context.getConfigHome();
 	}
 	
 	public void run() {
