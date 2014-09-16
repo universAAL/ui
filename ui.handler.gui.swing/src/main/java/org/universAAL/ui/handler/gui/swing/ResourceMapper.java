@@ -33,9 +33,9 @@ import org.universAAL.middleware.container.utils.LogUtils;
 public class ResourceMapper {
 
 	
-	static ModuleContext context = Renderer.RenderStarter.staticContext;
+	static ModuleContext context;
 	
-	static File configDir = context.getConfigHome();
+	static File configDir;
 	
 	/**
 	 * The folders where the resources should be allocated, whether it is in the confDir or
