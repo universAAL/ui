@@ -18,6 +18,7 @@
   </scm>
   <properties>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+    <ignore.dep.conflict>true</ignore.dep.conflict>
   </properties>
   <dependencies>
     <dependency>
