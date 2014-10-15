@@ -1,0 +1,6 @@
+* text=auto !eol
+ui.pom/pom.xml -text
+ui.pom/ui.karaf.feature/ASL2.0.txt -text
+ui.pom/ui.karaf.feature/NOTICE.txt -text
+ui.pom/ui.karaf.feature/pom.xml -text
+ui.pom/ui.karaf.feature/src/features/features.xml -text
