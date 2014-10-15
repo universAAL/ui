@@ -357,6 +357,15 @@ ui.handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ModelMapperTes
 ui.handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/ResourceMapperTest.java -text
 ui.handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SimpleManagementTest.java -text svneol=unset#text/plain
 ui.handler.gui.swing/src/test/java/ui/handler/gui/swing/test/auto/SubdialogAntecessorTest.java -text
+ui.handler.sms/ASL2.0.txt -text
+ui.handler.sms/NOTICE.txt -text
+ui.handler.sms/configurationFiles/ui.handler.sms/account.properties -text
+ui.handler.sms/pom.xml -text
+ui.handler.sms/src/main/java/net/vsms/bulksms/SmsSender.java -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/ISMSSender.java -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SMSActivator.java -text
+ui.handler.sms/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
+ui.handler.sms/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIT.java -text
 ui.handler.web.html/ASL2.0.txt -text
 ui.handler.web.html/NOTICE.txt -text
 ui.handler.web.html/pom.xml -text
