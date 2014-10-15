@@ -5,12 +5,12 @@
   <parent>
     <groupId>org.universAAL.ui</groupId>
     <artifactId>ui.pom</artifactId>
-    <version>3.1.1-SNAPSHOT</version>
+    <version>3.2.0</version>
     <relativePath>../../../ui.pom</relativePath>
   </parent>
   <groupId>org.universAAL.ui</groupId>
   <artifactId>ui.handler.gui.swing.classicLAF</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
+  <version>3.2.0</version>
   <name>universAAL UI Handler Swing Look and Feel Classic</name>
   <licenses>
     <license>
