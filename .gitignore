@@ -15,3 +15,8 @@ ui.pom/ui.karaf.feature/.classpath
 ui.pom/ui.karaf.feature/.project
 ui.pom/ui.karaf.feature/.settings
 ui.pom/ui.karaf.feature/target
+ui.resource.server/.classpath
+ui.resource.server/.project
+ui.resource.server/.settings
+ui.resource.server/bin
+ui.resource.server/target
