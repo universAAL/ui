@@ -489,6 +489,27 @@ ui.internationalization.util/src/test/resources/loc1/messages_es.properties -tex
 ui.internationalization.util/src/test/resources/loc2/messages.properties -text svneol=unset#text/plain
 ui.internationalization.util/src/test/resources/loc2/messages_es.properties -text svneol=unset#text/plain
 ui.internationalization.util/src/test/resources/loc3/messages.properties -text svneol=unset#text/plain
+ui.kinect.adapter/ASL2.0.txt -text
+ui.kinect.adapter/NOTICE.txt -text
+ui.kinect.adapter/pom.xml -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/IMessageBroker/AdapterException.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/IMessageBroker/IMessageBroker.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/communication/receiver/MessageParser.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/communication/receiver/TCPServer.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/communication/receiver/Worker.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/contextBus/AbstractContext.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/contextBus/IContextCallback.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/contextBus/IContextPublisher.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/defaultComponents/DefaultAdapter.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/defaultComponents/DefaultBroker.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/defaultComponents/DefaultContextSubscriber.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/logging/LoggerWithModuleContext.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/AbstractService.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/IServiceCall.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/QueryService.java -text
+ui.kinect.adapter/src/main/java/org/universAAL/kinect/adapter/serviceBus/RequestService.java -text
+ui.kinect.adapter/src/test/java/org/universAAL/ui/kinect/adapter/test/ArtifactIT.java -text
+ui.kinect.adapter/src/test/resources/log4j.properties -text
 ui.pom/pom.xml -text
 ui.pom/ui.karaf.feature/ASL2.0.txt -text
 ui.pom/ui.karaf.feature/NOTICE.txt -text

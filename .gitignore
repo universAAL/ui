@@ -32,6 +32,10 @@ ui.internationalization.util/.classpath
 ui.internationalization.util/.project
 ui.internationalization.util/.settings
 ui.internationalization.util/target
+ui.kinect.adapter/.classpath
+ui.kinect.adapter/.project
+ui.kinect.adapter/.settings
+ui.kinect.adapter/target
 ui.pom/.classpath
 ui.pom/.project
 ui.pom/.settings
