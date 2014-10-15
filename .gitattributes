@@ -5989,6 +5989,15 @@ ui.handler.sms-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/ISMSSe
 ui.handler.sms-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SMSActivator.java -text
 ui.handler.sms-3.0.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
 ui.handler.sms-3.0.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIT.java -text
+ui.handler.sms-3.1.1-SNAPSHOT/ASL2.0.txt -text
+ui.handler.sms-3.1.1-SNAPSHOT/NOTICE.txt -text
+ui.handler.sms-3.1.1-SNAPSHOT/configurationFiles/ui.handler.sms/account.properties -text
+ui.handler.sms-3.1.1-SNAPSHOT/pom.xml -text
+ui.handler.sms-3.1.1-SNAPSHOT/src/main/java/net/vsms/bulksms/SmsSender.java -text
+ui.handler.sms-3.1.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/ISMSSender.java -text
+ui.handler.sms-3.1.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SMSActivator.java -text
+ui.handler.sms-3.1.1-SNAPSHOT/src/main/java/org/universAAL/ui/handler/sms/SmsUIHandler.java -text
+ui.handler.sms-3.1.1-SNAPSHOT/src/test/java/org/universAAL/ui/handler/sms/test/ArtifactIT.java -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-BSD-Dojo.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-JGCL.txt -text
 ui.handler.web-1.0.2-SNAPSHOT/LICENSE-MIT11-Bouncycastle.txt -text
