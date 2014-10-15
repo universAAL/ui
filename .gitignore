@@ -19,6 +19,10 @@ ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/bin
 ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF/target
 ui.handler.gui.swing/bin
 ui.handler.gui.swing/target
+ui.handler.web.html/.classpath
+ui.handler.web.html/.project
+ui.handler.web.html/.settings
+ui.handler.web.html/target
 ui.internationalization.util/.classpath
 ui.internationalization.util/.project
 ui.internationalization.util/.settings
