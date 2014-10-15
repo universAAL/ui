@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.universAAL.ui</groupId>
+    <artifactId>ui.pom</artifactId>
+    <version>3.2.0</version>
+    <relativePath>../../../ui.pom</relativePath>
+  </parent>
+  <groupId>org.universAAL.ui</groupId>
+  <artifactId>ui.handler.gui.swing.classicLAF</artifactId>
+  <version>3.2.0</version>
+  <name>universAAL UI Handler Swing Look and Feel Classic</name>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>alfiva</id>
+      <name>Alvaro Fides</name>
+      <email>alfiva@itaca.upv.es</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>CEST/CET</timezone>
+    </developer>
+  </developers>
+  <scm>
+    <connection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</connection>
+    <developerConnection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</developerConnection>
+    <url>${svn.base.url}ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.universAAL.ui</groupId>
+      <artifactId>ui.handler.gui.swing</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.universAAL.ontology</groupId>
+      <artifactId>ont.recommendations</artifactId>
+    </dependency>
+  </dependencies>
+</project>
