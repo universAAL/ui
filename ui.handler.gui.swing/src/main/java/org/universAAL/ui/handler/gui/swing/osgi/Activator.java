@@ -63,7 +63,7 @@ public final class Activator implements BundleActivator, IContainerManager {
 			}
 		});
 
-		if (props.length > 0) {
+		if (props != null && props.length > 0) {
 			renderers = new Renderer.RenderStarter[props.length];
 			for (int i = 0; i < props.length; i++) {
 				renderers[i] = new RenderStarter(Activator.context,props[i],this);
