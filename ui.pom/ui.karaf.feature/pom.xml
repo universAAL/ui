@@ -11,11 +11,6 @@
   <artifactId>ui.karaf.feature</artifactId>
   <version>3.3.1-SNAPSHOT</version>
   <name>universAAL UI Karaf Feature</name>
-  <scm>
-    <connection>${svn.base}/ui.pom/${project.artifactId}</connection>
-    <developerConnection>${svn.base}/ui.pom/${project.artifactId}</developerConnection>
-    <url>${svn.base.url}ui.pom%2F${project.artifactId}</url>
-  </scm>
   <properties>
     <ignore.dep.conflict>true</ignore.dep.conflict>
     <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>

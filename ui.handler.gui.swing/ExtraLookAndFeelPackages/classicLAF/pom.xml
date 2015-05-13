@@ -30,11 +30,6 @@
       <timezone>CEST/CET</timezone>
     </developer>
   </developers>
-  <scm>
-    <connection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</connection>
-    <developerConnection>${svn.base}/ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</developerConnection>
-    <url>${svn.base.url}ui.handler.gui.swing/ExtraLookAndFeelPackages/classicLAF</url>
-  </scm>
   <dependencies>
     <dependency>
       <groupId>org.universAAL.ui</groupId>
