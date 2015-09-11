@@ -206,13 +206,13 @@ public final class SmsSender implements ISMSSender {
 		URLConnection conn = url.openConnection();
 		conn.setDoOutput(true);
 		OutputStreamWriter wr = new OutputStreamWriter(conn
-			.getOutputStream());
+			.getOutputStream(), "ISO-8859-1");
 		wr.write(data);
 		wr.flush();
 
 		// Get the response
 		BufferedReader rd = new BufferedReader(new InputStreamReader(
-			conn.getInputStream()));
+			conn.getInputStream(),"ISO-8859-1"));
 		String line;
 		StringBuffer result = new StringBuffer("");
 
