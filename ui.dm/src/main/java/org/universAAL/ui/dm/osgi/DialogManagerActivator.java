@@ -15,11 +15,8 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.osgi;
 
-import java.io.File;
-
 import org.universAAL.middleware.container.ModuleActivator;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.dm.DialogManagerImpl;
 

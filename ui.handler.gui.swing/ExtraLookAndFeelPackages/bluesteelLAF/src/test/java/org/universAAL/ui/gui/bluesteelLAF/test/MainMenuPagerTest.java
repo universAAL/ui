@@ -20,16 +20,15 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
 
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.KickerButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.SubmitButton;
-import org.universAAL.ui.gui.swing.bluesteelLAF.support.SystemButton;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager;
 
 public class MainMenuPagerTest extends JFrame {

@@ -18,19 +18,17 @@
 package org.universAAL.ui.handler.sms;
 
 import org.universAAL.middleware.container.ModuleContext;
-
-import org.universAAL.middleware.ui.owl.Modality;
-import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.middleware.ui.UIRequest;
-import org.universAAL.middleware.ui.UIHandlerProfile;
-import org.universAAL.middleware.ui.UIHandler;
-import org.universAAL.middleware.owl.MergedRestriction;
-import org.universAAL.middleware.rdf.Resource;
-
-import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.owl.AllValuesFromRestriction;
 import org.universAAL.middleware.owl.Enumeration;
+import org.universAAL.middleware.owl.MergedRestriction;
 import org.universAAL.middleware.owl.supply.LevelRating;
+import org.universAAL.middleware.rdf.Resource;
+import org.universAAL.middleware.ui.UIHandler;
+import org.universAAL.middleware.ui.UIHandlerProfile;
+import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.owl.AccessImpairment;
+import org.universAAL.middleware.ui.owl.Modality;
+import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;

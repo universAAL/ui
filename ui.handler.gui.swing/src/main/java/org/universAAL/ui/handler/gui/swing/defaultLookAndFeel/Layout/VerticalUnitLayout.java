@@ -15,19 +15,10 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.swing.JViewport;
-
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.AbstractUnitLayout.Row;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.AbstractUnitLayout.RowWithVertUnits;
 
 /**
  * 

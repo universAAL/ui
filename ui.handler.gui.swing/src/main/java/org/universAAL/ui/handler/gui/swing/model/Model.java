@@ -20,7 +20,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
-import java.awt.event.HierarchyListener;
 import java.util.Iterator;
 import java.util.List;
 

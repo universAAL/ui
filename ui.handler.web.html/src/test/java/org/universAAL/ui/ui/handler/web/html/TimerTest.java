@@ -17,8 +17,6 @@
 
 package org.universAAL.ui.ui.handler.web.html;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;

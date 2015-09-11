@@ -21,7 +21,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -35,16 +34,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.LineBorder;
 
 import org.universAAL.middleware.ui.UIRequest;
 import org.universAAL.middleware.ui.rdf.Form;
-import org.universAAL.ui.gui.swing.bluesteelLAF.support.ColorBorder;
 import org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout;
-import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**

@@ -23,7 +23,6 @@ import org.universAAL.middleware.ui.rdf.Form;
 import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
-import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
 
 /**
  * @author amedrano

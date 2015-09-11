@@ -16,7 +16,6 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
