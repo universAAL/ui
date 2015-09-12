@@ -34,17 +34,20 @@ public class ResourceMapperTest extends TestCase {
 	 */
 	private static final String CACHE = "./target/cache";
 
-	public void test() {
+	public void test() throws InterruptedException {
 		String s = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
 		String s2 = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
 		assertEquals(s, s2);
-		assertTrue(new File(CACHE+"/"+ s).exists());
+		File f = new File(CACHE+"/"+ s);
+		Thread.sleep(20); // this is only because the retriever might not have ended at this point.
+		assertTrue("checking file: "+f.getAbsolutePath(), f.exists());
 		
 		s = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
 		s2 = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
 		assertEquals(s, s2);
-
-		assertTrue(new File(CACHE+"/"+ s).exists());
+		
+		f = new File(CACHE+"/"+ s);
+		assertTrue("checking file: "+f.getAbsolutePath(), f.exists());
 	}
 
 }

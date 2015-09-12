@@ -91,9 +91,9 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	String submissionID = response.getSubmissionID();
 	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
 		"handle", new String[] { "handling:", submissionID }, null);
-	if (EXIT_CALL.equals(submissionID)) {
+//	if (EXIT_CALL.equals(submissionID)) {
 	    // do nothing
-	}
+//	}
 	if (MENU_CALL.equals(submissionID)) {
 	    userDM.showMainMenu();
 	}
@@ -178,7 +178,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 			    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
 		    MESSAGES_CALL).setHelpString(messageLocaleHelper
 		    .getString("MenuProvider.pendingMessages.help"));
-	} else {
+//	} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
@@ -196,7 +196,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 			.setHelpString(messageLocaleHelper
 				.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
 	    }
-	} else {
+//	} else {
 	    // show a button with different ICON/Message or nothing
 	}
     }

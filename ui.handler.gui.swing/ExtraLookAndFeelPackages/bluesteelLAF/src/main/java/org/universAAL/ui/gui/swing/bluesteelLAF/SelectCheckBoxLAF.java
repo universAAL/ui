@@ -53,7 +53,7 @@ public class SelectCheckBoxLAF extends SelectChecboxModel {
 	
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
+		// XXX show something?
 		
 	}
 

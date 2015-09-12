@@ -18,7 +18,8 @@ package org.universAAL.ui.gui.bluesteelLAF.junit;
 import java.util.Properties;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.ui.handler.gui.swing.*;
+import org.universAAL.ui.handler.gui.swing.ModelMapper;
+import org.universAAL.ui.handler.gui.swing.Renderer;
 
 public class TestRenderer extends Renderer {
 

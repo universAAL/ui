@@ -29,7 +29,6 @@ public class TestExtensionOfSimpleOutputLAF extends SimpleOutputLAF {
 
     public TestExtensionOfSimpleOutputLAF(TestExtensionOfSimpleOutput control, Renderer render) {
 	super(control, render);
-	// TODO Auto-generated constructor stub
     }
 
 }

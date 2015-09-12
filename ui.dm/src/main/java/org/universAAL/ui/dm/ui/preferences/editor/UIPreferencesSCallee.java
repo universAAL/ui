@@ -62,7 +62,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
      * ()
      */
     public void communicationChannelBroken() {
-	// TODO Auto-generated method stub
+	// Nothing to do.
 
     }
 

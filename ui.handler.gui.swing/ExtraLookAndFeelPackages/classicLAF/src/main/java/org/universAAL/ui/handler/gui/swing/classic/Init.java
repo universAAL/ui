@@ -42,22 +42,22 @@ public class Init implements InitInterface {
     }
 
     public void uninstall() {
-	// TODO Auto-generated method stub
+	// Nothing
 
     }
 
     public void userLogIn(User usr) {
-	// TODO Auto-generated method stub
+	// Nothing
 
     }
 
     public void userLogOff(User usr) {
-	// TODO Auto-generated method stub
+	// Nothing
 
     }
 
     public void showLoginScreen() {
-	// TODO Auto-generated method stub
+	// TODO Classic LAF needs a Login screen.
 
     }
     

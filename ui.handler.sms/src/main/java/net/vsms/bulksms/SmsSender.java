@@ -29,7 +29,6 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Properties;
 
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.sms.ISMSSender;
 import org.universAAL.ui.handler.sms.SMSActivator;
@@ -43,8 +42,7 @@ import org.universAAL.ui.handler.sms.SMSActivator;
  */
 public final class SmsSender implements ISMSSender {
 
-    private static final File confHome = new File(new BundleConfigHome(
-	    "ui.handler.sms").getAbsolutePath());
+    private File confHome;
     private String username;
     private String password;
     private String server;
@@ -54,6 +52,7 @@ public final class SmsSender implements ISMSSender {
      * using singleton pattern
      */
     public SmsSender() {
+	confHome = SMSActivator.getModuleContext().getConfigHome();
 	Properties prop = new Properties();
 	try {
 	    InputStream in = new FileInputStream(new File(confHome,
@@ -108,76 +107,76 @@ public final class SmsSender implements ISMSSender {
      * @return bulksms server status on send sms
      */
     protected String getBulkSMSsendStatus(final String result) {
-	String status = new String();
+	StringBuffer status = new StringBuffer();
 	if (result.contains("IN_PROGRESS")) {
-	    status.concat("Sent to server...");
+	    status.append("Sent to server...");
 	}
 	if (result.contains("11")) {
-	    status.concat("Delivered to mobile");
+	    status.append("Delivered to mobile");
 	}
 	if (result.contains("22")) {
-	    status.concat("Internal fatal error");
+	    status.append("Internal fatal error");
 	}
 	if (result.contains("23")) {
-	    status.concat("Authentication failure");
+	    status.append("Authentication failure");
 	}
 	if (result.contains("24")) {
-	    status.concat("Data validation failed");
+	    status.append("Data validation failed");
 	}
 	if (result.contains("25")) {
-	    status.concat("You do not have sufficient credits");
+	    status.append("You do not have sufficient credits");
 	}
 	if (result.contains("26")) {
-	    status.concat("Upstream credits not available");
+	    status.append("Upstream credits not available");
 	}
 	if (result.contains("27")) {
-	    status.concat("You have exceeded your daily quota");
+	    status.append("You have exceeded your daily quota");
 	}
 	if (result.contains("28")) {
-	    status.concat("Upstream quota exceeded");
+	    status.append("Upstream quota exceeded");
 	}
 	if (result.contains("29")) {
-	    status.concat("Message sending cancelled");
+	    status.append("Message sending cancelled");
 	}
 	if (result.contains("31")) {
-	    status.concat("Unroutable");
+	    status.append("Unroutable");
 	}
 	if (result.contains("32")) {
 	    status
-		    .concat("Blocked (probably because of a recipient's complaint against you)");
+		    .append("Blocked (probably because of a recipient's complaint against you)");
 	}
 	if (result.contains("33")) {
-	    status.concat("Failed: censored");
+	    status.append("Failed: censored");
 	}
 	if (result.contains("50")) {
-	    status.concat("Delivery failed - generic failure");
+	    status.append("Delivery failed - generic failure");
 	}
 	if (result.contains("51")) {
-	    status.concat("Delivery to phone failed");
+	    status.append("Delivery to phone failed");
 	}
 	if (result.contains("52")) {
-	    status.concat("Delivery to network failed");
+	    status.append("Delivery to network failed");
 	}
 	if (result.contains("53")) {
-	    status.concat("Message expired");
+	    status.append("Message expired");
 	}
 	if (result.contains("54")) {
-	    status.concat("Failed on remote network");
+	    status.append("Failed on remote network");
 	}
 	if (result.contains("56")) {
-	    status.concat("Failed: remotely censored");
+	    status.append("Failed: remotely censored");
 	}
 	if (result.contains("57")) {
-	    status.concat("Failed due to fault on handset (e.g. SIM full)");
+	    status.append("Failed due to fault on handset (e.g. SIM full)");
 	}
 	if (result.contains("64")) {
 	    status
-		    .concat("Queued for retry after temporary failure delivering, due to fault on handset (transient)");
+		    .append("Queued for retry after temporary failure delivering, due to fault on handset (transient)");
 	}
 	if (result.contains("70")) {
-	    status.concat("Unknown upstream status");
+	    status.append("Unknown upstream status");
 	}
-	return status;
+	return status.toString();
     }
 
     /** {@ inheritDoc}	 */
@@ -207,13 +206,13 @@ public final class SmsSender implements ISMSSender {
 		URLConnection conn = url.openConnection();
 		conn.setDoOutput(true);
 		OutputStreamWriter wr = new OutputStreamWriter(conn
-			.getOutputStream());
+			.getOutputStream(), "ISO-8859-1");
 		wr.write(data);
 		wr.flush();
 
 		// Get the response
 		BufferedReader rd = new BufferedReader(new InputStreamReader(
-			conn.getInputStream()));
+			conn.getInputStream(),"ISO-8859-1"));
 		String line;
 		StringBuffer result = new StringBuffer("");
 

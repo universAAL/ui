@@ -163,7 +163,7 @@ public abstract class GroupModel extends Model {
      * adds a component that will force a new line
 	 * @return
 	 */
-	private Component getNewLineCompoent() {
+	protected Component getNewLineCompoent() {
 //		JPanel c = new JPanel();
 //		c.setPreferredSize(new Dimension(Integer.MAX_VALUE, 0));
 //		c.setMinimumSize(new Dimension(0, 0));

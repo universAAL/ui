@@ -242,7 +242,6 @@ public class UIPreferencesDialogBuilder {
 	allLanguagesURIs = new TreeSet<String>(allLanguagesURIs);
 
 	Language langInstance = null;
-	String currentLang = null;
 	for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
 	    String currentLangInstanceURI = (String) i.next();
 	    langInstance = (Language) Resource.getResource(
@@ -320,8 +319,8 @@ public class UIPreferencesDialogBuilder {
 	// ///////////////////////////////////////////////////
 	// SystemMenuPreferences Group controls START
 	// ///////////////////////////////////////////////////
-	SystemMenuPreferences systemMenuPreferences = uiPreferencesSubprofile
-		.getSystemMenuPreferences();
+//	SystemMenuPreferences systemMenuPreferences =
+			uiPreferencesSubprofile.getSystemMenuPreferences();
 
 	Group systemPreferencesGroup = new Group(
 		controls,
@@ -514,8 +513,8 @@ public class UIPreferencesDialogBuilder {
 	// ///////////////////////////////////////////////////
 	// VisualPreferences Group controls START
 	// ///////////////////////////////////////////////////
-	VisualPreferences visualPreferences = uiPreferencesSubprofile
-		.getVisualPreferences();
+//	VisualPreferences visualPreferences = 
+			uiPreferencesSubprofile.getVisualPreferences();
 
 	Group visualPreferencesGroup = new Group(
 		controls,
@@ -894,8 +893,8 @@ public class UIPreferencesDialogBuilder {
 	// AuditoryPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AuditoryPreferences auditoryPreferences = uiPreferencesSubprofile
-		.getAudioPreferences();
+//	AuditoryPreferences auditoryPreferences = 
+			uiPreferencesSubprofile.getAudioPreferences();
 
 	Group auditoryPreferencesGroup = new Group(
 		controls,
@@ -1062,8 +1061,8 @@ public class UIPreferencesDialogBuilder {
 	// AlertPreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AlertPreferences alertPreferences = uiPreferencesSubprofile
-		.getAlertPreferences();
+//	AlertPreferences alertPreferences = 
+			uiPreferencesSubprofile.getAlertPreferences();
 
 	Group alertPreferencesGroup = new Group(
 		controls,
@@ -1109,8 +1108,8 @@ public class UIPreferencesDialogBuilder {
 	// AccessModePreferences Group controls START
 	// ///////////////////////////////////////////////////
 
-	AccessMode accessModePreferences = uiPreferencesSubprofile
-		.getAccessMode();
+//	AccessMode accessModePreferences = 
+			uiPreferencesSubprofile.getAccessMode();
 
 	Group accessModeGroup = new Group(
 		controls,

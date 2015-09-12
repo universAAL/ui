@@ -16,10 +16,8 @@
 package org.universAAL.ui.gui.swing.bluesteelLAF.support;
 
 import java.awt.Dimension;
-import java.awt.Image;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;

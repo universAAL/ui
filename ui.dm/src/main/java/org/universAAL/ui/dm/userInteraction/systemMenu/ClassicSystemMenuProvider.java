@@ -83,9 +83,9 @@ public class ClassicSystemMenuProvider implements ISystemMenuProvider {
      */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	if (EXIT_CALL.equals(submissionID)) {
+//	if (EXIT_CALL.equals(submissionID)) {
 	    // XXX: do nothing?
-	}
+//	}
 	if (MENU_CALL.equals(submissionID)) {
 	    userDM.showMainMenu();
 	}

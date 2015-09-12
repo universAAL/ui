@@ -59,7 +59,6 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 	 */
 	public RepeatModelTable(Repeat control, Renderer render) {
 		super(control, render);
-		// TODO Auto-generated constructor stub
 	}
 
 	/** {@inheritDoc}*/

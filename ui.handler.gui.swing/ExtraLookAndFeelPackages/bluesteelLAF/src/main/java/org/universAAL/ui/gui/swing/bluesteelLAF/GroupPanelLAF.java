@@ -19,9 +19,7 @@ import java.awt.FlowLayout;
 import java.awt.LayoutManager;
 import java.util.Iterator;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-
 
 import org.universAAL.middleware.ui.owl.Recommendation;
 import org.universAAL.middleware.ui.rdf.Group;

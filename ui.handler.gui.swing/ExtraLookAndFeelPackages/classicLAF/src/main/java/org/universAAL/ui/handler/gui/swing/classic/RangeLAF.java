@@ -66,8 +66,6 @@ public class RangeLAF extends RangeModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

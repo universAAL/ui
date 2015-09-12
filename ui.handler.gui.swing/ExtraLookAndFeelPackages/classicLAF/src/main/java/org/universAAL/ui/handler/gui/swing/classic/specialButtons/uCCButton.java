@@ -92,12 +92,12 @@ public class uCCButton implements SpecialButtonInterface {
 		connection.setRequestMethod("POST"); 
 		connection.setRequestProperty("charset", "utf-8");
 
-		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream ());
+		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream (), "utf-8");
 		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
 		
-		InputStreamReader ir = new InputStreamReader(connection.getInputStream());
+		InputStreamReader ir = new InputStreamReader(connection.getInputStream(), "utf-8");
 		while (ir.read() != -1) {}
 		ir.close();
 		connection.disconnect();

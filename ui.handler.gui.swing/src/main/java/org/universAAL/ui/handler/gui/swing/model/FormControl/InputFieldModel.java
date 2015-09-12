@@ -168,15 +168,14 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 	if (jc instanceof JCheckBox) {
 	    ((JCheckBox) jc).setSelected(((Boolean) initVal).booleanValue());
 	}
-	if (jc instanceof JTextField) {
-	    if (initVal != null) {
+	if (jc instanceof JTextField
+	    && initVal != null) {
 		((JTextField) jc).setText(initVal.toString());
-	    }
 	}
-	if (jc instanceof JPasswordField) {
-	    if (initVal != null) {
+	if (jc instanceof JPasswordField
+	    && initVal != null) {
 		((JPasswordField) jc).setText(initVal.toString());
-	    }
+	    
 	}
 	if (jc instanceof JComboBox) {
 	    ((JComboBox) jc).setSelectedItem(initVal);
@@ -229,8 +228,8 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 					if (tf instanceof JFormattedTextField) {
 					    JFormattedTextField ftf = (JFormattedTextField) tf;
 					    try {
-						ftf.commitEdit();
-						castAndStore(ftf.getText());
+					    	ftf.commitEdit();
+					    	castAndStore(ftf.getText());
 					    } catch (ParseException e1) {
 					    }
 					}else {

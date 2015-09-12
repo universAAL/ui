@@ -80,7 +80,7 @@ public class UIPreferencesUICaller extends UICaller {
      * @see org.universAAL.middleware.ui.UICaller#communicationChannelBroken()
      */
     public void communicationChannelBroken() {
-	// Auto-generated method stub
+	// Nothing to Do
     }
 
     User addressedUser = null;

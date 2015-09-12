@@ -35,7 +35,6 @@ public class CustomBasicArrowButton extends BasicArrowButton {
 	public CustomBasicArrowButton(int direction, Color background,
 			Color shadow, Color darkShadow, Color highlight) {
 		super(direction, background, shadow, darkShadow, highlight);
-		// TODO Auto-generated constructor stub
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +42,6 @@ public class CustomBasicArrowButton extends BasicArrowButton {
 	 */
 	@Override
 	public Dimension getPreferredSize() {
-		// TODO Auto-generated method stub
 		if (this.preffSize != null) {
 			return this.preffSize;
 		}

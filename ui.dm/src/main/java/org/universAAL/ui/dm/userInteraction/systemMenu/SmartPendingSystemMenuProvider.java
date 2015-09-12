@@ -86,9 +86,9 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
      */
     public void handle(UIResponse response) {
 	String submissionID = response.getSubmissionID();
-	if (EXIT_CALL.equals(submissionID)) {
+//	if (EXIT_CALL.equals(submissionID)) {
 	    // do nothing?
-	}
+//	}
 	if (MENU_CALL.equals(submissionID)) {
 	    userDM.showMainMenu();
 	}
@@ -166,7 +166,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
 		    MESSAGES_CALL).setHelpString(ulh
 		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP));
-	} else {
+	//} else {
 	    // show a button with different ICON/Message or nothing
 	}
 	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
@@ -175,7 +175,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
 		    OPEN_DIALOGS_CALL).setHelpString(ulh
 		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP));
-	} else {
+	//} else {
 	    // show a button with different ICON/Message or nothing
 	}
     }

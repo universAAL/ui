@@ -16,7 +16,6 @@
 package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.metal.MetalLookAndFeel;
@@ -64,14 +63,12 @@ public class Init implements InitInterface {
 
     /** {@inheritDoc} */
     public void userLogIn(User usr) {
-	// TODO Auto-generated method stub
-
+	// No personalization performed.
     }
 
     /** {@inheritDoc} */
     public void userLogOff(User usr) {
-	// TODO Auto-generated method stub
-
+	// Nothing
     }
 
     /** {@inheritDoc} */

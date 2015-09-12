@@ -124,7 +124,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -139,7 +138,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -155,7 +153,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -173,7 +170,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -194,7 +190,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -210,7 +205,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile2(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}
@@ -224,7 +218,6 @@ public class TestSearch extends TestCase {
 		try {
 			mlh = new MessageLocaleHelper(mc, getProfile2(), l);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			fail();
 		}

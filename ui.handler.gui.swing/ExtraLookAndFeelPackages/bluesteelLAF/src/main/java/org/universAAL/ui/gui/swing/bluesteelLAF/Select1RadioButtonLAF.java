@@ -53,7 +53,7 @@ public class Select1RadioButtonLAF extends Select1RadiobuttonModel {
 	
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
+	    //XXX change coluo?
 		
 	}
 

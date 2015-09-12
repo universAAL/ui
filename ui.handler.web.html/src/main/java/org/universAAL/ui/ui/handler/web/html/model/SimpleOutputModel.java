@@ -17,8 +17,6 @@
 
 package org.universAAL.ui.ui.handler.web.html.model;
 
-import java.util.Properties;
-
 import org.universAAL.middleware.ui.rdf.SimpleOutput;
 import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 

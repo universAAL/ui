@@ -46,10 +46,7 @@ public class DefaultContextSubscriber extends ContextSubscriber {
     }
 
     @Override
-    public void communicationChannelBroken() {
-	// TODO Auto-generated method stub
-
-    }
+    public void communicationChannelBroken() {   }
 
     /**
      * This methods just logs the received {@link ContextEvent} and forwards it

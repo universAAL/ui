@@ -92,8 +92,6 @@ public class TextAreaLAF extends TextAreaModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

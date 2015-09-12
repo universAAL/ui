@@ -18,7 +18,6 @@ package org.universAAL.ui.handler.gui.swing.osgi;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.Hashtable;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

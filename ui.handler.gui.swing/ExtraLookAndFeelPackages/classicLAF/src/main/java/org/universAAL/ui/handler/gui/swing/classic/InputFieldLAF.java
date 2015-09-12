@@ -118,7 +118,6 @@ public class InputFieldLAF extends InputFieldModel {
 
 	@Override
 	public void updateAsMissing() {
-		// TODO Auto-generated method stub
 		
 	}
 
