@@ -26,9 +26,12 @@ import org.universAAL.middleware.rdf.Resource;
 import org.universAAL.middleware.ui.UIHandler;
 import org.universAAL.middleware.ui.UIHandlerProfile;
 import org.universAAL.middleware.ui.UIRequest;
+import org.universAAL.middleware.ui.UIResponse;
 import org.universAAL.middleware.ui.owl.AccessImpairment;
 import org.universAAL.middleware.ui.owl.Modality;
 import org.universAAL.middleware.ui.rdf.Form;
+import org.universAAL.middleware.ui.rdf.Label;
+import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ontology.impairment.HearingImpairment;
 import org.universAAL.ontology.impairment.PhysicalImpairment;
 import org.universAAL.ontology.impairment.SightImpairment;
@@ -92,6 +95,10 @@ public class SmsUIHandler extends UIHandler {
 	String number = (String) f.getIOControls().getChildren()[0].getValue();
 	String message = (String) f.getIOControls().getChildren()[1].getValue();
 	smsSender.sendMessage(number, message);
+	//notify the UI bus the message was delivered
+	//TODO: Check the message was infact delivered.
+	dialogFinished(new UIResponse(uiRequest.getAddressedUser(),
+			null, new Submit(f.getStandardButtons(), new Label("send", null), "http://sms.handler.unviersAAL.org/MessageSent")));
     }
 
     @Override

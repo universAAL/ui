@@ -45,6 +45,12 @@
 		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.web.html/${ui.handler.web.html.version}</bundle>
 	</feature>
 	
+	<feature name="uAAL-UI.handler.sms" description="The UI SMS Handler."
+		version="${pom.version}" resolver='(obr)'>
+		<feature>uAAL-Ont.Impairment</feature>
+		<bundle start-level='77' start='true'>mvn:org.universAAL.ui/ui.handler.sms/${ui.handler.sms.version}</bundle>
+	</feature>
+		
 	<feature name="uAAL-UI.Internationalization" description="UI Internationalization utility."
 		version="${pom.version}" resolver='(obr)'>
 		<bundle start-level='74'>wrap:mvn:org.universAAL.ui/ui.internationalization.util/${ui.internationalization.util.version}</bundle>
@@ -59,5 +65,5 @@
 		<feature>uAAL-UI.Internationalization</feature>
 		<bundle start-level='75' start='true'>mvn:org.universAAL.ui/ui.dm/${ui.dm.version}</bundle>
 	</feature>
-		
+	
 </features>

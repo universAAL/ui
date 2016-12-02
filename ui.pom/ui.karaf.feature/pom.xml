@@ -60,6 +60,10 @@
       <groupId>org.universAAL.ui</groupId>
       <artifactId>ui.handler.web.html</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.universAAL.ui</groupId>
+      <artifactId>ui.handler.sms</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <filters>
