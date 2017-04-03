@@ -47,10 +47,10 @@ public class ResourceMapperTest extends TestCase {
 	}
 	
 	public void testRemoteResource1() {
-		assertNotNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w.png"));
+		assertNotNull(ResourceMapper.search("https://octodex.github.com/images/original.png"));
 	}
 	
 	public void testRemoteResource2() {
-		assertNull(ResourceMapper.search("http://www.google.com/intl/en_com/images/srpr/logo3w"));
+		assertNull(ResourceMapper.search("https://octodex.github.com/images/original"));
 	}
 }

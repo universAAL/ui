@@ -42,8 +42,8 @@ public class ResourceMapperTest extends TestCase {
 		Thread.sleep(20); // this is only because the retriever might not have ended at this point.
 		assertTrue("checking file: "+f.getAbsolutePath(), f.exists());
 		
-		s = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
-		s2 = ResourceMapper.cached(CACHE, "http://www.google.com/intl/en_com/images/srpr/logo3w.png");
+		s = ResourceMapper.cached(CACHE, "https://octodex.github.com/images/original.png");
+		s2 = ResourceMapper.cached(CACHE, "https://octodex.github.com/images/original.png");
 		assertEquals(s, s2);
 		
 		f = new File(CACHE+"/"+ s);
