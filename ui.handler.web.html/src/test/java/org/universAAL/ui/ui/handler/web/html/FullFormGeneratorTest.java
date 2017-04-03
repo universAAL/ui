@@ -29,6 +29,7 @@ import java.util.TreeSet;
 import junit.framework.TestCase;
 
 import org.universAAL.container.JUnit.JUnitModuleContext;
+import org.universAAL.middleware.bus.junit.BusTestCase;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
@@ -43,6 +44,7 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Label;
 import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.middleware.ui.rdf.Submit;
+import org.universAAL.ontology.cryptographic.CryptographicOntology;
 import org.universAAL.ontology.language.Language;
 import org.universAAL.ontology.language.LanguageOntology;
 import org.universAAL.ontology.location.LocationOntology;
@@ -80,26 +82,22 @@ import org.universAAL.ui.ui.handler.web.html.support.TestGenerator;
  * @author amedrano
  * 
  */
-public class FullFormGeneratorTest extends TestCase {
+public class FullFormGeneratorTest extends BusTestCase {
 
-	private static JUnitModuleContext mc;
 	private static TestGenerator testRender;
 	private static PrintWriter pw;
 
-	static {
-		mc = new JUnitModuleContext();
-
-		OntologyManagement.getInstance().register(mc, new DataRepOntology());
-		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
-		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+	/** {@inheritDoc} */
+	protected void setUp() throws Exception {
+		super.setUp();
 		OntologyManagement.getInstance().register(mc, new LocationOntology());
 		OntologyManagement.getInstance().register(mc, new ShapeOntology());
 		OntologyManagement.getInstance().register(mc, new PhThingOntology());
 		OntologyManagement.getInstance().register(mc, new SpaceOntology());
 		OntologyManagement.getInstance().register(mc, new VCardOntology());
 		OntologyManagement.getInstance().register(mc, new ProfileOntology());
-		OntologyManagement.getInstance().register(mc,
-				new SecurityOntology());
+		OntologyManagement.getInstance().register(mc, new CryptographicOntology());
+		OntologyManagement.getInstance().register(mc, new SecurityOntology());
 		OntologyManagement.getInstance().register(mc, new LanguageOntology());
 		OntologyManagement.getInstance().register(mc,
 				new UIPreferencesProfileOntology());
