@@ -37,7 +37,7 @@ public class Activator implements BundleActivator {
     private static BundleContext context;
 
     /** The mcontext. {@link ModuleContext} */
-    private static ModuleContext mcontext;
+    public static ModuleContext mcontext;
 
     private static HttpService httpService = null;
 
@@ -53,9 +53,6 @@ public class Activator implements BundleActivator {
      */
     public void start(BundleContext context) throws Exception {
 	Activator.context = context;
-
-	Activator.context = context;
-
 	BundleContext[] bc = { context };
 	mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
 	doRegister();

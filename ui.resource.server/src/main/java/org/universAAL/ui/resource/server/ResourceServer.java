@@ -51,8 +51,7 @@ public class ResourceServer extends HttpServlet {
     private static final long serialVersionUID = -2375186843748499339L;
     private ModuleContext moduleContext;
 
-    public static File confHome = new File(new BundleConfigHome(
-	    "ResourceServer").getAbsolutePath());
+    public static File confHome = Activator.mcontext.getConfigHome();
 
     // private Hashtable<String, String> allowedCredentials = new
     // Hashtable<String, String>();
