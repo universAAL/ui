@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.util.BundleConfigHome;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
