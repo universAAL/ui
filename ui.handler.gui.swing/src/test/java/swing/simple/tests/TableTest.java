@@ -74,7 +74,7 @@ private JTable m_simpleTable;
 	      new PropertyPath(null, false, new String[]{PROP_COL + "3"}), null);
       
     rtm = new RepeatTableModel(repeat);
-    System.out.println("Table ("+ rtm.getColumnCount() + ", "+ rtm.getRowCount() + ")");
+    //System.out.println("Table ("+ rtm.getColumnCount() + ", "+ rtm.getRowCount() + ")");
     m_simpleTable = new JTable(rtm);
     JScrollPane scrollPane = new JScrollPane(m_simpleTable);
     getContentPane().add(scrollPane);
