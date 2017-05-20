@@ -35,6 +35,9 @@ before_script:
  - echo "MAVEN_OPTS='-Xmx2g'" > ~/.mavenrc
 
 script:
+ - cd ../ui.handler.sms
+ - mvn clean install
+ - cd ../ui.pom
  - ./ci.sh script
 
 after_success:
