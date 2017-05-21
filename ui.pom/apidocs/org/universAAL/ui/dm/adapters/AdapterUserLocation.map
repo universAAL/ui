@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="c14670" href="./AdapterUserLocation.html" title="org.universAAL.ui.dm.adapters.AdapterUserLocation" alt="" coords="63,118,206,143"/>
+<area shape="rect" id="node1" href="./AdapterUserLocation.html" title="&lt;TABLE&gt;" alt="" coords="53,107,216,155"/>
+<area shape="rect" id="c14684" href="../interfaces/IAdapter.html" title="org.universAAL.ui.dm.interfaces.IAdapter" alt="" coords="16,11,101,53"/>
+<area shape="rect" id="node2" href="../interfaces/IAdapter.html" title="&lt;TABLE&gt;" alt="" coords="5,6,112,58"/>
+<area shape="rect" id="c14916" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="org.universAAL.middleware.context.ContextSubscriber" alt="" coords="146,19,275,45"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="&lt;TABLE&gt;" alt="" coords="136,8,285,56"/>
+</map>

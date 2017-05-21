@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="c2815" href="./MenuNode.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode" alt="" coords="15,17,99,42"/>
+<area shape="rect" id="node1" href="./MenuNode.html" title="&lt;TABLE&gt;" alt="" coords="5,5,109,53"/>
+<area shape="rect" id="c2816" href="./MainMenu.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu" alt="" coords="143,17,225,42"/>
+<area shape="rect" id="node2" href="./MainMenu.html" title="&lt;TABLE&gt;" alt="" coords="133,5,235,53"/>
+<area shape="rect" id="c2817" href="./FileMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider" alt="" coords="269,17,419,42"/>
+<area shape="rect" id="node3" href="./FileMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="259,5,429,53"/>
+</map>

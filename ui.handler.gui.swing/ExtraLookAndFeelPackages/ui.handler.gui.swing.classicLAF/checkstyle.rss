@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL UI Handler Swing Look and Feel Classic - Checkstyle report</title>
+    <link>http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF/</link>
+    <description>universAAL UI Handler Swing Look and Feel Classic - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017 universAAL Consortium</copyright>
+    <item>
+      <title>File: 19,
+             Errors: 223,
+             Warnings: 67,
+             Infos: 717
+      </title>
+            <link>http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.ColorLAF.java">org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java</a>
+                </td>
+                <td>
+                  32
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  50
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RangeLAF.java">org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uStoreButton.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.GroupLAF.java">org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Select1LAF.java">org/universAAL/ui/handler/gui/swing/classic/Select1LAF.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Init.java">org/universAAL/ui/handler/gui/swing/classic/Init.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatModelTableLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MyVerticalFlowLayout.java">org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</a>
+                </td>
+                <td>
+                  82
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SelectLAF.java">org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java</a>
+                </td>
+                <td>
+                  42
+                </td>
+                <td>
+                  12
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SimpleOutputLAF.java">org/universAAL/ui/handler/gui/swing/classic/SimpleOutputLAF.java</a>
+                </td>
+                <td>
+                  24
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubmitLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java</a>
+                </td>
+                <td>
+                  102
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.FormLAF.java">org/universAAL/ui/handler/gui/swing/classic/FormLAF.java</a>
+                </td>
+                <td>
+                  174
+                </td>
+                <td>
+                  10
+                </td>
+                <td>
+                  34
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uCCButton.java</a>
+                </td>
+                <td>
+                  36
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.InputFieldLAF.java">org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.TextAreaLAF.java">org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.LabelLAF.java">org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MediaObjectLAF.java">org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubdialogTriggerLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java</a>
+                </td>
+                <td>
+                  97
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

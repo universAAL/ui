@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="c27812" href="./IUIPreferencesBuffer.html" title="org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer" alt="" coords="289,11,433,53"/>
+<area shape="rect" id="node1" href="./IUIPreferencesBuffer.html" title="&lt;TABLE&gt;" alt="" coords="279,6,444,58"/>
+<area shape="rect" id="c27822" href="../ui/preferences/buffer/UIPreferencesBufferNoUpdate.html" title="org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate" alt="" coords="15,118,214,143"/>
+<area shape="rect" id="node2" href="../ui/preferences/buffer/UIPreferencesBufferNoUpdate.html" title="&lt;TABLE&gt;" alt="" coords="5,107,224,155"/>
+<area shape="rect" id="c27823" href="../ui/preferences/buffer/UIPreferencesBufferSubscriptor.html" title="org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor" alt="" coords="259,118,464,143"/>
+<area shape="rect" id="node3" href="../ui/preferences/buffer/UIPreferencesBufferSubscriptor.html" title="&lt;TABLE&gt;" alt="" coords="248,107,475,155"/>
+<area shape="rect" id="c27824" href="../ui/preferences/buffer/UIPreferencesBufferPoller.html" title="org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller" alt="" coords="509,118,683,143"/>
+<area shape="rect" id="node4" href="../ui/preferences/buffer/UIPreferencesBufferPoller.html" title="&lt;TABLE&gt;" alt="" coords="499,107,693,155"/>
+</map>

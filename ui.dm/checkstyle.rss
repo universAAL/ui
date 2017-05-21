@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL UI Dialog Manager 2.0 - Checkstyle report</title>
+    <link>http://ui/ui.dm/</link>
+    <description>universAAL UI Dialog Manager 2.0 - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017 universAAL Consortium</copyright>
+    <item>
+      <title>File: 55,
+             Errors: 505,
+             Warnings: 116,
+             Infos: 1523
+      </title>
+            <link>http://ui/ui.dm//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://ui/ui.dm//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.osgi.DialogManagerActivator.java">org/universAAL/ui/dm/osgi/DialogManagerActivator.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.DialogManagerImpl.java">org/universAAL/ui/dm/DialogManagerImpl.java</a>
+                </td>
+                <td>
+                  58
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java</a>
+                </td>
+                <td>
+                  58
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IAdapter.java">org/universAAL/ui/dm/interfaces/IAdapter.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.MessageConstants.java">org/universAAL/ui/dm/userInteraction/MessageConstants.java</a>
+                </td>
+                <td>
+                  108
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.DMServiceCaller.java">org/universAAL/ui/dm/DMServiceCaller.java</a>
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolCopier.java">org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AllMainMenuProvider.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java</a>
+                </td>
+                <td>
+                  12
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java</a>
+                </td>
+                <td>
+                  38
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesProvidedService.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java</a>
+                </td>
+                <td>
+                  17
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterDialogPrivacyLevel.java">org/universAAL/ui/dm/adapters/AdapterDialogPrivacyLevel.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#messages.properties">messages.properties</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.LocalizedMessagesURLProvider.java">org/universAAL/ui/dm/LocalizedMessagesURLProvider.java</a>
+                </td>
+                <td>
+                  12
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage.java">org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java</a>
+                </td>
+                <td>
+                  44
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener.java">org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUIPreferences.java">org/universAAL/ui/dm/adapters/AdapterUIPreferences.java</a>
+                </td>
+                <td>
+                  15
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserLocation.java">org/universAAL/ui/dm/adapters/AdapterUserLocation.java</a>
+                </td>
+                <td>
+                  38
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java</a>
+                </td>
+                <td>
+                  34
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IMainMenuProvider.java">org/universAAL/ui/dm/interfaces/IMainMenuProvider.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UISubprofileInitializator.java">org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java</a>
+                </td>
+                <td>
+                  43
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer.java">org/universAAL/ui/dm/interfaces/IUIPreferencesBuffer.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java</a>
+                </td>
+                <td>
+                  38
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java</a>
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterMessageInternationalization.java">org/universAAL/ui/dm/adapters/AdapterMessageInternationalization.java</a>
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestStore.java">org/universAAL/ui/dm/interfaces/IUIRequestStore.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java</a>
+                </td>
+                <td>
+                  37
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.ISystemMenuProvider.java">org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.UserDialogManager.java">org/universAAL/ui/dm/UserDialogManager.java</a>
+                </td>
+                <td>
+                  111
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  34
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.UIRequestPriorityComparator.java">org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java</a>
+                </td>
+                <td>
+                  35
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IDialogBuilder.java">org/universAAL/ui/dm/interfaces/IDialogBuilder.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java</a>
+                </td>
+                <td>
+                  31
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java</a>
+                </td>
+                <td>
+                  29
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java</a>
+                </td>
+                <td>
+                  56
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener.java">org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer.java">org/universAAL/ui/dm/userInteraction/mainMenu/UIServiceResponseNotifyer.java</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestPool.java">org/universAAL/ui/dm/interfaces/IUIRequestPool.java</a>
+                </td>
+                <td>
+                  26
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java</a>
+                </td>
+                <td>
+                  36
+                </td>
+                <td>
+                  20
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilder.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java</a>
+                </td>
+                <td>
+                  59
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java</a>
+                </td>
+                <td>
+                  30
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.ISubmitGroupListener.java">org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserImpairments.java">org/universAAL/ui/dm/adapters/AdapterUserImpairments.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java</a>
+                </td>
+                <td>
+                  47
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java</a>
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogBuilder.java</a>
+                </td>
+                <td>
+                  88
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder.java">org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java</a>
+                </td>
+                <td>
+                  29
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java</a>
+                </td>
+                <td>
+                  49
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  20
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

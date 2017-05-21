@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="c4089" href="./ResourceMapper.html" title="org.universAAL.ui.handler.gui.swing.ResourceMapper" alt="" coords="16,19,136,45"/>
+<area shape="rect" id="node1" href="./ResourceMapper.html" title="&lt;TABLE&gt;" alt="" coords="5,8,147,56"/>
+<area shape="rect" id="c4090" href="./IContainerManager.html" title="org.universAAL.ui.handler.gui.swing.IContainerManager" alt="" coords="181,11,312,53"/>
+<area shape="rect" id="node2" href="./IContainerManager.html" title="&lt;TABLE&gt;" alt="" coords="171,6,323,58"/>
+<area shape="rect" id="c4091" href="./Handler.html" title="org.universAAL.ui.handler.gui.swing.Handler" alt="" coords="357,19,422,45"/>
+<area shape="rect" id="node3" href="./Handler.html" title="&lt;TABLE&gt;" alt="" coords="347,8,432,56"/>
+<area shape="rect" id="c4092" href="./Renderer.html" title="org.universAAL.ui.handler.gui.swing.Renderer" alt="" coords="466,19,539,45"/>
+<area shape="rect" id="node4" href="./Renderer.html" title="&lt;TABLE&gt;" alt="" coords="456,8,549,56"/>
+<area shape="rect" id="c4093" href="./Renderer.RenderStarter.html" title="org.universAAL.ui.handler.gui.swing.Renderer.RenderStarter" alt="" coords="584,19,685,45"/>
+<area shape="rect" id="node5" href="./Renderer.RenderStarter.html" title="&lt;TABLE&gt;" alt="" coords="573,8,696,56"/>
+<area shape="rect" id="c4094" href="./ModelMapper.html" title="org.universAAL.ui.handler.gui.swing.ModelMapper" alt="" coords="731,19,829,45"/>
+<area shape="rect" id="node6" href="./ModelMapper.html" title="&lt;TABLE&gt;" alt="" coords="720,8,840,56"/>
+</map>

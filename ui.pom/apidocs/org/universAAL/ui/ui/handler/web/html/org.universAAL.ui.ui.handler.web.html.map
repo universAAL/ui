@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="c8771" href="./ResourceMapper.html" title="org.universAAL.ui.ui.handler.web.html.ResourceMapper" alt="" coords="16,17,136,42"/>
+<area shape="rect" id="node1" href="./ResourceMapper.html" title="&lt;TABLE&gt;" alt="" coords="5,5,147,53"/>
+<area shape="rect" id="c8772" href="./ResourceMapper.Retreiver.html" title="org.universAAL.ui.ui.handler.web.html.ResourceMapper.Retreiver" alt="" coords="181,17,254,42"/>
+<area shape="rect" id="node2" href="./ResourceMapper.Retreiver.html" title="&lt;TABLE&gt;" alt="" coords="171,5,264,53"/>
+<area shape="rect" id="c8773" href="./HTTPHandlerService.html" title="org.universAAL.ui.ui.handler.web.html.HTTPHandlerService" alt="" coords="298,17,443,42"/>
+<area shape="rect" id="node3" href="./HTTPHandlerService.html" title="&lt;TABLE&gt;" alt="" coords="288,5,453,53"/>
+<area shape="rect" id="c8774" href="./UpdatedPropertiesFile.html" title="org.universAAL.ui.ui.handler.web.html.UpdatedPropertiesFile" alt="" coords="488,17,637,42"/>
+<area shape="rect" id="node4" href="./UpdatedPropertiesFile.html" title="&lt;TABLE&gt;" alt="" coords="477,5,648,53"/>
+<area shape="rect" id="c8775" href="./Handler.html" title="org.universAAL.ui.ui.handler.web.html.Handler" alt="" coords="682,17,747,42"/>
+<area shape="rect" id="node5" href="./Handler.html" title="&lt;TABLE&gt;" alt="" coords="672,5,757,53"/>
+<area shape="rect" id="c8776" href="./HTMLUserGenerator.html" title="org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator" alt="" coords="792,17,933,42"/>
+<area shape="rect" id="node6" href="./HTMLUserGenerator.html" title="&lt;TABLE&gt;" alt="" coords="781,5,944,53"/>
+<area shape="rect" id="c8777" href="./ModelMapper.html" title="org.universAAL.ui.ui.handler.web.html.ModelMapper" alt="" coords="979,17,1077,42"/>
+<area shape="rect" id="node7" href="./ModelMapper.html" title="&lt;TABLE&gt;" alt="" coords="968,5,1088,53"/>
+</map>
