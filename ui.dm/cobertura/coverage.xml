@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.08790826963168867" branch-rate="0.10218978102189781" lines-covered="253" lines-valid="2878" branches-covered="84" branches-valid="822" complexity="2.740625" version="2.1.1" timestamp="1495729653450">
+<coverage line-rate="0.08790826963168867" branch-rate="0.10218978102189781" lines-covered="253" lines-valid="2878" branches-covered="84" branches-valid="822" complexity="2.740625" version="2.1.1" timestamp="1495749095749">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.dm/src/main/java</source>
@@ -3419,8 +3419,8 @@
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="58" hits="136" branch="false"/>
-								<line number="60" hits="196" branch="false"/>
+								<line number="58" hits="101" branch="false"/>
+								<line number="60" hits="231" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -3447,8 +3447,8 @@
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="58" hits="136" branch="false"/>
-						<line number="60" hits="196" branch="false"/>
+						<line number="58" hits="101" branch="false"/>
+						<line number="60" hits="231" branch="false"/>
 					</lines>
 				</class>
 			</classes>

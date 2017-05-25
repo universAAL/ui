@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.5476190476190477" branch-rate="0.53125" lines-covered="69" lines-valid="126" branches-covered="34" branches-valid="64" complexity="6.2" version="2.1.1" timestamp="1495729629352">
+<coverage line-rate="0.5476190476190477" branch-rate="0.53125" lines-covered="69" lines-valid="126" branches-covered="34" branches-valid="64" complexity="6.2" version="2.1.1" timestamp="1495749073378">
 	<sources>
 		<source>/home/travis/build/universAAL/ui/ui.internationalization.util/src/main/java</source>
 		<source>--source</source>
