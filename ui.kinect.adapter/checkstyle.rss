@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2017 universAAL Consortium</copyright>
     <item>
       <title>File: 16,
-             Errors: 73,
-             Warnings: 25,
-             Infos: 145
+             Errors: 71,
+             Warnings: 14,
+             Infos: 109
       </title>
             <link>http://ui/ui.kinect.adapter//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextCallback.java">org/universAAL/kinect/adapter/contextBus/IContextCallback.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -63,13 +63,13 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.AbstractService.java">org/universAAL/kinect/adapter/serviceBus/AbstractService.java</a>
                 </td>
                 <td>
-                  9
+                  8
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  4
+                  3
                 </td>
               </tr>
                           <tr>
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultBroker.java">org/universAAL/kinect/adapter/defaultComponents/DefaultBroker.java</a>
                 </td>
                 <td>
-                  12
+                  7
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   11
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultContextSubscriber.java">org/universAAL/kinect/adapter/defaultComponents/DefaultContextSubscriber.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   3
@@ -105,10 +105,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.TCPServer.java">org/universAAL/kinect/adapter/communication/receiver/TCPServer.java</a>
                 </td>
                 <td>
-                  12
+                  8
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
                   10
@@ -119,7 +119,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextPublisher.java">org/universAAL/kinect/adapter/contextBus/IContextPublisher.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   0
@@ -133,7 +133,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.RequestService.java">org/universAAL/kinect/adapter/serviceBus/RequestService.java</a>
                 </td>
                 <td>
-                  9
+                  6
                 </td>
                 <td>
                   0
@@ -147,10 +147,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.Worker.java">org/universAAL/kinect/adapter/communication/receiver/Worker.java</a>
                 </td>
                 <td>
-                  10
+                  6
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   10
@@ -161,7 +161,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.AbstractContext.java">org/universAAL/kinect/adapter/contextBus/AbstractContext.java</a>
                 </td>
                 <td>
-                  11
+                  9
                 </td>
                 <td>
                   1
@@ -175,13 +175,13 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.QueryService.java">org/universAAL/kinect/adapter/serviceBus/QueryService.java</a>
                 </td>
                 <td>
-                  11
+                  6
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  3
+                  2
                 </td>
               </tr>
                           <tr>
@@ -189,7 +189,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.IMessageBroker.java">org/universAAL/kinect/adapter/IMessageBroker/IMessageBroker.java</a>
                 </td>
                 <td>
-                  8
+                  7
                 </td>
                 <td>
                   1
@@ -203,7 +203,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.logging.LoggerWithModuleContext.java">org/universAAL/kinect/adapter/logging/LoggerWithModuleContext.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -217,10 +217,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.MessageParser.java">org/universAAL/kinect/adapter/communication/receiver/MessageParser.java</a>
                 </td>
                 <td>
-                  10
+                  8
                 </td>
                 <td>
-                  4
+                  3
                 </td>
                 <td>
                   6
@@ -231,7 +231,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.IServiceCall.java">org/universAAL/kinect/adapter/serviceBus/IServiceCall.java</a>
                 </td>
                 <td>
-                  8
+                  7
                 </td>
                 <td>
                   0
@@ -245,7 +245,7 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.AdapterException.java">org/universAAL/kinect/adapter/IMessageBroker/AdapterException.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -259,10 +259,10 @@ under the License.
                   <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultAdapter.java">org/universAAL/kinect/adapter/defaultComponents/DefaultAdapter.java</a>
                 </td>
                 <td>
-                  10
+                  7
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   6

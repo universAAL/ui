@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2017 universAAL Consortium</copyright>
     <item>
       <title>File: 19,
-             Errors: 223,
-             Warnings: 67,
-             Infos: 717
+             Errors: 218,
+             Warnings: 12,
+             Infos: 92
       </title>
             <link>http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.ColorLAF.java">org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java</a>
                 </td>
                 <td>
-                  32
+                  6
                 </td>
                 <td>
                   3
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java</a>
                 </td>
                 <td>
-                  7
+                  3
                 </td>
                 <td>
                   0
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RangeLAF.java">org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java</a>
                 </td>
                 <td>
-                  18
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uStoreButton.java</a>
                 </td>
                 <td>
-                  11
+                  3
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   7
@@ -105,7 +105,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.GroupLAF.java">org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java</a>
                 </td>
                 <td>
-                  11
+                  4
                 </td>
                 <td>
                   0
@@ -119,10 +119,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Select1LAF.java">org/universAAL/ui/handler/gui/swing/classic/Select1LAF.java</a>
                 </td>
                 <td>
-                  18
+                  4
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   18
@@ -133,7 +133,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Init.java">org/universAAL/ui/handler/gui/swing/classic/Init.java</a>
                 </td>
                 <td>
-                  7
+                  2
                 </td>
                 <td>
                   0
@@ -147,10 +147,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatModelTableLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java</a>
                 </td>
                 <td>
-                  13
+                  7
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   4
@@ -161,10 +161,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MyVerticalFlowLayout.java">org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</a>
                 </td>
                 <td>
-                  82
+                  16
                 </td>
                 <td>
-                  18
+                  2
                 </td>
                 <td>
                   27
@@ -175,10 +175,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SelectLAF.java">org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java</a>
                 </td>
                 <td>
-                  42
+                  4
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
                   19
@@ -189,10 +189,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SimpleOutputLAF.java">org/universAAL/ui/handler/gui/swing/classic/SimpleOutputLAF.java</a>
                 </td>
                 <td>
-                  24
+                  5
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   4
@@ -203,10 +203,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubmitLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java</a>
                 </td>
                 <td>
-                  102
+                  5
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   11
@@ -217,13 +217,13 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.FormLAF.java">org/universAAL/ui/handler/gui/swing/classic/FormLAF.java</a>
                 </td>
                 <td>
-                  174
+                  8
                 </td>
                 <td>
-                  10
+                  3
                 </td>
                 <td>
-                  34
+                  29
                 </td>
               </tr>
                           <tr>
@@ -231,10 +231,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uCCButton.java</a>
                 </td>
                 <td>
-                  36
+                  3
                 </td>
                 <td>
-                  4
+                  3
                 </td>
                 <td>
                   11
@@ -245,10 +245,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.InputFieldLAF.java">org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java</a>
                 </td>
                 <td>
-                  23
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   4
@@ -259,10 +259,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.TextAreaLAF.java">org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java</a>
                 </td>
                 <td>
-                  8
+                  4
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   3
@@ -273,7 +273,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.LabelLAF.java">org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java</a>
                 </td>
                 <td>
-                  5
+                  3
                 </td>
                 <td>
                   0
@@ -287,7 +287,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MediaObjectLAF.java">org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -301,10 +301,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.classicLAF//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubdialogTriggerLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java</a>
                 </td>
                 <td>
-                  97
+                  5
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   7

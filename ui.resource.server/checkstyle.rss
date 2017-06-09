@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 2,
              Errors: 21,
-             Warnings: 6,
-             Infos: 41
+             Warnings: 3,
+             Infos: 10
       </title>
             <link>http://ui/ui.resource.server//checkstyle.html</link>
       <description>
@@ -49,10 +49,10 @@ under the License.
                   <a href="http://ui/ui.resource.server//checkstyle.html#org.universAAL.ui.resource.server.Activator.java">org/universAAL/ui/resource/server/Activator.java</a>
                 </td>
                 <td>
-                  17
+                  4
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   9
@@ -63,10 +63,10 @@ under the License.
                   <a href="http://ui/ui.resource.server//checkstyle.html#org.universAAL.ui.resource.server.ResourceServer.java">org/universAAL/ui/resource/server/ResourceServer.java</a>
                 </td>
                 <td>
-                  24
+                  6
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   12

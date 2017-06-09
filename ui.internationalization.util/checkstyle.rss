@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 1,
              Errors: 21,
-             Warnings: 3,
-             Infos: 62
+             Warnings: 1,
+             Infos: 23
       </title>
             <link>http://ui/ui.internationalization.util//checkstyle.html</link>
       <description>
@@ -49,10 +49,10 @@ under the License.
                   <a href="http://ui/ui.internationalization.util//checkstyle.html#org.universAAL.ui.internationalization.util.MessageLocaleHelper.java">org/universAAL/ui/internationalization/util/MessageLocaleHelper.java</a>
                 </td>
                 <td>
-                  62
+                  23
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   21

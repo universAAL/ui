@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 2,
              Errors: 13,
-             Warnings: 3,
-             Infos: 17
+             Warnings: 2,
+             Infos: 10
       </title>
             <link>/checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="/checkstyle.html#org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher.java">org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java</a>
                 </td>
                 <td>
-                  6
+                  4
                 </td>
                 <td>
                   1
@@ -63,10 +63,10 @@ under the License.
                   <a href="/checkstyle.html#org.universAAL.kinect.adapter.instance.osgi.Activator.java">org/universAAL/kinect/adapter/instance/osgi/Activator.java</a>
                 </td>
                 <td>
-                  11
+                  6
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   5

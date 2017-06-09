@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2017 universAAL Consortium</copyright>
     <item>
       <title>File: 43,
-             Errors: 509,
-             Warnings: 229,
-             Infos: 1303
+             Errors: 495,
+             Warnings: 22,
+             Infos: 183
       </title>
             <link>http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatLAF.java</a>
                 </td>
                 <td>
-                  16
+                  4
                 </td>
                 <td>
                   0
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.LabelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/LabelLAF.java</a>
                 </td>
                 <td>
-                  6
+                  4
                 </td>
                 <td>
                   0
@@ -77,13 +77,13 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UIGradientButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UIGradientButton.java</a>
                 </td>
                 <td>
-                  40
+                  1
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
-                  12
+                  10
                 </td>
               </tr>
                           <tr>
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UCCButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UCCButton.java</a>
                 </td>
                 <td>
-                  46
+                  1
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
                   17
@@ -105,13 +105,13 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ComponentBorder.java</a>
                 </td>
                 <td>
-                  185
+                  29
                 </td>
                 <td>
-                  37
+                  8
                 </td>
                 <td>
-                  40
+                  34
                 </td>
               </tr>
                           <tr>
@@ -133,10 +133,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.FormLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/FormLAF.java</a>
                 </td>
                 <td>
-                  34
+                  10
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   24
@@ -147,7 +147,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.InputFieldLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/InputFieldLAF.java</a>
                 </td>
                 <td>
-                  18
+                  4
                 </td>
                 <td>
                   0
@@ -161,10 +161,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/MainMenuPager.java</a>
                 </td>
                 <td>
-                  96
+                  8
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   29
@@ -175,10 +175,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SelectLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java</a>
                 </td>
                 <td>
-                  20
+                  5
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   9
@@ -189,7 +189,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.TableColors.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/TableColors.java</a>
                 </td>
                 <td>
-                  14
+                  1
                 </td>
                 <td>
                   0
@@ -203,10 +203,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Select1LAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java</a>
                 </td>
                 <td>
-                  15
+                  4
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   6
@@ -217,7 +217,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.Page.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/Page.java</a>
                 </td>
                 <td>
-                  11
+                  6
                 </td>
                 <td>
                   0
@@ -231,7 +231,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SelectCheckBoxLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SelectCheckBoxLAF.java</a>
                 </td>
                 <td>
-                  13
+                  0
                 </td>
                 <td>
                   0
@@ -245,10 +245,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.SystemButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/SystemButton.java</a>
                 </td>
                 <td>
-                  22
+                  4
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   5
@@ -259,10 +259,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.MediaObjectLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/MediaObjectLAF.java</a>
                 </td>
                 <td>
-                  15
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -273,10 +273,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java</a>
                 </td>
                 <td>
-                  59
+                  5
                 </td>
                 <td>
-                  17
+                  0
                 </td>
                 <td>
                   17
@@ -287,7 +287,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Select1RadioButtonLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/Select1RadioButtonLAF.java</a>
                 </td>
                 <td>
-                  14
+                  0
                 </td>
                 <td>
                   0
@@ -301,7 +301,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RangeLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RangeLAF.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -315,7 +315,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.RoundedPolygon.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/RoundedPolygon.java</a>
                 </td>
                 <td>
-                  77
+                  1
                 </td>
                 <td>
                   2
@@ -329,10 +329,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.KickerButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/KickerButton.java</a>
                 </td>
                 <td>
-                  37
+                  4
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   20
@@ -343,10 +343,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupPanelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java</a>
                 </td>
                 <td>
-                  25
+                  0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   3
@@ -357,10 +357,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.SystemCollapse.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java</a>
                 </td>
                 <td>
-                  33
+                  2
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   23
@@ -371,7 +371,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ImageMedia.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ImageMedia.java</a>
                 </td>
                 <td>
-                  47
+                  6
                 </td>
                 <td>
                   0
@@ -385,10 +385,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelTableLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java</a>
                 </td>
                 <td>
-                  20
+                  3
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   2
@@ -399,13 +399,13 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UIRoundedRectangleButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UIRoundedRectangleButton.java</a>
                 </td>
                 <td>
-                  15
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
-                  5
+                  3
                 </td>
               </tr>
                           <tr>
@@ -413,10 +413,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ColorBorder.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ColorBorder.java</a>
                 </td>
                 <td>
-                  21
+                  4
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   10
@@ -427,13 +427,13 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.RoundedGradientButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/RoundedGradientButton.java</a>
                 </td>
                 <td>
-                  38
+                  4
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
-                  17
+                  13
                 </td>
               </tr>
                           <tr>
@@ -441,10 +441,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SubdialogTriggerLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SubdialogTriggerLAF.java</a>
                 </td>
                 <td>
-                  14
+                  4
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -455,10 +455,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupTabbedPanelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupTabbedPanelLAF.java</a>
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   3
@@ -469,10 +469,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.TextAreaLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/TextAreaLAF.java</a>
                 </td>
                 <td>
-                  19
+                  4
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   8
@@ -483,10 +483,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.SubmitButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/SubmitButton.java</a>
                 </td>
                 <td>
-                  17
+                  4
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   7
@@ -497,10 +497,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Init.java">org/universAAL/ui/gui/swing/bluesteelLAF/Init.java</a>
                 </td>
                 <td>
-                  73
+                  13
                 </td>
                 <td>
-                  20
+                  0
                 </td>
                 <td>
                   38
@@ -511,7 +511,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/GradientLAF.java</a>
                 </td>
                 <td>
-                  41
+                  5
                 </td>
                 <td>
                   2
@@ -525,10 +525,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SubmitLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SubmitLAF.java</a>
                 </td>
                 <td>
-                  15
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -539,10 +539,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.TriangularButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java</a>
                 </td>
                 <td>
-                  37
+                  3
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   7
@@ -553,10 +553,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java</a>
                 </td>
                 <td>
-                  27
+                  8
                 </td>
                 <td>
-                  58
+                  6
                 </td>
                 <td>
                   69
@@ -567,10 +567,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UAALTray.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java</a>
                 </td>
                 <td>
-                  35
+                  5
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   21
@@ -581,10 +581,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java</a>
                 </td>
                 <td>
-                  12
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   9
@@ -595,7 +595,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.MessageKeys.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/MessageKeys.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -609,10 +609,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SimpleOutputLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SimpleOutputLAF.java</a>
                 </td>
                 <td>
-                  15
+                  4
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   7
@@ -623,7 +623,7 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelGridLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java</a>
                 </td>
                 <td>
-                  22
+                  0
                 </td>
                 <td>
                   0
@@ -637,10 +637,10 @@ under the License.
                   <a href="http://ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/ui.handler.gui.swing.bluesteelLAF//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.CustomBasicArrowButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/CustomBasicArrowButton.java</a>
                 </td>
                 <td>
-                  12
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   6

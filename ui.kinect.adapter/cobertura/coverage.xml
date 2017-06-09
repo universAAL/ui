@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="137" branches-covered="0" branches-valid="19" complexity="1.5151515151515151" version="2.1.1" timestamp="1495749177520">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="130" branches-covered="0" branches-valid="19" complexity="1.5151515151515151" version="2.1.1" timestamp="1496983540147">
 	<sources>
 		<source>/home/travis/build/universAAL/ui/ui.kinect.adapter/src/main/java</source>
 		<source>--source</source>
@@ -73,17 +73,16 @@
 								<line number="70" hits="0" branch="false"/>
 								<line number="72" hits="0" branch="false"/>
 								<line number="73" hits="0" branch="false"/>
-								<line number="74" hits="0" branch="false"/>
-								<line number="76" hits="0" branch="false"/>
-								<line number="79" hits="0" branch="false"/>
-								<line number="81" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="75" hits="0" branch="false"/>
+								<line number="78" hits="0" branch="false"/>
+								<line number="80" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="82" hits="0" branch="false"/>
+								<line number="81" hits="0" branch="false"/>
+								<line number="83" hits="0" branch="false"/>
 								<line number="84" hits="0" branch="false"/>
-								<line number="85" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -96,17 +95,16 @@
 						<line number="70" hits="0" branch="false"/>
 						<line number="72" hits="0" branch="false"/>
 						<line number="73" hits="0" branch="false"/>
-						<line number="74" hits="0" branch="false"/>
-						<line number="76" hits="0" branch="false"/>
-						<line number="79" hits="0" branch="false"/>
-						<line number="81" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="75" hits="0" branch="false"/>
+						<line number="78" hits="0" branch="false"/>
+						<line number="80" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="82" hits="0" branch="false"/>
+						<line number="81" hits="0" branch="false"/>
+						<line number="83" hits="0" branch="false"/>
 						<line number="84" hits="0" branch="false"/>
-						<line number="85" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.kinect.adapter.communication.receiver.TCPServer" filename="org/universAAL/kinect/adapter/communication/receiver/TCPServer.java" line-rate="0.0" branch-rate="1.0" complexity="2.5">
@@ -127,6 +125,7 @@
 								<line number="80" hits="0" branch="false"/>
 								<line number="82" hits="0" branch="false"/>
 								<line number="83" hits="0" branch="false"/>
+								<line number="86" hits="0" branch="false"/>
 								<line number="87" hits="0" branch="false"/>
 								<line number="88" hits="0" branch="false"/>
 								<line number="90" hits="0" branch="false"/>
@@ -134,11 +133,9 @@
 								<line number="93" hits="0" branch="false"/>
 								<line number="95" hits="0" branch="false"/>
 								<line number="96" hits="0" branch="false"/>
+								<line number="97" hits="0" branch="false"/>
 								<line number="98" hits="0" branch="false"/>
-								<line number="99" hits="0" branch="false"/>
 								<line number="100" hits="0" branch="false"/>
-								<line number="101" hits="0" branch="false"/>
-								<line number="103" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -153,6 +150,7 @@
 						<line number="80" hits="0" branch="false"/>
 						<line number="82" hits="0" branch="false"/>
 						<line number="83" hits="0" branch="false"/>
+						<line number="86" hits="0" branch="false"/>
 						<line number="87" hits="0" branch="false"/>
 						<line number="88" hits="0" branch="false"/>
 						<line number="90" hits="0" branch="false"/>
@@ -160,11 +158,9 @@
 						<line number="93" hits="0" branch="false"/>
 						<line number="95" hits="0" branch="false"/>
 						<line number="96" hits="0" branch="false"/>
+						<line number="97" hits="0" branch="false"/>
 						<line number="98" hits="0" branch="false"/>
-						<line number="99" hits="0" branch="false"/>
 						<line number="100" hits="0" branch="false"/>
-						<line number="101" hits="0" branch="false"/>
-						<line number="103" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.kinect.adapter.communication.receiver.Worker" filename="org/universAAL/kinect/adapter/communication/receiver/Worker.java" line-rate="0.0" branch-rate="0.0" complexity="2.0">
@@ -182,7 +178,6 @@
 						</method>
 						<method name="run" signature="()V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
-								<line number="51" hits="0" branch="false"/>
 								<line number="52" hits="0" branch="false"/>
 								<line number="53" hits="0" branch="false"/>
 								<line number="54" hits="0" branch="false"/>
@@ -198,14 +193,13 @@
 								<line number="62" hits="0" branch="false"/>
 								<line number="64" hits="0" branch="false"/>
 								<line number="65" hits="0" branch="false"/>
-								<line number="67" hits="0" branch="false"/>
+								<line number="66" hits="0" branch="false"/>
+								<line number="68" hits="0" branch="false"/>
 								<line number="69" hits="0" branch="false"/>
+								<line number="70" hits="0" branch="false"/>
 								<line number="71" hits="0" branch="false"/>
 								<line number="72" hits="0" branch="false"/>
 								<line number="73" hits="0" branch="false"/>
-								<line number="74" hits="0" branch="false"/>
-								<line number="75" hits="0" branch="false"/>
-								<line number="76" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -217,7 +211,6 @@
 						<line number="43" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
-						<line number="51" hits="0" branch="false"/>
 						<line number="52" hits="0" branch="false"/>
 						<line number="53" hits="0" branch="false"/>
 						<line number="54" hits="0" branch="false"/>
@@ -233,14 +226,13 @@
 						<line number="62" hits="0" branch="false"/>
 						<line number="64" hits="0" branch="false"/>
 						<line number="65" hits="0" branch="false"/>
-						<line number="67" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
+						<line number="68" hits="0" branch="false"/>
 						<line number="69" hits="0" branch="false"/>
+						<line number="70" hits="0" branch="false"/>
 						<line number="71" hits="0" branch="false"/>
 						<line number="72" hits="0" branch="false"/>
 						<line number="73" hits="0" branch="false"/>
-						<line number="74" hits="0" branch="false"/>
-						<line number="75" hits="0" branch="false"/>
-						<line number="76" hits="0" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -281,13 +273,13 @@
 						</method>
 						<method name="callservice" signature="(Lorg/universAAL/kinect/adapter/serviceBus/AbstractService;)Ljava/util/Collection;" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="49" hits="0" branch="false"/>
+								<line number="48" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="publish" signature="(Lorg/universAAL/kinect/adapter/contextBus/AbstractContext;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
+								<line number="52" hits="0" branch="false"/>
 								<line number="53" hits="0" branch="false"/>
-								<line number="54" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -296,9 +288,9 @@
 						<line number="43" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
-						<line number="49" hits="0" branch="false"/>
+						<line number="48" hits="0" branch="false"/>
+						<line number="52" hits="0" branch="false"/>
 						<line number="53" hits="0" branch="false"/>
-						<line number="54" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.kinect.adapter.defaultComponents.DefaultBroker" filename="org/universAAL/kinect/adapter/defaultComponents/DefaultBroker.java" line-rate="0.0" branch-rate="0.0" complexity="2.0">
@@ -334,9 +326,9 @@
 								<line number="80" hits="0" branch="false"/>
 								<line number="81" hits="0" branch="false"/>
 								<line number="83" hits="0" branch="false"/>
-								<line number="86" hits="0" branch="false"/>
-								<line number="89" hits="0" branch="false"/>
-								<line number="92" hits="0" branch="false"/>
+								<line number="85" hits="0" branch="false"/>
+								<line number="88" hits="0" branch="false"/>
+								<line number="91" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="add" signature="(Ljava/lang/Object;Ljava/lang/Object;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -374,18 +366,18 @@
 						<line number="80" hits="0" branch="false"/>
 						<line number="81" hits="0" branch="false"/>
 						<line number="83" hits="0" branch="false"/>
-						<line number="86" hits="0" branch="false"/>
-						<line number="89" hits="0" branch="false"/>
-						<line number="92" hits="0" branch="false"/>
+						<line number="85" hits="0" branch="false"/>
+						<line number="88" hits="0" branch="false"/>
+						<line number="91" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.kinect.adapter.defaultComponents.DefaultContextSubscriber" filename="org/universAAL/kinect/adapter/defaultComponents/DefaultContextSubscriber.java" line-rate="0.0" branch-rate="0.0" complexity="1.3333333333333333">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Lorg/universAAL/middleware/container/ModuleContext;[Lorg/universAAL/middleware/context/ContextEventPattern;Lorg/universAAL/kinect/adapter/contextBus/IContextCallback;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
+								<line number="43" hits="0" branch="false"/>
 								<line number="44" hits="0" branch="false"/>
 								<line number="45" hits="0" branch="false"/>
-								<line number="46" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="communicationChannelBroken" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -396,37 +388,35 @@
 						<method name="handleContextEvent" signature="(Lorg/universAAL/middleware/context/ContextEvent;)V" line-rate="0.0" branch-rate="0.0" complexity="0">
 							<lines>
 								<line number="56" hits="0" branch="false"/>
+								<line number="57" hits="0" branch="false"/>
+								<line number="58" hits="0" branch="false"/>
 								<line number="59" hits="0" branch="false"/>
-								<line number="60" hits="0" branch="false"/>
-								<line number="61" hits="0" branch="false"/>
-								<line number="62" hits="0" branch="false"/>
-								<line number="63" hits="0" branch="true" condition-coverage="0% (0/2)">
+								<line number="61" hits="0" branch="true" condition-coverage="0% (0/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
+								<line number="62" hits="0" branch="false"/>
 								<line number="64" hits="0" branch="false"/>
-								<line number="66" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
 					<lines>
+						<line number="43" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
 						<line number="45" hits="0" branch="false"/>
-						<line number="46" hits="0" branch="false"/>
 						<line number="49" hits="0" branch="false"/>
 						<line number="56" hits="0" branch="false"/>
+						<line number="57" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
 						<line number="59" hits="0" branch="false"/>
-						<line number="60" hits="0" branch="false"/>
-						<line number="61" hits="0" branch="false"/>
-						<line number="62" hits="0" branch="false"/>
-						<line number="63" hits="0" branch="true" condition-coverage="0% (0/2)">
+						<line number="61" hits="0" branch="true" condition-coverage="0% (0/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
+						<line number="62" hits="0" branch="false"/>
 						<line number="64" hits="0" branch="false"/>
-						<line number="66" hits="0" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -489,23 +479,21 @@
 								</line>
 								<line number="48" hits="0" branch="false"/>
 								<line number="51" hits="0" branch="false"/>
-								<line number="53" hits="0" branch="true" condition-coverage="0% (0/4)">
+								<line number="52" hits="0" branch="true" condition-coverage="0% (0/4)">
 									<conditions>
 										<condition number="0" type="jump" coverage="0%"/>
 										<condition number="1" type="jump" coverage="0%"/>
 									</conditions>
 								</line>
-								<line number="54" hits="0" branch="false"/>
+								<line number="53" hits="0" branch="false"/>
 								<line number="55" hits="0" branch="false"/>
 								<line number="57" hits="0" branch="false"/>
+								<line number="58" hits="0" branch="false"/>
+								<line number="59" hits="0" branch="false"/>
+								<line number="60" hits="0" branch="false"/>
 								<line number="61" hits="0" branch="false"/>
 								<line number="63" hits="0" branch="false"/>
-								<line number="64" hits="0" branch="false"/>
-								<line number="65" hits="0" branch="false"/>
-								<line number="68" hits="0" branch="false"/>
-								<line number="69" hits="0" branch="false"/>
-								<line number="71" hits="0" branch="false"/>
-								<line number="75" hits="0" branch="false"/>
+								<line number="66" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -518,23 +506,21 @@
 						</line>
 						<line number="48" hits="0" branch="false"/>
 						<line number="51" hits="0" branch="false"/>
-						<line number="53" hits="0" branch="true" condition-coverage="0% (0/4)">
+						<line number="52" hits="0" branch="true" condition-coverage="0% (0/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="0%"/>
 								<condition number="1" type="jump" coverage="0%"/>
 							</conditions>
 						</line>
-						<line number="54" hits="0" branch="false"/>
+						<line number="53" hits="0" branch="false"/>
 						<line number="55" hits="0" branch="false"/>
 						<line number="57" hits="0" branch="false"/>
+						<line number="58" hits="0" branch="false"/>
+						<line number="59" hits="0" branch="false"/>
+						<line number="60" hits="0" branch="false"/>
 						<line number="61" hits="0" branch="false"/>
 						<line number="63" hits="0" branch="false"/>
-						<line number="64" hits="0" branch="false"/>
-						<line number="65" hits="0" branch="false"/>
-						<line number="68" hits="0" branch="false"/>
-						<line number="69" hits="0" branch="false"/>
-						<line number="71" hits="0" branch="false"/>
-						<line number="75" hits="0" branch="false"/>
+						<line number="66" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.kinect.adapter.serviceBus.RequestService" filename="org/universAAL/kinect/adapter/serviceBus/RequestService.java" line-rate="0.0" branch-rate="0.0" complexity="1.5">
@@ -553,7 +539,7 @@
 								</line>
 								<line number="41" hits="0" branch="false"/>
 								<line number="44" hits="0" branch="false"/>
-								<line number="48" hits="0" branch="false"/>
+								<line number="47" hits="0" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -566,7 +552,7 @@
 						</line>
 						<line number="41" hits="0" branch="false"/>
 						<line number="44" hits="0" branch="false"/>
-						<line number="48" hits="0" branch="false"/>
+						<line number="47" hits="0" branch="false"/>
 					</lines>
 				</class>
 			</classes>

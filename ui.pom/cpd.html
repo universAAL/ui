@@ -133,226 +133,238 @@
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>251</td></tr>
+<td>250</td></tr>
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>247</td></tr>
+<td>246</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>    public MyVerticalFlowLayout(int align, int hgap, int vgap) {
-	this.hgap = hgap;
-	this.vgap = vgap;
-        setAlignment(align);
-    }
-
-    /**
-     * Gets the alignment for this layout.
-     * Possible values are &lt;code&gt;MyVerticalFlowLayout.TOP&lt;/code&gt;,
-     * &lt;code&gt;MyVerticalFlowLayout.BOTTOM&lt;/code&gt;, &lt;code&gt;MyVerticalFlowLayout.CENTER&lt;/code&gt;,
-     * &lt;code&gt;MyVerticalFlowLayout.LEADING&lt;/code&gt;,
-     * or &lt;code&gt;MyVerticalFlowLayout.TRAILING&lt;/code&gt;.
-     * @return     the alignment value for this layout
-     * @see        org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setAlignment
-     * @since      JDK1.1
-     */
-    public int getAlignment() {
-	return newAlign;
-    }
-
-    /**
-     * Sets the alignment for this layout.
-     * Possible values are
-     * &lt;ul&gt;
-     * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.TOP&lt;/code&gt;
-     * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.BOTTOM&lt;/code&gt;
-     * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.CENTER&lt;/code&gt;
-     * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.LEADING&lt;/code&gt;
-     * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.TRAILING&lt;/code&gt;
-     * &lt;/ul&gt;
-     * @param      align one of the alignment values shown above
-     * @see        #getAlignment()
-     * @since      JDK1.1
-     */
-    public void setAlignment(int align) {
-	this.newAlign = align;
-
-        // this.align is used only for serialization compatibility,
-        // so set it to a value compatible with the 1.1 version
-        // of the class
-
-        switch (align) {
-	case LEADING:
-            this.align = TOP;
-	    break;
-	case TRAILING:
-            this.align = BOTTOM;
-	    break;
-        default:
-            this.align = align;
-	    break;
-        }
-    }
-
-    /**
-     * Gets the horizontal gap between components
-     * and between the components and the borders
-     * of the &lt;code&gt;Container&lt;/code&gt;
-     *
-     * @return     the horizontal gap between components
-     *             and between the components and the borders
-     *             of the &lt;code&gt;Container&lt;/code&gt;
-     * @see        org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setHgap
-     * @since      JDK1.1
-     */
-    public int getHgap() {
-	return hgap;
-    }
-
-    /**
-     * Sets the horizontal gap between components and
-     * between the components and the borders of the
-     * &lt;code&gt;Container&lt;/code&gt;.
-     *
-     * @param hgap the horizontal gap between components
-     *             and between the components and the borders
-     *             of the &lt;code&gt;Container&lt;/code&gt;
-     * @see        org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#getHgap
-     * @since      JDK1.1
-     */
-    public void setHgap(int hgap) {
-	this.hgap = hgap;
-    }
-
-    /**
-     * Gets the vertical gap between components and
-     * between the components and the borders of the
-     * &lt;code&gt;Container&lt;/code&gt;.
-     *
-     * @return     the vertical gap between components
-     *             and between the components and the borders
-     *             of the &lt;code&gt;Container&lt;/code&gt;
-     * @see        org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setVgap
-     * @since      JDK1.1
-     */
-    public int getVgap() {
-	return vgap;
-    }
-
-    /**
-     * Sets the vertical gap between components and between
-     * the components and the borders of the &lt;code&gt;Container&lt;/code&gt;.
-     *
-     * @param vgap the vertical gap between components
-     *             and between the components and the borders
-     *             of the &lt;code&gt;Container&lt;/code&gt;
-     * @see        org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#getVgap
-     * @since      JDK1.1
-     */
-    public void setVgap(int vgap) {
-	this.vgap = vgap;
-    }
-
-    /**
-     * Adds the specified component to the layout.
-     * Not used by this class.
-     * @param name the name of the component
-     * @param comp the component to be added
-     */
-    public void addLayoutComponent(String name, Component comp) {
-    }
-
-    /**
-     * Removes the specified component from the layout.
-     * Not used by this class.
-     * @param comp the component to remove
-     * @see       java.awt.Container#removeAll
-     */
-    public void removeLayoutComponent(Component comp) {
-    }
-
-    /**
-     * Returns the preferred dimensions for this layout given the 
-     * &lt;i&gt;visible&lt;/i&gt; components in the specified target container.
-     *
-     * @param target the container that needs to be laid out
-     * @return    the preferred dimensions to lay out the
-     *            subcomponents of the specified container
-     * @see Container
-     * @see #minimumLayoutSize
-     * @see       java.awt.Container#getPreferredSize
-     */
-    public Dimension preferredLayoutSize(Container target) {
-      synchronized (target.getTreeLock()) {
-	Dimension dim = new Dimension(0, 0);
-	int nmembers = target.getComponentCount();
-        boolean firstVisibleComponent = true;
-
-	for (int i = 0 ; i &lt; nmembers ; i++) {
-	    Component m = target.getComponent(i);
-	    if (m.isVisible()) {
-		Dimension d = m.getPreferredSize();
-		dim.width = Math.max(dim.width, d.width);
-                if (firstVisibleComponent) {
-                    firstVisibleComponent = false;
-                } else {
-                    dim.height += vgap;
-                }
-		dim.height += d.height;
-	    }
+<pre>	public MyVerticalFlowLayout(int align, int hgap, int vgap) {
+		this.hgap = hgap;
+		this.vgap = vgap;
+		setAlignment(align);
 	}
 
-	Insets insets = target.getInsets();
-	dim.width += insets.left + insets.right + hgap*2;
-	dim.height += insets.top + insets.bottom + vgap*2;
-	return dim;
-      }
-    }
+	/**
+	 * Gets the alignment for this layout. Possible values are
+	 * &lt;code&gt;MyVerticalFlowLayout.TOP&lt;/code&gt;,
+	 * &lt;code&gt;MyVerticalFlowLayout.BOTTOM&lt;/code&gt;,
+	 * &lt;code&gt;MyVerticalFlowLayout.CENTER&lt;/code&gt;,
+	 * &lt;code&gt;MyVerticalFlowLayout.LEADING&lt;/code&gt;, or
+	 * &lt;code&gt;MyVerticalFlowLayout.TRAILING&lt;/code&gt;.
+	 * 
+	 * @return the alignment value for this layout
+	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setAlignment
+	 * @since JDK1.1
+	 */
+	public int getAlignment() {
+		return newAlign;
+	}
 
-    /**
-     * Returns the minimum dimensions needed to layout the &lt;i&gt;visible&lt;/i&gt;
-     * components contained in the specified target container.
-     * @param target the container that needs to be laid out
-     * @return    the minimum dimensions to lay out the
-     *            subcomponents of the specified container
-     * @see #preferredLayoutSize
-     * @see       java.awt.Container
-     * @see       java.awt.Container#doLayout
-     */
-    public Dimension minimumLayoutSize(Container target) {
-      synchronized (target.getTreeLock()) {
-	Dimension dim = new Dimension(0, 0);
-	int nmembers = target.getComponentCount();
+	/**
+	 * Sets the alignment for this layout. Possible values are
+	 * &lt;ul&gt;
+	 * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.TOP&lt;/code&gt;
+	 * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.BOTTOM&lt;/code&gt;
+	 * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.CENTER&lt;/code&gt;
+	 * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.LEADING&lt;/code&gt;
+	 * &lt;li&gt;&lt;code&gt;MyVerticalFlowLayout.TRAILING&lt;/code&gt;
+	 * &lt;/ul&gt;
+	 * 
+	 * @param align
+	 *            one of the alignment values shown above
+	 * @see #getAlignment()
+	 * @since JDK1.1
+	 */
+	public void setAlignment(int align) {
+		this.newAlign = align;
 
-	for (int i = 0 ; i &lt; nmembers ; i++) {
-	    Component m = target.getComponent(i);
-	    if (m.isVisible()) {
-		Dimension d = m.getMinimumSize();
-		dim.width = Math.max(dim.width, d.width);
-		if (i &gt; 0) {
-		    dim.height += vgap;
+		// this.align is used only for serialization compatibility,
+		// so set it to a value compatible with the 1.1 version
+		// of the class
+
+		switch (align) {
+		case LEADING:
+			this.align = TOP;
+			break;
+		case TRAILING:
+			this.align = BOTTOM;
+			break;
+		default:
+			this.align = align;
+			break;
 		}
-		dim.height += d.height;
-	    }
 	}
-	Insets insets = target.getInsets();
-	dim.width += insets.left + insets.right + hgap*2;
-	dim.height += insets.top + insets.bottom + vgap*2;
-	return dim;
-      }
-    }
 
-    /**
-     * Centers the elements in the specified row, if there is any slack.
-     * @param target the component which needs to be moved
-     * @param x the x coordinate
-     * @param y the y coordinate
-     * @param width the width dimensions
-     * @param height the height dimensions
-     * @param colStart the beginning of the row
-     * @param colEnd the the ending of the row
-     */
-    private int moveComponents(Container target, int x, int y, int width, int height,</pre></div></td></tr></table>
+	/**
+	 * Gets the horizontal gap between components and between the components and
+	 * the borders of the &lt;code&gt;Container&lt;/code&gt;
+	 *
+	 * @return the horizontal gap between components and between the components
+	 *         and the borders of the &lt;code&gt;Container&lt;/code&gt;
+	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setHgap
+	 * @since JDK1.1
+	 */
+	public int getHgap() {
+		return hgap;
+	}
+
+	/**
+	 * Sets the horizontal gap between components and between the components and
+	 * the borders of the &lt;code&gt;Container&lt;/code&gt;.
+	 *
+	 * @param hgap
+	 *            the horizontal gap between components and between the
+	 *            components and the borders of the &lt;code&gt;Container&lt;/code&gt;
+	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#getHgap
+	 * @since JDK1.1
+	 */
+	public void setHgap(int hgap) {
+		this.hgap = hgap;
+	}
+
+	/**
+	 * Gets the vertical gap between components and between the components and
+	 * the borders of the &lt;code&gt;Container&lt;/code&gt;.
+	 *
+	 * @return the vertical gap between components and between the components
+	 *         and the borders of the &lt;code&gt;Container&lt;/code&gt;
+	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setVgap
+	 * @since JDK1.1
+	 */
+	public int getVgap() {
+		return vgap;
+	}
+
+	/**
+	 * Sets the vertical gap between components and between the components and
+	 * the borders of the &lt;code&gt;Container&lt;/code&gt;.
+	 *
+	 * @param vgap
+	 *            the vertical gap between components and between the components
+	 *            and the borders of the &lt;code&gt;Container&lt;/code&gt;
+	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#getVgap
+	 * @since JDK1.1
+	 */
+	public void setVgap(int vgap) {
+		this.vgap = vgap;
+	}
+
+	/**
+	 * Adds the specified component to the layout. Not used by this class.
+	 * 
+	 * @param name
+	 *            the name of the component
+	 * @param comp
+	 *            the component to be added
+	 */
+	public void addLayoutComponent(String name, Component comp) {
+	}
+
+	/**
+	 * Removes the specified component from the layout. Not used by this class.
+	 * 
+	 * @param comp
+	 *            the component to remove
+	 * @see java.awt.Container#removeAll
+	 */
+	public void removeLayoutComponent(Component comp) {
+	}
+
+	/**
+	 * Returns the preferred dimensions for this layout given the &lt;i&gt;visible&lt;/i&gt;
+	 * components in the specified target container.
+	 *
+	 * @param target
+	 *            the container that needs to be laid out
+	 * @return the preferred dimensions to lay out the subcomponents of the
+	 *         specified container
+	 * @see Container
+	 * @see #minimumLayoutSize
+	 * @see java.awt.Container#getPreferredSize
+	 */
+	public Dimension preferredLayoutSize(Container target) {
+		synchronized (target.getTreeLock()) {
+			Dimension dim = new Dimension(0, 0);
+			int nmembers = target.getComponentCount();
+			boolean firstVisibleComponent = true;
+
+			for (int i = 0; i &lt; nmembers; i++) {
+				Component m = target.getComponent(i);
+				if (m.isVisible()) {
+					Dimension d = m.getPreferredSize();
+					dim.width = Math.max(dim.width, d.width);
+					if (firstVisibleComponent) {
+						firstVisibleComponent = false;
+					} else {
+						dim.height += vgap;
+					}
+					dim.height += d.height;
+				}
+			}
+
+			Insets insets = target.getInsets();
+			dim.width += insets.left + insets.right + hgap * 2;
+			dim.height += insets.top + insets.bottom + vgap * 2;
+			return dim;
+		}
+	}
+
+	/**
+	 * Returns the minimum dimensions needed to layout the &lt;i&gt;visible&lt;/i&gt;
+	 * components contained in the specified target container.
+	 * 
+	 * @param target
+	 *            the container that needs to be laid out
+	 * @return the minimum dimensions to lay out the subcomponents of the
+	 *         specified container
+	 * @see #preferredLayoutSize
+	 * @see java.awt.Container
+	 * @see java.awt.Container#doLayout
+	 */
+	public Dimension minimumLayoutSize(Container target) {
+		synchronized (target.getTreeLock()) {
+			Dimension dim = new Dimension(0, 0);
+			int nmembers = target.getComponentCount();
+
+			for (int i = 0; i &lt; nmembers; i++) {
+				Component m = target.getComponent(i);
+				if (m.isVisible()) {
+					Dimension d = m.getMinimumSize();
+					dim.width = Math.max(dim.width, d.width);
+					if (i &gt; 0) {
+						dim.height += vgap;
+					}
+					dim.height += d.height;
+				}
+			}
+			Insets insets = target.getInsets();
+			dim.width += insets.left + insets.right + hgap * 2;
+			dim.height += insets.top + insets.bottom + vgap * 2;
+			return dim;
+		}
+	}
+
+	/**
+	 * Centers the elements in the specified row, if there is any slack.
+	 * 
+	 * @param target
+	 *            the component which needs to be moved
+	 * @param x
+	 *            the x coordinate
+	 * @param y
+	 *            the y coordinate
+	 * @param width
+	 *            the width dimensions
+	 * @param height
+	 *            the height dimensions
+	 * @param colStart
+	 *            the beginning of the row
+	 * @param colEnd
+	 *            the the ending of the row
+	 */
+	private int moveComponents(Container target, int x, int y, int width, int height, int colStart, int colEnd,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -365,87 +377,87 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>100</td></tr>
+<td>98</td></tr>
 <tr class="b"><td colspan='3'>
 <div>
-<pre>	JPanel combined = new JPanel(new BorderLayout(5, 5));
-//	combined.add(new JLabel(&quot; &quot;), BorderLayout.EAST);
-//	combined.add(new JLabel(&quot; &quot;), BorderLayout.NORTH);
-//	combined.add(new JLabel(&quot; &quot;), BorderLayout.SOUTH);
-	combined.add(center, BorderLayout.CENTER);
-	if (form.getLabel() != null) {
-	    String title = form.getLabel().getText();
-	    if (title != null &amp;&amp; !title.isEmpty()) {
-		combined.add(new JLabel(title), BorderLayout.WEST);
-	    }/* else {
-		combined.add(new JLabel(&quot; &quot;), BorderLayout.WEST);
-	    }*/
+<pre>		JPanel combined = new JPanel(new BorderLayout(5, 5));
+		// combined.add(new JLabel(&quot; &quot;), BorderLayout.EAST);
+		// combined.add(new JLabel(&quot; &quot;), BorderLayout.NORTH);
+		// combined.add(new JLabel(&quot; &quot;), BorderLayout.SOUTH);
+		combined.add(center, BorderLayout.CENTER);
+		if (form.getLabel() != null) {
+			String title = form.getLabel().getText();
+			if (title != null &amp;&amp; !title.isEmpty()) {
+				combined.add(new JLabel(title), BorderLayout.WEST);
+			} /*
+				 * else { combined.add(new JLabel(&quot; &quot;), BorderLayout.WEST); }
+				 */
+		}
+		return combined;
 	}
-	return combined;
-    }
 
-    @Override
+	@Override
 	public void update() {
-	// Do nothing to avoid super
-    }
-
-    // TODO Remove this by making it public in model
-    public class SelectionTreeModel implements TreeModel {
-	Label[] root;
-
-	public Object getRoot() {
-	    root = ((Select) fc).getChoices();
-	    if (root.length == 1) {
-		return root[1];
-	    } else {
-		return root;
-	    }
+		// Do nothing to avoid super
 	}
 
-	public Object getChild(Object parent, int index) {
-	    if (parent == root) {
-		return root[index];
-	    } else {
-		return ((ChoiceList) parent).getChildren()[index];
-	    }
-	}
+	// TODO Remove this by making it public in model
+	public class SelectionTreeModel implements TreeModel {
+		Label[] root;
 
-	public int getChildCount(Object parent) {
-	    if (parent == root) {
-		return root.length;
-	    } else {
-		return ((ChoiceList) parent).getChildren().length;
-	    }
-	}
+		public Object getRoot() {
+			root = ((Select) fc).getChoices();
+			if (root.length == 1) {
+				return root[1];
+			} else {
+				return root;
+			}
+		}
 
-	public boolean isLeaf(Object node) {
-	    if (node == root) {
-		return root.length == 0;
-	    } else {
-		return node instanceof ChoiceItem;
-	    }
-	}
+		public Object getChild(Object parent, int index) {
+			if (parent == root) {
+				return root[index];
+			} else {
+				return ((ChoiceList) parent).getChildren()[index];
+			}
+		}
 
-	public void valueForPathChanged(TreePath path, Object newValue) {
-	    // XXX editable trees?
-	}
+		public int getChildCount(Object parent) {
+			if (parent == root) {
+				return root.length;
+			} else {
+				return ((ChoiceList) parent).getChildren().length;
+			}
+		}
 
-	public int getIndexOfChild(Object parent, Object child) {
-	    Label[] children = ((ChoiceList) parent).getChildren();
-	    int i = 0;
-	    while (i &lt; children.length &amp;&amp; children[i] != child) {
-		i++;
-	    }
-	    return i;
-	}
+		public boolean isLeaf(Object node) {
+			if (node == root) {
+				return root.length == 0;
+			} else {
+				return node instanceof ChoiceItem;
+			}
+		}
 
-	public void addTreeModelListener(TreeModelListener l) {
-	}
+		public void valueForPathChanged(TreePath path, Object newValue) {
+			// XXX editable trees?
+		}
 
-	public void removeTreeModelListener(TreeModelListener l) {
-	}
+		public int getIndexOfChild(Object parent, Object child) {
+			Label[] children = ((ChoiceList) parent).getChildren();
+			int i = 0;
+			while (i &lt; children.length &amp;&amp; children[i] != child) {
+				i++;
+			}
+			return i;
+		}
 
-    }
+		public void addTreeModelListener(TreeModelListener l) {
+		}
+
+		public void removeTreeModelListener(TreeModelListener l) {
+		}
+
+	}
 
 	@Override
 	public void updateAsMissing() {
@@ -464,69 +476,69 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>127</td></tr>
+<td>121</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/SelectModel.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>169</td></tr>
+<td>168</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public class SelectionTreeModel implements TreeModel {
-	Label[] root;
+<pre>	public class SelectionTreeModel implements TreeModel {
+		Label[] root;
 
-	public Object getRoot() {
-	    root = ((Select) fc).getChoices();
-	    if (root.length == 1) {
-		return root[1];
-	    } else {
-		return root;
-	    }
-	}
+		public Object getRoot() {
+			root = ((Select) fc).getChoices();
+			if (root.length == 1) {
+				return root[1];
+			} else {
+				return root;
+			}
+		}
 
-	public Object getChild(Object parent, int index) {
-	    if (parent == root) {
-		return root[index];
-	    } else {
-		return ((ChoiceList) parent).getChildren()[index];
-	    }
-	}
+		public Object getChild(Object parent, int index) {
+			if (parent == root) {
+				return root[index];
+			} else {
+				return ((ChoiceList) parent).getChildren()[index];
+			}
+		}
 
-	public int getChildCount(Object parent) {
-	    if (parent == root) {
-		return root.length;
-	    } else {
-		return ((ChoiceList) parent).getChildren().length;
-	    }
-	}
+		public int getChildCount(Object parent) {
+			if (parent == root) {
+				return root.length;
+			} else {
+				return ((ChoiceList) parent).getChildren().length;
+			}
+		}
 
-	public boolean isLeaf(Object node) {
-	    if (node == root) {
-		return root.length == 0;
-	    } else {
-		return node instanceof ChoiceItem;
-	    }
-	}
+		public boolean isLeaf(Object node) {
+			if (node == root) {
+				return root.length == 0;
+			} else {
+				return node instanceof ChoiceItem;
+			}
+		}
 
-	public void valueForPathChanged(TreePath path, Object newValue) {
-	    // XXX editable trees?
-	}
+		public void valueForPathChanged(TreePath path, Object newValue) {
+			// XXX editable trees?
+		}
 
-	public int getIndexOfChild(Object parent, Object child) {
-	    Label[] children = ((ChoiceList) parent).getChildren();
-	    int i = 0;
-	    while (i &lt; children.length &amp;&amp; children[i] != child) {
-		i++;
-	    }
-	    return i;
-	}
+		public int getIndexOfChild(Object parent, Object child) {
+			Label[] children = ((ChoiceList) parent).getChildren();
+			int i = 0;
+			while (i &lt; children.length &amp;&amp; children[i] != child) {
+				i++;
+			}
+			return i;
+		}
 
-	public void addTreeModelListener(TreeModelListener l) {
-	}
+		public void addTreeModelListener(TreeModelListener l) {
+		}
 
-	public void removeTreeModelListener(TreeModelListener l) {
-	}
+		public void removeTreeModelListener(TreeModelListener l) {
+		}
 
-    }</pre></div></td></tr></table>
+	}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -535,53 +547,53 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>507</td></tr>
+<td>518</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>492</td></tr>
+<td>503</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    }
+<pre>	}
 
-    /**
-     * Lays out the container. This method lets each 
-     * &lt;i&gt;visible&lt;/i&gt; component take
-     * its preferred size by reshaping the components in the
-     * target container in order to satisfy the alignment of
-     * this &lt;code&gt;MyVerticalFlowLayout&lt;/code&gt; object.
-     *
-     * @param target the specified component being laid out
-     * @see Container
-     * @see       java.awt.Container#doLayout
-     */
-    public void layoutContainer(Container target) {
-      synchronized (target.getTreeLock()) {
-	Insets insets = target.getInsets();
-	int maxwidth = target.getWidth() - (insets.left + insets.right + hgap*2);
-	int maxheight = target.getHeight() - (insets.top + insets.bottom + vgap*2);
-	int nmembers = target.getComponentCount();
-	int x = insets.left + hgap, y = 0;
-	int colw = 0, start = 0;
+	/**
+	 * Lays out the container. This method lets each &lt;i&gt;visible&lt;/i&gt; component
+	 * take its preferred size by reshaping the components in the target
+	 * container in order to satisfy the alignment of this
+	 * &lt;code&gt;MyVerticalFlowLayout&lt;/code&gt; object.
+	 *
+	 * @param target
+	 *            the specified component being laid out
+	 * @see Container
+	 * @see java.awt.Container#doLayout
+	 */
+	public void layoutContainer(Container target) {
+		synchronized (target.getTreeLock()) {
+			Insets insets = target.getInsets();
+			int maxwidth = target.getWidth() - (insets.left + insets.right + hgap * 2);
+			int maxheight = target.getHeight() - (insets.top + insets.bottom + vgap * 2);
+			int nmembers = target.getComponentCount();
+			int x = insets.left + hgap, y = 0;
+			int colw = 0, start = 0;
 
-        boolean ltr = target.getComponentOrientation().isLeftToRight();
+			boolean ltr = target.getComponentOrientation().isLeftToRight();
 
-	for (int i = 0 ; i &lt; nmembers ; i++) {
-	    Component m = target.getComponent(i);
-	    if (m.isVisible()) {
-		Dimension d = m.getPreferredSize();
-		if (maximizeOtherDimension) {
-			d.width = maxwidth;
-		}
-		m.setSize(d.width, d.height);
+			for (int i = 0; i &lt; nmembers; i++) {
+				Component m = target.getComponent(i);
+				if (m.isVisible()) {
+					Dimension d = m.getPreferredSize();
+					if (maximizeOtherDimension) {
+						d.width = maxwidth;
+					}
+					m.setSize(d.width, d.height);
 
-		if ((y == 0) || ((y + d.height) &lt;= maxheight)) {
-		    if (y &gt; 0) {
-			y += vgap;
-		    }
-		    y += d.height;
-		    colw = Math.max(colw, d.width);
-		} else {</pre></div></td></tr></table>
+					if ((y == 0) || ((y + d.height) &lt;= maxheight)) {
+						if (y &gt; 0) {
+							y += vgap;
+						}
+						y += d.height;
+						colw = Math.max(colw, d.width);
+					} else {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -590,51 +602,46 @@
 <tr class="a">
 <td>org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>184</td></tr>
+<td>158</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>272</td></tr>
+<td>232</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	alertPref.setAlertOption(AlertType.visualAndAudio);
-	uiPrefsSubProfile.setAlertPreferences(alertPref);
+<pre>		alertPref.setAlertOption(AlertType.visualAndAudio);
+		uiPrefsSubProfile.setAlertPreferences(alertPref);
 
-	AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI()
-		+ &quot;AccessMode&quot;);
-	accessMode.setAuditoryModeStatus(Status.on);
-	accessMode.setOlfactoryModeStatus(Status.off);
-	accessMode.setTactileModeStatus(Status.off);
-	accessMode.setVisualModeStatus(Status.on);
-	accessMode.setTextualModeStatus(Status.on);
-	uiPrefsSubProfile.setAccessMode(accessMode);
+		AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI() + &quot;AccessMode&quot;);
+		accessMode.setAuditoryModeStatus(Status.on);
+		accessMode.setOlfactoryModeStatus(Status.off);
+		accessMode.setTactileModeStatus(Status.off);
+		accessMode.setVisualModeStatus(Status.on);
+		accessMode.setTextualModeStatus(Status.on);
+		uiPrefsSubProfile.setAccessMode(accessMode);
 
-	AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
-		uiPrefsSubProfile.getURI() + &quot;AuditoryPreferences&quot;);
-	auditoryPreferences.setKeySoundStatus(Status.off);
-	auditoryPreferences.setPitch(Intensity.medium);
-	auditoryPreferences.setSpeechRate(Intensity.medium);
-	auditoryPreferences.setVolume(Intensity.medium);
-	auditoryPreferences.setVoiceGender(VoiceGender.female);
-	auditoryPreferences.setSystemSounds(Status.on);
-	uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
+		AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
+				uiPrefsSubProfile.getURI() + &quot;AuditoryPreferences&quot;);
+		auditoryPreferences.setKeySoundStatus(Status.off);
+		auditoryPreferences.setPitch(Intensity.medium);
+		auditoryPreferences.setSpeechRate(Intensity.medium);
+		auditoryPreferences.setVolume(Intensity.medium);
+		auditoryPreferences.setVoiceGender(VoiceGender.female);
+		auditoryPreferences.setSystemSounds(Status.on);
+		uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
 
-	SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
-		uiPrefsSubProfile.getURI() + &quot;SystemMenuPreferences&quot;);
-	systemMenuPreferences
-		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setUIRequestPersistance(Status.on);
-	systemMenuPreferences
-		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
-	systemMenuPreferences
-		.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
-	systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
-	uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
+		SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
+				uiPrefsSubProfile.getURI() + &quot;SystemMenuPreferences&quot;);
+		systemMenuPreferences.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
+		systemMenuPreferences.setUIRequestPersistance(Status.on);
+		systemMenuPreferences.setPendingDialogBuilder(PendingDialogsBuilderType.table);
+		systemMenuPreferences.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
+		systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
+		uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
 
-	VisualPreferences visualPreferences = new VisualPreferences(
-		uiPrefsSubProfile.getURI() + &quot;VisualPreferences&quot;);
-	visualPreferences.setBackgroundColor(ColorType.lightBlue);
-	visualPreferences.setComponentSpacing(Intensity.medium);</pre></div></td></tr></table>
+		VisualPreferences visualPreferences = new VisualPreferences(uiPrefsSubProfile.getURI() + &quot;VisualPreferences&quot;);
+		visualPreferences.setBackgroundColor(ColorType.lightBlue);
+		visualPreferences.setComponentSpacing(Intensity.medium);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -643,11 +650,11 @@
 <tr class="a">
 <td>org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>106</td></tr>
+<td>97</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>53</td></tr>
+<td>52</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
@@ -672,7 +679,7 @@
 			Resource msgList = new Resource();
 			msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 			msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-			f = Form.newDialog(messageLocaleHelper</pre></div></td></tr></table>
+			f = Form.newDialog(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), msgList);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -681,70 +688,68 @@
 <tr class="a">
 <td>org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>73</td></tr>
+<td>69</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>76</td></tr>
+<td>72</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public ClassicSystemMenuProvider(UserDialogManager udm) {
-	userDM = udm;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.universAAL
-     * .middleware.ui.UIResponse)
-     */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-//	if (EXIT_CALL.equals(submissionID)) {
-	    // XXX: do nothing?
-//	}
-	if (MENU_CALL.equals(submissionID)) {
-	    userDM.showMainMenu();
-	}
-	if (MESSAGES_CALL.equals(submissionID)) {
-	    userDM.openPendingMessagedDialog();
-	}
-	if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-	    userDM.openPendingDialogsDialog();
+<pre>	public ClassicSystemMenuProvider(UserDialogManager udm) {
+		userDM = udm;
 	}
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.
+	 * universAAL .middleware.ui.UIResponse)
+	 */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		// if (EXIT_CALL.equals(submissionID)) {
+		// XXX: do nothing?
+		// }
+		if (MENU_CALL.equals(submissionID)) {
+			userDM.showMainMenu();
+		}
+		if (MESSAGES_CALL.equals(submissionID)) {
+			userDM.openPendingMessagedDialog();
+		}
+		if (OPEN_DIALOGS_CALL.equals(submissionID)) {
+			userDM.openPendingDialogsDialog();
+		}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#listDeclaredSubmitIds
-     * ()
-     */
-    public Set&lt;String&gt; listDeclaredSubmitIds() {
-	TreeSet&lt;String&gt; s = new TreeSet&lt;String&gt;();
-	s.add(EXIT_CALL);
-	s.add(MENU_CALL);
-	s.add(MESSAGES_CALL);
-	s.add(OPEN_DIALOGS_CALL);
-	return s;
-    }
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
-     * universAAL.middleware.ui.UIRequest)
-     */
-    public Group getSystemMenu(UIRequest request) {
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	Form f = request.getDialogForm();
-	Group stdButtons = f.getStandardButtons();
-	switch (f.getDialogType().ord()) {
-	case DialogType.SYS_MENU:</pre></div></td></tr></table>
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#
+	 * listDeclaredSubmitIds ()
+	 */
+	public Set&lt;String&gt; listDeclaredSubmitIds() {
+		TreeSet&lt;String&gt; s = new TreeSet&lt;String&gt;();
+		s.add(EXIT_CALL);
+		s.add(MENU_CALL);
+		s.add(MESSAGES_CALL);
+		s.add(OPEN_DIALOGS_CALL);
+		return s;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
+	 * universAAL.middleware.ui.UIRequest)
+	 */
+	public Group getSystemMenu(UIRequest request) {
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		Form f = request.getDialogForm();
+		Group stdButtons = f.getStandardButtons();
+		switch (f.getDialogType().ord()) {
+		case DialogType.SYS_MENU:</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -753,83 +758,81 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>548</td></tr>
+<td>560</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>533</td></tr>
+<td>544</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		    colw=moveComponents(target, x, insets.top + vgap, colw, maxheight - y, start, i, ltr);
-		    y = d.height;
-		    x += hgap + colw;
-		    colw = d.width;
-		    start = i;
+<pre>						colw = moveComponents(target, x, insets.top + vgap, colw, maxheight - y, start, i, ltr);
+						y = d.height;
+						x += hgap + colw;
+						colw = d.width;
+						start = i;
+					}
+				}
+			}
+			moveComponents(target, x, insets.top + vgap, colw, maxheight - y, start, nmembers, ltr);
 		}
-	    }
 	}
-	moveComponents(target, x, insets.top + vgap, colw, maxheight - y, start, nmembers, ltr);
-      }
-    }
 
-    //
-    // the internal serial version which says which version was written
-    // - 0 (default) for versions before the Java 2 platform, v1.2
-    // - 1 for version &gt;= Java 2 platform v1.2, which includes &quot;newAlign&quot; field
-    //
-    private static final int currentSerialVersion = 1;
-    /**
-     * This represent the &lt;code&gt;currentSerialVersion&lt;/code&gt;
-     * which is bein used.  It will be one of two values :
-     * &lt;code&gt;0&lt;/code&gt; versions before Java 2 platform v1.2..
-     * &lt;code&gt;1&lt;/code&gt; versions after  Java 2 platform v1.2..
-     *
-     * @serial
-     * @since 1.2
-     */
-    private int serialVersionOnStream = currentSerialVersion;
+	//
+	// the internal serial version which says which version was written
+	// - 0 (default) for versions before the Java 2 platform, v1.2
+	// - 1 for version &gt;= Java 2 platform v1.2, which includes &quot;newAlign&quot; field
+	//
+	private static final int currentSerialVersion = 1;
+	/**
+	 * This represent the &lt;code&gt;currentSerialVersion&lt;/code&gt; which is bein used.
+	 * It will be one of two values : &lt;code&gt;0&lt;/code&gt; versions before Java 2
+	 * platform v1.2.. &lt;code&gt;1&lt;/code&gt; versions after Java 2 platform v1.2..
+	 *
+	 * @serial
+	 * @since 1.2
+	 */
+	private int serialVersionOnStream = currentSerialVersion;
 
-    /**
-     * Reads this object out of a serialization stream, handling
-     * objects written by older versions of the class that didn't contain all
-     * of the fields we use now..
-     */
-    private void readObject(ObjectInputStream stream)
-         throws IOException, ClassNotFoundException
-    {
-        stream.defaultReadObject();
+	/**
+	 * Reads this object out of a serialization stream, handling objects written
+	 * by older versions of the class that didn't contain all of the fields we
+	 * use now..
+	 */
+	private void readObject(ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		stream.defaultReadObject();
 
-        if (serialVersionOnStream &lt; 1) {
-            // &quot;newAlign&quot; field wasn't present, so use the old &quot;align&quot; field.
-            setAlignment(this.align);
-        }
-        serialVersionOnStream = currentSerialVersion;
-    }
+		if (serialVersionOnStream &lt; 1) {
+			// &quot;newAlign&quot; field wasn't present, so use the old &quot;align&quot; field.
+			setAlignment(this.align);
+		}
+		serialVersionOnStream = currentSerialVersion;
+	}
 
-    /**
-     * Returns a string representation of this &lt;code&gt;MyVerticalFlowLayout&lt;/code&gt;
-     * object and its values.
-     * @return     a string representation of this layout
-     */
-    public String toString() {
-	String str = &quot;&quot;;
-	switch (align) {
-	case TOP:
-	    str = &quot;,align=top&quot;;
-	    break;
-	case CENTER:
-	    str = &quot;,align=center&quot;;
-	    break;
-	case BOTTOM:
-	    str = &quot;,align=bottom&quot;;
-	    break;
-	case LEADING:
-	    str = &quot;,align=leading&quot;;
-	    break;
-	case TRAILING:
-	    str = &quot;,align=trailing&quot;;
-	    break;
-	default: // =CENTER</pre></div></td></tr></table>
+	/**
+	 * Returns a string representation of this &lt;code&gt;MyVerticalFlowLayout&lt;/code&gt;
+	 * object and its values.
+	 * 
+	 * @return a string representation of this layout
+	 */
+	public String toString() {
+		String str = &quot;&quot;;
+		switch (align) {
+		case TOP:
+			str = &quot;,align=top&quot;;
+			break;
+		case CENTER:
+			str = &quot;,align=center&quot;;
+			break;
+		case BOTTOM:
+			str = &quot;,align=bottom&quot;;
+			break;
+		case LEADING:
+			str = &quot;,align=leading&quot;;
+			break;
+		case TRAILING:
+			str = &quot;,align=trailing&quot;;
+			break;
+		default: // =CENTER</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -838,36 +841,36 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>89</td></tr>
+<td>94</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>99</td></tr>
+<td>107</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		if(height&lt;SubmitLAF.MIN_HEIGHT)height=SubmitLAF.MIN_HEIGHT;
-		Image img, newimg;
-		img = ColorLAF.button_normal.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setIcon(new ImageIcon( newimg ));
-		
-		img = ColorLAF.button_pressed.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setPressedIcon(new ImageIcon( newimg ));
-		
-		img = ColorLAF.button_focused.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setRolloverIcon(new ImageIcon( newimg ));
-//		}
-	    }
+<pre>					height = SubmitLAF.MIN_HEIGHT;
+				Image img, newimg;
+				img = ColorLAF.button_normal.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setIcon(new ImageIcon(newimg));
+
+				img = ColorLAF.button_pressed.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setPressedIcon(new ImageIcon(newimg));
+
+				img = ColorLAF.button_focused.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setRolloverIcon(new ImageIcon(newimg));
+				// }
+			}
+		}
 	}
-    }
-    
-    public void componentMoved(ComponentEvent e) {
-    }
-    
-    public void componentHidden(ComponentEvent e) {
-    }
+
+	public void componentMoved(ComponentEvent e) {
+	}
+
+	public void componentHidden(ComponentEvent e) {
+	}
 
 }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
@@ -885,24 +888,24 @@
 <td>40</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	public void update(){
+<pre>	public void update() {
 		super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-        ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
-        ((JPanel)jc).setLayout(new FormLayout(color.getGap()));
-        needsLabel = false;
-        Component[] comps = ((JPanel)jc).getComponents();
+		ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
+		((JPanel) jc).setLayout(new FormLayout(color.getGap()));
+		needsLabel = false;
+		Component[] comps = ((JPanel) jc).getComponents();
 		for (int i = 0; i &lt; comps.length; i++) {
 			comps[i].setMinimumSize(comps[i].getPreferredSize());
-			((JComponent)comps[i]).setOpaque(false);
-			((JComponent)comps[i]).setToolTipText(((AbstractButton)comps[i]).getText());
+			((JComponent) comps[i]).setOpaque(false);
+			((JComponent) comps[i]).setToolTipText(((AbstractButton) comps[i]).getText());
 		}
 	}
-	
+
 	@Override
 	public void updateAsMissing() {
-	    //XXX change coluo?
-		
+		// XXX change coluo?
+
 	}
 
 }</pre></div></td></tr></table>
@@ -914,20 +917,21 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelGrid.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>141</td></tr>
+<td>142</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelTable.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>137</td></tr>
+<td>133</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>			buttonPanel.add(new DeleteTableButton());
 		}
 		return buttonPanel;
 	}
-	
+
 	/**
 	 * Class representing the Add button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class AddTableButton extends JButton implements ActionListener {
@@ -935,19 +939,19 @@
 		public AddTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Add&quot;);
+			this.setName(fc.getURI() + &quot;_Add&quot;);
 		}
 
 		public AddTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Add&quot;);
+			this.setName(fc.getURI() + &quot;_Add&quot;);
 		}
 
 		public AddTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Add&quot;);
+			this.setName(fc.getURI() + &quot;_Add&quot;);
 		}
 
 		/**
@@ -961,10 +965,10 @@
 		public AddTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Add&quot;);
+			this.setName(fc.getURI() + &quot;_Add&quot;);
 		}
 
-		/** {@inheritDoc}*/
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -974,11 +978,11 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelGrid.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>192</td></tr>
+<td>194</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelTable.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>185</td></tr>
+<td>182</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
 <pre>				}
@@ -988,6 +992,7 @@
 
 	/**
 	 * Class representing the Delete button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class DeleteTableButton extends JButton implements ActionListener {
@@ -995,19 +1000,19 @@
 		public DeleteTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Delete&quot;);
+			this.setName(fc.getURI() + &quot;_Delete&quot;);
 		}
 
 		public DeleteTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Delete&quot;);
+			this.setName(fc.getURI() + &quot;_Delete&quot;);
 		}
 
 		public DeleteTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Delete&quot;);
+			this.setName(fc.getURI() + &quot;_Delete&quot;);
 		}
 
 		/**
@@ -1015,17 +1020,16 @@
 		 */
 		private static final long serialVersionUID = 1L;
 
-		
 		/**
 		 * Constructor for Remove Button
 		 */
 		public DeleteTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+&quot;_Delete&quot;);
+			this.setName(fc.getURI() + &quot;_Delete&quot;);
 		}
-		
-		/** {@inheritDoc}*/
+
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
@@ -1035,31 +1039,30 @@
 <tr class="a">
 <td>org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Bluesteel</td>
-<td>116</td></tr>
+<td>102</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupLAF.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>49</td></tr>
+<td>48</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>        else {
-        	LevelRating complexity = ((Group) fc).getComplexity();
-            if (((Group) fc).isRootGroup()
-                    || complexity == LevelRating.none) {
-                wrap = new GroupPanelLAF((Group) fc, getRenderer());
-            }
-            if (complexity == LevelRating.low ) {
-                wrap = new GroupPanelLAF((Group) fc, getRenderer());
-            }
-            if (complexity == LevelRating.middle ) {
-                wrap = new GroupPanelLAF((Group) fc, getRenderer());
-            }
-            if (complexity == LevelRating.high ) {
-                wrap = new GroupPanelLAF((Group) fc, getRenderer());
-            }
-            if (complexity == LevelRating.full) {
-                wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
-            }</pre></div></td></tr></table>
+<pre>		} else {
+			LevelRating complexity = ((Group) fc).getComplexity();
+			if (((Group) fc).isRootGroup() || complexity == LevelRating.none) {
+				wrap = new GroupPanelLAF((Group) fc, getRenderer());
+			}
+			if (complexity == LevelRating.low) {
+				wrap = new GroupPanelLAF((Group) fc, getRenderer());
+			}
+			if (complexity == LevelRating.middle) {
+				wrap = new GroupPanelLAF((Group) fc, getRenderer());
+			}
+			if (complexity == LevelRating.high) {
+				wrap = new GroupPanelLAF((Group) fc, getRenderer());
+			}
+			if (complexity == LevelRating.full) {
+				wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
+			}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1068,37 +1071,37 @@
 <tr class="a">
 <td>org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Bluesteel</td>
-<td>91</td></tr>
+<td>89</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>99</td></tr>
+<td>96</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>				layout = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
+<pre>				layout = new GridUnitLayout(gap, ((GridLayout) r).getColCount());
 			}
-			if (r.equals(HorizontalAlignment.left)){
+			if (r.equals(HorizontalAlignment.left)) {
 				alignment = FlowLayout.LEFT;
 			}
-			if (r.equals(HorizontalAlignment.center)){
+			if (r.equals(HorizontalAlignment.center)) {
 				alignment = FlowLayout.CENTER;
 			}
-			if (r.equals(HorizontalAlignment.right)){
+			if (r.equals(HorizontalAlignment.right)) {
 				alignment = FlowLayout.RIGHT;
 			}
-			if (r.equals(VerticalAlignment.top)){
+			if (r.equals(VerticalAlignment.top)) {
 				alignment = VerticalFlowLayout.TOP;
 			}
-			if (r.equals(VerticalAlignment.middle)){
+			if (r.equals(VerticalAlignment.middle)) {
 				alignment = VerticalFlowLayout.CENTER;
 			}
-			if (r.equals(VerticalAlignment.bottom)){
+			if (r.equals(VerticalAlignment.bottom)) {
 				alignment = VerticalFlowLayout.BOTTOM;
 			}
 		}
-        if (layout instanceof FlowLayout){
-        	((FlowLayout) layout).setAlignment(alignment);
-        	((FlowLayout) layout).setHgap(gap);</pre></div></td></tr></table>
+		if (layout instanceof FlowLayout) {
+			((FlowLayout) layout).setAlignment(alignment);
+			((FlowLayout) layout).setHgap(gap);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1107,33 +1110,31 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>92</td></tr>
+<td>78</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelTableLAF.java</td>
 <td>universAAL UI Handler Swing</td>
 <td>51</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	JScrollPane scrollPane = new JScrollPane(table);
+<pre>		JScrollPane scrollPane = new JScrollPane(table);
 
-	JPanel buttonPanel = getButtonPanel();
-	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-	Component[] buttons = buttonPanel.getComponents();
-	for (int i = 0; i &lt; buttons.length; i++) {
-	    setButtonColors((JButton) buttons[i]);
+		JPanel buttonPanel = getButtonPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		Component[] buttons = buttonPanel.getComponents();
+		for (int i = 0; i &lt; buttons.length; i++) {
+			setButtonColors((JButton) buttons[i]);
+		}
+		JPanel pannelWithAll = new JPanel();
+		pannelWithAll.setLayout(new BorderLayout());
+		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
+		needsLabel = false;
+		return pannelWithAll;
 	}
-	JPanel pannelWithAll = new JPanel();
-	pannelWithAll.setLayout(new BorderLayout());
-	pannelWithAll.add(scrollPane, BorderLayout.CENTER);
-	pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-	pannelWithAll.add(
-		getRenderer().getModelMapper().getModelFor(fc.getLabel())
-			.getComponent(), BorderLayout.NORTH);
-	needsLabel = false;
-	return pannelWithAll;
-    }
 
-    private void setButtonColors(JButton button) {</pre></div></td></tr></table>
+	private void setButtonColors(JButton button) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1150,7 +1151,7 @@
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		JScrollPane scrollPane = new JScrollPane(super.getNewComponent());
-		
+
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		Component[] buttons = buttonPanel.getComponents();
@@ -1161,9 +1162,7 @@
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		needsLabel = false;
 		return pannelWithAll;
 	}</pre></div></td></tr></table>
@@ -1175,35 +1174,35 @@
 <tr class="a">
 <td>org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Bluesteel</td>
-<td>203</td></tr>
+<td>175</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Bluesteel</td>
-<td>91</td></tr>
+<td>89</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		    lm = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
+<pre>				lm = new GridUnitLayout(gap, ((GridLayout) r).getColCount());
+			}
+			if (r.equals(HorizontalAlignment.left)) {
+				alignment = FlowLayout.LEFT;
+			}
+			if (r.equals(HorizontalAlignment.center)) {
+				alignment = FlowLayout.CENTER;
+			}
+			if (r.equals(HorizontalAlignment.right)) {
+				alignment = FlowLayout.RIGHT;
+			}
+			if (r.equals(VerticalAlignment.top)) {
+				alignment = VerticalFlowLayout.TOP;
+			}
+			if (r.equals(VerticalAlignment.middle)) {
+				alignment = VerticalFlowLayout.CENTER;
+			}
+			if (r.equals(VerticalAlignment.bottom)) {
+				alignment = VerticalFlowLayout.BOTTOM;
+			}
 		}
-		if (r.equals(HorizontalAlignment.left)) {
-		    alignment = FlowLayout.LEFT;
-		}
-		if (r.equals(HorizontalAlignment.center)) {
-		    alignment = FlowLayout.CENTER;
-		}
-		if (r.equals(HorizontalAlignment.right)) {
-		    alignment = FlowLayout.RIGHT;
-		}
-		if (r.equals(VerticalAlignment.top)) {
-		    alignment = VerticalFlowLayout.TOP;
-		}
-		if (r.equals(VerticalAlignment.middle)) {
-		    alignment = VerticalFlowLayout.CENTER;
-		}
-		if (r.equals(VerticalAlignment.bottom)) {
-		    alignment = VerticalFlowLayout.BOTTOM;
-		}
-	    }
-	    if (lm instanceof FlowLayout) {</pre></div></td></tr></table>
+		if (lm instanceof FlowLayout) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1212,31 +1211,29 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>92</td></tr>
+<td>78</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelGridLAF.java</td>
 <td>universAAL UI Handler Swing</td>
 <td>51</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	JScrollPane scrollPane = new JScrollPane(table);
+<pre>		JScrollPane scrollPane = new JScrollPane(table);
 
-	JPanel buttonPanel = getButtonPanel();
-	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
-	Component[] buttons = buttonPanel.getComponents();
-	for (int i = 0; i &lt; buttons.length; i++) {
-	    setButtonColors((JButton) buttons[i]);
-	}
-	JPanel pannelWithAll = new JPanel();
-	pannelWithAll.setLayout(new BorderLayout());
-	pannelWithAll.add(scrollPane, BorderLayout.CENTER);
-	pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-	pannelWithAll.add(
-		getRenderer().getModelMapper().getModelFor(fc.getLabel())
-			.getComponent(), BorderLayout.NORTH);
-	needsLabel = false;
-	return pannelWithAll;
-    }</pre></div></td></tr></table>
+		JPanel buttonPanel = getButtonPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+		Component[] buttons = buttonPanel.getComponents();
+		for (int i = 0; i &lt; buttons.length; i++) {
+			setButtonColors((JButton) buttons[i]);
+		}
+		JPanel pannelWithAll = new JPanel();
+		pannelWithAll.setLayout(new BorderLayout());
+		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
+		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
+		needsLabel = false;
+		return pannelWithAll;
+	}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1245,25 +1242,26 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/ResourceMapper.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>89</td></tr>
+<td>82</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/ui/handler/web/html/ResourceMapper.java</td>
 <td>universAAL UI HTML5 Web Handler</td>
-<td>160</td></tr>
+<td>146</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>				LogUtils.logWarn(context, 
-						ResourceMapper.class, &quot;search&quot;,
-						new String[]{&quot;Resource &quot; + url + &quot; not found&quot;}, null);
+<pre>					LogUtils.logWarn(context, ResourceMapper.class, &quot;search&quot;,
+							new String[] { &quot;Resource &quot; + url + &quot; not found&quot; }, null);
 				return retVal;
 			}
 		}
-				
+
 	}
-	
+
 	/**
 	 * Check that the resource pointed by the URL really exists.
-	 * @param url the URL to be checked
+	 * 
+	 * @param url
+	 *            the URL to be checked
 	 * @return true is the URL can be accessed
 	 */
 	static private boolean existsURL(URL url) {
@@ -1277,31 +1275,30 @@
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Searched for the specified url in the config directory.
+	 * 
 	 * @param url
-	 * 		the relative url of the file to look for.
-	 * @return
-	 * 		the {@link URL} of the file if found, null otherwise.
+	 *            the relative url of the file to look for.
+	 * @return the {@link URL} of the file if found, null otherwise.
 	 */
 	static private URL searchFolder(String url) {
 		int i = 0;
 		URL file = null;
-		while (i&lt;resourceFolders.length &amp;&amp;
-				file == null) {
-			file = checkFolder(resourceFolders[i]+url);
+		while (i &lt; resourceFolders.length &amp;&amp; file == null) {
+			file = checkFolder(resourceFolders[i] + url);
 			i++;
 		}
 		return file;
 	}
-	
+
 	/**
 	 * check whether the specified url exists or not.
+	 * 
 	 * @param url
-	 * 		the url to test.
-	 * @return
-	 * 		the {@link URL} of existent file, null otherwise
+	 *            the url to test.
+	 * @return the {@link URL} of existent file, null otherwise
 	 */
 	static private URL checkFolder(String url) {
 		URL urlFile;</pre></div></td></tr></table>
@@ -1324,22 +1321,19 @@
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		needsLabel = false;
 		return pannelWithAll;
 	}
-	
+
 	protected JPanel getButtonPanel() {
-		Repeat r = (Repeat)fc;
+		Repeat r = (Repeat) fc;
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
-			Icon icon = IconFactory.getIcon(&quot;common/Edit/Add.png&quot;);  
-    	    icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
-			buttonPanel.add(
-					new RoundedGradientButton(new AddTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));</pre></div></td></tr></table>
+			Icon icon = IconFactory.getIcon(&quot;common/Edit/Add.png&quot;);
+			icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
+			buttonPanel.add(new RoundedGradientButton(new AddTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1355,42 +1349,42 @@
 <td>160</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	    activeSet.add(r);
+<pre>			activeSet.add(r);
+		}
 	}
-    }
 
-    /** {@inheritDoc} */
-    public UIRequest get(String UIReqID) {
-	UIRequest r = suspendedSet.get(UIReqID);
-	if (r != null) {
-	    return r;
-	} else {
-	    return getActive(UIReqID);
+	/** {@inheritDoc} */
+	public UIRequest get(String UIReqID) {
+		UIRequest r = suspendedSet.get(UIReqID);
+		if (r != null) {
+			return r;
+		} else {
+			return getActive(UIReqID);
+		}
 	}
-    }
 
-    /**
-     * scan the active set for a {@link UIRequest} that has an ID corresponding
-     * to UIReqID
-     * 
-     * @param UIReqID
-     *            The ID to look for
-     * @return the {@link UIRequest} with UIReqID id, or null if not found
-     */
-    private UIRequest getActive(String UIReqID) {
-	Iterator&lt;UIRequest&gt; i = activeSet.iterator();
-	UIRequest req = null;
-	boolean found = false;
-	while (!found &amp;&amp; i.hasNext()) {
-	    req = (UIRequest) i.next();
-	    found = req.getDialogID().equals(UIReqID);
-	}
-	if (found) {
-	    return req;
-	} else {
-	    return null;
-	}
-    }</pre></div></td></tr></table>
+	/**
+	 * scan the active set for a {@link UIRequest} that has an ID corresponding
+	 * to UIReqID
+	 * 
+	 * @param UIReqID
+	 *            The ID to look for
+	 * @return the {@link UIRequest} with UIReqID id, or null if not found
+	 */
+	private UIRequest getActive(String UIReqID) {
+		Iterator&lt;UIRequest&gt; i = activeSet.iterator();
+		UIRequest req = null;
+		boolean found = false;
+		while (!found &amp;&amp; i.hasNext()) {
+			req = (UIRequest) i.next();
+			found = req.getDialogID().equals(UIReqID);
+		}
+		if (found) {
+			return req;
+		} else {
+			return null;
+		}
+	}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1399,35 +1393,35 @@
 <tr class="a">
 <td>org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Bluesteel</td>
-<td>203</td></tr>
+<td>175</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>99</td></tr>
+<td>96</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>		    lm = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
+<pre>				lm = new GridUnitLayout(gap, ((GridLayout) r).getColCount());
+			}
+			if (r.equals(HorizontalAlignment.left)) {
+				alignment = FlowLayout.LEFT;
+			}
+			if (r.equals(HorizontalAlignment.center)) {
+				alignment = FlowLayout.CENTER;
+			}
+			if (r.equals(HorizontalAlignment.right)) {
+				alignment = FlowLayout.RIGHT;
+			}
+			if (r.equals(VerticalAlignment.top)) {
+				alignment = VerticalFlowLayout.TOP;
+			}
+			if (r.equals(VerticalAlignment.middle)) {
+				alignment = VerticalFlowLayout.CENTER;
+			}
+			if (r.equals(VerticalAlignment.bottom)) {
+				alignment = VerticalFlowLayout.BOTTOM;
+			}
 		}
-		if (r.equals(HorizontalAlignment.left)) {
-		    alignment = FlowLayout.LEFT;
-		}
-		if (r.equals(HorizontalAlignment.center)) {
-		    alignment = FlowLayout.CENTER;
-		}
-		if (r.equals(HorizontalAlignment.right)) {
-		    alignment = FlowLayout.RIGHT;
-		}
-		if (r.equals(VerticalAlignment.top)) {
-		    alignment = VerticalFlowLayout.TOP;
-		}
-		if (r.equals(VerticalAlignment.middle)) {
-		    alignment = VerticalFlowLayout.CENTER;
-		}
-		if (r.equals(VerticalAlignment.bottom)) {
-		    alignment = VerticalFlowLayout.BOTTOM;
-		}
-	    }
-	    if (lm instanceof FlowLayout) {</pre></div></td></tr></table>
+		if (lm instanceof FlowLayout) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1436,26 +1430,26 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/classic/FormLAF.java</td>
 <td>universAAL UI Handler Swing Look and Feel Classic</td>
-<td>252</td></tr>
+<td>250</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/FormLAF.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>185</td></tr>
+<td>181</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	    JScrollPane sub = getSubmitPanelScroll(0,true);
-	    sub.getAccessibleContext().setAccessibleName(SUB_NAME);
-	    JScrollPane sys = getSystemPanelScroll();
-	    sys.getAccessibleContext().setAccessibleName(SYS_NAME);
-	    JPanel subpanel = new JPanel(new BorderLayout());
-	    subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
-	    for (int i = super.getSubdialogLevel(); i &gt; 1; i--) {
-		subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
-		JPanel tempanel = new JPanel(new BorderLayout());
-		tempanel.add(subpanel, BorderLayout.CENTER);
-		subpanel = tempanel;
-	    }
-	    frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);</pre></div></td></tr></table>
+<pre>			JScrollPane sub = getSubmitPanelScroll(0, true);
+			sub.getAccessibleContext().setAccessibleName(SUB_NAME);
+			JScrollPane sys = getSystemPanelScroll();
+			sys.getAccessibleContext().setAccessibleName(SYS_NAME);
+			JPanel subpanel = new JPanel(new BorderLayout());
+			subpanel.add(getIOPanelScroll(), BorderLayout.CENTER);
+			for (int i = super.getSubdialogLevel(); i &gt; 1; i--) {
+				subpanel.add(getSubmitPanel(i), BorderLayout.EAST);
+				JPanel tempanel = new JPanel(new BorderLayout());
+				tempanel.add(subpanel, BorderLayout.CENTER);
+				subpanel = tempanel;
+			}
+			frame.add(getHeader(form.getTitle()), BorderLayout.NORTH);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1468,68 +1462,74 @@
 <tr class="b">
 <td>org/universAAL/ui/ui/handler/web/html/HTMLUserGenerator.java</td>
 <td>universAAL UI HTML5 Web Handler</td>
-<td>205</td></tr>
+<td>199</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    }
-    
-    /**
-     * Check if impairment is listed as present impairments for the
-     * current user and form.
-     * @param impariment
-     *         the {@link AccessImpairment} to be checked
-     * @return
-     *         true is impairment is present in the current Dialog Request.
-     * @see AccessImpairment
-     * @see UIRequest
-     */
-    public final boolean hasImpairment(AccessImpairment impariment) {
-        AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
-        int i = 0;
-        while (i &lt; imp.length &amp;&amp; imp[i] != impariment) { i++; }
-        return i != imp.length;
-    }
+<pre>	}
 
-    /**
-     * Get the Language that should be used.
-     * @return
-     *         the two-letter representation of the language-
-     */
-    public final String getLanguage() {
-        return fm.getCurrentDialog().getDialogLanguage().getDisplayVariant();
-    }
-
-    /**
-	 * Get the {@link FormManager} being used,
-	 * useful to access the current UIResquest
-	 * and current form.
-	 * @return {@link Renderer#fm}
+	/**
+	 * Check if impairment is listed as present impairments for the current user
+	 * and form.
+	 * 
+	 * @param impariment
+	 *            the {@link AccessImpairment} to be checked
+	 * @return true is impairment is present in the current Dialog Request.
+	 * @see AccessImpairment
+	 * @see UIRequest
 	 */
-	public FormManager getFormManagement() {
-	    return fm;
+	public final boolean hasImpairment(AccessImpairment impariment) {
+		AccessImpairment[] imp = fm.getCurrentDialog().getImpairments();
+		int i = 0;
+		while (i &lt; imp.length &amp;&amp; imp[i] != impariment) {
+			i++;
+		}
+		return i != imp.length;
 	}
 
 	/**
-     * Returns the ModelMapper that automatically assigns this Renderer to the Models.
-     * @return
-     */
-    public final ModelMapper getModelMapper() {
-    	return modelMapper;
-    }
-    
-    /**
-     * get the {@link Handler} of this {@link Renderer}.
-     * @return the {@link Handler}
-     */
-    public final Handler getHandler() {
-    	return handler;
-    }
+	 * Get the Language that should be used.
+	 * 
+	 * @return the two-letter representation of the language-
+	 */
+	public final String getLanguage() {
+		return fm.getCurrentDialog().getDialogLanguage().getDisplayVariant();
+	}
 
-    /**
-     * get the Initial instance when the LAF was loaded.
-     * @return the initLAF
-     */
-    public final InitInterface getInitLAF() {</pre></div></td></tr></table>
+	/**
+	 * Get the {@link FormManager} being used, useful to access the current
+	 * UIResquest and current form.
+	 * 
+	 * @return {@link Renderer#fm}
+	 */
+	public FormManager getFormManagement() {
+		return fm;
+	}
+
+	/**
+	 * Returns the ModelMapper that automatically assigns this Renderer to the
+	 * Models.
+	 * 
+	 * @return
+	 */
+	public final ModelMapper getModelMapper() {
+		return modelMapper;
+	}
+
+	/**
+	 * get the {@link Handler} of this {@link Renderer}.
+	 * 
+	 * @return the {@link Handler}
+	 */
+	public final Handler getHandler() {
+		return handler;
+	}
+
+	/**
+	 * get the Initial instance when the LAF was loaded.
+	 * 
+	 * @return the initLAF
+	 */
+	public final InitInterface getInitLAF() {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1545,23 +1545,23 @@
 <td>71</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>	button.setMaximumSize(new Dimension(SubmitLAF.MAX_WIDE,SubmitLAF.MAX_HEIGHT));
-	if(fc.getLabel()!=null){
-	    String txt=fc.getLabel().getText();
-	    if(txt!=null){
-		button.setText(&quot;&lt;html&gt;&lt;body align=\&quot;center\&quot;&gt; &quot;+txt+&quot; &lt;/body&gt;&quot;);
-	    }
+<pre>		button.setMaximumSize(new Dimension(SubmitLAF.MAX_WIDE, SubmitLAF.MAX_HEIGHT));
+		if (fc.getLabel() != null) {
+			String txt = fc.getLabel().getText();
+			if (txt != null) {
+				button.setText(&quot;&lt;html&gt;&lt;body align=\&quot;center\&quot;&gt; &quot; + txt + &quot; &lt;/body&gt;&quot;);
+			}
+		}
+		button.addComponentListener(this);
+		button.addActionListener(this);
+		return button;
 	}
-	button.addComponentListener(this);
-	button.addActionListener(this);
-	return button;
-    }
-    
-    public void componentShown(ComponentEvent e) {
-    }
-    
-    public void componentResized(ComponentEvent e) {
-	if(fc.getLabel()!=null &amp;&amp; ((AbstractButton) e.getComponent()).getIcon()==null){</pre></div></td></tr></table>
+
+	public void componentShown(ComponentEvent e) {
+	}
+
+	public void componentResized(ComponentEvent e) {
+		if (fc.getLabel() != null &amp;&amp; ((AbstractButton) e.getComponent()).getIcon() == null) {</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1570,28 +1570,23 @@
 <tr class="a">
 <td>org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>67</td></tr>
+<td>66</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java</td>
 <td>universAAL UI Dialog Manager 2.0</td>
-<td>132</td></tr>
+<td>121</td></tr>
 <tr class="a"><td colspan='3'>
 <div>
-<pre>    public boolean getUserSucceeded(Resource user) {
-	ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
-	req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS },
-		user);
-	req.addRequiredOutput(OUTPUT_USER,
-		new String[] { ProfilingService.PROP_CONTROLS });
+<pre>	public boolean getUserSucceeded(Resource user) {
+		ServiceRequest req = new ServiceRequest(new ProfilingService(), null);
+		req.addValueFilter(new String[] { ProfilingService.PROP_CONTROLS }, user);
+		req.addRequiredOutput(OUTPUT_USER, new String[] { ProfilingService.PROP_CONTROLS });
 
-	ServiceResponse resp = sc.call(req);
-	if (resp.getCallStatus() == CallStatus.succeeded) {
-	    Object out = getReturnValue(resp.getOutputs(), OUTPUT_USER);
-	    if (out != null) {
-		LogUtils
-			.logDebug(
-				mc,
-				this.getClass(),</pre></div></td></tr></table>
+		ServiceResponse resp = sc.call(req);
+		if (resp.getCallStatus() == CallStatus.succeeded) {
+			Object out = getReturnValue(resp.getOutputs(), OUTPUT_USER);
+			if (out != null) {
+				LogUtils.logDebug(mc, this.getClass(), &quot;getUserSucceeded&quot;,</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="b">
 <th>File</th>
@@ -1600,7 +1595,7 @@
 <tr class="a">
 <td>org/universAAL/ui/handler/gui/swing/model/FormControl/SelectModel.java</td>
 <td>universAAL UI Handler Swing</td>
-<td>117</td></tr>
+<td>118</td></tr>
 <tr class="b">
 <td>org/universAAL/ui/ui/handler/web/html/model/SelectModel.java</td>
 <td>universAAL UI HTML5 Web Handler</td>
@@ -1608,16 +1603,14 @@
 <tr class="a"><td colspan='3'>
 <div>
 <pre>		Object val = ((Select) fc).getValue();
-		if (val instanceof List){
+		if (val instanceof List) {
 			selected = new ArrayList((List) val);
-		}
-		else if (val instanceof Object[]){
+		} else if (val instanceof Object[]) {
 			selected = new ArrayList();
-			for (int i = 0; i &lt; ((Object[]) val).length; i++){
+			for (int i = 0; i &lt; ((Object[]) val).length; i++) {
 				selected.add(((Object[]) val)[i]);
 			}
-		}
-		else {
+		} else {
 			selected = new ArrayList();
 			if (val != null) {
 				selected.add(val);

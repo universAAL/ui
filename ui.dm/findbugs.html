@@ -158,13 +158,13 @@
 <td>Unchecked/unconfirmed cast from org.universAAL.middleware.rdf.Resource to org.universAAL.ontology.profile.User in org.universAAL.ui.dm.DialogManagerImpl.userLogIn(Resource, AbsLocation)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#BC_UNCONFIRMED_CAST">BC_UNCONFIRMED_CAST</a></td>
-<td>214</td>
+<td>213</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Incorrect lazy initialization of static field org.universAAL.ui.dm.DialogManagerImpl.singleton in org.universAAL.ui.dm.DialogManagerImpl.stopDM()</td>
 <td>MT_CORRECTNESS</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#LI_LAZY_INIT_STATIC">LI_LAZY_INIT_STATIC</a></td>
-<td>428</td>
+<td>408</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.UserDialogManagerAutoSaverTask"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.UserDialogManagerAutoSaverTask"></a>org.universAAL.ui.dm.UserDialogManager$AutoSaverTask</h3>
@@ -179,7 +179,7 @@
 <td>Exceptional return value of java.io.File.mkdirs() ignored in new org.universAAL.ui.dm.UserDialogManager$AutoSaverTask(UserDialogManager)</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">RV_RETURN_VALUE_IGNORED_BAD_PRACTICE</a></td>
-<td>958</td>
+<td>911</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.adapters.AdapterUserImpairments"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.adapters.AdapterUserImpairments"></a>org.universAAL.ui.dm.adapters.AdapterUserImpairments</h3>
@@ -239,7 +239,7 @@
 <td>Redundant nullcheck of uiPSP, which is known to be non-null in org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor.addUser(User)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE</a></td>
-<td>84</td>
+<td>81</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper"></a>org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper</h3>
@@ -254,13 +254,13 @@
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper.caller from instance method new org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper(ModuleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>60</td>
+<td>59</td>
 <td>High</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper.mcontext from instance method new org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper(ModuleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>59</td>
+<td>58</td>
 <td>High</td></tr></table></div><a name="org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper"></a>org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper</h3>
@@ -281,13 +281,13 @@
 <td>org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper.logUsers(User[]) concatenates strings using + in a loop</td>
 <td>PERFORMANCE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#SBSC_USE_STRINGBUFFER_CONCATENATION">SBSC_USE_STRINGBUFFER_CONCATENATION</a></td>
-<td>389</td>
+<td>341</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper.mc from instance method new org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper(ModuleContext)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>56</td>
+<td>55</td>
 <td>High</td></tr></table></div><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder"></a>org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder</h3>
@@ -302,31 +302,31 @@
 <td>Return value of org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile.getAccessMode() ignored, but method has no side effect</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a></td>
-<td>1112</td>
+<td>957</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Return value of org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile.getAlertPreferences() ignored, but method has no side effect</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a></td>
-<td>1065</td>
+<td>915</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Return value of org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile.getAudioPreferences() ignored, but method has no side effect</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a></td>
-<td>897</td>
+<td>767</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Return value of org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile.getSystemMenuPreferences() ignored, but method has no side effect</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a></td>
-<td>323</td>
+<td>279</td>
 <td>Medium</td></tr>
 <tr class="a">
 <td>Return value of org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile.getVisualPreferences() ignored, but method has no side effect</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT">RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT</a></td>
-<td>517</td>
+<td>438</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee"></a>org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee</h3>
@@ -341,13 +341,13 @@
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee.mcontext from instance method new org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee(ModuleContext, UIPreferencesUICaller)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>53</td>
+<td>51</td>
 <td>Medium</td></tr>
 <tr class="b">
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee.uiPreferencesUICaller from instance method new org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee(ModuleContext, UIPreferencesUICaller)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>54</td>
+<td>52</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller"></a>org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller</h3>
@@ -362,7 +362,7 @@
 <td>Write to static field org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller.mcontext from instance method new org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller(ModuleContext, IUIPreferencesBuffer)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD">ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD</a></td>
-<td>64</td>
+<td>63</td>
 <td>High</td></tr></table></div><a name="org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider"></a>org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider</h3>
@@ -377,7 +377,7 @@
 <td>Redundant nullcheck of f, which is known to be non-null in org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider.getMainMenu(Resource, AbsLocation, Form)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE</a></td>
-<td>130</td>
+<td>122</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNodeNodeChildren"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNodeNodeChildren"></a>org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode$NodeChildren</h3>
@@ -392,7 +392,7 @@
 <td>org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode$NodeChildren.next() can't throw NoSuchElementException</td>
 <td>BAD_PRACTICE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#IT_NO_SUCH_ELEMENT">IT_NO_SUCH_ELEMENT</a></td>
-<td>56</td>
+<td>54</td>
 <td>Medium</td></tr></table></div><a name="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee"></a>
 <div class="section">
 <h3><a name="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee"></a>org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee</h3>
@@ -407,7 +407,7 @@
 <td>Redundant nullcheck of dm, which is known to be non-null in org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee.refreshMainMenu(String)</td>
 <td>STYLE</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/bugDescriptions.html#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE</a></td>
-<td>303</td>
+<td>262</td>
 <td>Medium</td></tr></table></div>
       </div>
     </div>

@@ -26,9 +26,9 @@ under the License.
     <copyright>&#169;2017 universAAL Consortium</copyright>
     <item>
       <title>File: 246,
-             Errors: 2522,
-             Warnings: 740,
-             Infos: 6753
+             Errors: 2461,
+             Warnings: 149,
+             Infos: 1385
       </title>
             <link>http://ui/ui.pom//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.osgi.HTMLHandlerActivator.java">org/universAAL/ui/ui/handler/web/html/osgi/HTMLHandlerActivator.java</a>
                 </td>
                 <td>
-                  25
+                  1
                 </td>
                 <td>
                   1
@@ -63,10 +63,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Login.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Login.java</a>
                 </td>
                 <td>
-                  19
+                  1
                 </td>
                 <td>
-                  21
+                  6
                 </td>
                 <td>
                   8
@@ -77,10 +77,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Select1LAF.java">org/universAAL/ui/handler/gui/swing/classic/Select1LAF.java</a>
                 </td>
                 <td>
-                  18
+                  4
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   18
@@ -91,10 +91,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.ColorLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/ColorLAF.java</a>
                 </td>
                 <td>
-                  23
+                  15
                 </td>
                 <td>
-                  15
+                  12
                 </td>
                 <td>
                   35
@@ -105,10 +105,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SelectLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SelectLAF.java</a>
                 </td>
                 <td>
-                  20
+                  5
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   9
@@ -119,10 +119,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.IconFactory.java">org/universAAL/ui/handler/gui/swing/model/IconFactory.java</a>
                 </td>
                 <td>
-                  17
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   2
@@ -133,10 +133,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Select1LAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/Select1LAF.java</a>
                 </td>
                 <td>
-                  15
+                  4
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   6
@@ -147,10 +147,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java</a>
                 </td>
                 <td>
-                  58
+                  8
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   24
@@ -161,7 +161,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager.java">org/universAAL/ui/handler/gui/swing/formManagement/QueuedFormManager.java</a>
                 </td>
                 <td>
-                  14
+                  2
                 </td>
                 <td>
                   0
@@ -175,7 +175,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolCopier.java">org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java</a>
                 </td>
                 <td>
-                  6
+                  2
                 </td>
                 <td>
                   1
@@ -189,7 +189,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Select1RadioButtonLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/Select1RadioButtonLAF.java</a>
                 </td>
                 <td>
-                  14
+                  0
                 </td>
                 <td>
                   0
@@ -203,7 +203,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MediaObjectLAF.java">org/universAAL/ui/handler/gui/swing/classic/MediaObjectLAF.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -231,10 +231,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RecommendationModel.java">org/universAAL/ui/ui/handler/web/html/model/RecommendationModel.java</a>
                 </td>
                 <td>
-                  82
+                  1
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   31
@@ -245,10 +245,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.instance.osgi.Activator.java">org/universAAL/kinect/adapter/instance/osgi/Activator.java</a>
                 </td>
                 <td>
-                  12
+                  7
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   5
@@ -259,10 +259,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultAdapter.java">org/universAAL/kinect/adapter/defaultComponents/DefaultAdapter.java</a>
                 </td>
                 <td>
-                  10
+                  7
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   6
@@ -273,10 +273,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelTableLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelTableLAF.java</a>
                 </td>
                 <td>
-                  20
+                  3
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   2
@@ -287,7 +287,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterDialogPrivacyLevel.java">org/universAAL/ui/dm/adapters/AdapterDialogPrivacyLevel.java</a>
                 </td>
                 <td>
-                  11
+                  7
                 </td>
                 <td>
                   1
@@ -301,77 +301,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#net.vsms.bulksms.SmsSender.java">net/vsms/bulksms/SmsSender.java</a>
                 </td>
                 <td>
-                  16
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.ResourceMapper.java">org/universAAL/ui/ui/handler/web/html/ResourceMapper.java</a>
-                </td>
-                <td>
-                  80
-                </td>
-                <td>
-                  17
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.TextAreaLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/TextAreaLAF.java</a>
-                </td>
-                <td>
-                  19
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Init.java">org/universAAL/ui/gui/swing/bluesteelLAF/Init.java</a>
-                </td>
-                <td>
-                  73
-                </td>
-                <td>
-                  20
-                </td>
-                <td>
-                  38
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.GroupTabbedPanelModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/GroupTabbedPanelModel.java</a>
-                </td>
-                <td>
-                  13
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java</a>
-                </td>
-                <td>
-                  12
+                  5
                 </td>
                 <td>
                   1
@@ -382,10 +312,80 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.ResourceMapper.java">org/universAAL/ui/ui/handler/web/html/ResourceMapper.java</a>
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.TextAreaLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/TextAreaLAF.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.Init.java">org/universAAL/ui/gui/swing/bluesteelLAF/Init.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  38
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.GroupTabbedPanelModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/GroupTabbedPanelModel.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UStoreButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UStoreButton.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.sms.SMSActivator.java">org/universAAL/ui/handler/sms/SMSActivator.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0
@@ -399,7 +399,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer.java">org/universAAL/ui/dm/interfaces/IUIPreferencesBuffer.java</a>
                 </td>
                 <td>
-                  13
+                  6
                 </td>
                 <td>
                   0
@@ -413,7 +413,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RangeLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RangeLAF.java</a>
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
                   0
@@ -441,7 +441,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatLAF.java</a>
                 </td>
                 <td>
-                  7
+                  3
                 </td>
                 <td>
                   0
@@ -455,7 +455,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java</a>
                 </td>
                 <td>
-                  14
+                  7
                 </td>
                 <td>
                   6
@@ -469,13 +469,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UIGradientButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UIGradientButton.java</a>
                 </td>
                 <td>
-                  40
+                  1
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
-                  12
+                  10
                 </td>
               </tr>
                           <tr>
@@ -483,7 +483,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Select1LAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Select1LAF.java</a>
                 </td>
                 <td>
-                  7
+                  2
                 </td>
                 <td>
                   0
@@ -497,7 +497,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface.java">org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonInterface.java</a>
                 </td>
                 <td>
-                  6
+                  4
                 </td>
                 <td>
                   0
@@ -525,10 +525,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SimpleOutputLAF.java">org/universAAL/ui/handler/gui/swing/classic/SimpleOutputLAF.java</a>
                 </td>
                 <td>
-                  24
+                  5
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   4
@@ -539,7 +539,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.TableColors.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/TableColors.java</a>
                 </td>
                 <td>
-                  14
+                  1
                 </td>
                 <td>
                   0
@@ -553,7 +553,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.RequestService.java">org/universAAL/kinect/adapter/serviceBus/RequestService.java</a>
                 </td>
                 <td>
-                  9
+                  6
                 </td>
                 <td>
                   0
@@ -567,10 +567,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.UserDialogManager.java">org/universAAL/ui/dm/UserDialogManager.java</a>
                 </td>
                 <td>
-                  111
+                  28
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   34
@@ -581,7 +581,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.UIRequestPriorityComparator.java">org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java</a>
                 </td>
                 <td>
-                  6
+                  3
                 </td>
                 <td>
                   0
@@ -595,7 +595,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.contextBus.AbstractContext.java">org/universAAL/kinect/adapter/contextBus/AbstractContext.java</a>
                 </td>
                 <td>
-                  11
+                  9
                 </td>
                 <td>
                   1
@@ -609,13 +609,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/SubmitModel.java</a>
                 </td>
                 <td>
-                  14
+                  4
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
-                  9
+                  8
                 </td>
               </tr>
                           <tr>
@@ -623,7 +623,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/TextAreaModel.java</a>
                 </td>
                 <td>
-                  7
+                  3
                 </td>
                 <td>
                   0
@@ -637,13 +637,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModel.java</a>
                 </td>
                 <td>
-                  16
+                  5
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  11
+                  9
                 </td>
               </tr>
                           <tr>
@@ -651,10 +651,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java</a>
                 </td>
                 <td>
-                  22
+                  9
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   24
@@ -665,7 +665,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java</a>
                 </td>
                 <td>
-                  22
+                  1
                 </td>
                 <td>
                   1
@@ -679,10 +679,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.SelectChecboxModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/SelectChecboxModel.java</a>
                 </td>
                 <td>
-                  27
+                  4
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   11
@@ -693,13 +693,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.Model.java">org/universAAL/ui/handler/gui/swing/model/Model.java</a>
                 </td>
                 <td>
-                  90
+                  19
                 </td>
                 <td>
-                  8
+                  0
                 </td>
                 <td>
-                  44
+                  38
                 </td>
               </tr>
                           <tr>
@@ -707,7 +707,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelGridLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelGridLAF.java</a>
                 </td>
                 <td>
-                  17
+                  0
                 </td>
                 <td>
                   0
@@ -721,10 +721,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/InputFieldModel.java</a>
                 </td>
                 <td>
-                  37
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   11
@@ -735,10 +735,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.FormLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/FormLayout.java</a>
                 </td>
                 <td>
-                  37
+                  7
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   6
@@ -749,10 +749,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.internationalization.util.MessageLocaleHelper.java">org/universAAL/ui/internationalization/util/MessageLocaleHelper.java</a>
                 </td>
                 <td>
-                  68
+                  29
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   21
@@ -763,10 +763,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.MyVerticalFlowLayout.java">org/universAAL/ui/handler/gui/swing/classic/MyVerticalFlowLayout.java</a>
                 </td>
                 <td>
-                  82
+                  16
                 </td>
                 <td>
-                  18
+                  2
                 </td>
                 <td>
                   27
@@ -777,7 +777,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupLAF.java</a>
                 </td>
                 <td>
-                  9
+                  2
                 </td>
                 <td>
                   0
@@ -791,10 +791,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.InputModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/InputModel.java</a>
                 </td>
                 <td>
-                  14
+                  5
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   8
@@ -805,10 +805,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SubdialogTriggerLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SubdialogTriggerLAF.java</a>
                 </td>
                 <td>
-                  14
+                  4
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -819,10 +819,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.JLabelWAVPlayer.java">org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/JLabelWAVPlayer.java</a>
                 </td>
                 <td>
-                  16
+                  1
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   12
@@ -833,10 +833,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java</a>
                 </td>
                 <td>
-                  47
+                  14
                 </td>
                 <td>
-                  8
+                  1
                 </td>
                 <td>
                   19
@@ -847,10 +847,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupTabbedPanelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupTabbedPanelLAF.java</a>
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   3
@@ -861,10 +861,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.SubmitButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/SubmitButton.java</a>
                 </td>
                 <td>
-                  17
+                  4
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   7
@@ -875,10 +875,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.HTTPHandlerService.java">org/universAAL/ui/ui/handler/web/html/HTTPHandlerService.java</a>
                 </td>
                 <td>
-                  93
+                  3
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   35
@@ -889,13 +889,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/GroupModel.java</a>
                 </td>
                 <td>
+                  11
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
                   16
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  17
                 </td>
               </tr>
                           <tr>
@@ -903,7 +903,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogBuilder.java</a>
                 </td>
                 <td>
-                  88
+                  14
                 </td>
                 <td>
                   1
@@ -917,10 +917,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.TextAreaLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/TextAreaLAF.java</a>
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -931,10 +931,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.MessageParser.java">org/universAAL/kinect/adapter/communication/receiver/MessageParser.java</a>
                 </td>
                 <td>
-                  10
+                  8
                 </td>
                 <td>
-                  4
+                  3
                 </td>
                 <td>
                   6
@@ -945,10 +945,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SimpleOutputLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SimpleOutputLAF.java</a>
                 </td>
                 <td>
-                  15
+                  4
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   7
@@ -959,7 +959,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatModelGridLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatModelGridLAF.java</a>
                 </td>
                 <td>
-                  22
+                  0
                 </td>
                 <td>
                   0
@@ -973,10 +973,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.CustomBasicArrowButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/CustomBasicArrowButton.java</a>
                 </td>
                 <td>
-                  12
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   6
@@ -987,7 +987,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.AdapterException.java">org/universAAL/kinect/adapter/IMessageBroker/AdapterException.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -1001,7 +1001,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextCallback.java">org/universAAL/kinect/adapter/contextBus/IContextCallback.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -1015,13 +1015,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.AbstractUnitLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/AbstractUnitLayout.java</a>
                 </td>
                 <td>
-                  110
+                  10
                 </td>
                 <td>
-                  9
+                  4
                 </td>
                 <td>
-                  78
+                  69
                 </td>
               </tr>
                           <tr>
@@ -1029,10 +1029,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.specialButtons.UCCButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/specialButtons/UCCButton.java</a>
                 </td>
                 <td>
-                  46
+                  1
                 </td>
                 <td>
-                  3
+                  2
                 </td>
                 <td>
                   17
@@ -1043,13 +1043,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ComponentBorder.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ComponentBorder.java</a>
                 </td>
                 <td>
-                  185
+                  29
                 </td>
                 <td>
-                  37
+                  8
                 </td>
                 <td>
-                  40
+                  34
                 </td>
               </tr>
                           <tr>
@@ -1071,10 +1071,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultContextSubscriber.java">org/universAAL/kinect/adapter/defaultComponents/DefaultContextSubscriber.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   3
@@ -1085,10 +1085,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.FormLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/FormLAF.java</a>
                 </td>
                 <td>
-                  34
+                  10
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   24
@@ -1099,10 +1099,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SelectLAF.java">org/universAAL/ui/handler/gui/swing/classic/SelectLAF.java</a>
                 </td>
                 <td>
-                  42
+                  4
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
                   19
@@ -1113,10 +1113,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.TCPServer.java">org/universAAL/kinect/adapter/communication/receiver/TCPServer.java</a>
                 </td>
                 <td>
-                  12
+                  8
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
                   10
@@ -1127,7 +1127,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.Page.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/Page.java</a>
                 </td>
                 <td>
-                  11
+                  6
                 </td>
                 <td>
                   0
@@ -1141,10 +1141,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.GridUnitLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/GridUnitLayout.java</a>
                 </td>
                 <td>
-                  79
+                  2
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   16
@@ -1155,7 +1155,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.Select1Model.java">org/universAAL/ui/ui/handler/web/html/model/Select1Model.java</a>
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
                   0
@@ -1169,7 +1169,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.UIRequestPriorityComparator.java">org/universAAL/ui/handler/gui/swing/formManagement/UIRequestPriorityComparator.java</a>
                 </td>
                 <td>
-                  8
+                  2
                 </td>
                 <td>
                   0
@@ -1183,10 +1183,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.LabelModel.java">org/universAAL/ui/ui/handler/web/html/model/LabelModel.java</a>
                 </td>
                 <td>
-                  34
+                  1
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   10
@@ -1197,7 +1197,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.DMServiceCaller.java">org/universAAL/ui/dm/DMServiceCaller.java</a>
                 </td>
                 <td>
-                  15
+                  10
                 </td>
                 <td>
                   1
@@ -1211,7 +1211,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue.java">org/universAAL/ui/handler/gui/swing/model/FormControl/support/TaskQueue.java</a>
                 </td>
                 <td>
-                  17
+                  5
                 </td>
                 <td>
                   0
@@ -1225,7 +1225,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java</a>
                 </td>
                 <td>
-                  12
+                  6
                 </td>
                 <td>
                   2
@@ -1239,7 +1239,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupTabbedPanelLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupTabbedPanelLAF.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0
@@ -1253,10 +1253,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.SystemButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/SystemButton.java</a>
                 </td>
                 <td>
-                  22
+                  4
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   5
@@ -1267,10 +1267,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java</a>
                 </td>
                 <td>
-                  38
+                  11
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   8
@@ -1281,7 +1281,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.IServiceCall.java">org/universAAL/kinect/adapter/serviceBus/IServiceCall.java</a>
                 </td>
                 <td>
-                  8
+                  7
                 </td>
                 <td>
                   0
@@ -1295,7 +1295,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.FormManager.java">org/universAAL/ui/handler/gui/swing/formManagement/FormManager.java</a>
                 </td>
                 <td>
-                  8
+                  10
                 </td>
                 <td>
                   1
@@ -1309,10 +1309,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultBroker.java">org/universAAL/kinect/adapter/defaultComponents/DefaultBroker.java</a>
                 </td>
                 <td>
-                  12
+                  7
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   11
@@ -1323,10 +1323,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScrolPaneLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/BorderedScrolPaneLayout.java</a>
                 </td>
                 <td>
-                  44
+                  9
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   2
@@ -1337,10 +1337,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage.java">org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java</a>
                 </td>
                 <td>
-                  44
+                  1
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   9
@@ -1351,7 +1351,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUIPreferences.java">org/universAAL/ui/dm/adapters/AdapterUIPreferences.java</a>
                 </td>
                 <td>
-                  15
+                  5
                 </td>
                 <td>
                   0
@@ -1365,10 +1365,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.resource.server.ResourceServer.java">org/universAAL/ui/resource/server/ResourceServer.java</a>
                 </td>
                 <td>
-                  24
+                  6
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   12
@@ -1379,10 +1379,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubmitLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubmitLAF.java</a>
                 </td>
                 <td>
-                  39
+                  2
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   4
@@ -1393,7 +1393,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher.java">org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java</a>
                 </td>
                 <td>
-                  6
+                  4
                 </td>
                 <td>
                   1
@@ -1407,7 +1407,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.OutputModel.java">org/universAAL/ui/ui/handler/web/html/model/OutputModel.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0
@@ -1421,10 +1421,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonFactory.java">org/universAAL/ui/handler/gui/swing/model/special/SpecialButtonFactory.java</a>
                 </td>
                 <td>
-                  29
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   12
@@ -1435,7 +1435,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.logging.LoggerWithModuleContext.java">org/universAAL/kinect/adapter/logging/LoggerWithModuleContext.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -1449,10 +1449,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.resource.server.Activator.java">org/universAAL/ui/resource/server/Activator.java</a>
                 </td>
                 <td>
-                  17
+                  4
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   9
@@ -1463,10 +1463,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterMessageInternationalization.java">org/universAAL/ui/dm/adapters/AdapterMessageInternationalization.java</a>
                 </td>
                 <td>
-                  20
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   5
@@ -1477,10 +1477,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RepeatModel.java">org/universAAL/ui/ui/handler/web/html/model/RepeatModel.java</a>
                 </td>
                 <td>
-                  12
+                  1
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   5
@@ -1491,10 +1491,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SimpleOutputLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SimpleOutputLAF.java</a>
                 </td>
                 <td>
-                  10
+                  2
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   8
@@ -1505,10 +1505,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/pager/MainMenuPager.java</a>
                 </td>
                 <td>
-                  96
+                  8
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   29
@@ -1519,10 +1519,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java</a>
                 </td>
                 <td>
-                  35
+                  9
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   8
@@ -1547,10 +1547,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.special.ExitButton.java">org/universAAL/ui/handler/gui/swing/model/special/ExitButton.java</a>
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   7
@@ -1561,7 +1561,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SelectCheckBoxLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SelectCheckBoxLAF.java</a>
                 </td>
                 <td>
-                  13
+                  0
                 </td>
                 <td>
                   0
@@ -1575,7 +1575,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  31
+                  8
                 </td>
                 <td>
                   1
@@ -1589,13 +1589,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormModel.java">org/universAAL/ui/handler/gui/swing/model/FormModel.java</a>
                 </td>
                 <td>
-                  44
+                  20
                 </td>
                 <td>
-                  9
+                  2
                 </td>
                 <td>
-                  26
+                  22
                 </td>
               </tr>
                           <tr>
@@ -1603,10 +1603,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.osgi.Activator.java">org/universAAL/ui/handler/gui/swing/osgi/Activator.java</a>
                 </td>
                 <td>
-                  39
+                  2
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
                   7
@@ -1617,7 +1617,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.sms.ISMSSender.java">org/universAAL/ui/handler/sms/ISMSSender.java</a>
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   1
@@ -1631,10 +1631,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java</a>
                 </td>
                 <td>
-                  22
+                  7
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   11
@@ -1645,10 +1645,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.MediaObjectLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/MediaObjectLAF.java</a>
                 </td>
                 <td>
-                  15
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -1659,10 +1659,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener.java">org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java</a>
                 </td>
                 <td>
-                  11
+                  5
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   3
@@ -1673,10 +1673,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.KickerButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/KickerButton.java</a>
                 </td>
                 <td>
-                  37
+                  4
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   20
@@ -1687,13 +1687,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilder.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java</a>
                 </td>
                 <td>
-                  59
+                  12
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
-                  16
+                  13
                 </td>
               </tr>
                           <tr>
@@ -1701,13 +1701,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.RoundedGradientButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/RoundedGradientButton.java</a>
                 </td>
                 <td>
-                  38
+                  4
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
-                  17
+                  13
                 </td>
               </tr>
                           <tr>
@@ -1715,7 +1715,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  30
+                  10
                 </td>
                 <td>
                   0
@@ -1729,13 +1729,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.SimpleLogin.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/SimpleLogin.java</a>
                 </td>
                 <td>
-                  37
+                  1
                 </td>
                 <td>
-                  17
+                  4
                 </td>
                 <td>
-                  6
+                  7
                 </td>
               </tr>
                           <tr>
@@ -1743,7 +1743,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java</a>
                 </td>
                 <td>
-                  16
+                  7
                 </td>
                 <td>
                   6
@@ -1757,7 +1757,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model.java">org/universAAL/ui/handler/gui/swing/model/FormControl/Select1Model.java</a>
                 </td>
                 <td>
-                  10
+                  4
                 </td>
                 <td>
                   0
@@ -1771,10 +1771,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.TriangularButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/TriangularButton.java</a>
                 </td>
                 <td>
-                  37
+                  3
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   7
@@ -1785,10 +1785,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder.java">org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java</a>
                 </td>
                 <td>
-                  29
+                  6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   12
@@ -1813,7 +1813,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.MessageKeys.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/MessageKeys.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -1827,13 +1827,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/SelectModel.java</a>
                 </td>
                 <td>
-                  27
+                  2
                 </td>
                 <td>
-                  8
+                  0
                 </td>
                 <td>
-                  21
+                  20
                 </td>
               </tr>
                           <tr>
@@ -1841,7 +1841,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SubdialogTriggerModel.java">org/universAAL/ui/ui/handler/web/html/model/SubdialogTriggerModel.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -1855,10 +1855,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.GroupPanelLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/GroupPanelLAF.java</a>
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   3
@@ -1869,7 +1869,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.Init.java">org/universAAL/ui/handler/gui/swing/classic/Init.java</a>
                 </td>
                 <td>
-                  7
+                  2
                 </td>
                 <td>
                   0
@@ -1883,10 +1883,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RepeatModelTableLAF.java">org/universAAL/ui/handler/gui/swing/classic/RepeatModelTableLAF.java</a>
                 </td>
                 <td>
-                  13
+                  7
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   4
@@ -1897,7 +1897,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager.java">org/universAAL/ui/handler/gui/swing/formManagement/SimpleFormManager.java</a>
                 </td>
                 <td>
-                  11
+                  2
                 </td>
                 <td>
                   0
@@ -1911,7 +1911,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.DialogManagerImpl.java">org/universAAL/ui/dm/DialogManagerImpl.java</a>
                 </td>
                 <td>
-                  58
+                  19
                 </td>
                 <td>
                   0
@@ -1925,10 +1925,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/RangeModel.java</a>
                 </td>
                 <td>
-                  16
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   7
@@ -1939,7 +1939,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SimpleOutputModel.java">org/universAAL/ui/ui/handler/web/html/model/SimpleOutputModel.java</a>
                 </td>
                 <td>
-                  12
+                  0
                 </td>
                 <td>
                   0
@@ -1953,7 +1953,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AllMainMenuProvider.java</a>
                 </td>
                 <td>
-                  18
+                  1
                 </td>
                 <td>
                   0
@@ -1967,7 +1967,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RangeModel.java">org/universAAL/ui/ui/handler/web/html/model/RangeModel.java</a>
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   0
@@ -1981,10 +1981,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.Handler.java">org/universAAL/ui/handler/gui/swing/Handler.java</a>
                 </td>
                 <td>
-                  54
+                  9
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   10
@@ -1995,10 +1995,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uCCButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uCCButton.java</a>
                 </td>
                 <td>
-                  36
+                  3
                 </td>
                 <td>
-                  4
+                  3
                 </td>
                 <td>
                   11
@@ -2009,13 +2009,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.QueryService.java">org/universAAL/kinect/adapter/serviceBus/QueryService.java</a>
                 </td>
                 <td>
-                  11
+                  6
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  3
+                  2
                 </td>
               </tr>
                           <tr>
@@ -2023,7 +2023,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesProvidedService.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java</a>
                 </td>
                 <td>
-                  17
+                  9
                 </td>
                 <td>
                   0
@@ -2037,7 +2037,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.RoundedPolygon.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/RoundedPolygon.java</a>
                 </td>
                 <td>
-                  77
+                  1
                 </td>
                 <td>
                   2
@@ -2051,10 +2051,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupPanelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupPanelLAF.java</a>
                 </td>
                 <td>
-                  25
+                  0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   3
@@ -2065,7 +2065,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ImageMedia.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ImageMedia.java</a>
                 </td>
                 <td>
-                  47
+                  6
                 </td>
                 <td>
                   0
@@ -2079,13 +2079,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.AbstractService.java">org/universAAL/kinect/adapter/serviceBus/AbstractService.java</a>
                 </td>
                 <td>
-                  9
+                  8
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  4
+                  3
                 </td>
               </tr>
                           <tr>
@@ -2093,10 +2093,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalFlowLayout.java</a>
                 </td>
                 <td>
-                  70
+                  14
                 </td>
                 <td>
-                  17
+                  1
                 </td>
                 <td>
                   26
@@ -2107,10 +2107,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/SimpleOutputModel.java</a>
                 </td>
                 <td>
-                  20
+                  4
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   5
@@ -2121,13 +2121,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UIRoundedRectangleButton.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UIRoundedRectangleButton.java</a>
                 </td>
                 <td>
-                  15
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
-                  5
+                  3
                 </td>
               </tr>
                           <tr>
@@ -2135,10 +2135,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.LocalizedMessagesURLProvider.java">org/universAAL/ui/dm/LocalizedMessagesURLProvider.java</a>
                 </td>
                 <td>
-                  12
+                  8
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   5
@@ -2149,7 +2149,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener.java">org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java</a>
                 </td>
                 <td>
-                  4
+                  2
                 </td>
                 <td>
                   0
@@ -2163,7 +2163,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java</a>
                 </td>
                 <td>
-                  9
+                  6
                 </td>
                 <td>
                   2
@@ -2177,7 +2177,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextPublisher.java">org/universAAL/kinect/adapter/contextBus/IContextPublisher.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   0
@@ -2191,10 +2191,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserLocation.java">org/universAAL/ui/dm/adapters/AdapterUserLocation.java</a>
                 </td>
                 <td>
-                  38
+                  9
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   17
@@ -2205,10 +2205,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.Worker.java">org/universAAL/kinect/adapter/communication/receiver/Worker.java</a>
                 </td>
                 <td>
-                  10
+                  6
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   10
@@ -2219,10 +2219,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/components/MyButton.java</a>
                 </td>
                 <td>
-                  47
+                  3
                 </td>
                 <td>
-                  16
+                  1
                 </td>
                 <td>
                   19
@@ -2233,13 +2233,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.FormControlModel.java">org/universAAL/ui/ui/handler/web/html/model/FormControlModel.java</a>
                 </td>
                 <td>
-                  42
+                  13
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
-                  23
+                  22
                 </td>
               </tr>
                           <tr>
@@ -2247,7 +2247,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java</a>
                 </td>
                 <td>
-                  34
+                  1
                 </td>
                 <td>
                   0
@@ -2261,13 +2261,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.Renderer.java">org/universAAL/ui/handler/gui/swing/Renderer.java</a>
                 </td>
                 <td>
-                  167
+                  37
                 </td>
                 <td>
-                  10
+                  1
                 </td>
                 <td>
-                  36
+                  31
                 </td>
               </tr>
                           <tr>
@@ -2275,7 +2275,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.GradientLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/GradientLAF.java</a>
                 </td>
                 <td>
-                  41
+                  5
                 </td>
                 <td>
                   2
@@ -2289,10 +2289,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.SubmitLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/SubmitLAF.java</a>
                 </td>
                 <td>
-                  15
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -2303,10 +2303,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UISubprofileInitializator.java">org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java</a>
                 </td>
                 <td>
-                  43
+                  16
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   9
@@ -2317,13 +2317,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.FormLAF.java">org/universAAL/ui/handler/gui/swing/classic/FormLAF.java</a>
                 </td>
                 <td>
-                  174
+                  8
                 </td>
                 <td>
-                  10
+                  3
                 </td>
                 <td>
-                  34
+                  29
                 </td>
               </tr>
                           <tr>
@@ -2331,7 +2331,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.Handler.java">org/universAAL/ui/ui/handler/web/html/Handler.java</a>
                 </td>
                 <td>
-                  36
+                  7
                 </td>
                 <td>
                   0
@@ -2345,10 +2345,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java</a>
                 </td>
                 <td>
-                  38
+                  6
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   15
@@ -2359,7 +2359,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatModelTableLAF.java</a>
                 </td>
                 <td>
-                  10
+                  1
                 </td>
                 <td>
                   0
@@ -2373,7 +2373,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.sms.SmsUIHandler.java">org/universAAL/ui/handler/sms/SmsUIHandler.java</a>
                 </td>
                 <td>
-                  12
+                  5
                 </td>
                 <td>
                   0
@@ -2387,10 +2387,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFormControlCellRenderer.java">org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableFormControlCellRenderer.java</a>
                 </td>
                 <td>
-                  34
+                  2
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   21
@@ -2401,7 +2401,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RepeatLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RepeatLAF.java</a>
                 </td>
                 <td>
-                  16
+                  4
                 </td>
                 <td>
                   0
@@ -2415,7 +2415,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.MediaObjectLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/MediaObjectLAF.java</a>
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   0
@@ -2429,7 +2429,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.IContainerManager.java">org/universAAL/ui/handler/gui/swing/IContainerManager.java</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   0
@@ -2443,7 +2443,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestStore.java">org/universAAL/ui/dm/interfaces/IUIRequestStore.java</a>
                 </td>
                 <td>
-                  7
+                  5
                 </td>
                 <td>
                   0
@@ -2457,10 +2457,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java</a>
                 </td>
                 <td>
-                  18
+                  7
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   4
@@ -2471,13 +2471,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java</a>
                 </td>
                 <td>
-                  37
+                  4
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  17
+                  16
                 </td>
               </tr>
                           <tr>
@@ -2485,7 +2485,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.InputFieldLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/InputFieldLAF.java</a>
                 </td>
                 <td>
-                  18
+                  4
                 </td>
                 <td>
                   0
@@ -2499,10 +2499,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdivider.java">org/universAAL/ui/handler/gui/swing/model/FormControl/support/RepeatSubdivider.java</a>
                 </td>
                 <td>
-                  14
+                  4
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   7
@@ -2513,7 +2513,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/GroupPanelModel.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -2527,7 +2527,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.InputFieldModel.java">org/universAAL/ui/ui/handler/web/html/model/InputFieldModel.java</a>
                 </td>
                 <td>
-                  56
+                  3
                 </td>
                 <td>
                   0
@@ -2541,7 +2541,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  29
+                  9
                 </td>
                 <td>
                   0
@@ -2555,7 +2555,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.Select1RadiobuttonModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/Select1RadiobuttonModel.java</a>
                 </td>
                 <td>
-                  25
+                  4
                 </td>
                 <td>
                   0
@@ -2569,10 +2569,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.InputFieldLAF.java">org/universAAL/ui/handler/gui/swing/classic/InputFieldLAF.java</a>
                 </td>
                 <td>
-                  23
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   4
@@ -2583,10 +2583,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid.java">org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelGrid.java</a>
                 </td>
                 <td>
-                  74
+                  5
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   35
@@ -2597,10 +2597,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.RangeLAF.java">org/universAAL/ui/handler/gui/swing/classic/RangeLAF.java</a>
                 </td>
                 <td>
-                  18
+                  3
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   2
@@ -2611,7 +2611,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.LabelLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/LabelLAF.java</a>
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
                   0
@@ -2625,10 +2625,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java</a>
                 </td>
                 <td>
-                  36
+                  19
                 </td>
                 <td>
-                  20
+                  0
                 </td>
                 <td>
                   27
@@ -2639,7 +2639,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.OverlayFormManager.java">org/universAAL/ui/handler/gui/swing/formManagement/OverlayFormManager.java</a>
                 </td>
                 <td>
-                  16
+                  4
                 </td>
                 <td>
                   0
@@ -2653,10 +2653,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SelectModel.java">org/universAAL/ui/ui/handler/web/html/model/SelectModel.java</a>
                 </td>
                 <td>
-                  20
+                  0
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   12
@@ -2667,7 +2667,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.ISubmitGroupListener.java">org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java</a>
                 </td>
                 <td>
-                  9
+                  7
                 </td>
                 <td>
                   0
@@ -2681,13 +2681,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator.java">org/universAAL/ui/ui/handler/web/html/HTMLUserGenerator.java</a>
                 </td>
                 <td>
-                  72
+                  18
                 </td>
                 <td>
-                  3
+                  1
                 </td>
                 <td>
-                  17
+                  13
                 </td>
               </tr>
                           <tr>
@@ -2695,7 +2695,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserImpairments.java">org/universAAL/ui/dm/adapters/AdapterUserImpairments.java</a>
                 </td>
                 <td>
-                  11
+                  7
                 </td>
                 <td>
                   0
@@ -2709,7 +2709,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.FormModel.java">org/universAAL/ui/ui/handler/web/html/model/FormModel.java</a>
                 </td>
                 <td>
-                  23
+                  0
                 </td>
                 <td>
                   0
@@ -2723,10 +2723,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.UAALTray.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/UAALTray.java</a>
                 </td>
                 <td>
-                  35
+                  5
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   21
@@ -2737,7 +2737,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/RepeatLAF.java</a>
                 </td>
                 <td>
-                  13
+                  2
                 </td>
                 <td>
                   0
@@ -2751,7 +2751,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/FormLAF.java</a>
                 </td>
                 <td>
-                  27
+                  6
                 </td>
                 <td>
                   0
@@ -2765,10 +2765,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/MediaObjectModel.java</a>
                 </td>
                 <td>
-                  37
+                  4
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -2779,10 +2779,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java</a>
                 </td>
                 <td>
-                  49
+                  6
                 </td>
                 <td>
-                  11
+                  1
                 </td>
                 <td>
                   20
@@ -2793,10 +2793,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.ResourceMapper.java">org/universAAL/ui/handler/gui/swing/ResourceMapper.java</a>
                 </td>
                 <td>
-                  49
+                  11
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   5
@@ -2807,7 +2807,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalUnitLayout.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Layout/VerticalUnitLayout.java</a>
                 </td>
                 <td>
-                  9
+                  5
                 </td>
                 <td>
                   0
@@ -2821,7 +2821,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager.java">org/universAAL/ui/handler/gui/swing/formManagement/HierarchicalFormManager.java</a>
                 </td>
                 <td>
-                  19
+                  8
                 </td>
                 <td>
                   0
@@ -2835,7 +2835,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.ColorLAF.java">org/universAAL/ui/handler/gui/swing/classic/ColorLAF.java</a>
                 </td>
                 <td>
-                  32
+                  6
                 </td>
                 <td>
                   3
@@ -2849,10 +2849,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.formManagement.FrameManager.java">org/universAAL/ui/handler/gui/swing/formManagement/FrameManager.java</a>
                 </td>
                 <td>
-                  19
+                  4
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   6
@@ -2863,7 +2863,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.osgi.DialogManagerActivator.java">org/universAAL/ui/dm/osgi/DialogManagerActivator.java</a>
                 </td>
                 <td>
-                  11
+                  4
                 </td>
                 <td>
                   1
@@ -2877,7 +2877,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java</a>
                 </td>
                 <td>
-                  13
+                  6
                 </td>
                 <td>
                   0
@@ -2891,10 +2891,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableJButtonEditor.java">org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/TableJButtonEditor.java</a>
                 </td>
                 <td>
-                  22
+                  2
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   13
@@ -2905,7 +2905,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SubdialogTriggerLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SubdialogTriggerLAF.java</a>
                 </td>
                 <td>
-                  7
+                  2
                 </td>
                 <td>
                   0
@@ -2919,10 +2919,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/SubdialogTriggerModel.java</a>
                 </td>
                 <td>
-                  19
+                  5
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   8
@@ -2933,10 +2933,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubmitLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubmitLAF.java</a>
                 </td>
                 <td>
-                  102
+                  5
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   11
@@ -2947,10 +2947,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.SelectLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/SelectLAF.java</a>
                 </td>
                 <td>
-                  8
+                  3
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   8
@@ -2961,13 +2961,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.UpdatedPropertiesFile.java">org/universAAL/ui/ui/handler/web/html/UpdatedPropertiesFile.java</a>
                 </td>
                 <td>
-                  39
+                  8
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
-                  10
+                  12
                 </td>
               </tr>
                           <tr>
@@ -2975,10 +2975,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.MediaObjectModel.java">org/universAAL/ui/ui/handler/web/html/model/MediaObjectModel.java</a>
                 </td>
                 <td>
-                  16
+                  0
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   5
@@ -2989,7 +2989,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IAdapter.java">org/universAAL/ui/dm/interfaces/IAdapter.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   1
@@ -3003,7 +3003,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.MessageConstants.java">org/universAAL/ui/dm/userInteraction/MessageConstants.java</a>
                 </td>
                 <td>
-                  108
+                  35
                 </td>
                 <td>
                   1
@@ -3017,10 +3017,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.RepeatTableModel.java">org/universAAL/ui/handler/gui/swing/model/FormControl/swingModel/RepeatTableModel.java</a>
                 </td>
                 <td>
-                  40
+                  19
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   29
@@ -3031,10 +3031,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.TextAreaLAF.java">org/universAAL/ui/handler/gui/swing/classic/TextAreaLAF.java</a>
                 </td>
                 <td>
-                  8
+                  4
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   3
@@ -3045,7 +3045,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.RangeLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/RangeLAF.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -3059,7 +3059,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.InitInterface.java">org/universAAL/ui/handler/gui/swing/model/InitInterface.java</a>
                 </td>
                 <td>
-                  15
+                  5
                 </td>
                 <td>
                   0
@@ -3073,7 +3073,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.GroupLAF.java">org/universAAL/ui/handler/gui/swing/classic/GroupLAF.java</a>
                 </td>
                 <td>
-                  11
+                  4
                 </td>
                 <td>
                   0
@@ -3115,7 +3115,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IMainMenuProvider.java">org/universAAL/ui/dm/interfaces/IMainMenuProvider.java</a>
                 </td>
                 <td>
-                  8
+                  6
                 </td>
                 <td>
                   0
@@ -3129,10 +3129,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java</a>
                 </td>
                 <td>
-                  27
+                  8
                 </td>
                 <td>
-                  58
+                  6
                 </td>
                 <td>
                   69
@@ -3143,10 +3143,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.GroupModel.java">org/universAAL/ui/ui/handler/web/html/model/GroupModel.java</a>
                 </td>
                 <td>
-                  49
+                  2
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   23
@@ -3157,7 +3157,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.LabelLAF.java">org/universAAL/ui/handler/gui/swing/classic/LabelLAF.java</a>
                 </td>
                 <td>
-                  5
+                  3
                 </td>
                 <td>
                   0
@@ -3171,10 +3171,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.SubdialogTriggerLAF.java">org/universAAL/ui/handler/gui/swing/classic/SubdialogTriggerLAF.java</a>
                 </td>
                 <td>
-                  97
+                  5
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   7
@@ -3185,13 +3185,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.Model.java">org/universAAL/ui/ui/handler/web/html/model/Model.java</a>
                 </td>
                 <td>
-                  57
+                  11
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
-                  12
+                  10
                 </td>
               </tr>
                           <tr>
@@ -3199,7 +3199,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java</a>
                 </td>
                 <td>
-                  20
+                  7
                 </td>
                 <td>
                   1
@@ -3213,10 +3213,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.classic.specialButtons.uStoreButton.java">org/universAAL/ui/handler/gui/swing/classic/specialButtons/uStoreButton.java</a>
                 </td>
                 <td>
-                  11
+                  3
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   7
@@ -3227,7 +3227,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.LabelLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/LabelLAF.java</a>
                 </td>
                 <td>
-                  6
+                  4
                 </td>
                 <td>
                   0
@@ -3241,7 +3241,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.TextAreaModel.java">org/universAAL/ui/ui/handler/web/html/model/TextAreaModel.java</a>
                 </td>
                 <td>
-                  10
+                  0
                 </td>
                 <td>
                   0
@@ -3255,7 +3255,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.ISystemMenuProvider.java">org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java</a>
                 </td>
                 <td>
-                  7
+                  6
                 </td>
                 <td>
                   0
@@ -3269,7 +3269,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.InputFieldLAF.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/InputFieldLAF.java</a>
                 </td>
                 <td>
-                  6
+                  2
                 </td>
                 <td>
                   0
@@ -3283,7 +3283,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.ModelMapper.java">org/universAAL/ui/handler/gui/swing/ModelMapper.java</a>
                 </td>
                 <td>
-                  59
+                  10
                 </td>
                 <td>
                   5
@@ -3297,10 +3297,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Init.java">org/universAAL/ui/handler/gui/swing/defaultLookAndFeel/Init.java</a>
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   7
@@ -3311,7 +3311,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.fm.SimpleFormManager.java">org/universAAL/ui/ui/handler/web/html/fm/SimpleFormManager.java</a>
                 </td>
                 <td>
-                  14
+                  2
                 </td>
                 <td>
                   1
@@ -3325,13 +3325,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java</a>
                 </td>
                 <td>
-                  56
+                  14
                 </td>
                 <td>
-                  13
+                  0
                 </td>
                 <td>
-                  10
+                  8
                 </td>
               </tr>
                           <tr>
@@ -3339,10 +3339,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.GroupLAF.java">org/universAAL/ui/gui/swing/bluesteelLAF/GroupLAF.java</a>
                 </td>
                 <td>
-                  59
+                  5
                 </td>
                 <td>
-                  17
+                  0
                 </td>
                 <td>
                   17
@@ -3353,7 +3353,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.IMessageBroker.java">org/universAAL/kinect/adapter/IMessageBroker/IMessageBroker.java</a>
                 </td>
                 <td>
-                  8
+                  7
                 </td>
                 <td>
                   1
@@ -3367,7 +3367,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer.java">org/universAAL/ui/dm/userInteraction/mainMenu/UIServiceResponseNotifyer.java</a>
                 </td>
                 <td>
-                  22
+                  7
                 </td>
                 <td>
                   0
@@ -3381,7 +3381,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestPool.java">org/universAAL/ui/dm/interfaces/IUIRequestPool.java</a>
                 </td>
                 <td>
-                  26
+                  15
                 </td>
                 <td>
                   5
@@ -3395,10 +3395,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.collapsable.SystemCollapse.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/collapsable/SystemCollapse.java</a>
                 </td>
                 <td>
-                  33
+                  2
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   23
@@ -3409,10 +3409,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.gui.swing.bluesteelLAF.support.ColorBorder.java">org/universAAL/ui/gui/swing/bluesteelLAF/support/ColorBorder.java</a>
                 </td>
                 <td>
-                  21
+                  4
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   10
@@ -3423,10 +3423,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.InputModel.java">org/universAAL/ui/ui/handler/web/html/model/InputModel.java</a>
                 </td>
                 <td>
-                  21
+                  4
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   7
@@ -3437,13 +3437,13 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable.java">org/universAAL/ui/handler/gui/swing/model/FormControl/RepeatModelTable.java</a>
                 </td>
                 <td>
-                  115
+                  6
                 </td>
                 <td>
-                  8
+                  0
                 </td>
                 <td>
-                  38
+                  37
                 </td>
               </tr>
                           <tr>
@@ -3451,7 +3451,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.gui.swing.model.LabelModel.java">org/universAAL/ui/handler/gui/swing/model/LabelModel.java</a>
                 </td>
                 <td>
-                  6
+                  5
                 </td>
                 <td>
                   0
@@ -3465,10 +3465,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SubmitModel.java">org/universAAL/ui/ui/handler/web/html/model/SubmitModel.java</a>
                 </td>
                 <td>
-                  27
+                  1
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   13
@@ -3479,10 +3479,10 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.ui.handler.web.html.ModelMapper.java">org/universAAL/ui/ui/handler/web/html/ModelMapper.java</a>
                 </td>
                 <td>
-                  50
+                  11
                 </td>
                 <td>
-                  4
+                  3
                 </td>
                 <td>
                   0
