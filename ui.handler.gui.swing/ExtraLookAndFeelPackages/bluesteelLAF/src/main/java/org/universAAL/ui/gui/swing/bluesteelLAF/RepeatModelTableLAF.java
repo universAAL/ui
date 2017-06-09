@@ -27,7 +27,6 @@ import org.universAAL.middleware.ui.rdf.Repeat;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
-
 /**
  * @author amedrano
  *
@@ -37,40 +36,36 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	/**
 	 * @param control
 	 */
-	private Color ligth = new Color (255, 255, 247);
+	private Color ligth = new Color(255, 255, 247);
+
 	public RepeatModelTableLAF(Repeat control, Renderer render) {
 		super(control, render);
 		needsLabel = false;
-//		TableCellRenderer renderer = new TableColors();
-//		tableComponent.setDefaultRenderer(Object.class, renderer);
-//		tableComponent.getColumnModel().getColumn(0).setCellRenderer(new TableColors());  
+		// TableCellRenderer renderer = new TableColors();
+		// tableComponent.setDefaultRenderer(Object.class, renderer);
+		// tableComponent.getColumnModel().getColumn(0).setCellRenderer(new
+		// TableColors());
 
 		getButtonPanel().setBackground(ligth);
-		
-	}
-	
-	
 
-	
-	/** {@inheritDoc}*/
+	}
+
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		JScrollPane scrollPane = new JScrollPane(getJTable());
-		
+
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		JPanel pannelWithAll = new JPanel();
-		//pannelWithAll.setBorder(new TitledBorder(fc.getLabel().getText()));
+		// pannelWithAll.setBorder(new TitledBorder(fc.getLabel().getText()));
 		pannelWithAll.setBackground(ligth);
 		pannelWithAll.setForeground(Color.white);
-		
+
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		return pannelWithAll;
 	}
-	
-	
+
 }

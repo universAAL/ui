@@ -17,7 +17,6 @@
 
 package org.universAAL.ui.ui.handler.web.html;
 
-
 import java.io.File;
 
 import junit.framework.TestCase;
@@ -28,7 +27,6 @@ import junit.framework.TestCase;
  */
 public class ResourceMapperTest extends TestCase {
 
-
 	/**
 	 * 
 	 */
@@ -38,16 +36,17 @@ public class ResourceMapperTest extends TestCase {
 		String s = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
 		String s2 = ResourceMapper.cached(CACHE, getClass().getClassLoader().getResource("default.css"));
 		assertEquals(s, s2);
-		File f = new File(CACHE+"/"+ s);
-		Thread.sleep(20); // this is only because the retriever might not have ended at this point.
-		assertTrue("checking file: "+f.getAbsolutePath(), f.exists());
-		
+		File f = new File(CACHE + "/" + s);
+		Thread.sleep(20); // this is only because the retriever might not have
+							// ended at this point.
+		assertTrue("checking file: " + f.getAbsolutePath(), f.exists());
+
 		s = ResourceMapper.cached(CACHE, "https://octodex.github.com/images/original.png");
 		s2 = ResourceMapper.cached(CACHE, "https://octodex.github.com/images/original.png");
 		assertEquals(s, s2);
-		
-		f = new File(CACHE+"/"+ s);
-		assertTrue("checking file: "+f.getAbsolutePath(), f.exists());
+
+		f = new File(CACHE + "/" + s);
+		assertTrue("checking file: " + f.getAbsolutePath(), f.exists());
 	}
 
 }

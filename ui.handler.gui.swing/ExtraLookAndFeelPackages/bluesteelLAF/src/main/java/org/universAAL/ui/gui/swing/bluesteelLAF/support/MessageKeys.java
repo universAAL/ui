@@ -17,6 +17,7 @@ package org.universAAL.ui.gui.swing.bluesteelLAF.support;
 
 /**
  * Key set for Messages.
+ * 
  * @author amedrano
  *
  */
@@ -26,15 +27,15 @@ public interface MessageKeys {
 	String USTORE = "system.uStore";
 	String UCC_HELP = "system.uCC.help";
 	String USTORE_HELP = "system.uStore.help";
-	
+
 	String SHOW_MENU = "system.show";
 	String HIDE_MENU = "system.hide";
-	
+
 	String NEXT = "kicker.next.page";
 	String PREVIOUS = "kicker.prev.page";
 	String JUMP_TO = "kicker.jumpto";
 	String PAGE = "kicker.page.id";
-	
+
 	String LOG_ON = "tray.logon";
 	String LOG_OFF = "tray.logoff";
 	String SHUTDOWN = "tray.shutdown";

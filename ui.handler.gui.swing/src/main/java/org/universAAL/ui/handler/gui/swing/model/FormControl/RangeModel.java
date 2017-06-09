@@ -34,81 +34,77 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Range
  */
-public abstract class RangeModel extends InputModel
-implements ChangeListener {
+public abstract class RangeModel extends InputModel implements ChangeListener {
 
 	/**
-	 * Threshold where to decide if it should be rendenred as {@link JSpinner} or
-	 * as {@link JSlider}.
+	 * Threshold where to decide if it should be rendenred as {@link JSpinner}
+	 * or as {@link JSlider}.
 	 */
-    private static final int SPINNER_SLIDER_THRESHOLD = 25;
-    
+	private static final int SPINNER_SLIDER_THRESHOLD = 25;
 
-    /**
-     * Constructor.
-     * @param control the {@link Range} which to model.
-     */
-    public RangeModel(Range control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Range} which to model.
+	 */
+	public RangeModel(Range control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * Ranges can yield a {@link JSpinner} if the specified range
-     * is less than a threshold, or it can also be {@link JSlider}.
-     * @return {@inheritDoc}
-     */
-    public JComponent getNewComponent() {
-    	Range r = (Range)fc;
-        if (r.getRangeLength() < SPINNER_SLIDER_THRESHOLD) {
-            JSpinner spinner = new JSpinner(getSpinnerModel());
-            spinner.addChangeListener(this);
-            return spinner;
-        }
-        else {
-            JSlider slider = new JSlider(0, r.getRangeLength(), r.getStepsValue());
-            slider.addChangeListener(this);
-            return slider;
-        }
-    }
-    
-    /**
-     * Create a {@link SpinnerModel} based on the values obtained from model
-     * @return
-     */
-    private SpinnerModel getSpinnerModel() {
-    	Range r = (Range)fc;
-        return new SpinnerNumberModel((Number) r.getValue(),
-                r.getMinValue(),
-                r.getMaxValue(),
-                r.getStep());
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isValid() {
-        // Swing makes sure it's all ways valid
-        return true;
-    }
+	/**
+	 * Ranges can yield a {@link JSpinner} if the specified range is less than a
+	 * threshold, or it can also be {@link JSlider}.
+	 * 
+	 * @return {@inheritDoc}
+	 */
+	public JComponent getNewComponent() {
+		Range r = (Range) fc;
+		if (r.getRangeLength() < SPINNER_SLIDER_THRESHOLD) {
+			JSpinner spinner = new JSpinner(getSpinnerModel());
+			spinner.addChangeListener(this);
+			return spinner;
+		} else {
+			JSlider slider = new JSlider(0, r.getRangeLength(), r.getStepsValue());
+			slider.addChangeListener(this);
+			return slider;
+		}
+	}
 
-    /**
-     * When a range is change, the input will be stored
-     * {@inheritDoc}
-     */
-    public void stateChanged(final ChangeEvent e) {
-    	TaskQueue.addTask(new Runnable() {
-    		public void run() {
-    			// Check UserInput Type is Integer!
-    			if (e.getSource() instanceof JSpinner) {
-    				 Object value = ((JSpinner) e.getSource()).getValue();
-    				 ((Range)fc).storeUserInput(value);
-    			}
-    			else {
-    				int value = ((JSlider) e.getSource()).getValue();
-    				((Range)fc).storeUserInput(((Range)fc).stepValue(value));
-    			}
-    		}
-    	});
-    }
+	/**
+	 * Create a {@link SpinnerModel} based on the values obtained from model
+	 * 
+	 * @return
+	 */
+	private SpinnerModel getSpinnerModel() {
+		Range r = (Range) fc;
+		return new SpinnerNumberModel((Number) r.getValue(), r.getMinValue(), r.getMaxValue(), r.getStep());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isValid() {
+		// Swing makes sure it's all ways valid
+		return true;
+	}
+
+	/**
+	 * When a range is change, the input will be stored {@inheritDoc}
+	 */
+	public void stateChanged(final ChangeEvent e) {
+		TaskQueue.addTask(new Runnable() {
+			public void run() {
+				// Check UserInput Type is Integer!
+				if (e.getSource() instanceof JSpinner) {
+					Object value = ((JSpinner) e.getSource()).getValue();
+					((Range) fc).storeUserInput(value);
+				} else {
+					int value = ((JSlider) e.getSource()).getValue();
+					((Range) fc).storeUserInput(((Range) fc).stepValue(value));
+				}
+			}
+		});
+	}
 
 }

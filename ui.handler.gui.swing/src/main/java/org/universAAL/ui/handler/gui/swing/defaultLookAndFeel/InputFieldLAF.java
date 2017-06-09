@@ -47,7 +47,7 @@ public class InputFieldLAF extends InputFieldModel {
 			jc.setFont(color.getplain());
 		}
 	}
-	
+
 	/** {@inheritDoc} */
 	public void updateAsMissing() {
 		JLabel l = getLabelModel().getComponent();

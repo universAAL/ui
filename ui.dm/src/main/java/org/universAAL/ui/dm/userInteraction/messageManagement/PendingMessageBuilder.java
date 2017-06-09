@@ -49,187 +49,166 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  *         created: 26-sep-2012 13:03:50
  */
 public class PendingMessageBuilder implements ISubmitGroupListener {
-    /**
-     * Prefix of a submission ID to switch to a pending dialog. All pending
-     * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
-     * control which atomatically adds index numbers to this prefix.
-     */
-    static final String PROP_MSG_LIST_MESSAGE_BODY = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgBody"; //$NON-NLS-1$
-    static final String PROP_MSG_LIST_MESSAGE_DATE = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgDate"; //$NON-NLS-1$
-    static final String PROP_MSG_LIST_MESSAGE_LIST = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgList"; //$NON-NLS-1$
-    static final String PROP_MSG_LIST_MESSAGE_TITLE = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgTitle"; //$NON-NLS-1$
-    static final String PROP_MSG_LIST_MSG_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgDialogID"; //$NON-NLS-1$
-    static final String PROP_MSG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
-	    + "msgListSentItems"; //$NON-NLS-1$
+	/**
+	 * Prefix of a submission ID to switch to a pending dialog. All pending
+	 * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
+	 * control which atomatically adds index numbers to this prefix.
+	 */
+	static final String PROP_MSG_LIST_MESSAGE_BODY = Form.uAAL_DIALOG_NAMESPACE + "msgBody"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_DATE = Form.uAAL_DIALOG_NAMESPACE + "msgDate"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_LIST = Form.uAAL_DIALOG_NAMESPACE + "msgList"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_TITLE = Form.uAAL_DIALOG_NAMESPACE + "msgTitle"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MSG_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE + "msgDialogID"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE + "msgListSentItems"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to close the dialog that shows all pending messages.
-     */
-    static final String CLOSE_MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#closeMessages"; //$NON-NLS-1$
+	/**
+	 * The submission ID to close the dialog that shows all pending messages.
+	 */
+	static final String CLOSE_MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX + "#closeMessages"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to delete all messages. This event occurs when the
-     * dialog with all messages is presented and the user selects the button to
-     * delete all messages. Note, that only the messages are deleted that are
-     * presented in this dialog to avoid deleting unseen messages.
-     */
-    static final String DELETE_ALL_MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#deleteAllMessages"; //$NON-NLS-1$
+	/**
+	 * The submission ID to delete all messages. This event occurs when the
+	 * dialog with all messages is presented and the user selects the button to
+	 * delete all messages. Note, that only the messages are deleted that are
+	 * presented in this dialog to avoid deleting unseen messages.
+	 */
+	static final String DELETE_ALL_MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX + "#deleteAllMessages"; //$NON-NLS-1$
 
-    /**
-     * The Message Pool containing all messages for the user.
-     */
-    private IUIRequestPool messagePool;
-    private List<String> sentItems;
-    private UserDialogManager userDM;
+	/**
+	 * The Message Pool containing all messages for the user.
+	 */
+	private IUIRequestPool messagePool;
+	private List<String> sentItems;
+	private UserDialogManager userDM;
 
-    /**
-     * The constructor will build the form and send the request to the user.
-     * 
-     * @param udm
-     */
-    public PendingMessageBuilder(UserDialogManager udm) {
-	messagePool = udm.getMessagePool();
-	userDM = udm;
-	Form pendingMessagesForm = buildForm();
-	if (pendingMessagesForm != null) {
-	    userDM.add(this);
-	    userDM.pushDialog(pendingMessagesForm);
-	}
-    }
-
-    /** {@inheritDoc} */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-	if (DELETE_ALL_MESSAGES_CALL.equals(submissionID)) {
-	    // for (UIRequest r : messagePool.listAllSuspended()) {
-	    // DialogManagerImpl.getInstance()
-	    // .abortDialog(r.getDialogID());
-	    // }
-	    // TODO: how to remove messages from bus? if they aren't removed
-	    // already.
-	    messagePool.removeAll();
-	}
-	if (CLOSE_MESSAGES_CALL.equals(submissionID)) {
-	    userDM.showSomething();
-	}
-
-    }
-
-    /** {@inheritDoc} */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(CLOSE_MESSAGES_CALL);
-	s.add(DELETE_ALL_MESSAGES_CALL);
-	return s;
-    }
-
-    private Form buildForm() {
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	Form f = null;
-	Collection<UIRequest> pendingMessages = new ArrayList<UIRequest>(
-		messagePool.listAllSuspended());
-	pendingMessages.addAll(messagePool.listAllActive());
-	if (pendingMessages.size() > 0) {
-	    // a list with information about a message in RDF-form:
-	    // title, content, date, dialog ID
-	    List<Resource> messageList = new ArrayList<Resource>(
-		    pendingMessages.size());
-	    sentItems = new ArrayList<String>(pendingMessages.size());
-
-	    // fill the lists with all pending messages for the current
-	    // user
-	    for (UIRequest msg : pendingMessages) {
-
-		Form tmp = msg.getDialogForm();
-		String title = tmp.getTitle();
-		Object msgBody = tmp.getMessageContent();
-		if (msgBody != null && !isIgnorableMessage(msgBody, title)) {
-		    Resource aux = new Resource();
-		    aux.setProperty(PROP_MSG_LIST_MESSAGE_BODY, msgBody);
-		    aux.setProperty(PROP_MSG_LIST_MESSAGE_DATE, tmp
-			    .getCreationTime());
-		    aux.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, title);
-		    aux.setProperty(PROP_MSG_LIST_MSG_DIALOG_ID, tmp
-			    .getDialogID());
-		    messageList.add(aux);
-		    sentItems.add(tmp.getDialogID());
+	/**
+	 * The constructor will build the form and send the request to the user.
+	 * 
+	 * @param udm
+	 */
+	public PendingMessageBuilder(UserDialogManager udm) {
+		messagePool = udm.getMessagePool();
+		userDM = udm;
+		Form pendingMessagesForm = buildForm();
+		if (pendingMessagesForm != null) {
+			userDM.add(this);
+			userDM.pushDialog(pendingMessagesForm);
 		}
-	    }
-
-	    // if there are messages available for the current user,
-	    // create a new form with a list of all messages
-	    if (!messageList.isEmpty()) {
-		Resource msgList = new Resource();
-		msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
-		msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
-		f = Form.newDialog(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
-			msgList);
-		Group g = f.getIOControls();
-		g = new Repeat(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
-			null), new PropertyPath(null, false,
-			new String[] { PROP_MSG_LIST_MESSAGE_LIST }), null,
-			null);
-		((Repeat) g).banEntryAddition();
-		((Repeat) g).banEntryDeletion();
-		((Repeat) g).banEntryEdit();
-		// dummy group needed if more than one form control is going
-		// to be added as child of the repeat
-		g = new Group(g, null, null, null, null);
-		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_SUBJECT), null),
-			new PropertyPath(null, false,
-				new String[] { PROP_MSG_LIST_MESSAGE_TITLE }),
-			null);
-		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_DATE), null),
-			new PropertyPath(null, false,
-				new String[] { PROP_MSG_LIST_MESSAGE_DATE }),
-			null);
-		new SimpleOutput(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_MESSAGE), null),
-			new PropertyPath(null, false,
-				new String[] { PROP_MSG_LIST_MESSAGE_BODY }),
-			null);
-		// add submits
-		g = f.getSubmits();
-		new Submit(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_MESSAGE_BUILDER_OK), null),
-			CLOSE_MESSAGES_CALL);
-		new Submit(g, new Label(messageLocaleHelper
-			.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL), null),
-			DELETE_ALL_MESSAGES_CALL)
-			.setHelpString(messageLocaleHelper
-				.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL_HELP));
-	    }
 	}
 
-	// if there are no messages available, create a new message saying
-	// exactly that, so that the user knows that there are no messages
-	if (f == null)
-	    f = Form
-		    .newMessage(
-			    messageLocaleHelper
-				    .getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
-			    messageLocaleHelper
-				    .getString(MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES));
-	return f;
-    }
+	/** {@inheritDoc} */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		if (DELETE_ALL_MESSAGES_CALL.equals(submissionID)) {
+			// for (UIRequest r : messagePool.listAllSuspended()) {
+			// DialogManagerImpl.getInstance()
+			// .abortDialog(r.getDialogID());
+			// }
+			// TODO: how to remove messages from bus? if they aren't removed
+			// already.
+			messagePool.removeAll();
+		}
+		if (CLOSE_MESSAGES_CALL.equals(submissionID)) {
+			userDM.showSomething();
+		}
 
-    private boolean isIgnorableMessage(Object msgContent, String formTitle) {
-	return userDM.getLocaleHelper().getString(
-		MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES).equals(msgContent)
-		&& userDM.getLocaleHelper().getString(
-			MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES).equals(
-			formTitle);
-    }
+	}
+
+	/** {@inheritDoc} */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(CLOSE_MESSAGES_CALL);
+		s.add(DELETE_ALL_MESSAGES_CALL);
+		return s;
+	}
+
+	private Form buildForm() {
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		Form f = null;
+		Collection<UIRequest> pendingMessages = new ArrayList<UIRequest>(messagePool.listAllSuspended());
+		pendingMessages.addAll(messagePool.listAllActive());
+		if (pendingMessages.size() > 0) {
+			// a list with information about a message in RDF-form:
+			// title, content, date, dialog ID
+			List<Resource> messageList = new ArrayList<Resource>(pendingMessages.size());
+			sentItems = new ArrayList<String>(pendingMessages.size());
+
+			// fill the lists with all pending messages for the current
+			// user
+			for (UIRequest msg : pendingMessages) {
+
+				Form tmp = msg.getDialogForm();
+				String title = tmp.getTitle();
+				Object msgBody = tmp.getMessageContent();
+				if (msgBody != null && !isIgnorableMessage(msgBody, title)) {
+					Resource aux = new Resource();
+					aux.setProperty(PROP_MSG_LIST_MESSAGE_BODY, msgBody);
+					aux.setProperty(PROP_MSG_LIST_MESSAGE_DATE, tmp.getCreationTime());
+					aux.setProperty(PROP_MSG_LIST_MESSAGE_TITLE, title);
+					aux.setProperty(PROP_MSG_LIST_MSG_DIALOG_ID, tmp.getDialogID());
+					messageList.add(aux);
+					sentItems.add(tmp.getDialogID());
+				}
+			}
+
+			// if there are messages available for the current user,
+			// create a new form with a list of all messages
+			if (!messageList.isEmpty()) {
+				Resource msgList = new Resource();
+				msgList.setProperty(PROP_MSG_LIST_MESSAGE_LIST, messageList);
+				msgList.setProperty(PROP_MSG_LIST_SENT_ITEMS, sentItems);
+				f = Form.newDialog(
+						messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
+						msgList);
+				Group g = f.getIOControls();
+				g = new Repeat(g,
+						new Label(messageLocaleHelper
+								.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES), null),
+						new PropertyPath(null, false, new String[] { PROP_MSG_LIST_MESSAGE_LIST }), null, null);
+				((Repeat) g).banEntryAddition();
+				((Repeat) g).banEntryDeletion();
+				((Repeat) g).banEntryEdit();
+				// dummy group needed if more than one form control is going
+				// to be added as child of the repeat
+				g = new Group(g, null, null, null, null);
+				new SimpleOutput(g,
+						new Label(messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_SUBJECT),
+								null),
+						new PropertyPath(null, false, new String[] { PROP_MSG_LIST_MESSAGE_TITLE }), null);
+				new SimpleOutput(g,
+						new Label(messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_DATE), null),
+						new PropertyPath(null, false, new String[] { PROP_MSG_LIST_MESSAGE_DATE }), null);
+				new SimpleOutput(g,
+						new Label(messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_MESSAGE),
+								null),
+						new PropertyPath(null, false, new String[] { PROP_MSG_LIST_MESSAGE_BODY }), null);
+				// add submits
+				g = f.getSubmits();
+				new Submit(g,
+						new Label(messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_OK), null),
+						CLOSE_MESSAGES_CALL);
+				new Submit(g,
+						new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL),
+								null),
+						DELETE_ALL_MESSAGES_CALL).setHelpString(
+								messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_DELETE_ALL_HELP));
+			}
+		}
+
+		// if there are no messages available, create a new message saying
+		// exactly that, so that the user knows that there are no messages
+		if (f == null)
+			f = Form.newMessage(
+					messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES),
+					messageLocaleHelper.getString(MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES));
+		return f;
+	}
+
+	private boolean isIgnorableMessage(Object msgContent, String formTitle) {
+		return userDM.getLocaleHelper().getString(MessageConstants.PENDING_MESSAGE_BUILDER_NO_PENDING_MESSAGES)
+				.equals(msgContent)
+				&& userDM.getLocaleHelper().getString(MessageConstants.PENDING_MESSAGE_BUILDER_PENDING_MESSAGES)
+						.equals(formTitle);
+	}
 
 }

@@ -99,8 +99,7 @@ public class FullFormGeneratorTest extends BusTestCase {
 		OntologyManagement.getInstance().register(mc, new CryptographicOntology());
 		OntologyManagement.getInstance().register(mc, new SecurityOntology());
 		OntologyManagement.getInstance().register(mc, new LanguageOntology());
-		OntologyManagement.getInstance().register(mc,
-				new UIPreferencesProfileOntology());
+		OntologyManagement.getInstance().register(mc, new UIPreferencesProfileOntology());
 		OntologyManagement.getInstance().register(mc, new RecommendationsOntology());
 
 		testRender = new TestGenerator(mc);
@@ -123,28 +122,25 @@ public class FullFormGeneratorTest extends BusTestCase {
 
 	public void testGenerate() {
 		Form f = getUIPreferencesEditorForm();
-		pw.println(testRender.getModelMapper().getModelFor(f).generateHTML()
-				.toString());
+		pw.println(testRender.getModelMapper().getModelFor(f).generateHTML().toString());
 		pw.flush();
 	}
-	
+
 	/**
 	 * copied form UI.INTERNATIONALIZATION.UTIL tests
 	 */
 	private static Language getLanguageFromIso639(String code) {
-		Set allLang = OntologyManagement.getInstance().getNamedSubClasses(
-				Language.MY_URI, true, false);
+		Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
 		for (Iterator i = allLang.iterator(); i.hasNext();) {
 			String uri = (String) i.next();
-			Language l = (Language) Resource
-					.getResource(uri, uri.toLowerCase());
+			Language l = (Language) Resource.getResource(uri, uri.toLowerCase());
 			if (l.getIso639code().equals(code)) {
 				return l;
 			}
 		}
 		return null;
 	}
-    
+
 	/**
 	 * Copied from UI.DM and, UI.INTERNATIONALIZATION.UTIL tests
 	 */
@@ -163,23 +159,15 @@ public class FullFormGeneratorTest extends BusTestCase {
 		res.add(getClass().getClassLoader().getResource("messages.properties"));
 
 		try {
-			messageLocaleHelper = new MessageLocaleHelper(mc,
-					uiPreferencesSubprofile, res);
+			messageLocaleHelper = new MessageLocaleHelper(mc, uiPreferencesSubprofile, res);
 		} catch (Exception e) {
-			LogUtils.logWarn(
-					mc,
-					getClass(),
-					"getUIPreferencesEditorForm",
-					new String[] { "Cannot initialize Dialog Manager externalized strings!" },
-					e);
+			LogUtils.logWarn(mc, getClass(), "getUIPreferencesEditorForm",
+					new String[] { "Cannot initialize Dialog Manager externalized strings!" }, e);
 
 		}
 
-		Form f = Form
-				.newDialog(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.UIPreferencesScreenTitle"),
-						uiPreferencesSubprofile);
+		Form f = Form.newDialog(messageLocaleHelper.getString("UIPreferencesDialogBuilder.UIPreferencesScreenTitle"),
+				uiPreferencesSubprofile);
 		Group controls = f.getIOControls();
 		Group submits = f.getSubmits();
 
@@ -187,18 +175,15 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// GeneralInteractionPreferences Group controls START
 		// ///////////////////////////////////////////////////
 
-		GeneralInteractionPreferences gInteractionPrefs = uiPreferencesSubprofile
-				.getInteractionPreferences();
+		GeneralInteractionPreferences gInteractionPrefs = uiPreferencesSubprofile.getInteractionPreferences();
 
-		Group generalInteractionPreferencesGroup = new Group(
-				controls,
+		Group generalInteractionPreferencesGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.GeneralInteractionPreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleGroupGeneralInteractionPreferences = new Group(
-				generalInteractionPreferencesGroup, null, null, null,
-				(Resource) null);// This group is for
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.GeneralInteractionPreferences"),
+						(String) null),
+				null, null, (Resource) null);
+		Group invisibleGroupGeneralInteractionPreferences = new Group(generalInteractionPreferencesGroup, null, null,
+				null, (Resource) null);// This group is for
 		// ordering inputs
 
 		// vertically
@@ -210,53 +195,39 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// .getString("UIPreferencesDialogBuilder.SelectGeneralInteractionPreferences"));
 
 		// Select preferred Modality control
-		Select1 preferredModalitySelect = new Select1(
-				invisibleGroupGeneralInteractionPreferences,
+		Select1 preferredModalitySelect = new Select1(invisibleGroupGeneralInteractionPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.PreferredModalitySelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.PreferredModalitySelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 						GeneralInteractionPreferences.PROP_PREFERRED_MODALITY }),
 				null, null);
 		// show the one stored in Profiling server as the 1st (selected) one;
 		// another one is another from the couple (web, gui). Preferred modality
 		// can only be web or gui (since UIStrategy uses it)
 		if (gInteractionPrefs.getPreferredModality() == Modality.gui) {
-			preferredModalitySelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.Modality.gui"),
+			preferredModalitySelect.addChoiceItem(
+					new ChoiceItem(messageLocaleHelper.getString("UIPreferencesDialogBuilder.Modality.gui"),
 							(String) null, Modality.gui));
-			preferredModalitySelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.Modality.web"),
+			preferredModalitySelect.addChoiceItem(
+					new ChoiceItem(messageLocaleHelper.getString("UIPreferencesDialogBuilder.Modality.web"),
 							(String) null, Modality.web));
 		} else {
-			preferredModalitySelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.Modality.web"),
+			preferredModalitySelect.addChoiceItem(
+					new ChoiceItem(messageLocaleHelper.getString("UIPreferencesDialogBuilder.Modality.web"),
 							(String) null, Modality.web));
-			preferredModalitySelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.Modality.gui"),
+			preferredModalitySelect.addChoiceItem(
+					new ChoiceItem(messageLocaleHelper.getString("UIPreferencesDialogBuilder.Modality.gui"),
 							(String) null, Modality.gui));
 
 		}
 
 		// Select secondary Modality control
-		Select1 secondaryModalitySelect = new Select1(
-				invisibleGroupGeneralInteractionPreferences,
+		Select1 secondaryModalitySelect = new Select1(invisibleGroupGeneralInteractionPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SecondaryModalitySelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SecondaryModalitySelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 						GeneralInteractionPreferences.PROP_SECONDARY_MODALITY }),
 				null, null);
 		// secondaryModalitySelect.addChoiceItem(new
@@ -270,20 +241,16 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			secondaryModalitySelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Modality."
-									+ Modality.getLevelByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Modality." + Modality.getLevelByOrder(i).name()),
 					(String) null, Modality.getLevelByOrder(i)));
 		}
 
 		// Select preferred Language control
-		Select1 preferredLanguageSelect = new Select1(
-				invisibleGroupGeneralInteractionPreferences,
+		Select1 preferredLanguageSelect = new Select1(invisibleGroupGeneralInteractionPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.PreferredLanguageSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.PreferredLanguageSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 						GeneralInteractionPreferences.PROP_PREFERRED_LANGUAGE }),
 				null, null);
 		// preferredLanguageSelect.addChoiceItem(new
@@ -292,8 +259,7 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// gInteractionPrefs.getPreferredLanguage()));
 
 		// get all available languages
-		Set allLanguagesURIs = OntologyManagement.getInstance()
-				.getNamedSubClasses(Language.MY_URI, true, false);
+		Set allLanguagesURIs = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
 		// This is to short the URI list
 		allLanguagesURIs = new TreeSet(allLanguagesURIs);
 
@@ -301,8 +267,7 @@ public class FullFormGeneratorTest extends BusTestCase {
 		String currentLang = null;
 		for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
 			String currentLangInstanceURI = (String) i.next();
-			langInstance = (Language) Resource.getResource(
-					currentLangInstanceURI,
+			langInstance = (Language) Resource.getResource(currentLangInstanceURI,
 					currentLangInstanceURI.toLowerCase());
 			// if (langInstance.getIso639code().equalsIgnoreCase(
 			// gInteractionPrefs.getPreferredLanguage().getIso639code())) {
@@ -310,19 +275,16 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// // skip it
 			// continue;
 			// }
-			preferredLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
-					.getNativeLabel(), (String) null, langInstance));
+			preferredLanguageSelect
+					.addChoiceItem(new ChoiceItem(langInstance.getNativeLabel(), (String) null, langInstance));
 		}
 
 		// Select secondary Language control
-		Select1 secondaryLanguageSelect = new Select1(
-				invisibleGroupGeneralInteractionPreferences,
+		Select1 secondaryLanguageSelect = new Select1(invisibleGroupGeneralInteractionPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SecondaryLanguageSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SecondaryLanguageSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 						GeneralInteractionPreferences.PROP_SECONDARY_LANGUAGE }),
 				null, null);
 		// secondaryLanguageSelect.addChoiceItem(new
@@ -332,8 +294,7 @@ public class FullFormGeneratorTest extends BusTestCase {
 
 		for (Iterator i = allLanguagesURIs.iterator(); i.hasNext();) {
 			String currentLangInstanceURI = (String) i.next();
-			langInstance = (Language) Resource.getResource(
-					currentLangInstanceURI,
+			langInstance = (Language) Resource.getResource(currentLangInstanceURI,
 					currentLangInstanceURI.toLowerCase());
 
 			// if (langInstance.getIso639code().equalsIgnoreCase(
@@ -342,19 +303,15 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// // skip it
 			// continue;
 			// }
-			secondaryLanguageSelect.addChoiceItem(new ChoiceItem(langInstance
-					.getNativeLabel(), (String) null, langInstance));
+			secondaryLanguageSelect
+					.addChoiceItem(new ChoiceItem(langInstance.getNativeLabel(), (String) null, langInstance));
 		}
 
 		// Select content density control
-		Select1 contentDensity = new Select1(
-				invisibleGroupGeneralInteractionPreferences,
+		Select1 contentDensity = new Select1(invisibleGroupGeneralInteractionPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.ContentDensity"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.ContentDensity"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
 						GeneralInteractionPreferences.PROP_CONTENT_DENSITY }),
 				null, null);
 		// contentDensity.addChoiceItem(new ChoiceItem(messageLocaleHelper
@@ -365,28 +322,24 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - gInteractionPrefs.getContentDensity().ord() == 0) {
 			// continue;
 			// }
-			contentDensity.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.ContentDensityType."
-							+ ContentDensityType
-									.getContentDensityTypeByOrder(i).name()),
-					(String) null, ContentDensityType
-							.getContentDensityTypeByOrder(i)));
+			contentDensity.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.ContentDensityType."
+							+ ContentDensityType.getContentDensityTypeByOrder(i).name()),
+					(String) null, ContentDensityType.getContentDensityTypeByOrder(i)));
 		}
 
 		// ///////////////////////////////////////////////////
 		// SystemMenuPreferences Group controls START
 		// ///////////////////////////////////////////////////
-		SystemMenuPreferences systemMenuPreferences = uiPreferencesSubprofile
-				.getSystemMenuPreferences();
+		SystemMenuPreferences systemMenuPreferences = uiPreferencesSubprofile.getSystemMenuPreferences();
 
-		Group systemPreferencesGroup = new Group(
-				controls,
+		Group systemPreferencesGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SystemMenuPreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleGroupSystemMenuPreferences = new Group(
-				systemPreferencesGroup, null, null, null, (Resource) null);// This
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SystemMenuPreferences"),
+						(String) null),
+				null, null, (Resource) null);
+		Group invisibleGroupSystemMenuPreferences = new Group(systemPreferencesGroup, null, null, null,
+				(Resource) null);// This
 
 		// vertically
 		// new SimpleOutput(
@@ -397,14 +350,10 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// .getString("UIPreferencesDialogBuilder.SelectSystemMenuPreferences"));
 
 		// Select Main Menu Conf control
-		Select1 mainMenuConfSelect = new Select1(
-				invisibleGroupSystemMenuPreferences,
+		Select1 mainMenuConfSelect = new Select1(invisibleGroupSystemMenuPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.MainMenuConfSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.MainMenuConfSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
 						SystemMenuPreferences.PROP_MAIN_MENU_CONFIGURATION }),
 				null, null);
 
@@ -421,27 +370,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// 0) {
 			// continue;
 			// }
-			mainMenuConfSelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.MainMenuConfigurationType."
-											+ MainMenuConfigurationType
-													.getMainMenuConfigurationTypeByOrder(
-															i).name()),
-							(String) null, MainMenuConfigurationType
-									.getMainMenuConfigurationTypeByOrder(i)));
+			mainMenuConfSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.MainMenuConfigurationType."
+							+ MainMenuConfigurationType.getMainMenuConfigurationTypeByOrder(i).name()),
+					(String) null, MainMenuConfigurationType.getMainMenuConfigurationTypeByOrder(i)));
 
 		}
 
 		// Select Message Persistence Conf control
-		Select1 msgPersistenceSelect = new Select1(
-				invisibleGroupSystemMenuPreferences,
+		Select1 msgPersistenceSelect = new Select1(invisibleGroupSystemMenuPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.UIRequestPersistenceSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.UIRequestPersistenceSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
 						SystemMenuPreferences.PROP_UIREQUEST_PERSISTANCE }),
 				null, null);
 
@@ -457,21 +398,17 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			msgPersistenceSelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Status."
-									+ Status.getStatusByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 
 		}
 
 		// Select Pending Dialogue Builder control
-		Select1 pendingDialogueBuilderSelect = new Select1(
-				invisibleGroupSystemMenuPreferences,
+		Select1 pendingDialogueBuilderSelect = new Select1(invisibleGroupSystemMenuPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.PendingDialogueBuilderSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.PendingDialogueBuilderSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
 						SystemMenuPreferences.PROP_PENDING_DIALOG_BUILDER }),
 				null, null);
 
@@ -488,27 +425,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// 0) {
 			// continue;
 			// }
-			pendingDialogueBuilderSelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.PendingDialogsBuilderType."
-											+ PendingDialogsBuilderType
-													.getPendingDialogsBuilderTypeByOrder(
-															i).name()),
-							(String) null, PendingDialogsBuilderType
-									.getPendingDialogsBuilderTypeByOrder(i)));
+			pendingDialogueBuilderSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.PendingDialogsBuilderType."
+							+ PendingDialogsBuilderType.getPendingDialogsBuilderTypeByOrder(i).name()),
+					(String) null, PendingDialogsBuilderType.getPendingDialogsBuilderTypeByOrder(i)));
 
 		}
 
 		// Select Pending Message Builder control
-		Select1 pendingMessageBuilderSelect = new Select1(
-				invisibleGroupSystemMenuPreferences,
+		Select1 pendingMessageBuilderSelect = new Select1(invisibleGroupSystemMenuPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.PendingMessageBuilderSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.PendingMessageBuilderSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
 						SystemMenuPreferences.PROP_PENDING_MESSAGE_BUILDER }),
 				null, null);
 
@@ -525,27 +454,18 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// 0) {
 			// continue;
 			// }
-			pendingMessageBuilderSelect
-					.addChoiceItem(new ChoiceItem(
-							messageLocaleHelper
-									.getString("UIPreferencesDialogBuilder.PendingMessageBuilderType."
-											+ PendingMessageBuilderType
-													.getPendingMessageBuilderTypeByOrder(
-															i).name()),
-							(String) null, PendingMessageBuilderType
-									.getPendingMessageBuilderTypeByOrder(i)));
+			pendingMessageBuilderSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.PendingMessageBuilderType."
+							+ PendingMessageBuilderType.getPendingMessageBuilderTypeByOrder(i).name()),
+					(String) null, PendingMessageBuilderType.getPendingMessageBuilderTypeByOrder(i)));
 
 		}
 
 		// Select Search is first Conf control
-		Select1 searchIsFirstSelect = new Select1(
-				invisibleGroupSystemMenuPreferences,
+		Select1 searchIsFirstSelect = new Select1(invisibleGroupSystemMenuPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SearchIsFirstSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SearchIsFirstSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_SYSTEM_MENU_PREFERENCES,
 						SystemMenuPreferences.PROP_SEARCH_FEATURE_IS_FIRST }),
 				null, null);
 
@@ -561,8 +481,7 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			searchIsFirstSelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Status."
-									+ Status.getStatusByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 
 		}
@@ -570,17 +489,13 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// ///////////////////////////////////////////////////
 		// VisualPreferences Group controls START
 		// ///////////////////////////////////////////////////
-		VisualPreferences visualPreferences = uiPreferencesSubprofile
-				.getVisualPreferences();
+		VisualPreferences visualPreferences = uiPreferencesSubprofile.getVisualPreferences();
 
-		Group visualPreferencesGroup = new Group(
-				controls,
+		Group visualPreferencesGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.VisualPreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleVisualPreferences = new Group(visualPreferencesGroup,
-				null, null, null, (Resource) null);// This
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.VisualPreferences"), (String) null),
+				null, null, (Resource) null);
+		Group invisibleVisualPreferences = new Group(visualPreferencesGroup, null, null, null, (Resource) null);// This
 
 		// vertically
 		// new SimpleOutput(
@@ -591,15 +506,13 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// .getString("UIPreferencesDialogBuilder.SelectVisualPreferences"));
 
 		// Select Background Color control
-		Select1 backgroundColourSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 backgroundColourSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.BackgroundColorSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.BackgroundColorSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_BACKGROUND_COLOR }), null, null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_BACKGROUND_COLOR }),
+				null, null);
 
 		// backgroundColourSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
@@ -611,22 +524,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// continue;
 			// }
 			backgroundColourSelect.addChoiceItem(new ChoiceItem(
-					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.ColorType."
-									+ ColorType.getColorTypeByOrder(i).name()),
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.ColorType." + ColorType.getColorTypeByOrder(i).name()),
 					(String) null, ColorType.getColorTypeByOrder(i)));
 		}
 
 		// Select Highlight Color control
-		Select1 highlightColourSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 highlightColourSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.HighlightColourSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.HighlightColourSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_HIGHLIGHT_COLOR }), null, null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_HIGHLIGHT_COLOR }),
+				null, null);
 		// highlightColourSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.ColorType."
@@ -637,22 +547,18 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// continue;
 			// }
 			highlightColourSelect.addChoiceItem(new ChoiceItem(
-					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.ColorType."
-									+ ColorType.getColorTypeByOrder(i).name()),
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.ColorType." + ColorType.getColorTypeByOrder(i).name()),
 					(String) null, ColorType.getColorTypeByOrder(i)));
 		}
 
 		// Select Font Color control
-		Select1 fontColourSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 fontColourSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.FontColourSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_FONT_COLOR }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.FontColourSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_FONT_COLOR }),
+				null, null);
 		// fontColourSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.ColorType."
 		// + visualPreferences.getHighlightColor().name()),
@@ -661,23 +567,20 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getFontColor().ord() == 0) {
 			// continue;
 			// }
-			fontColourSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.ColorType."
-							+ ColorType.getColorTypeByOrder(i).name()),
+			fontColourSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.ColorType." + ColorType.getColorTypeByOrder(i).name()),
 					(String) null, ColorType.getColorTypeByOrder(i)));
 		}
 
 		// Select Flashing Resources control
-		Select1 flashingResourcesSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 flashingResourcesSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.FlashingResourcesSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.FlashingResourcesSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_FLASHING_RESOURCES }), null,
-				null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_FLASHING_RESOURCES }),
+				null, null);
 		// flashingResourcesSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
@@ -689,21 +592,17 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			flashingResourcesSelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Status."
-									+ Status.getStatusByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select dayNightMode control
-		Select1 dayNightModeSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 dayNightModeSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.DayNightModeSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_DAY_NIGHT_MODE }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.DayNightModeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_DAY_NIGHT_MODE }),
+				null, null);
 		// dayNightModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
 		// + visualPreferences.getDayNightMode().name()),
@@ -712,22 +611,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getDayNightMode().ord() == 0) {
 			// continue;
 			// }
-			dayNightModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			dayNightModeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select Window Layout control
-		Select1 windowLayoutSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 windowLayoutSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.WindowLayoutSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_WINDOW_LAYOUT }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.WindowLayoutSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_WINDOW_LAYOUT }),
+				null, null);
 
 		// windowLayoutSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.WindowLayoutType."
@@ -737,23 +633,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getWindowLayout().ord() == 0) {
 			// continue;
 			// }
-			windowLayoutSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.WindowLayoutType."
-							+ WindowLayoutType.getWindowLayoutTypeByOrder(i)
-									.name()), (String) null, WindowLayoutType
-					.getWindowLayoutTypeByOrder(i)));
+			windowLayoutSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.WindowLayoutType."
+							+ WindowLayoutType.getWindowLayoutTypeByOrder(i).name()),
+					(String) null, WindowLayoutType.getWindowLayoutTypeByOrder(i)));
 		}
 
 		// Select Font Family control
-		Select1 fontFamilySelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 fontFamilySelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.FontFamilySelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_FONT_FAMILY }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.FontFamilySelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_FONT_FAMILY }),
+				null, null);
 		// fontFamilySelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.GenericFontFamily."
 		// + visualPreferences.getFontFamily().name()),
@@ -762,23 +654,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getFontFamily().ord() == 0) {
 			// continue;
 			// }
-			fontFamilySelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.GenericFontFamily."
-							+ GenericFontFamily.getGenericFontFamilyByOrder(i)
-									.name()), (String) null, GenericFontFamily
-					.getGenericFontFamilyByOrder(i)));
+			fontFamilySelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.GenericFontFamily."
+							+ GenericFontFamily.getGenericFontFamilyByOrder(i).name()),
+					(String) null, GenericFontFamily.getGenericFontFamilyByOrder(i)));
 		}
 
 		// Select brightness control
-		Select1 brightnessSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 brightnessSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.BrightnessSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_BRIGHTNESS }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.BrightnessSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_BRIGHTNESS }),
+				null, null);
 		// brightnessSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
 		// + visualPreferences.getBrightness().name()),
@@ -787,22 +675,20 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getBrightness().ord() == 0) {
 			// continue;
 			// }
-			brightnessSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Intensity."
-							+ Intensity.getIntensityByOrder(i).name()),
+			brightnessSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select contrast control
-		Select1 contentContrastSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 contentContrastSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.ContentContrastSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.ContentContrastSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_CONTENT_CONTRAST }), null, null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_CONTENT_CONTRAST }),
+				null, null);
 		// contentContrastSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
@@ -813,22 +699,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// continue;
 			// }
 			contentContrastSelect.addChoiceItem(new ChoiceItem(
-					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Intensity."
-									+ Intensity.getIntensityByOrder(i).name()),
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select screen resolution control
-		Select1 screenResolutionSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 screenResolutionSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.ScreenResolutionSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.ScreenResolutionSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_SCREEN_RESOLUTION }), null, null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_SCREEN_RESOLUTION }),
+				null, null);
 		// screenResolutionSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
@@ -839,22 +722,18 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// continue;
 			// }
 			screenResolutionSelect.addChoiceItem(new ChoiceItem(
-					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Intensity."
-									+ Intensity.getIntensityByOrder(i).name()),
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select cursorSizeSelect control
-		Select1 cursorSizeSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 cursorSizeSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.CursorSizeSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_CURSOR_SIZE }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.CursorSizeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_CURSOR_SIZE }),
+				null, null);
 		// cursorSizeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Size."
 		// + visualPreferences.getCursorSize().name()),
@@ -863,23 +742,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getCursorSize().ord() == 0) {
 			// continue;
 			// }
-			cursorSizeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Size."
-							+ Size.getSizeByOrder(i).name()), (String) null,
-					Size.getSizeByOrder(i)));
+			cursorSizeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.Size." + Size.getSizeByOrder(i).name()),
+					(String) null, Size.getSizeByOrder(i)));
 		}
 
 		// Select screenSaverUsageSelect control
-		Select1 screenSaverUsageSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 screenSaverUsageSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.ScreenSaverUsageSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.ScreenSaverUsageSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_SCREEN_SAVER_USAGE }), null,
-				null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_SCREEN_SAVER_USAGE }),
+				null, null);
 		// screenSaverUsageSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
@@ -891,21 +766,17 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			screenSaverUsageSelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Status."
-									+ Status.getStatusByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select fontSizeSelect control
-		Select1 fontSizeSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 fontSizeSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.FontSizeSelect"),
-						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_FONT_SIZE }), null, null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.FontSizeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_FONT_SIZE }),
+				null, null);
 		// fontSizeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Size."
 		// + visualPreferences.getFontSize().name()),
@@ -914,22 +785,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - visualPreferences.getFontSize().ord() == 0) {
 			// continue;
 			// }
-			fontSizeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Size."
-							+ Size.getSizeByOrder(i).name()), (String) null,
-					Size.getSizeByOrder(i)));
+			fontSizeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString("UIPreferencesDialogBuilder.Size." + Size.getSizeByOrder(i).name()),
+					(String) null, Size.getSizeByOrder(i)));
 		}
 
 		// Select fontSizeSelect control
-		Select1 componentSpacingSelect = new Select1(
-				invisibleVisualPreferences,
+		Select1 componentSpacingSelect = new Select1(invisibleVisualPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.ComponentSpacingSelect"),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.ComponentSpacingSelect"),
 						(String) null),
-				new PropertyPath(null, false, new String[] {
-						UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-						VisualPreferences.PROP_COMPONENT_SPACING }), null, null);
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+						VisualPreferences.PROP_COMPONENT_SPACING }),
+				null, null);
 		// componentSpacingSelect.addChoiceItem(new
 		// ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
@@ -940,9 +808,8 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// continue;
 			// }
 			componentSpacingSelect.addChoiceItem(new ChoiceItem(
-					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Intensity."
-									+ Intensity.getIntensityByOrder(i).name()),
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
@@ -950,17 +817,14 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// AuditoryPreferences Group controls START
 		// ///////////////////////////////////////////////////
 
-		AuditoryPreferences auditoryPreferences = uiPreferencesSubprofile
-				.getAudioPreferences();
+		AuditoryPreferences auditoryPreferences = uiPreferencesSubprofile.getAudioPreferences();
 
-		Group auditoryPreferencesGroup = new Group(
-				controls,
+		Group auditoryPreferencesGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.AuditoryPreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleGroupAuditoryPreferences = new Group(
-				auditoryPreferencesGroup, null, null, null, (Resource) null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.AuditoryPreferences"), (String) null),
+				null, null, (Resource) null);
+		Group invisibleGroupAuditoryPreferences = new Group(auditoryPreferencesGroup, null, null, null,
+				(Resource) null);
 
 		// vertically
 		// new SimpleOutput(
@@ -971,16 +835,12 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// .getString("UIPreferencesDialogBuilder.SelectAuditoryPreferences"));
 
 		// Select speechRate control
-		Select1 speechRateSelect = new Select1(
-				invisibleGroupAuditoryPreferences,
+		Select1 speechRateSelect = new Select1(invisibleGroupAuditoryPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SpeechRateSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_SPEECH_RATE }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SpeechRateSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_SPEECH_RATE }),
+				null, null);
 		// speechRateSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
 		// + auditoryPreferences.getSpeechRate().name()),
@@ -989,23 +849,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getSpeechRate().ord() == 0) {
 			// continue;
 			// }
-			speechRateSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Intensity."
-							+ Intensity.getIntensityByOrder(i).name()),
+			speechRateSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select voiceGenderSelect control
-		Select1 voiceGenderSelect = new Select1(
-				invisibleGroupAuditoryPreferences,
+		Select1 voiceGenderSelect = new Select1(invisibleGroupAuditoryPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.VoiceGenderSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_VOICE_GENDER }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.VoiceGenderSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_VOICE_GENDER }),
+				null, null);
 		// voiceGenderSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.VoiceGender."
 		// + auditoryPreferences.getVoiceGender().name()),
@@ -1014,22 +870,18 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getVoiceGender().ord() == 0) {
 			// continue;
 			// }
-			voiceGenderSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.VoiceGender."
-							+ VoiceGender.getGenderByOrder(i).name()),
+			voiceGenderSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.VoiceGender." + VoiceGender.getGenderByOrder(i).name()),
 					(String) null, VoiceGender.getGenderByOrder(i)));
 		}
 
 		// Select systemSoundsSelect control
-		Select1 systemSoundsSelect = new Select1(
-				invisibleGroupAuditoryPreferences,
+		Select1 systemSoundsSelect = new Select1(invisibleGroupAuditoryPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.SystemSoundsSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_SYSTEM_SOUNDS }),
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.SystemSoundsSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_SYSTEM_SOUNDS }),
 				null, null);
 		// systemSoundsSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
@@ -1039,20 +891,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getSystemSounds().ord() == 0) {
 			// continue;
 			// }
-			systemSoundsSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			systemSoundsSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select volume control
 		Select1 volumeSelect = new Select1(invisibleGroupAuditoryPreferences,
-				new org.universAAL.middleware.ui.rdf.Label(messageLocaleHelper
-						.getString("UIPreferencesDialogBuilder.VolumeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_VOLUME }), null, null);
+				new org.universAAL.middleware.ui.rdf.Label(
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.VolumeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_VOLUME }),
+				null, null);
 		// volumeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
 		// + auditoryPreferences.getVolume().name()),
@@ -1061,20 +912,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getVolume().ord() == 0) {
 			// continue;
 			// }
-			volumeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Intensity."
-							+ Intensity.getIntensityByOrder(i).name()),
+			volumeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select pitch control
 		Select1 pitchSelect = new Select1(invisibleGroupAuditoryPreferences,
-				new org.universAAL.middleware.ui.rdf.Label(messageLocaleHelper
-						.getString("UIPreferencesDialogBuilder.PitchSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_PITCH }), null, null);
+				new org.universAAL.middleware.ui.rdf.Label(
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.PitchSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_PITCH }),
+				null, null);
 		// pitchSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Intensity."
 		// + auditoryPreferences.getPitch().name()),
@@ -1083,23 +933,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getPitch().ord() == 0) {
 			// continue;
 			// }
-			pitchSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Intensity."
-							+ Intensity.getIntensityByOrder(i).name()),
+			pitchSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.Intensity." + Intensity.getIntensityByOrder(i).name()),
 					(String) null, Intensity.getIntensityByOrder(i)));
 		}
 
 		// Select keySoundsSelect control
-		Select1 keySoundsSelect = new Select1(
-				invisibleGroupAuditoryPreferences,
+		Select1 keySoundsSelect = new Select1(invisibleGroupAuditoryPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.KeySoundsSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-								AuditoryPreferences.PROP_KEY_SOUND }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.KeySoundsSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+						AuditoryPreferences.PROP_KEY_SOUND }),
+				null, null);
 		// keySoundsSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
 		// + auditoryPreferences.getKeySoundStatus().name()),
@@ -1108,9 +954,9 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - auditoryPreferences.getKeySoundStatus().ord() == 0) {
 			// continue;
 			// }
-			keySoundsSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			keySoundsSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
@@ -1118,17 +964,13 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// AlertPreferences Group controls START
 		// ///////////////////////////////////////////////////
 
-		AlertPreferences alertPreferences = uiPreferencesSubprofile
-				.getAlertPreferences();
+		AlertPreferences alertPreferences = uiPreferencesSubprofile.getAlertPreferences();
 
-		Group alertPreferencesGroup = new Group(
-				controls,
+		Group alertPreferencesGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.AlertPreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleGroupAlertPreferences = new Group(alertPreferencesGroup,
-				null, null, null, (Resource) null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.AlertPreferences"), (String) null),
+				null, null, (Resource) null);
+		Group invisibleGroupAlertPreferences = new Group(alertPreferencesGroup, null, null, null, (Resource) null);
 
 		// vertically
 		// new SimpleOutput(
@@ -1140,13 +982,11 @@ public class FullFormGeneratorTest extends BusTestCase {
 
 		// Select alertSelect control
 		Select1 alertSelect = new Select1(invisibleGroupAlertPreferences,
-				new org.universAAL.middleware.ui.rdf.Label(messageLocaleHelper
-						.getString("UIPreferencesDialogBuilder.AlertSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
-								AlertPreferences.PROP_ALERT_OPTION }), null,
-				null);
+				new org.universAAL.middleware.ui.rdf.Label(
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.AlertSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
+						AlertPreferences.PROP_ALERT_OPTION }),
+				null, null);
 		// alertSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.AlertType."
 		// + alertPreferences.getAlertOption().name()),
@@ -1155,9 +995,9 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - alertPreferences.getAlertOption().ord() == 0) {
 			// continue;
 			// }
-			alertSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.AlertType."
-							+ AlertType.getAlertTypeByOrder(i).name()),
+			alertSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper.getString(
+							"UIPreferencesDialogBuilder.AlertType." + AlertType.getAlertTypeByOrder(i).name()),
 					(String) null, AlertType.getAlertTypeByOrder(i)));
 		}
 
@@ -1165,17 +1005,14 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// AccessModePreferences Group controls START
 		// ///////////////////////////////////////////////////
 
-		AccessMode accessModePreferences = uiPreferencesSubprofile
-				.getAccessMode();
+		AccessMode accessModePreferences = uiPreferencesSubprofile.getAccessMode();
 
-		Group accessModeGroup = new Group(
-				controls,
+		Group accessModeGroup = new Group(controls,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.AccessModePreferences"),
-						(String) null), null, null, (Resource) null);
-		Group invisibleAccessModeGroupPreferences = new Group(accessModeGroup,
-				null, null, null, (Resource) null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.AccessModePreferences"),
+						(String) null),
+				null, null, (Resource) null);
+		Group invisibleAccessModeGroupPreferences = new Group(accessModeGroup, null, null, null, (Resource) null);
 
 		// vertically
 		// new SimpleOutput(
@@ -1186,16 +1023,12 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// .getString("UIPreferencesDialogBuilder.SelectAccessMode"));
 
 		// Select visualModeSelect control
-		Select1 visualModeSelect = new Select1(
-				invisibleAccessModeGroupPreferences,
+		Select1 visualModeSelect = new Select1(invisibleAccessModeGroupPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.VisualModeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ACCESS_MODE,
-								AccessMode.PROP_VISUAL_MODE_STATUS }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.VisualModeSelect"), (String) null),
+				new PropertyPath(null, false,
+						new String[] { UIPreferencesSubProfile.PROP_ACCESS_MODE, AccessMode.PROP_VISUAL_MODE_STATUS }),
+				null, null);
 		// visualModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
 		// + accessModePreferences.getVisualModeStatus().name()),
@@ -1204,23 +1037,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// if (i - accessModePreferences.getVisualModeStatus().ord() == 0) {
 			// continue;
 			// }
-			visualModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			visualModeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select textualModeSelect control
-		Select1 textualModeSelect = new Select1(
-				invisibleAccessModeGroupPreferences,
+		Select1 textualModeSelect = new Select1(invisibleAccessModeGroupPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.TextualModeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ACCESS_MODE,
-								AccessMode.PROP_TEXTUAL_MODE_STATUS }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.TextualModeSelect"), (String) null),
+				new PropertyPath(null, false,
+						new String[] { UIPreferencesSubProfile.PROP_ACCESS_MODE, AccessMode.PROP_TEXTUAL_MODE_STATUS }),
+				null, null);
 		// textualModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
 		// + accessModePreferences.getTextualModeStatus().name()),
@@ -1230,23 +1059,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// {
 			// continue;
 			// }
-			textualModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			textualModeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select auditoryModeSelect control
-		Select1 auditoryModeSelect = new Select1(
-				invisibleAccessModeGroupPreferences,
+		Select1 auditoryModeSelect = new Select1(invisibleAccessModeGroupPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.AuditoryModeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ACCESS_MODE,
-								AccessMode.PROP_AUDITORY_MODE_STATUS }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.AuditoryModeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_ACCESS_MODE,
+						AccessMode.PROP_AUDITORY_MODE_STATUS }),
+				null, null);
 		// auditoryModeSelect
 		// .addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
@@ -1258,23 +1083,19 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// {
 			// continue;
 			// }
-			auditoryModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			auditoryModeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select olfactoryModeSelect control
-		Select1 olfactoryModeSelect = new Select1(
-				invisibleAccessModeGroupPreferences,
+		Select1 olfactoryModeSelect = new Select1(invisibleAccessModeGroupPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.OlfactoryModeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ACCESS_MODE,
-								AccessMode.PROP_OLFACTORY_MODE_STATUS }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.OlfactoryModeSelect"), (String) null),
+				new PropertyPath(null, false, new String[] { UIPreferencesSubProfile.PROP_ACCESS_MODE,
+						AccessMode.PROP_OLFACTORY_MODE_STATUS }),
+				null, null);
 		// olfactoryModeSelect.addChoiceItem(new ChoiceItem(
 		// messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
@@ -1288,22 +1109,17 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// }
 			olfactoryModeSelect.addChoiceItem(new ChoiceItem(
 					messageLocaleHelper
-							.getString("UIPreferencesDialogBuilder.Status."
-									+ Status.getStatusByOrder(i).name()),
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
 		// Select tactileModeSelect control
-		Select1 tactileModeSelect = new Select1(
-				invisibleAccessModeGroupPreferences,
+		Select1 tactileModeSelect = new Select1(invisibleAccessModeGroupPreferences,
 				new org.universAAL.middleware.ui.rdf.Label(
-						messageLocaleHelper
-								.getString("UIPreferencesDialogBuilder.TactileModeSelect"),
-						(String) null), new PropertyPath(null, false,
-						new String[] {
-								UIPreferencesSubProfile.PROP_ACCESS_MODE,
-								AccessMode.PROP_TACTILE_MODE_STATUS }), null,
-				null);
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.TactileModeSelect"), (String) null),
+				new PropertyPath(null, false,
+						new String[] { UIPreferencesSubProfile.PROP_ACCESS_MODE, AccessMode.PROP_TACTILE_MODE_STATUS }),
+				null, null);
 		// tactileModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
 		// .getString("UIPreferencesDialogBuilder.Status."
 		// + accessModePreferences.getTactileModeStatus().name()),
@@ -1313,9 +1129,9 @@ public class FullFormGeneratorTest extends BusTestCase {
 			// {
 			// continue;
 			// }
-			tactileModeSelect.addChoiceItem(new ChoiceItem(messageLocaleHelper
-					.getString("UIPreferencesDialogBuilder.Status."
-							+ Status.getStatusByOrder(i).name()),
+			tactileModeSelect.addChoiceItem(new ChoiceItem(
+					messageLocaleHelper
+							.getString("UIPreferencesDialogBuilder.Status." + Status.getStatusByOrder(i).name()),
 					(String) null, Status.getStatusByOrder(i)));
 		}
 
@@ -1324,18 +1140,18 @@ public class FullFormGeneratorTest extends BusTestCase {
 		// ////////////////////////////////////
 
 		new Submit(submits,
-				new org.universAAL.middleware.ui.rdf.Label(messageLocaleHelper
-						.getString("UIPreferencesDialogBuilder.Submit"),
-						(String) null), "submit_uiPreferences");
-		
+				new org.universAAL.middleware.ui.rdf.Label(
+						messageLocaleHelper.getString("UIPreferencesDialogBuilder.Submit"), (String) null),
+				"submit_uiPreferences");
+
 		/*
 		 * ADD some std butons
 		 */
-		
+
 		new Submit(f.getStandardButtons(), new Label("Go Home", null), "home");
-		
+
 		new Submit(f.getStandardButtons(), new Label("Be awsome", null), "awsome");
-		
+
 		return f;
 	}
 }

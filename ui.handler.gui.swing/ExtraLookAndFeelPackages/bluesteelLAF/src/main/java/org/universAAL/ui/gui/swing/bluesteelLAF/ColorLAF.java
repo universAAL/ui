@@ -30,11 +30,10 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
  */
 public class ColorLAF extends DefaultMetalTheme {
 
-	
 	private String fontFamily = "Arial";
 	private int fontSizeBase = 20;
 	private Color fontColor = new Color(0, 0, 0);
-	private int gap  = 10;
+	private int gap = 10;
 
 	private ColorUIResource primary1 = new ColorUIResource(255, 255, 247); // cream
 	private ColorUIResource primary2 = new ColorUIResource(204, 204, 204);// orange
@@ -55,13 +54,13 @@ public class ColorLAF extends DefaultMetalTheme {
 	private static Color DialogGradiendBackground2 = new Color(0xff, 0xff, 0xff);
 	private static Color SystemBarBackground = new Color(204, 204, 204);
 	private static final Color ALERT_COLOR = new Color(0x9B111E);
-	
+
 	public static int SEPARATOR_SPACE = 50;
 
-	protected Color getAlert(){
+	protected Color getAlert() {
 		return ALERT_COLOR;
 	}
-	
+
 	/** {@inheritDoc} */
 	protected ColorUIResource getPrimary1() {
 		return primary1;
@@ -115,11 +114,11 @@ public class ColorLAF extends DefaultMetalTheme {
 	public Font getplain() {
 		return new Font(fontFamily, Font.PLAIN, fontSizeBase);
 	}
-	
-	public Font getHeaderFont(){
+
+	public Font getHeaderFont() {
 		return new Font(fontFamily, Font.PLAIN, fontSizeBase + 10);
 	}
-	
+
 	/**
 	 * get the fontColor for any label.
 	 * 
@@ -144,7 +143,6 @@ public class ColorLAF extends DefaultMetalTheme {
 		return new FontUIResource(getplain());
 	}
 
-
 	public String getFontFamily() {
 		return fontFamily;
 	}
@@ -168,15 +166,17 @@ public class ColorLAF extends DefaultMetalTheme {
 	public void setFontColor(Color fontColor) {
 		this.fontColor = fontColor;
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public int getGap() {
 		return gap;
 	}
+
 	/**
-	 * @param gap the gap to set
+	 * @param gap
+	 *            the gap to set
 	 */
 	public void setGap(int gap) {
 		this.gap = gap;
@@ -199,7 +199,7 @@ public class ColorLAF extends DefaultMetalTheme {
 	}
 
 	public int getLabelIconSize() {
-		//TODO adjust to font size
+		// TODO adjust to font size
 		return 30;
 	}
 }

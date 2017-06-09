@@ -29,40 +29,40 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 public class Init implements InitInterface {
 
-    private ColorLAF color;
+	private ColorLAF color;
 
-    public void install(Renderer render) {
-	color = new ColorLAF();
-	MetalLookAndFeel.setCurrentTheme(color);
-	try {
-	    UIManager.setLookAndFeel(new MetalLookAndFeel());
-	} catch (UnsupportedLookAndFeelException e) {
-	    e.printStackTrace();
+	public void install(Renderer render) {
+		color = new ColorLAF();
+		MetalLookAndFeel.setCurrentTheme(color);
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
-    }
 
-    public void uninstall() {
-	// Nothing
+	public void uninstall() {
+		// Nothing
 
-    }
+	}
 
-    public void userLogIn(User usr) {
-	// Nothing
+	public void userLogIn(User usr) {
+		// Nothing
 
-    }
+	}
 
-    public void userLogOff(User usr) {
-	// Nothing
+	public void userLogOff(User usr) {
+		// Nothing
 
-    }
+	}
 
-    public void showLoginScreen() {
-	// TODO Classic LAF needs a Login screen.
+	public void showLoginScreen() {
+		// TODO Classic LAF needs a Login screen.
 
-    }
-    
-    public ColorLAF getColorLAF() {
-	return color;
-    }
+	}
+
+	public ColorLAF getColorLAF() {
+		return color;
+	}
 
 }

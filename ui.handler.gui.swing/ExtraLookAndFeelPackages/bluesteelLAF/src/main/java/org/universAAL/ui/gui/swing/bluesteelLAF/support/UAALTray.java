@@ -44,14 +44,13 @@ public class UAALTray implements MouseListener {
 	private Renderer render;
 
 	/**
-     * 
-     */
+	 * 
+	 */
 	public UAALTray(Renderer render) {
 		this.render = render;
 		if (SystemTray.isSupported()) {
 			// TODO Change icon
-			Image image = Toolkit.getDefaultToolkit().getImage(
-					getClass().getResource("/images/uaal64x32.png"));
+			Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/uaal64x32.png"));
 			trayIcon = new TrayIcon(image);
 			trayIcon.setImageAutoSize(true);
 
@@ -60,8 +59,7 @@ public class UAALTray implements MouseListener {
 				tray.add(trayIcon);
 				trayIcon.addMouseListener(this);
 			} catch (AWTException e) {
-				LogUtils.logWarn(render.getModuleContext(), getClass(), 
-						"Constructor", "Tray Icon could not be loaded" );
+				LogUtils.logWarn(render.getModuleContext(), getClass(), "Constructor", "Tray Icon could not be loaded");
 			}
 
 		}
@@ -72,7 +70,7 @@ public class UAALTray implements MouseListener {
 		Init i = Init.getInstance(render);
 		User u = null;
 		try {
-			u =this.render.getCurrentUser();
+			u = this.render.getCurrentUser();
 		} catch (Exception e1) {
 		}
 		if (u == null) {
@@ -90,8 +88,7 @@ public class UAALTray implements MouseListener {
 			});
 			popup.add(logOnItem);
 		} else {
-			MenuItem logOffItem = new MenuItem(
-					i.getMessage(MessageKeys.LOG_OFF));
+			MenuItem logOffItem = new MenuItem(i.getMessage(MessageKeys.LOG_OFF));
 			logOffItem.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
@@ -136,13 +133,13 @@ public class UAALTray implements MouseListener {
 
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void mouseClicked(MouseEvent e) {
 
-		if (trayIcon.getPopupMenu() == null){
-			
+		if (trayIcon.getPopupMenu() == null) {
+
 			SwingUtilities.invokeLater(new Runnable() {
-				
+
 				public void run() {
 					update();
 				}
@@ -150,18 +147,21 @@ public class UAALTray implements MouseListener {
 		}
 	}
 
-	/** {@ inheritDoc}	 */
-	public void mousePressed(MouseEvent e) {}
+	/** {@ inheritDoc} */
+	public void mousePressed(MouseEvent e) {
+	}
 
-	/** {@ inheritDoc}	 */
-	public void mouseReleased(MouseEvent e) {}
+	/** {@ inheritDoc} */
+	public void mouseReleased(MouseEvent e) {
+	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void mouseEntered(MouseEvent e) {
 		mouseClicked(e);
 	}
 
-	/** {@ inheritDoc}	 */
-	public void mouseExited(MouseEvent e) {}
+	/** {@ inheritDoc} */
+	public void mouseExited(MouseEvent e) {
+	}
 
 }

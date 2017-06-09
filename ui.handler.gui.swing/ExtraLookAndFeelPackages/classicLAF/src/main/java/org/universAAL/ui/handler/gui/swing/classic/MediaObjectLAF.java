@@ -34,42 +34,41 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
  */
 public class MediaObjectLAF extends MediaObjectModel {
 
-    /**
-     * Constructor.
-     * 
-     * @param control
-     *            the {@link MediaObject} which to model
-     */
-    public MediaObjectLAF(MediaObject control, Renderer render) {
-	super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link MediaObject} which to model
+	 */
+	public MediaObjectLAF(MediaObject control, Renderer render) {
+		super(control, render);
+	}
 
-    @Override
-    public JComponent getNewComponent() {
-	needsLabel = false;
-	MediaObject form = (MediaObject) fc;
-	if (form.getContentType() != null
-		&& form.getContentType().startsWith("image")) {
-	    if (form.getContentURL() != null) {
-		Icon icon = IconFactory.getIcon(form.getContentURL());
-		if (icon != null) {
-		    return new JLabel(icon);
+	@Override
+	public JComponent getNewComponent() {
+		needsLabel = false;
+		MediaObject form = (MediaObject) fc;
+		if (form.getContentType() != null && form.getContentType().startsWith("image")) {
+			if (form.getContentURL() != null) {
+				Icon icon = IconFactory.getIcon(form.getContentURL());
+				if (icon != null) {
+					return new JLabel(icon);
+				}
+			}
 		}
-	    }
-	}
-	if (form.getLabel() != null) {
-	    String label = form.getLabel().getText();
-	    if (label != null && !label.isEmpty()) {
-		return new JLabel(label);
-	    }
+		if (form.getLabel() != null) {
+			String label = form.getLabel().getText();
+			if (label != null && !label.isEmpty()) {
+				return new JLabel(label);
+			}
+		}
+
+		return new JLabel("[Missing Image]");
 	}
 
-	return new JLabel("[Missing Image]");
-    }
-
-    @Override
+	@Override
 	public void update() {
-	// Do nothing to avoid super -> TODO set min/max/pref size
-    }
+		// Do nothing to avoid super -> TODO set min/max/pref size
+	}
 
 }

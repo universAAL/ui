@@ -22,24 +22,28 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
 
 /**
  * Copy form one pool to another, enabling the hot change of pool behavior.
+ * 
  * @author amedrano
  *
  */
 public class DialogPoolCopier {
-	
+
 	/**
 	 * Copy all {@link UIRequest}s from org to dest, with their status.
-	 * @param org Origin of the pool copy.
-	 * @param dest Destination of the pool copy.
+	 * 
+	 * @param org
+	 *            Origin of the pool copy.
+	 * @param dest
+	 *            Destination of the pool copy.
 	 */
 	public static void copy(IUIRequestPool org, IUIRequestPool dest) {
 		dest.removeAll();
-		
+
 		Collection<UIRequest> active = org.listAllActive();
 		for (UIRequest aUIR : active) {
 			dest.add(aUIR);
 		}
-		
+
 		Collection<UIRequest> suspendeded = org.listAllSuspended();
 		for (UIRequest sUIR : suspendeded) {
 			dest.add(sUIR);

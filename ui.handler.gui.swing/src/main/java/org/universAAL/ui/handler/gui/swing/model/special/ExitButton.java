@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 public class ExitButton extends SubmitModel implements SpecialButtonInterface {
 
 	private Renderer render;
-	
+
 	private static final String SUBMIT_ID = "urn:ui.dm:UICaller#stopDialogLoop";
 
 	/**

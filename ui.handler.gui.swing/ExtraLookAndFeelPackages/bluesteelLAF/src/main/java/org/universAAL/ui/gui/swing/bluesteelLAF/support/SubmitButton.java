@@ -24,37 +24,37 @@ import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
 
 public class SubmitButton extends RoundedGradientButton {
 
-    /**
+	/**
 	 * 
 	 */
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    // border color definition
-    private static final Color LIGHT = new Color(204,204,204);
-    private static final Color DARK = new Color(173,173,173);
-    private static final Color BG = new Color(173,173,173);
-    private static final Color textSubmit=new Color (8, 68, 92);
+	// border color definition
+	private static final Color LIGHT = new Color(204, 204, 204);
+	private static final Color DARK = new Color(173, 173, 173);
+	private static final Color BG = new Color(173, 173, 173);
+	private static final Color textSubmit = new Color(8, 68, 92);
 
-    public SubmitButton(String text, Icon icon) {
-	super(text, LIGHT, BG);
-	if (icon != null) {
-	    setIcon(icon);
-	    Dimension d = getPreferredSize();
-	    int square = Math.min(d.width, d.height) - 6;
-	    scaleIcon(square, square);
+	public SubmitButton(String text, Icon icon) {
+		super(text, LIGHT, BG);
+		if (icon != null) {
+			setIcon(icon);
+			Dimension d = getPreferredSize();
+			int square = Math.min(d.width, d.height) - 6;
+			scaleIcon(square, square);
+		}
+		bLight = LIGHT;
+		bDark = DARK;
+		setBackground(BG);
+		setForeground(textSubmit);
 	}
-	bLight = LIGHT;
-	bDark = DARK;
-	setBackground(BG);
-	setForeground(textSubmit);
-    }
 
-    @Override
-    public Dimension getPreferredSize() {
-    	// set preferred size according to text
-    	Dimension sPref = super.getPreferredSize();
-    	int buttonWidth = 3 * ColorLAF.SEPARATOR_SPACE;
-    	int buttonHeight = 1 * ColorLAF.SEPARATOR_SPACE;
-    	return new Dimension(Math.max(buttonWidth,sPref.width), buttonHeight);
-    }
+	@Override
+	public Dimension getPreferredSize() {
+		// set preferred size according to text
+		Dimension sPref = super.getPreferredSize();
+		int buttonWidth = 3 * ColorLAF.SEPARATOR_SPACE;
+		int buttonHeight = 1 * ColorLAF.SEPARATOR_SPACE;
+		return new Dimension(Math.max(buttonWidth, sPref.width), buttonHeight);
+	}
 }

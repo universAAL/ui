@@ -32,34 +32,31 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerMod
  */
 public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link SubdialogTrigger} which to model.
-     */
-    public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link SubdialogTrigger} which to model.
+	 */
+	public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
+		super(control, render);
+	}
 
-    /** {@inheritDoc} */
+	/** {@inheritDoc} */
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		JButton s = null;
-		if (isInIOGroup()&& isInMainMenu()){
-			//Kicker
-			s = new KickerButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
+		if (isInIOGroup() && isInMainMenu()) {
+			// Kicker
+			s = new KickerButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
 			s.addActionListener(this);
-		}
-		else if (isInStandardGroup()){
-			//system buttons AKA standarbuttons
-			s = new SystemButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
+		} else if (isInStandardGroup()) {
+			// system buttons AKA standarbuttons
+			s = new SystemButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
 			s.addActionListener(this);
-		}
-		else {
-			//the reét including submits, and submits in IOgroup 
-			s = new SubmitButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
+		} else {
+			// the reét including submits, and submits in IOgroup
+			s = new SubmitButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
 			s.addActionListener(this);
 		}
 		return s;

@@ -49,7 +49,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		JScrollPane scrollPane = new JScrollPane(getJTable());
-		
+
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		Component[] buttons = buttonPanel.getComponents();
@@ -60,9 +60,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		needsLabel = false;
 		return pannelWithAll;
 	}
@@ -75,7 +73,6 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		Color enterB = color.getOverSytem();
 		Color clickF = color.getSelectedLetter();
 		Color clickB = color.getBackSystem();
-		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF,
-				enterB, clickF, clickB);
+		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF, enterB, clickF, clickB);
 	}
 }

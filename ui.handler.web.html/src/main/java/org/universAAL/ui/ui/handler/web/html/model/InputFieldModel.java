@@ -17,7 +17,6 @@
 
 package org.universAAL.ui.ui.handler.web.html.model;
 
-
 import java.util.Properties;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -49,42 +48,40 @@ public class InputFieldModel extends InputModel {
 		boolean res = false;
 		try {
 			InputField i = (InputField) fe;
-			if ( strings != null && strings.length > 0) {
+			if (strings != null && strings.length > 0) {
 				Object val = i.getValue();
-				if (i.isOfBooleanType()){
+				if (i.isOfBooleanType()) {
 					res = i.storeUserInput(Boolean.valueOf(strings[0]));
 				}
 				if (isOfType(Integer.class)) {
 					res = i.storeUserInput(Integer.decode(strings[0]));
 				}
-				if (isOfType(Long.class)){
-					res = i.storeUserInput(Long.decode(strings[0]));				
+				if (isOfType(Long.class)) {
+					res = i.storeUserInput(Long.decode(strings[0]));
 				}
-				if (isOfType(Float.class)){
+				if (isOfType(Float.class)) {
 					res = i.storeUserInput(new Float(Float.parseFloat(strings[0])));
-					
+
 				}
-				if (isOfType(Double.class)){
+				if (isOfType(Double.class)) {
 					res = i.storeUserInput(new Double(Double.parseDouble(strings[0])));
 				}
-				if (isOfType(XMLGregorianCalendar.class)){
+				if (isOfType(XMLGregorianCalendar.class)) {
 					try {
 						val = DatatypeFactory.newInstance().newXMLGregorianCalendar(strings[0]);
 						res = i.storeUserInput(val);
 					} catch (DatatypeConfigurationException e1) {
-						LogUtils.logError(getRenderer().getModuleContext(),
-								getClass(), 
-								"updateInput", "unable to convert \"" 
-								+ strings[0]+ "\" to XMLGregorianCalendar");
+						LogUtils.logError(getRenderer().getModuleContext(), getClass(), "updateInput",
+								"unable to convert \"" + strings[0] + "\" to XMLGregorianCalendar");
 					}
 				}
-				if(val == null || !res){
-					res=i.storeUserInput(strings[0]);
+				if (val == null || !res) {
+					res = i.storeUserInput(strings[0]);
 				}
 			}
 		} catch (Exception e) {
-			LogUtils.logInfo(getRenderer().getModuleContext(), 
-					getClass(), "updateImput", new String[]{"unable to update input "}, e);
+			LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "updateImput",
+					new String[] { "unable to update input " }, e);
 		}
 		return res;
 	}
@@ -113,65 +110,65 @@ public class InputFieldModel extends InputModel {
 		InputField i = (InputField) fe;
 		Object val = i.getValue();
 		setInputTypeProperties(fcProps, val);
-		if (i.isSecret()){
+		if (i.isSecret()) {
 			fcProps.put("type", "password");
-		} 
+		}
 		StringBuffer defaultInput = new StringBuffer();
-		if (i.isOfBooleanType()){
+		if (i.isOfBooleanType()) {
 			Properties defInProp = new Properties();
 			defInProp.put("type", "hidden");
 			defInProp.put("name", fcProps.get("name"));
 			defInProp.put("value", "false");
-			defaultInput.append(singleTag("input",defInProp ));
+			defaultInput.append(singleTag("input", defInProp));
 		}
 		return singleTag("input", fcProps).append(defaultInput);
 	}
 
 	/**
-	 * Add properties to input properties. According to type of val
-	 * the type and value of the input will be generated.
-	 * @param prop the properties to edit
-	 * @param val the value to work with.
+	 * Add properties to input properties. According to type of val the type and
+	 * value of the input will be generated.
+	 * 
+	 * @param prop
+	 *            the properties to edit
+	 * @param val
+	 *            the value to work with.
 	 */
 	public static void setInputTypeProperties(Properties prop, Object val) {
 		// Default.
 		prop.put("type", "text");
-		if (val != null
-				&& !val.toString().isEmpty()){
+		if (val != null && !val.toString().isEmpty()) {
 			prop.put("value", val.toString());
 		}
 
 		if (val instanceof Boolean) {
 			prop.put("type", "checkbox");
 			prop.put("value", "true");
-			if (((Boolean)val).booleanValue()){
+			if (((Boolean) val).booleanValue()) {
 				prop.put("checked", "");
 			}
 		}
-		if (val instanceof XMLGregorianCalendar){
+		if (val instanceof XMLGregorianCalendar) {
 			QName type = ((XMLGregorianCalendar) val).getXMLSchemaType();
 
-			if (type.equals(DatatypeConstants.DATETIME)){
+			if (type.equals(DatatypeConstants.DATETIME)) {
 				prop.put("type", "datetime-local");
 				prop.put("value", ((XMLGregorianCalendar) val).toString());
 			}
-			if (type.equals(DatatypeConstants.TIME)){
+			if (type.equals(DatatypeConstants.TIME)) {
 				prop.put("type", "time");
 				prop.put("value", ((XMLGregorianCalendar) val).toString());
 			}
-			if (type.equals(DatatypeConstants.DATE)){
+			if (type.equals(DatatypeConstants.DATE)) {
 				prop.put("type", "date");
 				prop.put("value", ((XMLGregorianCalendar) val).toString());
 			}
 		}
-		if (val instanceof Integer
-				|| val instanceof Long){
+		if (val instanceof Integer || val instanceof Long) {
 			prop.put("type", "number");
 			prop.put("step", "1");
 			prop.put("pattern", "[-+]?[0-9]*");
 		}
-		if (val instanceof Float
-				|| val instanceof Double){
+		if (val instanceof Float || val instanceof Double) {
 			prop.put("type", "number");
 			prop.put("step", "any");
 			prop.put("pattern", "[-+]?[0-9]*\\.?[0-9]+");

@@ -33,45 +33,42 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * 
  */
 public class Worker implements Runnable {
-    Socket socket = null;
-    BufferedReader br = null;
-    OutputStreamWriter osw = null;
-    MessageParser parser;
+	Socket socket = null;
+	BufferedReader br = null;
+	OutputStreamWriter osw = null;
+	MessageParser parser;
 
-    public Worker(final Socket socket, final MessageParser parser) {
-	super();
-	this.socket = socket;
-	this.parser = parser;
-    }
-/**
- * Runs the worker
- */
-    public final void run() {
-	try {
-	    osw = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
-	    osw.flush();
-	    br = new BufferedReader(new InputStreamReader(socket
-		    .getInputStream(), "UTF-8"));
-	    String rec = br.readLine();
-	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-		    "run", new Object[] { "received:" + rec }, null);
-	    Object ret = parser.parse(rec);
-	    if (ret == null) {
-		LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-			"run", new Object[] { "ret = null" }, null);
-		osw.write("null" + '\r' + '\n');
-	    } else {
-		LogUtils
-			.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-				"run",
-				new Object[] { "ret = " + ret.toString() },
-				null);
-		osw.write(ret.toString() + '\r' + '\n');
-	    }
-	    osw.flush();
-	    socket.close();
-	} catch (Exception e) {
-	    e.printStackTrace();
+	public Worker(final Socket socket, final MessageParser parser) {
+		super();
+		this.socket = socket;
+		this.parser = parser;
 	}
-    }
+
+	/**
+	 * Runs the worker
+	 */
+	public final void run() {
+		try {
+			osw = new OutputStreamWriter(socket.getOutputStream(), "UTF-8");
+			osw.flush();
+			br = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+			String rec = br.readLine();
+			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run", new Object[] { "received:" + rec },
+					null);
+			Object ret = parser.parse(rec);
+			if (ret == null) {
+				LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run", new Object[] { "ret = null" },
+						null);
+				osw.write("null" + '\r' + '\n');
+			} else {
+				LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run",
+						new Object[] { "ret = " + ret.toString() }, null);
+				osw.write(ret.toString() + '\r' + '\n');
+			}
+			osw.flush();
+			socket.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

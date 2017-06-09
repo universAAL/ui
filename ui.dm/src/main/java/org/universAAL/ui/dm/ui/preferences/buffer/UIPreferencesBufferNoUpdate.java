@@ -30,71 +30,71 @@ import org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener;
 import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper;
 
 /**
- * Only meant for Testing, External Updates of the {@link UIPreferencesSubProfile} will be ignored.
+ * Only meant for Testing, External Updates of the
+ * {@link UIPreferencesSubProfile} will be ignored.
  * 
  * @author amedrano
  *
  */
 public class UIPreferencesBufferNoUpdate implements IUIPreferencesBuffer {
 
-    private ModuleContext context;
-    private UIPreferencesSubprofileHelper caller;
-    private Map<User, UIPreferencesSubProfile> uiPSPMap;
-    
-    
-    /**
-     * Constructor.
-     */
-    public UIPreferencesBufferNoUpdate(ModuleContext ctxt) {
-	this.context = ctxt;
-	this.caller = new UIPreferencesSubprofileHelper(context);
-	this.uiPSPMap = new HashMap<User, UIPreferencesSubProfile>();
-    }
+	private ModuleContext context;
+	private UIPreferencesSubprofileHelper caller;
+	private Map<User, UIPreferencesSubProfile> uiPSPMap;
 
-    /** {@ inheritDoc}	 */
-    public void addUser(User user) {
-	if (!uiPSPMap.containsKey(user)){
-	    UIPreferencesSubProfile uiPSP = caller.getUIPreferencesSubProfileForUser(user);
-	    if (uiPSP == null){
-		// initialize UIPReferencesSubprofile with stereotype data for given user
-		uiPSP = new UISubprofileInitializator(
-			user).getInitializedUIPreferencesSubprofile();
-	    }
-	    if (uiPSP == null){
-		LogUtils.logError(context, getClass(), "addUser", 
-			"unable to retrieve or Initialize new UIPreferencesSubprofile");
-		return;
-	    }
-	    uiPSPMap.put(user, uiPSP);
+	/**
+	 * Constructor.
+	 */
+	public UIPreferencesBufferNoUpdate(ModuleContext ctxt) {
+		this.context = ctxt;
+		this.caller = new UIPreferencesSubprofileHelper(context);
+		this.uiPSPMap = new HashMap<User, UIPreferencesSubProfile>();
 	}
-    }
 
-    /** {@ inheritDoc}	 */
-    public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user) {
-	return uiPSPMap.get(user);
-    }
-
-    /** {@ inheritDoc}	 */
-    public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(
-	    User key, UIPreferencesSubProfile uiPrefSubprof) {
-
-	IUIPreferencesChangeListener udm = DialogManagerImpl.getInstance().getUDM(key.getURI());
-	if (udm != null) {
-	    udm.changedUIPreferences(uiPrefSubprof);
+	/** {@ inheritDoc} */
+	public void addUser(User user) {
+		if (!uiPSPMap.containsKey(user)) {
+			UIPreferencesSubProfile uiPSP = caller.getUIPreferencesSubProfileForUser(user);
+			if (uiPSP == null) {
+				// initialize UIPReferencesSubprofile with stereotype data for
+				// given user
+				uiPSP = new UISubprofileInitializator(user).getInitializedUIPreferencesSubprofile();
+			}
+			if (uiPSP == null) {
+				LogUtils.logError(context, getClass(), "addUser",
+						"unable to retrieve or Initialize new UIPreferencesSubprofile");
+				return;
+			}
+			uiPSPMap.put(user, uiPSP);
+		}
 	}
-	if (!uiPSPMap.containsKey(key)){
-	    uiPSPMap.put(key, uiPrefSubprof);
-	    caller.addSubprofileToUser(key, uiPrefSubprof);
-	} else {
-	    caller.changeSubProfile(uiPrefSubprof);
-	    return uiPSPMap.put(key, uiPrefSubprof);
-	}
-	return null;
-    }
 
-    /** {@ inheritDoc}	 */
-    public void stop() {
-	uiPSPMap.clear();
-    }
+	/** {@ inheritDoc} */
+	public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user) {
+		return uiPSPMap.get(user);
+	}
+
+	/** {@ inheritDoc} */
+	public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(User key,
+			UIPreferencesSubProfile uiPrefSubprof) {
+
+		IUIPreferencesChangeListener udm = DialogManagerImpl.getInstance().getUDM(key.getURI());
+		if (udm != null) {
+			udm.changedUIPreferences(uiPrefSubprof);
+		}
+		if (!uiPSPMap.containsKey(key)) {
+			uiPSPMap.put(key, uiPrefSubprof);
+			caller.addSubprofileToUser(key, uiPrefSubprof);
+		} else {
+			caller.changeSubProfile(uiPrefSubprof);
+			return uiPSPMap.put(key, uiPrefSubprof);
+		}
+		return null;
+	}
+
+	/** {@ inheritDoc} */
+	public void stop() {
+		uiPSPMap.clear();
+	}
 
 }

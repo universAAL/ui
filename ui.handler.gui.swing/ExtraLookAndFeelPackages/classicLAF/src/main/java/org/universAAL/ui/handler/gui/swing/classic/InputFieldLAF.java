@@ -40,87 +40,86 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
  *
  */
 public class InputFieldLAF extends InputFieldModel {
-    
-    private static final int LENGTH = 10;
 
-    /**
-     * Constructor
-     * @param control the {@link InputField} which to model.
-     */
-    public InputFieldLAF(InputField control, Renderer render) {
-        super(control, render);
-    }
+	private static final int LENGTH = 10;
 
-    @Override
-    public JComponent getNewComponent() {
-	JComponent center;
-	InputField form = (InputField) fc;
-	needsLabel = false;
-	Object initVal = fc.getValue();
-
-	if (form.isOfBooleanType()) {
-	    center = new JCheckBox(""/*form.getLabel().getText()*/,
-		    IconFactory.getIcon(form.getLabel().getIconURL()));
-	    if (initVal != null) {
-		((JCheckBox) center).setSelected(((Boolean) initVal)
-			.booleanValue());
-	    }
-	    ((JCheckBox) center).addChangeListener(this);
-
-	} else if (form.getValue() instanceof Locale) {
-	    center = new JComboBox(Locale.getAvailableLocales());
-	    ((JComboBox) center).setSelectedItem(initVal);
-	    ((JComboBox) center).addActionListener(this);
-
-	} else if (form.getValue() instanceof String) {
-	    if (form.isSecret()) {
-		center = new JPasswordField(LENGTH);
-		if (initVal != null) {
-		    ((JPasswordField) center).setText(initVal.toString());
-		}
-		((JPasswordField) center).addCaretListener(this);
-	    } else {
-		center = new JTextField(LENGTH);
-		if (initVal != null) {
-		    ((JTextField) center).setText(initVal.toString());
-		}
-		((JTextField) center).addCaretListener(this);
-	    }
-	} else {
-	    center = new JTextField(LENGTH);
-		if (initVal != null) {
-		    ((JTextField) center).setText(initVal.toString());
-		}
-		((JTextField) center).addCaretListener(this);
+	/**
+	 * Constructor
+	 * 
+	 * @param control
+	 *            the {@link InputField} which to model.
+	 */
+	public InputFieldLAF(InputField control, Renderer render) {
+		super(control, render);
 	}
-	
-	JPanel combined=new JPanel(new BorderLayout(5,5));
-//	combined.add(new JLabel(" "), BorderLayout.EAST);
-//	combined.add(new JLabel(" "), BorderLayout.NORTH);
-//	combined.add(new JLabel(" "), BorderLayout.SOUTH);
-	combined.add(center, BorderLayout.CENTER);
-	if (form.getLabel()!=null){
-	    String title=form.getLabel().getText();
-	    if(title!=null && !title.isEmpty()){
-		combined.add(new JLabel(title), BorderLayout.WEST);
-	    }/*else{
-		combined.add(new JLabel(" "), BorderLayout.WEST);
-	    }*/
-	}
-	
-	return combined;
-    }
 
-    @Override
+	@Override
+	public JComponent getNewComponent() {
+		JComponent center;
+		InputField form = (InputField) fc;
+		needsLabel = false;
+		Object initVal = fc.getValue();
+
+		if (form.isOfBooleanType()) {
+			center = new JCheckBox(""/* form.getLabel().getText() */,
+					IconFactory.getIcon(form.getLabel().getIconURL()));
+			if (initVal != null) {
+				((JCheckBox) center).setSelected(((Boolean) initVal).booleanValue());
+			}
+			((JCheckBox) center).addChangeListener(this);
+
+		} else if (form.getValue() instanceof Locale) {
+			center = new JComboBox(Locale.getAvailableLocales());
+			((JComboBox) center).setSelectedItem(initVal);
+			((JComboBox) center).addActionListener(this);
+
+		} else if (form.getValue() instanceof String) {
+			if (form.isSecret()) {
+				center = new JPasswordField(LENGTH);
+				if (initVal != null) {
+					((JPasswordField) center).setText(initVal.toString());
+				}
+				((JPasswordField) center).addCaretListener(this);
+			} else {
+				center = new JTextField(LENGTH);
+				if (initVal != null) {
+					((JTextField) center).setText(initVal.toString());
+				}
+				((JTextField) center).addCaretListener(this);
+			}
+		} else {
+			center = new JTextField(LENGTH);
+			if (initVal != null) {
+				((JTextField) center).setText(initVal.toString());
+			}
+			((JTextField) center).addCaretListener(this);
+		}
+
+		JPanel combined = new JPanel(new BorderLayout(5, 5));
+		// combined.add(new JLabel(" "), BorderLayout.EAST);
+		// combined.add(new JLabel(" "), BorderLayout.NORTH);
+		// combined.add(new JLabel(" "), BorderLayout.SOUTH);
+		combined.add(center, BorderLayout.CENTER);
+		if (form.getLabel() != null) {
+			String title = form.getLabel().getText();
+			if (title != null && !title.isEmpty()) {
+				combined.add(new JLabel(title), BorderLayout.WEST);
+			} /*
+				 * else{ combined.add(new JLabel(" "), BorderLayout.WEST); }
+				 */
+		}
+
+		return combined;
+	}
+
+	@Override
 	public void update() {
-	// Do nothing to avoid super
-    }
+		// Do nothing to avoid super
+	}
 
 	@Override
 	public void updateAsMissing() {
-		
-	}
 
-    
+	}
 
 }

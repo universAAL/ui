@@ -48,125 +48,116 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
  */
 public class GroupLAF extends GroupModel {
 
-    private static final String PROP_ODD = "http://ontology.itaca.es/ClassicGUI.owl#odd";
-    private boolean switchMe = false;
+	private static final String PROP_ODD = "http://ontology.itaca.es/ClassicGUI.owl#odd";
+	private boolean switchMe = false;
 
-    /**
-     * Constructor.
-     * 
-     * @param control
-     *            the {@link Group} which to model
-     */
-    public GroupLAF(Group control, Renderer render) {
-	super(control, render);
-    }
-
-    @Override
-    public JComponent getNewComponent() {
-	needsLabel = false;
-	JPanel panel = new JPanel();
-	if (!this.isTheIOGroup() && !this.isTheMainGroup()
-		&& !this.isTheSubmitGroup()) {
-	    // Apply this only to non-official groups
-	    Group parent = fc.getParentGroup();
-	    if (parent != null) {
-		if (parent.getProperty(PROP_ODD) == null) {
-		    // I am odd, switch me (IOControls is Even [is 0])
-		    fc.setProperty(PROP_ODD, Boolean.TRUE);
-		    switchMe = true;
-		}
-	    }
-
-	    // Official Layout
-	    LayoutManager layout;
-	    int alignment = FlowLayout.CENTER;
-
-	    // set default behaviour
-	    if (isInStandardGroup()) {
-		layout = new FlowLayout(FlowLayout.CENTER, FormLAF.hgap,
-			FormLAF.vgap);
-	    } else {
-		layout = new FormLayout(FormLAF.vgap);
-	    }
-
-	    for (Iterator i = fc.getAppearanceRecommendations().iterator(); i
-		    .hasNext();) {
-		Recommendation r = (Recommendation) i.next();
-		if (r.getClassURI().equals(VerticalLayout.MY_URI)) {
-		    layout = new VerticalFlowLayout();
-		}
-		if (r.getClassURI().equals(HorizontalLayout.MY_URI)) {
-		    layout = new FlowLayout();
-		}
-		if (r.equals(HorizontalAlignment.left)) {
-		    alignment = FlowLayout.LEFT;
-		}
-		if (r.equals(HorizontalAlignment.center)) {
-		    alignment = FlowLayout.CENTER;
-		}
-		if (r.equals(HorizontalAlignment.right)) {
-		    alignment = FlowLayout.RIGHT;
-		}
-		if (r.equals(VerticalAlignment.top)) {
-		    alignment = VerticalFlowLayout.TOP;
-		}
-		if (r.equals(VerticalAlignment.middle)) {
-		    alignment = VerticalFlowLayout.CENTER;
-		}
-		if (r.equals(VerticalAlignment.bottom)) {
-		    alignment = VerticalFlowLayout.BOTTOM;
-		}
-	    }
-	    if (layout instanceof FlowLayout) {
-		((FlowLayout) layout).setAlignment(alignment);
-		((FlowLayout) layout).setHgap(FormLAF.hgap);
-		((FlowLayout) layout).setVgap(FormLAF.vgap);
-	    }
-	    if (layout instanceof VerticalFlowLayout) {
-		((VerticalFlowLayout) layout).setAlignment(alignment);
-		((VerticalFlowLayout) layout).setHgap(FormLAF.hgap);
-		((VerticalFlowLayout) layout).setVgap(FormLAF.vgap);
-	    }
-	    jc.setLayout(layout);
-	    // End official layout
-	    if (FormLAF.legacyHint) {
-		/* Logic:
-		     * Constant:	0 0 0 0 1 1 1 1     
-		     * Vertical:	0 0 1 1 0 0 1 1
-		     * Switch:		0 1 0 1 0 1 0 1
-		     * V Layout ->	0 1 1 0 0 0 1 1
-		     */
-		if ((FormLAF.constant && FormLAF.vertical)
-			|| (!FormLAF.constant && (switchMe != FormLAF.vertical))) {
-		    panel.setLayout(new MyVerticalFlowLayout(
-			    FormLAF.vGroupValign, FormLAF.hgap, FormLAF.vgap));
-		} else {
-		    panel.setLayout(new FlowLayout(FormLAF.hGroupHalign,
-			    FormLAF.hgap, FormLAF.vgap));
-		}
-	    }
-	} else if (this.isTheMainGroup() && this.isInMainMenu()) {
-	    new Submit((Group) fc, new Label("uCC", null), uCCButton.SUBMIT_ID);
-	    new Submit((Group) fc, new Label("uStore", null),
-		    uStoreButton.SUBMIT_ID);
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Group} which to model
+	 */
+	public GroupLAF(Group control, Renderer render) {
+		super(control, render);
 	}
-	return panel;
-    }
 
-    /** {@inheritDoc} */
-    public void update() {
-	super.update();
-	if (!this.isTheIOGroup()) {
-	    if (fc.getLabel() != null) {
-		String title = fc.getLabel().getText();
-		if (title != null) {
-		    if (this.isTheMainGroup() || this.isTheSubmitGroup()) {
-			title = "";
-		    }
-		    jc.setBorder(BorderFactory.createTitledBorder(title));
+	@Override
+	public JComponent getNewComponent() {
+		needsLabel = false;
+		JPanel panel = new JPanel();
+		if (!this.isTheIOGroup() && !this.isTheMainGroup() && !this.isTheSubmitGroup()) {
+			// Apply this only to non-official groups
+			Group parent = fc.getParentGroup();
+			if (parent != null) {
+				if (parent.getProperty(PROP_ODD) == null) {
+					// I am odd, switch me (IOControls is Even [is 0])
+					fc.setProperty(PROP_ODD, Boolean.TRUE);
+					switchMe = true;
+				}
+			}
+
+			// Official Layout
+			LayoutManager layout;
+			int alignment = FlowLayout.CENTER;
+
+			// set default behaviour
+			if (isInStandardGroup()) {
+				layout = new FlowLayout(FlowLayout.CENTER, FormLAF.hgap, FormLAF.vgap);
+			} else {
+				layout = new FormLayout(FormLAF.vgap);
+			}
+
+			for (Iterator i = fc.getAppearanceRecommendations().iterator(); i.hasNext();) {
+				Recommendation r = (Recommendation) i.next();
+				if (r.getClassURI().equals(VerticalLayout.MY_URI)) {
+					layout = new VerticalFlowLayout();
+				}
+				if (r.getClassURI().equals(HorizontalLayout.MY_URI)) {
+					layout = new FlowLayout();
+				}
+				if (r.equals(HorizontalAlignment.left)) {
+					alignment = FlowLayout.LEFT;
+				}
+				if (r.equals(HorizontalAlignment.center)) {
+					alignment = FlowLayout.CENTER;
+				}
+				if (r.equals(HorizontalAlignment.right)) {
+					alignment = FlowLayout.RIGHT;
+				}
+				if (r.equals(VerticalAlignment.top)) {
+					alignment = VerticalFlowLayout.TOP;
+				}
+				if (r.equals(VerticalAlignment.middle)) {
+					alignment = VerticalFlowLayout.CENTER;
+				}
+				if (r.equals(VerticalAlignment.bottom)) {
+					alignment = VerticalFlowLayout.BOTTOM;
+				}
+			}
+			if (layout instanceof FlowLayout) {
+				((FlowLayout) layout).setAlignment(alignment);
+				((FlowLayout) layout).setHgap(FormLAF.hgap);
+				((FlowLayout) layout).setVgap(FormLAF.vgap);
+			}
+			if (layout instanceof VerticalFlowLayout) {
+				((VerticalFlowLayout) layout).setAlignment(alignment);
+				((VerticalFlowLayout) layout).setHgap(FormLAF.hgap);
+				((VerticalFlowLayout) layout).setVgap(FormLAF.vgap);
+			}
+			jc.setLayout(layout);
+			// End official layout
+			if (FormLAF.legacyHint) {
+				/*
+				 * Logic: Constant: 0 0 0 0 1 1 1 1 Vertical: 0 0 1 1 0 0 1 1
+				 * Switch: 0 1 0 1 0 1 0 1 V Layout -> 0 1 1 0 0 0 1 1
+				 */
+				if ((FormLAF.constant && FormLAF.vertical) || (!FormLAF.constant && (switchMe != FormLAF.vertical))) {
+					panel.setLayout(new MyVerticalFlowLayout(FormLAF.vGroupValign, FormLAF.hgap, FormLAF.vgap));
+				} else {
+					panel.setLayout(new FlowLayout(FormLAF.hGroupHalign, FormLAF.hgap, FormLAF.vgap));
+				}
+			}
+		} else if (this.isTheMainGroup() && this.isInMainMenu()) {
+			new Submit((Group) fc, new Label("uCC", null), uCCButton.SUBMIT_ID);
+			new Submit((Group) fc, new Label("uStore", null), uStoreButton.SUBMIT_ID);
 		}
-	    }
+		return panel;
 	}
-    }
+
+	/** {@inheritDoc} */
+	public void update() {
+		super.update();
+		if (!this.isTheIOGroup()) {
+			if (fc.getLabel() != null) {
+				String title = fc.getLabel().getText();
+				if (title != null) {
+					if (this.isTheMainGroup() || this.isTheSubmitGroup()) {
+						title = "";
+					}
+					jc.setBorder(BorderFactory.createTitledBorder(title));
+				}
+			}
+		}
+	}
 
 }

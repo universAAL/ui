@@ -26,7 +26,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupTabbedPanelMod
 public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 
 	private ColorLAF color;
-	
+
 	public GroupTabbedPanelLAF(Group control, Renderer render) {
 		super(control, render);
 		color = ((Init) render.getInitLAF()).getColorLAF();
@@ -34,11 +34,11 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 
 	public void update() {
 		super.update();
-			/*
-			 * Tabbed group
-			 */
-			jc.getAccessibleContext();
-			jc.setFont(color.getplain());
+		/*
+		 * Tabbed group
+		 */
+		jc.getAccessibleContext();
+		jc.setFont(color.getplain());
 	}
 
 }

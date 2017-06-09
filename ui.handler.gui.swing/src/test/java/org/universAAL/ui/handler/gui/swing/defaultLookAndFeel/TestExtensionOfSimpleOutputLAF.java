@@ -17,18 +17,17 @@ package org.universAAL.ui.handler.gui.swing.defaultLookAndFeel;
 
 import org.universAAL.ui.handler.gui.swing.Renderer;
 
-
 /**
- * WARNING THIS CLASS IS ONLY FOR TESTING PURPOSES.
- * EXTENSION LAFS SHOULD BE JUST LIKE STANDAR LAFS, SUBCLASES OF THE MODEL
+ * WARNING THIS CLASS IS ONLY FOR TESTING PURPOSES. EXTENSION LAFS SHOULD BE
+ * JUST LIKE STANDAR LAFS, SUBCLASES OF THE MODEL
  * 
  * @author amedrano
  *
  */
 public class TestExtensionOfSimpleOutputLAF extends SimpleOutputLAF {
 
-    public TestExtensionOfSimpleOutputLAF(TestExtensionOfSimpleOutput control, Renderer render) {
-	super(control, render);
-    }
+	public TestExtensionOfSimpleOutputLAF(TestExtensionOfSimpleOutput control, Renderer render) {
+		super(control, render);
+	}
 
 }

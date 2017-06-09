@@ -23,15 +23,15 @@ package org.universAAL.ui.handler.sms;
  */
 public interface ISMSSender {
 
-    /**
-     * Sends text to specified number.
-     * 
-     * @param number
-     *            number to send text (sms), should include country code
-     * @param text
-     *            text to send
-     * @return if message is send or not
-     */
-    public void sendMessage(String number, String text);
+	/**
+	 * Sends text to specified number.
+	 * 
+	 * @param number
+	 *            number to send text (sms), should include country code
+	 * @param text
+	 *            text to send
+	 * @return if message is send or not
+	 */
+	public void sendMessage(String number, String text);
 
 }

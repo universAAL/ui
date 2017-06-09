@@ -45,176 +45,163 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  */
 public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
-    /**
-     * The submission ID to exit the main menu. A button with this functionality
-     * is available only in the main menu.
-     * */
-    static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#stopDialogLoop"; //$NON-NLS-1$
+	/**
+	 * The submission ID to exit the main menu. A button with this functionality
+	 * is available only in the main menu.
+	 */
+	static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX + "#stopDialogLoop"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show the main menu. A button with this functionality
-     * is available in the standard dialog.
-     */
-    static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMainMenu"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show the main menu. A button with this functionality
+	 * is available in the standard dialog.
+	 */
+	static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX + "#showMainMenu"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show pending messages. A button with this
-     * functionality is available in the system dialog and in standard dialogs.
-     */
-    static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMessages"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show pending messages. A button with this
+	 * functionality is available in the system dialog and in standard dialogs.
+	 */
+	static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX + "#showMessages"; //$NON-NLS-1$
 
-    private static final String SWITCH_TO_CALL_PREFIX = PendingDialogBuilder.SWITCH_TO_CALL_PREFIX;
+	private static final String SWITCH_TO_CALL_PREFIX = PendingDialogBuilder.SWITCH_TO_CALL_PREFIX;
 
-    private UserDialogManager userDM;
+	private UserDialogManager userDM;
 
-    private List<String> sentItems;
+	private List<String> sentItems;
 
-    /**
+	/**
 	 * 
 	 */
-    public TaskBarSystemMenuProvider(UserDialogManager udm) {
-	userDM = udm;
-	sentItems = new ArrayList<String>();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.universAAL
-     * .middleware.ui.UIResponse)
-     */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		"handle", new String[] { "handling:", submissionID }, null);
-//	if (EXIT_CALL.equals(submissionID)) {
-	    // do nothing
-//	}
-	if (MENU_CALL.equals(submissionID)) {
-	    userDM.showMainMenu();
-	}
-	if (MESSAGES_CALL.equals(submissionID)) {
-	    userDM.openPendingMessagedDialog();
-	}
-	if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
-	    int idx = -1;
-	    try {
-		idx = Integer.parseInt(submissionID
-			.substring(SWITCH_TO_CALL_PREFIX.length()));
-	    } catch (Exception e) {
-		idx = -1;
-	    }
-	    switchTo(idx);
+	public TaskBarSystemMenuProvider(UserDialogManager udm) {
+		userDM = udm;
+		sentItems = new ArrayList<String>();
 	}
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.
+	 * universAAL .middleware.ui.UIResponse)
+	 */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle",
+				new String[] { "handling:", submissionID }, null);
+		// if (EXIT_CALL.equals(submissionID)) {
+		// do nothing
+		// }
+		if (MENU_CALL.equals(submissionID)) {
+			userDM.showMainMenu();
+		}
+		if (MESSAGES_CALL.equals(submissionID)) {
+			userDM.openPendingMessagedDialog();
+		}
+		if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
+			int idx = -1;
+			try {
+				idx = Integer.parseInt(submissionID.substring(SWITCH_TO_CALL_PREFIX.length()));
+			} catch (Exception e) {
+				idx = -1;
+			}
+			switchTo(idx);
+		}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#listDeclaredSubmitIds
-     * ()
-     */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(EXIT_CALL);
-	s.add(MENU_CALL);
-	s.add(MESSAGES_CALL);
-	for (int i = 0; i < sentItems.size(); i++) {
-	    s.add(SWITCH_TO_CALL_PREFIX + Integer.toString(i));
 	}
-	return s;
-    }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
-     * universAAL.middleware.ui.UIRequest)
-     */
-    public Group getSystemMenu(UIRequest request) {
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	sentItems.clear();
-	Form f = request.getDialogForm();
-	Group stdButtons = f.getStandardButtons();
-	switch (f.getDialogType().ord()) {
-	case DialogType.SYS_MENU:
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_EXIT), messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)), EXIT_CALL)
-		    .setHelpString(messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
-	    putPendingXXSubmits(stdButtons);
-	    break;
-	case DialogType.MESSAGE:
-	case DialogType.SUBDIALOG:
-	    break;
-	case DialogType.STD_DIALOG:
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU), messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)), MENU_CALL)
-		    .setHelpString(messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
-	    putPendingXXSubmits(stdButtons);
-	    break;
-	default:
-	    break;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#
+	 * listDeclaredSubmitIds ()
+	 */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(EXIT_CALL);
+		s.add(MENU_CALL);
+		s.add(MESSAGES_CALL);
+		for (int i = 0; i < sentItems.size(); i++) {
+			s.add(SWITCH_TO_CALL_PREFIX + Integer.toString(i));
+		}
+		return s;
 	}
-	return stdButtons;
-    }
 
-    private void putPendingXXSubmits(Group stdButtons) {
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
-		    messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
-		    MESSAGES_CALL).setHelpString(messageLocaleHelper
-		    .getString("MenuProvider.pendingMessages.help"));
-//	} else {
-	    // show a button with different ICON/Message or nothing
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
+	 * universAAL.middleware.ui.UIRequest)
+	 */
+	public Group getSystemMenu(UIRequest request) {
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		sentItems.clear();
+		Form f = request.getDialogForm();
+		Group stdButtons = f.getStandardButtons();
+		switch (f.getDialogType().ord()) {
+		case DialogType.SYS_MENU:
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)),
+					EXIT_CALL).setHelpString(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
+			putPendingXXSubmits(stdButtons);
+			break;
+		case DialogType.MESSAGE:
+		case DialogType.SUBDIALOG:
+			break;
+		case DialogType.STD_DIALOG:
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)),
+					MENU_CALL).setHelpString(
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
+			putPendingXXSubmits(stdButtons);
+			break;
+		default:
+			break;
+		}
+		return stdButtons;
 	}
-	if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
-	    Group pendingDialogs = new Group(stdButtons, new Label(
-		    messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
-		    null, null, null);
-	    int i = 0;
-	    for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
-		String dialogId = req.getDialogID();
-		sentItems.add(dialogId);
-		new Submit(pendingDialogs, new Label(req.getDialogForm()
-			.getTitle(), null), SWITCH_TO_CALL_PREFIX
-			+ Integer.toString(i++))
-			.setHelpString(messageLocaleHelper
-				.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
-	    }
-//	} else {
-	    // show a button with different ICON/Message or nothing
-	}
-    }
 
-    /**
-     * Switch to a specific pending dialog. This method is called from the
-     * dialog presenting the list of pending dialogs when the user selects the
-     * appropriate button.
-     * 
-     * @param selectionIndex
-     *            Index of the selected pending dialog.
-     */
-    private void switchTo(int selectionIndex) {
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		"switchTo", new String[] { "Switching to: " + selectionIndex },
-		null);
-	String dialogID = sentItems.get(selectionIndex);
-	IUIRequestPool dialogPool = userDM.getDialogPool();
-	userDM.resumeUIRequest(dialogPool.get(dialogID));
-    }
+	private void putPendingXXSubmits(Group stdButtons) {
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		if (!userDM.getMessagePool().listAllSuspended().isEmpty()) {
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
+					MESSAGES_CALL).setHelpString(messageLocaleHelper.getString("MenuProvider.pendingMessages.help"));
+			// } else {
+			// show a button with different ICON/Message or nothing
+		}
+		if (!userDM.getDialogPool().listAllSuspended().isEmpty()) {
+			Group pendingDialogs = new Group(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
+					null, null, null);
+			int i = 0;
+			for (UIRequest req : userDM.getDialogPool().listAllSuspended()) {
+				String dialogId = req.getDialogID();
+				sentItems.add(dialogId);
+				new Submit(pendingDialogs, new Label(req.getDialogForm().getTitle(), null),
+						SWITCH_TO_CALL_PREFIX + Integer.toString(i++)).setHelpString(
+								messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
+			}
+			// } else {
+			// show a button with different ICON/Message or nothing
+		}
+	}
+
+	/**
+	 * Switch to a specific pending dialog. This method is called from the
+	 * dialog presenting the list of pending dialogs when the user selects the
+	 * appropriate button.
+	 * 
+	 * @param selectionIndex
+	 *            Index of the selected pending dialog.
+	 */
+	private void switchTo(int selectionIndex) {
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "switchTo",
+				new String[] { "Switching to: " + selectionIndex }, null);
+		String dialogID = sentItems.get(selectionIndex);
+		IUIRequestPool dialogPool = userDM.getDialogPool();
+		userDM.resumeUIRequest(dialogPool.get(dialogID));
+	}
 }

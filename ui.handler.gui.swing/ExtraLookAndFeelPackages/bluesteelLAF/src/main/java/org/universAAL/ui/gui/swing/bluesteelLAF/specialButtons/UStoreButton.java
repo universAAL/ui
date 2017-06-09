@@ -28,7 +28,7 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
 public class UStoreButton implements SpecialButtonInterface {
 
 	private Submit submit;
-	
+
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uStore";
 
 	/**
@@ -42,16 +42,15 @@ public class UStoreButton implements SpecialButtonInterface {
 	public void actionPerformed(ActionEvent e) {
 		new Thread(new Task()).start();
 	}
-	
-	class Task implements Runnable{
 
-		public void run(){
+	class Task implements Runnable {
+
+		public void run() {
 			// open webbrowser uStore url
 			try {
 				String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
 				java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-			}
-			catch (java.io.IOException ex) {
+			} catch (java.io.IOException ex) {
 				System.out.println(ex.getMessage());
 			}
 		}

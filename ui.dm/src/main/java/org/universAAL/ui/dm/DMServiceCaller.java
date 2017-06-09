@@ -31,35 +31,33 @@ import org.universAAL.middleware.service.ServiceResponse;
  * @author mtazari
  * 
  */
-public class DMServiceCaller extends
-	org.universAAL.middleware.service.ServiceCaller {
+public class DMServiceCaller extends org.universAAL.middleware.service.ServiceCaller {
 
-    /**
-     * Module context reference
-     */
-    private ModuleContext ctxt;
+	/**
+	 * Module context reference
+	 */
+	private ModuleContext ctxt;
 
-    /**
-     * Constructor.
-     * 
-     * @param context
-     */
-    public DMServiceCaller(ModuleContext context) {
-	super(context);
-	this.ctxt = context;
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param context
+	 */
+	public DMServiceCaller(ModuleContext context) {
+		super(context);
+		this.ctxt = context;
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void communicationChannelBroken() {
-	// do nothing
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void communicationChannelBroken() {
+		// do nothing
+	}
 
-    /** {@inheritDoc} */
-    @Override
-    public void handleResponse(String reqID, ServiceResponse response) {
-	LogUtils.logInfo(ctxt, DMServiceCaller.class, "handleResponse",
-		new Object[] { "Reply to ", reqID, " received: ",
-			response.getCallStatus().getLocalName() }, null);
-    }
+	/** {@inheritDoc} */
+	@Override
+	public void handleResponse(String reqID, ServiceResponse response) {
+		LogUtils.logInfo(ctxt, DMServiceCaller.class, "handleResponse",
+				new Object[] { "Reply to ", reqID, " received: ", response.getCallStatus().getLocalName() }, null);
+	}
 }

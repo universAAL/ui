@@ -37,9 +37,9 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 public class RepeatModelGridLAF extends RepeatModelGrid {
 
 	private static final int AUX_BUTTON_SIZE = 20;
-	private static final Color AUX_BUTTON_LIGTH = new Color(204,204,204);;
-	private static final Color AUX_BUTTON_DARK = new Color(173,173,173);
-	
+	private static final Color AUX_BUTTON_LIGTH = new Color(204, 204, 204);;
+	private static final Color AUX_BUTTON_DARK = new Color(173, 173, 173);
+
 	public RepeatModelGridLAF(Repeat control, Renderer render) {
 		super(control, render);
 	}
@@ -47,35 +47,31 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		JScrollPane scrollPane = new JScrollPane(super.getNewComponent());
-		
+
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		JPanel pannelWithAll = new JPanel();
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		needsLabel = false;
 		return pannelWithAll;
 	}
-	
+
 	protected JPanel getButtonPanel() {
-		Repeat r = (Repeat)fc;
+		Repeat r = (Repeat) fc;
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
-			Icon icon = IconFactory.getIcon("common/Edit/Add.png");  
-    	    icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
-			buttonPanel.add(
-					new RoundedGradientButton(new AddTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
+			Icon icon = IconFactory.getIcon("common/Edit/Add.png");
+			icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
+			buttonPanel.add(new RoundedGradientButton(new AddTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		if (r.listEntriesDeletable()) {
-			Icon icon = IconFactory.getIcon("common/Edit/Remove.png");  
-    	    icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
-			buttonPanel.add(
-					new RoundedGradientButton(new DeleteTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
+			Icon icon = IconFactory.getIcon("common/Edit/Remove.png");
+			icon = IconFactory.resizeIcon(icon, AUX_BUTTON_SIZE, AUX_BUTTON_SIZE);
+			buttonPanel.add(new RoundedGradientButton(new DeleteTableButton(icon), AUX_BUTTON_LIGTH, AUX_BUTTON_DARK));
 		}
 		return buttonPanel;
 	}

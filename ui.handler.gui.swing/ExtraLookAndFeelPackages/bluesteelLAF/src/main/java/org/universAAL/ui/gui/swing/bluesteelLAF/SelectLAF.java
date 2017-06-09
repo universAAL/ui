@@ -30,66 +30,64 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
  */
 public class SelectLAF extends SelectModel {
 
-    /**
-     * {@link JScrollPane} around the {@link JList}
-     */
-    JScrollPane sp = null;
-    
-    /**
+	/**
+	 * {@link JScrollPane} around the {@link JList}
+	 */
+	JScrollPane sp = null;
+
+	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
 
 	private SelectCheckBoxLAF wrap;
-    
-    /**
-     * Constructor.
-     * @param control the {@link Select} which to model.
-     */
-    public SelectLAF(Select control, Renderer render) {
-        super(control, render);
-    }
 
-   
-    /** {@inheritDoc} */
-	public JComponent getNewComponent() {
-		 if (!((Select) fc).isMultilevel()
-				 //&& ((Select) fc).getChoices().length 
-				 ){
-			 wrap = new SelectCheckBoxLAF((Select)fc, getRenderer());
-			 return wrap.getComponent();
-		 }
-//		 if (!((Select) fc).isMultilevel()
-//		        	&& sp == null) {
-//			 	ejc = super.getNewComponent();
-//		        sp = new JScrollPane(ejc);
-//		        return sp;
-//		  }
-		 else {
-			 return super.getNewComponent();
-		 }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Select} which to model.
+	 */
+	public SelectLAF(Select control, Renderer render) {
+		super(control, render);
 	}
 
 	/** {@inheritDoc} */
-    public void update() {
-    	if (wrap != null){
-    		wrap.udpate();
-    		needsLabel = wrap.needsLabel();
-    	} 
-    	else {
-    		jc = (JComponent) (jc == sp? ejc:jc);
-    		super.update();
-    	}
-    }
+	public JComponent getNewComponent() {
+		if (!((Select) fc).isMultilevel()
+		// && ((Select) fc).getChoices().length
+		) {
+			wrap = new SelectCheckBoxLAF((Select) fc, getRenderer());
+			return wrap.getComponent();
+		}
+		// if (!((Select) fc).isMultilevel()
+		// && sp == null) {
+		// ejc = super.getNewComponent();
+		// sp = new JScrollPane(ejc);
+		// return sp;
+		// }
+		else {
+			return super.getNewComponent();
+		}
+	}
 
+	/** {@inheritDoc} */
+	public void update() {
+		if (wrap != null) {
+			wrap.udpate();
+			needsLabel = wrap.needsLabel();
+		} else {
+			jc = (JComponent) (jc == sp ? ejc : jc);
+			super.update();
+		}
+	}
 
 	@Override
 	public void updateAsMissing() {
 		JLabel l;
 		if (wrap != null) {
 			l = wrap.getLabelModel().getComponent();
-		}
-		else {
+		} else {
 			l = getLabelModel().getComponent();
 		}
 		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());

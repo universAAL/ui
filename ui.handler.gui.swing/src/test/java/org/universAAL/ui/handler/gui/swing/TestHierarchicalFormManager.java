@@ -21,7 +21,7 @@ import org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManage
 public class TestHierarchicalFormManager extends HierarchicalFormManager {
 
 	protected void renderFrame(UIRequest req) {
-		//do nothing
+		// do nothing
 	}
 
 	protected void disposeFrame() {

@@ -33,69 +33,69 @@ import org.universAAL.ui.gui.swing.bluesteelLAF.support.pager.MainMenuPager;
 
 public class MainMenuPagerTest extends JFrame {
 
-    private JPanel contentPane;
-    private JTextField txtButtonTitle;
-    private MainMenuPager pager;
-    private JButton btnRemoveAll;
+	private JPanel contentPane;
+	private JTextField txtButtonTitle;
+	private MainMenuPager pager;
+	private JButton btnRemoveAll;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-	EventQueue.invokeLater(new Runnable() {
-	    public void run() {
-		try {
-		    MainMenuPagerTest frame = new MainMenuPagerTest();
-		    frame.setVisible(true);
-		} catch (Exception e) {
-		    e.printStackTrace();
-		}
-	    }
-	});
-    }
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainMenuPagerTest frame = new MainMenuPagerTest();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    /**
-     * Create the frame.
-     */
-    public MainMenuPagerTest() {
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	setBounds(100, 100, 450, 300);
-	contentPane = new GradientLAF();
-	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	setContentPane(contentPane);
-	contentPane.setLayout(new BorderLayout(0, 0));
+	/**
+	 * Create the frame.
+	 */
+	public MainMenuPagerTest() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new GradientLAF();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 
-	JPanel panel = new JPanel();
-	panel.setOpaque(false);
-	contentPane.add(panel, BorderLayout.SOUTH);
+		JPanel panel = new JPanel();
+		panel.setOpaque(false);
+		contentPane.add(panel, BorderLayout.SOUTH);
 
-	pager = new MainMenuPager();
-	contentPane.add(pager, BorderLayout.CENTER);
+		pager = new MainMenuPager();
+		contentPane.add(pager, BorderLayout.CENTER);
 
-	txtButtonTitle = new JTextField();
-	txtButtonTitle.setText("Title");
-	panel.add(txtButtonTitle);
-	txtButtonTitle.setColumns(10);
+		txtButtonTitle = new JTextField();
+		txtButtonTitle.setText("Title");
+		panel.add(txtButtonTitle);
+		txtButtonTitle.setColumns(10);
 
-	JButton btnAdd = new SubmitButton("Add", null);
-	panel.add(btnAdd);
+		JButton btnAdd = new SubmitButton("Add", null);
+		panel.add(btnAdd);
 
-	btnRemoveAll = new SubmitButton("Remove ALL", null);
-	btnRemoveAll.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent e) {
-		pager.removeAll();
-		pager.revalidate();
-	    }
-	});
-	panel.add(btnRemoveAll);
-	btnAdd.addActionListener(new ActionListener() {
+		btnRemoveAll = new SubmitButton("Remove ALL", null);
+		btnRemoveAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pager.removeAll();
+				pager.revalidate();
+			}
+		});
+		panel.add(btnRemoveAll);
+		btnAdd.addActionListener(new ActionListener() {
 
-	    public void actionPerformed(ActionEvent e) {
-		JButton nb = new KickerButton(txtButtonTitle.getText(), null);
-		pager.add(nb);
-	    }
-	});
+			public void actionPerformed(ActionEvent e) {
+				JButton nb = new KickerButton(txtButtonTitle.getText(), null);
+				pager.add(nb);
+			}
+		});
 
-    }
+	}
 
 }

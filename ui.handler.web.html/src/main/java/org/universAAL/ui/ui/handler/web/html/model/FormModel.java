@@ -38,69 +38,61 @@ public class FormModel extends Model {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTML() {
 		Properties cssP = new Properties();
 		cssP.put("rel", "stylesheet");
 		cssP.put("type", "text/css");
 		cssP.put("href", getCachedURL(getRenderer().getProperty(HTTPHandlerService.CSS_LOCATION)));
 		StringBuffer css = singleTag("link", cssP);
-		StringBuffer title = tag("title", ((Form)fe).getTitle(), null);
+		StringBuffer title = tag("title", ((Form) fe).getTitle(), null);
 		Properties charP = new Properties();
 		charP.put("charset", "UTF-8");
 		StringBuffer charset = singleTag("meta", charP);
 		/*
-		<head>
-			<link rel="stylesheet" type="text/css" href="####">
-			<title>####</title>
-			<meta charset="UTF-8">
-		</head>
-		*/
+		 * <head> <link rel="stylesheet" type="text/css" href="####">
+		 * <title>####</title> <meta charset="UTF-8"> </head>
+		 */
 		StringBuffer head = tag("head", css.append(title).append(charset), null);
-		
+
 		StringBuffer groups = new StringBuffer();
-		
-		if (((Form)fe).isStandardDialog()
-				|| ((Form)fe).isSystemMenu()) {
+
+		if (((Form) fe).isStandardDialog() || ((Form) fe).isSystemMenu()) {
 			// Standard Group
 			Group g = ((Form) fe).getStandardButtons();
-			groups.append(getRenderer().getModelMapper()
-					.getModelFor(g)
-					.generateHTML());
+			groups.append(getRenderer().getModelMapper().getModelFor(g).generateHTML());
 		}
 		// Submits Group
-		Group submits = ((Form)fe).getSubmits();
+		Group submits = ((Form) fe).getSubmits();
 		if (submits != null) {
-			groups.append(getRenderer().getModelMapper().getModelFor(submits)
-					.generateHTML());
+			groups.append(getRenderer().getModelMapper().getModelFor(submits).generateHTML());
 		}
 		// IO Group
-		Group iog = ((Form)fe).getIOControls();
+		Group iog = ((Form) fe).getIOControls();
 		if (iog != null) {
-			groups.append(getRenderer().getModelMapper().getModelFor(iog)
-					.generateHTML());
+			groups.append(getRenderer().getModelMapper().getModelFor(iog).generateHTML());
 		}
 		// Dialog Id Hidden
 		Properties dp = new Properties();
 		dp.put("type", "hidden");
-		dp.put("name",HTMLUserGenerator.HIDEN_DIALOG_NAME);
+		dp.put("name", HTMLUserGenerator.HIDEN_DIALOG_NAME);
 		dp.put("value", fe.getURI());
 		StringBuffer dID = singleTag("input", dp);
-		
-		//General Form
+
+		// General Form
 		Properties formP = new Properties();
-		formP.put("action", "."+ getRenderer().getProperty(HTTPHandlerService.SERVICE_URL));
-//		formP.put("name", ((Form)fe).getDialogID());
+		formP.put("action", "." + getRenderer().getProperty(HTTPHandlerService.SERVICE_URL));
+		// formP.put("name", ((Form)fe).getDialogID());
 		formP.put("method", "post");
 		StringBuffer form = tag("form", dID.append(groups), formP);
-		
+
 		// container div
 		Properties cp = new Properties();
 		cp.put("id", "container");
-		
+
 		// Body
 		StringBuffer body = tag("body", tag("div", form, cp), null);
-		
+
 		return tag("html", head.append(body), null);
 	}
 }

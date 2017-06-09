@@ -30,15 +30,15 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
  */
 public class MediaObjectLAF extends MediaObjectModel {
 
-    /**
-     * {@link JScrollPane} around the {@link MediaObject};
-     */
-    JScrollPane sp;
-    /**
+	/**
+	 * {@link JScrollPane} around the {@link MediaObject};
+	 */
+	JScrollPane sp;
+	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -49,16 +49,16 @@ public class MediaObjectLAF extends MediaObjectModel {
 		super(control, render);
 		needsLabel = false;
 	}
-	
-    /** {@inheritDoc} */
+
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		ejc= super.getNewComponent();
+		ejc = super.getNewComponent();
 		return ejc;
 	}
 
 	/** {@inheritDoc} */
 	public void update() {
-		jc = (JComponent) (jc == sp? ejc:jc);
+		jc = (JComponent) (jc == sp ? ejc : jc);
 		super.update();
 		if (jc instanceof JLabel) {
 			JLabel l = (JLabel) jc;
@@ -66,15 +66,14 @@ public class MediaObjectLAF extends MediaObjectModel {
 			l.setHorizontalTextPosition(JLabel.CENTER);
 			ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
 			l.setFont(c.getLabelFont());
-	        l.setForeground(c.getborderLineMM());
-	        l.setOpaque(false);
+			l.setForeground(c.getborderLineMM());
+			l.setOpaque(false);
 		}
-		if (jc instanceof JEditorPane){
-			sp = new JScrollPane(ejc, 
-					JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		if (jc instanceof JEditorPane) {
+			sp = new JScrollPane(ejc, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-	        sp.setFocusable(true);
-	        jc = sp;
+			sp.setFocusable(true);
+			jc = sp;
 		}
 	}
 }

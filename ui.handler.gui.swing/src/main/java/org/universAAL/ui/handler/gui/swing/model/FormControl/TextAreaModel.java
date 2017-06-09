@@ -29,54 +29,53 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see TextArea
  */
-public abstract class TextAreaModel extends InputModel
-implements CaretListener {
+public abstract class TextAreaModel extends InputModel implements CaretListener {
 
-    /**
-     * Constructor.
-     * @param control
-     *      the {@link FormControl} which to model.
-     */
-    public TextAreaModel(TextArea control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link FormControl} which to model.
+	 */
+	public TextAreaModel(TextArea control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * {@inheritDoc}
-     * @return
-     *      a {@link JTextArea}.
-     */
-    public JComponent getNewComponent() {
-        JTextArea ta = new JTextArea();
-        ta.addCaretListener(this);
-        return ta;
-    }
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return a {@link JTextArea}.
+	 */
+	public JComponent getNewComponent() {
+		JTextArea ta = new JTextArea();
+		ta.addCaretListener(this);
+		return ta;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void update() {
-    	JTextArea ta = (JTextArea) jc;
-        ta.setText((String) fc.getValue());
-        super.update();
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isValid() {
-        /*
-         *  TODO Check Validity!
-         *  length
-         */
-        return true;
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void update() {
+		JTextArea ta = (JTextArea) jc;
+		ta.setText((String) fc.getValue());
+		super.update();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void caretUpdate(final CaretEvent e) {
-    	TaskQueue.addTask(new Runnable() {
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isValid() {
+		/*
+		 * TODO Check Validity! length
+		 */
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void caretUpdate(final CaretEvent e) {
+		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				// update Model if valid
 				if (isValid()) {
@@ -84,6 +83,6 @@ implements CaretListener {
 				}
 			}
 		});
-        
-    }
+
+	}
 }

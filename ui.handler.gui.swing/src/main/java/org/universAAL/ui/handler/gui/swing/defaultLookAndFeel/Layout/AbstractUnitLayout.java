@@ -43,18 +43,18 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	protected static final String PRE_NEWLINE = "pre_newline";
 	protected static final String POST_NEWLINE = "post_newline";
 	protected static int HORIZONAL_UNIT_HEIGHT_LIMIT;
-	
+
 	static {
 		try {
-			PIXELS_PER_FONT_SIZE = Toolkit.getDefaultToolkit().getScreenResolution()/72;
+			PIXELS_PER_FONT_SIZE = Toolkit.getDefaultToolkit().getScreenResolution() / 72;
 		} catch (HeadlessException e) {
 			PIXELS_PER_FONT_SIZE = 60;
 		}
 		HORIZONAL_UNIT_HEIGHT_LIMIT = PIXELS_PER_FONT_SIZE * LABEL_HEIGHT_THRESHOLD;
 	}
-	
+
 	protected int gap;
-	
+
 	/**
 	 * 
 	 */
@@ -62,21 +62,21 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		this.gap = gap;
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public abstract void addLayoutComponent(String name, Component comp);
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public abstract void removeLayoutComponent(Component comp);
-	
-	/** {@ inheritDoc}	 */
+
+	/** {@ inheritDoc} */
 	public abstract Dimension preferredLayoutSize(Container parent);
-	
-	/** {@ inheritDoc}	 */
+
+	/** {@ inheritDoc} */
 	public abstract Dimension minimumLayoutSize(Container parent);
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public abstract void layoutContainer(Container parent);
-	
+
 	/**
 	 * Generate a list of {@link Unit}s from a list of {@link JComponent}s.
 	 * {@link JLabel}s are associated with a {@link JComponent} with
@@ -120,29 +120,27 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	 * @return The {@link List} of {@link Row}s.
 	 */
 	List getRows(List units, int width) {
-			int maxWidth = width;
-			LinkedList rows = new LinkedList();
-			rows.add(new Row(maxWidth));
-			LinkedList workSet = new LinkedList(units);
-			while (!workSet.isEmpty()) {
-				Row row = (Row) rows.getLast();
-				Unit u = (Unit) workSet.getFirst();
-				// see if row needs to be transformed
-				if (!u.isHorizontal
-						&& row.fits(u)
-						&& !(row instanceof RowWithVertUnits)) {
-					row = new RowWithVertUnits(row);
-					rows.removeLast();
-					rows.addLast(row);
-				}
-				if (row.fits(u) || row.count() == 0) {
-					row.add(u);
-					workSet.removeFirst();
-				} else {
-					rows.addLast(new Row(maxWidth));
-				}
+		int maxWidth = width;
+		LinkedList rows = new LinkedList();
+		rows.add(new Row(maxWidth));
+		LinkedList workSet = new LinkedList(units);
+		while (!workSet.isEmpty()) {
+			Row row = (Row) rows.getLast();
+			Unit u = (Unit) workSet.getFirst();
+			// see if row needs to be transformed
+			if (!u.isHorizontal && row.fits(u) && !(row instanceof RowWithVertUnits)) {
+				row = new RowWithVertUnits(row);
+				rows.removeLast();
+				rows.addLast(row);
 			}
-			return rows;
+			if (row.fits(u) || row.count() == 0) {
+				row.add(u);
+				workSet.removeFirst();
+			} else {
+				rows.addLast(new Row(maxWidth));
+			}
+		}
+		return rows;
 	}
 
 	/**
@@ -177,23 +175,25 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	}
 
 	// TODO: actually create a new row!!
-	static public void setNewLineBefore(JComponent c){
+	static public void setNewLineBefore(JComponent c) {
 		c.putClientProperty(PRE_NEWLINE, PRE_NEWLINE);
 	}
-	
-	static public void setNewLineAfter(JComponent c){
+
+	static public void setNewLineAfter(JComponent c) {
 		c.putClientProperty(POST_NEWLINE, POST_NEWLINE);
 	}
-	
+
 	/**
 	 * Unites each JComponent with it's associated label into a unit. preview:
-	 * <center> <img src="doc-files/FormLayout-units.png" alt="Units"
-	 * width="60%"/> </center> <br>
+	 * <center>
+	 * <img src="doc-files/FormLayout-units.png" alt="Units" width="60%"/>
+	 * </center> <br>
 	 * Within each {@link Unit} the label and the {@link JComponent} are
-	 * separated by half the {@link AbstractUnitLayout#gap} provided in the constructor
-	 * of {@link AbstractUnitLayout#AbstractUnitLayout(int)}. <center> <img
-	 * src="doc-files/FormLayout-halfspaces.png" alt="Layout preview"
-	 * width="60%" align="middle"/> </center>
+	 * separated by half the {@link AbstractUnitLayout#gap} provided in the
+	 * constructor of {@link AbstractUnitLayout#AbstractUnitLayout(int)}.
+	 * <center>
+	 * <img src="doc-files/FormLayout-halfspaces.png" alt="Layout preview" width
+	 * ="60%" align="middle"/> </center>
 	 * 
 	 * @author amedrano
 	 * 
@@ -206,8 +206,6 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		protected Dimension size;
 		protected Dimension pSize;
 
-		
-		
 		protected Unit() {
 			this.pSize = new Dimension();
 		}
@@ -217,7 +215,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 			this.l = label;
 			this.jc = (Component) label.getLabelFor();
 			if (jc == null) {
-				//This label is a component it self
+				// This label is a component it self
 				jc = l;
 				l = null;
 				pSize = jc.getPreferredSize();
@@ -228,25 +226,20 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 				}
 			} else {
 				// This unit contains a label and a component
-				if (jc.getPreferredSize().height > getFontSizeInPx(l.getFont())
-						* LABEL_HEIGHT_THRESHOLD) {
+				if (jc.getPreferredSize().height > getFontSizeInPx(l.getFont()) * LABEL_HEIGHT_THRESHOLD) {
 					isHorizontal = false;
-					pSize.width = Math.max(l.getPreferredSize().width,
-							jc.getPreferredSize().width);
-					pSize.height = l.getPreferredSize().height + gap / 2
-							+ jc.getPreferredSize().height;
+					pSize.width = Math.max(l.getPreferredSize().width, jc.getPreferredSize().width);
+					pSize.height = l.getPreferredSize().height + gap / 2 + jc.getPreferredSize().height;
 				} else {
 					isHorizontal = true;
-					pSize.height = Math.max(l.getPreferredSize().height,
-							jc.getPreferredSize().height);
-					pSize.width = l.getPreferredSize().width + gap / 2
-							+ jc.getPreferredSize().width;
+					pSize.height = Math.max(l.getPreferredSize().height, jc.getPreferredSize().height);
+					pSize.width = l.getPreferredSize().width + gap / 2 + jc.getPreferredSize().width;
 				}
 			}
 		}
-		
+
 		public int getFontSizeInPx(Font f) {
-			return (int) (f.getSize2D()/PIXELS_PER_FONT_SIZE);
+			return (int) (f.getSize2D() / PIXELS_PER_FONT_SIZE);
 		}
 
 		public Unit(Component comp) {
@@ -284,8 +277,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		public void setLocation(int x, int y) {
 			if (l != null) {
 				if (isHorizontal) {
-					l.setLocation(x, y
-							+ (jc.getSize().height - l.getSize().height) / 2);
+					l.setLocation(x, y + (jc.getSize().height - l.getSize().height) / 2);
 					jc.setLocation(x + l.getSize().width + gap / 2, y);
 				} else {
 					l.setLocation(x, y);
@@ -295,8 +287,9 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 				jc.setLocation(x, y);
 			}
 		}
-		public boolean isHorizontal(){
-		    return isHorizontal;
+
+		public boolean isHorizontal() {
+			return isHorizontal;
 		}
 	}
 
@@ -326,8 +319,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 				Unit u = (Unit) i.next();
 				int myWidth = u.getPreferredSize().width;
 				if (currentPrefWidth > 0) {
-				    myWidth = myWidth * ratio
-					    / currentPrefWidth;
+					myWidth = myWidth * ratio / currentPrefWidth;
 				}
 				u.setSize(new Dimension(myWidth, maxHeight));
 			}
@@ -350,8 +342,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		}
 
 		public boolean fits(Unit newUnit) {
-			return (width - currentPrefWidth - (count() + 1) * gap) >= newUnit
-					.getPreferredSize().width;
+			return (width - currentPrefWidth - (count() + 1) * gap) >= newUnit.getPreferredSize().width;
 		}
 
 		public void add(Unit newUnit) {
@@ -385,11 +376,11 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		/** {@inheritDoc} */
 		public void setSize(Dimension size) {
 			this.size = size;
-			//int count = units.size();
-			//int uHeight = (size.height - (count - 1) * gap) / count;
+			// int count = units.size();
+			// int uHeight = (size.height - (count - 1) * gap) / count;
 			for (Iterator i = units.iterator(); i.hasNext();) {
 				Unit u = (Unit) i.next();
-				//u.setSize(new Dimension(size.width, uHeight));
+				// u.setSize(new Dimension(size.width, uHeight));
 				u.setSize(new Dimension(size.width, u.getPreferredSize().height));
 			}
 		}
@@ -408,10 +399,10 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		}
 
 		public boolean fits(Unit newUnit) {
-//			int count = units.size() + 1;
-//			int uHeight = (size.height - (count - 1) * gap) / count;
-//			return (uHeight > newUnit.getPreferredSize().height);
-			return ((size.height - pSize.height) > newUnit.getPreferredSize().height );
+			// int count = units.size() + 1;
+			// int uHeight = (size.height - (count - 1) * gap) / count;
+			// return (uHeight > newUnit.getPreferredSize().height);
+			return ((size.height - pSize.height) > newUnit.getPreferredSize().height);
 		}
 
 		public void add(Unit newUnit) {
@@ -448,31 +439,29 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 			this.units = new ArrayList(previousRow.units);
 			recalculateUnitDistribution();
 		}
-		
+
 		private void recalculateUnitDistribution() {
-		    ArrayList oldUnitList = new ArrayList(units);
-		    units.clear();
-		    currentPrefWidth = 0;
-		    for (Iterator i = oldUnitList.iterator(); i.hasNext();) {
-			Unit u = (Unit) i.next();
-			if (!(u instanceof AggregatedUnit)) {
-			    add(u);
-			} else {
-			    for (Iterator it = ((AggregatedUnit) u).units.iterator(); it
-				    .hasNext();) {
-				Unit aU = (Unit) it.next();
-				add(aU);
-			    }
+			ArrayList oldUnitList = new ArrayList(units);
+			units.clear();
+			currentPrefWidth = 0;
+			for (Iterator i = oldUnitList.iterator(); i.hasNext();) {
+				Unit u = (Unit) i.next();
+				if (!(u instanceof AggregatedUnit)) {
+					add(u);
+				} else {
+					for (Iterator it = ((AggregatedUnit) u).units.iterator(); it.hasNext();) {
+						Unit aU = (Unit) it.next();
+						add(aU);
+					}
+				}
 			}
-		    }
 		}
 
 		/** {@inheritDoc} */
 		public boolean fits(Unit newUnit) {
 			int count = count();
-			return (newUnit.isHorizontal && count > 0
-					&& units.get(count - 1) instanceof AggregatedUnit && ((AggregatedUnit) units
-						.get(count - 1)).fits(newUnit)) || super.fits(newUnit);
+			return (newUnit.isHorizontal && count > 0 && units.get(count - 1) instanceof AggregatedUnit
+					&& ((AggregatedUnit) units.get(count - 1)).fits(newUnit)) || super.fits(newUnit);
 		}
 
 		/** {@inheritDoc} */
@@ -480,8 +469,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 			Dimension nUd = newUnit.getPreferredSize();
 			maxHeight = Math.max(maxHeight, nUd.height);
 			int count = count();
-			if (newUnit.isHorizontal && count > 0
-					&& units.get(count - 1) instanceof AggregatedUnit
+			if (newUnit.isHorizontal && count > 0 && units.get(count - 1) instanceof AggregatedUnit
 					&& ((AggregatedUnit) units.get(count - 1)).fits(newUnit)) {
 				// update width
 				AggregatedUnit lastAU = ((AggregatedUnit) units.get(count - 1));
@@ -500,7 +488,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 		}
 
 		public void setHeight(int vRowHeigh) {
-			//maxHeight = Math.max(vRowHeigh,maxHeight);
+			// maxHeight = Math.max(vRowHeigh,maxHeight);
 			maxHeight = vRowHeigh;
 			recalculateUnitDistribution();
 		}

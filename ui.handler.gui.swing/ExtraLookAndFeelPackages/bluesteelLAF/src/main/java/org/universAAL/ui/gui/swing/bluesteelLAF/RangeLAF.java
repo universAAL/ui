@@ -27,21 +27,23 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel;
  */
 public class RangeLAF extends RangeModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link Range} which to model.
-     */
-    public RangeLAF(Range control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Range} which to model.
+	 */
+	public RangeLAF(Range control, Renderer render) {
+		super(control, render);
+	}
 
-    /** {@inheritDoc} */
-    public void update() {
-	super.update();
+	/** {@inheritDoc} */
+	public void update() {
+		super.update();
 		ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
-        jc.setFont(c.getLabelFont());
-        jc.setForeground(c.getborderLineMM());
-    }
+		jc.setFont(c.getLabelFont());
+		jc.setForeground(c.getborderLineMM());
+	}
 
 	@Override
 	public void updateAsMissing() {
@@ -49,6 +51,5 @@ public class RangeLAF extends RangeModel {
 		l.setForeground(Init.getInstance(getRenderer()).getColorLAF().getAlert());
 		l.setText(getAlertString());
 	}
-
 
 }

@@ -37,83 +37,82 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Submit
  */
-public class SubmitModel extends Model
-implements ActionListener {
-	
+public class SubmitModel extends Model implements ActionListener {
+
 	protected SpecialButtonFactory specialBFactory;
 
-    /**
-     * Constructor.
-     * @param control
-     *     the {@link FormControl} which to model.
-     */
-    public SubmitModel(Submit control, Renderer render) {
-        super(control, render);
-        needsLabel = false;
-        specialBFactory = new SpecialButtonFactory(render);
-        specialBFactory.add(ExitButton.class);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link FormControl} which to model.
+	 */
+	public SubmitModel(Submit control, Renderer render) {
+		super(control, render);
+		needsLabel = false;
+		specialBFactory = new SpecialButtonFactory(render);
+		specialBFactory.add(ExitButton.class);
+	}
 
-    /**
-     * {@inheritDoc}
-     * @return
-     *      a {@link JButton}
-     */
-    public JComponent getNewComponent() {
-        JButton s = new JButton(fc.getLabel().getText(),
-                IconFactory.getIcon(fc.getLabel().getIconURL()));
-        return s;
-    }
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return a {@link JButton}
+	 */
+	public JComponent getNewComponent() {
+		JButton s = new JButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
+		return s;
+	}
 
-    /** {@inheritDoc} */
+	/** {@inheritDoc} */
 	public void update() {
 		super.update();
 		SpecialButtonInterface sbi = specialBFactory.getSpecialButton((Submit) fc);
 		if (sbi == null) {
 			SpecialButtonFactory.processListener((AbstractButton) jc, this);
-		}
-		else {
+		} else {
 			SpecialButtonFactory.processListener((AbstractButton) jc, sbi);
 		}
 	}
 
 	/**
-     * a Submit is allways valid.
-     * @return <code>true</code>
-     */
-    public boolean isValid() {
-        //always valid
-        return true;
-    }
+	 * a Submit is allways valid.
+	 * 
+	 * @return <code>true</code>
+	 */
+	public boolean isValid() {
+		// always valid
+		return true;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubmitTask(), "SubmitTask:" + ((Submit) fc).getID()).start();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void actionPerformed(ActionEvent e) {
+		new Thread(new SubmitTask(), "SubmitTask:" + ((Submit) fc).getID()).start();
+	}
 
-    class SubmitTask implements Runnable {
+	class SubmitTask implements Runnable {
 
-		/** {@ inheritDoc}	 */
+		/** {@ inheritDoc} */
 		public void run() {
 
-	        Input missing = ((Submit) fc).getMissingInputControl();
-	        if (isValid() && missing == null) {
-	            getRenderer().getFormManagement().closeCurrentDialog();
-	            getRenderer().getHandler().submit((Submit) fc);
-	        }
-	        else {
-	            /*
-	             *  Check rest of model
-	             *  advice the user about data not being valid
-	             */
-	            LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run", "There are missing or invalid input controls.");
-	        	getRenderer().getFormManagement().missingInput(missing);
-	        }
-			
+			Input missing = ((Submit) fc).getMissingInputControl();
+			if (isValid() && missing == null) {
+				getRenderer().getFormManagement().closeCurrentDialog();
+				getRenderer().getHandler().submit((Submit) fc);
+			} else {
+				/*
+				 * Check rest of model advice the user about data not being
+				 * valid
+				 */
+				LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run",
+						"There are missing or invalid input controls.");
+				getRenderer().getFormManagement().missingInput(missing);
+			}
+
 		}
-    	
-    }
-    
+
+	}
+
 }

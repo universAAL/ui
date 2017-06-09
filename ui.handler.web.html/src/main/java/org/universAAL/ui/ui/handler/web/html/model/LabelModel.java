@@ -36,7 +36,7 @@ public class LabelModel extends Model {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTML() {
 		return getImgText();
 	}
@@ -48,49 +48,47 @@ public class LabelModel extends Model {
 		StringBuffer a = new StringBuffer();
 		StringBuffer icon = getIcon();
 		StringBuffer text = new StringBuffer();
-		if (((Label)fe).getText() != null) {
-			text.append(((Label)fe).getText());
+		if (((Label) fe).getText() != null) {
+			text.append(((Label) fe).getText());
 		}
-		
-		if (icon.length()>0){
-			if (recModel.isHorizontalLayout()
-					|| !recModel.isVerticalLayout()){
-				if (recModel.hasHorizontalLeftAlignment()
-						|| !recModel.hasHorizontalRightAlignment()){
+
+		if (icon.length() > 0) {
+			if (recModel.isHorizontalLayout() || !recModel.isVerticalLayout()) {
+				if (recModel.hasHorizontalLeftAlignment() || !recModel.hasHorizontalRightAlignment()) {
 					a.append(icon).append(text);
 				} else {
 					a.append(text).append(icon);
 				}
-			}else {
-				if (recModel.hasVerticalTopAlignment()
-						|| !recModel.hasVerticalBottomAlignment()){
+			} else {
+				if (recModel.hasVerticalTopAlignment() || !recModel.hasVerticalBottomAlignment()) {
 					a.append(icon).append(singleTag("br", null)).append(text);
-				}else {
+				} else {
 					a.append(text).append(singleTag("br", null)).append(icon);
 				}
 			}
 			return a;
-		}else {
+		} else {
 			return text;
 		}
 	}
-	
+
 	/**
 	 * Generate a Label tag, for the given id.
-	 * @param id the id in the "for" property.
+	 * 
+	 * @param id
+	 *            the id in the "for" property.
 	 * @return
 	 */
 	public StringBuffer getLabelFor(String id) {
 		StringBuffer a = new StringBuffer();
-		if (recModel.hasHorizontalLeftAlignment()
-				|| !recModel.hasHorizontalRightAlignment()){
+		if (recModel.hasHorizontalLeftAlignment() || !recModel.hasHorizontalRightAlignment()) {
 			// icon first for left alignment
 			a.append(getIcon());
 		}
-		if (((Label)fe).getText() != null) {
-			a.append(((Label)fe).getText());
+		if (((Label) fe).getText() != null) {
+			a.append(((Label) fe).getText());
 		}
-		if (recModel.hasHorizontalRightAlignment()){
+		if (recModel.hasHorizontalRightAlignment()) {
 			// icon last for right alignment
 			a.append(getIcon());
 		}
@@ -102,17 +100,16 @@ public class LabelModel extends Model {
 		return tag("label", a, p);
 	}
 
-	private StringBuffer getIcon(){
+	private StringBuffer getIcon() {
 		Properties p = new Properties();
-		 addSRCProp(p, ((Label)fe).getIconURL());
-		if (p.containsKey("src")){
+		addSRCProp(p, ((Label) fe).getIconURL());
+		if (p.containsKey("src")) {
 			p.put("class", "labelIMG");
 			String cssStyle = recModel.getCSSStyle();
 			if (!cssStyle.isEmpty())
 				p.put("style", cssStyle);
 			return singleTag("img", p);
-		}
-		else 
+		} else
 			return new StringBuffer();
 	}
 }

@@ -41,48 +41,46 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFor
 
 /**
  * Helper Class just to render RepeatTables.
+ * 
  * @author amedrano
  *
  */
-public abstract class RepeatModelTable extends RepeatModel implements ListSelectionListener{
-
+public abstract class RepeatModelTable extends RepeatModel implements ListSelectionListener {
 
 	/**
 	 * The table component
 	 */
 	protected JTable tableComponent;
 	private RepeatTableModel repeatTableModel = null;
-    private JComponent[] selectionComps;
+	private JComponent[] selectionComps;
+
 	/**
 	 * Constructor
+	 * 
 	 * @param control
 	 */
 	public RepeatModelTable(Repeat control, Renderer render) {
 		super(control, render);
 	}
 
-	/** {@inheritDoc}*/
-//	public JComponent getNewComponent() {
-		/* 
-		 * Representation of a table
-		 ********************************************
-		 * use:
-		 *  boolean         listAcceptsNewEntries()
-		 *  boolean         listEntriesDeletable()
-		 *  boolean         listEntriesEditable()
-		 *  int             getSelectionIndex()
-		 *  FormControl     getSearchableField() (add a listener to this component)
-		 * to configure the table accordingly!!
-		 */
-		/*
-		 * check:
-		 * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
-		 */
+	/** {@inheritDoc} */
+	// public JComponent getNewComponent() {
+	/*
+	 * Representation of a table
+	 ********************************************
+	 * use: boolean listAcceptsNewEntries() boolean listEntriesDeletable()
+	 * boolean listEntriesEditable() int getSelectionIndex() FormControl
+	 * getSearchableField() (add a listener to this component) to configure the
+	 * table accordingly!!
+	 */
+	/*
+	 * check:
+	 * http://download.oracle.com/javase/tutorial/uiswing/components/table.html
+	 */
 
-		
-//	}
+	// }
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
 	public void update() {
 		FormControl[] selectionControls = repeatTableModel.getSelectionControls();
 		selectionComps = new JComponent[selectionControls.length];
@@ -91,12 +89,11 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 			siblings = jc.getParent().getComponents();
 		} else {
 			siblings = new JComponent[0];
-		}		
+		}
 		for (int i = 0; i < selectionControls.length; i++) {
 			for (int j = 0; j < siblings.length; j++) {
 				if (siblings[j] instanceof JComponent
-						&& ((JComponent) siblings[j])
-						.getName().equals(selectionControls[i].getURI())) {
+						&& ((JComponent) siblings[j]).getName().equals(selectionControls[i].getURI())) {
 					selectionComps[i] = (JComponent) siblings[j];
 					continue;
 				}
@@ -105,7 +102,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 	}
 
 	protected JTable getJTable() {
-		Repeat r = (Repeat)fc;
+		Repeat r = (Repeat) fc;
 		if (repeatTableModel == null) {
 			repeatTableModel = new RepeatTableModel(r);
 			tableComponent = new JTable(repeatTableModel);
@@ -114,16 +111,15 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 			tableComponent.setColumnSelectionAllowed(false);
 			tableComponent.setRowSelectionAllowed(true);
 			TableFormControlCellRenderer tjccre = new TableFormControlCellRenderer(getRenderer());
-			tableComponent.setDefaultRenderer(
-					Object.class, tjccre);
-			tableComponent.setDefaultEditor(Object.class,(TableCellEditor) tjccre);
+			tableComponent.setDefaultRenderer(Object.class, tjccre);
+			tableComponent.setDefaultEditor(Object.class, (TableCellEditor) tjccre);
 			tableComponent.getSelectionModel().addListSelectionListener(this);
 		}
 		return tableComponent;
 	}
-	
+
 	protected JPanel getButtonPanel() {
-		Repeat r = (Repeat)fc;
+		Repeat r = (Repeat) fc;
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
@@ -138,9 +134,10 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		}
 		return buttonPanel;
 	}
-	
+
 	/**
 	 * Class representing the Add button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class AddTableButton extends JButton implements ActionListener {
@@ -148,19 +145,19 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		public AddTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Add");
+			this.setName(fc.getURI() + "_Add");
 		}
 
 		public AddTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Add");
+			this.setName(fc.getURI() + "_Add");
 		}
 
 		public AddTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Add");
+			this.setName(fc.getURI() + "_Add");
 		}
 
 		/**
@@ -174,22 +171,23 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		public AddTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Add");
+			this.setName(fc.getURI() + "_Add");
 		}
 
-		/** {@inheritDoc}*/
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {
 			TaskQueue.addTask(new Runnable() {
 				public void run() {
 					repeatTableModel.addValue();
 				}
 			});
-			
+
 		}
 	}
 
 	/**
 	 * Class representing the Delete button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class DeleteTableButton extends JButton implements ActionListener {
@@ -197,19 +195,19 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		public DeleteTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Delete");
+			this.setName(fc.getURI() + "_Delete");
 		}
 
 		public DeleteTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Delete");
+			this.setName(fc.getURI() + "_Delete");
 		}
 
 		public DeleteTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Delete");
+			this.setName(fc.getURI() + "_Delete");
 		}
 
 		/**
@@ -217,29 +215,29 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		 */
 		private static final long serialVersionUID = 1L;
 
-		
 		/**
 		 * Constructor for Remove Button
 		 */
 		public DeleteTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Delete");
+			this.setName(fc.getURI() + "_Delete");
 		}
-		
-		/** {@inheritDoc}*/
+
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {
 			TaskQueue.addTask(new Runnable() {
 				public void run() {
 					repeatTableModel.removeValue();
 				}
 			});
-			
+
 		}
 	}
-	
+
 	/**
 	 * Class representing the Up button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class UpTableButton extends JButton implements ActionListener {
@@ -247,19 +245,19 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		public UpTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Up");
+			this.setName(fc.getURI() + "_Up");
 		}
 
 		public UpTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Up");
+			this.setName(fc.getURI() + "_Up");
 		}
 
 		public UpTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Up");
+			this.setName(fc.getURI() + "_Up");
 		}
 
 		/**
@@ -267,17 +265,16 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		 */
 		private static final long serialVersionUID = 1L;
 
-		
 		/**
 		 * Constructor for Remove Button
 		 */
 		public UpTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Up");
+			this.setName(fc.getURI() + "_Up");
 		}
-		
-		/** {@inheritDoc}*/
+
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {
 			TaskQueue.addTask(new Runnable() {
 				public void run() {
@@ -290,12 +287,13 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 					tableComponent.setRowSelectionInterval(indx, indx);
 				}
 			});
-			
+
 		}
 	}
-	
+
 	/**
 	 * Class representing the Down button for Tables.
+	 * 
 	 * @author amedrano
 	 */
 	public class DownTableButton extends JButton implements ActionListener {
@@ -303,19 +301,19 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		public DownTableButton(Icon icon) {
 			super(icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Down");
+			this.setName(fc.getURI() + "_Down");
 		}
 
 		public DownTableButton(String text, Icon icon) {
 			super(text, icon);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Down");
+			this.setName(fc.getURI() + "_Down");
 		}
 
 		public DownTableButton(String text) {
 			super(text);
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Down");
+			this.setName(fc.getURI() + "_Down");
 		}
 
 		/**
@@ -323,17 +321,16 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 		 */
 		private static final long serialVersionUID = 1L;
 
-		
 		/**
 		 * Constructor for Remove Button
 		 */
 		public DownTableButton() {
 			super();
 			this.addActionListener(this);
-			this.setName(fc.getURI()+"_Down");
+			this.setName(fc.getURI() + "_Down");
 		}
-		
-		/** {@inheritDoc}*/
+
+		/** {@inheritDoc} */
 		public void actionPerformed(ActionEvent e) {
 			TaskQueue.addTask(new Runnable() {
 				public void run() {
@@ -346,7 +343,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 					tableComponent.setRowSelectionInterval(indx, indx);
 				}
 			});
-			
+
 		}
 	}
 
@@ -369,19 +366,16 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 					for (int i = 0; i < selectionComps.length; i++) {
 						Object val = repeatTableModel.getSelectionColumnValue(i);
 						if (selectionComps[i] instanceof JTextField)
-							((JTextField) selectionComps[i]).setText((val == null) ? ""
-									: val.toString());
+							((JTextField) selectionComps[i]).setText((val == null) ? "" : val.toString());
 						else if (selectionComps[i] instanceof JCheckBox)
-							((JCheckBox) selectionComps[i]).setSelected(Boolean.TRUE
-									.equals(val));
+							((JCheckBox) selectionComps[i]).setSelected(Boolean.TRUE.equals(val));
 						else if (selectionComps[i] instanceof JLabel)
-							((JLabel) selectionComps[i]).setText((val == null) ? ""
-									: val.toString());
+							((JLabel) selectionComps[i]).setText((val == null) ? "" : val.toString());
 					}
 				}
 			}
 		});
-		
+
 	}
-	
+
 }

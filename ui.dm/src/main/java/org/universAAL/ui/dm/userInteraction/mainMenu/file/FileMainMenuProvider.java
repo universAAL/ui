@@ -43,145 +43,131 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer;
  */
 public class FileMainMenuProvider implements IMainMenuProvider {
 
-    private MainMenu mainMenu;
+	private MainMenu mainMenu;
 
-    // Set of SubmissionIDs implementations of this interface will handle.
-    private Set<String> entries = new TreeSet<String>();
+	// Set of SubmissionIDs implementations of this interface will handle.
+	private Set<String> entries = new TreeSet<String>();
 
-    protected UserDialogManager userDM;
+	protected UserDialogManager userDM;
 
-    private String filePrefix = "main_menu_";
+	private String filePrefix = "main_menu_";
 
 	private long lastRead = 0;
 
-    public FileMainMenuProvider(UserDialogManager udm) {
-	userDM = udm;
-    }
-
-    /** {@inheritDoc} */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-	//LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle", new String[] {"Handling:",  submissionID}, null);
-	if (entries.contains(submissionID)) {
-	    ServiceRequest sr = mainMenu.getAssociatedServiceRequest(
-		    submissionID, response.getUser());
-	    if (sr == null) {
-		LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
-			getClass(), "handleUIResponse", new Object[] {
-				"Submission without effect: ", submissionID },
-			null);
-		mainMenu.setSelection(submissionID);
-		showHierarchyMenu(submissionID);
-	    } else {
-		LogUtils.logDebug(DialogManagerImpl.getModuleContext(),
-			getClass(), "handleUIResponse",
-			new Object[] { "Trying to call: ",
-				response.getSubmissionID() }, null);
-		try {
-		    ServiceResponse sResp = DialogManagerImpl.getServiceCaller().call(sr);
-		    if (!sResp.getCallStatus().equals(CallStatus.succeeded)){
-		        UIServiceResponseNotifyer.tellUser(userDM, sResp);
-		    }
-		} catch (Exception e) {
-		    UIServiceResponseNotifyer.tellUser(userDM, e);
-		}
-	    }
+	public FileMainMenuProvider(UserDialogManager udm) {
+		userDM = udm;
 	}
-    }
 
-    private void showHierarchyMenu(String path) {
-	entries.clear();
-	Form f = Form.newSystemMenu(path);
-	mainMenu.addMenuRepresentation(f.getIOControls());
-	for (MenuNode entry : mainMenu.entries()) {
-	    entries.add(entry.getPath());
-	}
-	showNewMenu(f);
-    }
-
-    /** {@inheritDoc} */
-    public Set<String> listDeclaredSubmitIds() {
-	return entries;
-    }
-
-    /** {@inheritDoc} */
-    public Group getMainMenu(Resource user, AbsLocation location,
-	    Form systemForm) {
-	entries.clear();
-	Group main = systemForm.getIOControls();
-	File f = getMainMenuFile();
-	if (f != null 
-			&& f.exists()
-			&& lastRead  != f.lastModified()) {
-		try {
-		    InputStream is = tryOpenFile(f);
-		    if (is != null) {
-		    	mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
-		    	is.close();
-		    	lastRead = f.lastModified();
-		    }
-		} catch (Exception e1) {
-			mainMenu = null;
-			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
-					getClass(), "getMainMenu", 
-					new String[]{"Main menu file cannot be loaded"}, e1);
-		    return main;
-		}
-	} else if (f == null 
-			|| (f != null 
-			&& !f.exists())) {
-		mainMenu = null;
-	}
-	if (mainMenu != null) {
-		try {
-			mainMenu.resetSelection();
-			mainMenu.addMenuRepresentation(main);
-			for (MenuNode entry : mainMenu.entries()) {
-				entries.add(entry.getPath());
+	/** {@inheritDoc} */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		// LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
+		// "handle", new String[] {"Handling:", submissionID}, null);
+		if (entries.contains(submissionID)) {
+			ServiceRequest sr = mainMenu.getAssociatedServiceRequest(submissionID, response.getUser());
+			if (sr == null) {
+				LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "handleUIResponse",
+						new Object[] { "Submission without effect: ", submissionID }, null);
+				mainMenu.setSelection(submissionID);
+				showHierarchyMenu(submissionID);
+			} else {
+				LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handleUIResponse",
+						new Object[] { "Trying to call: ", response.getSubmissionID() }, null);
+				try {
+					ServiceResponse sResp = DialogManagerImpl.getServiceCaller().call(sr);
+					if (!sResp.getCallStatus().equals(CallStatus.succeeded)) {
+						UIServiceResponseNotifyer.tellUser(userDM, sResp);
+					}
+				} catch (Exception e) {
+					UIServiceResponseNotifyer.tellUser(userDM, e);
+				}
 			}
-		} catch (Exception e) {
-			LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
-					getClass(), "getMainMenu", 
-					new String[]{"unable to process Main Menu"}, e);
 		}
 	}
-	return main;
-    }
 
-    protected File getMainMenuFile() {
-    	String userID = userDM.getUserId();
-    	userID = userID.substring(userID.lastIndexOf("#") + 1);
-    	String lang = userDM.getLocaleHelper()
-    			.getUserLocaleFromPreferredLanguage().getLanguage();
-    	File f = new File(DialogManagerImpl.getModuleContext().getConfigHome(),filePrefix + userID + "_" + lang
-    			+ ".txt");
-    	File f2 = new File(DialogManagerImpl.getModuleContext().getConfigHome(),filePrefix + userID + ".txt");
-    	if (f2.exists()){
-    		return f2;
-    	} else {
-    		return f;
-    	}
+	private void showHierarchyMenu(String path) {
+		entries.clear();
+		Form f = Form.newSystemMenu(path);
+		mainMenu.addMenuRepresentation(f.getIOControls());
+		for (MenuNode entry : mainMenu.entries()) {
+			entries.add(entry.getPath());
+		}
+		showNewMenu(f);
+	}
+
+	/** {@inheritDoc} */
+	public Set<String> listDeclaredSubmitIds() {
+		return entries;
+	}
+
+	/** {@inheritDoc} */
+	public Group getMainMenu(Resource user, AbsLocation location, Form systemForm) {
+		entries.clear();
+		Group main = systemForm.getIOControls();
+		File f = getMainMenuFile();
+		if (f != null && f.exists() && lastRead != f.lastModified()) {
+			try {
+				InputStream is = tryOpenFile(f);
+				if (is != null) {
+					mainMenu = newMainMenu(DialogManagerImpl.getModuleContext(), is);
+					is.close();
+					lastRead = f.lastModified();
+				}
+			} catch (Exception e1) {
+				mainMenu = null;
+				LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "getMainMenu",
+						new String[] { "Main menu file cannot be loaded" }, e1);
+				return main;
+			}
+		} else if (f == null || (f != null && !f.exists())) {
+			mainMenu = null;
+		}
+		if (mainMenu != null) {
+			try {
+				mainMenu.resetSelection();
+				mainMenu.addMenuRepresentation(main);
+				for (MenuNode entry : mainMenu.entries()) {
+					entries.add(entry.getPath());
+				}
+			} catch (Exception e) {
+				LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "getMainMenu",
+						new String[] { "unable to process Main Menu" }, e);
+			}
+		}
+		return main;
+	}
+
+	protected File getMainMenuFile() {
+		String userID = userDM.getUserId();
+		userID = userID.substring(userID.lastIndexOf("#") + 1);
+		String lang = userDM.getLocaleHelper().getUserLocaleFromPreferredLanguage().getLanguage();
+		File f = new File(DialogManagerImpl.getModuleContext().getConfigHome(),
+				filePrefix + userID + "_" + lang + ".txt");
+		File f2 = new File(DialogManagerImpl.getModuleContext().getConfigHome(), filePrefix + userID + ".txt");
+		if (f2.exists()) {
+			return f2;
+		} else {
+			return f;
+		}
 	}
 
 	protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
-	return new MainMenu(in);
-    }
+		return new MainMenu(in);
+	}
 
-    private void showNewMenu(Form mff) {
-	userDM.add(this);
-	userDM.pushDialog(mff);
-    }
-    
-    private final InputStream tryOpenFile(File filename){
-    	InputStream in = null;
-	try {	    
-	    in = new FileInputStream(filename);
-	} catch (IOException e) {
-		LogUtils.logWarn(DialogManagerImpl.getModuleContext(),
-				getClass(), "openMainMenuConfigFile",
-				new String[]{filename + " does not exist."},
-				e);
-	    } 
-	return in;
-    }
+	private void showNewMenu(Form mff) {
+		userDM.add(this);
+		userDM.pushDialog(mff);
+	}
+
+	private final InputStream tryOpenFile(File filename) {
+		InputStream in = null;
+		try {
+			in = new FileInputStream(filename);
+		} catch (IOException e) {
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "openMainMenuConfigFile",
+					new String[] { filename + " does not exist." }, e);
+		}
+		return in;
+	}
 }

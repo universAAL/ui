@@ -31,28 +31,28 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModel;
  */
 public class RepeatLAF extends RepeatModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link Repeat} which to model.
-     */
-    public RepeatLAF(Repeat control, Renderer render) {
-        super(control, render);
-    }
-    
-    /** {@inheritDoc}*/
-    public JComponent getNewComponent() {
-        /*
-         *  TODO
-         *  Check for complexity and take decision
-         *  Check for multilevel and take decision
-         *  Check for Group children and render JTabbedPane
-         */
-        if (isATable()) {
-        	table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
-            return table.getNewComponent();
-        }
-        
-        return null;
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Repeat} which to model.
+	 */
+	public RepeatLAF(Repeat control, Renderer render) {
+		super(control, render);
+	}
+
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		/*
+		 * TODO Check for complexity and take decision Check for multilevel and
+		 * take decision Check for Group children and render JTabbedPane
+		 */
+		if (isATable()) {
+			table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
+			return table.getNewComponent();
+		}
+
+		return null;
+	}
 
 }

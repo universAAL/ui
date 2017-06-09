@@ -33,7 +33,6 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
 
-
 /**
  * @author amedrano
  *
@@ -49,7 +48,7 @@ public class UCCButton implements SpecialButtonInterface {
 	private Renderer render;
 
 	private Submit submit;
-	
+
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uCC";
 
 	private static final int SOCK_TIMEOUT = 10;
@@ -66,16 +65,16 @@ public class UCCButton implements SpecialButtonInterface {
 	public void actionPerformed(ActionEvent e) {
 		new Thread(new Task()).start();
 	}
-	
+
 	class Task implements Runnable {
-		
-		public void run(){
+
+		public void run() {
 			try {
 				UCCButton.openuCCGUI();
 			} catch (Exception e1) {
-				LogUtils.logError(render.getModuleContext(), getClass(),
-						"Pressed uCC Button", new String[]{"Could Not open uCC GUI"}, e1);
-			}			
+				LogUtils.logError(render.getModuleContext(), getClass(), "Pressed uCC Button",
+						new String[] { "Could Not open uCC GUI" }, e1);
+			}
 		}
 	}
 
@@ -83,19 +82,14 @@ public class UCCButton implements SpecialButtonInterface {
 		return submit.getID().equals(SUBMIT_ID);
 	}
 
-	
-	public static boolean uCCPresentInNode(){
-		
+	public static boolean uCCPresentInNode() {
+
 		/* Using bare sockets */
-		
+
 		Socket s = null;
 		try {
 			s = new Socket();
-			s.connect(
-					new InetSocketAddress(
-							InetAddress.getByName("localhost"),
-							SOCK_PORT),
-					SOCK_TIMEOUT);
+			s.connect(new InetSocketAddress(InetAddress.getByName("localhost"), SOCK_PORT), SOCK_TIMEOUT);
 			boolean r = s.isConnected();
 			s.close();
 			return r;
@@ -103,43 +97,42 @@ public class UCCButton implements SpecialButtonInterface {
 			return false;
 		} catch (IOException e) {
 			return false;
-		} 
-		
-		/* To Test call */ 
-//		return true;
+		}
+
+		/* To Test call */
+		// return true;
 	}
-	
-	public static void openuCCGUI() throws Exception{
+
+	public static void openuCCGUI() throws Exception {
 		/*
 		 * <FORM ACTION="http://127.0.0.1:9988" target="hidden" METHOD="POST">
 		 * <INPUT TYPE="hidden" NAME="url" VALUE="http://please.open.gui">
-		 * <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Open GUI">
-		 * </FORM>
+		 * <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Open GUI"> </FORM>
 		 */
-		
+
 		/*
 		 * Using native Java
 		 */
-		sendPOSTRequest(UCC_URL, 
-				"url=" +URLEncoder.encode("http://please.open.gui",UTF_8) 
-				+ "&submit=" + URLEncoder.encode("Open+GUI", UTF_8));
+		sendPOSTRequest(UCC_URL, "url=" + URLEncoder.encode("http://please.open.gui", UTF_8) + "&submit="
+				+ URLEncoder.encode("Open+GUI", UTF_8));
 	}
-	
+
 	public static void sendPOSTRequest(String request, String urlParameters) throws Exception {
 		URL url = new URL(request);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setDoOutput(true);
-		connection.setInstanceFollowRedirects(false); 
-		connection.setRequestMethod("POST"); 
+		connection.setInstanceFollowRedirects(false);
+		connection.setRequestMethod("POST");
 		connection.setRequestProperty("charset", UTF_8);
 
-		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream (), Charset.forName(UTF_8));
+		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream(), Charset.forName(UTF_8));
 		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
-		
+
 		InputStreamReader ir = new InputStreamReader(connection.getInputStream(), Charset.forName(UTF_8));
-		while (ir.read() != -1) {}
+		while (ir.read() != -1) {
+		}
 		ir.close();
 		connection.disconnect();
 	}

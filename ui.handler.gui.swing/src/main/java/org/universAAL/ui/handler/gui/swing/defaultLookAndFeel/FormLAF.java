@@ -51,7 +51,8 @@ public class FormLAF extends FormModel {
 	 * 
 	 * @param f
 	 *            {@link Form} which to model.
-	 * @param render the {@link Renderer} reference
+	 * @param render
+	 *            the {@link Renderer} reference
 	 */
 	public FormLAF(Form f, Renderer render) {
 		super(f, render);
@@ -74,8 +75,7 @@ public class FormLAF extends FormModel {
 		 */
 		JComponent ioPanel = super.getIOPanel();
 		ioPanel.setLayout(new FormLayout());
-		JScrollPane sp = new JScrollPane(ioPanel,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane sp = new JScrollPane(ioPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		return sp;
 	}
@@ -88,8 +88,7 @@ public class FormLAF extends FormModel {
 	 */
 	protected JScrollPane getSubmitPanelScroll(int depth) {
 		JComponent submit = super.getSubmitPanel(depth);
-		JScrollPane sp = new JScrollPane(submit,
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane sp = new JScrollPane(submit, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		sp.setLayout(new BorderedScrolPaneLayout());
 		return sp;
@@ -102,10 +101,9 @@ public class FormLAF extends FormModel {
 	 *         {@link JScrollPane}.
 	 */
 	protected JScrollPane getSystemPanelScroll() {
-		JScrollPane sp =new JScrollPane(super.getSystemPanel(),
-				JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+		JScrollPane sp = new JScrollPane(super.getSystemPanel(), JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				sp.setLayout(new BorderedScrolPaneLayout());
+		sp.setLayout(new BorderedScrolPaneLayout());
 		return sp;
 	}
 
@@ -116,8 +114,7 @@ public class FormLAF extends FormModel {
 	 */
 	protected JPanel getHeader() {
 		JPanel header = new JPanel();
-		ImageIcon icon = new ImageIcon(
-				(getClass().getResource("/main/UniversAAl_logo.png")));
+		ImageIcon icon = new ImageIcon((getClass().getResource("/main/UniversAAl_logo.png")));
 		icon.setDescription("UniversAAL Logo Image");
 		JLabel logo = new JLabel(icon);
 		logo.getAccessibleContext().setAccessibleName("UniversAAL Logo");
@@ -134,8 +131,7 @@ public class FormLAF extends FormModel {
 			frame.getAccessibleContext().setAccessibleName(form.getTitle());
 			JScrollPane io = getIOPanelScroll();
 			io.getAccessibleContext().setAccessibleName(IO_NAME);
-			JScrollPane sub = new JScrollPane(super.getSubmitPanel(),
-					JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+			JScrollPane sub = new JScrollPane(super.getSubmitPanel(), JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 			sub.getAccessibleContext().setAccessibleName(SUB_NAME);
 			frame.add(io, BorderLayout.CENTER);

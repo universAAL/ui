@@ -25,11 +25,11 @@ import org.universAAL.middleware.context.ContextEvent;
  * 
  */
 public interface IContextCallback {
-    /**
-     * Callback for handling {@link ContextEvent}s
-     * 
-     * @param event
-     *            {@link ContextEvent}
-     */
-    void CallbackForHandleContextEvent(ContextEvent event);
+	/**
+	 * Callback for handling {@link ContextEvent}s
+	 * 
+	 * @param event
+	 *            {@link ContextEvent}
+	 */
+	void CallbackForHandleContextEvent(ContextEvent event);
 }

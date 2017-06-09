@@ -33,56 +33,57 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
  */
 public class Init implements InitInterface {
 
-    private ColorLAF color;
-    private Renderer render;
+	private ColorLAF color;
+	private Renderer render;
 
-    /** {@inheritDoc} */
-    public void install(Renderer render) {
-	this.render = render;
-	color = new ColorLAF();
-	MetalLookAndFeel.setCurrentTheme(color);
-	try {
-	    UIManager.setLookAndFeel(new MetalLookAndFeel());
-	} catch (UnsupportedLookAndFeelException e) {
-	    e.printStackTrace();
+	/** {@inheritDoc} */
+	public void install(Renderer render) {
+		this.render = render;
+		color = new ColorLAF();
+		MetalLookAndFeel.setCurrentTheme(color);
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
-    }
 
-    public ColorLAF getColorLAF() {
-	return color;
-    }
-
-    /** {@inheritDoc} */
-    public void uninstall() {
-	try {
-	    UIManager.setLookAndFeel(new MetalLookAndFeel());
-	} catch (UnsupportedLookAndFeelException e) {
-	    e.printStackTrace();
+	public ColorLAF getColorLAF() {
+		return color;
 	}
-    }
 
-    /** {@inheritDoc} */
-    public void userLogIn(User usr) {
-	// No personalization performed.
-    }
-
-    /** {@inheritDoc} */
-    public void userLogOff(User usr) {
-	// Nothing
-    }
-
-    /** {@inheritDoc} */
-    public void showLoginScreen() {
-//	JFrame login = new Login(render);
-//	login.pack();
-//	login.setVisible(true);
-	try {
-	    JDialog login = new SimpleLogin(render);
-	    login.pack();
-	    login.setVisible(true);
-	} catch (Exception e) {
-	    LogUtils.logError(render.getModuleContext(), getClass(), "showLoginScreen", new String[]{"unable to start dialog. "}, e);
+	/** {@inheritDoc} */
+	public void uninstall() {
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
 	}
-    }
+
+	/** {@inheritDoc} */
+	public void userLogIn(User usr) {
+		// No personalization performed.
+	}
+
+	/** {@inheritDoc} */
+	public void userLogOff(User usr) {
+		// Nothing
+	}
+
+	/** {@inheritDoc} */
+	public void showLoginScreen() {
+		// JFrame login = new Login(render);
+		// login.pack();
+		// login.setVisible(true);
+		try {
+			JDialog login = new SimpleLogin(render);
+			login.pack();
+			login.setVisible(true);
+		} catch (Exception e) {
+			LogUtils.logError(render.getModuleContext(), getClass(), "showLoginScreen",
+					new String[] { "unable to start dialog. " }, e);
+		}
+	}
 
 }

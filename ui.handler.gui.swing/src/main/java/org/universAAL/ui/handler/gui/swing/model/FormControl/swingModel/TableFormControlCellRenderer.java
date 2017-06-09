@@ -32,40 +32,40 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @author amedrano
  *
  */
-public class TableFormControlCellRenderer extends DefaultTableCellRenderer 
-implements TableCellEditor
-{
+public class TableFormControlCellRenderer extends DefaultTableCellRenderer implements TableCellEditor {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6364850374955049734L;
 
-	private Renderer render;	
-	//private DelegateEditor de;
-	
+	private Renderer render;
+	// private DelegateEditor de;
+
 	public TableFormControlCellRenderer(Renderer render) {
 		super();
 		this.render = render;
-		//de = new DelegateEditor(jc);
+		// de = new DelegateEditor(jc);
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(
+	 * javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)
 	 */
-	public Component getTableCellRendererComponent(JTable table, Object value,
-			boolean isSelected, boolean hasFocus, int row, int column) {
+	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+			int row, int column) {
 		if (value instanceof FormControl) {
 			FormControl fc = (FormControl) value;
 			return render.getModelMapper().getModelFor(fc).getComponent();
 		} else {
-			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus,
-				row, column);
+			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 		}
 	}
 
-	public Component getTableCellEditorComponent(JTable table, Object value,
-			boolean isSelected, int row, int column) {
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		if (value instanceof FormControl) {
 			FormControl fc = (FormControl) value;
 			return render.getModelMapper().getModelFor(fc).getComponent();
@@ -91,29 +91,29 @@ implements TableCellEditor
 	}
 
 	public void cancelCellEditing() {
-		
+
 	}
 
 	public void addCellEditorListener(CellEditorListener l) {
-		
+
 	}
 
 	public void removeCellEditorListener(CellEditorListener l) {
-		
+
 	}
 
 	class DelegateEditor extends AbstractCellEditor {
 
 		private JComponent jc;
 
-		DelegateEditor(final JComponent jc){
+		DelegateEditor(final JComponent jc) {
 			this.jc = jc;
 		}
-		
+
 		public Object getCellEditorValue() {
 			return jc;
 		}
-		
+
 	}
 
 }

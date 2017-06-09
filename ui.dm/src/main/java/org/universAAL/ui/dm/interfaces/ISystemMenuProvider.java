@@ -28,13 +28,13 @@ import org.universAAL.middleware.ui.rdf.Group;
  */
 public interface ISystemMenuProvider extends ISubmitGroupListener {
 
-    /**
-     * generate the system Group for a given {@link UIRequest}.
-     * 
-     * @param request
-     *            The {@link UIRequest} for which to generate the system group.
-     * @return the System group for the {@link UIRequest}
-     */
-    public Group getSystemMenu(UIRequest request);
+	/**
+	 * generate the system Group for a given {@link UIRequest}.
+	 * 
+	 * @param request
+	 *            The {@link UIRequest} for which to generate the system group.
+	 * @return the System group for the {@link UIRequest}
+	 */
+	public Group getSystemMenu(UIRequest request);
 
 }

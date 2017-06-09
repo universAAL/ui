@@ -35,7 +35,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
  * 
  */
 public class SubmitLAF extends SubmitModel {
-	
+
 	public static final int SEPARATOR = 20;
 
 	/**
@@ -55,8 +55,7 @@ public class SubmitLAF extends SubmitModel {
 		return getButton(this, s.getText(), s.getIcon(), color);
 	}
 
-	public static JComponent getButton(Model model,
-			String label, Icon icon, ColorLAF color) {
+	public static JComponent getButton(Model model, String label, Icon icon, ColorLAF color) {
 		Color normalF;
 		Color normalB;
 		Color enterF;
@@ -64,9 +63,9 @@ public class SubmitLAF extends SubmitModel {
 		Color clickF;
 		Color clickB;
 		Color border;
-		
+
 		MyButton button = null;
-		
+
 		if (model.isInStandardGroup()) {
 			/*
 			 * System Buttons
@@ -78,20 +77,11 @@ public class SubmitLAF extends SubmitModel {
 			enterB = color.getOverSytem();
 			clickF = color.getBackLetter();
 			clickB = color.getOverSytem();
-			button = new MyButton(
-					label,
-					icon,
-					border,
-					normalF,
-					normalB,
-					enterF,
-					enterB,
-					clickF,
-					clickB);
-			button.scaleIcon(2*SEPARATOR, 2*SEPARATOR);
+			button = new MyButton(label, icon, border, normalF, normalB, enterF, enterB, clickF, clickB);
+			button.scaleIcon(2 * SEPARATOR, 2 * SEPARATOR);
 			button.setHorizontalTextPosition(SwingConstants.CENTER);
-	        button.setVerticalTextPosition(SwingConstants.BOTTOM);
-	        button.setPreferredSize(new Dimension(3*SEPARATOR, 3*SEPARATOR));
+			button.setVerticalTextPosition(SwingConstants.BOTTOM);
+			button.setPreferredSize(new Dimension(3 * SEPARATOR, 3 * SEPARATOR));
 		} else {
 			/*
 			 * buttons inside IO or submits
@@ -103,31 +93,21 @@ public class SubmitLAF extends SubmitModel {
 			enterB = color.getOverSytem();
 			clickF = color.getSelectedLetter();
 			clickB = color.getBackSystem();
-			button = new MyButton(
-					label,
-					icon, 
-					border,
-					normalF,
-					normalB,
-					enterF,
-					enterB,
-					clickF,
-					clickB);
-			
-			if (model.isInMainMenu()){
-				//main menu buttons
-				button.scaleIcon(3*SEPARATOR, 3*SEPARATOR);
+			button = new MyButton(label, icon, border, normalF, normalB, enterF, enterB, clickF, clickB);
+
+			if (model.isInMainMenu()) {
+				// main menu buttons
+				button.scaleIcon(3 * SEPARATOR, 3 * SEPARATOR);
 				button.setHorizontalTextPosition(SwingConstants.CENTER);
-		        button.setVerticalTextPosition(SwingConstants.BOTTOM);
-		        button.setPreferredSize(new Dimension(4*SEPARATOR, 4*SEPARATOR));				
+				button.setVerticalTextPosition(SwingConstants.BOTTOM);
+				button.setPreferredSize(new Dimension(4 * SEPARATOR, 4 * SEPARATOR));
 			} else {
 				button.scaleIcon(SEPARATOR, SEPARATOR);
 				button.setHorizontalTextPosition(SwingConstants.RIGHT);
-		        button.setVerticalTextPosition(SwingConstants.CENTER);
+				button.setVerticalTextPosition(SwingConstants.CENTER);
 			}
 		}
 		return button;
 	}
 
-	
 }

@@ -44,38 +44,34 @@ abstract class UIGradientButton extends MetalButtonUI {
 	public void update(Graphics g, JComponent c) {
 		c.setOpaque(false);
 		((AbstractButton) c).setBorderPainted(false);
-	    ((AbstractButton) c).setContentAreaFilled(false);
-	    ((AbstractButton) c).setFocusPainted(false);
+		((AbstractButton) c).setContentAreaFilled(false);
+		((AbstractButton) c).setFocusPainted(false);
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		Paint oldPaint = g2.getPaint();
-		
+
 		updateBorder(g2, c);
-		
-		g2.setPaint(new GradientPaint(0.0f, 0.0f, light, 0.0f, c.getHeight(),
-				dark));
+
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, light, 0.0f, c.getHeight(), dark));
 		g2.fill(getShape(c));
 
 		g2.setStroke(new BasicStroke(4f));
-		g2.setPaint(new GradientPaint(0.0f, 0.0f, light, 0.0f, c.getHeight(),
-				dark));
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, light, 0.0f, c.getHeight(), dark));
 
 		g2.setPaint(oldPaint);
-		
+
 		paint(g2, c);
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_DEFAULT);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_DEFAULT);
 	}
-	
+
 	protected int getBorderSize() {
 		return 3;
 	}
 
 	private void updateBorder(Graphics2D g2, JComponent c) {
 		ButtonModel m = ((AbstractButton) c).getModel();
-		Color s1,s2,s3;
+		Color s1, s2, s3;
 		Shape s = getShape(c);
 		if (!m.isRollover()) {
 			s1 = dark.darker().darker();
@@ -96,7 +92,7 @@ abstract class UIGradientButton extends MetalButtonUI {
 		g2.setColor(s3);
 		g2.draw(s);
 	}
-	
+
 	protected abstract Shape getShape(JComponent j);
 
 	@Override
@@ -108,33 +104,29 @@ abstract class UIGradientButton extends MetalButtonUI {
 	@Override
 	protected void paintButtonPressed(Graphics g, AbstractButton b) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		Paint oldPaint = g2.getPaint();
 
-//		g2.clip(getShape(b));
-		g2.setPaint(new GradientPaint(0.0f, 0.0f, light.brighter(), 0.0f, b
-				.getHeight(), dark.brighter()));
-//		g2.fillRect(0, 0, b.getWidth(), b.getHeight());
+		// g2.clip(getShape(b));
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, light.brighter(), 0.0f, b.getHeight(), dark.brighter()));
+		// g2.fillRect(0, 0, b.getWidth(), b.getHeight());
 		g2.fill(getShape(b));
 
 		g2.setStroke(new BasicStroke(4f));
-		g2.setPaint(new GradientPaint(0.0f, 0.0f, light.brighter(), 0.0f, b
-				.getHeight(), dark.brighter()));
+		g2.setPaint(new GradientPaint(0.0f, 0.0f, light.brighter(), 0.0f, b.getHeight(), dark.brighter()));
 
 		g2.setPaint(oldPaint);
-//		getLoweredBorder()
-//				.paintBorder(b, g2, 0, 0, b.getWidth(), b.getHeight());
-		
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_DEFAULT);
+		// getLoweredBorder()
+		// .paintBorder(b, g2, 0, 0, b.getWidth(), b.getHeight());
+
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_DEFAULT);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect,
-			Rectangle textRect, Rectangle iconRect) {
+	protected void paintFocus(Graphics g, AbstractButton b, Rectangle viewRect, Rectangle textRect,
+			Rectangle iconRect) {
 
 	}
 
@@ -142,8 +134,7 @@ abstract class UIGradientButton extends MetalButtonUI {
 		Icon output = null;
 		if (icon != null) {
 			Image img = ((ImageIcon) icon).getImage();
-			Image newimg = img.getScaledInstance(width, height,
-					java.awt.Image.SCALE_SMOOTH);
+			Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 			output = new ImageIcon(newimg);
 		}
 		return output;

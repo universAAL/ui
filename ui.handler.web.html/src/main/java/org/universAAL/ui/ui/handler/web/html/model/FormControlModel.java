@@ -33,7 +33,7 @@ public abstract class FormControlModel extends Model {
 
 	private LabelModel label;
 	protected Properties fcProps;
-	
+
 	/**
 	 * @param fe
 	 * @param render
@@ -43,7 +43,7 @@ public abstract class FormControlModel extends Model {
 		fcProps = new Properties();
 		fcProps.put("name", fe.getURI());
 		String title = getTitle();
-		if (!title.isEmpty())			
+		if (!title.isEmpty())
 			fcProps.put("title", getTitle());
 		String cssStyle = recModel.getFullCSSStyle();
 		if (!cssStyle.isEmpty())
@@ -52,9 +52,10 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * Generates the title with help and hint.
+	 * 
 	 * @return
 	 */
-	protected String getTitle(){
+	protected String getTitle() {
 		String help = ((FormControl) fe).getHelpString();
 		String hint = ((FormControl) fe).getHintString();
 		boolean hasHelp = help != null && !help.isEmpty();
@@ -73,18 +74,18 @@ public abstract class FormControlModel extends Model {
 	}
 
 	public abstract StringBuffer generateHTMLWithoutLabel();
-	
-	public StringBuffer generateHTML(){
+
+	public StringBuffer generateHTML() {
 		LabelModel lm = getLabelModel();
 		StringBuffer label = new StringBuffer();
-		if (lm != null){
+		if (lm != null) {
 			label.append(getLabelModel().getLabelFor(fcProps.getProperty("name")));
 		}
 		Properties p = new Properties();
 		p.put("class", "itemForm");
 		return tag("div", label.append(generateHTMLWithoutLabel()), p);
 	}
-	
+
 	/**
 	 * test whether this {@link FormControl} is in a Message type dialog.
 	 * 
@@ -173,7 +174,7 @@ public abstract class FormControlModel extends Model {
 	public boolean isInSubmitGroup() {
 		return checkRootGroupEquals(((FormControl) fe).getFormObject().getSubmits());
 	}
-	
+
 	/**
 	 * Checks if this model corresponds to the form control with the given URI.
 	 * 
@@ -199,14 +200,15 @@ public abstract class FormControlModel extends Model {
 		}
 		return label;
 	}
-	
+
 	/**
 	 * Checks if the value will be accepted as class c.
+	 * 
 	 * @param c
 	 * @return
 	 */
-	protected boolean isOfType(Class c){
-	    return TypeMapper.getJavaClass(((FormControl)fe).getTypeURI()) == c;
+	protected boolean isOfType(Class c) {
+		return TypeMapper.getJavaClass(((FormControl) fe).getTypeURI()) == c;
 	}
 
 }

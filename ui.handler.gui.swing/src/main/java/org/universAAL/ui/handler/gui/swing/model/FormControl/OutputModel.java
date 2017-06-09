@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-
 import org.universAAL.middleware.ui.rdf.FormControl;
 import org.universAAL.middleware.ui.rdf.Output;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -29,23 +28,25 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
  */
 public abstract class OutputModel extends Model {
 
-    /**
-     * Constructor.
-     * @param control
-     *     the {@link Output} {@link FormControl} which to model.
-     */
-    public OutputModel(Output control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Output} {@link FormControl} which to model.
+	 */
+	public OutputModel(Output control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * all {@link Output} {@link FormControl}s are always valid,
-     * as the user is not allowed to change its status.
-     * @return <code>true</code>
-     */
-    public final boolean isValid() {
-        // All outputs are all ways valid!
-        return true;
-    }
+	/**
+	 * all {@link Output} {@link FormControl}s are always valid, as the user is
+	 * not allowed to change its status.
+	 * 
+	 * @return <code>true</code>
+	 */
+	public final boolean isValid() {
+		// All outputs are all ways valid!
+		return true;
+	}
 
 }

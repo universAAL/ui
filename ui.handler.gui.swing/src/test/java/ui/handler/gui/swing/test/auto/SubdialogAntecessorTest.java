@@ -41,68 +41,74 @@ import org.universAAL.ui.handler.gui.swing.TestFMRenderer;
 import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.FormLAF;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 
-
 /**
  * Test the framework for locating form antecessors.
+ * 
  * @author amedrano
  *
  */
 public class SubdialogAntecessorTest extends TestCase {
 
-    Form root, d1, d2, d11, d12, d111;
-    Renderer testRender;
-    
-    public void setUp() {
-    	ModuleContext mc = new JUnitModuleContext();
-    	new Renderer.RenderStarter(mc);
-    		
-    	OntologyManagement.getInstance().register(mc, new DataRepOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
-    	
-    	testRender = new TestFMRenderer(mc,TestFMRenderer.HIERARCHICAL_MANAGER);
-        root = Form.newDialog("root", new Resource());
-        d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
-        d2 = Form.newSubdialog("Dialog 2", root.getDialogID());
-        d11 = Form.newSubdialog("Dialog 1.1", d1.getDialogID());
-        d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
-        d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
-        User u = new User("saied");
-        
-        FormManager fm = testRender.getFormManagement();
-        fm.addDialog(new UIRequest(u, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d2, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d11, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d12, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        fm.addDialog(new UIRequest(u, d111, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-    }
+	Form root, d1, d2, d11, d12, d111;
+	Renderer testRender;
 
-    public void testAnt1() {
-        assertTrue(new FormLAF(d1, testRender).isAntecessor(root.getDialogID()));
-    }
-    public void testAnt2() {
-        assertTrue(new FormLAF(d11, testRender).isAntecessor(root.getDialogID()));
-    }
-    public void testAnt3() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(root.getDialogID()));
-    }
-    public void testAnt4() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(d11.getDialogID()));
-    }
-    public void testAnt5() {
-        assertTrue(new FormLAF(d111, testRender).isAntecessor(d1.getDialogID()));
-    }
-    public void testAnt6() {
-        assertFalse(new FormLAF(d1, testRender).isAntecessor(d2.getDialogID()));
-    }
-    public void testAnt7() {
-        assertFalse(new FormLAF(d111, testRender).isAntecessor(d12.getDialogID()));
-    }
+	public void setUp() {
+		ModuleContext mc = new JUnitModuleContext();
+		new Renderer.RenderStarter(mc);
+
+		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
+
+		testRender = new TestFMRenderer(mc, TestFMRenderer.HIERARCHICAL_MANAGER);
+		root = Form.newDialog("root", new Resource());
+		d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
+		d2 = Form.newSubdialog("Dialog 2", root.getDialogID());
+		d11 = Form.newSubdialog("Dialog 1.1", d1.getDialogID());
+		d12 = Form.newSubdialog("Dialog 1.2", d1.getDialogID());
+		d111 = Form.newSubdialog("Dialog 1.1.1", d11.getDialogID());
+		User u = new User("saied");
+
+		FormManager fm = testRender.getFormManagement();
+		fm.addDialog(new UIRequest(u, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		fm.addDialog(new UIRequest(u, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		fm.addDialog(new UIRequest(u, d2, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		fm.addDialog(new UIRequest(u, d11, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		fm.addDialog(new UIRequest(u, d12, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		fm.addDialog(new UIRequest(u, d111, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+	}
+
+	public void testAnt1() {
+		assertTrue(new FormLAF(d1, testRender).isAntecessor(root.getDialogID()));
+	}
+
+	public void testAnt2() {
+		assertTrue(new FormLAF(d11, testRender).isAntecessor(root.getDialogID()));
+	}
+
+	public void testAnt3() {
+		assertTrue(new FormLAF(d111, testRender).isAntecessor(root.getDialogID()));
+	}
+
+	public void testAnt4() {
+		assertTrue(new FormLAF(d111, testRender).isAntecessor(d11.getDialogID()));
+	}
+
+	public void testAnt5() {
+		assertTrue(new FormLAF(d111, testRender).isAntecessor(d1.getDialogID()));
+	}
+
+	public void testAnt6() {
+		assertFalse(new FormLAF(d1, testRender).isAntecessor(d2.getDialogID()));
+	}
+
+	public void testAnt7() {
+		assertFalse(new FormLAF(d111, testRender).isAntecessor(d12.getDialogID()));
+	}
 
 }

@@ -40,62 +40,62 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.TestFMRenderer;
 import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 
-
 /**
  * Test the framework for locating form antecessors.
+ * 
  * @author amedrano
  *
  */
 public class SimpleManagementTest extends TestCase {
 
-    Form root, d1;
-    Renderer testRender;
+	Form root, d1;
+	Renderer testRender;
 	private FormManager fm;
 	private User user;
-    
-    public void setUp() {
-	ModuleContext mc = new JUnitModuleContext();
-	new Renderer.RenderStarter(mc);
-	
-    	OntologyManagement.getInstance().register(mc, new DataRepOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
-    	testRender = new TestFMRenderer(mc, TestFMRenderer.SIMPLE_MANAGER);
-        root = Form.newDialog("root", new Resource());
-        d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
-        user = new User("saied");
-        
-        fm = testRender.getFormManagement();
-    }
 
-    public void testSimp1(){
-    	assertNull(fm.getCurrentDialog());
-    }
-    
-    public void testSimp2(){
-    	fm.addDialog(new UIRequest(user, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-    	assertTrue(fm.getCurrentDialog().getDialogForm() == root);
-    	assertNull(fm.getParentOf(root.getDialogID()));
-    }
+	public void setUp() {
+		ModuleContext mc = new JUnitModuleContext();
+		new Renderer.RenderStarter(mc);
 
-    public void testSimp3(){
-        fm.addDialog(new UIRequest(user, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
-        assertTrue(fm.getCurrentDialog().getDialogForm() == d1);
-    	assertNull(fm.getParentOf(d1.getDialogID()));
-    }
-    
-    public void testSimp4(){
-    	fm.closeCurrentDialog();
-    	assertNull(fm.getCurrentDialog());
-    }
-    
-    public void tearDown(){
-    	fm.flush();
-    }
-    
+		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
+		testRender = new TestFMRenderer(mc, TestFMRenderer.SIMPLE_MANAGER);
+		root = Form.newDialog("root", new Resource());
+		d1 = Form.newSubdialog("Dialog 1", root.getDialogID());
+		user = new User("saied");
+
+		fm = testRender.getFormManagement();
+	}
+
+	public void testSimp1() {
+		assertNull(fm.getCurrentDialog());
+	}
+
+	public void testSimp2() {
+		fm.addDialog(new UIRequest(user, root, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		assertTrue(fm.getCurrentDialog().getDialogForm() == root);
+		assertNull(fm.getParentOf(root.getDialogID()));
+	}
+
+	public void testSimp3() {
+		fm.addDialog(new UIRequest(user, d1, LevelRating.low, Locale.ENGLISH, PrivacyLevel.insensible));
+		assertTrue(fm.getCurrentDialog().getDialogForm() == d1);
+		assertNull(fm.getParentOf(d1.getDialogID()));
+	}
+
+	public void testSimp4() {
+		fm.closeCurrentDialog();
+		assertNull(fm.getCurrentDialog());
+	}
+
+	public void tearDown() {
+		fm.flush();
+	}
+
 }

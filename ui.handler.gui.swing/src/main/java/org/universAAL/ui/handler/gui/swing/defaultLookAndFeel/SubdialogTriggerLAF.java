@@ -41,7 +41,7 @@ public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		AbstractButton sdt = (AbstractButton) super.getNewComponent();
-		return SubmitLAF.getButton(this, sdt.getText(),
-				sdt.getIcon(), ((Init) getRenderer().getInitLAF()).getColorLAF());
+		return SubmitLAF.getButton(this, sdt.getText(), sdt.getIcon(),
+				((Init) getRenderer().getInitLAF()).getColorLAF());
 	}
 }

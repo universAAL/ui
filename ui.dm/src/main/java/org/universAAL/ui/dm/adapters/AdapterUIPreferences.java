@@ -30,79 +30,67 @@ import org.universAAL.ui.dm.interfaces.IAdapter;
  */
 public class AdapterUIPreferences implements IAdapter {
 
-    private UIPreferencesSubProfile uiPreferencesSubProfile;
+	private UIPreferencesSubProfile uiPreferencesSubProfile;
 
-    public AdapterUIPreferences(UIPreferencesSubProfile uiPrefSubProfile) {
-	uiPreferencesSubProfile = uiPrefSubProfile;
-    }
+	public AdapterUIPreferences(UIPreferencesSubProfile uiPrefSubProfile) {
+		uiPreferencesSubProfile = uiPrefSubProfile;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
-     * .ui.UIRequest)
-     */
-    public void adapt(UIRequest uiRequest) {
-	LogUtils
-		.logInfo(
-			DialogManagerImpl.getModuleContext(),
-			getClass(),
-			"adapt",
-			new String[] { "Adding UIPreferencesSubprofile data to UI Request" },
-			null);
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
+	 * .ui.UIRequest)
+	 */
+	public void adapt(UIRequest uiRequest) {
+		LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "adapt",
+				new String[] { "Adding UIPreferencesSubprofile data to UI Request" }, null);
 
-	// setPresentation preferred modality directly
-	// TODO if removed (since below interaction prefs carry same info) the
-	// change has to be reflected in ui bus
-	// (UIRequest prop can be deleted and UIStrategy has to be updated). for
-	// now easier to leave this as it is
-	uiRequest.setPresentationModality(uiPreferencesSubProfile
-		.getInteractionPreferences().getPreferredModality());
-	// setPresentation secondary modality directly
-	// TODO if removed (since below interaction prefs carry same info) the
-	// change has to be reflected in ui bus
-	// (UIRequest prop can be deleted and UIStrategy has to be updated). for
-	// now easier to leave this as it is
-	uiRequest.setAltPresentationModality(uiPreferencesSubProfile
-		.getInteractionPreferences().getSecondaryModality());
+		// setPresentation preferred modality directly
+		// TODO if removed (since below interaction prefs carry same info) the
+		// change has to be reflected in ui bus
+		// (UIRequest prop can be deleted and UIStrategy has to be updated). for
+		// now easier to leave this as it is
+		uiRequest.setPresentationModality(uiPreferencesSubProfile.getInteractionPreferences().getPreferredModality());
+		// setPresentation secondary modality directly
+		// TODO if removed (since below interaction prefs carry same info) the
+		// change has to be reflected in ui bus
+		// (UIRequest prop can be deleted and UIStrategy has to be updated). for
+		// now easier to leave this as it is
+		uiRequest
+				.setAltPresentationModality(uiPreferencesSubProfile.getInteractionPreferences().getSecondaryModality());
 
-	// set general interaction preferences (that also contain above modality
-	// preferences)
-	uiRequest.setProperty(
-		UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
-		uiPreferencesSubProfile.getInteractionPreferences());
+		// set general interaction preferences (that also contain above modality
+		// preferences)
+		uiRequest.setProperty(UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES,
+				uiPreferencesSubProfile.getInteractionPreferences());
 
-	// set audio preferences
-	uiRequest.setProperty(UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
-		uiPreferencesSubProfile.getAudioPreferences());
+		// set audio preferences
+		uiRequest.setProperty(UIPreferencesSubProfile.PROP_AUDIO_PREFERENCES,
+				uiPreferencesSubProfile.getAudioPreferences());
 
-	// set access mode preferences
-	uiRequest.setProperty(UIPreferencesSubProfile.PROP_ACCESS_MODE,
-		uiPreferencesSubProfile.getAccessMode());
+		// set access mode preferences
+		uiRequest.setProperty(UIPreferencesSubProfile.PROP_ACCESS_MODE, uiPreferencesSubProfile.getAccessMode());
 
-	// set visual preferences
-	uiRequest.setProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
-		uiPreferencesSubProfile.getVisualPreferences());
+		// set visual preferences
+		uiRequest.setProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES,
+				uiPreferencesSubProfile.getVisualPreferences());
 
-	// set alert preferences
-	uiRequest.setProperty(UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
-		uiPreferencesSubProfile.getAlertPreferences());
-	
-	LogUtils
-	.logInfo(
-		DialogManagerImpl.getModuleContext(),
-		getClass(),
-		"adapt",
-		new String[] { "Presentation modality: "+ uiPreferencesSubProfile
-			.getInteractionPreferences().getPreferredModality().getLocalName() },
-		null);
+		// set alert preferences
+		uiRequest.setProperty(UIPreferencesSubProfile.PROP_ALERT_PREFERENCES,
+				uiPreferencesSubProfile.getAlertPreferences());
 
-	// only thing that remains from from UI Preferences ontology (version
-	// 2.0.1-SNAPSHOT) is system menu preferences but since this is used
-	// only in ui.dm it is not added to UIRequest and shipped towards
-	// UIHandlers
+		LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "adapt",
+				new String[] { "Presentation modality: "
+						+ uiPreferencesSubProfile.getInteractionPreferences().getPreferredModality().getLocalName() },
+				null);
 
-    }
+		// only thing that remains from from UI Preferences ontology (version
+		// 2.0.1-SNAPSHOT) is system menu preferences but since this is used
+		// only in ui.dm it is not added to UIRequest and shipped towards
+		// UIHandlers
+
+	}
 
 }

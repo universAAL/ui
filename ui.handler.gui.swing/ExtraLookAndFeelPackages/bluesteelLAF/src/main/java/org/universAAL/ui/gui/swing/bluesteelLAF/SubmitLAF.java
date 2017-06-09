@@ -46,30 +46,22 @@ public class SubmitLAF extends SubmitModel {
 		specialBFactory.add(UCCButton.class);
 		specialBFactory.add(UStoreButton.class);
 	}
-	
 
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		AbstractButton s = null;
-		if (isInIOGroup()&& isInMainMenu()){
-			//Kicker
-			 s = new KickerButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
-		}
-		else if (isInStandardGroup()){
-			//system buttons AKA standarbuttons
-			s = new SystemButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
-		}
-		else {
-			//the rest including submits, submits en IOgroup 
-			s = new SubmitButton(fc.getLabel().getText(),
-					IconFactory.getIcon(fc.getLabel().getIconURL()));
+		if (isInIOGroup() && isInMainMenu()) {
+			// Kicker
+			s = new KickerButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
+		} else if (isInStandardGroup()) {
+			// system buttons AKA standarbuttons
+			s = new SystemButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
+		} else {
+			// the rest including submits, submits en IOgroup
+			s = new SubmitButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
 		}
 		s.addActionListener(this);
 		return s;
 	}
-
-	
 
 }

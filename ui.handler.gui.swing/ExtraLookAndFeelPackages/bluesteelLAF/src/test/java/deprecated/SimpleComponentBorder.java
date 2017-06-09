@@ -33,38 +33,38 @@ import javax.swing.border.Border;
  */
 public class SimpleComponentBorder implements Border, SwingConstants {
 
-	int offset = 5; 
+	int offset = 5;
 
-	Component comp; 
-	JComponent container; 
-	Rectangle rect; 
-	Border border; 
+	Component comp;
+	JComponent container;
+	Rectangle rect;
+	Border border;
 
-	public SimpleComponentBorder(Component comp, JComponent container, Border border){ 
-		this.comp = comp; 
-		this.container = container; 
+	public SimpleComponentBorder(Component comp, JComponent container, Border border) {
+		this.comp = comp;
+		this.container = container;
 		container.setMinimumSize(comp.getPreferredSize());
-		this.border = border; 
-	} 
-
-	public boolean isBorderOpaque(){ 
-		return true; 
-	} 
-
-	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height){ 
-		Insets borderInsets = border.getBorderInsets(c); 
-		Insets insets = getBorderInsets(c); 
-		int temp = (insets.top-borderInsets.top)/2; 
-		border.paintBorder(c, g, x, y+temp, width, height-temp); 
-		Dimension size = comp.getPreferredSize(); 
-		rect = new Rectangle(offset, 0, size.width, size.height); 
-		SwingUtilities.paintComponent(g, comp, (Container)c, rect); 
-	} 
-
-	public Insets getBorderInsets(Component c){ 
-		Dimension size = comp.getPreferredSize(); 
-		Insets insets = border.getBorderInsets(c); 
-		insets.top = Math.max(insets.top, size.height); 
-		return insets; 
-	} 
+		this.border = border;
 	}
+
+	public boolean isBorderOpaque() {
+		return true;
+	}
+
+	public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+		Insets borderInsets = border.getBorderInsets(c);
+		Insets insets = getBorderInsets(c);
+		int temp = (insets.top - borderInsets.top) / 2;
+		border.paintBorder(c, g, x, y + temp, width, height - temp);
+		Dimension size = comp.getPreferredSize();
+		rect = new Rectangle(offset, 0, size.width, size.height);
+		SwingUtilities.paintComponent(g, comp, (Container) c, rect);
+	}
+
+	public Insets getBorderInsets(Component c) {
+		Dimension size = comp.getPreferredSize();
+		Insets insets = border.getBorderInsets(c);
+		insets.top = Math.max(insets.top, size.height);
+		return insets;
+	}
+}

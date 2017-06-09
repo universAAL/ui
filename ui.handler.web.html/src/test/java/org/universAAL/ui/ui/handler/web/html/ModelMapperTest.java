@@ -46,9 +46,9 @@ public class ModelMapperTest extends TestCase {
 	static HTMLUserGenerator testRenderer;
 	private static ModuleContext mc;
 
-	static{
-	    mc = new JUnitModuleContext();
-	    
+	static {
+		mc = new JUnitModuleContext();
+
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
 		OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
@@ -60,16 +60,16 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link Form} it will return the component that renders it:
-	 * {@link FormModel}
+	 * When the {@link ModelMapper} is provided with {@link Form} it will return
+	 * the component that renders it: {@link FormModel}
 	 */
 	public void testForm() {
 		assertTrue(mp.getModelFor(root) instanceof FormModel);
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link Label} it will return the component that renders it:
-	 * {@link LabelModel}
+	 * When the {@link ModelMapper} is provided with {@link Label} it will
+	 * return the component that renders it: {@link LabelModel}
 	 */
 	public void testLabel() {
 		Label l = root.getIOControls().getChildren()[0].getLabel();
@@ -77,38 +77,43 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl}, included in the default UI RDF set,
-	 * it will return the component that renders it. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl},
+	 * included in the default UI RDF set, it will return the component that
+	 * renders it. <br>
 	 * In this test {@link SimpleOutput} -> {@link SimpleOutputModel}
 	 */
 	public void testExistingDefaultFormControl() {
 		FormControl fc = (FormControl) root.getIOControls().getChildren()[0];
 		assertEquals(SimpleOutputModel.class, mp.getModelFor(fc).getClass());
-//		assertTrue(mp.getModelFor(fc) instanceof SimpleOutputModel);
+		// assertTrue(mp.getModelFor(fc) instanceof SimpleOutputModel);
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
-	 * there is a component that will render it, it will return that component. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
+	 * an extension of the UI RDF, and there is a component that will render it,
+	 * it will return that component. <br>
 	 * In this test {@link SimpleOutput} -> {@link SimpleOutputModel}
 	 */
-//	public void testExistingFormControlExtension() {
-//		TestExtensionOfSimpleOutput teoso = new TestExtensionOfSimpleOutput();
-//		assertTrue(mp.getModelFor(teoso) instanceof TestExtensionOfSimpleOutputModel);
-//	}
+	// public void testExistingFormControlExtension() {
+	// TestExtensionOfSimpleOutput teoso = new TestExtensionOfSimpleOutput();
+	// assertTrue(mp.getModelFor(teoso) instanceof
+	// TestExtensionOfSimpleOutputModel);
+	// }
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
-	 * there is no component that will render it, it will return the first in component the parent linage that 
-	 * is capable of rendering it. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
+	 * an extension of the UI RDF, and there is no component that will render
+	 * it, it will return the first in component the parent linage that is
+	 * capable of rendering it. <br>
 	 * In this test {@link TestExtensionOfGroup} -> {@link GroupModel}
+	 * 
 	 * @see ModelMapperTest#testHierarchicalNonExistingFormControlExtension()
 	 */
-//	public void testNonExistingFormControlExtension() {
-//		warn();
-//		TestExtensionOfGroup teog = new TestExtensionOfGroup();
-//		assertTrue(mp.getModelFor(teog) instanceof GroupModel);
-//	}
+	// public void testNonExistingFormControlExtension() {
+	// warn();
+	// TestExtensionOfGroup teog = new TestExtensionOfGroup();
+	// assertTrue(mp.getModelFor(teog) instanceof GroupModel);
+	// }
 
 	/**
 	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
@@ -150,17 +155,18 @@ public class ModelMapperTest extends TestCase {
 	 * </table>
 	 * 
 	 */
-//	public void testHierarchicalNonExistingFormControlExtension() {
-//		warn();
-//		TestExtensionOfTestExtensionOfGroup teteog = new TestExtensionOfTestExtensionOfGroup();
-//		assertTrue(mp.getModelFor(teteog) instanceof GroupModel);
-//	}
+	// public void testHierarchicalNonExistingFormControlExtension() {
+	// warn();
+	// TestExtensionOfTestExtensionOfGroup teteog = new
+	// TestExtensionOfTestExtensionOfGroup();
+	// assertTrue(mp.getModelFor(teteog) instanceof GroupModel);
+	// }
 
-//	private void warn() {
-//		LogUtils.logWarn(mc, getClass(), "testing",
-//				new String[] {"some errors may appear continued,",
-//			" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
-//				null);
-//		
-//	}
+	// private void warn() {
+	// LogUtils.logWarn(mc, getClass(), "testing",
+	// new String[] {"some errors may appear continued,",
+	// " THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
+	// null);
+	//
+	// }
 }

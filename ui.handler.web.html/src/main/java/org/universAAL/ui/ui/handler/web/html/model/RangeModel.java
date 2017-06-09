@@ -34,19 +34,19 @@ public class RangeModel extends InputModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
-	public StringBuffer generateInputHTML() { 
+	/** {@ inheritDoc} */
+	public StringBuffer generateInputHTML() {
 		Range r = (Range) fe;
 		fcProps.put("type", "range");
 		fcProps.put("min", "0");
 		fcProps.put("max", Integer.toString(r.getRangeLength()));
 		fcProps.put("step", "1");
 		fcProps.put("value", Integer.toString(r.getStepsValue()));
-		
+
 		return singleTag("input", fcProps);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public boolean updateInput(String[] value) {
 		Range r = (Range) fe;
 		try {

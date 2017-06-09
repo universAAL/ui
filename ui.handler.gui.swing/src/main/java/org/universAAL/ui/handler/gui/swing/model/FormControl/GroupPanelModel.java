@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
@@ -26,45 +25,47 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
  * Specific {@link Model} for {@link Group}s to be rendered as {@link JPanel}.
+ * 
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
 public abstract class GroupPanelModel extends GroupModel {
-	
-    /**
-     * Constructor.
-     * @param control the {@link Group} which to model.
-     */
-    public GroupPanelModel(Group control, Renderer render) {
-        super(control, render);
-    }
 
-    /**
-     * create a simple panel with the children in it
-     * @return
-     *         a {@link JPanel} with all the group's children.
-     */
-    public JComponent getNewComponent() {
-        JPanel pane = new JPanel();
-        return pane;
-    }    
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Group} which to model.
+	 */
+	public GroupPanelModel(Group control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * Override of Update, so it updates correctly the {@link GroupPanelModel}
-     */
-    public void update() {
-        /*
-         * a Simple Group containing FormControls
-         * or one of the main Groups
-         * go into simple panes
-         */
-    	JPanel pane = (JPanel) jc;
-    	pane.removeAll();
-        FormControl[] children = ((Group) fc).getChildren();
-        for (int i = 0; i < children.length; i++) {
-            addComponentTo(children[i], pane);
-        }
-    	super.update();
-    }
-    
+	/**
+	 * create a simple panel with the children in it
+	 * 
+	 * @return a {@link JPanel} with all the group's children.
+	 */
+	public JComponent getNewComponent() {
+		JPanel pane = new JPanel();
+		return pane;
+	}
+
+	/**
+	 * Override of Update, so it updates correctly the {@link GroupPanelModel}
+	 */
+	public void update() {
+		/*
+		 * a Simple Group containing FormControls or one of the main Groups go
+		 * into simple panes
+		 */
+		JPanel pane = (JPanel) jc;
+		pane.removeAll();
+		FormControl[] children = ((Group) fc).getChildren();
+		for (int i = 0; i < children.length; i++) {
+			addComponentTo(children[i], pane);
+		}
+		super.update();
+	}
+
 }

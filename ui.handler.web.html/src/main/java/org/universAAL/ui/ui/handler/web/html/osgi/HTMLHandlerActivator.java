@@ -29,42 +29,36 @@ import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
 public class HTMLHandlerActivator implements BundleActivator {
 
 	private ModuleContext mcontext;
-	
+
 	private HTTPHandlerService httpHS;
 
-
-				
 	public void start(BundleContext arg0) throws Exception {
-		mcontext = uAALBundleContainer.THE_CONTAINER
-                .registerModule(new Object[] {arg0});	
+		mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { arg0 });
 		LogUtils.logDebug(mcontext, getClass(), "start", "Starting.");
 		/*
 		 * uAAL stuff
 		 */
 		// activate ResourceMapper logging
 		ResourceMapper.mc = mcontext;
-		
-		// register config file
-//		mcontext.registerConfigFile(
-//				new Object[] {
-//						HTTPHandlerService.CONF_FILENAME,
-//						"Configure the UI Handler Web Raw HTML component",
-//						HTMLHandlerActivator.getDescription()});
-		
-		new Thread(new Runnable() {
-			
 
+		// register config file
+		// mcontext.registerConfigFile(
+		// new Object[] {
+		// HTTPHandlerService.CONF_FILENAME,
+		// "Configure the UI Handler Web Raw HTML component",
+		// HTMLHandlerActivator.getDescription()});
+
+		new Thread(new Runnable() {
 
 			public void run() {
-				httpHS = new HTTPHandlerService(mcontext, 
-						new File(mcontext.getConfigHome(), HTTPHandlerService.CONF_FILENAME+".properties"));
+				httpHS = new HTTPHandlerService(mcontext,
+						new File(mcontext.getConfigHome(), HTTPHandlerService.CONF_FILENAME + ".properties"));
 				httpHS.register();
 			}
 		}, "UI Handler Web HTML ignition").start();
-		
+
 		LogUtils.logDebug(mcontext, getClass(), "start", "Started.");
 	}
-
 
 	public void stop(BundleContext arg0) throws Exception {
 		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopping.");
@@ -75,13 +69,17 @@ public class HTMLHandlerActivator implements BundleActivator {
 		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopped.");
 	}
 
-//	private static Hashtable getDescription(){
-//		Hashtable d = new Hashtable();
-//		d.put("css.location", "The location of the CSS file to use as Look and Feel.");
-//		d.put("resources.dir", "The location of the folder where resources will be located/cached.");
-//		d.put("service.relURL", "The URL to append to the Space URL in order to access the handler interface.Must Start with \"/\".");
-//		d.put("session.timeout", "The time in miliseconds after which the session is considered to be expired.");
-//		
-//		return d;
-//	}
+	// private static Hashtable getDescription(){
+	// Hashtable d = new Hashtable();
+	// d.put("css.location", "The location of the CSS file to use as Look and
+	// Feel.");
+	// d.put("resources.dir", "The location of the folder where resources will
+	// be located/cached.");
+	// d.put("service.relURL", "The URL to append to the Space URL in order to
+	// access the handler interface.Must Start with \"/\".");
+	// d.put("session.timeout", "The time in miliseconds after which the session
+	// is considered to be expired.");
+	//
+	// return d;
+	// }
 }

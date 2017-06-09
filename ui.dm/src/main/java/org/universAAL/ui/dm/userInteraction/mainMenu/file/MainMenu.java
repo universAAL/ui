@@ -71,10 +71,12 @@ public class MainMenu {
 	 */
 	protected MenuNode selection;
 
-	protected MainMenu() {}
-	
+	protected MainMenu() {
+	}
+
 	/**
 	 * constructor. Creates the menu.
+	 * 
 	 * @param in
 	 *            Input stream for the configuration file
 	 */
@@ -102,8 +104,7 @@ public class MainMenu {
 		// 2. vendor
 		// 3. service class
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(in,
-				Charset.forName("cp1252")));
+		BufferedReader br = new BufferedReader(new InputStreamReader(in, Charset.forName("cp1252")));
 
 		String line;
 		try {
@@ -120,17 +121,14 @@ public class MainMenu {
 						for (int i = 0; i < cols.length; i++) {
 							s.append(" [ " + cols[i] + " ]");
 						}
-						LogUtils.logError(DialogManagerImpl.getModuleContext(),
-								getClass(), "constructMenu",
-								new String[] { "unable to parse " + cols.length
-										+ "columns : " + s.toString() }, null);
+						LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(), "constructMenu",
+								new String[] { "unable to parse " + cols.length + "columns : " + s.toString() }, null);
 					}
 				}
 				line = br.readLine();
 			}
 		} catch (IOException e) {
-			LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(),
-					"constructMenu",
+			LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(), "constructMenu",
 					new String[] { "unable to parse Menu file" }, e);
 		}
 	}
@@ -151,14 +149,12 @@ public class MainMenu {
 			// add children of root
 			StringBuffer list = new StringBuffer();
 			for (MenuNode child : root.children()) {
-				new Submit(rg, new Label(child.getLabel(), child.getIconURL()),
-						child.getPath());
+				new Submit(rg, new Label(child.getLabel(), child.getIconURL()), child.getPath());
 				list.append("Menu child: " + child.getPath() + "\n");
 			}
-			LogUtils.logInfo(DialogManagerImpl.getModuleContext(),
-								getClass(), "addMenuRepresentation", list.toString().split("\\:") , null);
-		}
-		else {
+			LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "addMenuRepresentation",
+					list.toString().split("\\:"), null);
+		} else {
 			// add children of an inner node
 			Group g;
 
@@ -168,15 +164,13 @@ public class MainMenu {
 			MenuNode parent = selection.getParent();
 			if (parent == null)
 				parent = root;
-			new Submit(g, new Label(selection.getLabel(),
-					selection.getIconURL()), parent.getPath());
+			new Submit(g, new Label(selection.getLabel(), selection.getIconURL()), parent.getPath());
 			// System.out.println("Menu Parent: "+parent.getPath());
 
 			// options: the children of the currently selected node
 			g = new Group(rg, new Label("Options", null), null, null, null);
 			for (MenuNode child : selection.children()) {
-				new Submit(g, new Label(child.getLabel(), child.getIconURL()),
-						child.getPath());
+				new Submit(g, new Label(child.getLabel(), child.getIconURL()), child.getPath());
 				// System.out.println("Menu child: "+child.getPath());
 			}
 		}
@@ -246,8 +240,7 @@ public class MainMenu {
 
 			int i = 1;
 			MenuNode node = root;
-			for (int j = nodePath.indexOf('/', i); j > 0; j = nodePath.indexOf(
-					'/', i)) {
+			for (int j = nodePath.indexOf('/', i); j > 0; j = nodePath.indexOf('/', i)) {
 				node = node.getChild(nodePath.substring(i, j));
 				if (node == null)
 					return null;

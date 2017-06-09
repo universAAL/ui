@@ -37,166 +37,166 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  */
 public class DialogPriorityQueueVerbosity implements IUIRequestPool {
 
-    private Map<String, UIRequest> suspendedSet;
+	private Map<String, UIRequest> suspendedSet;
 
-    private Set<UIRequest> activeSet;
+	private Set<UIRequest> activeSet;
 
-    private UIRequest current;
+	private UIRequest current;
 
-    public DialogPriorityQueueVerbosity() {
-	suspendedSet = new TreeMap<String, UIRequest>();
-	activeSet = new TreeSet<UIRequest>(new UIRequestPriorityComparator());
-	current = null;
-	log("Created");
-    }
-
-    /** {@inheritDoc} */
-    public void add(UIRequest UIReq) {
-	activeSet.add(UIReq);
-	log("added UIRequest");
-    }
-
-    /** {@inheritDoc} */
-    public void close(String UIReqID) {
-	UIRequest r = getActive(UIReqID);
-	if (r != null) {
-	    activeSet.remove(r);
-	    log("removed form active set");
-	    if (r == current) {
+	public DialogPriorityQueueVerbosity() {
+		suspendedSet = new TreeMap<String, UIRequest>();
+		activeSet = new TreeSet<UIRequest>(new UIRequestPriorityComparator());
 		current = null;
-		log("it is the Current.");
-	    }
+		log("Created");
 	}
-	suspendedSet.remove(UIReqID);
-	log("removed");
-    }
 
-    /** {@inheritDoc} */
-    public UIRequest getCurrent() {
-	if (current != null) {
-	    log("Current UIRequest: " + current.getDialogID());
-	} else {
-	    log("No current UIRequest");
+	/** {@inheritDoc} */
+	public void add(UIRequest UIReq) {
+		activeSet.add(UIReq);
+		log("added UIRequest");
 	}
-	return current;
-    }
 
-    /** {@inheritDoc} */
-    public UIRequest getNextUIRequest() {
-	Iterator<UIRequest> i = activeSet.iterator();
-	if (i.hasNext()) {
-	    current = i.next();
-	    log("Next UIRequest: " + current.getDialogID());
-	    return current;
-	} else {
-	    current = null;
-	    log("No next UIRequest");
-	    return null;
+	/** {@inheritDoc} */
+	public void close(String UIReqID) {
+		UIRequest r = getActive(UIReqID);
+		if (r != null) {
+			activeSet.remove(r);
+			log("removed form active set");
+			if (r == current) {
+				current = null;
+				log("it is the Current.");
+			}
+		}
+		suspendedSet.remove(UIReqID);
+		log("removed");
 	}
-    }
 
-    /** {@inheritDoc} */
-    public boolean hasToChange() {
-	Iterator<UIRequest> i = activeSet.iterator();
-	if (i.hasNext()) {
-	    log("Current Has to change");
-	    return current != i.next();
-	} else {
-	    // no need to change, active set is empty.
-	    return false;
+	/** {@inheritDoc} */
+	public UIRequest getCurrent() {
+		if (current != null) {
+			log("Current UIRequest: " + current.getDialogID());
+		} else {
+			log("No current UIRequest");
+		}
+		return current;
 	}
-    }
 
-    /** {@inheritDoc} */
-    public Collection<UIRequest> listAllActive() {
-	StringBuffer s = new StringBuffer();
-	for (UIRequest r : activeSet) {
-	    s.append(r.getDialogID());
-	    s.append("\n");
+	/** {@inheritDoc} */
+	public UIRequest getNextUIRequest() {
+		Iterator<UIRequest> i = activeSet.iterator();
+		if (i.hasNext()) {
+			current = i.next();
+			log("Next UIRequest: " + current.getDialogID());
+			return current;
+		} else {
+			current = null;
+			log("No next UIRequest");
+			return null;
+		}
 	}
-	log("listing Active:\n" + s.toString());
-	return activeSet;
-    }
 
-    /** {@inheritDoc} */
-    public Collection<UIRequest> listAllSuspended() {
-	StringBuffer s = new StringBuffer();
-	for (UIRequest r : suspendedSet.values()) {
-	    s.append(r.getDialogID());
-	    s.append("\n");
+	/** {@inheritDoc} */
+	public boolean hasToChange() {
+		Iterator<UIRequest> i = activeSet.iterator();
+		if (i.hasNext()) {
+			log("Current Has to change");
+			return current != i.next();
+		} else {
+			// no need to change, active set is empty.
+			return false;
+		}
 	}
-	log("listing Suspended:\n" + s.toString());
-	return suspendedSet.values();
-    }
 
-    /** {@inheritDoc} */
-    public void removeAll() {
-	current = null;
-	activeSet.clear();
-	suspendedSet.clear();
-    }
+	/** {@inheritDoc} */
+	public Collection<UIRequest> listAllActive() {
+		StringBuffer s = new StringBuffer();
+		for (UIRequest r : activeSet) {
+			s.append(r.getDialogID());
+			s.append("\n");
+		}
+		log("listing Active:\n" + s.toString());
+		return activeSet;
+	}
 
-    /** {@inheritDoc} */
-    public void suspend(String UIReqID) {
-	UIRequest r = getActive(UIReqID);
-	if (r != null) {
-	    log("Suspending: " + r.getDialogID());
-	    activeSet.remove(r);
-	    suspendedSet.put(r.getDialogID(), r);
-	    if (current != null && UIReqID.equals(current.getDialogID())) {
+	/** {@inheritDoc} */
+	public Collection<UIRequest> listAllSuspended() {
+		StringBuffer s = new StringBuffer();
+		for (UIRequest r : suspendedSet.values()) {
+			s.append(r.getDialogID());
+			s.append("\n");
+		}
+		log("listing Suspended:\n" + s.toString());
+		return suspendedSet.values();
+	}
+
+	/** {@inheritDoc} */
+	public void removeAll() {
 		current = null;
-		log("It is the current, current == null");
-	    }
+		activeSet.clear();
+		suspendedSet.clear();
 	}
 
-    }
+	/** {@inheritDoc} */
+	public void suspend(String UIReqID) {
+		UIRequest r = getActive(UIReqID);
+		if (r != null) {
+			log("Suspending: " + r.getDialogID());
+			activeSet.remove(r);
+			suspendedSet.put(r.getDialogID(), r);
+			if (current != null && UIReqID.equals(current.getDialogID())) {
+				current = null;
+				log("It is the current, current == null");
+			}
+		}
 
-    /** {@inheritDoc} */
-    public void unsuspend(String UIReqID) {
-	UIRequest r = suspendedSet.get(UIReqID);
-	if (r != null) {
-	    suspendedSet.remove(UIReqID);
-	    activeSet.add(r);
-	    log("Unsuspending: " + r.getDialogID());
 	}
-    }
 
-    /** {@inheritDoc} */
-    public UIRequest get(String UIReqID) {
-	UIRequest r = suspendedSet.get(UIReqID);
-	if (r != null) {
-	    return r;
-	} else {
-	    return getActive(UIReqID);
+	/** {@inheritDoc} */
+	public void unsuspend(String UIReqID) {
+		UIRequest r = suspendedSet.get(UIReqID);
+		if (r != null) {
+			suspendedSet.remove(UIReqID);
+			activeSet.add(r);
+			log("Unsuspending: " + r.getDialogID());
+		}
 	}
-    }
 
-    /**
-     * scan the active set for a {@link UIRequest} that has an ID corresponding
-     * to UIReqID
-     * 
-     * @param UIReqID
-     *            The ID to look for
-     * @return the {@link UIRequest} with UIReqID id, or null if not found
-     */
-    private UIRequest getActive(String UIReqID) {
-	Iterator<UIRequest> i = activeSet.iterator();
-	UIRequest req = null;
-	boolean found = false;
-	while (!found && i.hasNext()) {
-	    req = (UIRequest) i.next();
-	    found = req.getDialogID().equals(UIReqID);
+	/** {@inheritDoc} */
+	public UIRequest get(String UIReqID) {
+		UIRequest r = suspendedSet.get(UIReqID);
+		if (r != null) {
+			return r;
+		} else {
+			return getActive(UIReqID);
+		}
 	}
-	if (found) {
-	    return req;
-	} else {
-	    return null;
-	}
-    }
 
-    private void log(String msg) {
-	LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-		"DialogPriorityQueue", new String[] { msg }, null);
-    }
+	/**
+	 * scan the active set for a {@link UIRequest} that has an ID corresponding
+	 * to UIReqID
+	 * 
+	 * @param UIReqID
+	 *            The ID to look for
+	 * @return the {@link UIRequest} with UIReqID id, or null if not found
+	 */
+	private UIRequest getActive(String UIReqID) {
+		Iterator<UIRequest> i = activeSet.iterator();
+		UIRequest req = null;
+		boolean found = false;
+		while (!found && i.hasNext()) {
+			req = (UIRequest) i.next();
+			found = req.getDialogID().equals(UIReqID);
+		}
+		if (found) {
+			return req;
+		} else {
+			return null;
+		}
+	}
+
+	private void log(String msg) {
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "DialogPriorityQueue", new String[] { msg },
+				null);
+	}
 
 }

@@ -74,7 +74,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 	public void update() {
 		Object content = ((SimpleOutput) fc).getContent();
 		if (content instanceof String) {
-            if (jc instanceof JTextArea) {
+			if (jc instanceof JTextArea) {
 				jc = (JComponent) (jc == sp ? ejc : jc);
 				JTextArea ta = (JTextArea) jc;
 				ta.getAccessibleContext().setAccessibleName(ta.getName());
@@ -86,21 +86,19 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 				ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 				ta.setForeground(color.getfont());
 				sp.getAccessibleContext();
-			}
-	            else if (jc instanceof JTextComponent) {
+			} else if (jc instanceof JTextComponent) {
 				JTextComponent tf = (JTextComponent) jc;
 				tf.getAccessibleContext().setAccessibleName(tf.getText());
 				tf.setFont(color.getplain());
-				//tf.setPreferredSize(new Dimension(150, 30));
+				// tf.setPreferredSize(new Dimension(150, 30));
 				tf.setForeground(color.getBackMM());
+			} else if (jc instanceof JLabel) {
+				JLabel jl = (JLabel) jc;
+				jl.getAccessibleContext().setAccessibleName(jl.getText());
+				jl.setFont(color.getplain());
 			}
-	            else if (jc instanceof JLabel) {
-	            	JLabel jl = (JLabel) jc;
-	            	jl.getAccessibleContext().setAccessibleName(jl.getText());
-	                jl.setFont(color.getplain());
-	            }
 		}
-        if (jc instanceof JCheckBox) {
+		if (jc instanceof JCheckBox) {
 			JCheckBox cb = (JCheckBox) jc;
 			cb.getAccessibleContext().setAccessibleName(cb.getName());
 		}

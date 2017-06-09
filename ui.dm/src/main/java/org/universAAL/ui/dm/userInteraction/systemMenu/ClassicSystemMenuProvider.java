@@ -37,154 +37,134 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  */
 public class ClassicSystemMenuProvider implements ISystemMenuProvider {
 
-    /**
-     * The submission ID to exit the main menu. A button with this functionality
-     * is available only in the main menu.
-     * */
-    static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#stopDialogLoop"; //$NON-NLS-1$
+	/**
+	 * The submission ID to exit the main menu. A button with this functionality
+	 * is available only in the main menu.
+	 */
+	static final String EXIT_CALL = DialogManagerImpl.CALL_PREFIX + "#stopDialogLoop"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show the main menu. A button with this functionality
-     * is available in the standard dialog.
-     */
-    static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMainMenu"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show the main menu. A button with this functionality
+	 * is available in the standard dialog.
+	 */
+	static final String MENU_CALL = DialogManagerImpl.CALL_PREFIX + "#showMainMenu"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show pending messages. A button with this
-     * functionality is available in the system dialog and in standard dialogs.
-     */
-    static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showMessages"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show pending messages. A button with this
+	 * functionality is available in the system dialog and in standard dialogs.
+	 */
+	static final String MESSAGES_CALL = DialogManagerImpl.CALL_PREFIX + "#showMessages"; //$NON-NLS-1$
 
-    /**
-     * The submission ID to show pending dialogs. A button with this
-     * functionality is available in the system menu.
-     */
-    static final String OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-	    + "#showOpenDialogs"; //$NON-NLS-1$
+	/**
+	 * The submission ID to show pending dialogs. A button with this
+	 * functionality is available in the system menu.
+	 */
+	static final String OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX + "#showOpenDialogs"; //$NON-NLS-1$
 
-    private UserDialogManager userDM;
+	private UserDialogManager userDM;
 
-    /**
+	/**
 	 * 
 	 */
-    public ClassicSystemMenuProvider(UserDialogManager udm) {
-	userDM = udm;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.universAAL
-     * .middleware.ui.UIResponse)
-     */
-    public void handle(UIResponse response) {
-	String submissionID = response.getSubmissionID();
-//	if (EXIT_CALL.equals(submissionID)) {
-	    // XXX: do nothing?
-//	}
-	if (MENU_CALL.equals(submissionID)) {
-	    userDM.showMainMenu();
-	}
-	if (MESSAGES_CALL.equals(submissionID)) {
-	    userDM.openPendingMessagedDialog();
-	}
-	if (OPEN_DIALOGS_CALL.equals(submissionID)) {
-	    userDM.openPendingDialogsDialog();
+	public ClassicSystemMenuProvider(UserDialogManager udm) {
+		userDM = udm;
 	}
 
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.
+	 * universAAL .middleware.ui.UIResponse)
+	 */
+	public void handle(UIResponse response) {
+		String submissionID = response.getSubmissionID();
+		// if (EXIT_CALL.equals(submissionID)) {
+		// XXX: do nothing?
+		// }
+		if (MENU_CALL.equals(submissionID)) {
+			userDM.showMainMenu();
+		}
+		if (MESSAGES_CALL.equals(submissionID)) {
+			userDM.openPendingMessagedDialog();
+		}
+		if (OPEN_DIALOGS_CALL.equals(submissionID)) {
+			userDM.openPendingDialogsDialog();
+		}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISubmitGroupListener#listDeclaredSubmitIds
-     * ()
-     */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(EXIT_CALL);
-	s.add(MENU_CALL);
-	s.add(MESSAGES_CALL);
-	s.add(OPEN_DIALOGS_CALL);
-	return s;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
-     * universAAL.middleware.ui.UIRequest)
-     */
-    public Group getSystemMenu(UIRequest request) {
-	MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
-	Form f = request.getDialogForm();
-	Group stdButtons = f.getStandardButtons();
-	switch (f.getDialogType().ord()) {
-	case DialogType.SYS_MENU:
-
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
-		    messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
-		    MESSAGES_CALL).setHelpString(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP));
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
-		    messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
-		    OPEN_DIALOGS_CALL).setHelpString(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP));
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_EXIT), messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)), EXIT_CALL)
-		    .setHelpString(messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
-	    break;
-	case DialogType.MESSAGE:
-	case DialogType.SUBDIALOG:
-	    break;
-	case DialogType.STD_DIALOG:
-	    String dialogTitle = f.getTitle();
-
-	    new Submit(stdButtons, new Label(messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU), messageLocaleHelper
-		    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)), MENU_CALL)
-		    .setHelpString(messageLocaleHelper
-			    .getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
-
-	    if (!messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES)
-		    .equals(dialogTitle)) {
-		new Submit(
-			stdButtons,
-			new Label(
-				messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
-				messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
-			MESSAGES_CALL)
-			.setHelpString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP);
-
-		new Submit(
-			stdButtons,
-			new Label(
-				messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
-				messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
-			OPEN_DIALOGS_CALL)
-			.setHelpString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP);
-	    }
-	    break;
-	default:
-	    break;
 	}
-	return stdButtons;
-    }
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#
+	 * listDeclaredSubmitIds ()
+	 */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(EXIT_CALL);
+		s.add(MENU_CALL);
+		s.add(MESSAGES_CALL);
+		s.add(OPEN_DIALOGS_CALL);
+		return s;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
+	 * universAAL.middleware.ui.UIRequest)
+	 */
+	public Group getSystemMenu(UIRequest request) {
+		MessageLocaleHelper messageLocaleHelper = userDM.getLocaleHelper();
+		Form f = request.getDialogForm();
+		Group stdButtons = f.getStandardButtons();
+		switch (f.getDialogType().ord()) {
+		case DialogType.SYS_MENU:
+
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
+					MESSAGES_CALL).setHelpString(
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP));
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
+					OPEN_DIALOGS_CALL).setHelpString(
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP));
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT_ICON)),
+					EXIT_CALL).setHelpString(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_EXIT_HELP));
+			break;
+		case DialogType.MESSAGE:
+		case DialogType.SUBDIALOG:
+			break;
+		case DialogType.STD_DIALOG:
+			String dialogTitle = f.getTitle();
+
+			new Submit(stdButtons,
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU),
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_ICON)),
+					MENU_CALL).setHelpString(
+							messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_MAIN_MENU_HELP));
+
+			if (!messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES).equals(dialogTitle)) {
+				new Submit(stdButtons,
+						new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES),
+								messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_ICON)),
+						MESSAGES_CALL).setHelpString(MessageConstants.MENU_PROVIDER_PENDING_MESSAGES_HELP);
+
+				new Submit(stdButtons,
+						new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
+								messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_ICON)),
+						OPEN_DIALOGS_CALL).setHelpString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS_HELP);
+			}
+			break;
+		default:
+			break;
+		}
+		return stdButtons;
+	}
 
 }

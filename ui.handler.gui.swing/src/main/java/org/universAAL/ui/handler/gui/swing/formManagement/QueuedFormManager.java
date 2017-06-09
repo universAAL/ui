@@ -35,184 +35,174 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  */
 public final class QueuedFormManager implements FormManager {
 
-    /**
-     * Maximum # dialogs to be queued
-     */
-    public static final int QUEUE_MAX = 20;
-
-    /**
-     * the priority queue of {@link UIRequest}s
-     */
-    private PriorityQueue dialogQueue;
-
-    /**
-     * the current {@link UIRequest} being displayed
-     */
-    private UIRequest currentDialog;
-
-    /**
-     * the {@link FrameManager} for the current dialog
-     */
-    private FrameManager dFrame;
-
-    /**
-     * the {@link FrameManager} for a Message type dialog
-     */
-    private FrameManager mFrame;
-
-    /**
-     * the {@link Renderer} reference
-     */
-    private Renderer render;
-
-    /**
-     * Default constructor.
-     * 
-     */
-    public QueuedFormManager() {
-	dialogQueue = new PriorityQueue(QUEUE_MAX,
-		new UIRequestPriorityComparator());
-    }
-
-    /** {@inheritDoc} */
-    public void addDialog(UIRequest oe) {
-	/*
-	 * check if its the same as the current dialog if so then update current
-	 * dialog? => IgnoreRequest! check the dialog has more priority than
-	 * current dialog if so, save and terminate current dialog, save to
-	 * priority queue and display new dialog (special case: message form
-	 * does not terminate current dialog) if not then add to priority Queue
+	/**
+	 * Maximum # dialogs to be queued
 	 */
-	dialogQueue.add(oe);
-	if (currentDialog == null || currentDialog != dialogQueue.peek()
-		|| currentDialog.getDialogForm().isSystemMenu()) {
-	    /*
-	     * A Dialog with more priority than the current has arrived or there
-	     * is no current dialog
-	     */
-	    closeCurrentDialogAndLoadNext();
-	} else if (currentDialog == dialogQueue.peek()) {
-	    /*
-	     * remove the just added dialog XXX reload? update?
-	     */
-	    dialogQueue.remove();
+	public static final int QUEUE_MAX = 20;
+
+	/**
+	 * the priority queue of {@link UIRequest}s
+	 */
+	private PriorityQueue dialogQueue;
+
+	/**
+	 * the current {@link UIRequest} being displayed
+	 */
+	private UIRequest currentDialog;
+
+	/**
+	 * the {@link FrameManager} for the current dialog
+	 */
+	private FrameManager dFrame;
+
+	/**
+	 * the {@link FrameManager} for a Message type dialog
+	 */
+	private FrameManager mFrame;
+
+	/**
+	 * the {@link Renderer} reference
+	 */
+	private Renderer render;
+
+	/**
+	 * Default constructor.
+	 * 
+	 */
+	public QueuedFormManager() {
+		dialogQueue = new PriorityQueue(QUEUE_MAX, new UIRequestPriorityComparator());
 	}
-    }
 
-    /** {@inheritDoc} */
-    public UIRequest getCurrentDialog() {
-	return currentDialog;
-    }
-
-    /**
-     * close just the current dialog, save it for later and load next dialog
-     */
-    private void closeCurrentDialogAndLoadNext() {
-	if (dialogQueue.peek() != null
-		&& ((UIRequest) dialogQueue.peek()).getDialogType() != DialogType.message
-		&& currentDialog != null) {
-	    /*
-	     * if next dialog is not a message and there is a dialog being
-	     * displayed then close down dialog and put back into queue
-	     */
-	    if (mFrame != null) {
-		mFrame.disposeFrame();
-		mFrame = null;
-	    }
-	    dFrame.disposeFrame();
-	    dialogQueue.add(currentDialog);
-	}
-	renderNextDialog();
-    }
-
-    /**
-     * Try to render the next dialog in the queue of dialogs. If there are no
-     * dialogs to show it will request the main menu dialog.
-     */
-    private void renderNextDialog() {
-	if (dialogQueue.peek() != null) {
-	    if (((UIRequest) dialogQueue.peek()).getDialogType() == DialogType.message) {
+	/** {@inheritDoc} */
+	public void addDialog(UIRequest oe) {
 		/*
-		 * if its a message, just render message
+		 * check if its the same as the current dialog if so then update current
+		 * dialog? => IgnoreRequest! check the dialog has more priority than
+		 * current dialog if so, save and terminate current dialog, save to
+		 * priority queue and display new dialog (special case: message form
+		 * does not terminate current dialog) if not then add to priority Queue
 		 */
-		mFrame = new FrameManager(
-				((UIRequest) dialogQueue.poll()),
-				render.getModelMapper());
-	    } else {
-		currentDialog = (UIRequest) dialogQueue.poll();
-		dFrame = new FrameManager(currentDialog, render
-			.getModelMapper());
-	    }
-	}
-    }
-
-    /** {@inheritDoc} */
-    public void flush() {
-    }
-
-    /**
-     * Disposes of current dialog, and tries to load next.
-     */
-    public void closeCurrentDialog() {
-	if (dialogQueue.peek() != null
-		&& ((UIRequest) dialogQueue.peek()).getDialogType() != DialogType.message
-		&& currentDialog != null) {
-	    /*
-	     * if next dialog is not a message and there is a dialog being
-	     * displayed then close down dialog and
-	     */
-	    if (mFrame != null) {
-		mFrame.disposeFrame();
-		mFrame = null;
-	    }
-	    dFrame.disposeFrame();
-	    currentDialog = null;
-	}
-	renderNextDialog();
-
-    }
-
-    /** {@inheritDoc} */
-    public Resource cutDialog(String dialogID) {
-	closeCurrentDialogAndLoadNext();
-	// TODO what to return?
-	return null;
-    }
-
-    /** {@inheritDoc} */
-    public Form getParentOf(String formURI) {
-	return null;
-    }
-
-    public void setRenderer(Renderer renderer) {
-	render = renderer;
-    }
-
-    public Collection getAllDialogs() {
-	return dialogQueue;
-    }
-
-    public void missingInput(Input input) {
-	dFrame.missing(input);
-	mFrame.missing(input);
-    }
-
-    public void adaptationParametersChanged(String dialogID,
-	    String changedProp, Object newVal) {
-	if (currentDialog != null
-		&& dialogID.equals(currentDialog.getDialogID())) {
-	    if (dFrame != null && !currentDialog.getDialogForm().isMessage()) {
-		dFrame.disposeFrame();
-		dFrame = new FrameManager(currentDialog, render
-			.getModelMapper());
-	    }
-	    if (mFrame != null) {
-		mFrame.disposeFrame();
-		mFrame = new FrameManager(currentDialog, render
-			.getModelMapper());
-	    }
+		dialogQueue.add(oe);
+		if (currentDialog == null || currentDialog != dialogQueue.peek()
+				|| currentDialog.getDialogForm().isSystemMenu()) {
+			/*
+			 * A Dialog with more priority than the current has arrived or there
+			 * is no current dialog
+			 */
+			closeCurrentDialogAndLoadNext();
+		} else if (currentDialog == dialogQueue.peek()) {
+			/*
+			 * remove the just added dialog XXX reload? update?
+			 */
+			dialogQueue.remove();
+		}
 	}
 
-    }
+	/** {@inheritDoc} */
+	public UIRequest getCurrentDialog() {
+		return currentDialog;
+	}
+
+	/**
+	 * close just the current dialog, save it for later and load next dialog
+	 */
+	private void closeCurrentDialogAndLoadNext() {
+		if (dialogQueue.peek() != null && ((UIRequest) dialogQueue.peek()).getDialogType() != DialogType.message
+				&& currentDialog != null) {
+			/*
+			 * if next dialog is not a message and there is a dialog being
+			 * displayed then close down dialog and put back into queue
+			 */
+			if (mFrame != null) {
+				mFrame.disposeFrame();
+				mFrame = null;
+			}
+			dFrame.disposeFrame();
+			dialogQueue.add(currentDialog);
+		}
+		renderNextDialog();
+	}
+
+	/**
+	 * Try to render the next dialog in the queue of dialogs. If there are no
+	 * dialogs to show it will request the main menu dialog.
+	 */
+	private void renderNextDialog() {
+		if (dialogQueue.peek() != null) {
+			if (((UIRequest) dialogQueue.peek()).getDialogType() == DialogType.message) {
+				/*
+				 * if its a message, just render message
+				 */
+				mFrame = new FrameManager(((UIRequest) dialogQueue.poll()), render.getModelMapper());
+			} else {
+				currentDialog = (UIRequest) dialogQueue.poll();
+				dFrame = new FrameManager(currentDialog, render.getModelMapper());
+			}
+		}
+	}
+
+	/** {@inheritDoc} */
+	public void flush() {
+	}
+
+	/**
+	 * Disposes of current dialog, and tries to load next.
+	 */
+	public void closeCurrentDialog() {
+		if (dialogQueue.peek() != null && ((UIRequest) dialogQueue.peek()).getDialogType() != DialogType.message
+				&& currentDialog != null) {
+			/*
+			 * if next dialog is not a message and there is a dialog being
+			 * displayed then close down dialog and
+			 */
+			if (mFrame != null) {
+				mFrame.disposeFrame();
+				mFrame = null;
+			}
+			dFrame.disposeFrame();
+			currentDialog = null;
+		}
+		renderNextDialog();
+
+	}
+
+	/** {@inheritDoc} */
+	public Resource cutDialog(String dialogID) {
+		closeCurrentDialogAndLoadNext();
+		// TODO what to return?
+		return null;
+	}
+
+	/** {@inheritDoc} */
+	public Form getParentOf(String formURI) {
+		return null;
+	}
+
+	public void setRenderer(Renderer renderer) {
+		render = renderer;
+	}
+
+	public Collection getAllDialogs() {
+		return dialogQueue;
+	}
+
+	public void missingInput(Input input) {
+		dFrame.missing(input);
+		mFrame.missing(input);
+	}
+
+	public void adaptationParametersChanged(String dialogID, String changedProp, Object newVal) {
+		if (currentDialog != null && dialogID.equals(currentDialog.getDialogID())) {
+			if (dFrame != null && !currentDialog.getDialogForm().isMessage()) {
+				dFrame.disposeFrame();
+				dFrame = new FrameManager(currentDialog, render.getModelMapper());
+			}
+			if (mFrame != null) {
+				mFrame.disposeFrame();
+				mFrame = new FrameManager(currentDialog, render.getModelMapper());
+			}
+		}
+
+	}
 
 }

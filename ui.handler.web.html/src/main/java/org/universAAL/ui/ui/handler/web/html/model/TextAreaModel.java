@@ -34,15 +34,15 @@ public class TextAreaModel extends InputModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateInputHTML() {
-		return tag("textarea", ((TextArea)fe).getValue().toString(), fcProps);
+		return tag("textarea", ((TextArea) fe).getValue().toString(), fcProps);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public boolean updateInput(String[] value) {
-		return ((TextArea)fe).storeUserInput(value[0]);
-		
+		return ((TextArea) fe).storeUserInput(value[0]);
+
 	}
 
 }

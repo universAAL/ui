@@ -27,29 +27,29 @@ import java.util.List;
  */
 public class VerticalUnitLayout extends FormLayout implements LayoutManager {
 
-    /**
-     * @param i
-     */
-    public VerticalUnitLayout(int gap) {
-	super(gap);
-    }
-
-    /** one unit per row */
-    List getRows(List units, int width) {
-	ArrayList rows = new ArrayList(units.size());
-	for (Iterator i = units.iterator(); i.hasNext();) {
-	    Unit u = (Unit) i.next();
-	    Row row;
-	    // see which kind of row the unit needs
-	    if (!u.isHorizontal()) {
-		row = new RowWithVertUnits(width);
-	    } else {
-		row = new Row(width);
-	    }
-	    row.add(u);
-	    rows.add(row);
+	/**
+	 * @param i
+	 */
+	public VerticalUnitLayout(int gap) {
+		super(gap);
 	}
-	return rows;
-    }
+
+	/** one unit per row */
+	List getRows(List units, int width) {
+		ArrayList rows = new ArrayList(units.size());
+		for (Iterator i = units.iterator(); i.hasNext();) {
+			Unit u = (Unit) i.next();
+			Row row;
+			// see which kind of row the unit needs
+			if (!u.isHorizontal()) {
+				row = new RowWithVertUnits(width);
+			} else {
+				row = new Row(width);
+			}
+			row.add(u);
+			rows.add(row);
+		}
+		return rows;
+	}
 
 }

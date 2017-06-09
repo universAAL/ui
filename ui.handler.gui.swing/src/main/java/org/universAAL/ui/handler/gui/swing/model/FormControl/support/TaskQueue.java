@@ -19,35 +19,38 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Executes Tasks sequentially in FIFO order.
+ * 
  * @author amedrano
  *
  */
-public class TaskQueue implements Runnable{
-	
+public class TaskQueue implements Runnable {
+
 	/**
 	 * Queue of Tasks ({@link Runnable}s.
 	 */
 	static private LinkedBlockingQueue taskQueue = new LinkedBlockingQueue();
-	
+
 	/**
 	 * The threat in which to execute the tasks.
 	 */
 	static private Thread worker = new Thread(new TaskQueue(), "TaskQueue");
-	
+
 	/**
 	 * Add a new task to the queue.
-	 * @param task the task to be executed when the rest of the tasks are over.
+	 * 
+	 * @param task
+	 *            the task to be executed when the rest of the tasks are over.
 	 */
-	static public void addTask(Runnable task){
+	static public void addTask(Runnable task) {
 		taskQueue.add(task);
-		if (!worker.isAlive()){
+		if (!worker.isAlive()) {
 			worker.start();
 		}
 	}
 
 	/** {@inheritDoc} */
 	public void run() {
-		while(true){
+		while (true) {
 			Runnable task;
 			try {
 				task = (Runnable) taskQueue.take();
@@ -57,7 +60,5 @@ public class TaskQueue implements Runnable{
 			}
 		}
 	}
-	
-	
 
 }

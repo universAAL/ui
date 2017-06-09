@@ -15,12 +15,12 @@
  ******************************************************************************/
 package org.universAAL.ui.dm.interfaces;
 
-
 import org.universAAL.middleware.ui.UIRequest;
 
 /**
- * Implementations of this interface will save and restore {@link IUIRequestPool}s,
- * each implementing a different permanence mechanism.
+ * Implementations of this interface will save and restore
+ * {@link IUIRequestPool}s, each implementing a different permanence mechanism.
+ * 
  * @author amedrano
  *
  */
@@ -28,13 +28,18 @@ public interface IUIRequestStore {
 
 	/**
 	 * Save the pool.
-	 * @param pool the pool to save
+	 * 
+	 * @param pool
+	 *            the pool to save
 	 */
 	public abstract void save(IUIRequestPool pool);
 
 	/**
 	 * Add all {@link UIRequest}s to a {@link IUIRequestPool}.
-	 * @param target the {@link IUIRequestPool} to host the saved {@link UIRequest}.
+	 * 
+	 * @param target
+	 *            the {@link IUIRequestPool} to host the saved
+	 *            {@link UIRequest}.
 	 */
 	public abstract void read(IUIRequestPool target);
 

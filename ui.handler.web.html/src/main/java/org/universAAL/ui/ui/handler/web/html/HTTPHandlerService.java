@@ -49,7 +49,7 @@ public class HTTPHandlerService extends GatewayPort {
 	 * FileName for the main configuration File.
 	 */
 	public static final String CONF_FILENAME = "html";
-	
+
 	/**
 	 * Property key for Location of the CSS to use
 	 */
@@ -59,44 +59,43 @@ public class HTTPHandlerService extends GatewayPort {
 	 * Property key for the location of the resources directory.
 	 */
 	public static final String RESOURCES_LOC = "resources.dir";
-	
+
 	/**
 	 * Property key for the location of the servlet within the http container.
 	 */
 	public static final String SERVICE_URL = "service.relURL";
-	
+
 	/**
-	 * Property key for the session timeout, time after which (and with no activity)
-	 * the servlet will interpret the session as expired.
+	 * Property key for the session timeout, time after which (and with no
+	 * activity) the servlet will interpret the session as expired.
 	 */
 	public static final String TIMEOUT = "session.timeout";
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-    /**
-     * The properties file.
-     */
-    private UpdatedPropertiesFile properties;
-  
+
+	/**
+	 * The properties file.
+	 */
+	private UpdatedPropertiesFile properties;
 
 	/**
 	 * The pool of <{@link User}, {@link HTMLUserGenerator}>.
 	 */
 	private Hashtable generatorPool = new Hashtable();
-	
+
 	/**
-	 * The pool of <{@link User}, {@link Watchdog}>, to keep all watch dogs leased.
+	 * The pool of <{@link User}, {@link Watchdog}>, to keep all watch dogs
+	 * leased.
 	 */
-	private Hashtable watchDogKennel= new Hashtable();
-	
+	private Hashtable watchDogKennel = new Hashtable();
+
 	/**
-     * Directory for configuration files.
-     */
-    private String homeDir = "./"; 
-    
+	 * Directory for configuration files.
+	 */
+	private String homeDir = "./";
 
 	/**
 	 * @param mcontext
@@ -105,7 +104,7 @@ public class HTTPHandlerService extends GatewayPort {
 		super(mcontext);
 		homeDir = prop.getParent();
 		properties = new UpdatedPropertiesFile(prop) {
-			
+
 			/**
 			 * 
 			 */
@@ -114,70 +113,69 @@ public class HTTPHandlerService extends GatewayPort {
 			public String getComments() {
 				return "UI Handler Web Properties";
 			}
-			
+
 			protected void addDefaults(Properties defaults) {
 				defaults.put(SERVICE_URL, "/universAAL");
-		        defaults.put(RESOURCES_LOC, mcontext.getDataFolder().getAbsoluteFile() + "resources");
-		        //copy the css somewhere and use that 
-		        try {
+				defaults.put(RESOURCES_LOC, mcontext.getDataFolder().getAbsoluteFile() + "resources");
+				// copy the css somewhere and use that
+				try {
 					File defCSSF = new File(homeDir, "default.css");
-					new ResourceMapper.Retreiver(this.getClass().getClassLoader().getResource("default.css").openStream(), defCSSF);
-					defaults.put(CSS_LOCATION, 
-							defCSSF.toURI().toString());
+					new ResourceMapper.Retreiver(
+							this.getClass().getClassLoader().getResource("default.css").openStream(), defCSSF);
+					defaults.put(CSS_LOCATION, defCSSF.toURI().toString());
 				} catch (IOException e) {
 					LogUtils.logWarn(getContext(), getClass(), "addDefaults",
-							new String[]{"unable to copy CSS default file."}, e);
-					defaults.put(CSS_LOCATION,"default.css");
+							new String[] { "unable to copy CSS default file." }, e);
+					defaults.put(CSS_LOCATION, "default.css");
 				}
-		        defaults.put(TIMEOUT, "300000");
+				defaults.put(TIMEOUT, "300000");
 			}
 		};
-		//Load Properties
-	    LogUtils.logDebug(getContext(), getClass(), 
-	    		"Constructor",
-	    		"loading properties");
-	    try {
+		// Load Properties
+		LogUtils.logDebug(getContext(), getClass(), "Constructor", "loading properties");
+		try {
 			properties.loadProperties();
 		} catch (IOException e) {
 			LogUtils.logError(getContext(), getClass(), "constructor",
-					new String[] {"unable to read properties file"}, e);
+					new String[] { "unable to read properties file" }, e);
 		}
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public String dataDir() {
 		return properties.getProperty(RESOURCES_LOC);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public String url() {
 		return properties.getProperty(SERVICE_URL);
 	}
 
-	private void doGetFile(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	private void doGetFile(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String fileName = request.getPathInfo();
-//		if(fileName == null || fileName.equals("")){
-//			throw new ServletException("File Name can't be null or empty");
-//		}
-		LogUtils.logInfo(getContext(), getClass(), "doGetFile", "getting request for: "+ fileName);
-		
-		File file = new File(properties.getProperty(RESOURCES_LOC)+fileName);
-		if(!file.exists()){
+		// if(fileName == null || fileName.equals("")){
+		// throw new ServletException("File Name can't be null or empty");
+		// }
+		LogUtils.logInfo(getContext(), getClass(), "doGetFile", "getting request for: " + fileName);
+
+		File file = new File(properties.getProperty(RESOURCES_LOC) + fileName);
+		if (!file.exists()) {
 			throw new ServletException("File doesn't exists on server.");
 		}
 
 		InputStream fis = new FileInputStream(file);
 
 		String mimeType = getServletContext().getMimeType(file.getAbsolutePath());
-		response.setContentType(mimeType != null? mimeType:"application/octet-stream");
+		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
 		response.setContentLength((int) file.length());
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 
-		OutputStream os       = response.getOutputStream();
+		OutputStream os = response.getOutputStream();
 		byte[] bufferData = new byte[1024];
-		int read=0;
-		while((read = fis.read(bufferData))!= -1){
+		int read = 0;
+		while ((read = fis.read(bufferData)) != -1) {
 			os.write(bufferData, 0, read);
 		}
 		os.flush();
@@ -185,13 +183,11 @@ public class HTTPHandlerService extends GatewayPort {
 		fis.close();
 	}
 
-	
-    /** {@ inheritDoc}	 */
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	/** {@ inheritDoc} */
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (handleAuthorization(req, resp)) {
 			String fileName = req.getPathInfo();
-			if(fileName != null && !fileName.isEmpty()){
+			if (fileName != null && !fileName.isEmpty()) {
 				doGetFile(req, resp);
 				return;
 			}
@@ -206,7 +202,7 @@ public class HTTPHandlerService extends GatewayPort {
 			os.print(ug.getHTML());
 			os.flush();
 			os.close();
-			//XXX use session?
+			// XXX use session?
 		}
 	}
 
@@ -215,21 +211,19 @@ public class HTTPHandlerService extends GatewayPort {
 	 * @return
 	 */
 	private synchronized HTMLUserGenerator getGenerator(User u) {
-		if (!generatorPool.containsKey(u)){
+		if (!generatorPool.containsKey(u)) {
 			generatorPool.put(u, new HTMLUserGenerator(getContext(), properties, u));
 		}
-		if (!watchDogKennel.containsKey(u)){
+		if (!watchDogKennel.containsKey(u)) {
 			watchDogKennel.put(u, new Watchdog(u));
-		}
-		else if (watchDogKennel.get(u) != null) {
-			((Watchdog)watchDogKennel.get(u)).liveForAnotherDay();
+		} else if (watchDogKennel.get(u) != null) {
+			((Watchdog) watchDogKennel.get(u)).liveForAnotherDay();
 		}
 		return (HTMLUserGenerator) generatorPool.get(u);
 	}
 
-	/** {@ inheritDoc}	 */
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	/** {@ inheritDoc} */
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (handleAuthorization(req, resp)) {
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("text/html");
@@ -239,14 +233,14 @@ public class HTTPHandlerService extends GatewayPort {
 			HTMLUserGenerator ug = getGenerator(user);
 			// gather input and send it to the bus if applicable
 			ug.processInput(req.getParameterMap());
-			//Redirect to Get
+			// Redirect to Get
 			resp.sendRedirect(url());
 		}
 
 	}
-	
-	private class Watchdog implements Runnable{
-		
+
+	private class Watchdog implements Runnable {
+
 		private User user;
 		private ScheduledThreadPoolExecutor stpe;
 		private ScheduledFuture sf;
@@ -259,22 +253,20 @@ public class HTTPHandlerService extends GatewayPort {
 			stpe = new ScheduledThreadPoolExecutor(1);
 			reschedule();
 		}
-		
-		private void reschedule(){
-			sf = stpe.schedule(this, 
-					Long.parseLong((String) properties.get(TIMEOUT)),
-					TimeUnit.MILLISECONDS);
+
+		private void reschedule() {
+			sf = stpe.schedule(this, Long.parseLong((String) properties.get(TIMEOUT)), TimeUnit.MILLISECONDS);
 		}
-		
-		public void liveForAnotherDay(){
+
+		public void liveForAnotherDay() {
 			sf.cancel(true);
 			reschedule();
 		}
-		
-		/** {@ inheritDoc}	 */
+
+		/** {@ inheritDoc} */
 		public void run() {
-			if (generatorPool != null){
-				HTMLUserGenerator ug = (HTMLUserGenerator)generatorPool.get(user);
+			if (generatorPool != null) {
+				HTMLUserGenerator ug = (HTMLUserGenerator) generatorPool.get(user);
 				if (ug != null)
 					ug.finish();
 				generatorPool.remove(user);
@@ -283,7 +275,7 @@ public class HTTPHandlerService extends GatewayPort {
 			sf.cancel(true);
 			watchDogKennel.remove(user);
 		}
-		
+
 	}
 
 	/** {@ inheritDoc} */

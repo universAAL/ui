@@ -25,11 +25,11 @@ import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
- * It will map org.universAAL.middleware.ui.rdf classes to
- * a {@link Model} component.
+ * It will map org.universAAL.middleware.ui.rdf classes to a {@link Model}
+ * component.
  *
- * This class will be used by the created components to nest
- * the rest of the form representation.
+ * This class will be used by the created components to nest the rest of the
+ * form representation.
  *
  * @see Model
  * @see FormModel
@@ -39,222 +39,206 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
  *
  */
 public final class ModelMapper {
-    /**
-     * The configuration property key for the
-     * look and feel package.
-     */
-    static final String LAFPackageProperty = "LookandFeel.package";
+	/**
+	 * The configuration property key for the look and feel package.
+	 */
+	static final String LAFPackageProperty = "LookandFeel.package";
 
-    /**
-     * The class name for the initialization of Look and feel package.
-     */
-    private static final String INIT_CLASS = "Init";
+	/**
+	 * The class name for the initialization of Look and feel package.
+	 */
+	private static final String INIT_CLASS = "Init";
 
-    /**
-     * Default Look and Feel Package, to be used when the
-     * selected package is not found.
-     * @see ModelMapper#LAFPackageProperty
-     */
-    static final String DefaultLAFPackage =
-        "org.universAAL.ui.handler.gui.swing.defaultLookAndFeel";
+	/**
+	 * Default Look and Feel Package, to be used when the selected package is
+	 * not found.
+	 * 
+	 * @see ModelMapper#LAFPackageProperty
+	 */
+	static final String DefaultLAFPackage = "org.universAAL.ui.handler.gui.swing.defaultLookAndFeel";
 
-    /**
-     * Suffix for all look and feel classes.
-     */
-    private static String LAFSuffix = "LAF";
-    
-    /**
-     * Renderer instance.
-     */
-    private Renderer render;
+	/**
+	 * Suffix for all look and feel classes.
+	 */
+	private static String LAFSuffix = "LAF";
 
-    /**
-     * The main Constructor.
-     * @param renderer
-     * 		the {@link Renderer} to be associated with
-     */
-    public ModelMapper(Renderer renderer) {
+	/**
+	 * Renderer instance.
+	 */
+	private Renderer render;
+
+	/**
+	 * The main Constructor.
+	 * 
+	 * @param renderer
+	 *            the {@link Renderer} to be associated with
+	 */
+	public ModelMapper(Renderer renderer) {
 		render = renderer;
 	}
 
-
 	/**
-     * construct the name of the LAF class for the component.
-     * @param c
-     *         the component for which the LAF class name is constructed
-     * @return
-     *         the name of the component (stripped of the package name) appended
-     *     with the {@link ModelMapper#LAFSuffix}
-     */
-    private static String getStringLAFClass(Class c) {
-        String[] p = c.getName().split("\\.");
-        return p[p.length-1] + LAFSuffix;
-    }
-
-    
-    /**
-     * Using Java reflection try to load the LAF class of a given component.
-     * @param LAFPackage
-     *         the selected LAFPackage full qualified name
-     * @param constructorParameter
-     *         the parameter passed to the constructor, also the component for which
-     *     the LAF class is loaded.
-     * @param constructorParamClass
-     * 			the specific class of the constructorParameter
-     * @return
-     *         the LAF Class,
-     *         null if it could not be found
-     */
-    private Object tryToLoadClass(String LAFPackage, Object constructorParameter, Class constructorParamClass) {
-        /*
-         * "Magic Mirror on the wall,
-         *  who is the fairest one of all?"
-         */
-        try {
-            return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParamClass))
-                    .getConstructor(new Class[] { constructorParamClass, Renderer.class } )
-                    .newInstance(new Object[] { constructorParameter, render } );
-        } catch (Exception e) {
-            if (render.getModuleContext() != null) {
-            	LogUtils.logError(render.getModuleContext(),
-            			getClass(),
-            			"tryToLoadClass", 
-            			new String[]{"Could not find Class: ",
-            		LAFPackage + "." + getStringLAFClass(constructorParamClass)}, e);
-            }
-            return null;
-        }
-    }
-
-    /**
-	 * Used as Immersion Mechanism for {@link ModelMapper#getModelFor(FormControl)},
-	 *  {@link ModelMapper#getModelFor(Form)}, and {@link ModelMapper#getModelFor(Label)}.
-	 * get {@link Model} or {@link FormModel} or {@link LabelModel} 
-	 * for a given {@link FormControl} or {@link Form} or {@link Label} respectively.
-	 * @param refObj
-	 *         the {@link FormControl}, or {@link Form} or {@link Label} for which the model is required
-	 * @param refObjClass
-	 * 		   the specific class of the refObj.         
-	 * @return
-	 *         the found LAF extension for the component.
+	 * construct the name of the LAF class for the component.
+	 * 
+	 * @param c
+	 *            the component for which the LAF class name is constructed
+	 * @return the name of the component (stripped of the package name) appended
+	 *         with the {@link ModelMapper#LAFSuffix}
 	 */
-	private Object getModelFor (Object refObj, Class refObjClass){
-	/*
-	     * look for the component corresponding to refObj
-	     * This should be the L&F extension
-	     * if could not be found, use defaultLAF
-	     */
-	    Object model = tryToLoadClass(
-	            render.getProperty(LAFPackageProperty), refObj, refObjClass);
-	    if (model == null) {
-			LogUtils.logWarn(Renderer.getContext(), getClass(), "getModelFor", 
-					new String[]{"Loading from DefaultLAFPackage"}, null);
-	        model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
-	        if (model == null) {
-	            // If not found, try to find the model for superclass.        
-	        	Class parentC = refObjClass.getSuperclass();
-	    		// avoid looking for non-renderable FormControls
-	        	if (parentC != FormControl.class 
-	        			&& parentC != Form.class
-	        			&& parentC != Label.class
-	        			&& parentC != Object.class ) {
-	        		LogUtils.logDebug(Renderer.getContext(), getClass(), "getModelFor", 
-	        				new String[]{"lookig for Antecesor"}, null);
-	        		return getModelFor(refObj, parentC);
-	        	} else {
-	        		LogUtils.logError(Renderer.getContext(), getClass(), "getModelFor", 
-	        				new String[]{"This is really akwuard,",
-	        							 "No Model found...",
-	        							 "not even in DefaultLAFPackage...",
-	        							 "or as any antecesor...",
-	        							 "COME ON!!"}, null);
-	        	}
-	        }
-	    }
-	    return  model;
+	private static String getStringLAFClass(Class c) {
+		String[] p = c.getName().split("\\.");
+		return p[p.length - 1] + LAFSuffix;
 	}
 
 	/**
-     * get {@link Model} for a given {@link FormControl}.
-     * @param fc
-     *         the {@link FormControl} for which the model is required
-     * @return
-     *         the found LAF extension for the component.
-     */
-    public Model getModelFor(FormControl fc) {
-        return (Model) getModelFor(fc, fc.getClass());
-    }
-    
-    /**
-     * get {@link FormModel} for a given {@link Form}.
-     * @param f
-     *         the {@link Form} for which the model is required
-     * @return
-     *         the found LAF extension for the component.
-     */
-    public  FormModel getModelFor(Form f) {
-      return (FormModel) getModelFor(f, f.getClass());
-    }
-    
+	 * Using Java reflection try to load the LAF class of a given component.
+	 * 
+	 * @param LAFPackage
+	 *            the selected LAFPackage full qualified name
+	 * @param constructorParameter
+	 *            the parameter passed to the constructor, also the component
+	 *            for which the LAF class is loaded.
+	 * @param constructorParamClass
+	 *            the specific class of the constructorParameter
+	 * @return the LAF Class, null if it could not be found
+	 */
+	private Object tryToLoadClass(String LAFPackage, Object constructorParameter, Class constructorParamClass) {
+		/*
+		 * "Magic Mirror on the wall, who is the fairest one of all?"
+		 */
+		try {
+			return Class.forName(LAFPackage + "." + getStringLAFClass(constructorParamClass))
+					.getConstructor(new Class[] { constructorParamClass, Renderer.class })
+					.newInstance(new Object[] { constructorParameter, render });
+		} catch (Exception e) {
+			if (render.getModuleContext() != null) {
+				LogUtils.logError(
+						render.getModuleContext(), getClass(), "tryToLoadClass", new String[] {
+								"Could not find Class: ", LAFPackage + "." + getStringLAFClass(constructorParamClass) },
+						e);
+			}
+			return null;
+		}
+	}
 
+	/**
+	 * Used as Immersion Mechanism for
+	 * {@link ModelMapper#getModelFor(FormControl)},
+	 * {@link ModelMapper#getModelFor(Form)}, and
+	 * {@link ModelMapper#getModelFor(Label)}. get {@link Model} or
+	 * {@link FormModel} or {@link LabelModel} for a given {@link FormControl}
+	 * or {@link Form} or {@link Label} respectively.
+	 * 
+	 * @param refObj
+	 *            the {@link FormControl}, or {@link Form} or {@link Label} for
+	 *            which the model is required
+	 * @param refObjClass
+	 *            the specific class of the refObj.
+	 * @return the found LAF extension for the component.
+	 */
+	private Object getModelFor(Object refObj, Class refObjClass) {
+		/*
+		 * look for the component corresponding to refObj This should be the L&F
+		 * extension if could not be found, use defaultLAF
+		 */
+		Object model = tryToLoadClass(render.getProperty(LAFPackageProperty), refObj, refObjClass);
+		if (model == null) {
+			LogUtils.logWarn(Renderer.getContext(), getClass(), "getModelFor",
+					new String[] { "Loading from DefaultLAFPackage" }, null);
+			model = tryToLoadClass(DefaultLAFPackage, refObj, refObjClass);
+			if (model == null) {
+				// If not found, try to find the model for superclass.
+				Class parentC = refObjClass.getSuperclass();
+				// avoid looking for non-renderable FormControls
+				if (parentC != FormControl.class && parentC != Form.class && parentC != Label.class
+						&& parentC != Object.class) {
+					LogUtils.logDebug(Renderer.getContext(), getClass(), "getModelFor",
+							new String[] { "lookig for Antecesor" }, null);
+					return getModelFor(refObj, parentC);
+				} else {
+					LogUtils.logError(Renderer.getContext(), getClass(), "getModelFor",
+							new String[] { "This is really akwuard,", "No Model found...",
+									"not even in DefaultLAFPackage...", "or as any antecesor...", "COME ON!!" },
+							null);
+				}
+			}
+		}
+		return model;
+	}
 
-    /**
-     * get {@link LabelModel} for a given {@link Label}.
-     * @param l
-     *         the {@link Label} for which the model is required
-     * @return
-     *         the found LAF extension for the component.
-     */
-    public LabelModel getModelFor(Label l) {
-        return (LabelModel) getModelFor(l, l.getClass());
-    }
+	/**
+	 * get {@link Model} for a given {@link FormControl}.
+	 * 
+	 * @param fc
+	 *            the {@link FormControl} for which the model is required
+	 * @return the found LAF extension for the component.
+	 */
+	public Model getModelFor(FormControl fc) {
+		return (Model) getModelFor(fc, fc.getClass());
+	}
 
-    /**
-     * locate the LookAndFeel ( {@link InitInterface}) class of the LAF package.
-     * @param LAFPackage
-     *             the full qualified name of the LAF package
-     * @return
-     *             the initialization class of the LAF package
-     * @throws Exception when the Class is not found.
-     */
-    private InitInterface getLookAndFeel(String LAFPackage) throws Exception {
-            return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS)
-            .getConstructor(null)
-            .newInstance(null);
-    }
+	/**
+	 * get {@link FormModel} for a given {@link Form}.
+	 * 
+	 * @param f
+	 *            the {@link Form} for which the model is required
+	 * @return the found LAF extension for the component.
+	 */
+	public FormModel getModelFor(Form f) {
+		return (FormModel) getModelFor(f, f.getClass());
+	}
 
-    /**
-     * Initialize the selected L&F extension.
-     * If could not be found, defaultLAF is used.
-     * @return TODO
-     */
-    public InitInterface initializeLAF() {
-    	InitInterface ii = null;
-        try {
-           ii =  getLookAndFeel(render.getProperty(LAFPackageProperty));
-           ii.install(render);
-        } catch (Exception e) {
-            if (render.getModuleContext() != null) {
-            	LogUtils.logWarn(render.getModuleContext(),
-            			getClass(),
-            			"initializeLAF",
-            			new String[]{"Unable to find: "
-            	                , INIT_CLASS, " Class for selected LookAndFeel.Package"}, e);
-            }
-            try {
-            ii = getLookAndFeel(DefaultLAFPackage);
-            ii.install(render);
-            } catch (Exception e2) {
-            if (render.getModuleContext() != null) {
-            	LogUtils.logError(render.getModuleContext(),
-            			getClass(),
-            			"initializeLAF",
-            			new String[] {"Unable to find: "
-                                , INIT_CLASS, " Class for Default LookAndFeel Package"},
-            			e2);
-            }
-            }
-        }
-        return ii;
-    }
+	/**
+	 * get {@link LabelModel} for a given {@link Label}.
+	 * 
+	 * @param l
+	 *            the {@link Label} for which the model is required
+	 * @return the found LAF extension for the component.
+	 */
+	public LabelModel getModelFor(Label l) {
+		return (LabelModel) getModelFor(l, l.getClass());
+	}
+
+	/**
+	 * locate the LookAndFeel ( {@link InitInterface}) class of the LAF package.
+	 * 
+	 * @param LAFPackage
+	 *            the full qualified name of the LAF package
+	 * @return the initialization class of the LAF package
+	 * @throws Exception
+	 *             when the Class is not found.
+	 */
+	private InitInterface getLookAndFeel(String LAFPackage) throws Exception {
+		return (InitInterface) Class.forName(LAFPackage + "." + INIT_CLASS).getConstructor(null).newInstance(null);
+	}
+
+	/**
+	 * Initialize the selected L&F extension. If could not be found, defaultLAF
+	 * is used.
+	 * 
+	 * @return TODO
+	 */
+	public InitInterface initializeLAF() {
+		InitInterface ii = null;
+		try {
+			ii = getLookAndFeel(render.getProperty(LAFPackageProperty));
+			ii.install(render);
+		} catch (Exception e) {
+			if (render.getModuleContext() != null) {
+				LogUtils.logWarn(render.getModuleContext(), getClass(), "initializeLAF",
+						new String[] { "Unable to find: ", INIT_CLASS, " Class for selected LookAndFeel.Package" }, e);
+			}
+			try {
+				ii = getLookAndFeel(DefaultLAFPackage);
+				ii.install(render);
+			} catch (Exception e2) {
+				if (render.getModuleContext() != null) {
+					LogUtils.logError(render.getModuleContext(), getClass(), "initializeLAF",
+							new String[] { "Unable to find: ", INIT_CLASS, " Class for Default LookAndFeel Package" },
+							e2);
+				}
+			}
+		}
+		return ii;
+	}
 }

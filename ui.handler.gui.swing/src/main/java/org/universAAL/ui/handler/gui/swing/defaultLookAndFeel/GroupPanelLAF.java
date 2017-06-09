@@ -32,12 +32,12 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupPanelModel;
 public class GroupPanelLAF extends GroupPanelModel {
 
 	private ColorLAF color;
-	
+
 	public GroupPanelLAF(Group control, Renderer render) {
 		super(control, render);
 		color = ((Init) render.getInitLAF()).getColorLAF();
 	}
-	
+
 	/** {@inheritDoc} */
 	public void update() {
 		super.update();
@@ -54,15 +54,13 @@ public class GroupPanelLAF extends GroupPanelModel {
 			// Border empty = BorderFactory.createEmptyBorder(5,5,5,5);
 			Border line = BorderFactory.createLineBorder(color.getOrange());
 			TitledBorder title;
-			title = BorderFactory.createTitledBorder(line, label, 0, 0,
-					color.getbold(), color.getborderLineMM());
+			title = BorderFactory.createTitledBorder(line, label, 0, 0, color.getbold(), color.getborderLineMM());
 			jc.setBorder(title);
 			needsLabel = false;
 			// XXX try add icon
-//			jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
+			// jc.setLayout(new BoxLayout(jc, BoxLayout.PAGE_AXIS));
 			jc.setLayout(new FormLayout());
-		}
-		else if (this.isTheSubmitGroup()){
+		} else if (this.isTheSubmitGroup()) {
 			VerticalFlowLayout vfl = new VerticalFlowLayout(VerticalFlowLayout.TOP, 5, 5);
 			vfl.setMaximizeOtherDimension(true);
 			jc.setLayout(vfl);

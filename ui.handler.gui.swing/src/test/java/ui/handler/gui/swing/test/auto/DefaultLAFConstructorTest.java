@@ -64,7 +64,7 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.TextAreaLAF;
  * @author amedrano
  *
  */
-public class DefaultLAFConstructorTest extends TestCase{
+public class DefaultLAFConstructorTest extends TestCase {
 
 	Form f;
 	Label l;
@@ -72,223 +72,185 @@ public class DefaultLAFConstructorTest extends TestCase{
 
 	private static String LONG_TEXT = "In some village in La Mancha, whose name I do not care to recall, there dwelt not so long ago a gentleman of the type wont to keep an unused lance, an old shield, a skinny old horse, and a greyhound for racing.";
 	private static final String PREFIX = "http://example.com/Dable.owl#";
-    private static final String PROP_TABLE = PREFIX + "table";
-    private static final String PROP_COL = PREFIX + "column";
+	private static final String PROP_TABLE = PREFIX + "table";
+	private static final String PROP_COL = PREFIX + "column";
 	private ModuleContext mc;
 
-	private PropertyPath getPath(String input){
-		return new PropertyPath(
-				null,
-				false,
-				new String[] { "http://org.universaal.ui.newGui/tests.owl#"+input });
+	private PropertyPath getPath(String input) {
+		return new PropertyPath(null, false, new String[] { "http://org.universaal.ui.newGui/tests.owl#" + input });
 	}
-	
-	public void setUp(){
-	    mc = new JUnitModuleContext();
-	    new Renderer.RenderStarter(mc);
-	    
-		OntologyManagement.getInstance().register(mc,new DataRepOntology());
-		OntologyManagement.getInstance().register(mc,new UIBusOntology());
+
+	public void setUp() {
+		mc = new JUnitModuleContext();
+		new Renderer.RenderStarter(mc);
+
+		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
 		f = Form.newDialog("root", new Resource());
 		l = new Label("this is a Label", "");
-		testRender = new TestRenderer(mc,TestRenderer.SIMPLE_MANAGER);
+		testRender = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 	}
 
-	public void testGroup(){
-		Group g = new Group(f.getIOControls(),
-				l,
-				getPath("group1"), 
-				null, 
-				null);
-		new GroupLAF(g, testRender).getComponent();	
+	public void testGroup() {
+		Group g = new Group(f.getIOControls(), l, getPath("group1"), null, null);
+		new GroupLAF(g, testRender).getComponent();
 	}
-	public void testpanelGroup(){
-		Group g = new Group(f.getIOControls(),
-				l,
-				getPath("group1"), 
-				null, 
-				null);
-		new GroupPanelLAF(g, testRender).getComponent();	
+
+	public void testpanelGroup() {
+		Group g = new Group(f.getIOControls(), l, getPath("group1"), null, null);
+		new GroupPanelLAF(g, testRender).getComponent();
 	}
-	public void testTabbedGroup(){
-		Group g = new Group(f.getIOControls(),
-				l,
-				getPath("group1"), 
-				null, 
-				null);
-		new GroupTabbedPanelLAF(g, testRender).getComponent();	
+
+	public void testTabbedGroup() {
+		Group g = new Group(f.getIOControls(), l, getPath("group1"), null, null);
+		new GroupTabbedPanelLAF(g, testRender).getComponent();
 	}
-	
-	public void testInputField1(){
-		InputField i = new InputField(f.getIOControls(),
-				l,
-				getPath("InputF1"),
-				null,
-				null);
+
+	public void testInputField1() {
+		InputField i = new InputField(f.getIOControls(), l, getPath("InputF1"), null, null);
 		new InputFieldLAF(i, testRender).getComponent();
 	}
-	public void testInputField2(){
-		InputField i = new InputField(f.getIOControls(),
-				l,
-				getPath("InputF2"),
-				null,
-				new String (""));
+
+	public void testInputField2() {
+		InputField i = new InputField(f.getIOControls(), l, getPath("InputF2"), null, new String(""));
 		new InputFieldLAF(i, testRender).getComponent();
 	}
-	public void testInputField3(){
-		InputField i = new InputField(f.getIOControls(),
-				l,
-				getPath("InputF3"),
-				null,
-				new String("lala"));
+
+	public void testInputField3() {
+		InputField i = new InputField(f.getIOControls(), l, getPath("InputF3"), null, new String("lala"));
 		i.setSecret();
 		new InputFieldLAF(i, testRender).getComponent();
 	}
-	public void testInputField4(){
-		InputField i = new InputField(f.getIOControls(),
-				l,
-				getPath("InputF4"),
-				null,
-				new Locale("en"));
+
+	public void testInputField4() {
+		InputField i = new InputField(f.getIOControls(), l, getPath("InputF4"), null, new Locale("en"));
 		new InputFieldLAF(i, testRender).getComponent();
 	}
 
-	public void testLabel(){
+	public void testLabel() {
 		new LabelLAF(l, testRender).getComponent();
 	}
 
-	public void testMediaObject(){
-		new MediaObjectLAF(
-				new MediaObject(f.getIOControls(), l, "image/png", "services/Health_Button.png")
-				, testRender);
+	public void testMediaObject() {
+		new MediaObjectLAF(new MediaObject(f.getIOControls(), l, "image/png", "services/Health_Button.png"),
+				testRender);
 	}
 
-	public void testRange1(){
-		Range r = new Range(
-				f.getIOControls(),
-				l,
-				getPath("Range1"),
+	public void testRange1() {
+		Range r = new Range(f.getIOControls(), l, getPath("Range1"),
 				MergedRestriction.getAllValuesRestriction(getPath("Range1").getThePath()[0],
-						new IntRestriction(Integer.valueOf(3), true,
-								Integer.valueOf(12), true)),
-								Integer.valueOf(5));
-		new RangeLAF(r, testRender).getComponent();
-	}
-	public void testRange2(){
-		Range r = new Range(
-				f.getIOControls(),
-				l,
-				getPath("Range2"),
-				MergedRestriction.getAllValuesRestriction(getPath("Range2").getThePath()[0],
-						new IntRestriction(Integer.valueOf(1), true,
-								Integer.valueOf(100), true)),
-								Integer.valueOf(50));
+						new IntRestriction(Integer.valueOf(3), true, Integer.valueOf(12), true)),
+				Integer.valueOf(5));
 		new RangeLAF(r, testRender).getComponent();
 	}
 
-	public void testSelect1(){
+	public void testRange2() {
+		Range r = new Range(f.getIOControls(), l, getPath("Range2"),
+				MergedRestriction.getAllValuesRestriction(getPath("Range2").getThePath()[0],
+						new IntRestriction(Integer.valueOf(1), true, Integer.valueOf(100), true)),
+				Integer.valueOf(50));
+		new RangeLAF(r, testRender).getComponent();
+	}
+
+	public void testSelect1() {
 		Select1 s1 = new Select1(f.getIOControls(), l, getPath("Select1"), null, "Opt2");
 		s1.generateChoices(new String[] { "Opt1", "Opt2", "Opt3" });
 		new Select1LAF(s1, testRender).getComponent();
 	}
 
-	public void testSelect(){
+	public void testSelect() {
 		Select s = new Select(f.getIOControls(), l, getPath("Select"), null, Integer.valueOf(10));
-		s.generateChoices(new Integer[] {
-				Integer.valueOf(0),
-				Integer.valueOf(2),
-				Integer.valueOf(4),
-				Integer.valueOf(6),
-				Integer.valueOf(8),
-				Integer.valueOf(10),
-				Integer.valueOf(12)});
-		new SelectLAF(s, testRender).getNewComponent();
-	}
-	public void testSelectBis(){
-		Select s = new Select(f.getIOControls(), l, getPath("Select"), null,
-				new Integer[] { Integer.valueOf(10), Integer.valueOf(4)});
-		s.generateChoices(new Integer[] {
-				Integer.valueOf(0),
-				Integer.valueOf(2),
-				Integer.valueOf(4),
-				Integer.valueOf(6),
-				Integer.valueOf(8),
-				Integer.valueOf(10),
-				Integer.valueOf(12)});
+		s.generateChoices(new Integer[] { Integer.valueOf(0), Integer.valueOf(2), Integer.valueOf(4),
+				Integer.valueOf(6), Integer.valueOf(8), Integer.valueOf(10), Integer.valueOf(12) });
 		new SelectLAF(s, testRender).getNewComponent();
 	}
 
-	public void testSimpleOutput1(){
+	public void testSelectBis() {
+		Select s = new Select(f.getIOControls(), l, getPath("Select"), null,
+				new Integer[] { Integer.valueOf(10), Integer.valueOf(4) });
+		s.generateChoices(new Integer[] { Integer.valueOf(0), Integer.valueOf(2), Integer.valueOf(4),
+				Integer.valueOf(6), Integer.valueOf(8), Integer.valueOf(10), Integer.valueOf(12) });
+		new SelectLAF(s, testRender).getNewComponent();
+	}
+
+	public void testSimpleOutput1() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "");
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
-	public void testSimpleOutput2(){
+
+	public void testSimpleOutput2() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Boolean.TRUE);
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
-	public void testSimpleOutput3(){
+
+	public void testSimpleOutput3() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, "hello world");
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
-	public void testSimpleOutput4(){
+
+	public void testSimpleOutput4() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Locale.ENGLISH);
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
-	public void testSimpleOutput5(){
+
+	public void testSimpleOutput5() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, Integer.valueOf(5));
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
-	public void testSimpleOutput6(){
+
+	public void testSimpleOutput6() {
 		SimpleOutput so = new SimpleOutput(f.getIOControls(), l, null, LONG_TEXT);
 		new SimpleOutputLAF(so, testRender).getComponent();
 	}
 
-/*	public void testSubdialogTrigger(){
-		Form subD = Form.newSubdialog("subdialog", f.getDialogID());
-		new FormLAF(f);
-		new FormLAF(subD);
-		SubdialogTrigger st = new SubdialogTrigger(f.getSubmits(), l, subD.getDialogID());
-		new SubdialogTriggerLAF(st).getComponent();
-	}
-*/
-	public void testSubmit(){
+	/*
+	 * public void testSubdialogTrigger(){ Form subD =
+	 * Form.newSubdialog("subdialog", f.getDialogID()); new FormLAF(f); new
+	 * FormLAF(subD); SubdialogTrigger st = new SubdialogTrigger(f.getSubmits(),
+	 * l, subD.getDialogID()); new SubdialogTriggerLAF(st).getComponent(); }
+	 */
+	public void testSubmit() {
 		Submit s = new Submit(f.getSubmits(), l, "");
 		new SubmitLAF(s, testRender).getComponent();
 	}
 
-	public void testTextArea(){
+	public void testTextArea() {
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, null);
 		new TextAreaLAF(ta, testRender).getComponent();
 	}
-	public void testTextArea1(){
+
+	public void testTextArea1() {
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "");
 		new TextAreaLAF(ta, testRender).getComponent();
 	}
-	public void testTextArea2(){
+
+	public void testTextArea2() {
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, "some text");
 		new TextAreaLAF(ta, testRender).getComponent();
 	}
-	public void testTextArea3(){
+
+	public void testTextArea3() {
 		TextArea ta = new TextArea(f.getIOControls(), l, getPath("TextArea1"), null, LONG_TEXT);
 		new TextAreaLAF(ta, testRender).getComponent();
 	}
-	
-	public void testRepeat(){
+
+	public void testRepeat() {
 		Repeat r = getRepeat();
 		new RepeatLAF(r, testRender).getComponent();
 	}
 
-	public void testRepeat1(){
+	public void testRepeat1() {
 		Repeat r = getRepeat();
 		new RepeatModelTableLAF(r, testRender).getComponent();
 	}
-	public void testRepeat2(){
+
+	public void testRepeat2() {
 		Repeat r = getRepeat();
 		new RepeatModelGridLAF(r, testRender).getComponent();
 	}
-	
-	private Repeat getRepeat(){
+
+	private Repeat getRepeat() {
 		List rows = new ArrayList();
 		Resource cell = new Resource();
 		cell.setProperty(PROP_COL + "1", new Integer(1));
@@ -311,20 +273,19 @@ public class DefaultLAFConstructorTest extends TestCase{
 		dataRoot.setProperty(PROP_TABLE, rows);
 		Form f = Form.newDialog("test", dataRoot);
 		Repeat repeat = new Repeat(f.getIOControls(), new Label("table", null),
-			new PropertyPath(null, false, new String[] { PROP_TABLE }),
-			null, null);
+				new PropertyPath(null, false, new String[] { PROP_TABLE }), null, null);
 		// new Repeat(g, new Label(userDM
 		// .getString("UICaller.pendingDialogs"), null),
 		// new PropertyPath(null, false,
 		// new String[] { PROP_DLG_LIST_DIALOG_LIST }),
 		// null, null);
 		Group row = new Group(repeat, null, null, null, null);
-		new SimpleOutput(row, new Label("col1", null), new PropertyPath(null,
-			false, new String[] { PROP_COL + "1" }), null);
-		new SimpleOutput(row, new Label("col2", null), new PropertyPath(null,
-			false, new String[] { PROP_COL + "2" }), null);
-		new SimpleOutput(row, new Label("col3", null), new PropertyPath(null,
-			false, new String[] { PROP_COL + "3" }), null);
+		new SimpleOutput(row, new Label("col1", null), new PropertyPath(null, false, new String[] { PROP_COL + "1" }),
+				null);
+		new SimpleOutput(row, new Label("col2", null), new PropertyPath(null, false, new String[] { PROP_COL + "2" }),
+				null);
+		new SimpleOutput(row, new Label("col3", null), new PropertyPath(null, false, new String[] { PROP_COL + "3" }),
+				null);
 		return repeat;
 	}
 }

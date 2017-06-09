@@ -37,74 +37,66 @@ import org.universAAL.ontology.ui.preferences.service.UIPreferencesService;
  */
 public class UIPreferencesProvidedService extends UIPreferencesService {
 
-    /**
-     * Default constructor.
-     * 
-     * @param uri
-     *            Instance URI
-     */
-    private UIPreferencesProvidedService(String uri) {
-	super(uri);
-    }
+	/**
+	 * Default constructor.
+	 * 
+	 * @param uri
+	 *            Instance URI
+	 */
+	private UIPreferencesProvidedService(String uri) {
+		super(uri);
+	}
 
-    public static final String NAMESPACE = "http://ontology.universAAL.org/UIPreferencesConsumer.owl#";
+	public static final String NAMESPACE = "http://ontology.universAAL.org/UIPreferencesConsumer.owl#";
 
-    public static final String MY_URI = NAMESPACE
-	    + "UIPreferencesProvidedService";
+	public static final String MY_URI = NAMESPACE + "UIPreferencesProvidedService";
 
-    static final String START_UI = NAMESPACE + "startUserInterface";
+	static final String START_UI = NAMESPACE + "startUserInterface";
 
-    /** The number of services provided by this class. */
-    private static final int PROVIDED_SERVICES = 1;
+	/** The number of services provided by this class. */
+	private static final int PROVIDED_SERVICES = 1;
 
-    private static Hashtable<?, ?> serverPEditorRestrictions = new Hashtable();
+	private static Hashtable<?, ?> serverPEditorRestrictions = new Hashtable();
 
-    /**
-     * 
-     * @return restrictions
-     */
-    protected Hashtable<?, ?> getClassLevelRestrictions() {
-	return serverPEditorRestrictions;
-    }
+	/**
+	 * 
+	 * @return restrictions
+	 */
+	protected Hashtable<?, ?> getClassLevelRestrictions() {
+		return serverPEditorRestrictions;
+	}
 
-    /**
-     * @param mcontext
-     * @return
-     */
-    public static ServiceProfile[] getProfiles(ModuleContext mcontext) {
-	ServiceProfile[] profiles = new ServiceProfile[PROVIDED_SERVICES];
-	OntologyManagement.getInstance().register(
-		mcontext,
-		new SimpleOntology(MY_URI, UIPreferencesService.MY_URI,
-			new ResourceFactory() {
-			    public Resource createInstance(String classURI,
-				    String instanceURI, int factoryIndex) {
-				return new UIPreferencesProvidedService(
-					instanceURI);
-			    }
-			}));
+	/**
+	 * @param mcontext
+	 * @return
+	 */
+	public static ServiceProfile[] getProfiles(ModuleContext mcontext) {
+		ServiceProfile[] profiles = new ServiceProfile[PROVIDED_SERVICES];
+		OntologyManagement.getInstance().register(mcontext,
+				new SimpleOntology(MY_URI, UIPreferencesService.MY_URI, new ResourceFactory() {
+					public Resource createInstance(String classURI, String instanceURI, int factoryIndex) {
+						return new UIPreferencesProvidedService(instanceURI);
+					}
+				}));
 
-	addRestriction((MergedRestriction) UIPreferencesService
-		.getClassRestrictionsOnProperty(UIPreferencesService.MY_URI,
-			UIPreferencesService.PROP_CONTROLS).copy(),
-		new String[] { UIPreferencesService.PROP_CONTROLS },
-		serverPEditorRestrictions);
-	// Url to be added to configurations/ui.dm/main menu: /UI Preferences
-	// Editor|http://www.ent.hr|http://ontology.universaal.org/InteractionPreferencesProfile.owl#UIPreferencesService
-	profiles[0] = InitialServiceDialog.createInitialDialogProfile(
-		UIPreferencesService.MY_URI, "http://www.ent.hr",
-		"UI Preferences dialog", START_UI);
-	return profiles;
-    }
+		addRestriction((MergedRestriction) UIPreferencesService
+				.getClassRestrictionsOnProperty(UIPreferencesService.MY_URI, UIPreferencesService.PROP_CONTROLS).copy(),
+				new String[] { UIPreferencesService.PROP_CONTROLS }, serverPEditorRestrictions);
+		// Url to be added to configurations/ui.dm/main menu: /UI Preferences
+		// Editor|http://www.ent.hr|http://ontology.universaal.org/InteractionPreferencesProfile.owl#UIPreferencesService
+		profiles[0] = InitialServiceDialog.createInitialDialogProfile(UIPreferencesService.MY_URI, "http://www.ent.hr",
+				"UI Preferences dialog", START_UI);
+		return profiles;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.universAAL.middleware.owl.ManagedIndividual#getClassURI()
-     */
-    @Override
-    public String getClassURI() {
-	return MY_URI;
-    }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.middleware.owl.ManagedIndividual#getClassURI()
+	 */
+	@Override
+	public String getClassURI() {
+		return MY_URI;
+	}
 
 }

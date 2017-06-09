@@ -32,49 +32,40 @@ import org.universAAL.middleware.service.ServiceResponse;
  * 
  */
 public abstract class QueryService extends AbstractService {
-    /**
-     * For every return value, an ID is needed which is given at the
-     * ServiceServer side when the ServieceResponse is created.
-     */
-    protected String IDforResult;
+	/**
+	 * For every return value, an ID is needed which is given at the
+	 * ServiceServer side when the ServieceResponse is created.
+	 */
+	protected String IDforResult;
 
-    /**
-     * This method tries to get a return value from the response, and returns
-     * null if there is none.
-     */
-    @Override
-    public final Collection<?> handleResponse(final ServiceResponse response) {
-	if (response.getCallStatus() == CallStatus.succeeded) {
-	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-		    "handleResponse", new Object[] { "succeeded" }, null);
-	    try {
-		Collection<?> returnedList = response.getOutput(IDforResult,
-			true);
-		if (returnedList == null || returnedList.size() == 0) {
-		    LogUtils
-			    .logInfo(
-				    LoggerWithModuleContext.mc,
-				    this.getClass(),
-				    "handleResponse",
-				    new Object[] { "there are no return values, returning null..." },
-				    null);
-		    return null;
+	/**
+	 * This method tries to get a return value from the response, and returns
+	 * null if there is none.
+	 */
+	@Override
+	public final Collection<?> handleResponse(final ServiceResponse response) {
+		if (response.getCallStatus() == CallStatus.succeeded) {
+			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "handleResponse",
+					new Object[] { "succeeded" }, null);
+			try {
+				Collection<?> returnedList = response.getOutput(IDforResult, true);
+				if (returnedList == null || returnedList.size() == 0) {
+					LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "handleResponse",
+							new Object[] { "there are no return values, returning null..." }, null);
+					return null;
+				}
+				return returnedList;
+			} catch (Exception e) {
+				LogUtils.logError(LoggerWithModuleContext.mc, this.getClass(), "handleResponse",
+						new Object[] { "got exception at the Universaal!", e.getMessage() }, e);
+			}
+		} else {
+			LogUtils.logWarn(LoggerWithModuleContext.mc, this.getClass(), "handleResponse",
+					new Object[] { "callstatus is not succeeded" }, null);
 		}
-		return returnedList;
-	    } catch (Exception e) {
-		LogUtils.logError(LoggerWithModuleContext.mc, this.getClass(),
-			"handleResponse", new Object[] {
-				"got exception at the Universaal!",
-				e.getMessage() }, e);
-	    }
-	} else {
-	    LogUtils.logWarn(LoggerWithModuleContext.mc, this.getClass(),
-		    "handleResponse",
-		    new Object[] { "callstatus is not succeeded" }, null);
+		return null;
 	}
-	return null;
-    }
 
-    public abstract void setServiceRequest(Collection<?> args);
+	public abstract void setServiceRequest(Collection<?> args);
 
 }

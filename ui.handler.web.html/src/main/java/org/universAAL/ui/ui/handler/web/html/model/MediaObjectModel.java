@@ -17,7 +17,6 @@
 
 package org.universAAL.ui.ui.handler.web.html.model;
 
-
 import java.util.Properties;
 
 import org.universAAL.middleware.ui.rdf.MediaObject;
@@ -37,7 +36,7 @@ public class MediaObjectModel extends OutputModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTMLWithoutLabel() {
 		MediaObject mo = (MediaObject) fe;
 		if (mo.getContentType().startsWith("image")) {
@@ -46,30 +45,30 @@ public class MediaObjectModel extends OutputModel {
 				fcProps.put("width", Integer.toString(mo.getResolutionPreferredX()));
 			if (mo.getResolutionPreferredY() > 0)
 				fcProps.put("height", Integer.toString(mo.getResolutionPreferredY()));
-			//TODO set Alt Text with label
-			//TODO set sizes in style from recommendations
+			// TODO set Alt Text with label
+			// TODO set sizes in style from recommendations
 			return singleTag("img", fcProps);
 		}
-		if (mo.getContentType().startsWith("audio")){
+		if (mo.getContentType().startsWith("audio")) {
 			fcProps.put("autoplay", "");
 			Properties src = new Properties();
-			 addSRCProp(null, mo.getContentURL());
+			addSRCProp(null, mo.getContentURL());
 			return tag("audio", singleTag("source", src).append(singleTag("embed", src)), fcProps);
 		}
-		if (mo.getContentType().startsWith("video")){
+		if (mo.getContentType().startsWith("video")) {
 			fcProps.put("autoplay", "");
 			fcProps.put("width", Integer.toString(mo.getResolutionPreferredX()));
 			fcProps.put("height", Integer.toString(mo.getResolutionPreferredY()));
-			//TODO set sizes in style from recommendations
+			// TODO set sizes in style from recommendations
 			Properties src = new Properties();
 			addSRCProp(null, mo.getContentURL());
 			return tag("video", singleTag("source", src).append(singleTag("embed", src)), fcProps);
 		}
-		if (mo.getContentType().equalsIgnoreCase("text/html")){
+		if (mo.getContentType().equalsIgnoreCase("text/html")) {
 			addSRCProp(fcProps, mo.getContentURL());
 			fcProps.put("seamless", "");
-			//TODO set sizes in style from recommendations
-			return tag("iframe","",fcProps);
+			// TODO set sizes in style from recommendations
+			return tag("iframe", "", fcProps);
 		}
 		return new StringBuffer();
 	}

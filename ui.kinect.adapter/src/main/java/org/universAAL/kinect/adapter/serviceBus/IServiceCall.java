@@ -28,14 +28,13 @@ import org.universAAL.kinect.adapter.IMessageBroker.AdapterException;
  * 
  */
 public interface IServiceCall {
-    /**
-     * Calls a service
-     * 
-     * @param ao
-     *            {@link AbstractService}
-     * @return
-     * @throws AdapterException
-     */
-    Collection<?> callservice(AbstractService ao)
-	    throws AdapterException;
+	/**
+	 * Calls a service
+	 * 
+	 * @param ao
+	 *            {@link AbstractService}
+	 * @return
+	 * @throws AdapterException
+	 */
+	Collection<?> callservice(AbstractService ao) throws AdapterException;
 }

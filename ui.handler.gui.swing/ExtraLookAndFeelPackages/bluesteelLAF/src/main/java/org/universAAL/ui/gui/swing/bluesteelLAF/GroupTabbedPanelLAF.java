@@ -45,55 +45,46 @@ public class GroupTabbedPanelLAF extends GroupTabbedPanelModel {
 
 	@Override
 	public void update() {
-		//super.update();
+		// super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-        jc.getAccessibleContext();
-        jc.setFont(color.getplain());
-    	JTabbedPane tp = (JTabbedPane) jc;
-    	tp.removeAll();
-    	FormControl[] children = ((Group) fc).getChildren();
-        JPanel pane;
-        for (int i = 0; i < children.length; i++) {
-            if (children[i] instanceof Group) {
-                JComponent childComponent = getComponentFrom(children[i]);
-                if (childComponent instanceof JPanel) {
-                    pane = ((JPanel) childComponent);
-                    pane.setBorder(null);
-                }
-                else if (childComponent instanceof JTabbedPane){
-                    pane = new JPanel();
-                    ((JTabbedPane) childComponent).setTabPlacement(JTabbedPane.LEFT);
-                    pane.add(childComponent);
-                }
-                else{
-                    pane = new JPanel();
-                }
-                
-            }
-            else {
-                pane = new JPanel(false);
-                addComponentTo(children[i], pane);
-            }
-            // add ScrollPane
-            JScrollPane sp = new JScrollPane(pane,
-            		JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-            		JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
-            sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
-            sp.setOpaque(false);
-            // sp.setBorder(null);
-            sp.getViewport().setOpaque(false);
-            // resize Icon
-            Icon icon =IconFactory.getIcon(children[i].getLabel().getIconURL());
-            // finally add Tab
-            tp.addTab(children[i].getLabel().getText(),
-                    IconFactory.resizeIcon(icon,
-                    		color.getLabelIconSize(),
-                    		color.getLabelIconSize()),
-                    sp);
-        }
+		jc.getAccessibleContext();
+		jc.setFont(color.getplain());
+		JTabbedPane tp = (JTabbedPane) jc;
+		tp.removeAll();
+		FormControl[] children = ((Group) fc).getChildren();
+		JPanel pane;
+		for (int i = 0; i < children.length; i++) {
+			if (children[i] instanceof Group) {
+				JComponent childComponent = getComponentFrom(children[i]);
+				if (childComponent instanceof JPanel) {
+					pane = ((JPanel) childComponent);
+					pane.setBorder(null);
+				} else if (childComponent instanceof JTabbedPane) {
+					pane = new JPanel();
+					((JTabbedPane) childComponent).setTabPlacement(JTabbedPane.LEFT);
+					pane.add(childComponent);
+				} else {
+					pane = new JPanel();
+				}
+
+			} else {
+				pane = new JPanel(false);
+				addComponentTo(children[i], pane);
+			}
+			// add ScrollPane
+			JScrollPane sp = new JScrollPane(pane, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+					JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+			sp.getVerticalScrollBar().setPreferredSize(new Dimension(50, 50));
+			sp.getHorizontalScrollBar().setPreferredSize(new Dimension(50, 50));
+			sp.setOpaque(false);
+			// sp.setBorder(null);
+			sp.getViewport().setOpaque(false);
+			// resize Icon
+			Icon icon = IconFactory.getIcon(children[i].getLabel().getIconURL());
+			// finally add Tab
+			tp.addTab(children[i].getLabel().getText(),
+					IconFactory.resizeIcon(icon, color.getLabelIconSize(), color.getLabelIconSize()), sp);
+		}
 	}
-	
-	
 
 }

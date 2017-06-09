@@ -28,7 +28,6 @@ import javax.swing.border.EmptyBorder;
 
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
-
 /**
  * @author amedrano
  *
@@ -39,29 +38,26 @@ public class MyButton extends JButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	public MyButton(String text,
-			Icon icon, Color border, Color normalF, Color normalB,
-			Color enterF, Color enterB, Color clickF, Color clickB) {
+
+	public MyButton(String text, Icon icon, Color border, Color normalF, Color normalB, Color enterF, Color enterB,
+			Color clickF, Color clickB) {
 		super(text, icon);
 		setMyButtonBehaviour(this, border, normalF, normalB, enterF, enterB, clickF, clickB);
 	}
 
-	public void scaleIcon( int width, int height){
-	   setIcon(IconFactory.resizeIcon(getIcon(), width, height));
+	public void scaleIcon(int width, int height) {
+		setIcon(IconFactory.resizeIcon(getIcon(), width, height));
 	}
-	
-	public static void setMyButtonBehaviour(JButton button, Color border, Color normalF, Color normalB,
-			Color enterF, Color enterB, Color clickF, Color clickB){
+
+	public static void setMyButtonBehaviour(JButton button, Color border, Color normalF, Color normalB, Color enterF,
+			Color enterB, Color clickF, Color clickB) {
 		button.getAccessibleContext();
-		button.setBorder(new CompoundBorder(BorderFactory
-				.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
+		button.setBorder(new CompoundBorder(BorderFactory.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
 		button.setForeground(normalF);
 		button.setBackground(normalB);
-		button.addMouseListener(new MyMouseAdatper(border, normalF, normalB,
-				enterF, enterB, clickF, clickB));
+		button.addMouseListener(new MyMouseAdatper(border, normalF, normalB, enterF, enterB, clickF, clickB));
 	}
-	
+
 	protected static class MyMouseAdatper extends MouseAdapter {
 
 		private Color normalF;
@@ -72,8 +68,8 @@ public class MyButton extends JButton {
 		private Color clickB;
 		private Color border;
 
-		public MyMouseAdatper(Color border, Color normalF, Color normalB,
-				Color enterF, Color enterB, Color clickF, Color clickB) {
+		public MyMouseAdatper(Color border, Color normalF, Color normalB, Color enterF, Color enterB, Color clickF,
+				Color clickB) {
 			this.border = border;
 			this.normalF = normalF;
 			this.normalB = normalB;
@@ -91,8 +87,7 @@ public class MyButton extends JButton {
 
 		public void mouseExited(MouseEvent e) {
 			JComponent src = (JComponent) e.getSource();
-			src.setBorder(new CompoundBorder(BorderFactory
-					.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
+			src.setBorder(new CompoundBorder(BorderFactory.createLineBorder(border), new EmptyBorder(10, 10, 10, 10)));
 			src.setForeground(normalF);
 			src.setBackground(normalB);
 		}

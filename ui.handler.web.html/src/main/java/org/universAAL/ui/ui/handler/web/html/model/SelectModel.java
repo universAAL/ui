@@ -40,61 +40,57 @@ public class SelectModel extends InputModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateInputHTML() {
 		// XXX only select, have second rendering option with checkboxes.
 		return selectHTML();
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public boolean updateInput(String[] value) {
 		Select s = (Select) fe;
 		ArrayList newValues = new ArrayList();
-		Label[] opts = s.getChoices(); //ONLY FLAT Selection trees.
+		Label[] opts = s.getChoices(); // ONLY FLAT Selection trees.
 		for (int i = 0; i < value.length; i++) {
 			int idx = Integer.parseInt(value[i]);
-			newValues.add(((ChoiceItem)opts[idx]).getValue());
+			newValues.add(((ChoiceItem) opts[idx]).getValue());
 		}
 		return s.storeUserInput(newValues);
 	}
-	
-	private StringBuffer selectHTML(){
+
+	private StringBuffer selectHTML() {
 		fcProps.put("multiple", "");
 		return tag("select", selectOptionsHTML(), fcProps);
 	}
-	
-	protected StringBuffer selectOptionsHTML(){
+
+	protected StringBuffer selectOptionsHTML() {
 		List selected;
 		Object val = ((Select) fe).getValue();
-		if (val instanceof List){
+		if (val instanceof List) {
 			selected = new ArrayList((List) val);
-		}
-		else if (val instanceof Object[]){
+		} else if (val instanceof Object[]) {
 			selected = new ArrayList();
-			for (int i = 0; i < ((Object[]) val).length; i++){
+			for (int i = 0; i < ((Object[]) val).length; i++) {
 				selected.add(((Object[]) val)[i]);
 			}
-		}
-		else {
+		} else {
 			selected = new ArrayList();
 			if (val != null) {
 				selected.add(val);
 			}
 		}
-		
+
 		Select s = (Select) fe;
 		StringBuffer options = new StringBuffer();
-		Label[] opts = s.getChoices(); //ONLY FLAT Selection trees.
+		Label[] opts = s.getChoices(); // ONLY FLAT Selection trees.
 		for (int i = 0; i < opts.length; i++) {
 			Properties p = new Properties();
 			p.put("value", Integer.toString(i));
-			if (selected.contains(((ChoiceItem)opts[i]).getValue())) {
+			if (selected.contains(((ChoiceItem) opts[i]).getValue())) {
 				p.put("selected", "");
 			}
-			LabelModel lm = ((LabelModel)getRenderer().getModelMapper().getModelFor(opts[i]));
-			options.append(tag("option",
-					lm.getImgText(),
-					p));
+			LabelModel lm = ((LabelModel) getRenderer().getModelMapper().getModelFor(opts[i]));
+			options.append(tag("option", lm.getImgText(), p));
 		}
 		return options;
 	}

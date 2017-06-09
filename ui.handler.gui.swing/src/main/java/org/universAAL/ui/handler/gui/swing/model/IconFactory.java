@@ -26,50 +26,45 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 
 /**
- * Entry point for all icon URL.
- * implements the searching procedure for icon files.
+ * Entry point for all icon URL. implements the searching procedure for icon
+ * files.
  *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
 public class IconFactory {
 
-    /**
-     * search for the icon in different repositories, when
-     * url is relative.
-     * @param url
-     *             url of the resource from where to get the icon
-     * @return
-     *         the {@link ImageIcon} referenced by the URL
-     *         null if url is empty, or the file is not found.
-     */
-    public static Icon getIcon(String url) {
-        if (url != null && !url.isEmpty()) {
-            try {
-            	URL ur = ResourceMapper.search(url);
-            	if (ur != null
-            			&& ur.getProtocol().equals("file")) {
-            		return new ImageIcon(ur.getPath());
-            	}
-            	else if (ur != null){
-            		return new ImageIcon(ur);
-            	}
+	/**
+	 * search for the icon in different repositories, when url is relative.
+	 * 
+	 * @param url
+	 *            url of the resource from where to get the icon
+	 * @return the {@link ImageIcon} referenced by the URL null if url is empty,
+	 *         or the file is not found.
+	 */
+	public static Icon getIcon(String url) {
+		if (url != null && !url.isEmpty()) {
+			try {
+				URL ur = ResourceMapper.search(url);
+				if (ur != null && ur.getProtocol().equals("file")) {
+					return new ImageIcon(ur.getPath());
+				} else if (ur != null) {
+					return new ImageIcon(ur);
+				}
 			} catch (Exception e) {
-				LogUtils.logWarn(
-						Renderer.getContext(),
-						IconFactory.class, "getIcon",
-						new String[] {"unable to load Image:" + url}, e);
+				LogUtils.logWarn(Renderer.getContext(), IconFactory.class, "getIcon",
+						new String[] { "unable to load Image:" + url }, e);
 			}
-        }
-        return null;
-    }
-    
-    public static Icon resizeIcon(Icon icon, int width, int height){
-    	Icon output = null;
-    	if (icon != null){
-        	Image img = ((ImageIcon) icon).getImage();  
-        	Image newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH );  
-        	output  = new ImageIcon( newimg );
-        }
-    	return output;
-    }
+		}
+		return null;
+	}
+
+	public static Icon resizeIcon(Icon icon, int width, int height) {
+		Icon output = null;
+		if (icon != null) {
+			Image img = ((ImageIcon) icon).getImage();
+			Image newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+			output = new ImageIcon(newimg);
+		}
+		return output;
+	}
 }

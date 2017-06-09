@@ -24,82 +24,80 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.RepeatModelTableLA
 import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 public class TableTest2 extends JFrame {
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 5693849204938097813L;
-    private static final String PREFIX = "http://example.com/Dable.owl#";
-    private static final String PROP_TABLE = PREFIX + "table";
-    private static final String PROP_COL = PREFIX + "column";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5693849204938097813L;
+	private static final String PREFIX = "http://example.com/Dable.owl#";
+	private static final String PROP_TABLE = PREFIX + "table";
+	private static final String PROP_COL = PREFIX + "column";
 	private static final String SWITCH_TO_CALL_PREFIX = "urn:ui.dm:UICaller:switchTo#";
 
-    private RepeatModelTable rmt;
+	private RepeatModelTable rmt;
 
-    private TestRenderer render;
+	private TestRenderer render;
 
-    public TableTest2() {
-    	ModuleContext mc = new JUnitModuleContext();
-	render = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
+	public TableTest2() {
+		ModuleContext mc = new JUnitModuleContext();
+		render = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 
-	List rows = new ArrayList();
-	Resource cell = new Resource();
-	cell.setProperty(PROP_COL + "1", new Integer(1));
-	cell.setProperty(PROP_COL + "2", "two");
-	cell.setProperty(PROP_COL + "3", new Float(3));
-	rows.add(cell);
-	// ...
-	cell = new Resource();
-	cell.setProperty(PROP_COL + "1", new Integer(2));
-	cell.setProperty(PROP_COL + "2", "three");
-	cell.setProperty(PROP_COL + "3", new Float(4));
-	rows.add(cell);
-	// ...
-	cell = new Resource();
-	cell.setProperty(PROP_COL + "1", new Integer(3));
-	cell.setProperty(PROP_COL + "2", "four");
-	cell.setProperty(PROP_COL + "3", new Float(5));
-	rows.add(cell);
-	Resource dataRoot = new Resource();
-	dataRoot.setProperty(PROP_TABLE, rows);
-	Form f = Form.newDialog("test", dataRoot);
-	Repeat repeat = new Repeat(f.getIOControls(), new Label("table", null),
-		new PropertyPath(null, false, new String[] { PROP_TABLE }),
-		null, null);
-	// new Repeat(g, new Label(userDM
-	// .getString("UICaller.pendingDialogs"), null),
-	// new PropertyPath(null, false,
-	// new String[] { PROP_DLG_LIST_DIALOG_LIST }),
-	// null, null);
-	Group row = new Group(repeat, null, null, null, null);
-	new SimpleOutput(row, new Label("col1", null), new PropertyPath(null,
-		false, new String[] { PROP_COL + "1" }), null);
-	new SimpleOutput(row, new Label("col2", null), new PropertyPath(null,
-		false, new String[] { PROP_COL + "2" }), null);
-	new SimpleOutput(row, new Label("col3", null), new PropertyPath(null,
-		false, new String[] { PROP_COL + "3" }), null);
-	new SubdialogTrigger(row, new Label("button", null),
-			SubdialogTrigger.VAR_REPEATABLE_ID)
-	.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
+		List rows = new ArrayList();
+		Resource cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(1));
+		cell.setProperty(PROP_COL + "2", "two");
+		cell.setProperty(PROP_COL + "3", new Float(3));
+		rows.add(cell);
+		// ...
+		cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(2));
+		cell.setProperty(PROP_COL + "2", "three");
+		cell.setProperty(PROP_COL + "3", new Float(4));
+		rows.add(cell);
+		// ...
+		cell = new Resource();
+		cell.setProperty(PROP_COL + "1", new Integer(3));
+		cell.setProperty(PROP_COL + "2", "four");
+		cell.setProperty(PROP_COL + "3", new Float(5));
+		rows.add(cell);
+		Resource dataRoot = new Resource();
+		dataRoot.setProperty(PROP_TABLE, rows);
+		Form f = Form.newDialog("test", dataRoot);
+		Repeat repeat = new Repeat(f.getIOControls(), new Label("table", null),
+				new PropertyPath(null, false, new String[] { PROP_TABLE }), null, null);
+		// new Repeat(g, new Label(userDM
+		// .getString("UICaller.pendingDialogs"), null),
+		// new PropertyPath(null, false,
+		// new String[] { PROP_DLG_LIST_DIALOG_LIST }),
+		// null, null);
+		Group row = new Group(repeat, null, null, null, null);
+		new SimpleOutput(row, new Label("col1", null), new PropertyPath(null, false, new String[] { PROP_COL + "1" }),
+				null);
+		new SimpleOutput(row, new Label("col2", null), new PropertyPath(null, false, new String[] { PROP_COL + "2" }),
+				null);
+		new SimpleOutput(row, new Label("col3", null), new PropertyPath(null, false, new String[] { PROP_COL + "3" }),
+				null);
+		new SubdialogTrigger(row, new Label("button", null), SubdialogTrigger.VAR_REPEATABLE_ID)
+				.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
 
-	//rtm = new RepeatTableModel(repeat);
-	rmt = new RepeatModelTableLAF(repeat, render);
-//	System.out.println("Table (" + rtm.getColumnCount() + ", "
-//		+ rtm.getRowCount() + ")");
-	getContentPane().add(rmt.getComponent());
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+		// rtm = new RepeatTableModel(repeat);
+		rmt = new RepeatModelTableLAF(repeat, render);
+		// System.out.println("Table (" + rtm.getColumnCount() + ", "
+		// + rtm.getRowCount() + ")");
+		getContentPane().add(rmt.getComponent());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
 
-    public static void main(String[] arg) {
-	ModuleContext mc = new JUnitModuleContext();
+	public static void main(String[] arg) {
+		ModuleContext mc = new JUnitModuleContext();
 
-	OntologyManagement.getInstance().register(mc, new DataRepOntology());
-	OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
-	TableTest2 m = new TableTest2();
+		TableTest2 m = new TableTest2();
 
-	m.setVisible(true);
-	m.setSize(new Dimension(600, 300));
-	m.validate();
-    }
+		m.setVisible(true);
+		m.setSize(new Dimension(600, 300));
+		m.validate();
+	}
 
 }

@@ -151,7 +151,7 @@ public interface MessageConstants {
 	 * 
 	 */
 	public static final String SEARCHABLE_AGGREGATED_MAIN_MENU_PROVIDER_SEARCH = "SearchableAggregatedMainMenuProvider.search";
-	
+
 	public static final String MESSAGE_FORM_DELETE = "MessageForm.delete";
 	public static final String MESSAGE_FORM_DELETE_ICON = "MessageForm.delete.icon";
 	public static final String MESSAGE_FORM_DELETE_HELP = "MessageForm.delete.help";

@@ -38,29 +38,24 @@ public class TestGenerator extends HTMLUserGenerator {
 	 */
 	public TestGenerator(ModuleContext mc) {
 		super();
-		
+
 		this.properties = new Properties();
 		properties.put(HTTPHandlerService.SERVICE_URL, "/universAAL");
 		properties.put(HTTPHandlerService.RESOURCES_LOC, "./target/cache/");
-		properties.put(HTTPHandlerService.CSS_LOCATION, 
-        		this.getClass().getClassLoader().getResource("default.css").toString());
+		properties.put(HTTPHandlerService.CSS_LOCATION,
+				this.getClass().getClassLoader().getResource("default.css").toString());
 		properties.put(HTTPHandlerService.TIMEOUT, "300000");
-		
-	    //Create the Model Mapper
-	    LogUtils.logDebug(getModuleContext(), getClass(),
-	    		"Constructor ",
-	    		"Initialising ModelMapper");
-	    modelMapper = new ModelMapper(this);
-		   
-	    //Create the formManager
-	    LogUtils.logDebug(getModuleContext(), getClass(),
-	    		"Constructor ",
-	    		"Initialising FormManager");
-	    fm = new SimpleFormManager();    
-	    
 
-	    missingInputs = new HashSet();
-		
+		// Create the Model Mapper
+		LogUtils.logDebug(getModuleContext(), getClass(), "Constructor ", "Initialising ModelMapper");
+		modelMapper = new ModelMapper(this);
+
+		// Create the formManager
+		LogUtils.logDebug(getModuleContext(), getClass(), "Constructor ", "Initialising FormManager");
+		fm = new SimpleFormManager();
+
+		missingInputs = new HashSet();
+
 	}
 
 }

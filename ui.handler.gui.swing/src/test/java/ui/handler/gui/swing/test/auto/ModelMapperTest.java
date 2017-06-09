@@ -54,29 +54,29 @@ public class ModelMapperTest extends TestCase {
 	private ModuleContext mc;
 
 	public void setUp() {
-	    mc = new JUnitModuleContext();
-	    
+		mc = new JUnitModuleContext();
+
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
 		OntologyManagement.getInstance().register(mc, new UIBusOntology());
 
 		root = Form.newDialog("root", new Resource());
 		Label l = new Label("some Label", null);
 		new SimpleOutput(root.getIOControls(), l, null, "simple Text Output");
-		testRenderer = new TestRenderer(mc,TestRenderer.SIMPLE_MANAGER);
+		testRenderer = new TestRenderer(mc, TestRenderer.SIMPLE_MANAGER);
 		mp = testRenderer.getModelMapper();
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link Form} it will return the component that renders it:
-	 * {@link FormLAF}
+	 * When the {@link ModelMapper} is provided with {@link Form} it will return
+	 * the component that renders it: {@link FormLAF}
 	 */
 	public void testForm() {
 		assertTrue(mp.getModelFor(root) instanceof FormLAF);
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link Label} it will return the component that renders it:
-	 * {@link LabelLAF}
+	 * When the {@link ModelMapper} is provided with {@link Label} it will
+	 * return the component that renders it: {@link LabelLAF}
 	 */
 	public void testLabel() {
 		Label l = root.getIOControls().getChildren()[0].getLabel();
@@ -84,8 +84,9 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl}, included in the default UI RDF set,
-	 * it will return the component that renders it. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl},
+	 * included in the default UI RDF set, it will return the component that
+	 * renders it. <br>
 	 * In this test {@link SimpleOutput} -> {@link SimpleOutputLAF}
 	 */
 	public void testExistingDefaultFormControl() {
@@ -94,8 +95,9 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
-	 * there is a component that will render it, it will return that component. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
+	 * an extension of the UI RDF, and there is a component that will render it,
+	 * it will return that component. <br>
 	 * In this test {@link SimpleOutput} -> {@link SimpleOutputLAF}
 	 */
 	public void testExistingFormControlExtension() {
@@ -104,10 +106,12 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	/**
-	 * When the {@link ModelMapper} is provided with {@link FormControl} that is an extension of the UI RDF, and 
-	 * there is no component that will render it, it will return the first in component the parent linage that 
-	 * is capable of rendering it. <br>
+	 * When the {@link ModelMapper} is provided with {@link FormControl} that is
+	 * an extension of the UI RDF, and there is no component that will render
+	 * it, it will return the first in component the parent linage that is
+	 * capable of rendering it. <br>
 	 * In this test {@link TestExtensionOfGroup} -> {@link GroupLAF}
+	 * 
 	 * @see ModelMapperTest#testHierarchicalNonExistingFormControlExtension()
 	 */
 	public void testNonExistingFormControlExtension() {
@@ -163,10 +167,8 @@ public class ModelMapperTest extends TestCase {
 	}
 
 	private void warn() {
-		LogUtils.logWarn(mc, getClass(), "testing",
-				new String[] {"some errors may appear continued,",
-			" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!"},
-				null);
-		
+		LogUtils.logWarn(mc, getClass(), "testing", new String[] { "some errors may appear continued,",
+				" THEY SHOULD APPEAR as they are PART OF THE TEST!!!!" }, null);
+
 	}
 }

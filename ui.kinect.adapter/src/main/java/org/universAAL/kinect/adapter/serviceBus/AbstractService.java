@@ -33,28 +33,28 @@ import org.universAAL.middleware.service.ServiceResponse;
  */
 public abstract class AbstractService {
 
-    protected ServiceRequest servicerequest;
+	protected ServiceRequest servicerequest;
 
-    public final ServiceRequest getServiceRequest() {
-	return servicerequest;
-    }
+	public final ServiceRequest getServiceRequest() {
+		return servicerequest;
+	}
 
-    /**
-     * This method converts a collection of arguments into a
-     * {@link ServiceRequest}.
-     * 
-     * @param args
-     *            Arguments used for creating the {@link ServiceRequest}
-     */
-    public abstract void setServiceRequest(Collection<?> args);
+	/**
+	 * This method converts a collection of arguments into a
+	 * {@link ServiceRequest}.
+	 * 
+	 * @param args
+	 *            Arguments used for creating the {@link ServiceRequest}
+	 */
+	public abstract void setServiceRequest(Collection<?> args);
 
-    /**
-     * This method converts a ServiceResponse into a collection of objects
-     * 
-     * @param response
-     *            A {@link ServiceResponse} to process
-     * @return The collection of objects extracted from the given response
-     */
-    public abstract Collection<?> handleResponse(ServiceResponse response);
+	/**
+	 * This method converts a ServiceResponse into a collection of objects
+	 * 
+	 * @param response
+	 *            A {@link ServiceResponse} to process
+	 * @return The collection of objects extracted from the given response
+	 */
+	public abstract Collection<?> handleResponse(ServiceResponse response);
 
 }

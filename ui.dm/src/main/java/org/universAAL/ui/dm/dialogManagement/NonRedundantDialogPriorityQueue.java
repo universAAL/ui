@@ -31,36 +31,36 @@ import org.universAAL.middleware.ui.rdf.Form;
  */
 public class NonRedundantDialogPriorityQueue extends DialogPriorityQueue {
 
-    Map<String, UIRequest> formMap;
+	Map<String, UIRequest> formMap;
 
-    public NonRedundantDialogPriorityQueue() {
-	super();
-	formMap = new HashMap<String, UIRequest>();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void add(UIRequest UIReq) {
-	String formURI = UIReq.getDialogForm().getURI();
-	if (!formMap.containsKey(formURI)) {
-	    formMap.put(formURI, UIReq);
-	    super.add(UIReq);
-	} else {
-	    UIRequest oldReq = formMap.get(formURI);
-	    formMap.remove(formURI);
-	    super.close(oldReq.getDialogID());
-	    formMap.put(formURI, UIReq);
-	    super.add(UIReq);
+	public NonRedundantDialogPriorityQueue() {
+		super();
+		formMap = new HashMap<String, UIRequest>();
 	}
-    }
 
-    /** {@inheritDoc} */
-    @Override
-    public void close(String UIReqID) {
-	UIRequest req = get(UIReqID);
-	if (req != null) {
-	    formMap.remove(req.getDialogForm().getURI());
+	/** {@inheritDoc} */
+	@Override
+	public void add(UIRequest UIReq) {
+		String formURI = UIReq.getDialogForm().getURI();
+		if (!formMap.containsKey(formURI)) {
+			formMap.put(formURI, UIReq);
+			super.add(UIReq);
+		} else {
+			UIRequest oldReq = formMap.get(formURI);
+			formMap.remove(formURI);
+			super.close(oldReq.getDialogID());
+			formMap.put(formURI, UIReq);
+			super.add(UIReq);
+		}
 	}
-	super.close(UIReqID);
-    }
+
+	/** {@inheritDoc} */
+	@Override
+	public void close(String UIReqID) {
+		UIRequest req = get(UIReqID);
+		if (req != null) {
+			formMap.remove(req.getDialogForm().getURI());
+		}
+		super.close(UIReqID);
+	}
 }

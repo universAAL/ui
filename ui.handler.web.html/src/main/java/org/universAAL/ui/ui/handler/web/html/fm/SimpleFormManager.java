@@ -36,86 +36,84 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  */
 public class SimpleFormManager implements FormManager {
 
-    /**
-     * the current {@link UIRequest} being processed
-     */
-    private UIRequest currentForm = null;
+	/**
+	 * the current {@link UIRequest} being processed
+	 */
+	private UIRequest currentForm = null;
 
-    /**
-     * the {@link HTMLUserGenerator} reference
-     */
-//    private HTMLUserGenerator render;
+	/**
+	 * the {@link HTMLUserGenerator} reference
+	 */
+	// private HTMLUserGenerator render;
 
-    /** {@inheritDoc} */
-    public void addDialog(UIRequest oe) {
-    	synchronized (this) {
-    		currentForm = oe;
-    		// add to available forms
-    		this.notifyAll();
-    	}
-    }
-
-    /** {@inheritDoc} */
-    public UIRequest getCurrentDialog() {
-	return currentForm;
-    }
-
-    /** {@inheritDoc} */
-    public void closeCurrentDialog() {
-	if (currentForm != null) {
-		// remove from available forms
-	    currentForm = null;
+	/** {@inheritDoc} */
+	public void addDialog(UIRequest oe) {
+		synchronized (this) {
+			currentForm = oe;
+			// add to available forms
+			this.notifyAll();
+		}
 	}
-    }
 
-    /** {@inheritDoc} */
-    public void flush() {
-		//remove all from available forms
-    	currentForm = null;
-    }
+	/** {@inheritDoc} */
+	public UIRequest getCurrentDialog() {
+		return currentForm;
+	}
 
-    /** {@inheritDoc} */
-    public Resource cutDialog(String dialogID) {
-	// Return the Form Data.
-	if (currentForm != null && currentForm.getDialogID().equals(dialogID)
-		&& currentForm.getDialogForm() != null) {
-		// remove from available forms
-		Resource r = currentForm.getDialogForm().getData();
+	/** {@inheritDoc} */
+	public void closeCurrentDialog() {
+		if (currentForm != null) {
+			// remove from available forms
+			currentForm = null;
+		}
+	}
+
+	/** {@inheritDoc} */
+	public void flush() {
+		// remove all from available forms
 		currentForm = null;
-	    return r;
-	}
-	return null;
-    }
-
-    public Form getParentOf(String formURI) {
-	return null;
-    }
-
-    public void setRenderer(HTMLUserGenerator renderer) {
-//	render = renderer;
-    }
-
-    public void missingInput(Input input) {
-	 // reschedule with missing input info.
-    }
-
-    public void adaptationParametersChanged(String dialogID,
-	    String changedProp, Object newVal) {
-	if (currentForm != null && dialogID.equals(currentForm.getDialogID())) {
-	    // reschedule form.
 	}
 
-    }
+	/** {@inheritDoc} */
+	public Resource cutDialog(String dialogID) {
+		// Return the Form Data.
+		if (currentForm != null && currentForm.getDialogID().equals(dialogID) && currentForm.getDialogForm() != null) {
+			// remove from available forms
+			Resource r = currentForm.getDialogForm().getData();
+			currentForm = null;
+			return r;
+		}
+		return null;
+	}
 
-    /** {@ inheritDoc}	 */
-    public Collection getAllDialogs() {
-    	if (currentForm == null){
-    		return Collections.emptyList();
-    	} else {
-    		List a = new ArrayList();
-    		a.add(currentForm);
-    		return a;
-    	}
-    }
+	public Form getParentOf(String formURI) {
+		return null;
+	}
+
+	public void setRenderer(HTMLUserGenerator renderer) {
+		// render = renderer;
+	}
+
+	public void missingInput(Input input) {
+		// reschedule with missing input info.
+	}
+
+	public void adaptationParametersChanged(String dialogID, String changedProp, Object newVal) {
+		if (currentForm != null && dialogID.equals(currentForm.getDialogID())) {
+			// reschedule form.
+		}
+
+	}
+
+	/** {@ inheritDoc} */
+	public Collection getAllDialogs() {
+		if (currentForm == null) {
+			return Collections.emptyList();
+		} else {
+			List a = new ArrayList();
+			a.add(currentForm);
+			return a;
+		}
+	}
 
 }

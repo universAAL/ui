@@ -15,7 +15,6 @@
  ******************************************************************************/
 package org.universAAL.ui.handler.gui.swing.model.FormControl;
 
-
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
@@ -27,65 +26,61 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
- * Specific {@link Model} for {@link Group}s to be rendered as {@link JTabbedPane}.
+ * Specific {@link Model} for {@link Group}s to be rendered as
+ * {@link JTabbedPane}.
+ * 
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
-public abstract class GroupTabbedPanelModel extends GroupModel {	
-	
-    /**
-     * Constructor.
-     * @param control the {@link Group} which to model.
-     */
-    public GroupTabbedPanelModel(Group control, Renderer render) {
-        super(control, render);
-    }
+public abstract class GroupTabbedPanelModel extends GroupModel {
 
-    /**
-     * create a tabbed panel with diferent groups
-     * in different pannels.
-     * @return
-     *         a {@link JTabbedPane} with children groups
-     * as panels
-     */
-    public JComponent getNewComponent() {
-        JTabbedPane tp = new JTabbedPane();
-        return tp;
-    }
-    
-    /**
-     * Update a tabbed panel with diferent groups
-     * in different pannels.
-     */
-    public void update() {
-    	JTabbedPane tp = (JTabbedPane) jc;
-    	tp.removeAll();
-    	FormControl[] children = ((Group) fc).getChildren();
-        JPanel pane;
-        for (int i = 0; i < children.length; i++) {
-            if (children[i] instanceof Group) {
-                JComponent childComponent = getComponentFrom(children[i]);
-                if (childComponent instanceof JPanel) {
-                    pane = (JPanel) childComponent;
-                }
-                else if (childComponent instanceof JTabbedPane){
-                    pane = new JPanel();
-                    pane.add(childComponent);
-                    // XXX: test if the above needs more
-                }
-                else{
-                    pane = new JPanel();
-                }
-                
-            }
-            else {
-                pane = new JPanel(false);
-                addComponentTo(children[i], pane);
-            }
-            tp.addTab(children[i].getLabel().getText(),
-                    IconFactory.getIcon(children[i].getLabel().getIconURL()),
-                    pane);
-        }
-    }
-    
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Group} which to model.
+	 */
+	public GroupTabbedPanelModel(Group control, Renderer render) {
+		super(control, render);
+	}
+
+	/**
+	 * create a tabbed panel with diferent groups in different pannels.
+	 * 
+	 * @return a {@link JTabbedPane} with children groups as panels
+	 */
+	public JComponent getNewComponent() {
+		JTabbedPane tp = new JTabbedPane();
+		return tp;
+	}
+
+	/**
+	 * Update a tabbed panel with diferent groups in different pannels.
+	 */
+	public void update() {
+		JTabbedPane tp = (JTabbedPane) jc;
+		tp.removeAll();
+		FormControl[] children = ((Group) fc).getChildren();
+		JPanel pane;
+		for (int i = 0; i < children.length; i++) {
+			if (children[i] instanceof Group) {
+				JComponent childComponent = getComponentFrom(children[i]);
+				if (childComponent instanceof JPanel) {
+					pane = (JPanel) childComponent;
+				} else if (childComponent instanceof JTabbedPane) {
+					pane = new JPanel();
+					pane.add(childComponent);
+					// XXX: test if the above needs more
+				} else {
+					pane = new JPanel();
+				}
+
+			} else {
+				pane = new JPanel(false);
+				addComponentTo(children[i], pane);
+			}
+			tp.addTab(children[i].getLabel().getText(), IconFactory.getIcon(children[i].getLabel().getIconURL()), pane);
+		}
+	}
+
 }

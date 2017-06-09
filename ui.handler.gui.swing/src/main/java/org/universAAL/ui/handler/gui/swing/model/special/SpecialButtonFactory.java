@@ -29,6 +29,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * A class to help manage specialButtons.
+ * 
  * @author amedrano
  *
  */
@@ -37,49 +38,47 @@ public class SpecialButtonFactory {
 	private Renderer render;
 	private List specialButtons;
 
-	public SpecialButtonFactory( Renderer render) {
+	public SpecialButtonFactory(Renderer render) {
 		this.render = render;
 		specialButtons = new ArrayList();
 	}
-	
+
 	/**
-	 * Check if the {@link Submit} s complies with the conditions to be 
+	 * Check if the {@link Submit} s complies with the conditions to be
 	 * considered special by any of the {@link SpecialButtonInterface} in
 	 * {@link SpecialButtonFactory#specialButtons}
-	 * @param s the Submit to check
-	 * @return the {@link SpecialButtonInterface} that considers {@link Submit} s
-	 * to be special, null otherwise.
+	 * 
+	 * @param s
+	 *            the Submit to check
+	 * @return the {@link SpecialButtonInterface} that considers {@link Submit}
+	 *         s to be special, null otherwise.
 	 */
 	public SpecialButtonInterface getSpecialButton(Submit s) {
 		SpecialButtonInterface sbi = null;
 		for (Iterator i = specialButtons.iterator(); i.hasNext() && sbi == null;) {
 			Class classSBI = (Class) i.next();
 			try {
-				sbi = (SpecialButtonInterface) classSBI.getConstructor(
-						new Class[] {Submit.class, Renderer.class})
-						.newInstance(new Object[] {s,render});
+				sbi = (SpecialButtonInterface) classSBI.getConstructor(new Class[] { Submit.class, Renderer.class })
+						.newInstance(new Object[] { s, render });
 			} catch (Exception e) {
-				LogUtils.logError(
-						render.getModuleContext(),
-						getClass(),
-						"getSpecialButton",
-						new String[]{"Could not instanciate SpecialButtonInterface: ",classSBI.getName()},
-						e);
-			} 
-			if (sbi == null
-					|| !sbi.isSpecial()) {
+				LogUtils.logError(render.getModuleContext(), getClass(), "getSpecialButton",
+						new String[] { "Could not instanciate SpecialButtonInterface: ", classSBI.getName() }, e);
+			}
+			if (sbi == null || !sbi.isSpecial()) {
 				sbi = null;
 			}
 		}
 		return sbi;
 	}
-	
+
 	/**
-	 * removes previous {@link ActionListener}s and adds only
-	 * the {@link SpecialButtonInterface} as listener.
-	 * @param ab the {@link AbstractButton} to check.
-	 * @param al the {@link ActionListener} that should manage
-	 * this button.
+	 * removes previous {@link ActionListener}s and adds only the
+	 * {@link SpecialButtonInterface} as listener.
+	 * 
+	 * @param ab
+	 *            the {@link AbstractButton} to check.
+	 * @param al
+	 *            the {@link ActionListener} that should manage this button.
 	 */
 	static public void processListener(AbstractButton ab, ActionListener al) {
 		ActionListener[] all = ab.getActionListeners();
@@ -88,34 +87,36 @@ public class SpecialButtonFactory {
 		}
 		ab.addActionListener(al);
 	}
-	
-	    
-	    /**
-	     * Add a class to create {@link SpecialButtonInterface} listeners when necessary.
-	     * @param specialButton
-	     */
-	    public void add(Class specialButton) {
-	    	boolean isASpecialButton = false;
-	    	Type[] interfaces = specialButton.getGenericInterfaces();
-	    	for (int i = 0; i < interfaces.length; i++) {
-				if(interfaces[i].equals(SpecialButtonInterface.class)) {
-					isASpecialButton = true;
-				}
+
+	/**
+	 * Add a class to create {@link SpecialButtonInterface} listeners when
+	 * necessary.
+	 * 
+	 * @param specialButton
+	 */
+	public void add(Class specialButton) {
+		boolean isASpecialButton = false;
+		Type[] interfaces = specialButton.getGenericInterfaces();
+		for (int i = 0; i < interfaces.length; i++) {
+			if (interfaces[i].equals(SpecialButtonInterface.class)) {
+				isASpecialButton = true;
 			}
-	    	if (isASpecialButton) {
-	    		specialButtons.add(specialButton);
-	    	}
-	    }
-	    
-	    /**
-	     * Get the special button List
-	     * @return
-	     */
-	    public List getSpecialButtList() {
-	    	return specialButtons;
-	    }
-	    
-	    public void remove(Class specialButton) {
-	    	specialButtons.remove(specialButton);
-	    }
+		}
+		if (isASpecialButton) {
+			specialButtons.add(specialButton);
+		}
+	}
+
+	/**
+	 * Get the special button List
+	 * 
+	 * @return
+	 */
+	public List getSpecialButtList() {
+		return specialButtons;
+	}
+
+	public void remove(Class specialButton) {
+		specialButtons.remove(specialButton);
+	}
 }

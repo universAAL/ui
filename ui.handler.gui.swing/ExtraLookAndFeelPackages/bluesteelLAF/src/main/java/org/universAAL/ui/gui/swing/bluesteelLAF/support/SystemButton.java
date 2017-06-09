@@ -14,6 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 package org.universAAL.ui.gui.swing.bluesteelLAF.support;
+
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -27,24 +28,23 @@ public class SystemButton extends RoundedGradientButton {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static final Color LIGHT = new Color (56,142,143);
-	private static final Color DARK = new Color (75,183,185);
-	private static final Color BG = new Color(70,178,180) ;
+	// private static final Color LIGHT = new Color (56,142,143);
+	private static final Color DARK = new Color(75, 183, 185);
+	private static final Color BG = new Color(70, 178, 180);
 
-    public SystemButton(String text, Icon icon) {
-    	super(text, BG, DARK);
-    	setIcon(icon);
-    	scaleIcon(3*ColorLAF.SEPARATOR_SPACE, 3*ColorLAF.SEPARATOR_SPACE);
-        setHorizontalTextPosition(SwingConstants.CENTER);
-        setVerticalTextPosition(SwingConstants.BOTTOM);
-        setForeground(Color.white);
-    }
-    @Override
-    public Dimension getPreferredSize(){
-    	int buttonWidth= 4* ColorLAF.SEPARATOR_SPACE;
-        return new Dimension(buttonWidth, buttonWidth);
-    }
-	
+	public SystemButton(String text, Icon icon) {
+		super(text, BG, DARK);
+		setIcon(icon);
+		scaleIcon(3 * ColorLAF.SEPARATOR_SPACE, 3 * ColorLAF.SEPARATOR_SPACE);
+		setHorizontalTextPosition(SwingConstants.CENTER);
+		setVerticalTextPosition(SwingConstants.BOTTOM);
+		setForeground(Color.white);
 	}
-    
 
+	@Override
+	public Dimension getPreferredSize() {
+		int buttonWidth = 4 * ColorLAF.SEPARATOR_SPACE;
+		return new Dimension(buttonWidth, buttonWidth);
+	}
+
+}

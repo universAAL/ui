@@ -46,8 +46,7 @@ public class RepeatLAF extends RepeatModel {
 		 * take decision Check for Group children and render JTabbedPane
 		 */
 		if (isATable()) {
-			if (((Repeat)fc).listEntriesEditable() 
-					|| containsSubmits()) {
+			if (((Repeat) fc).listEntriesEditable() || containsSubmits()) {
 				grid = new RepeatModelGrid((Repeat) fc, getRenderer());
 				return grid.getNewComponent();
 			} else {
@@ -59,7 +58,7 @@ public class RepeatLAF extends RepeatModel {
 			/*
 			 * children are Group, but not the same length display a tabbedpane
 			 */
-			return new GroupTabbedPanelLAF((Group) fc,getRenderer()).getNewComponent();
+			return new GroupTabbedPanelLAF((Group) fc, getRenderer()).getNewComponent();
 		}
 
 		return null;

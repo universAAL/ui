@@ -24,8 +24,10 @@ import org.universAAL.middleware.ui.rdf.Group;
 import org.universAAL.middleware.ui.rdf.Repeat;
 
 /**
- * This support class is used to generate a list of virtual forms (one per row) so each element of 
- * the repeat ({@link FormControl}) can be Modeled as the rest of {@link FormControl}.
+ * This support class is used to generate a list of virtual forms (one per row)
+ * so each element of the repeat ({@link FormControl}) can be Modeled as the
+ * rest of {@link FormControl}.
+ * 
  * @author amedrano
  * 
  */
@@ -59,15 +61,16 @@ public class RepeatSubdivider {
 
 	}
 
-	public FormControl[] getElems(){
+	public FormControl[] getElems() {
 		return elems;
 	}
-	
+
 	/**
-	 * Generates a {@link List} of (virtual) {@link Form}s which each contains in its IOControls group
-	 * the corresponding row of {@link FormControl}.
-	 * This works because the dataRoot of each form is the corresponding for the row, so each {@link FormControl}
-	 * can be modeled as usual.
+	 * Generates a {@link List} of (virtual) {@link Form}s which each contains
+	 * in its IOControls group the corresponding row of {@link FormControl}.
+	 * This works because the dataRoot of each form is the corresponding for the
+	 * row, so each {@link FormControl} can be modeled as usual.
+	 * 
 	 * @return
 	 */
 	public List generateSubForms() {

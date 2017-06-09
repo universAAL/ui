@@ -33,38 +33,39 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.MediaObjectModel;
  */
 public class MediaObjectLAF extends MediaObjectModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link MediaObject} which to model
-     */
-    public MediaObjectLAF(MediaObject control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link MediaObject} which to model
+	 */
+	public MediaObjectLAF(MediaObject control, Renderer render) {
+		super(control, render);
+	}
 
-    @Override
-    public JComponent getNewComponent() {
-	MediaObject mo = (MediaObject) fc;
-	if (mo.getContentType().startsWith("image")) {
-	    Icon icon = IconFactory.getIcon(mo.getContentURL());
-	    if (icon != null) {
-//	    	ImageMedia im = new ImageMedia(fc.getLabel().getText(), icon);
-	    	 if (icon != null){  	    
-		    	    Image img = ((ImageIcon) icon).getImage() ;  
-		    	    Image newimg = img.getScaledInstance( mo.getResolutionPreferredX(), mo.getResolutionPreferredY(),
-		    	    		java.awt.Image.SCALE_SMOOTH ) ;  
-		    	    icon = new ImageIcon( newimg );
-		    	}
-	    	 JLabel jl = new JLabel(mo.getLabel().getText(), icon, JLabel.CENTER);
-	    	 jl.setVerticalTextPosition(JLabel.BOTTOM);
-	    	 jl.setHorizontalTextPosition(JLabel.CENTER);
-	    	 jl.setOpaque(false);
-	    	 needsLabel = false;
-	    	 return jl;
-	    }
-	} 
-	return super.getNewComponent();
-    }
-    
-    
+	@Override
+	public JComponent getNewComponent() {
+		MediaObject mo = (MediaObject) fc;
+		if (mo.getContentType().startsWith("image")) {
+			Icon icon = IconFactory.getIcon(mo.getContentURL());
+			if (icon != null) {
+				// ImageMedia im = new ImageMedia(fc.getLabel().getText(),
+				// icon);
+				if (icon != null) {
+					Image img = ((ImageIcon) icon).getImage();
+					Image newimg = img.getScaledInstance(mo.getResolutionPreferredX(), mo.getResolutionPreferredY(),
+							java.awt.Image.SCALE_SMOOTH);
+					icon = new ImageIcon(newimg);
+				}
+				JLabel jl = new JLabel(mo.getLabel().getText(), icon, JLabel.CENTER);
+				jl.setVerticalTextPosition(JLabel.BOTTOM);
+				jl.setHorizontalTextPosition(JLabel.CENTER);
+				jl.setOpaque(false);
+				needsLabel = false;
+				return jl;
+			}
+		}
+		return super.getNewComponent();
+	}
 
 }

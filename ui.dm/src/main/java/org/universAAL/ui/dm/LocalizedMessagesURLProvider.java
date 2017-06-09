@@ -35,66 +35,58 @@ import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder;
  */
 public class LocalizedMessagesURLProvider {
 
-    private static LocalizedMessagesURLProvider singleton = null;
+	private static LocalizedMessagesURLProvider singleton = null;
 
-    public LocalizedMessagesURLProvider() {
+	public LocalizedMessagesURLProvider() {
 
-    }
+	}
 
-    public static LocalizedMessagesURLProvider getInstance() {
-	if (singleton == null)
-	    singleton = new LocalizedMessagesURLProvider();
-	return singleton;
-    }
+	public static LocalizedMessagesURLProvider getInstance() {
+		if (singleton == null)
+			singleton = new LocalizedMessagesURLProvider();
+		return singleton;
+	}
 
-    private static final String MSG_FILE_NAME = "messages.properties";
+	private static final String MSG_FILE_NAME = "messages.properties";
 
-    /**
-     * Initializes Url List for obtaining localized messages.
-     * 
-     * @return list of urls where localized messages could be found
-     */
-    public List<URL> getUrlListForObtainingLocalizedMessages() {
-	List<URL> urlList = null;
-	/*
-	 * Get the messages
+	/**
+	 * Initializes Url List for obtaining localized messages.
+	 * 
+	 * @return list of urls where localized messages could be found
 	 */
-	URL messagesFileURL = null;
-	try {
-	    File messagesFile = new File(DialogManagerImpl.getModuleContext().getConfigHome(),
-		    MSG_FILE_NAME);
+	public List<URL> getUrlListForObtainingLocalizedMessages() {
+		List<URL> urlList = null;
+		/*
+		 * Get the messages
+		 */
+		URL messagesFileURL = null;
+		try {
+			File messagesFile = new File(DialogManagerImpl.getModuleContext().getConfigHome(), MSG_FILE_NAME);
 
-	    messagesFileURL = messagesFile.toURI().toURL();
+			messagesFileURL = messagesFile.toURI().toURL();
 
-	} catch (Exception e) {
-	    LogUtils
-		    .logWarn(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "getUrlListForObtainingLocalizedMessages",
-			    new String[] {
-				    "Cannot initialize Dialog Manager externalized strings from configuration folder!",
-				    " Loading from resources" }, e);
+		} catch (Exception e) {
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(),
+					"getUrlListForObtainingLocalizedMessages",
+					new String[] { "Cannot initialize Dialog Manager externalized strings from configuration folder!",
+							" Loading from resources" },
+					e);
 
+		}
+		URL messagesResource = null;
+		try {
+			messagesResource = getClass().getClassLoader().getResource(MSG_FILE_NAME);
+
+		} catch (Exception e1) {
+			LogUtils.logError(DialogManagerImpl.getModuleContext(), getClass(),
+					"initializeUrlListForObtainingLocalizedMessages",
+					new String[] { "Cannot initialize Dialog Manager externalized strings from Resources!",
+							" COME ON! give me a break." },
+					e1);
+		}
+
+		urlList = java.util.Arrays.asList(messagesFileURL, messagesResource);
+
+		return urlList;
 	}
-	URL messagesResource = null;
-	try {
-	    messagesResource = getClass().getClassLoader().getResource(
-		    MSG_FILE_NAME);
-
-	} catch (Exception e1) {
-	    LogUtils
-		    .logError(
-			    DialogManagerImpl.getModuleContext(),
-			    getClass(),
-			    "initializeUrlListForObtainingLocalizedMessages",
-			    new String[] {
-				    "Cannot initialize Dialog Manager externalized strings from Resources!",
-				    " COME ON! give me a break." }, e1);
-	}
-
-	urlList = java.util.Arrays.asList(messagesFileURL, messagesResource);
-
-	return urlList;
-    }
 }

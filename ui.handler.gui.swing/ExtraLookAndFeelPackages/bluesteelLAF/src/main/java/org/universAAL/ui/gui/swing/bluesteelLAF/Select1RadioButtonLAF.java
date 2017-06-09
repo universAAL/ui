@@ -37,24 +37,24 @@ public class Select1RadioButtonLAF extends Select1RadiobuttonModel {
 		super(control, render);
 	}
 
-	public void update(){
+	public void update() {
 		super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-        ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
-        ((JPanel)jc).setLayout(new FormLayout(color.getGap()));
-        needsLabel = false;
-        Component[] comps = ((JPanel)jc).getComponents();
+		ComponentBorder.addLabeledBorder(getLabelModel().getComponent(), jc, color);
+		((JPanel) jc).setLayout(new FormLayout(color.getGap()));
+		needsLabel = false;
+		Component[] comps = ((JPanel) jc).getComponents();
 		for (int i = 0; i < comps.length; i++) {
 			comps[i].setMinimumSize(comps[i].getPreferredSize());
-			((JComponent)comps[i]).setOpaque(false);
-			((JComponent)comps[i]).setToolTipText(((AbstractButton)comps[i]).getText());
+			((JComponent) comps[i]).setOpaque(false);
+			((JComponent) comps[i]).setToolTipText(((AbstractButton) comps[i]).getText());
 		}
 	}
-	
+
 	@Override
 	public void updateAsMissing() {
-	    //XXX change coluo?
-		
+		// XXX change coluo?
+
 	}
 
 }

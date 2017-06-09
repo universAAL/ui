@@ -33,7 +33,6 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  */
 public class AdapterMessageInternationalization implements IAdapter {
 
-
 	private MessageLocaleHelper messageLocaleHelper;
 
 	/**
@@ -43,25 +42,23 @@ public class AdapterMessageInternationalization implements IAdapter {
 		this.messageLocaleHelper = messageLocaleHelper;
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void adapt(UIRequest request) {
 		Form f = request.getDialogForm();
-		if (f.isMessage()){
+		if (f.isMessage()) {
 			Group s = f.getSubmits();
 			FormControl[] fcs = s.getChildren();
 			for (int i = 0; i < fcs.length; i++) {
-				if (fcs[i] instanceof Submit){
+				if (fcs[i] instanceof Submit) {
 					Submit submit = (Submit) fcs[i];
-					if (submit.getID().equals(Form.ACK_MESSAGE_DELET)){
-						Label l = new Label(
-								messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_DELETE),
+					if (submit.getID().equals(Form.ACK_MESSAGE_DELET)) {
+						Label l = new Label(messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_DELETE),
 								messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_DELETE_ICON));
 						submit.setProperty(Submit.PROP_CONTROL_LABEL, l);
 						submit.setHelpString(messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_DELETE_HELP));
 					}
-					if (submit.getID().equals(Form.ACK_MESSAGE_KEEP)){
-						Label l = new Label(
-								messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_KEEP),
+					if (submit.getID().equals(Form.ACK_MESSAGE_KEEP)) {
+						Label l = new Label(messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_KEEP),
 								messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_KEEP_ICON));
 						submit.setProperty(Submit.PROP_CONTROL_LABEL, l);
 						submit.setHelpString(messageLocaleHelper.getString(MessageConstants.MESSAGE_FORM_KEEP_HELP));

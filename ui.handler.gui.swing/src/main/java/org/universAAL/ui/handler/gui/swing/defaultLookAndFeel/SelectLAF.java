@@ -68,7 +68,7 @@ public class SelectLAF extends SelectModel {
 	/** {@inheritDoc} */
 	public void updateAsMissing() {
 		JLabel l = getLabelModel().getComponent();
-		l.setForeground(((Init)getRenderer().getInitLAF()).getColorLAF().getAlert());
+		l.setForeground(((Init) getRenderer().getInitLAF()).getColorLAF().getAlert());
 	}
 
 }

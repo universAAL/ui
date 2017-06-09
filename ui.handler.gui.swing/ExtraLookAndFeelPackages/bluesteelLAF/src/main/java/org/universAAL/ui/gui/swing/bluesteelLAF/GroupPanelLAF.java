@@ -50,75 +50,73 @@ public class GroupPanelLAF extends GroupPanelModel {
 		super(control, render);
 	}
 
-	/**{@inheritDoc}*/
-	public void update(){
+	/** {@inheritDoc} */
+	public void update() {
 		super.update();
 		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
 		int gap = color.getGap();
-        /*
-         * simple group control
-         */
+		/*
+		 * simple group control
+		 */
 		LabelModel lm = getLabelModel();
 		if (lm != null) {
 			JLabel l = lm.getComponent();
 			l.setOpaque(jc.isOpaque());
 			ComponentBorder.addLabeledBorder(l, jc, color);
-		}
-		else {
+		} else {
 			ComponentBorder.addLabeledBorder(null, jc, color);
 		}
-        needsLabel = false;
-     
-        LayoutManager layout;
-        int alignment = FlowLayout.CENTER;
-        
-        if (this.isTheMainGroup()
-        		|| this.isTheSubmitGroup()) {
-        	layout = new FlowLayout(FlowLayout.CENTER,gap,gap);
-        } else {
-        	layout = new FormLayout(gap);
-        }
-        
-        for (Iterator i = fc.getAppearanceRecommendations().iterator(); i.hasNext();) {
+		needsLabel = false;
+
+		LayoutManager layout;
+		int alignment = FlowLayout.CENTER;
+
+		if (this.isTheMainGroup() || this.isTheSubmitGroup()) {
+			layout = new FlowLayout(FlowLayout.CENTER, gap, gap);
+		} else {
+			layout = new FormLayout(gap);
+		}
+
+		for (Iterator i = fc.getAppearanceRecommendations().iterator(); i.hasNext();) {
 			Recommendation r = (Recommendation) i.next();
-			if (r.getClassURI().equals(VerticalLayout.MY_URI)){
+			if (r.getClassURI().equals(VerticalLayout.MY_URI)) {
 				layout = new VerticalFlowLayout();
 			}
-			if (r.getClassURI().equals(HorizontalLayout.MY_URI)){
+			if (r.getClassURI().equals(HorizontalLayout.MY_URI)) {
 				layout = new FlowLayout();
 			}
-			if (r.getClassURI().equals(GridLayout.MY_URI)){
-				layout = new GridUnitLayout(gap, ((GridLayout)r).getColCount());
+			if (r.getClassURI().equals(GridLayout.MY_URI)) {
+				layout = new GridUnitLayout(gap, ((GridLayout) r).getColCount());
 			}
-			if (r.equals(HorizontalAlignment.left)){
+			if (r.equals(HorizontalAlignment.left)) {
 				alignment = FlowLayout.LEFT;
 			}
-			if (r.equals(HorizontalAlignment.center)){
+			if (r.equals(HorizontalAlignment.center)) {
 				alignment = FlowLayout.CENTER;
 			}
-			if (r.equals(HorizontalAlignment.right)){
+			if (r.equals(HorizontalAlignment.right)) {
 				alignment = FlowLayout.RIGHT;
 			}
-			if (r.equals(VerticalAlignment.top)){
+			if (r.equals(VerticalAlignment.top)) {
 				alignment = VerticalFlowLayout.TOP;
 			}
-			if (r.equals(VerticalAlignment.middle)){
+			if (r.equals(VerticalAlignment.middle)) {
 				alignment = VerticalFlowLayout.CENTER;
 			}
-			if (r.equals(VerticalAlignment.bottom)){
+			if (r.equals(VerticalAlignment.bottom)) {
 				alignment = VerticalFlowLayout.BOTTOM;
 			}
 		}
-        if (layout instanceof FlowLayout){
-        	((FlowLayout) layout).setAlignment(alignment);
-        	((FlowLayout) layout).setHgap(gap);
-        	((FlowLayout) layout).setVgap(gap);
-        }
-        if (layout instanceof VerticalFlowLayout){
-        	((VerticalFlowLayout) layout).setAlignment(alignment);
-        	((VerticalFlowLayout) layout).setHgap(gap);
-        	((VerticalFlowLayout) layout).setVgap(gap);
-        }
-        jc.setLayout(layout);
+		if (layout instanceof FlowLayout) {
+			((FlowLayout) layout).setAlignment(alignment);
+			((FlowLayout) layout).setHgap(gap);
+			((FlowLayout) layout).setVgap(gap);
+		}
+		if (layout instanceof VerticalFlowLayout) {
+			((VerticalFlowLayout) layout).setAlignment(alignment);
+			((VerticalFlowLayout) layout).setHgap(gap);
+			((VerticalFlowLayout) layout).setVgap(gap);
+		}
+		jc.setLayout(layout);
 	}
 }

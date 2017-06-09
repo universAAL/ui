@@ -46,7 +46,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 	 * @param control
 	 *            the {@link MediaObject} which to model.
 	 */
-	public MediaObjectModel(MediaObject control,Renderer render) {
+	public MediaObjectModel(MediaObject control, Renderer render) {
 		super(control, render);
 	}
 
@@ -62,18 +62,17 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 		if (mo.getContentType().startsWith("image")) {
 			Icon icon = IconFactory.getIcon(mo.getContentURL());
 			if (icon != null) {
-				return new JLabel(fc.getLabel().getText(),icon, JLabel.CENTER);
+				return new JLabel(fc.getLabel().getText(), icon, JLabel.CENTER);
 			} else {
 				return new JLabel(fc.getLabel().getText());
 			}
 		}
-		if (mo.getContentType().startsWith("audio")
-				&& mo.getContentType().contains("wav")){
-		    	JLabel jl = new JLabel();
-		    	jl.addComponentListener(new JLabelWAVPlayer(mo.getContentURL()));
-		    	return jl;
+		if (mo.getContentType().startsWith("audio") && mo.getContentType().contains("wav")) {
+			JLabel jl = new JLabel();
+			jl.addComponentListener(new JLabelWAVPlayer(mo.getContentURL()));
+			return jl;
 		}
-		if (mo.getContentType().equalsIgnoreCase("text/html")){
+		if (mo.getContentType().equalsIgnoreCase("text/html")) {
 			return new JEditorPane();
 		}
 		return new JLabel(fc.getLabel().getText());
@@ -84,7 +83,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 	 */
 	public void update() {
 
-		super.update();    	
+		super.update();
 		MediaObject mo = (MediaObject) fc;
 		if (mo.getContentType().startsWith("image")) {
 			int x, y;
@@ -92,7 +91,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 			y = mo.getResolutionPreferredY();
 			if (x > 0 && y > 0) {
 				jc.setPreferredSize(new Dimension(x, y));
-			} 
+			}
 			x = mo.getResolutionMaxX();
 			y = mo.getResolutionMaxY();
 			if (x != 0 && y != 0) {
@@ -104,7 +103,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 				jc.setMinimumSize(new Dimension(x, y));
 			}
 		}
-		if (jc instanceof JEditorPane){
+		if (jc instanceof JEditorPane) {
 			JEditorPane jep = (JEditorPane) jc;
 			jep.setEditable(false);
 			jep.setContentType(mo.getContentType());
@@ -112,42 +111,34 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 				URL url = new URL(mo.getContentURL());
 				jep.setPage(url);
 			} catch (MalformedURLException e) {
-				LogUtils.logWarn(
-						getRenderer().getModuleContext(), 
-						getClass(), "upedate", 
-						new String[]{"There is a problem with the content definition"}, e);
+				LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "upedate",
+						new String[] { "There is a problem with the content definition" }, e);
 			} catch (IOException e) {
-				LogUtils.logWarn(
-						getRenderer().getModuleContext(), 
-						getClass(), "upedate", 
-						new String[]{"There is a problem with the content"}, e);
+				LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "upedate",
+						new String[] { "There is a problem with the content" }, e);
 			}
 			jep.addHyperlinkListener(this);
 		}
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void hyperlinkUpdate(HyperlinkEvent event) {
 		if (event.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 			try {
-				java.awt.Desktop.getDesktop().browse(event.getURL().toURI() );
-			}
-			catch (Exception ex) {
-				LogUtils.logInfo(
-						getRenderer().getModuleContext(), 
-						getClass(), "hyperlinkUpdate", 
-						new String[]{"unable to openlink."}, ex);
+				java.awt.Desktop.getDesktop().browse(event.getURL().toURI());
+			} catch (Exception ex) {
+				LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "hyperlinkUpdate",
+						new String[] { "unable to openlink." }, ex);
 			}
 		}
-		
+
 	}
 
 	/*
-	 * XXX: Media Type for images, audio, video) URL Parser: know
-	 * where to locate the resource (DONE) - in jar - in file system - in config
-	 * dir - in remote repo (like http) - other cases? use VFS.. Media Cache :
-	 * once located resources store and index them in config dir for faster
-	 * location.
+	 * XXX: Media Type for images, audio, video) URL Parser: know where to
+	 * locate the resource (DONE) - in jar - in file system - in config dir - in
+	 * remote repo (like http) - other cases? use VFS.. Media Cache : once
+	 * located resources store and index them in config dir for faster location.
 	 * 
 	 * Use Locator and cache for the other Icons (using IconFactory)
 	 */

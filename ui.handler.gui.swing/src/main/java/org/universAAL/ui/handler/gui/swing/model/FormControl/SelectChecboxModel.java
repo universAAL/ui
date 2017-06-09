@@ -32,13 +32,13 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 
 /**
- * Model {@link Select} as a group of {@link JCheckBox}es, better for 
+ * Model {@link Select} as a group of {@link JCheckBox}es, better for
  * non-multilevel selects.
+ * 
  * @author amedrano
  *
  */
-public abstract class SelectChecboxModel extends SelectModel
-implements ActionListener{
+public abstract class SelectChecboxModel extends SelectModel implements ActionListener {
 
 	/**
 	 * Container of {@link JCheckBox}es
@@ -47,6 +47,7 @@ implements ActionListener{
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param control
 	 * @param render
 	 */
@@ -54,76 +55,78 @@ implements ActionListener{
 		super(control, render);
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		Select s1 = (Select) fc;
 		if (!s1.isMultilevel()) {
 			panel = new JPanel();
 			Label[] choices = s1.getChoices();
 			for (int i = 0; i < choices.length; i++) {
-				JCheckBox rb = new JCheckBox(choices[i].getText(), 
-						IconFactory.getIcon(choices[i].getIconURL()));
+				JCheckBox rb = new JCheckBox(choices[i].getText(), IconFactory.getIcon(choices[i].getIconURL()));
 				rb.setName(fc.getURI() + "_" + Integer.toString(i));
 				rb.addActionListener(this);
 				panel.add(rb);
 			}
 			return panel;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public void update() {
 		Component[] comps = panel.getComponents();
 		setSelected();
 		for (int i = 0; i < comps.length; i++) {
 			Object value = getAssociatedValue((JComponent) comps[i]);
-			if (selected.contains(value)){
+			if (selected.contains(value)) {
 				((AbstractButton) comps[i]).setSelected(true);
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the Label associated to the {@link JCheckBox}.
-	 * @param jc teh {@link JCheckBox}.
+	 * 
+	 * @param jc
+	 *            teh {@link JCheckBox}.
 	 * @return
 	 */
-	protected Label getLabelFromJComponent(JComponent jc){
-		Label[] choices = ((Select)fc).getChoices();
+	protected Label getLabelFromJComponent(JComponent jc) {
+		Label[] choices = ((Select) fc).getChoices();
 		String name = jc.getName();
-		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")+1));
+		int j = Integer.parseInt(name.substring(name.lastIndexOf("_") + 1));
 		return choices[j];
 	}
 
 	/**
 	 * The associated value to the Label to the {@link JCheckBox}.
-	 * @param jc the {@link JCheckBox}.
+	 * 
+	 * @param jc
+	 *            the {@link JCheckBox}.
 	 * @return
 	 */
-	protected Object getAssociatedValue(JComponent jc){
-		return ((ChoiceItem)getLabelFromJComponent(jc)).getValue();
+	protected Object getAssociatedValue(JComponent jc) {
+		return ((ChoiceItem) getLabelFromJComponent(jc)).getValue();
 	}
-	
-	/**{@inheritDoc}*/
+
+	/** {@inheritDoc} */
 	public boolean isValid() {
 		return true;
 	}
-	
-	/**{@inheritDoc}*/
+
+	/** {@inheritDoc} */
 	public void actionPerformed(final ActionEvent e) {
 		TaskQueue.addTask(new Runnable() {
 			public void run() {
-					JCheckBox jcb = ((JCheckBox) e.getSource());
-					if (jcb.isSelected()){
-						selected.add(getAssociatedValue(jcb));
-					} else {
-						selected.remove(getAssociatedValue(jcb));
-					}
-					((Select) fc).storeUserInput(selected);
+				JCheckBox jcb = ((JCheckBox) e.getSource());
+				if (jcb.isSelected()) {
+					selected.add(getAssociatedValue(jcb));
+				} else {
+					selected.remove(getAssociatedValue(jcb));
 				}
+				((Select) fc).storeUserInput(selected);
+			}
 		});
 	}
 }

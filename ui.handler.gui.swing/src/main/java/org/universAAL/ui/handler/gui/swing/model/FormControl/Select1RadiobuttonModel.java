@@ -32,14 +32,14 @@ import org.universAAL.middleware.ui.rdf.Select1;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 
-
 /**
- * Model {@link Select1} as a group of {@link JRadioButton}s, better for 
+ * Model {@link Select1} as a group of {@link JRadioButton}s, better for
  * non-multilevel selects.
+ * 
  * @author amedrano
  *
  */
-public abstract class Select1RadiobuttonModel extends Select1Model implements ActionListener{
+public abstract class Select1RadiobuttonModel extends Select1Model implements ActionListener {
 
 	/**
 	 * Radio button group, ensures there is only one selected.
@@ -52,6 +52,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param control
 	 * @param render
 	 */
@@ -59,15 +60,14 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 		super(control, render);
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		Select1 s1 = (Select1) fc;
 		group = new ButtonGroup();
 		panel = new JPanel();
 		Label[] choices = s1.getChoices();
 		for (int i = 0; i < choices.length; i++) {
-			JRadioButton rb = new JRadioButton(choices[i].getText(), 
-					IconFactory.getIcon(choices[i].getIconURL()));
+			JRadioButton rb = new JRadioButton(choices[i].getText(), IconFactory.getIcon(choices[i].getIconURL()));
 			rb.setName(fc.getURI() + "_" + Integer.toString(i));
 			rb.addActionListener(this);
 			group.add(rb);
@@ -76,50 +76,53 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 		return panel;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public void update() {
 		Component[] comps = panel.getComponents();
 		for (int i = 0; i < comps.length; i++) {
-			if (getAssociatedValue((JComponent) comps[i])
-					.equals(fc.getValue())){
+			if (getAssociatedValue((JComponent) comps[i]).equals(fc.getValue())) {
 				((AbstractButton) comps[i]).setSelected(true);
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the value associated to the Label for the {@link JRadioButton}.
-	 * @param jc the {@link JRadioButton}
+	 * 
+	 * @param jc
+	 *            the {@link JRadioButton}
 	 * @return
 	 */
-	protected Object getAssociatedValue(JComponent jc){
+	protected Object getAssociatedValue(JComponent jc) {
 		return ((ChoiceItem) getLabelFromJComponent(jc)).getValue();
 	}
-	
+
 	/**
 	 * Get the associated Label for the {@link JRadioButton}.
-	 * @param jc the {@link JRadioButton}
+	 * 
+	 * @param jc
+	 *            the {@link JRadioButton}
 	 * @return
 	 */
-	protected Label getLabelFromJComponent(JComponent jc){
-		Label[] choices = ((Select1)fc).getChoices();
+	protected Label getLabelFromJComponent(JComponent jc) {
+		Label[] choices = ((Select1) fc).getChoices();
 		String name = jc.getName();
-		int j = Integer.parseInt(name.substring(name.lastIndexOf("_")+1));
+		int j = Integer.parseInt(name.substring(name.lastIndexOf("_") + 1));
 		return choices[j];
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	public boolean isValid() {
 		return true;
 	}
-	
-	/**{@inheritDoc}*/
+
+	/** {@inheritDoc} */
 	public void actionPerformed(final ActionEvent e) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				if (e.getSource() instanceof JRadioButton){
+				if (e.getSource() instanceof JRadioButton) {
 					JRadioButton jrb = (JRadioButton) e.getSource();
-					if (jrb.isSelected()){
+					if (jrb.isSelected()) {
 						((Select1) fc).storeUserInput(getAssociatedValue(jrb));
 					}
 				}

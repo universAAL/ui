@@ -28,38 +28,38 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
  */
 public class RepeatLAF extends RepeatModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link Repeat} which to model.
-     */
-    public RepeatLAF(Repeat control, Renderer render) {
-        super(control, render);
-    }
-    
-    /** {@inheritDoc}*/
-    public JComponent getNewComponent() {
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Repeat} which to model.
+	 */
+	public RepeatLAF(Repeat control, Renderer render) {
+		super(control, render);
+	}
 
-        if (isATable()) {
-			if (((Repeat)fc).listEntriesEditable() 
-					|| containsSubmits()) {
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+
+		if (isATable()) {
+			if (((Repeat) fc).listEntriesEditable() || containsSubmits()) {
 				grid = new RepeatModelGrid((Repeat) fc, getRenderer());
 				return grid.getNewComponent();
 			} else {
 				table = new RepeatModelTableLAF((Repeat) fc, getRenderer());
 				return table.getNewComponent();
 			}
-//        } else if (getChildrenType() != null
-//        		&& getChildrenType().equals(Group.class)) {
-//            /*
-//             * children are Group, but not the same length
-//             * display a tabbedpane
-//             */
-//            return new GroupPanelLAF((Group) fc,getRenderer()).getNewComponent();
-        } else {      
-        	return null;
-        }
-    }    
-    
-    
+			// } else if (getChildrenType() != null
+			// && getChildrenType().equals(Group.class)) {
+			// /*
+			// * children are Group, but not the same length
+			// * display a tabbedpane
+			// */
+			// return new GroupPanelLAF((Group)
+			// fc,getRenderer()).getNewComponent();
+		} else {
+			return null;
+		}
+	}
 
 }

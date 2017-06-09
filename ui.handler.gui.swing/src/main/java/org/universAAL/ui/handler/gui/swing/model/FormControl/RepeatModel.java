@@ -28,92 +28,94 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * @see Repeat
  */
 public abstract class RepeatModel extends GroupModel {
-	
+
 	/**
 	 * Place holder for tables
 	 */
-    protected RepeatModelTable table;
-    
+	protected RepeatModelTable table;
+
 	/**
 	 * Place holder for grids
 	 */
-    protected RepeatModelGrid grid;
+	protected RepeatModelGrid grid;
 
 	/**
-     * Constructor
-     * @param control the {@link Repeat} which to model.
-     */
-    public RepeatModel(Repeat control, Renderer render) {
-        super(control, render);
-    }
+	 * Constructor
+	 * 
+	 * @param control
+	 *            the {@link Repeat} which to model.
+	 */
+	public RepeatModel(Repeat control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * get the java {@link Class} of the children.
-     * @return
-     *         {@link Class} of the 1st child.
-     */
-    protected Class getChildrenType() {
-        FormControl[] children = ((Repeat) fc).getChildren();
-        if (children != null && children.length > 0) {
-        	return TypeMapper.getJavaClass(children[0].getTypeURI());
-        }
-        return null;
-    }
+	/**
+	 * get the java {@link Class} of the children.
+	 * 
+	 * @return {@link Class} of the 1st child.
+	 */
+	protected Class getChildrenType() {
+		FormControl[] children = ((Repeat) fc).getChildren();
+		if (children != null && children.length > 0) {
+			return TypeMapper.getJavaClass(children[0].getTypeURI());
+		}
+		return null;
+	}
 
-    /**
-     * check if the {@link Repeat} {@link FormControl} models a table.
-     * @return
-     *        <code>true</code> is it does model a table.
-     *        <code>false</code> otherwise.
-     */
-    protected boolean isATable() {
-        /*
-         * Check that the children type is Group
-         */
-//        if (getChildrenType() != null 
-//        	&& getChildrenType().equals(Group.class)) {
-//            FormControl[] child = ((Repeat) fc).getChildren();
-//            int i = 0;
-//            LevelRating complexity = LevelRating.none;
-//            Class last = child[0].getClass();
-//            while (i < child.length
-//                    && child[i].getClass() == last
-//                    && complexity == ((Group) child[i]).getComplexity())
-//                { i++; }
-//            return i == child.length;
-//        }
-//        else {
-//            return false;
-//        }
-    	FormControl[] chd = ((Repeat) fc).getChildren();
-    	return chd.length > 0 && chd[0] instanceof Group;
-    }
+	/**
+	 * check if the {@link Repeat} {@link FormControl} models a table.
+	 * 
+	 * @return <code>true</code> is it does model a table. <code>false</code>
+	 *         otherwise.
+	 */
+	protected boolean isATable() {
+		/*
+		 * Check that the children type is Group
+		 */
+		// if (getChildrenType() != null
+		// && getChildrenType().equals(Group.class)) {
+		// FormControl[] child = ((Repeat) fc).getChildren();
+		// int i = 0;
+		// LevelRating complexity = LevelRating.none;
+		// Class last = child[0].getClass();
+		// while (i < child.length
+		// && child[i].getClass() == last
+		// && complexity == ((Group) child[i]).getComplexity())
+		// { i++; }
+		// return i == child.length;
+		// }
+		// else {
+		// return false;
+		// }
+		FormControl[] chd = ((Repeat) fc).getChildren();
+		return chd.length > 0 && chd[0] instanceof Group;
+	}
 
-    
-    /**
-     * Overriding update from {@link GroupModel}
-     */
-    public void update() {
-    	if (table != null){
-    		table.update();
-    		needsLabel = table.needsLabel;
-    	}
-    	else if (grid != null){
-    		grid.update();
-    		needsLabel = grid.needsLabel;
-    	}
+	/**
+	 * Overriding update from {@link GroupModel}
+	 */
+	public void update() {
+		if (table != null) {
+			table.update();
+			needsLabel = table.needsLabel;
+		} else if (grid != null) {
+			grid.update();
+			needsLabel = grid.needsLabel;
+		}
 		super.update();
-    }
-    
+	}
+
 	/**
-	 * Tells whether this repeat has or not {@link Submit}s (or {@link SubdialogTrigger}s).
-	 * @return true iff there is a {@link Submit} (or subclass of) as child. 
+	 * Tells whether this repeat has or not {@link Submit}s (or
+	 * {@link SubdialogTrigger}s).
+	 * 
+	 * @return true iff there is a {@link Submit} (or subclass of) as child.
 	 */
 	public boolean containsSubmits() {
 		boolean contains = false;
-		FormControl[] fcs = ((Repeat)fc).getChildren();
+		FormControl[] fcs = ((Repeat) fc).getChildren();
 		for (int i = 0; i < fcs.length; i++) {
-			if (fcs[i] instanceof Submit){
+			if (fcs[i] instanceof Submit) {
 				contains = true;
 				return contains;
 			}

@@ -22,36 +22,34 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 
 public class DialogManagerActivator implements ModuleActivator, Runnable {
 
-    private static ModuleContext mContext;
+	private static ModuleContext mContext;
 
-    /**
-     * The bundle start method externalized in a separate thread for non-
-     * blocking initialization of this bundle.
-     */
-    public void run() {
-    	
-    	DialogManagerImpl.createInstance(mContext);
-    
-    }
+	/**
+	 * The bundle start method externalized in a separate thread for non-
+	 * blocking initialization of this bundle.
+	 */
+	public void run() {
 
-    /** {@inheritDoc} */
-    public void start(ModuleContext context) throws Exception {
-	mContext = context;
-	new Thread(this, "DialogManagerInitializationThread").start();
+		DialogManagerImpl.createInstance(mContext);
 
-	LogUtils.logInfo(mContext, this.getClass(), "start",
-		new Object[] { "DM started." }, null);
+	}
 
-    }
+	/** {@inheritDoc} */
+	public void start(ModuleContext context) throws Exception {
+		mContext = context;
+		new Thread(this, "DialogManagerInitializationThread").start();
 
-    /** {@inheritDoc} */
-    public void stop(ModuleContext arg0) throws Exception {
-    	DialogManagerImpl.stopDM();
-	LogUtils.logInfo(mContext, this.getClass(), "stop",
-		new Object[] { "DM stopped." }, null);
-    }
+		LogUtils.logInfo(mContext, this.getClass(), "start", new Object[] { "DM started." }, null);
 
-    static public ModuleContext getModuleContext() {
-	return mContext;
-    }
+	}
+
+	/** {@inheritDoc} */
+	public void stop(ModuleContext arg0) throws Exception {
+		DialogManagerImpl.stopDM();
+		LogUtils.logInfo(mContext, this.getClass(), "stop", new Object[] { "DM stopped." }, null);
+	}
+
+	static public ModuleContext getModuleContext() {
+		return mContext;
+	}
 }

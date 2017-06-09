@@ -30,14 +30,13 @@ import org.universAAL.middleware.ui.rdf.Group;
  */
 public interface IMainMenuProvider extends ISubmitGroupListener {
 
-    /**
-     * Generate the IO {@link Group} that contains the main menu for the user.
-     * 
-     * @param user
-     * @param location
-     * @param systemForm
-     */
-    public Group getMainMenu(Resource user, AbsLocation location,
-	    Form systemForm);
+	/**
+	 * Generate the IO {@link Group} that contains the main menu for the user.
+	 * 
+	 * @param user
+	 * @param location
+	 * @param systemForm
+	 */
+	public Group getMainMenu(Resource user, AbsLocation location, Form systemForm);
 
 }

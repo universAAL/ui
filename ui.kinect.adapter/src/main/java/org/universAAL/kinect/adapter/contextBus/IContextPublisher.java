@@ -25,12 +25,12 @@ import org.universAAL.middleware.context.ContextEvent;
  * This is an interface for publishing {@link ContextEvent}s.
  */
 public interface IContextPublisher {
-    /**
-     * Publishes Context Event
-     * 
-     * @param ac
-     *            {@link AbstractContext}
-     * @throws AdapterException
-     */
-    void publish(AbstractContext ac) throws AdapterException;
+	/**
+	 * Publishes Context Event
+	 * 
+	 * @param ac
+	 *            {@link AbstractContext}
+	 * @throws AdapterException
+	 */
+	void publish(AbstractContext ac) throws AdapterException;
 }

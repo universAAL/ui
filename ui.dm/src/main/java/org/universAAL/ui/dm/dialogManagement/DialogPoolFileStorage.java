@@ -36,6 +36,7 @@ import org.universAAL.ui.dm.interfaces.IUIRequestStore;
 
 /**
  * Serialize/Deserialze a whole {@link IUIRequestPool} into/form a file.
+ * 
  * @author amedrano
  *
  */
@@ -45,47 +46,41 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 	private static final String NAMESPACE = "http://ui.universAAL.org/dmFileStorage.owl#";
 	private static final String PROP_ACTIVE = NAMESPACE + "active";
 	private static final String PROP_SUSPENDED = NAMESPACE + "suspended";
-	
+
 	private MessageContentSerializer contentSerializer;
 	private File file;
 
-	public DialogPoolFileStorage(ModuleContext context, File file){
+	public DialogPoolFileStorage(ModuleContext context, File file) {
 		this.file = file;
-		contentSerializer = (MessageContentSerializer) context
-				.getContainer()
-				.fetchSharedObject(
-					context,
-					new Object[] { MessageContentSerializer.class.getName() });
-			if (contentSerializer == null) {
-			    LogUtils.logError(context, getClass(), "Constructor",
-				    new Object[] { "no serializer found" }, null);
-			    throw new IllegalArgumentException("unable to Initialize ContentSerializer");
+		contentSerializer = (MessageContentSerializer) context.getContainer().fetchSharedObject(context,
+				new Object[] { MessageContentSerializer.class.getName() });
+		if (contentSerializer == null) {
+			LogUtils.logError(context, getClass(), "Constructor", new Object[] { "no serializer found" }, null);
+			throw new IllegalArgumentException("unable to Initialize ContentSerializer");
+		}
+		if (!file.exists()) {
+			LogUtils.logWarn(context, getClass(), "Constructor", new Object[] { "File doesn't exist, creating it." },
+					null);
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				LogUtils.logError(context, getClass(), "Constructor", new Object[] { "Could not create file." }, null);
 			}
-			if (!file.exists()){
-			    LogUtils.logWarn(context, getClass(), "Constructor",
-					    new Object[] { "File doesn't exist, creating it." }, null);
-				    try {
-						file.createNewFile();
-					} catch (IOException e) {
-					    LogUtils.logError(context, getClass(), "Constructor",
-							    new Object[] { "Could not create file." }, null);
-					}
-				
-			}
+
+		}
 	}
-	
+
 	/** {@inheritDoc} */
-	public void save(IUIRequestPool pool){
+	public void save(IUIRequestPool pool) {
 		List<UIRequest> active = new ArrayList<UIRequest>(pool.listAllActive());
 		List<UIRequest> suspended = new ArrayList<UIRequest>(pool.listAllSuspended());
-		if (active.size() > 0
-				&& suspended.size() > 0){
+		if (active.size() > 0 && suspended.size() > 0) {
 			Resource root = new Resource();
 			root.setProperty(PROP_ACTIVE, active);
 			root.setProperty(PROP_SUSPENDED, suspended);
 			String serialized = contentSerializer.serialize(root);
 
-			//wirting
+			// wirting
 			OutputStreamWriter osw;
 			try {
 				osw = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(UTF_8));
@@ -98,27 +93,24 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 			}
 		}
 	}
-	
+
 	/** {@inheritDoc} */
 	@SuppressWarnings("unchecked")
-	public void read(IUIRequestPool target){
+	public void read(IUIRequestPool target) {
 		String serialized = "";
 		try {
-			serialized = new Scanner(file,UTF_8).useDelimiter("\\Z").next();
-		} catch (Exception e){
+			serialized = new Scanner(file, UTF_8).useDelimiter("\\Z").next();
+		} catch (Exception e) {
 			/*
-			 *  either:
-			 *  	- empty file
-			 *  	- non existent file
-			 *  	- Scanner failture...
-			 *  Nothing to do here
+			 * either: - empty file - non existent file - Scanner failture...
+			 * Nothing to do here
 			 */
 			return;
 		}
-		
+
 		try {
 			Resource root = (Resource) contentSerializer.deserialize(serialized);
-			if (serialized.length() > 5 && root !=null){
+			if (serialized.length() > 5 && root != null) {
 				List<UIRequest> suspended = (List<UIRequest>) root.getProperty(PROP_SUSPENDED);
 				for (UIRequest uiRequest : suspended) {
 					target.add(uiRequest);
@@ -132,9 +124,9 @@ public class DialogPoolFileStorage implements IUIRequestStore {
 					}
 			}
 		} catch (Exception e) {
-			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(),"read", 
-					new Object[]{"unable to deserialize file: ", file},e);
+			LogUtils.logWarn(DialogManagerImpl.getModuleContext(), getClass(), "read",
+					new Object[] { "unable to deserialize file: ", file }, e);
 		}
 	}
-	
+
 }

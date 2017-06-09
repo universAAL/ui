@@ -33,88 +33,88 @@ public class GradientLAF extends JXPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final long MS_ANIMATION = 500;
-	
-	private static final long MS_PER_FRAME = 1000/24;
+
+	private static final long MS_PER_FRAME = 1000 / 24;
 
 	private static final boolean FADEOUT_CONCURRENT = true;
 
 	private static final boolean FADEIN_CONCURRENT = false;
-	
-	private static long STEPS = MS_ANIMATION/MS_PER_FRAME;
-	
-	private static float DELTA_ALPHA =  ((float)1.0)/((float) STEPS);
-	
+
+	private static long STEPS = MS_ANIMATION / MS_PER_FRAME;
+
+	private static float DELTA_ALPHA = ((float) 1.0) / ((float) STEPS);
+
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g.create();
-		
+
 		Rectangle clip = g2.getClipBounds();
 		float y = getHeight();
 
-		g2.setPaint(new GradientPaint(0, 0, ColorLAF.getDialogGradiendBackground1(), 0,
-				y/2 , ColorLAF.getDialogGradiendBackground2(), true));
+		g2.setPaint(new GradientPaint(0, 0, ColorLAF.getDialogGradiendBackground1(), 0, y / 2,
+				ColorLAF.getDialogGradiendBackground2(), true));
 		g2.fillRect(clip.x, clip.y, clip.width, clip.height);
 	}
-	
+
 	public void fadeOut() {
-	   if (FADEOUT_CONCURRENT){
-		Thread t = new Thread() {
-			@Override
-			public void run() {
-			    internalFadeOut();
-			}
-			
-		};
-		t.setPriority(Thread.MAX_PRIORITY);
-		t.start();
-	   } else {
-	       internalFadeOut();
-	   }
-	}
-	
-	private void internalFadeOut() {
-			setAlpha((float) 1.0);
-			GradientLAF.this.setVisible(true);
-			for (long i = STEPS - 1 ; i >= 0 ; i--) {
-				setAlpha(((float) i) * DELTA_ALPHA);
-				try {
-					Thread.sleep(MS_PER_FRAME);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+		if (FADEOUT_CONCURRENT) {
+			Thread t = new Thread() {
+				@Override
+				public void run() {
+					internalFadeOut();
 				}
-			}		
-	}
-	
-	public void fadeIn() {
-	    if (FADEIN_CONCURRENT){
-		Thread t = new Thread() {
-			@Override
-			public void run() {
-			    internalFadeIn();
-			}
-			
-		};
-		t.setPriority(Thread.MAX_PRIORITY);
-		t.start();
-	   } else {
-	       internalFadeIn();
-	   }	
-	}
-	
-	private void internalFadeIn(){
-	    setAlpha((float) 0.0);
-	    GradientLAF.this.setVisible(true);
-	    for (long i = 0 ; i < STEPS ; i++) {
-		setAlpha(((float) i) * DELTA_ALPHA);
-		try {
-		    Thread.sleep(MS_PER_FRAME);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
+
+			};
+			t.setPriority(Thread.MAX_PRIORITY);
+			t.start();
+		} else {
+			internalFadeOut();
 		}
-	    }
-	    setAlpha((float) 1.0);
 	}
-	
+
+	private void internalFadeOut() {
+		setAlpha((float) 1.0);
+		GradientLAF.this.setVisible(true);
+		for (long i = STEPS - 1; i >= 0; i--) {
+			setAlpha(((float) i) * DELTA_ALPHA);
+			try {
+				Thread.sleep(MS_PER_FRAME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void fadeIn() {
+		if (FADEIN_CONCURRENT) {
+			Thread t = new Thread() {
+				@Override
+				public void run() {
+					internalFadeIn();
+				}
+
+			};
+			t.setPriority(Thread.MAX_PRIORITY);
+			t.start();
+		} else {
+			internalFadeIn();
+		}
+	}
+
+	private void internalFadeIn() {
+		setAlpha((float) 0.0);
+		GradientLAF.this.setVisible(true);
+		for (long i = 0; i < STEPS; i++) {
+			setAlpha(((float) i) * DELTA_ALPHA);
+			try {
+				Thread.sleep(MS_PER_FRAME);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		setAlpha((float) 1.0);
+	}
+
 }

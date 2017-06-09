@@ -28,28 +28,27 @@ import org.universAAL.middleware.container.ModuleContext;
  */
 public class SMSActivator implements ModuleActivator {
 
-    /** The mcontext. {@link ModuleContext} */
-    private static ModuleContext mcontext;
-    private SmsUIHandler handler;
+	/** The mcontext. {@link ModuleContext} */
+	private static ModuleContext mcontext;
+	private SmsUIHandler handler;
 
-    
-    /** {@ inheritDoc}	 */
-    public void start(ModuleContext mc) throws Exception {
-	mcontext = mc;
-	handler = new SmsUIHandler(mcontext, new SmsSender());
-	//TODO update this so backend sms sender can be configured.
-    }
+	/** {@ inheritDoc} */
+	public void start(ModuleContext mc) throws Exception {
+		mcontext = mc;
+		handler = new SmsUIHandler(mcontext, new SmsSender());
+		// TODO update this so backend sms sender can be configured.
+	}
 
-    /** {@ inheritDoc}	 */
-    public void stop(ModuleContext mc) throws Exception {
-	handler.close();
-    }
+	/** {@ inheritDoc} */
+	public void stop(ModuleContext mc) throws Exception {
+		handler.close();
+	}
 
-    /**
-     * @return
-     */
-    public static ModuleContext getModuleContext() {
-	return mcontext;
-    }
+	/**
+	 * @return
+	 */
+	public static ModuleContext getModuleContext() {
+		return mcontext;
+	}
 
 }

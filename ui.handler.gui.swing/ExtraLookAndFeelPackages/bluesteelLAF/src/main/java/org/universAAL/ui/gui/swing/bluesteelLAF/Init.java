@@ -49,11 +49,12 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
  * the initialization class.
+ * 
  * @author amedrano
  */
 public class Init implements InitInterface {
 
-    public static final String CONF_PREFIX = "ui.handler.gui.swing.bluesteelLAF.";
+	public static final String CONF_PREFIX = "ui.handler.gui.swing.bluesteelLAF.";
 	private static final String TOOLTIP_ACTIVE = CONF_PREFIX + "tootip.active";
 	private static final String TOOLTIP_DELAY = CONF_PREFIX + "tootip.delay";
 	static final String WINDOWED = CONF_PREFIX + "windowed";
@@ -63,67 +64,62 @@ public class Init implements InitInterface {
 	static final String WINDOWED_Y = WINDOWED + ".y";
 
 	private ColorLAF color;
-    private UAALTray tray;
-    private JDesktopPane desktop;
-    private JFrame frame;
-    private Renderer render;
+	private UAALTray tray;
+	private JDesktopPane desktop;
+	private JFrame frame;
+	private Renderer render;
 	private boolean windowed;
 	private Messages messages;
 
 	/** {@inheritDoc} */
-    public void install(Renderer render) {
-    	this.render = render;
-    	color = new ColorLAF();
-    	windowed = Boolean.parseBoolean(render.getProperty(WINDOWED, "false"));
-        MetalLookAndFeel.setCurrentTheme(color);
-        try {
-            UIManager.setLookAndFeel(new MetalLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-        	LogUtils.logWarn(render.getModuleContext(), 
-        			getClass(), "install",
-        			new String[] {"unable to set MetalLookAndFeel."}, e);
-        }
-        try {
+	public void install(Renderer render) {
+		this.render = render;
+		color = new ColorLAF();
+		windowed = Boolean.parseBoolean(render.getProperty(WINDOWED, "false"));
+		MetalLookAndFeel.setCurrentTheme(color);
+		try {
+			UIManager.setLookAndFeel(new MetalLookAndFeel());
+		} catch (UnsupportedLookAndFeelException e) {
+			LogUtils.logWarn(render.getModuleContext(), getClass(), "install",
+					new String[] { "unable to set MetalLookAndFeel." }, e);
+		}
+		try {
 			tray = new UAALTray(render);
 		} catch (Exception e) {
-        	LogUtils.logWarn(render.getModuleContext(), 
-        			getClass(), "install",
-        			new String[] {"unable to start Tray Icon."}, e);
+			LogUtils.logWarn(render.getModuleContext(), getClass(), "install",
+					new String[] { "unable to start Tray Icon." }, e);
 		}
-        try {
+		try {
 			createDesktop();
 		} catch (Exception e1) {
-        	LogUtils.logWarn(render.getModuleContext(), 
-        			getClass(), "install",
-        			new String[] {"unable to start the desktop."}, e1);
+			LogUtils.logWarn(render.getModuleContext(), getClass(), "install",
+					new String[] { "unable to start the desktop." }, e1);
 		}
-        UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
-        UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 2));
-        UIManager.put("ToolTip.font", color.getLabelFont());
-        ToolTipManager.sharedInstance()
-        	.setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
-        ToolTipManager.sharedInstance()
-    		.setEnabled(Boolean.parseBoolean(render.getProperty(TOOLTIP_ACTIVE, "true")));
-        URL propertiesURL = getClass().getClassLoader().getResource("internationalization/messages.properties");
-        try {
+		UIManager.put("ToolTip.background", ColorLAF.getOverSytem());
+		UIManager.put("ToolTip.border", BorderFactory.createLineBorder(Color.BLACK, 2));
+		UIManager.put("ToolTip.font", color.getLabelFont());
+		ToolTipManager.sharedInstance().setInitialDelay(Integer.parseInt(render.getProperty(TOOLTIP_DELAY, "500")));
+		ToolTipManager.sharedInstance().setEnabled(Boolean.parseBoolean(render.getProperty(TOOLTIP_ACTIVE, "true")));
+		URL propertiesURL = getClass().getClassLoader().getResource("internationalization/messages.properties");
+		try {
 			messages = new Messages(propertiesURL);
 		} catch (Exception e) {
-			LogUtils.logError(render.getModuleContext(), getClass(),
-					"install", new String[]{"unable to load internationalization Messages."}, e);
-		} 
-    }
-    
-    public ColorLAF getColorLAF(){
-    	return color;
-    }
+			LogUtils.logError(render.getModuleContext(), getClass(), "install",
+					new String[] { "unable to load internationalization Messages." }, e);
+		}
+	}
+
+	public ColorLAF getColorLAF() {
+		return color;
+	}
 
 	public void uninstall() {
 		if (tray != null)
 			tray.dispose();
-	    if (desktop != null)
-	    	desktop.setVisible(false);
-	    if (frame != null)
-	    frame.dispose();
+		if (desktop != null)
+			desktop.setVisible(false);
+		if (frame != null)
+			frame.dispose();
 	}
 
 	public void userLogIn(User usr) {
@@ -134,14 +130,14 @@ public class Init implements InitInterface {
 			tray.update();
 		}
 	}
-	
+
 	public void userLogOff(User usr) {
 		if (tray != null)
 			tray.update();
 		if (desktop != null)
 			desktop.removeAll();
 		if (frame != null)
-			frame.setVisible(false);		
+			frame.setVisible(false);
 	}
 
 	public void showLoginScreen() {
@@ -151,47 +147,44 @@ public class Init implements InitInterface {
 		JXLoginPane lp = new JXLoginPane(new RendererLoginService());
 		JXLoginPane.showLoginDialog(frame, lp);
 	}
-	
+
 	public JDesktopPane getDesktop() {
-	    return desktop;
+		return desktop;
 	}
 
 	private void createDesktop() {
-	    frame = new JFrame();
-	    desktop = new JDesktopPane();
-	    desktop.setVisible(true);
-	    frame.setContentPane(desktop);
-	    if (!windowed){
-	    	desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-	    	frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-	    	frame.setUndecorated(true);
-	    } else {
-	    	frame.setResizable(true);
-	    	frame.setBounds(
-	    			Integer.valueOf(render.getProperty(WINDOWED_X, "0")),
-	    			Integer.valueOf(render.getProperty(WINDOWED_Y, "0")),
-	    			Integer.valueOf(render.getProperty(WINDOWED_WIDTH, "800")),
-	    			Integer.valueOf(render.getProperty(WINDOWED_HEIGHT, "600")));
-	    }
-	    frame.setVisible(true);
+		frame = new JFrame();
+		desktop = new JDesktopPane();
+		desktop.setVisible(true);
+		frame.setContentPane(desktop);
+		if (!windowed) {
+			desktop.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+			frame.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+			frame.setUndecorated(true);
+		} else {
+			frame.setResizable(true);
+			frame.setBounds(Integer.valueOf(render.getProperty(WINDOWED_X, "0")),
+					Integer.valueOf(render.getProperty(WINDOWED_Y, "0")),
+					Integer.valueOf(render.getProperty(WINDOWED_WIDTH, "800")),
+					Integer.valueOf(render.getProperty(WINDOWED_HEIGHT, "600")));
+		}
+		frame.setVisible(true);
 	}
 
-	public static Init getInstance(Renderer render){
-	    return (Init) render.getInitLAF();
+	public static Init getInstance(Renderer render) {
+		return (Init) render.getInitLAF();
 	}
 
-	
 	private class RendererLoginService extends LoginService {
 
 		@Override
-		public boolean authenticate(String arg0, char[] arg1, String arg2)
-				throws Exception {
+		public boolean authenticate(String arg0, char[] arg1, String arg2) throws Exception {
 			return render.authenticate(arg0, new String(arg1));
 		}
-		
+
 	}
 
-	private boolean tryLoadingMessages(Locale l){
+	private boolean tryLoadingMessages(Locale l) {
 		URL resource = getClass().getClassLoader().getResource("internationalization/messages.properties");
 		try {
 			messages = new Messages(resource, l);
@@ -207,16 +200,15 @@ public class Init implements InitInterface {
 	public void processPrefs(UIRequest currentDialog) {
 		VisualPreferences vp = (VisualPreferences) currentDialog
 				.getProperty(UIPreferencesSubProfile.PROP_VISUAL_PREFERENCES);
-		
+
 		GeneralInteractionPreferences gip = (GeneralInteractionPreferences) currentDialog
 				.getProperty(UIPreferencesSubProfile.PROP_INTERACTION_PREFERENCES);
-		
-		if (gip != null){
-			Language preferred  = gip.getPreferredLanguage();
-			if (preferred != null
-					&& !tryLoadingMessages(new Locale(preferred.getIso639code()))){
+
+		if (gip != null) {
+			Language preferred = gip.getPreferredLanguage();
+			if (preferred != null && !tryLoadingMessages(new Locale(preferred.getIso639code()))) {
 				Language secondary = gip.getSecondaryLanguage();
-				if (secondary != null){
+				if (secondary != null) {
 					tryLoadingMessages(new Locale(secondary.getIso639code()));
 				} else {
 					tryLoadingMessages(Locale.ENGLISH);
@@ -224,47 +216,33 @@ public class Init implements InitInterface {
 			}
 		}
 
-		if (vp != null){
-//			ColorType bgColor = vp.getBackgroundColor();
+		if (vp != null) {
+			// ColorType bgColor = vp.getBackgroundColor();
 			ColorType fColor = vp.getFontColor();
 			Size fSize = vp.getFontSize();
 			GenericFontFamily fFamily = vp.getFontFamily();
 			WindowLayoutType wl = vp.getWindowLayout();
 			Intensity spacing = vp.getComponentSpacing();
-/*			if (bgColor != null){
-				switch (bgColor.ord()) {
-				case ColorType.WHITE:
-				case ColorType.BLACK:
-				case ColorType.LIGHT_GRAY:
-				case ColorType.DARK_GREY:
-					
-					break;
-				case ColorType.LIGHT_BLUE:
-				case ColorType.DARK_BLUE:
-				case ColorType.CYAN:
-					
-					break;
-				case ColorType.LIGHT_GREEN:
-				case ColorType.DARK_GREEN:
-					
-					break;
-				case ColorType.LIGHT_RED:
-				case ColorType.DARK_RED:
-				case ColorType.MAGENTA:
-				case ColorType.PURPLE:
-				case ColorType.PINK:
-					
-					break;
-				case ColorType.YELLOW:
-				case ColorType.ORANGE:
-				
-					break;
-
-				default:
-					break;
-				}
-			}*/
-			if (fColor != null){
+			/*
+			 * if (bgColor != null){ switch (bgColor.ord()) { case
+			 * ColorType.WHITE: case ColorType.BLACK: case ColorType.LIGHT_GRAY:
+			 * case ColorType.DARK_GREY:
+			 * 
+			 * break; case ColorType.LIGHT_BLUE: case ColorType.DARK_BLUE: case
+			 * ColorType.CYAN:
+			 * 
+			 * break; case ColorType.LIGHT_GREEN: case ColorType.DARK_GREEN:
+			 * 
+			 * break; case ColorType.LIGHT_RED: case ColorType.DARK_RED: case
+			 * ColorType.MAGENTA: case ColorType.PURPLE: case ColorType.PINK:
+			 * 
+			 * break; case ColorType.YELLOW: case ColorType.ORANGE:
+			 * 
+			 * break;
+			 * 
+			 * default: break; } }
+			 */
+			if (fColor != null) {
 				switch (fColor.ord()) {
 				case ColorType.WHITE:
 					color.setFontColor(Color.WHITE);
@@ -318,7 +296,7 @@ public class Init implements InitInterface {
 					break;
 				}
 			}
-			if (fFamily != null){
+			if (fFamily != null) {
 				switch (fFamily.ord()) {
 				case GenericFontFamily.SERIF:
 					color.setFontFamily("Serif");
@@ -340,7 +318,7 @@ public class Init implements InitInterface {
 					break;
 				}
 			}
-			if (fSize != null){
+			if (fSize != null) {
 				switch (fSize.ord()) {
 				case Size.LARGE:
 					color.setFontSizeBase(30);
@@ -355,7 +333,7 @@ public class Init implements InitInterface {
 					break;
 				}
 			}
-			if (wl != null){
+			if (wl != null) {
 				switch (wl.ord()) {
 				case WindowLayoutType.OVERLAP:
 					windowed = true;
@@ -367,16 +345,16 @@ public class Init implements InitInterface {
 					break;
 				}
 			}
-			if (spacing != null){
+			if (spacing != null) {
 				switch (spacing.ord()) {
 				case Intensity.LOW:
 					color.setGap(5);
 					break;
 				case Intensity.MEDIUM:
-					color.setGap(10);					
+					color.setGap(10);
 					break;
 				case Intensity.HIGH:
-					color.setGap(20);					
+					color.setGap(20);
 					break;
 
 				default:
@@ -388,18 +366,21 @@ public class Init implements InitInterface {
 
 	/**
 	 * get the Internationalized message corresponding to the provided Key
-	 * @param key the Key of the message.
+	 * 
+	 * @param key
+	 *            the Key of the message.
 	 * @return the string.
 	 */
 	public String getMessage(String key) {
 		return messages.getString(key);
 	}
-	
+
 	/**
 	 * Tells whether the frame should be full screen or windowed.
+	 * 
 	 * @return
 	 */
-	public boolean isWindowed(){
+	public boolean isWindowed() {
 		return windowed;
 	}
 }

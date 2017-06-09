@@ -30,19 +30,19 @@ import org.universAAL.middleware.ui.UIResponse;
  */
 public interface ISubmitGroupListener {
 
-    /**
-     * Handle the {@link UIResponse} for any of the SubmitionIDs declared in
-     * {@link ISubmitGroupListener#listDeclaredSubmitIds()}.
-     * 
-     * @param response
-     */
-    public void handle(UIResponse response);
+	/**
+	 * Handle the {@link UIResponse} for any of the SubmitionIDs declared in
+	 * {@link ISubmitGroupListener#listDeclaredSubmitIds()}.
+	 * 
+	 * @param response
+	 */
+	public void handle(UIResponse response);
 
-    /**
-     * List the SubmissionIDs implementations of this interface will handle.
-     * 
-     * @return
-     */
-    public Set<String> listDeclaredSubmitIds();
+	/**
+	 * List the SubmissionIDs implementations of this interface will handle.
+	 * 
+	 * @return
+	 */
+	public Set<String> listDeclaredSubmitIds();
 
 }

@@ -41,42 +41,42 @@ public class RoundedGradientButton extends JButton {
 	protected Color dark;
 	protected Color bLight;
 	protected Color bDark;
-	
+
 	public RoundedGradientButton(String text, Color light, Color dark) {
-		this(text,null,light,dark);
+		this(text, null, light, dark);
 	}
-	
-	public RoundedGradientButton(String text,Icon icon, Color light, Color dark){
-	    super(text,icon);
-	    this.light = light;
-	    this.dark = dark;
-	    this.bLight = light;
-	    this.bDark = dark;
-	    setBorderPainted(false);
-	    setOpaque(true);
-	    setUI(new UIRoundedRectangleButton(dark, light));
-	    setContentAreaFilled(false);
-	    setFocusPainted(false);
+
+	public RoundedGradientButton(String text, Icon icon, Color light, Color dark) {
+		super(text, icon);
+		this.light = light;
+		this.dark = dark;
+		this.bLight = light;
+		this.bDark = dark;
+		setBorderPainted(false);
+		setOpaque(true);
+		setUI(new UIRoundedRectangleButton(dark, light));
+		setContentAreaFilled(false);
+		setFocusPainted(false);
 	}
-	
-	public RoundedGradientButton(AbstractButton button, Color light, Color dark){
-		this(button.getText(),button.getIcon(),light,dark);
+
+	public RoundedGradientButton(AbstractButton button, Color light, Color dark) {
+		this(button.getText(), button.getIcon(), light, dark);
 		ActionListener[] a = button.getActionListeners();
 		for (int i = 0; i < a.length; i++) {
 			this.addActionListener(a[i]);
 		}
 		this.setName(button.getName());
 	}
-	
+
 	protected Border getRaisedBorder() {
-	    return new SoftBevelBorder(SoftBevelBorder.RAISED, bDark , bLight);
+		return new SoftBevelBorder(SoftBevelBorder.RAISED, bDark, bLight);
 	}
-	
+
 	protected Border getLoweredBorder() {
-	    return new SoftBevelBorder(SoftBevelBorder.LOWERED, bDark , bLight);
+		return new SoftBevelBorder(SoftBevelBorder.LOWERED, bDark, bLight);
 	}
-	
-	protected void scaleIcon(int width, int height){
-	    setIcon(IconFactory.resizeIcon(getIcon(), width, height));
+
+	protected void scaleIcon(int width, int height) {
+		setIcon(IconFactory.resizeIcon(getIcon(), width, height));
 	}
 }

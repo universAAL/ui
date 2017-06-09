@@ -36,23 +36,22 @@ public class Select1Model extends SelectModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateInputHTML() {
 		// XXX only select, have second rendering option with radiobuttons.
 		return selectHTML();
 	}
 
-	private StringBuffer selectHTML(){
+	private StringBuffer selectHTML() {
 		return tag("select", selectOptionsHTML(), fcProps);
 	}
-	
-	/** {@ inheritDoc}	 */
+
+	/** {@ inheritDoc} */
 	public boolean updateInput(String[] value) {
 		Select1 s = (Select1) fe;
-		Label[] opts = s.getChoices(); //ONLY FLAT Selection trees.
+		Label[] opts = s.getChoices(); // ONLY FLAT Selection trees.
 		try {
-			return 
-					s.storeUserInput(((ChoiceItem)opts[Integer.parseInt(value[0])]).getValue());
+			return s.storeUserInput(((ChoiceItem) opts[Integer.parseInt(value[0])]).getValue());
 		} catch (Exception e) {
 			return false;
 		}

@@ -25,22 +25,22 @@ package org.universAAL.kinect.adapter.IMessageBroker;
  */
 public class AdapterException extends Exception {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public AdapterException() {
-	super();
-    }
+	public AdapterException() {
+		super();
+	}
 
-    public AdapterException(final String message, final Throwable cause) {
-	super(message, cause);
-    }
+	public AdapterException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
 
-    public AdapterException(final String message) {
-	super(message);
-    }
+	public AdapterException(final String message) {
+		super(message);
+	}
 
-    public AdapterException(final Throwable cause) {
-	super(cause);
-    }
+	public AdapterException(final Throwable cause) {
+		super(cause);
+	}
 
 }

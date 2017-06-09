@@ -29,7 +29,7 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
  *
  */
 public class GroupModel extends FormControlModel {
-	
+
 	/**
 	 * @param fe
 	 * @param render
@@ -38,29 +38,27 @@ public class GroupModel extends FormControlModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTML() {
 		Group g = (Group) fe;
-		if (g.isRootGroup()){
-			if (isInSubmitGroup()){
+		if (g.isRootGroup()) {
+			if (isInSubmitGroup()) {
 				return generateSubmits();
 			}
-			if (isInStandardGroup()){
+			if (isInStandardGroup()) {
 				return genetareStandard();
 			}
-			if (isInIOGroup()
-					&& !isInMainMenu()){
+			if (isInIOGroup() && !isInMainMenu()) {
 				return generateIO();
 			}
-			if (isInIOGroup()
-					&& isInMainMenu()){
+			if (isInIOGroup() && isInMainMenu()) {
 				return generateKickerGroup();
 			}
-		} 
+		}
 		return generateNormal();
 	}
-	
-	protected Model getModelFor(FormElement e){
+
+	protected Model getModelFor(FormElement e) {
 		return getRenderer().getModelMapper().getModelFor(e);
 	}
 
@@ -82,15 +80,15 @@ public class GroupModel extends FormControlModel {
 	 * @return
 	 */
 	private StringBuffer generateKickerGroup() {
-	// displaying with table...
+		// displaying with table...
 		Group g = (Group) fe;
 		FormControl[] child = g.getChildren();
-		int cols = 4 ;//XXX get it from userPrefs, 
-		
+		int cols = 4;// XXX get it from userPrefs,
+
 		Properties p = new Properties();
 		p.put("id", "MainMenuButtonsGroup");
 		p.put("class", "RootGroup");
-		
+
 		return tag("table", getTableContent(child, cols), p);
 	}
 
@@ -103,7 +101,7 @@ public class GroupModel extends FormControlModel {
 		Properties p = new Properties();
 		p.put("id", "IOControlsGroup");
 		p.put("class", "RootGroup");
-		
+
 		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
@@ -116,7 +114,7 @@ public class GroupModel extends FormControlModel {
 		Properties p = new Properties();
 		p.put("id", "StandardGroup");
 		p.put("class", "RootGroup");
-		
+
 		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
@@ -130,19 +128,19 @@ public class GroupModel extends FormControlModel {
 		Properties p = new Properties();
 		p.put("id", "SubmitsGroup");
 		p.put("class", "RootGroup");
-		
+
 		return tag("div", getContentAccordingToRecommendations(child), p);
 	}
 
-	protected StringBuffer getHorizontalContent(FormControl[] child){
+	protected StringBuffer getHorizontalContent(FormControl[] child) {
 		StringBuffer html = new StringBuffer();
 		for (int i = 0; i < child.length; i++) {
 			html.append(getModelFor(child[i]).generateHTML());
 		}
 		return html;
 	}
-	
-	protected StringBuffer getVerticalContent(FormControl[] child){
+
+	protected StringBuffer getVerticalContent(FormControl[] child) {
 		StringBuffer html = new StringBuffer();
 		for (int i = 0; i < child.length; i++) {
 			html.append(getModelFor(child[i]).generateHTML());
@@ -150,52 +148,49 @@ public class GroupModel extends FormControlModel {
 		}
 		return html;
 	}
-	
+
 	/**
 	 * Meant to be used as gridLayout for groups.
-	 * @param child the list of children to fit in the table
-	 * @param cols the number of columns of the table.
+	 * 
+	 * @param child
+	 *            the list of children to fit in the table
+	 * @param cols
+	 *            the number of columns of the table.
 	 * @return
 	 */
-	protected StringBuffer getTableContent(FormControl[] child, int cols){
+	protected StringBuffer getTableContent(FormControl[] child, int cols) {
 		int i = 0;
 		StringBuffer table = new StringBuffer();
-		for (int row = 0; row < (child.length + cols -1) / cols; row++) {
+		for (int row = 0; row < (child.length + cols - 1) / cols; row++) {
 			StringBuffer rowHTML = new StringBuffer();
 			for (int col = 0; col < cols; col++) {
-				if (i < child.length){
-					rowHTML.append(
-							tag("td",
-									getModelFor(child[i]).generateHTML(),
-									null));
+				if (i < child.length) {
+					rowHTML.append(tag("td", getModelFor(child[i]).generateHTML(), null));
 				} else {
 					rowHTML.append(tag("td", "", null));
 				}
 				i++;
 			}
-			table.append(
-					tag("tr", rowHTML, null)
-					);
+			table.append(tag("tr", rowHTML, null));
 		}
 		return table;
 	}
 
-	protected StringBuffer getContentAccordingToRecommendations(FormControl[] child){
-		if (recModel.isHorizontalLayout()){
+	protected StringBuffer getContentAccordingToRecommendations(FormControl[] child) {
+		if (recModel.isHorizontalLayout()) {
 			return getHorizontalContent(child);
 		}
-		if  (recModel.isVerticalLayout()){
+		if (recModel.isVerticalLayout()) {
 			return getVerticalContent(child);
 		}
-		if (recModel.getGridLayoutCols() > 0){
+		if (recModel.getGridLayoutCols() > 0) {
 			return tag("table", getTableContent(child, recModel.getGridLayoutCols()), null);
 		}
-		//detault to Horizontal
+		// detault to Horizontal
 		return getHorizontalContent(child);
 	}
-	
-	
-	/** {@ inheritDoc}	 */
+
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTMLWithoutLabel() {
 		// Not Used
 		return null;

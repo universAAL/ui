@@ -31,7 +31,6 @@ import org.universAAL.middleware.ui.rdf.Submit;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
 
-
 /**
  * @author amedrano
  *
@@ -43,7 +42,7 @@ public class uCCButton implements SpecialButtonInterface {
 	private Renderer render;
 
 	private Submit submit;
-	
+
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uCC";
 
 	/**
@@ -59,46 +58,45 @@ public class uCCButton implements SpecialButtonInterface {
 		try {
 			uCCButton.openuCCGUI();
 		} catch (Exception e1) {
-			LogUtils.logError(render.getModuleContext(), getClass(), "Pushed uCC button", 
-					new String[]{"Could not open GUI"}, e1);
+			LogUtils.logError(render.getModuleContext(), getClass(), "Pushed uCC button",
+					new String[] { "Could not open GUI" }, e1);
 		}
 	}
 
 	public boolean isSpecial() {
 		return submit.getID().equals(SUBMIT_ID);
 	}
-	
-	public static void openuCCGUI() throws Exception{
+
+	public static void openuCCGUI() throws Exception {
 		/*
 		 * <FORM ACTION="http://127.0.0.1:9988" target="hidden" METHOD="POST">
 		 * <INPUT TYPE="hidden" NAME="url" VALUE="http://please.open.gui">
-		 * <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Open GUI">
-		 * </FORM>
+		 * <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Open GUI"> </FORM>
 		 */
-		
+
 		/*
 		 * Using native Java
 		 */
-		sendPOSTRequest(UCC_URL, 
-				"url=" +URLEncoder.encode("http://please.open.gui","utf-8") 
-				+ "&submit=" + URLEncoder.encode("Open+GUI", "utf-8"));
+		sendPOSTRequest(UCC_URL, "url=" + URLEncoder.encode("http://please.open.gui", "utf-8") + "&submit="
+				+ URLEncoder.encode("Open+GUI", "utf-8"));
 	}
-	
+
 	public static void sendPOSTRequest(String request, String urlParameters) throws Exception {
 		URL url = new URL(request);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();           
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 		connection.setDoOutput(true);
-		connection.setInstanceFollowRedirects(false); 
-		connection.setRequestMethod("POST"); 
+		connection.setInstanceFollowRedirects(false);
+		connection.setRequestMethod("POST");
 		connection.setRequestProperty("charset", "utf-8");
 
-		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream (), "utf-8");
+		OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream(), "utf-8");
 		wr.write(urlParameters);
 		wr.flush();
 		wr.close();
-		
+
 		InputStreamReader ir = new InputStreamReader(connection.getInputStream(), "utf-8");
-		while (ir.read() != -1) {}
+		while (ir.read() != -1) {
+		}
 		ir.close();
 		connection.disconnect();
 	}

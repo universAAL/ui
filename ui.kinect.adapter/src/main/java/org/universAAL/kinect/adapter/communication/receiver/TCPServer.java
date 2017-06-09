@@ -36,69 +36,66 @@ import org.universAAL.middleware.container.utils.LogUtils;
  */
 public class TCPServer implements Runnable {
 
-    /**
-     * Port number of the server
-     */
-    int port;
+	/**
+	 * Port number of the server
+	 */
+	int port;
 
-    /**
-     * server socket
-     */
-    ServerSocket server_socket;
-
-    /**
-     * Thread-pool for efficient usage of workers
-     */
-    ExecutorService threadPool;
-
-    /**
-     * The broker to where messages are forwarded by the created workers.
-     */
-    IMessageBroker broker;
-
-    /**
-     * Constructor
-     * 
-     * @param port
-     * @param broker
-     */
-    public TCPServer(final int port, final IMessageBroker broker) {
-	this.port = port;
-	server_socket = null;
-	this.threadPool = Executors.newCachedThreadPool();
-	this.broker = broker;
-    }
-
-    /**
-     * This method accepts clients and creates workers for every accepted
-     * Socket.
-     */
-    public final void run() {
+	/**
+	 * server socket
+	 */
 	ServerSocket server_socket;
-	Socket socket = null;
-	try {
-	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-		    "run", new Object[] { "Starting Server..." }, null);
-	    server_socket = new ServerSocket(port);
-	    LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-		    "run", new Object[] { "Port " + port
-			    + " opened, waiting for clients..." }, null);
-	    while (true) {
-		socket = server_socket.accept();
-		LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(),
-			"run", new Object[] { "Client Accepted from:["
-				+ socket.getInetAddress()
-				+ "], starting worker" }, null);
-		threadPool
-			.execute(new Worker(socket, new MessageParser(broker)));
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    try {
-		socket.close();
-	    } catch (IOException e1) {
-		e1.printStackTrace();
-	    }
+
+	/**
+	 * Thread-pool for efficient usage of workers
+	 */
+	ExecutorService threadPool;
+
+	/**
+	 * The broker to where messages are forwarded by the created workers.
+	 */
+	IMessageBroker broker;
+
+	/**
+	 * Constructor
+	 * 
+	 * @param port
+	 * @param broker
+	 */
+	public TCPServer(final int port, final IMessageBroker broker) {
+		this.port = port;
+		server_socket = null;
+		this.threadPool = Executors.newCachedThreadPool();
+		this.broker = broker;
 	}
-    }
+
+	/**
+	 * This method accepts clients and creates workers for every accepted
+	 * Socket.
+	 */
+	public final void run() {
+		ServerSocket server_socket;
+		Socket socket = null;
+		try {
+			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run", new Object[] { "Starting Server..." },
+					null);
+			server_socket = new ServerSocket(port);
+			LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run",
+					new Object[] { "Port " + port + " opened, waiting for clients..." }, null);
+			while (true) {
+				socket = server_socket.accept();
+				LogUtils.logInfo(LoggerWithModuleContext.mc, this.getClass(), "run",
+						new Object[] { "Client Accepted from:[" + socket.getInetAddress() + "], starting worker" },
+						null);
+				threadPool.execute(new Worker(socket, new MessageParser(broker)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				socket.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 }

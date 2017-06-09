@@ -27,19 +27,18 @@ import java.util.Collection;
  * 
  */
 public interface IMessageBroker {
-    /**
-     * This method sends a new message to the broker.
-     * 
-     * @param type
-     *            Type of the message, for example ServiceCall or ContextPublish
-     * @param key
-     *            Key to identify the concrete object
-     * @param args
-     *            Arguments forwarded to universAAl
-     * @return Collection of any return values that may occur
-     * @throws AdapterException
-     */
-    Collection<?> SendNewMessage(Object type, Object key, Collection<?> args)
-	    throws AdapterException;
+	/**
+	 * This method sends a new message to the broker.
+	 * 
+	 * @param type
+	 *            Type of the message, for example ServiceCall or ContextPublish
+	 * @param key
+	 *            Key to identify the concrete object
+	 * @param args
+	 *            Arguments forwarded to universAAl
+	 * @return Collection of any return values that may occur
+	 * @throws AdapterException
+	 */
+	Collection<?> SendNewMessage(Object type, Object key, Collection<?> args) throws AdapterException;
 
 }

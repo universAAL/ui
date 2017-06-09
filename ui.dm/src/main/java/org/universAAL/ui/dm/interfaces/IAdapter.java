@@ -29,13 +29,13 @@ import org.universAAL.middleware.ui.UIRequest;
  */
 public interface IAdapter {
 
-    /**
-     * Perform an UI adaptation over {@link UIRequest}. This method may be
-     * recalled several times, therefore it must always check that the
-     * adaptation is in fact needed, and not already done.
-     * 
-     * @param request
-     */
-    public void adapt(final UIRequest request);
+	/**
+	 * Perform an UI adaptation over {@link UIRequest}. This method may be
+	 * recalled several times, therefore it must always check that the
+	 * adaptation is in fact needed, and not already done.
+	 * 
+	 * @param request
+	 */
+	public void adapt(final UIRequest request);
 
 }

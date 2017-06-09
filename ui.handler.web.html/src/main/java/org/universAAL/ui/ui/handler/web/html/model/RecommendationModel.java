@@ -40,9 +40,9 @@ import org.universAAL.ontology.recommendations.VerticalLayout;
  *
  */
 public class RecommendationModel {
-	
+
 	private HorizontalAlignment hAlign;
-	
+
 	private VerticalAlignment vAlign;
 
 	private Size mnSize;
@@ -52,9 +52,8 @@ public class RecommendationModel {
 	private Size mxSize;
 
 	private Layout layout;
-	
+
 	private String style;
-	
 
 	/**
 	 * 
@@ -62,130 +61,129 @@ public class RecommendationModel {
 	public RecommendationModel(FormElement fe) {
 		for (Iterator i = fe.getAppearanceRecommendations().iterator(); i.hasNext();) {
 			Recommendation r = (Recommendation) i.next();
-			if (ManagedIndividual.checkCompatibility(HorizontalAlignment.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(HorizontalAlignment.MY_URI, r.getClassURI())) {
 				hAlign = (HorizontalAlignment) r;
 			}
-			if (ManagedIndividual.checkCompatibility(VerticalAlignment.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(VerticalAlignment.MY_URI, r.getClassURI())) {
 				vAlign = (VerticalAlignment) r;
 			}
-			if (ManagedIndividual.checkCompatibility(MinimumSize.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(MinimumSize.MY_URI, r.getClassURI())) {
 				mnSize = (Size) r;
 			}
-			if (ManagedIndividual.checkCompatibility(PreferredSize.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(PreferredSize.MY_URI, r.getClassURI())) {
 				pfSize = (Size) r;
 			}
-			if (ManagedIndividual.checkCompatibility(MaximumSize.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(MaximumSize.MY_URI, r.getClassURI())) {
 				mxSize = (Size) r;
 			}
-			if (ManagedIndividual.checkCompatibility(Layout.MY_URI, r.getClassURI())){
+			if (ManagedIndividual.checkCompatibility(Layout.MY_URI, r.getClassURI())) {
 				layout = (Layout) r;
 			}
-			if (ManagedIndividual.checkCompatibility(CSSRecommendation.MY_URI, r.getClassURI())){
-				style = ((CSSRecommendation)r).getContent();
+			if (ManagedIndividual.checkCompatibility(CSSRecommendation.MY_URI, r.getClassURI())) {
+				style = ((CSSRecommendation) r).getContent();
 			}
-		 }
+		}
 	}
-	
-	public boolean isVerticalLayout(){
+
+	public boolean isVerticalLayout() {
 		return layout != null && ManagedIndividual.checkCompatibility(VerticalLayout.MY_URI, layout.getClassURI());
 	}
-	
-	public boolean isHorizontalLayout(){
+
+	public boolean isHorizontalLayout() {
 		return layout != null && ManagedIndividual.checkCompatibility(HorizontalLayout.MY_URI, layout.getClassURI());
 	}
-	
-	public int getGridLayoutCols(){
+
+	public int getGridLayoutCols() {
 		try {
-			return ((GridLayout)layout).getColCount();
+			return ((GridLayout) layout).getColCount();
 		} catch (NullPointerException e) {
 			return 0;
 		}
 	}
-	
-	public boolean hasVerticalTopAlignment(){
+
+	public boolean hasVerticalTopAlignment() {
 		return (vAlign != null && vAlign.equals(VerticalAlignment.top));
 	}
-	
-	public boolean hasVerticalMiddleAlignment(){
+
+	public boolean hasVerticalMiddleAlignment() {
 		return (vAlign != null && vAlign.equals(VerticalAlignment.middle));
 	}
-	
-	public boolean hasVerticalBottomAlignment(){
+
+	public boolean hasVerticalBottomAlignment() {
 		return (vAlign != null && vAlign.equals(VerticalAlignment.bottom));
 	}
-	
-	public boolean hasHorizontalLeftAlignment(){
+
+	public boolean hasHorizontalLeftAlignment() {
 		return (hAlign != null && hAlign.equals(HorizontalAlignment.left));
 	}
-	
-	public boolean hasHorizontalCenterAlignment(){
+
+	public boolean hasHorizontalCenterAlignment() {
 		return (hAlign != null && hAlign.equals(HorizontalAlignment.center));
 	}
-	
-	public boolean hasHorizontalRightAlignment(){
+
+	public boolean hasHorizontalRightAlignment() {
 		return (hAlign != null && hAlign.equals(HorizontalAlignment.right));
 	}
-	
-	public String getCSSStyle(){
+
+	public String getCSSStyle() {
 		if (style != null)
 			return style;
-		else 
+		else
 			return "";
 	}
-	
-	public String getFullCSSStyle(){
+
+	public String getFullCSSStyle() {
 		StringBuffer res = new StringBuffer();
-		if (hasHorizontalLeftAlignment()){
+		if (hasHorizontalLeftAlignment()) {
 			res.append("text-align:left;");
 		}
-		if (hasHorizontalCenterAlignment()){
+		if (hasHorizontalCenterAlignment()) {
 			res.append("text-align:center;");
 		}
-		if (hasHorizontalRightAlignment()){
+		if (hasHorizontalRightAlignment()) {
 			res.append("text-align:right;");
 		}
-		if (hasVerticalTopAlignment()){
+		if (hasVerticalTopAlignment()) {
 			res.append("vertical-align:top;");
 		}
-		if (hasVerticalMiddleAlignment()){
+		if (hasVerticalMiddleAlignment()) {
 			res.append("vertical-align:middle;");
 		}
-		if (hasVerticalBottomAlignment()){
+		if (hasVerticalBottomAlignment()) {
 			res.append("vertical-align:bottom;");
 		}
-		if (pfSize != null){
+		if (pfSize != null) {
 			res.append(getCSSWidthHeight(pfSize, ""));
 		}
-		if (mnSize != null){
+		if (mnSize != null) {
 			res.append(getCSSWidthHeight(mnSize, "min-"));
 		}
-		if (mxSize != null){
+		if (mxSize != null) {
 			res.append(getCSSWidthHeight(mxSize, "max-"));
 		}
 		return res.toString();
 	}
-	
-	
-	private StringBuffer getCSSWidthHeight(Size s, String prefix){
+
+	private StringBuffer getCSSWidthHeight(Size s, String prefix) {
 		StringBuffer res = new StringBuffer();
 		StringBuffer unit = new StringBuffer();
-		if (s.getUnits().equals(SizeUnit.absolute)){
+		if (s.getUnits().equals(SizeUnit.absolute)) {
 			unit = new StringBuffer("px");
-		} else if (s.getUnits().equals(SizeUnit.ParentRelative)){
+		} else if (s.getUnits().equals(SizeUnit.ParentRelative)) {
 			unit = new StringBuffer("%");
 		} else {
-			return res; //No support for relativeToScreen
+			return res; // No support for relativeToScreen
 		}
 		int w = s.getWidth();
 		int h = s.getHeight();
-		if (w > 0){
-			res.append(prefix + "width:"+Integer.toString(w)).append(unit);
-		} else if (h > 0){
+		if (w > 0) {
+			res.append(prefix + "width:" + Integer.toString(w)).append(unit);
+		} else if (h > 0) {
 			res.append(prefix + "width:auto");
 		}
-		if (h > 0){
-			res.append(prefix + "height:"+Integer.toString(w)).append(unit);
-		} else if (w > 0){
+		if (h > 0) {
+			res.append(prefix + "height:" + Integer.toString(w)).append(unit);
+		} else if (w > 0) {
 			res.append(prefix + "height:auto");
 		}
 		return res;

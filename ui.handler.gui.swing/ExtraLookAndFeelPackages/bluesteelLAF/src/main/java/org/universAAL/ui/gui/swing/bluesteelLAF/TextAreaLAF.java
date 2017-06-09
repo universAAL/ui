@@ -32,54 +32,53 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel;
  */
 public class TextAreaLAF extends TextAreaModel {
 
-    /**
-     * {@link JScrollPane} around the {@link JTextArea};
-     */
-    JScrollPane sp;
-    
-    /**
+	/**
+	 * {@link JScrollPane} around the {@link JTextArea};
+	 */
+	JScrollPane sp;
+
+	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
-    
-    /**
-     * Constructor.
-     * @param control the {@link TextArea} which to model.
-     */
-    public TextAreaLAF(TextArea control, Renderer render) {
-        super(control, render);
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link TextArea} which to model.
+	 */
+	public TextAreaLAF(TextArea control, Renderer render) {
+		super(control, render);
 
-    }
-    
-    /** {@inheritDoc} */
-    public void update() {
-		jc = (JComponent) (jc == sp? ejc:jc);
-	super.update();
-        String initialValue = (String) fc.getValue();
-        JTextArea ta = (JTextArea) jc;
-       // ta.setBorder(new SearchFieldBorder());
-        ta.setRows(5);
-//        ta.setColumns(15);
-        ta.setMargin(new Insets(10,10,10,10)); 
-        ta.getAccessibleContext().setAccessibleName(initialValue);
-        ta.setLineWrap(true);
-        ta.setWrapStyleWord(true);
-        ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
-        ta.setFont(c.getplain());
-        ta.setForeground(c.getfont());
-        ta.setSelectionColor(c.getOrange());
-        sp = new JScrollPane(ejc, 
-				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        sp.setFocusable(true);
-        sp.getAccessibleContext().setAccessibleName(initialValue);
-        jc = sp;
-    }
+	}
 
-    /** {@inheritDoc} */
+	/** {@inheritDoc} */
+	public void update() {
+		jc = (JComponent) (jc == sp ? ejc : jc);
+		super.update();
+		String initialValue = (String) fc.getValue();
+		JTextArea ta = (JTextArea) jc;
+		// ta.setBorder(new SearchFieldBorder());
+		ta.setRows(5);
+		// ta.setColumns(15);
+		ta.setMargin(new Insets(10, 10, 10, 10));
+		ta.getAccessibleContext().setAccessibleName(initialValue);
+		ta.setLineWrap(true);
+		ta.setWrapStyleWord(true);
+		ColorLAF c = Init.getInstance(getRenderer()).getColorLAF();
+		ta.setFont(c.getplain());
+		ta.setForeground(c.getfont());
+		ta.setSelectionColor(c.getOrange());
+		sp = new JScrollPane(ejc, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		sp.setFocusable(true);
+		sp.getAccessibleContext().setAccessibleName(initialValue);
+		jc = sp;
+	}
+
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
-		ejc= super.getNewComponent();
+		ejc = super.getNewComponent();
 		return ejc;
 	}
 

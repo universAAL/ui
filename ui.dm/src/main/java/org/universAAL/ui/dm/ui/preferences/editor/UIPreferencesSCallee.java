@@ -37,128 +37,99 @@ import org.universAAL.ontology.profile.User;
 
 public class UIPreferencesSCallee extends ServiceCallee {
 
-   
-    /**
-     * {@link ModuleContext}
-     */
-    private static ModuleContext mcontext;
-    
-    private static UIPreferencesUICaller uiPreferencesUICaller=null;
-    
-    private static final ServiceResponse failure = new ServiceResponse(
-	    CallStatus.serviceSpecificFailure);
+	/**
+	 * {@link ModuleContext}
+	 */
+	private static ModuleContext mcontext;
 
-    public UIPreferencesSCallee(ModuleContext mcontext, UIPreferencesUICaller uiPreferencesUICaller ) {
-	super(mcontext, UIPreferencesProvidedService.getProfiles(mcontext));
-	UIPreferencesSCallee.mcontext = mcontext;
-	UIPreferencesSCallee.uiPreferencesUICaller=uiPreferencesUICaller;
-    }
+	private static UIPreferencesUICaller uiPreferencesUICaller = null;
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.middleware.service.ServiceCallee#communicationChannelBroken
-     * ()
-     */
-    public void communicationChannelBroken() {
-	// Nothing to do.
+	private static final ServiceResponse failure = new ServiceResponse(CallStatus.serviceSpecificFailure);
 
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
-     * .middleware.service.ServiceCall)
-     */
-    public ServiceResponse handleCall(ServiceCall call) {
-
-	LogUtils
-		.logInfo(
-			mcontext,
-			this.getClass(),
-			"handleCall",
-			new Object[] { "Received a Service Call addressed to UI Preferences Editor." },
-			null);
-	if (call == null) {
-	    failure
-		    .addOutput(new ProcessOutput(
-			    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-			    "Null call!?!"));
-	    LogUtils
-		    .logWarn(
-			    mcontext,
-			    this.getClass(),
-			    "handleCall",
-			    new Object[] { "UI Preferences Editor could not execute the requested service-> Null call!" },
-			    null);
-
-	    return failure;
+	public UIPreferencesSCallee(ModuleContext mcontext, UIPreferencesUICaller uiPreferencesUICaller) {
+		super(mcontext, UIPreferencesProvidedService.getProfiles(mcontext));
+		UIPreferencesSCallee.mcontext = mcontext;
+		UIPreferencesSCallee.uiPreferencesUICaller = uiPreferencesUICaller;
 	}
 
-	String operation = call.getProcessURI();
-	if (operation == null) {
-	    failure.addOutput(new ProcessOutput(
-		    ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-		    "Null operation!?!"));
-	    LogUtils
-		    .logWarn(
-			    mcontext,
-			    this.getClass(),
-			    "handleCall",
-			    new Object[] { "UI Preferences Editor could not execute the requested service-> Null operation!" },
-			    null);
-	    return failure;
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.universAAL.middleware.service.ServiceCallee#
+	 * communicationChannelBroken ()
+	 */
+	public void communicationChannelBroken() {
+		// Nothing to do.
+
 	}
 
-	if (operation.startsWith(UIPreferencesProvidedService.START_UI)) {
-	    Resource inputUser = call.getInvolvedUser();
-	    User undefuser = null;
-	    if (!(inputUser instanceof User)) {
-		failure.addOutput(new ProcessOutput(
-			ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR,
-			"Invalid User Input!"));
-		LogUtils
-			.logWarn(
-				mcontext,
-				this.getClass(),
-				"handleCall",
-				new Object[] { "UI Preferences Editor could not execute the requested service: Invalid User Input" },
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
+	 * .middleware.service.ServiceCall)
+	 */
+	public ServiceResponse handleCall(ServiceCall call) {
+
+		LogUtils.logInfo(mcontext, this.getClass(), "handleCall",
+				new Object[] { "Received a Service Call addressed to UI Preferences Editor." }, null);
+		if (call == null) {
+			failure.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null call!?!"));
+			LogUtils.logWarn(mcontext, this.getClass(), "handleCall",
+					new Object[] { "UI Preferences Editor could not execute the requested service-> Null call!" },
+					null);
+
+			return failure;
+		}
+
+		String operation = call.getProcessURI();
+		if (operation == null) {
+			failure.addOutput(new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Null operation!?!"));
+			LogUtils.logWarn(mcontext, this.getClass(), "handleCall",
+					new Object[] { "UI Preferences Editor could not execute the requested service-> Null operation!" },
+					null);
+			return failure;
+		}
+
+		if (operation.startsWith(UIPreferencesProvidedService.START_UI)) {
+			Resource inputUser = call.getInvolvedUser();
+			User undefuser = null;
+			if (!(inputUser instanceof User)) {
+				failure.addOutput(
+						new ProcessOutput(ServiceResponse.PROP_SERVICE_SPECIFIC_ERROR, "Invalid User Input!"));
+				LogUtils.logWarn(mcontext, this.getClass(), "handleCall",
+						new Object[] {
+								"UI Preferences Editor could not execute the requested service: Invalid User Input" },
+						null);
+
+				return failure;
+			} else {
+				undefuser = (User) inputUser;
+			}
+			LogUtils.logInfo(mcontext, this.getClass(), "handleCall",
+					new Object[] { "Addressed call was:" + UIPreferencesProvidedService.START_UI }, null);
+
+			return showUIPreferencesEditorDialog(undefuser);
+		}
+		LogUtils.logWarn(mcontext, this.getClass(), "handleCall",
+				new Object[] {
+						"UI Preferences Editor could not execute the requested service-> Unrecognized failure!" },
 				null);
-
 		return failure;
-	    } else {
-		undefuser = (User) inputUser;
-	    }
-	    LogUtils.logInfo(mcontext, this.getClass(), "handleCall",
-		    new Object[] { "Addressed call was:"
-			    + UIPreferencesProvidedService.START_UI }, null);
-
-	    return showUIPreferencesEditorDialog(undefuser);
 	}
-	LogUtils
-		.logWarn(
-			mcontext,
-			this.getClass(),
-			"handleCall",
-			new Object[] { "UI Preferences Editor could not execute the requested service-> Unrecognized failure!" },
-			null);
-	return failure;
-    }
 
-    /**
-     * Shows UI Preferences editor dialog. Sends {@link UIRequest} containing
-     * abstract user interface of the UI Preferences Editor.
-     * 
-     * @param user
-     *            {@link User}
-     * @return {@link ServiceResponse} status
-     */
-    public ServiceResponse showUIPreferencesEditorDialog(User user) {
-	uiPreferencesUICaller.showUIPreferencesEditorScreen(user);
-	return new ServiceResponse(CallStatus.succeeded);
-    }
+	/**
+	 * Shows UI Preferences editor dialog. Sends {@link UIRequest} containing
+	 * abstract user interface of the UI Preferences Editor.
+	 * 
+	 * @param user
+	 *            {@link User}
+	 * @return {@link ServiceResponse} status
+	 */
+	public ServiceResponse showUIPreferencesEditorDialog(User user) {
+		uiPreferencesUICaller.showUIPreferencesEditorScreen(user);
+		return new ServiceResponse(CallStatus.succeeded);
+	}
 
 }

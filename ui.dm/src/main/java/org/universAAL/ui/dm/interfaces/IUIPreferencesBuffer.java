@@ -29,42 +29,42 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
  */
 public interface IUIPreferencesBuffer {
 
-    /**
-     * Checks if {@link UIPreferencesSubProfile} has already been initialized
-     * for a given {@link User}. If not initialization bill be done. <br>
-     * The {@link User} will be previously
-     * {@link IUIPreferencesBuffer#addUser(User) added} in order to
-     * {@link IUIPreferencesBuffer#getUIPreferencesSubprofileForUser(User) get}
-     * or
-     * {@link IUIPreferencesBuffer#changeCurrentUIPreferencesSubProfileForUser(User, UIPreferencesSubProfile)
-     * change} its {@link UIPreferencesSubProfile} correctly.
-     * 
-     * @param user
-     *            {@link User} the user to be monitored.
-     */
-    public void addUser(User user);
+	/**
+	 * Checks if {@link UIPreferencesSubProfile} has already been initialized
+	 * for a given {@link User}. If not initialization bill be done. <br>
+	 * The {@link User} will be previously
+	 * {@link IUIPreferencesBuffer#addUser(User) added} in order to
+	 * {@link IUIPreferencesBuffer#getUIPreferencesSubprofileForUser(User) get}
+	 * or
+	 * {@link IUIPreferencesBuffer#changeCurrentUIPreferencesSubProfileForUser(User, UIPreferencesSubProfile)
+	 * change} its {@link UIPreferencesSubProfile} correctly.
+	 * 
+	 * @param user
+	 *            {@link User} the user to be monitored.
+	 */
+	public void addUser(User user);
 
-    /**
-     * Get the {@link UIPreferencesSubProfile} for the given {@link User}.
-     * 
-     * @return the {@link UIPreferencesSubProfile} or null
-     */
-    public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user);
+	/**
+	 * Get the {@link UIPreferencesSubProfile} for the given {@link User}.
+	 * 
+	 * @return the {@link UIPreferencesSubProfile} or null
+	 */
+	public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user);
 
-    /**
-     * Updates the {@link UIPreferencesSubProfile} for the user. Associates the
-     * specified {@link UIPreferencesSubProfile} with the specified {@link User}
-     * If possible, the old value is replaced by the specified value.
-     * 
-     * @return the old {@link UIPreferencesSubProfile} that was associated with
-     *         the {@link User} or null if there was no mapping
-     */
-    public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(
-	    User key, UIPreferencesSubProfile uiPrefSubprof);
+	/**
+	 * Updates the {@link UIPreferencesSubProfile} for the user. Associates the
+	 * specified {@link UIPreferencesSubProfile} with the specified {@link User}
+	 * If possible, the old value is replaced by the specified value.
+	 * 
+	 * @return the old {@link UIPreferencesSubProfile} that was associated with
+	 *         the {@link User} or null if there was no mapping
+	 */
+	public UIPreferencesSubProfile changeCurrentUIPreferencesSubProfileForUser(User key,
+			UIPreferencesSubProfile uiPrefSubprof);
 
-    /**
-     * Stops the task
-     */
-    public void stop();
+	/**
+	 * Stops the task
+	 */
+	public void stop();
 
 }

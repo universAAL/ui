@@ -52,21 +52,21 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 	public SystemCollapse() {
 		this(ColorLAF.SEPARATOR_SPACE);
 	}
-	
-	public SystemCollapse(int gap){
+
+	public SystemCollapse(int gap) {
 		this.gap = gap;
 		backgroundColor = ColorLAF.getSystemBarBackground();
-		
+
 		setOpaque(false);
 		setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel panel = new JPanel();
 		panel.setOpaque(false);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
 		add(panel, BorderLayout.NORTH);
-		
+
 		tglbtnSystem = new TriangularButton();
 		tglbtnSystem.setForeground(backgroundColor);
 		tglbtnSystem.setBorder(null);
@@ -75,34 +75,31 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 			public void actionPerformed(ActionEvent e) {
 				if (collapsablePanel.isCollapsed()) {
 					collapsablePanel.setCollapsed(false);
-				}
-				else {
+				} else {
 					collapsablePanel.setCollapsed(true);
 				}
 			}
 		});
 		panel.add(tglbtnSystem);
-		
+
 		collapsablePanel = new JXCollapsiblePane();
 		collapsablePanel.setOpaque(false);
 		add(collapsablePanel, BorderLayout.CENTER);
 		collapsablePanel.setCollapsed(true);
-		
+
 		systemPanel = new JPanel();
 		systemPanel.setBackground(backgroundColor);
 		systemPanel.setLayout(new FlowLayout(FlowLayout.CENTER, this.gap, this.gap));
-		
+
 		JScrollPane scrollPane = new JScrollPane(systemPanel);
 		scrollPane.setLayout(new BorderedScrolPaneLayout());
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		scrollPane.setBorder(null);
-		//scrollPane.setPreferredSize(systemPanel.getSize());
+		// scrollPane.setPreferredSize(systemPanel.getSize());
 		collapsablePanel.getContentPane().add(scrollPane);
 		systemPanel.addComponentListener(this);
 	}
-
-
 
 	public Component add(Component comp) {
 		return systemPanel.add(comp);
@@ -114,13 +111,13 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 
 	private void resizeTriangle() {
 		int width = getSize().width / 7;
-		Dimension d = new Dimension(width, width/4);
+		Dimension d = new Dimension(width, width / 4);
 		tglbtnSystem.setSize(d);
 		tglbtnSystem.setPreferredSize(d);
 		tglbtnSystem.revalidate();
-		((JPanel)this.getParent()).revalidate();
+		((JPanel) this.getParent()).revalidate();
 	}
-	
+
 	public void componentResized(ComponentEvent e) {
 		resizeTriangle();
 	}
@@ -137,8 +134,6 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 		resizeTriangle();
 	}
 
-
-
 	/**
 	 * @return the backgroundColor
 	 */
@@ -146,10 +141,9 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 		return backgroundColor;
 	}
 
-
-
 	/**
-	 * @param backgroundColor the backgroundColor to set
+	 * @param backgroundColor
+	 *            the backgroundColor to set
 	 */
 	public void setBackgroundColor(Color backgroundColor) {
 		this.backgroundColor = backgroundColor;
@@ -157,28 +151,31 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 
 	/**
 	 * set the tooltips for the button.
-	 * @param show the text to show when the  menu is hidden
-	 * @param hide the text to show when the menu is shown
+	 * 
+	 * @param show
+	 *            the text to show when the menu is hidden
+	 * @param hide
+	 *            the text to show when the menu is shown
 	 */
-	public void setHelpStrings(final String show, final String hide){
+	public void setHelpStrings(final String show, final String hide) {
 		ActionListener setStrings = new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				SwingUtilities.invokeLater(new Runnable() {
-					
+
 					public void run() {
-				if (collapsablePanel.isCollapsed()){
-					tglbtnSystem.setToolTipText(show);
-				} else {
-					tglbtnSystem.setToolTipText(hide);
-				}
+						if (collapsablePanel.isCollapsed()) {
+							tglbtnSystem.setToolTipText(show);
+						} else {
+							tglbtnSystem.setToolTipText(hide);
+						}
 					}
 				});
-				
+
 			}
 		};
 		setStrings.actionPerformed(null);
 		tglbtnSystem.addActionListener(setStrings);
 	}
-	
+
 }

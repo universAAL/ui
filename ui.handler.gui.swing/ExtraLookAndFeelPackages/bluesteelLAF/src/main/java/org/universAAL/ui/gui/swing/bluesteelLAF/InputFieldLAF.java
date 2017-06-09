@@ -39,34 +39,33 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
  */
 public class InputFieldLAF extends InputFieldModel {
 
-
-    /**
-     * Constructor
-     * @param control the {@link InputField} which to model.
-     */
-    public InputFieldLAF(InputField control, Renderer render) {
-        super(control, render);
-    }
-
-    /** {@inheritDoc} */
-    public void update() {
-	if (jc != null){
-	    super.update();
-	    jc.setFont(Init.getInstance(getRenderer()).getColorLAF().getplain());
-	    if (jc instanceof JTextComponent) {
-	    	((JTextComponent)jc).setSelectionColor(
-	    			Init.getInstance(getRenderer()).getColorLAF().getOrange());
-	    }
+	/**
+	 * Constructor
+	 * 
+	 * @param control
+	 *            the {@link InputField} which to model.
+	 */
+	public InputFieldLAF(InputField control, Renderer render) {
+		super(control, render);
 	}
-    }
 
-	/** {@inheritDoc}*/
+	/** {@inheritDoc} */
+	public void update() {
+		if (jc != null) {
+			super.update();
+			jc.setFont(Init.getInstance(getRenderer()).getColorLAF().getplain());
+			if (jc instanceof JTextComponent) {
+				((JTextComponent) jc).setSelectionColor(Init.getInstance(getRenderer()).getColorLAF().getOrange());
+			}
+		}
+	}
+
+	/** {@inheritDoc} */
 	@Override
 	public JComponent getNewComponent() {
 		InputField inFi = (InputField) fc;
 		if (inFi.getValue() instanceof XMLGregorianCalendar) {
-			Date d = ((XMLGregorianCalendar)(inFi.getValue()))
-					.toGregorianCalendar().getTime();
+			Date d = ((XMLGregorianCalendar) (inFi.getValue())).toGregorianCalendar().getTime();
 			JXDatePicker dp = new JXDatePicker(d);
 			return dp;
 		}
@@ -80,23 +79,22 @@ public class InputFieldLAF extends InputFieldModel {
 		l.setText(getAlertString());
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
-	   if (e.getSource() instanceof JXDatePicker){
-	       JXDatePicker dp = (JXDatePicker) e.getSource();
-	       try {
-		GregorianCalendar c = new GregorianCalendar();
-		   c.setTime(dp.getDate());
-		   XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
-		   ((Input)fc).storeUserInput(date);
-	    } catch (DatatypeConfigurationException e1) {
-		LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "actionPerformed",
-			new String[]{"could not translate date to XMLGregorianCalendar"}, e1);
-	    }
-	   } else {
-	    super.actionPerformed(e);
-	   }
+		if (e.getSource() instanceof JXDatePicker) {
+			JXDatePicker dp = (JXDatePicker) e.getSource();
+			try {
+				GregorianCalendar c = new GregorianCalendar();
+				c.setTime(dp.getDate());
+				XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+				((Input) fc).storeUserInput(date);
+			} catch (DatatypeConfigurationException e1) {
+				LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "actionPerformed",
+						new String[] { "could not translate date to XMLGregorianCalendar" }, e1);
+			}
+		} else {
+			super.actionPerformed(e);
+		}
 	}
-
 
 }

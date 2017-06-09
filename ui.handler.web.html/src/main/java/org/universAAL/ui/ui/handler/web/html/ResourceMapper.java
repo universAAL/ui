@@ -40,8 +40,7 @@ public final class ResourceMapper {
 	 * The folders where the resources should be allocated, whether it is in the
 	 * confDir or in the resources (inside the JAR).
 	 */
-	private static String[] resourceFolders = { "icons/", "images/",
-			"resources/" };
+	private static String[] resourceFolders = { "icons/", "images/", "resources/" };
 
 	/**
 	 * {@link ModuleContext} to enable logging.
@@ -92,21 +91,17 @@ public final class ResourceMapper {
 		} else {
 			extension = "";
 		}
-		String coded = Integer.toString(resource.toString().hashCode())
-				+ extension;
+		String coded = Integer.toString(resource.toString().hashCode()) + extension;
 		File cached = new File(cacheFolder, coded);
-		if (!cached.exists()
-				|| cached.getParentFile().mkdirs()) {
+		if (!cached.exists() || cached.getParentFile().mkdirs()) {
 			// copy
 			try {
 				new Retreiver(resource.openStream(), cached);
-				// store reference for when the dialog is finished the Retriever is stoped.
+				// store reference for when the dialog is finished the Retriever
+				// is stoped.
 			} catch (IOException e) {
 				if (mc != null)
-					LogUtils.logError(
-							mc,
-							ResourceMapper.class,
-							"cached",
+					LogUtils.logError(mc, ResourceMapper.class, "cached",
 							new String[] { "It seems it is not possible to cache file " }, e);
 			}
 		}
@@ -125,41 +120,31 @@ public final class ResourceMapper {
 		URL resource;
 		try {
 			if (mc != null)
-				LogUtils.logDebug(mc, ResourceMapper.class, "search",
-						new String[] { "Looking for " + url }, null);
+				LogUtils.logDebug(mc, ResourceMapper.class, "search", new String[] { "Looking for " + url }, null);
 			resource = new URL(url);
 			if (existsURL(resource)) {
 				return resource;
 			} else {
 				if (mc != null)
-					LogUtils.logWarn(
-							mc,
-							ResourceMapper.class,
-							"search",
-							new String[] { "url: "
-									+ url
-									+ " seems not to exists, or it is not accessible" },
-							null);
+					LogUtils.logWarn(mc, ResourceMapper.class, "search",
+							new String[] { "url: " + url + " seems not to exists, or it is not accessible" }, null);
 				return null;
 			}
 		} catch (MalformedURLException e) {
 			if (mc != null)
 				LogUtils.logDebug(mc, ResourceMapper.class, "search",
-						new String[] { "Looking for " + url + " in folders" },
-						null);
+						new String[] { "Looking for " + url + " in folders" }, null);
 			resource = searchFolder(url);
 			if (resource != null) {
 				return resource;
 			} else {
 				if (mc != null)
 					LogUtils.logDebug(mc, ResourceMapper.class, "search",
-							new String[] { "Looking for " + url
-									+ " in resources" }, null);
+							new String[] { "Looking for " + url + " in resources" }, null);
 				URL retVal = searchResources(url);
 				if (retVal == null && mc != null)
 					LogUtils.logWarn(mc, ResourceMapper.class, "search",
-							new String[] { "Resource " + url + " not found" },
-							null);
+							new String[] { "Resource " + url + " not found" }, null);
 				return retVal;
 			}
 		}
@@ -214,9 +199,7 @@ public final class ResourceMapper {
 		if (confDirFile == null)
 			return null;
 		try {
-			urlFile = new URL("file://"
-					+ confDirFile.getAbsolutePath().replace('\\', '/')
-					+ url.replace('\\', '/'));
+			urlFile = new URL("file://" + confDirFile.getAbsolutePath().replace('\\', '/') + url.replace('\\', '/'));
 
 			File resourceFile = new File(urlFile.getFile());
 			// Activator.logDebug("Looking for: " + urlFile.toString() + ".",
@@ -233,12 +216,12 @@ public final class ResourceMapper {
 		}
 	}
 
-	private static File getConfigHome(){
+	private static File getConfigHome() {
 		if (mc == null)
 			return null;
 		return mc.getConfigHome();
 	}
-	
+
 	/**
 	 * Searched for the specified url in the JAR.
 	 * 
@@ -247,7 +230,7 @@ public final class ResourceMapper {
 	 * @return the {@link URL} of the resource if found, null otherwise.
 	 */
 	static private URL searchResources(String url) {
-		if (url == null|| url.isEmpty()){
+		if (url == null || url.isEmpty()) {
 			return null;
 		}
 		int i = 0;
@@ -255,24 +238,24 @@ public final class ResourceMapper {
 		while (i < resourceFolders.length && resource == null) {
 			// Activator.logDebug("looking for resources: " + resourceFolders[i]
 			// + url, null);
-			resource = ResourceMapper.class.getClassLoader().getResource(
-					resourceFolders[i] + url);
+			resource = ResourceMapper.class.getClassLoader().getResource(resourceFolders[i] + url);
 			i++;
 		}
 		return resource;
 	}
-	
+
 	/**
 	 * A class that will perform copy operation in a thread.
+	 * 
 	 * @author amedrano
 	 *
 	 */
-	static public class Retreiver implements Runnable{
+	static public class Retreiver implements Runnable {
 
 		private boolean work = true;
 		private InputStream is;
 		private File file;
-		
+
 		/**
 		 * @param is
 		 * @param file
@@ -284,57 +267,49 @@ public final class ResourceMapper {
 			new Thread(this, "Retriever for " + file.getName()).start();
 		}
 
-		/** {@ inheritDoc}	 */
+		/** {@ inheritDoc} */
 		protected void finalize() throws Throwable {
 			finish();
 			super.finalize();
 		}
 
-		/** {@ inheritDoc}	 */
+		/** {@ inheritDoc} */
 		public void run() {
 			try {
-				if (file.getParentFile().exists()
-						|| file.getParentFile().mkdirs()){
+				if (file.getParentFile().exists() || file.getParentFile().mkdirs()) {
 					FileOutputStream os = new FileOutputStream(file);
 					byte[] buffer = new byte[4096];
 					int bytesRead;
-					while (((bytesRead = is.read(buffer)) != -1) 
-							&& work){
+					while (((bytesRead = is.read(buffer)) != -1) && work) {
 						os.write(buffer, 0, bytesRead);
 					}
 					is.close();
 					os.flush();
 					os.close();
-					if (!work){
+					if (!work) {
 						file.delete();
 					}
 				}
-		} catch (FileNotFoundException e) {
-			if (mc != null)
-				LogUtils.logError(
-						mc,
-						Retreiver.class,
-						"run",
-						new String[] { "cache seems not to exists, or file: "
-								+ file.getAbsolutePath() + " is not accessible" }, e);
-		} catch (IOException e) {
-			if (mc != null)
-				LogUtils.logError(
-						mc,
-						Retreiver.class,
-						"run",
-						new String[] { "It seems it is not possible to cache file " }, e);
-		} finally {
-			try {
-				is.close();
+			} catch (FileNotFoundException e) {
+				if (mc != null)
+					LogUtils.logError(mc, Retreiver.class, "run", new String[] {
+							"cache seems not to exists, or file: " + file.getAbsolutePath() + " is not accessible" },
+							e);
 			} catch (IOException e) {
-				e.printStackTrace();
+				if (mc != null)
+					LogUtils.logError(mc, Retreiver.class, "run",
+							new String[] { "It seems it is not possible to cache file " }, e);
+			} finally {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+
 		}
-			
-		}
-		
-		public void finish(){
+
+		public void finish() {
 			work = false;
 		}
 	}

@@ -23,11 +23,12 @@ import javax.swing.JPanel;
 
 /**
  * A page that is managed in a {@link MainMenuPager}
+ * 
  * @author amedrano
  *
  */
 public class Page extends JPanel {
-	
+
 	/**
 	 * 
 	 */
@@ -42,13 +43,15 @@ public class Page extends JPanel {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.awt.Container#add(java.awt.Component)
 	 */
 	@Override
 	public Component add(Component comp) {
 		this.remove(noElems);
-		return super.add(comp,noElems++);
+		return super.add(comp, noElems++);
 	}
 
 }

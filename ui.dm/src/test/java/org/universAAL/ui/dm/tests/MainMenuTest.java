@@ -33,34 +33,33 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 
 public class MainMenuTest extends TestCase {
 
-    protected static Resource user;
-    ModuleContext mc = new JUnitModuleContext();
+	protected static Resource user;
+	ModuleContext mc = new JUnitModuleContext();
 
-    public void setUp() {
-	OntologyManagement.getInstance().register(mc, new DataRepOntology());
-	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-	OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
+	public void setUp() {
+		OntologyManagement.getInstance().register(mc, new DataRepOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
 
-	user = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX
-		+ "testUser");
-    }
-
-    public void test1() {
-	InputStream is = getClass().getResourceAsStream("/main_menu_en.txt");
-	assertNotNull(is);
-	MainMenu mm = new MainMenu(is);
-	int i = 0;
-	Iterator<MenuNode> it = mm.entries().iterator();
-	while (it.hasNext()) {
-	    MenuNode menuNode = (MenuNode) it.next();
-	    assertNotNull(menuNode.getLabel());
-	    assertNotNull(menuNode.getPath());
-	    assertNotNull(menuNode.getService(user));
-	    if (i > 3) {
-		assertNotNull(menuNode.getIconURL());
-	    }
-	    i++;
+		user = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "testUser");
 	}
-	assertEquals(8, i);
-    }
+
+	public void test1() {
+		InputStream is = getClass().getResourceAsStream("/main_menu_en.txt");
+		assertNotNull(is);
+		MainMenu mm = new MainMenu(is);
+		int i = 0;
+		Iterator<MenuNode> it = mm.entries().iterator();
+		while (it.hasNext()) {
+			MenuNode menuNode = (MenuNode) it.next();
+			assertNotNull(menuNode.getLabel());
+			assertNotNull(menuNode.getPath());
+			assertNotNull(menuNode.getService(user));
+			if (i > 3) {
+				assertNotNull(menuNode.getIconURL());
+			}
+			i++;
+		}
+		assertEquals(8, i);
+	}
 }

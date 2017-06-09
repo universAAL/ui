@@ -32,19 +32,19 @@ import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
  *
  */
 public abstract class Model {
-	
+
 	/**
 	 * the {@link FormElement} for which this model represents.
 	 */
 	protected FormElement fe;
-	
+
 	/**
 	 * The {@link HTMLUserGenerator} instance
 	 */
 	private HTMLUserGenerator render;
-	
-	
-	protected RecommendationModel recModel; 
+
+	protected RecommendationModel recModel;
+
 	/**
 	 * @param fe
 	 * @param render
@@ -53,9 +53,9 @@ public abstract class Model {
 		super();
 		this.fe = fe;
 		this.render = render;
-		this.recModel = new RecommendationModel(this.fe); 
+		this.recModel = new RecommendationModel(this.fe);
 	}
-	
+
 	/**
 	 * Get the {@link HTMLUserGenerator} instance to which this {@link Model} is
 	 * associated to
@@ -65,44 +65,55 @@ public abstract class Model {
 	public HTMLUserGenerator getRenderer() {
 		return render;
 	}
-	
+
 	/**
 	 * get the {@link FormElement} associated to this Model.
+	 * 
 	 * @return the FormElement
 	 */
-	public FormElement getFormElement(){
+	public FormElement getFormElement() {
 		return fe;
 	}
 
 	/**
-	 * Generate the HTML code for the concrete {@link FormElement},
-	 * Including all of it's children (if applies).
+	 * Generate the HTML code for the concrete {@link FormElement}, Including
+	 * all of it's children (if applies).
+	 * 
 	 * @return a {@link StringBuffer} with all the HTML code for the Element.
 	 */
 	abstract public StringBuffer generateHTML();
-	
 
 	/**
-	 * Wrapper method for {@link Model#tag(String, StringBuffer, Properties)}, where the body is 
-	 * just a {@link String}.
-	 * @param tagName the HTML tag type
-	 * @param body the Body that goes in between tags.
-	 * @param tagProps the Tag properties that go in the opening tag. May be null if empty.
+	 * Wrapper method for {@link Model#tag(String, StringBuffer, Properties)},
+	 * where the body is just a {@link String}.
+	 * 
+	 * @param tagName
+	 *            the HTML tag type
+	 * @param body
+	 *            the Body that goes in between tags.
+	 * @param tagProps
+	 *            the Tag properties that go in the opening tag. May be null if
+	 *            empty.
 	 * @return the {@link StringBuffer} with the HTML code.
 	 * @see Model#tag(String, StringBuffer, Properties)
 	 */
-	static public StringBuffer tag(String tagName, String body, Properties tagProps){
+	static public StringBuffer tag(String tagName, String body, Properties tagProps) {
 		return tag(tagName, new StringBuffer(body), tagProps);
 	}
-	
+
 	/**
-	 * Create a HTML simply providing the tag type, the body inside and the properties for the opening tag.
-	 * @param tagName the HTML tag type
-	 * @param body the Body that goes in between tags. May be null if empty.
-	 * @param tagProps the Tag properties that go in the opening tag.
+	 * Create a HTML simply providing the tag type, the body inside and the
+	 * properties for the opening tag.
+	 * 
+	 * @param tagName
+	 *            the HTML tag type
+	 * @param body
+	 *            the Body that goes in between tags. May be null if empty.
+	 * @param tagProps
+	 *            the Tag properties that go in the opening tag.
 	 * @return the {@link StringBuffer} with the HTML code.
 	 */
-	static public StringBuffer tag(String tagName, StringBuffer body, Properties tagProps){
+	static public StringBuffer tag(String tagName, StringBuffer body, Properties tagProps) {
 		StringBuffer a = singleTag(tagName, tagProps);
 		a.append(body);
 		a.append("</");
@@ -110,24 +121,26 @@ public abstract class Model {
 		a.append(">");
 		return a;
 	}
-	
+
 	/**
 	 * Create a tag that has no closing tag, and therefore no body.
-	 * @param tagName the HTML tag type
-	 * @param tagProps the Tag properties that go in the opening tag.
+	 * 
+	 * @param tagName
+	 *            the HTML tag type
+	 * @param tagProps
+	 *            the Tag properties that go in the opening tag.
 	 * @return the {@link StringBuffer} with the HTML code.
 	 */
-	static public StringBuffer singleTag(String tagName, Properties tagProps){
+	static public StringBuffer singleTag(String tagName, Properties tagProps) {
 		StringBuffer a = new StringBuffer("<" + tagName.toUpperCase());
-		//include properties
-		if (tagProps!= null) {
+		// include properties
+		if (tagProps != null) {
 			Set p = tagProps.entrySet();
 			for (Iterator i = p.iterator(); i.hasNext();) {
 				Entry e = (Entry) i.next();
 				a.append(" ");
 				a.append(e.getKey());
-				if (e.getValue() != null
-						&& !e.getValue().equals("")){
+				if (e.getValue() != null && !e.getValue().equals("")) {
 					a.append("=\"");
 					a.append(e.getValue());
 					a.append("\"");
@@ -137,27 +150,29 @@ public abstract class Model {
 		a.append(">");
 		return a;
 	}
-	
+
 	/**
-	 * Create a {@link Properties} instance with a src key pointing to the cached resource.
-	 * @param p the properties to which to add the src property.
-	 * @param url the url of the original content.
+	 * Create a {@link Properties} instance with a src key pointing to the
+	 * cached resource.
+	 * 
+	 * @param p
+	 *            the properties to which to add the src property.
+	 * @param url
+	 *            the url of the original content.
 	 */
-	public void addSRCProp(Properties p, String url){
+	public void addSRCProp(Properties p, String url) {
 		if (url != null && !url.isEmpty()) {
-			// cache Icon 
+			// cache Icon
 			String cachedIcon = getCachedURL(url);
 			if (!cachedIcon.isEmpty())
 				p.put("src", cachedIcon);
 		}
 	}
-	
-	protected String getCachedURL(String url){
-		String cachedCSS = ResourceMapper.cached(
-				render.getProperty(HTTPHandlerService.RESOURCES_LOC),
-				url);
-		if (cachedCSS!= null && !cachedCSS.isEmpty())
-			return render.getProperty(HTTPHandlerService.SERVICE_URL) + "/" +cachedCSS;
+
+	protected String getCachedURL(String url) {
+		String cachedCSS = ResourceMapper.cached(render.getProperty(HTTPHandlerService.RESOURCES_LOC), url);
+		if (cachedCSS != null && !cachedCSS.isEmpty())
+			return render.getProperty(HTTPHandlerService.SERVICE_URL) + "/" + cachedCSS;
 		else
 			return cachedCSS;
 	}

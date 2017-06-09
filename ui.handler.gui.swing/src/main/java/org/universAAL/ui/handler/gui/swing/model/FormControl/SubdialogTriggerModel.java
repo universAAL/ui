@@ -35,95 +35,92 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see SubdialogTrigger
  */
-public class SubdialogTriggerModel extends SubmitModel
-implements ActionListener {
+public class SubdialogTriggerModel extends SubmitModel implements ActionListener {
 
-    /**
-     * Constructor.
-     * @param control
-     *     the {@link FormControl} which to model.
-     */
-    public SubdialogTriggerModel(SubdialogTrigger control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link FormControl} which to model.
+	 */
+	public SubdialogTriggerModel(SubdialogTrigger control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * {@inheritDoc}
-     * @return
-     *     a {@link JToggleButton}, whose state is determined by the
-     *     antecessor {@link Form}s.
-     */
-    public JComponent getNewComponent() {
-        JToggleButton tb = new JToggleButton(fc.getLabel().getText(),
-                IconFactory.getIcon(fc.getLabel().getIconURL()));
-        return tb;
-    }
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return a {@link JToggleButton}, whose state is determined by the
+	 *         antecessor {@link Form}s.
+	 */
+	public JComponent getNewComponent() {
+		JToggleButton tb = new JToggleButton(fc.getLabel().getText(), IconFactory.getIcon(fc.getLabel().getIconURL()));
+		return tb;
+	}
 
-    /**
-     * Update the {@link JComponent}
-     */ 
-    public void update() {
-    	super.update();
-    	if (jc instanceof JToggleButton){
-    		((JToggleButton) jc).setSelected(isSelected());
-    	}
-     }
-    
-    /**
-     * Checks that the current dialog is a successor of the dialog this
-     * {@link SubdialogTrigger} triggers
-     * @return
-     *         true is it should be selected
-     */
-    private boolean isSelected() {
-    	if (getRenderer() != null) {
-    	//	FormModel current = FormModelMapper
-    	//			.getFromURI(Renderer.getInstance().getCurrentForm().getURI());
-    		try {
-				FormModel current = getRenderer().getModelMapper().getModelFor(
-						getRenderer().getFormManagement().getCurrentDialog().getDialogForm());
+	/**
+	 * Update the {@link JComponent}
+	 */
+	public void update() {
+		super.update();
+		if (jc instanceof JToggleButton) {
+			((JToggleButton) jc).setSelected(isSelected());
+		}
+	}
+
+	/**
+	 * Checks that the current dialog is a successor of the dialog this
+	 * {@link SubdialogTrigger} triggers
+	 * 
+	 * @return true is it should be selected
+	 */
+	private boolean isSelected() {
+		if (getRenderer() != null) {
+			// FormModel current = FormModelMapper
+			// .getFromURI(Renderer.getInstance().getCurrentForm().getURI());
+			try {
+				FormModel current = getRenderer().getModelMapper()
+						.getModelFor(getRenderer().getFormManagement().getCurrentDialog().getDialogForm());
 				return current.isAntecessor(((SubdialogTrigger) fc).getID());
 			} catch (Exception e) {
 				return false;
 			}
-    	}
-    	else {
-    		return false;
-    	}
-    }
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void actionPerformed(ActionEvent e) {
-    	new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + ((Submit) fc).getID()).start();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	public void actionPerformed(ActionEvent e) {
+		new Thread(new SubdialgoTriggerTask(), "SubdialgoTriggerTask:" + ((Submit) fc).getID()).start();
+	}
 
-    class SubdialgoTriggerTask implements Runnable {
+	class SubdialgoTriggerTask implements Runnable {
 
-		/** {@ inheritDoc}	 */
+		/** {@ inheritDoc} */
 		public void run() {
 			/*
-	         *  This will produce a rendering of a sub-dialog form!
-	         *  It produces the same response as a submit  except it doesn't close 
-	         *  the current dialog.
-	         *  The Dialog it triggers comes in another UIRequest.
-	         */
+			 * This will produce a rendering of a sub-dialog form! It produces
+			 * the same response as a submit except it doesn't close the current
+			 * dialog. The Dialog it triggers comes in another UIRequest.
+			 */
 			Input missing = ((Submit) fc).getMissingInputControl();
-	        if (isValid() && missing == null) {
-	            getRenderer().getHandler().submit((Submit) fc);
-	        }
-	        else {
-	            /*
-	             *  Check rest of model
-	             *  advice the user about data not being valid
-	             */
-	            LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run", "There are missing or invalid input controls.");
-	        	getRenderer().getFormManagement().missingInput(missing);
-	        }
-			
+			if (isValid() && missing == null) {
+				getRenderer().getHandler().submit((Submit) fc);
+			} else {
+				/*
+				 * Check rest of model advice the user about data not being
+				 * valid
+				 */
+				LogUtils.logInfo(getRenderer().getModuleContext(), getClass(), "run",
+						"There are missing or invalid input controls.");
+				getRenderer().getFormManagement().missingInput(missing);
+			}
+
 		}
-    	
-    }
+
+	}
 
 }

@@ -37,11 +37,11 @@ import javax.swing.SwingConstants;
 import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
 
 /**
- * A Jcomponent that will display components in {@link Page}s. 
- * These pages usually have low number of components, 
- * arranged in {@link GridLayout}; the {@link MainMenuPager} will 
- * create the necessary pages to fit all the components, and manage
- * the user input to change between pages
+ * A Jcomponent that will display components in {@link Page}s. These pages
+ * usually have low number of components, arranged in {@link GridLayout}; the
+ * {@link MainMenuPager} will create the necessary pages to fit all the
+ * components, and manage the user input to change between pages
+ * 
  * @author amedrano
  *
  */
@@ -51,13 +51,13 @@ public class MainMenuPager extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private int currentPage = 0;
-	
+
 	private int noCols;
 	private int noRows;
 	private int space;
-	
+
 	private ArrayList<Component> comps = new ArrayList<Component>();
 
 	private JPanel pages;
@@ -67,16 +67,15 @@ public class MainMenuPager extends JPanel {
 	private JButton btnPrev;
 
 	private JButton btnNext;
-	
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public MainMenuPager() {
-		this(3,2,5);
+		this(3, 2, 5);
 	}
-	
-	public MainMenuPager(int cols, int rows, int gap){
+
+	public MainMenuPager(int cols, int rows, int gap) {
 		noCols = cols;
 		noRows = rows;
 		space = gap;
@@ -94,55 +93,53 @@ public class MainMenuPager extends JPanel {
 			}
 		});
 		setLayout(new BorderLayout(0, 0));
-		
+
 		bm = new BookMarker();
-		add(bm,BorderLayout.SOUTH);
-		
+		add(bm, BorderLayout.SOUTH);
+
 		// these buttons can be customized
 		Dimension min = new Dimension(ColorLAF.SEPARATOR_SPACE, Integer.MAX_VALUE);
-		
+
 		btnPrev = new CustomBasicArrowButton(SwingConstants.WEST);
 		btnPrev.setPreferredSize(min);
 		add(btnPrev, BorderLayout.WEST);
 		btnPrev.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				if (pages.getComponentCount() > 0 ) {
+				if (pages.getComponentCount() > 0) {
 					CardLayout cl = (CardLayout) pages.getLayout();
 					cl.previous(pages);
 					currentPage = (currentPage - 1) % pages.getComponentCount();
 					if (currentPage < 0) {
-						currentPage = pages.getComponentCount() -1;
+						currentPage = pages.getComponentCount() - 1;
 					}
 					bm.update(currentPage);
 				}
 			}
 		});
-		
+
 		btnNext = new CustomBasicArrowButton(SwingConstants.EAST);
 		btnNext.setPreferredSize(min);
 		add(btnNext, BorderLayout.EAST);
 		btnNext.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				if (pages.getComponentCount() > 0 ) {
+				if (pages.getComponentCount() > 0) {
 					CardLayout cl = (CardLayout) pages.getLayout();
-					cl.next(pages);		
+					cl.next(pages);
 					currentPage = (currentPage + 1) % pages.getComponentCount();
 					bm.update(currentPage);
 				}
 			}
 		});
-		
-		
+
 		pages = new JPanel();
 		add(pages, BorderLayout.CENTER);
 		pages.setLayout(new CardLayout(space, space));
 		pages.setOpaque(false);
-		
+
 		pages.addContainerListener(bm);
 	}
-
 
 	@Override
 	public Component add(Component arg0) {
@@ -151,12 +148,12 @@ public class MainMenuPager extends JPanel {
 			pages.add(page, Integer.toString(pages.getComponentCount()));
 		}
 		comps.add(arg0);
-		JPanel lastPage = (JPanel) pages.getComponent(pages.getComponentCount()-1);
+		JPanel lastPage = (JPanel) pages.getComponent(pages.getComponentCount() - 1);
 		lastPage.add(arg0);
 		lastPage.revalidate();
 		return arg0;
 	}
-	
+
 	@Override
 	public void removeAll() {
 		comps.clear();
@@ -164,7 +161,7 @@ public class MainMenuPager extends JPanel {
 		currentPage = 0;
 	}
 
-	class BookMarker extends JPanel implements ContainerListener{
+	class BookMarker extends JPanel implements ContainerListener {
 
 		/**
 		 * 
@@ -181,13 +178,13 @@ public class MainMenuPager extends JPanel {
 
 		public void componentAdded(ContainerEvent e) {
 			update();
-			
+
 		}
 
 		public void componentRemoved(ContainerEvent e) {
-			update();			
+			update();
 		}
-		
+
 		public void update() {
 			this.removeAll();
 			bg = new ButtonGroup();
@@ -199,66 +196,61 @@ public class MainMenuPager extends JPanel {
 				bg.add(buttons[i]);
 				buttons[i].setOpaque(false);
 				buttons[i].setName(Integer.toString(i));
-				
+
 				buttons[i].addActionListener(new ActionListener() {
 
 					public void actionPerformed(ActionEvent e) {
 						CardLayout cl = (CardLayout) pages.getLayout();
-						String name = ((JRadioButton)e.getSource()).getName();
+						String name = ((JRadioButton) e.getSource()).getName();
 						cl.show(pages, name);
 						currentPage = Integer.parseInt(name);
 						bm.update(currentPage);
 					}
 				});
 			}
-			
-			if (pages.getComponentCount()>0){
+
+			if (pages.getComponentCount() > 0) {
 				update(currentPage);
 			}
 		}
-		
-		private void updateHelp(){
+
+		private void updateHelp() {
 			for (int i = 0; i < buttons.length; i++) {
-				if (jump != null
-						&& i != currentPage) {
-					buttons[i].setToolTipText(jump.replace("{0}", Integer.toString(i+1)));
+				if (jump != null && i != currentPage) {
+					buttons[i].setToolTipText(jump.replace("{0}", Integer.toString(i + 1)));
 				}
-				if (page!= null
-						&& i == currentPage) {
-					buttons[i].setToolTipText(
-							page
-							.replace("{0}", Integer.toString(i+1))
-							.replace("{1}", Integer.toString(buttons.length)));
+				if (page != null && i == currentPage) {
+					buttons[i].setToolTipText(page.replace("{0}", Integer.toString(i + 1)).replace("{1}",
+							Integer.toString(buttons.length)));
 				}
 			}
 		}
-		
+
 		public void update(int currentPage) {
 			buttons[currentPage].setSelected(true);
 			updateHelp();
 		}
 
 		void setHelpStrings(String jump, String page) {
-			this.jump = jump;																					
+			this.jump = jump;
 			this.page = page;
 		}
-		
-	}
 
+	}
 
 	/**
 	 * set the help strings for different elements.
+	 * 
 	 * @param next
 	 * @param previous
 	 * @param jump
 	 * @param page
 	 */
-	public void setHelpStrings(String next, String previous,
-			String jump, String page) {
+	public void setHelpStrings(String next, String previous, String jump, String page) {
 		btnPrev.setToolTipText(previous);
 		btnNext.setToolTipText(next);
-		bm.setHelpStrings(jump,page);
-		
+		bm.setHelpStrings(jump, page);
+
 	}
 
 }

@@ -40,7 +40,7 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 
 	private static final int AUX_BUTTON_SIZE = 20;
 	private ColorLAF color;
-	
+
 	public RepeatModelGridLAF(Repeat control, Renderer render) {
 		super(control, render);
 		color = ((Init) render.getInitLAF()).getColorLAF();
@@ -49,7 +49,7 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		JScrollPane scrollPane = new JScrollPane(super.getNewComponent());
-		
+
 		JPanel buttonPanel = getButtonPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		Component[] buttons = buttonPanel.getComponents();
@@ -60,15 +60,13 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 		pannelWithAll.setLayout(new BorderLayout());
 		pannelWithAll.add(scrollPane, BorderLayout.CENTER);
 		pannelWithAll.add(buttonPanel, BorderLayout.EAST);
-		pannelWithAll.add(
-				getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(),
-				BorderLayout.NORTH);
+		pannelWithAll.add(getRenderer().getModelMapper().getModelFor(fc.getLabel()).getComponent(), BorderLayout.NORTH);
 		needsLabel = false;
 		return pannelWithAll;
 	}
-	
+
 	protected JPanel getButtonPanel() {
-		Repeat r = (Repeat)fc;
+		Repeat r = (Repeat) fc;
 
 		JPanel buttonPanel = new JPanel();
 		if (r.listAcceptsNewEntries()) {
@@ -83,7 +81,7 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 		}
 		return buttonPanel;
 	}
-	
+
 	private void setButtonColors(JButton button) {
 		Color border = color.getborderLine();
 		Color normalF = color.getBackLetter();
@@ -92,7 +90,6 @@ public class RepeatModelGridLAF extends RepeatModelGrid {
 		Color enterB = color.getOverSytem();
 		Color clickF = color.getSelectedLetter();
 		Color clickB = color.getBackSystem();
-		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF,
-				enterB, clickF, clickB);
+		MyButton.setMyButtonBehaviour(button, border, normalF, normalB, enterF, enterB, clickF, clickB);
 	}
 }

@@ -36,17 +36,16 @@ public class SimpleOutputModel extends OutputModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTMLWithoutLabel() {
 		fcProps.put("readonly", "");
-		
+
 		StringBuffer content;
-		Object val = ((SimpleOutput)fe).getValue();
-		if (val instanceof String
-				&& ((String)val).length() > TA_THRESHOLD){
+		Object val = ((SimpleOutput) fe).getValue();
+		if (val instanceof String && ((String) val).length() > TA_THRESHOLD) {
 			content = tag("textarea", (String) val, fcProps);
 		} else {
-			InputFieldModel.setInputTypeProperties(fcProps, ((SimpleOutput)fe).getContent() );
+			InputFieldModel.setInputTypeProperties(fcProps, ((SimpleOutput) fe).getContent());
 			content = singleTag("input", fcProps);
 		}
 		return content;

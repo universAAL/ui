@@ -34,32 +34,30 @@ import org.universAAL.ui.dm.interfaces.IAdapter;
  */
 public class AdapterDialogPrivacyLevel implements IAdapter {
 
-    private PrivacyLevel dialogPrivacyLevel = null;
+	private PrivacyLevel dialogPrivacyLevel = null;
 
-    public AdapterDialogPrivacyLevel(PrivacyLevel newDialogPrivacyLevel) {
-	dialogPrivacyLevel = newDialogPrivacyLevel;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
-     * .ui.UIRequest)
-     */
-    public void adapt(UIRequest request) {
-
-	if (dialogPrivacyLevel != null) {
-
-	    LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(),
-		    "adapt",
-		    new String[] { "Overriding dialog privacy level with: "
-			    + dialogPrivacyLevel.toStringRecursive() }, null);
-
-	    // TODO check if this is correct way to override prop
-	    request.changeProperty(UIRequest.PROP_DIALOG_PRIVACY_LEVEL,
-		    dialogPrivacyLevel);
+	public AdapterDialogPrivacyLevel(PrivacyLevel newDialogPrivacyLevel) {
+		dialogPrivacyLevel = newDialogPrivacyLevel;
 	}
-    }
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
+	 * .ui.UIRequest)
+	 */
+	public void adapt(UIRequest request) {
+
+		if (dialogPrivacyLevel != null) {
+
+			LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "adapt",
+					new String[] { "Overriding dialog privacy level with: " + dialogPrivacyLevel.toStringRecursive() },
+					null);
+
+			// TODO check if this is correct way to override prop
+			request.changeProperty(UIRequest.PROP_DIALOG_PRIVACY_LEVEL, dialogPrivacyLevel);
+		}
+	}
 
 }

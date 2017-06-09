@@ -41,7 +41,7 @@ public class SubmitModel extends FormControlModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTML() {
 		Properties p = new Properties();
 		p.put("type", "submit");
@@ -51,23 +51,23 @@ public class SubmitModel extends FormControlModel {
 		if (ltext != null && !ltext.isEmpty())
 			p.put("title", ltext);
 		// put special classes to button (eg when kicker)
-		if (isInStandardGroup()){
+		if (isInStandardGroup()) {
 			p.put("class", "standardButton");
-			((Submit)fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
-			((Submit)fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
+			((Submit) fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
+			((Submit) fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
 		}
-		if (isInSubmitGroup()){
+		if (isInSubmitGroup()) {
 			p.put("class", "submitButton");
 		}
-		if (isInIOGroup()){
+		if (isInIOGroup()) {
 			if (isInMainMenu()) {
 				p.put("class", "kickerButton");
-				((Submit)fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
-				((Submit)fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
+				((Submit) fe).getLabel().addAppearanceRecommendation(new VerticalLayout());
+				((Submit) fe).getLabel().addAppearanceRecommendation(HorizontalAlignment.center);
 			}
 		}
-		
-		return tag("button", getLabelModel().getImgText(),p);
+
+		return tag("button", getLabelModel().getImgText(), p);
 	}
 
 	/**
@@ -75,32 +75,31 @@ public class SubmitModel extends FormControlModel {
 	 */
 	public void submitted() {
 		getRenderer().getFormManagement().closeCurrentDialog();
-        getRenderer().getHandler().submit((Submit) fe);
+		getRenderer().getHandler().submit((Submit) fe);
 	}
-	
-	protected StringBuffer getButtonContent(){
+
+	protected StringBuffer getButtonContent() {
 		StringBuffer a = new StringBuffer();
 		// TODO go through recommendations to find alignment.
-		//default
+		// default
 		a.append(getIcon());
-		if (((Label)fe).getText() != null) {
-			a.append(((Label)fe).getText());
+		if (((Label) fe).getText() != null) {
+			a.append(((Label) fe).getText());
 		}
 		return a;
 	}
 
-	private StringBuffer getIcon(){
+	private StringBuffer getIcon() {
 		Properties p = new Properties();
-		addSRCProp(p, ((Label)fe).getIconURL());
-		if (p.containsKey("src")){
+		addSRCProp(p, ((Label) fe).getIconURL());
+		if (p.containsKey("src")) {
 			p.put("class", "buttonIMG");
 			return singleTag("img", p);
-		}
-		else 
+		} else
 			return new StringBuffer();
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public StringBuffer generateHTMLWithoutLabel() {
 		// no label needed
 		return generateHTML();

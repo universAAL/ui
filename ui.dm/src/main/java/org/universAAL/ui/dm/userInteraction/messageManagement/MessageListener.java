@@ -33,42 +33,42 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  */
 public class MessageListener implements ISubmitGroupListener {
 
-    /**
-     * The messagePool that stores all the messages for the user. It is used to
-     * change the message status.
-     */
-    private IUIRequestPool messagePool;
-    
-    /**
-     * Reference to the udm to call {@link UserDialogManager#showSomething()}. 
-     */
-    private UserDialogManager udm;
-    
-    public MessageListener(UserDialogManager udm) {
-	this.messagePool = udm.getMessagePool();
-	this.udm = udm;
-    }
+	/**
+	 * The messagePool that stores all the messages for the user. It is used to
+	 * change the message status.
+	 */
+	private IUIRequestPool messagePool;
 
-    /** {@inheritDoc} */
-    public Set<String> listDeclaredSubmitIds() {
-	TreeSet<String> s = new TreeSet<String>();
-	s.add(Form.ACK_MESSAGE_KEEP);
-	s.add(Form.ACK_MESSAGE_DELET);
-	return s;
-    }
+	/**
+	 * Reference to the udm to call {@link UserDialogManager#showSomething()}.
+	 */
+	private UserDialogManager udm;
 
-    /** {@inheritDoc} */
-    public void handle(UIResponse response) {
-	String dialogID = response.getDialogID();
-	String submissionID = response.getSubmissionID();
-	// DialogManagerImpl.getModuleContext().logDebug("Message Handle",
-	// "response ID: " + dialogID + " SubmissionID: " + submissionID, null);
-	if (Form.ACK_MESSAGE_DELET.equals(submissionID)) {
-	    messagePool.close(dialogID);
-	} else if (Form.ACK_MESSAGE_KEEP.equals(submissionID)) {
-	    messagePool.suspend(dialogID);
+	public MessageListener(UserDialogManager udm) {
+		this.messagePool = udm.getMessagePool();
+		this.udm = udm;
 	}
-	udm.showSomething();
-    }
+
+	/** {@inheritDoc} */
+	public Set<String> listDeclaredSubmitIds() {
+		TreeSet<String> s = new TreeSet<String>();
+		s.add(Form.ACK_MESSAGE_KEEP);
+		s.add(Form.ACK_MESSAGE_DELET);
+		return s;
+	}
+
+	/** {@inheritDoc} */
+	public void handle(UIResponse response) {
+		String dialogID = response.getDialogID();
+		String submissionID = response.getSubmissionID();
+		// DialogManagerImpl.getModuleContext().logDebug("Message Handle",
+		// "response ID: " + dialogID + " SubmissionID: " + submissionID, null);
+		if (Form.ACK_MESSAGE_DELET.equals(submissionID)) {
+			messagePool.close(dialogID);
+		} else if (Form.ACK_MESSAGE_KEEP.equals(submissionID)) {
+			messagePool.suspend(dialogID);
+		}
+		udm.showSomething();
+	}
 
 }

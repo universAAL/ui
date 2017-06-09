@@ -33,33 +33,29 @@ import org.universAAL.ui.dm.DialogManagerImpl;
 import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 
 /**
- * Loads All InitialDialogProfiles.
- * Useful only for testing purposes.
+ * Loads All InitialDialogProfiles. Useful only for testing purposes.
+ * 
  * @author amedrano
  *
  */
 public class AllMainMenuProvider implements IMainMenuProvider {
 
-
-	private Map<String, ServiceProfile> serviceProfileMap 
-			= new HashMap<String, ServiceProfile>();
+	private Map<String, ServiceProfile> serviceProfileMap = new HashMap<String, ServiceProfile>();
 	private Resource usr;
-	
-	public AllMainMenuProvider(Resource user){
+
+	public AllMainMenuProvider(Resource user) {
 		usr = user;
 	}
-	
+
 	/** {@inheritDoc} */
 	public void handle(UIResponse response) {
 		String sID = response.getSubmissionID();
-		if (serviceProfileMap.containsKey(sID)){
+		if (serviceProfileMap.containsKey(sID)) {
 			ServiceProfile sp = serviceProfileMap.get(sID);
 			ServiceCaller sc = DialogManagerImpl.getServiceCaller();
 			InitialServiceDialog.startInitialDialog(
 					(String) sp.getProperty(InitialServiceDialog.PROP_CORRELATED_SERVICE_CLASS),
-					(String) sp.getProperty(InitialServiceDialog.PROP_HAS_VENDOR),
-					usr,
-					sc);
+					(String) sp.getProperty(InitialServiceDialog.PROP_HAS_VENDOR), usr, sc);
 		}
 	}
 
@@ -69,20 +65,17 @@ public class AllMainMenuProvider implements IMainMenuProvider {
 	}
 
 	/** {@inheritDoc} */
-	public Group getMainMenu(Resource user, AbsLocation location,
-			Form systemForm) {
+	public Group getMainMenu(Resource user, AbsLocation location, Form systemForm) {
 		serviceProfileMap.clear();
 		// list all InitialDialogProfile s and create a list.
 		ServiceCaller sc = DialogManagerImpl.getServiceCaller();
 		ServiceProfile[] sps = sc.getMatchingService(InitialServiceDialog.MY_URI);
 		for (int i = 0; i < sps.length; i++) {
-			String description =
-					(String) sps[i].getProperty(InitialServiceDialog.PROP_DESCRIPTION);
-			String uri =
-					(String) sps[i].getProperty(InitialServiceDialog.PROP_CORRELATED_SERVICE_CLASS);
+			String description = (String) sps[i].getProperty(InitialServiceDialog.PROP_DESCRIPTION);
+			String uri = (String) sps[i].getProperty(InitialServiceDialog.PROP_CORRELATED_SERVICE_CLASS);
 			new Submit(systemForm.getIOControls(), new Label(description, null), uri);
 			serviceProfileMap.put(uri, sps[i]);
-					
+
 		}
 		return systemForm.getIOControls();
 	}

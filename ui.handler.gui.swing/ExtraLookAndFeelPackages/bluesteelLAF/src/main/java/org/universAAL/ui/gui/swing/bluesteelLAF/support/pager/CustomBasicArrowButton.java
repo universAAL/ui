@@ -32,25 +32,27 @@ public class CustomBasicArrowButton extends BasicArrowButton {
 		super(direction);
 	}
 
-	public CustomBasicArrowButton(int direction, Color background,
-			Color shadow, Color darkShadow, Color highlight) {
+	public CustomBasicArrowButton(int direction, Color background, Color shadow, Color darkShadow, Color highlight) {
 		super(direction, background, shadow, darkShadow, highlight);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.plaf.basic.BasicArrowButton#getPreferredSize()
 	 */
 	@Override
 	public Dimension getPreferredSize() {
 		if (this.preffSize != null) {
 			return this.preffSize;
-		}
-		else {
+		} else {
 			return super.getPreferredSize();
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see javax.swing.JComponent#setPreferredSize(java.awt.Dimension)
 	 */
 	@Override

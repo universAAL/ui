@@ -26,81 +26,88 @@ import org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator;
 
 /**
  * Interface to implement Form management Logic.
+ * 
  * @author amedrano
  *
  */
 public interface FormManager {
 
-    /**
-     * Callback for incoming dialogs.
-     * This method will model and render (if necessary) the {@link Form}.
-     * @param oe
-     *         {@link UIRequest} that includes the dialog to show
-     */
-    void addDialog(UIRequest oe);
-
-    /**
-     * get the Dialog Being currently displayed.
-     * @return the {@link UIRequest} currently being displayed
-     */
-    UIRequest getCurrentDialog();
-
-    /**
-     * close the current dialog.
-     */
-     void closeCurrentDialog();
-
-    /**
-     * Callback for {@link Handler#cutDialog(String)}.
-     * @param dialogID
-     *         DialogURI to cut
-     * @return
-     *         result of the operation
-     */
-    Resource cutDialog(String dialogID);
-
-    /**
-     * to be called when the handler finishes.
-     * it should close all dialogs, and pending dialogs.
-     */
-    void flush();
-    
-    /**
-     * get the parent {@link Form} of a given formURI.
-     * @param formURI
-     * 	the URI of the child {@link Form}
-     * @return
-     * 	the parent of the child {@link Form}
-     */
-    Form getParentOf(String formURI);
-    
-    /**
-     * Associate a {@link HTMLUserGenerator} to the {@link FormManager}.
-     * @param renderer
-     * 	the {@link HTMLUserGenerator} to associate with
-     */
-    void setRenderer(HTMLUserGenerator renderer);
-    
-    /**
-     * Consult all the added dialogs that are not closed yet.
-     * @return a Collection of {@link UIRequest}s
-     */
-    Collection getAllDialogs();
-    
-    /**
-     * This method is called when a Submit has detected there is a missing input it needs,
-     * therefore the model for that input should be notified (so the user knows).
-     * @param input
-     */
-    void missingInput(Input input);
+	/**
+	 * Callback for incoming dialogs. This method will model and render (if
+	 * necessary) the {@link Form}.
+	 * 
+	 * @param oe
+	 *            {@link UIRequest} that includes the dialog to show
+	 */
+	void addDialog(UIRequest oe);
 
 	/**
-	 * Callback for when the bus instructs some parameters have changed.
-	 * Default behavior should be to re-render the form.
+	 * get the Dialog Being currently displayed.
+	 * 
+	 * @return the {@link UIRequest} currently being displayed
+	 */
+	UIRequest getCurrentDialog();
+
+	/**
+	 * close the current dialog.
+	 */
+	void closeCurrentDialog();
+
+	/**
+	 * Callback for {@link Handler#cutDialog(String)}.
+	 * 
+	 * @param dialogID
+	 *            DialogURI to cut
+	 * @return result of the operation
+	 */
+	Resource cutDialog(String dialogID);
+
+	/**
+	 * to be called when the handler finishes. it should close all dialogs, and
+	 * pending dialogs.
+	 */
+	void flush();
+
+	/**
+	 * get the parent {@link Form} of a given formURI.
+	 * 
+	 * @param formURI
+	 *            the URI of the child {@link Form}
+	 * @return the parent of the child {@link Form}
+	 */
+	Form getParentOf(String formURI);
+
+	/**
+	 * Associate a {@link HTMLUserGenerator} to the {@link FormManager}.
+	 * 
+	 * @param renderer
+	 *            the {@link HTMLUserGenerator} to associate with
+	 */
+	void setRenderer(HTMLUserGenerator renderer);
+
+	/**
+	 * Consult all the added dialogs that are not closed yet.
+	 * 
+	 * @return a Collection of {@link UIRequest}s
+	 */
+	Collection getAllDialogs();
+
+	/**
+	 * This method is called when a Submit has detected there is a missing input
+	 * it needs, therefore the model for that input should be notified (so the
+	 * user knows).
+	 * 
+	 * @param input
+	 */
+	void missingInput(Input input);
+
+	/**
+	 * Callback for when the bus instructs some parameters have changed. Default
+	 * behavior should be to re-render the form.
+	 * 
 	 * @param dialogID
 	 * @param changedProp
 	 * @param newVal
 	 */
-	void adaptationParametersChanged(String dialogID, String changedProp,
-			Object newVal);
+	void adaptationParametersChanged(String dialogID, String changedProp, Object newVal);
 }

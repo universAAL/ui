@@ -32,20 +32,21 @@ import org.universAAL.ui.handler.gui.swing.model.LabelModel;
  */
 public class LabelLAF extends LabelModel {
 
-    /**
-     * Constructor
-     * @param l the {@link Label} which to model.
-     */
-    public LabelLAF(Label l, Renderer render) {
-        super(l, render);
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param l
+	 *            the {@link Label} which to model.
+	 */
+	public LabelLAF(Label l, Renderer render) {
+		super(l, render);
+	}
 
-    /** {@inheritDoc} */
-    public JLabel getComponent() {
-        JLabel jl = super.getComponent();
-        jl.getAccessibleContext().setAccessibleName(jl.getText());
-        return jl;
-    }
-
+	/** {@inheritDoc} */
+	public JLabel getComponent() {
+		JLabel jl = super.getComponent();
+		jl.getAccessibleContext().setAccessibleName(jl.getText());
+		return jl;
+	}
 
 }

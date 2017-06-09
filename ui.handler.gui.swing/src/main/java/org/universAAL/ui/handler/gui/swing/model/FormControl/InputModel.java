@@ -27,50 +27,53 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
- * Input Control is an abstract Class as such it should not be
- * Instantiated an so there is no rendering.
+ * Input Control is an abstract Class as such it should not be Instantiated an
+ * so there is no rendering.
  *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Input
  */
-public abstract class InputModel extends Model
- {
-    /**
-     * Constructor.
-     * @param control
-     *      the {@link Input} {@link FormControl} to model.
-     */
-    public InputModel(Input control, Renderer render) {
-        super(control, render);
-    }
-    
-    /**
-     * Check if the {@link Input} of Mandatory completion.
-     * @return
-     * 		true if user must complete, false otherwise.
-     */
-    public boolean isMandatory() {
-    	return ((Input)fc).isMandatory();
-    }
+public abstract class InputModel extends Model {
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Input} {@link FormControl} to model.
+	 */
+	public InputModel(Input control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * Get Alert string, to show to user if she/he has forgotten this {@link Input}
-     */
-    public String getAlertString() {
-    	return ((Input)fc).getAlertString();
-    }
-    
-    /**
-     * Update the {@link JComponent} or the label to notiffy the the user Input is missing.
-     */
-    public abstract void updateAsMissing();
-    
-    /**
-     * Checks if the value will be accepted as class c.
-     * @param c
-     * @return
-     */
-    protected boolean isOfType(Class c){
+	/**
+	 * Check if the {@link Input} of Mandatory completion.
+	 * 
+	 * @return true if user must complete, false otherwise.
+	 */
+	public boolean isMandatory() {
+		return ((Input) fc).isMandatory();
+	}
+
+	/**
+	 * Get Alert string, to show to user if she/he has forgotten this
+	 * {@link Input}
+	 */
+	public String getAlertString() {
+		return ((Input) fc).getAlertString();
+	}
+
+	/**
+	 * Update the {@link JComponent} or the label to notiffy the the user Input
+	 * is missing.
+	 */
+	public abstract void updateAsMissing();
+
+	/**
+	 * Checks if the value will be accepted as class c.
+	 * 
+	 * @param c
+	 * @return
+	 */
+	protected boolean isOfType(Class c) {
 		return TypeMapper.getJavaClass(fc.getTypeURI()) == c;
-    }
+	}
 }

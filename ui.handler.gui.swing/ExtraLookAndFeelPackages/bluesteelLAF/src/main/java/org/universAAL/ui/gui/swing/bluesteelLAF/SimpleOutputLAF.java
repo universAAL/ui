@@ -37,72 +37,71 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 	 * Added Scroll pane to contain TextArea
 	 */
 	JScrollPane sp;
-	
+
 	/**
 	 * Enveloped {@link JComponent}
 	 */
 	JComponent ejc;
-	
-    /**
-     * Constructor.
-     * @param control the {@link SimpleOutput} which to model.
-     */
-    public SimpleOutputLAF(SimpleOutput control, Renderer render) {
-        super(control, render);
 
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link SimpleOutput} which to model.
+	 */
+	public SimpleOutputLAF(SimpleOutput control, Renderer render) {
+		super(control, render);
 
-    /** {@inheritDoc} */
+	}
+
+	/** {@inheritDoc} */
 	public JComponent getNewComponent() {
 		ejc = super.getNewComponent();
 		return ejc;
 	}
 
 	/** {@inheritDoc} */
-    public void update() {
-		jc = (JComponent) (jc == sp? ejc:jc);
-    	super.update();
-        Object content = ((SimpleOutput) fc).getContent();
-        ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
-        if (content instanceof String) {
-            if (jc instanceof JTextArea) {
-                JTextArea ta = (JTextArea) jc;
-                ta.getAccessibleContext().setAccessibleName(ta.getName());
-                ta.setRows(5);
-                ta.setLineWrap(true);
-                ta.setWrapStyleWord(true);
-                ta.getAccessibleContext();
-                ta.setFont(color.getplain());
-                ta.setLineWrap(true);
-                ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-                ta.setForeground(color.getfont());
-                sp = new JScrollPane(jc);
-                sp.getAccessibleContext();
-            }
-            else if (jc instanceof JTextComponent) {
-                JTextComponent tf = (JTextComponent) jc;
-                tf.getAccessibleContext().setAccessibleName(tf.getText());
-                tf.setFont(color.getplain());
-                //tf.setPreferredSize(new Dimension(150, 30));
-                tf.setForeground(color.getBackMM());
-                sp = null;
-            }
-            else if (jc instanceof JLabel) {
-            	JLabel jl = (JLabel) jc;
-            	jl.getAccessibleContext().setAccessibleName(jl.getText());
-                jl.setFont(color.getplain());
-                if (getPositionInGroup() == 0){
-                	needsPostNewLine = true;
-                }
-            }
-        }
-        if (jc instanceof JCheckBox) {
-            JCheckBox cb = (JCheckBox) jc;
-            cb.getAccessibleContext().setAccessibleName(cb.getName());
-            sp = null;
-        }
-        jc = sp==null? jc : sp;
-    }
-
+	public void update() {
+		jc = (JComponent) (jc == sp ? ejc : jc);
+		super.update();
+		Object content = ((SimpleOutput) fc).getContent();
+		ColorLAF color = Init.getInstance(getRenderer()).getColorLAF();
+		if (content instanceof String) {
+			if (jc instanceof JTextArea) {
+				JTextArea ta = (JTextArea) jc;
+				ta.getAccessibleContext().setAccessibleName(ta.getName());
+				ta.setRows(5);
+				ta.setLineWrap(true);
+				ta.setWrapStyleWord(true);
+				ta.getAccessibleContext();
+				ta.setFont(color.getplain());
+				ta.setLineWrap(true);
+				ta.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+				ta.setForeground(color.getfont());
+				sp = new JScrollPane(jc);
+				sp.getAccessibleContext();
+			} else if (jc instanceof JTextComponent) {
+				JTextComponent tf = (JTextComponent) jc;
+				tf.getAccessibleContext().setAccessibleName(tf.getText());
+				tf.setFont(color.getplain());
+				// tf.setPreferredSize(new Dimension(150, 30));
+				tf.setForeground(color.getBackMM());
+				sp = null;
+			} else if (jc instanceof JLabel) {
+				JLabel jl = (JLabel) jc;
+				jl.getAccessibleContext().setAccessibleName(jl.getText());
+				jl.setFont(color.getplain());
+				if (getPositionInGroup() == 0) {
+					needsPostNewLine = true;
+				}
+			}
+		}
+		if (jc instanceof JCheckBox) {
+			JCheckBox cb = (JCheckBox) jc;
+			cb.getAccessibleContext().setAccessibleName(cb.getName());
+			sp = null;
+		}
+		jc = sp == null ? jc : sp;
+	}
 
 }

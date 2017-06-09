@@ -35,34 +35,36 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel;
  */
 public class RangeLAF extends RangeModel {
 
-    /**
-     * Constructor.
-     * @param control the {@link Range} which to model.
-     */
-    public RangeLAF(Range control, Renderer render) {
-        super(control, render);
-    }
-
-    @Override
-    public JComponent getNewComponent() {
-	Range form = (Range) fc;
-	needsLabel = false;
-	JComponent center = super.getNewComponent();
-	JPanel combined=new JPanel(new BorderLayout(5,5));
-//	combined.add(new JLabel(" "), BorderLayout.EAST);
-//	combined.add(new JLabel(" "), BorderLayout.NORTH);
-//	combined.add(new JLabel(" "), BorderLayout.SOUTH);
-	combined.add(center, BorderLayout.CENTER);
-	if (form.getLabel()!=null){
-	    String title=form.getLabel().getText();
-	    if(title!=null && !title.isEmpty()){
-		combined.add(new JLabel(title), BorderLayout.WEST);
-	    }/*else{
-		combined.add(new JLabel(" "), BorderLayout.WEST);
-	    }*/
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link Range} which to model.
+	 */
+	public RangeLAF(Range control, Renderer render) {
+		super(control, render);
 	}
-	return combined;
-    }
+
+	@Override
+	public JComponent getNewComponent() {
+		Range form = (Range) fc;
+		needsLabel = false;
+		JComponent center = super.getNewComponent();
+		JPanel combined = new JPanel(new BorderLayout(5, 5));
+		// combined.add(new JLabel(" "), BorderLayout.EAST);
+		// combined.add(new JLabel(" "), BorderLayout.NORTH);
+		// combined.add(new JLabel(" "), BorderLayout.SOUTH);
+		combined.add(center, BorderLayout.CENTER);
+		if (form.getLabel() != null) {
+			String title = form.getLabel().getText();
+			if (title != null && !title.isEmpty()) {
+				combined.add(new JLabel(title), BorderLayout.WEST);
+			} /*
+				 * else{ combined.add(new JLabel(" "), BorderLayout.WEST); }
+				 */
+		}
+		return combined;
+	}
 
 	@Override
 	public void updateAsMissing() {

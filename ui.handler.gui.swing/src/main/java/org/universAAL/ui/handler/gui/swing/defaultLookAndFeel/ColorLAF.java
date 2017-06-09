@@ -43,11 +43,9 @@ public final class ColorLAF extends DefaultMetalTheme {
 	private final ColorUIResource primary2 = new ColorUIResource(238, 124, 38);
 	private final ColorUIResource primary3 = new ColorUIResource(213, 237, 247);
 
-	private final ColorUIResource secondary1 = new ColorUIResource(213, 237,
-			247);
+	private final ColorUIResource secondary1 = new ColorUIResource(213, 237, 247);
 	private final ColorUIResource secondary2 = new ColorUIResource(30, 149, 192);
-	private final ColorUIResource secondary3 = new ColorUIResource(213, 237,
-			247);
+	private final ColorUIResource secondary3 = new ColorUIResource(213, 237, 247);
 	private final ColorUIResource black = new ColorUIResource(0, 0, 0);
 	private final ColorUIResource white = new ColorUIResource(255, 255, 255);
 
@@ -67,10 +65,10 @@ public final class ColorLAF extends DefaultMetalTheme {
 	private Font plain = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE);
 	private Font label = new Font("Arial", Font.PLAIN, FONT_SIZE_BASE - 2);
 
-	protected Color getAlert(){
+	protected Color getAlert() {
 		return new Color(255, 0, 0);
 	}
-	
+
 	/** {@inheritDoc} */
 	protected ColorUIResource getPrimary1() {
 		return primary1;

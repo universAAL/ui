@@ -22,30 +22,27 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
 import org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode;
 import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu;
 
-
 public class ProfMainMenuTest extends MainMenuTest {
 
-	public void setUp(){
+	public void setUp() {
 		mc = new JUnitModuleContext();
-		mc.getContainer().shareObject(mc,
-				new TurtleSerializer(),
+		mc.getContainer().shareObject(mc, new TurtleSerializer(),
 				new Object[] { MessageContentSerializer.class.getName() });
-		mc.getContainer().shareObject(mc,
-				new TurtleSerializer(),
+		mc.getContainer().shareObject(mc, new TurtleSerializer(),
 				new Object[] { MessageContentSerializerEx.class.getName() });
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
 		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
 		OntologyManagement.getInstance().register(mc, new MenuProfileOntology());
 	}
-	
+
 	public void testRead() {
 		InputStream is = getClass().getResourceAsStream("/prof_main_menu.txt");
 		assertNotNull(is);
@@ -62,6 +59,4 @@ public class ProfMainMenuTest extends MainMenuTest {
 		assertEquals(4, i);
 	}
 
-	
-	
 }

@@ -35,22 +35,21 @@ import org.universAAL.middleware.service.ServiceCaller;
  * 
  */
 public class DefaultAdapter implements IServiceCall, IContextPublisher {
-    private ServiceCaller caller;
-    private ContextPublisher cp;
+	private ServiceCaller caller;
+	private ContextPublisher cp;
 
-    public DefaultAdapter(final ServiceCaller caller, final ContextPublisher cp) {
-	super();
-	this.caller = caller;
-	this.cp = cp;
-    }
+	public DefaultAdapter(final ServiceCaller caller, final ContextPublisher cp) {
+		super();
+		this.caller = caller;
+		this.cp = cp;
+	}
 
-    public final Collection<?> callservice(final AbstractService ao)
-	    throws AdapterException {
-	return ao.handleResponse(caller.call(ao.getServiceRequest()));
-    }
+	public final Collection<?> callservice(final AbstractService ao) throws AdapterException {
+		return ao.handleResponse(caller.call(ao.getServiceRequest()));
+	}
 
-    public final void publish(final AbstractContext ac) throws AdapterException {
-	cp.publish(ac.getContextEvent());
-    }
+	public final void publish(final AbstractContext ac) throws AdapterException {
+		cp.publish(ac.getContextEvent());
+	}
 
 }

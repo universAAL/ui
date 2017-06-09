@@ -73,294 +73,247 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  */
 
 public class UISubprofileInitializator {
-    /**
-     * {@link ModuleContext}
-     */
-    private ModuleContext mcontext;
-    private User user;
-    private UIPreferencesSubprofilePrerequisitesHelper uIPSPPrerequisitesHelper;
+	/**
+	 * {@link ModuleContext}
+	 */
+	private ModuleContext mcontext;
+	private User user;
+	private UIPreferencesSubprofilePrerequisitesHelper uIPSPPrerequisitesHelper;
 
-    public UISubprofileInitializator(
-	    final User user) {
-	mcontext = DialogManagerImpl.getModuleContext();
-	this.user = user;
-	uIPSPPrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(mcontext);
-    }
+	public UISubprofileInitializator(final User user) {
+		mcontext = DialogManagerImpl.getModuleContext();
+		this.user = user;
+		uIPSPPrerequisitesHelper = new UIPreferencesSubprofilePrerequisitesHelper(mcontext);
+	}
 
-    public UIPreferencesSubProfile getInitializedUIPreferencesSubprofile(){
-	// check prerequisites - if User does not exist in
+	public UIPreferencesSubProfile getInitializedUIPreferencesSubprofile() {
+		// check prerequisites - if User does not exist in
 		// Profiling
 		// Server (or is not obtainable) add it
 		boolean userIsRemoteCaregiver = false;
-		User obtainedUser = uIPSPPrerequisitesHelper
-			.getUser(user);
+		User obtainedUser = uIPSPPrerequisitesHelper.getUser(user);
 		if (obtainedUser == null) {
-		    uIPSPPrerequisitesHelper
-			    .addUserSucceeded(user);
-		    LogUtils
-			    .logInfo(
-				    DialogManagerImpl.getModuleContext(),
-				    getClass(),
-				    "run",
-				    new String[] { "User not retrieved from Profiling Server so it is (added and) considered AssistedPerson." },
-				    null);
+			uIPSPPrerequisitesHelper.addUserSucceeded(user);
+			LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "run",
+					new String[] {
+							"User not retrieved from Profiling Server so it is (added and) considered AssistedPerson." },
+					null);
 		} else {
-		    if (obtainedUser instanceof Caregiver) {
-			userIsRemoteCaregiver = true;
-			LogUtils
-				.logInfo(
-					DialogManagerImpl.getModuleContext(),
-					getClass(),
-					"run",
-					new String[] { "User retrieved from Profiling Server and recognized as Caregiver (remote user)." },
-					null);
-		    } else {
-			LogUtils
-				.logInfo(
-					DialogManagerImpl.getModuleContext(),
-					getClass(),
-					"run",
-					new String[] { "User retrieved from Profiling Server and recognized as not Caregiver -> so Assisted Person." },
-					null);
-		    }
+			if (obtainedUser instanceof Caregiver) {
+				userIsRemoteCaregiver = true;
+				LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "run",
+						new String[] {
+								"User retrieved from Profiling Server and recognized as Caregiver (remote user)." },
+						null);
+			} else {
+				LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "run",
+						new String[] {
+								"User retrieved from Profiling Server and recognized as not Caregiver -> so Assisted Person." },
+						null);
+			}
 		}
 
-		if (!uIPSPPrerequisitesHelper
-			.getProfileForUserSucceeded(user)) {
-		    uIPSPPrerequisitesHelper
-			    .addUserProfileToUser(user, new UserProfile(user.getURI()
-				    + "UserProfileByDM"));
+		if (!uIPSPPrerequisitesHelper.getProfileForUserSucceeded(user)) {
+			uIPSPPrerequisitesHelper.addUserProfileToUser(user, new UserProfile(user.getURI() + "UserProfileByDM"));
 		}
 
 		// create ui subprofile
-		UIPreferencesSubProfile uiSubprofile = new UIPreferencesSubProfile(user
-			.getURI()
-			+ "SubprofileUIPreferences");
+		UIPreferencesSubProfile uiSubprofile = new UIPreferencesSubProfile(user.getURI() + "SubprofileUIPreferences");
 
 		UIPreferencesSubProfile filledUISubprofile = null;
 		if (userIsRemoteCaregiver) {
-		    // remote user has primary modality WEB...
-		    filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
+			// remote user has primary modality WEB...
+			filledUISubprofile = populateUIPreferencesWithStereotypeDataForCaregiver(uiSubprofile);
 		} else {
-		    // assisted person has primary modality GUI...
-		    filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
+			// assisted person has primary modality GUI...
+			filledUISubprofile = populateUIPreferencesWithStereotypeDataForAssistedPerson(uiSubprofile);
 		}
 		return filledUISubprofile;
-    }
-
-    /**
-     * 
-     * @param uiPrefsSubProfile
-     *            {@link UIPreferencesSubprofile} to be filled in
-     * @return given {@link UIPreferencesSubprofile} with stereotype data for
-     *         {@link AssistedPerson}
-     */
-    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForAssistedPerson(
-	    UIPreferencesSubProfile uiPrefsSubProfile) {
-	LogUtils
-		.logDebug(
-			mcontext,
-			this.getClass(),
-			"populateUIPreferencesWithStereotypeDataForAssistedPerson",
-			new Object[] { "ui.preferences initialization started for uiPrefsSubProfile: "
-				+ uiPrefsSubProfile.getURI() }, null);
-
-	GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
-		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
-	generalInteractionPreferences
-		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences
-		.setPreferredLanguage(getLanguageOntFromSystemSetup());
-	generalInteractionPreferences
-		.setSecondaryLanguage(getLanguageOntFromSystemSetup());
-	generalInteractionPreferences.setPreferredModality(Modality.gui);
-	generalInteractionPreferences.setSecondaryModality(Modality.voice);
-	uiPrefsSubProfile
-		.setInteractionPreferences(generalInteractionPreferences);
-
-	AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile
-		.getURI()
-		+ "AlertPreferences");
-	alertPref.setAlertOption(AlertType.visualAndAudio);
-	uiPrefsSubProfile.setAlertPreferences(alertPref);
-
-	AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI()
-		+ "AccessMode");
-	accessMode.setAuditoryModeStatus(Status.on);
-	accessMode.setOlfactoryModeStatus(Status.off);
-	accessMode.setTactileModeStatus(Status.off);
-	accessMode.setVisualModeStatus(Status.on);
-	accessMode.setTextualModeStatus(Status.on);
-	uiPrefsSubProfile.setAccessMode(accessMode);
-
-	AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
-		uiPrefsSubProfile.getURI() + "AuditoryPreferences");
-	auditoryPreferences.setKeySoundStatus(Status.off);
-	auditoryPreferences.setPitch(Intensity.medium);
-	auditoryPreferences.setSpeechRate(Intensity.medium);
-	auditoryPreferences.setVolume(Intensity.medium);
-	auditoryPreferences.setVoiceGender(VoiceGender.female);
-	auditoryPreferences.setSystemSounds(Status.on);
-	uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
-
-	SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
-		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
-	systemMenuPreferences
-		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setUIRequestPersistance(Status.on);
-	systemMenuPreferences
-		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
-	systemMenuPreferences
-		.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
-	systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
-	uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
-
-	VisualPreferences visualPreferences = new VisualPreferences(
-		uiPrefsSubProfile.getURI() + "VisualPreferences");
-	visualPreferences.setBackgroundColor(ColorType.lightBlue);
-	visualPreferences.setComponentSpacing(Intensity.medium);
-	visualPreferences.setBrightness(Intensity.medium);
-	visualPreferences.setContentContrast(Intensity.high);
-	visualPreferences.setCursorSize(Size.medium);
-	visualPreferences.setDayNightMode(Status.on);
-	visualPreferences.setFlashingResources(Status.on);
-	visualPreferences.setFontColor(ColorType.black);
-	visualPreferences.setFontFamily(GenericFontFamily.serif);
-	visualPreferences.setFontSize(Size.medium);
-	visualPreferences.setHighlightColor(ColorType.white);
-	visualPreferences.setScreenResolution(Intensity.medium);
-	visualPreferences.setScreenSaverUsage(Status.off);
-	visualPreferences.setWindowLayout(WindowLayoutType.overlap);
-	uiPrefsSubProfile.setVisualPreferences(visualPreferences);
-
-	return uiPrefsSubProfile;
-    }
-
-    /**
-     * 
-     * @param uiPrefsSubProfile
-     *            {@link UIPreferencesSubprofile} to be filled in
-     * @return given {@link UIPreferencesSubprofile} with stereotype data for
-     *         {@link Caregiver}
-     */
-    public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForCaregiver(
-	    UIPreferencesSubProfile uiPrefsSubProfile) {
-	LogUtils
-		.logDebug(
-			mcontext,
-			this.getClass(),
-			"populateUIPreferencesWithStereotypeDataForAssistedPerson",
-			new Object[] { "ui.preferences initialization started for uiPrefsSubProfile: "
-				+ uiPrefsSubProfile.getURI() }, null);
-
-	GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
-		uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
-	generalInteractionPreferences
-		.setContentDensity(ContentDensityType.detailed);
-	generalInteractionPreferences
-		.setPreferredLanguage(getLanguageOntFromSystemSetup());
-	generalInteractionPreferences
-		.setSecondaryLanguage(getLanguageOntFromSystemSetup());
-	generalInteractionPreferences.setPreferredModality(Modality.web);
-	generalInteractionPreferences.setSecondaryModality(Modality.gui);
-	uiPrefsSubProfile
-		.setInteractionPreferences(generalInteractionPreferences);
-
-	AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile
-		.getURI()
-		+ "AlertPreferences");
-	alertPref.setAlertOption(AlertType.visualOnly);
-	uiPrefsSubProfile.setAlertPreferences(alertPref);
-
-	AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI()
-		+ "AccessMode");
-	accessMode.setAuditoryModeStatus(Status.on);
-	accessMode.setOlfactoryModeStatus(Status.off);
-	accessMode.setTactileModeStatus(Status.off);
-	accessMode.setVisualModeStatus(Status.on);
-	accessMode.setTextualModeStatus(Status.on);
-	uiPrefsSubProfile.setAccessMode(accessMode);
-
-	AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
-		uiPrefsSubProfile.getURI() + "AuditoryPreferences");
-	auditoryPreferences.setKeySoundStatus(Status.off);
-	auditoryPreferences.setPitch(Intensity.medium);
-	auditoryPreferences.setSpeechRate(Intensity.medium);
-	auditoryPreferences.setVolume(Intensity.medium);
-	auditoryPreferences.setVoiceGender(VoiceGender.female);
-	auditoryPreferences.setSystemSounds(Status.on);
-	uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
-
-	SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
-		uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
-	systemMenuPreferences
-		.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
-	systemMenuPreferences.setUIRequestPersistance(Status.on);
-	systemMenuPreferences
-		.setPendingDialogBuilder(PendingDialogsBuilderType.table);
-	systemMenuPreferences
-		.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
-	systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
-	uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
-
-	VisualPreferences visualPreferences = new VisualPreferences(
-		uiPrefsSubProfile.getURI() + "VisualPreferences");
-	visualPreferences.setBackgroundColor(ColorType.lightBlue);
-	visualPreferences.setBrightness(Intensity.medium);
-	visualPreferences.setComponentSpacing(Intensity.medium);
-	visualPreferences.setContentContrast(Intensity.high);
-	visualPreferences.setCursorSize(Size.medium);
-	visualPreferences.setDayNightMode(Status.on);
-	visualPreferences.setFlashingResources(Status.on);
-	visualPreferences.setFontColor(ColorType.black);
-	visualPreferences.setFontFamily(GenericFontFamily.serif);
-	visualPreferences.setFontSize(Size.medium);
-	visualPreferences.setHighlightColor(ColorType.black);
-	visualPreferences.setScreenResolution(Intensity.medium);
-	visualPreferences.setScreenSaverUsage(Status.off);
-	visualPreferences.setWindowLayout(WindowLayoutType.overlap);
-	uiPrefsSubProfile.setVisualPreferences(visualPreferences);
-
-	return uiPrefsSubProfile;
-    }
-
-    /**
-     * 
-     * @return {@link Language} based on the user.language property defined in
-     *         JVM arguments (or, from Locale)
-     */
-    private Language getLanguageOntFromSystemSetup() {
-
-	// get language from jvm (system) property or b) from default locale
-	// already in memory
-	String langCode = System.getProperty("user.language", java.util.Locale
-		.getDefault().getLanguage().toLowerCase());
-
-	return getLanguageFromIso639(langCode);
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static Language getLanguageFromIso639(String code) {
-	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(
-		Language.MY_URI, true, false);
-	for (Iterator i = allLang.iterator(); i.hasNext();) {
-	    String uri = (String) i.next();
-	    Language l = (Language) Resource
-		    .getResource(uri, uri.toLowerCase());
-	    if (l.getIso639code().equals(code)) {
-		return l;
-	    }
 	}
-	return null;
-    }
 
-    // /**
-    // * Get the English Language.
-    // * @return {@link Language} English
-    // */
-    // private Language getLanguageOntEnglish() {
-    // String englishURI = LanguageOntology.NAMESPACE + "English";
-    // return (Language) Resource.getResource(englishURI,
-    // englishURI.toLowerCase());
-    // }
+	/**
+	 * 
+	 * @param uiPrefsSubProfile
+	 *            {@link UIPreferencesSubprofile} to be filled in
+	 * @return given {@link UIPreferencesSubprofile} with stereotype data for
+	 *         {@link AssistedPerson}
+	 */
+	public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForAssistedPerson(
+			UIPreferencesSubProfile uiPrefsSubProfile) {
+		LogUtils.logDebug(mcontext, this.getClass(), "populateUIPreferencesWithStereotypeDataForAssistedPerson",
+				new Object[] {
+						"ui.preferences initialization started for uiPrefsSubProfile: " + uiPrefsSubProfile.getURI() },
+				null);
+
+		GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
+				uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
+		generalInteractionPreferences.setContentDensity(ContentDensityType.detailed);
+		generalInteractionPreferences.setPreferredLanguage(getLanguageOntFromSystemSetup());
+		generalInteractionPreferences.setSecondaryLanguage(getLanguageOntFromSystemSetup());
+		generalInteractionPreferences.setPreferredModality(Modality.gui);
+		generalInteractionPreferences.setSecondaryModality(Modality.voice);
+		uiPrefsSubProfile.setInteractionPreferences(generalInteractionPreferences);
+
+		AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile.getURI() + "AlertPreferences");
+		alertPref.setAlertOption(AlertType.visualAndAudio);
+		uiPrefsSubProfile.setAlertPreferences(alertPref);
+
+		AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI() + "AccessMode");
+		accessMode.setAuditoryModeStatus(Status.on);
+		accessMode.setOlfactoryModeStatus(Status.off);
+		accessMode.setTactileModeStatus(Status.off);
+		accessMode.setVisualModeStatus(Status.on);
+		accessMode.setTextualModeStatus(Status.on);
+		uiPrefsSubProfile.setAccessMode(accessMode);
+
+		AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
+				uiPrefsSubProfile.getURI() + "AuditoryPreferences");
+		auditoryPreferences.setKeySoundStatus(Status.off);
+		auditoryPreferences.setPitch(Intensity.medium);
+		auditoryPreferences.setSpeechRate(Intensity.medium);
+		auditoryPreferences.setVolume(Intensity.medium);
+		auditoryPreferences.setVoiceGender(VoiceGender.female);
+		auditoryPreferences.setSystemSounds(Status.on);
+		uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
+
+		SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
+				uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
+		systemMenuPreferences.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
+		systemMenuPreferences.setUIRequestPersistance(Status.on);
+		systemMenuPreferences.setPendingDialogBuilder(PendingDialogsBuilderType.table);
+		systemMenuPreferences.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
+		systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
+		uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
+
+		VisualPreferences visualPreferences = new VisualPreferences(uiPrefsSubProfile.getURI() + "VisualPreferences");
+		visualPreferences.setBackgroundColor(ColorType.lightBlue);
+		visualPreferences.setComponentSpacing(Intensity.medium);
+		visualPreferences.setBrightness(Intensity.medium);
+		visualPreferences.setContentContrast(Intensity.high);
+		visualPreferences.setCursorSize(Size.medium);
+		visualPreferences.setDayNightMode(Status.on);
+		visualPreferences.setFlashingResources(Status.on);
+		visualPreferences.setFontColor(ColorType.black);
+		visualPreferences.setFontFamily(GenericFontFamily.serif);
+		visualPreferences.setFontSize(Size.medium);
+		visualPreferences.setHighlightColor(ColorType.white);
+		visualPreferences.setScreenResolution(Intensity.medium);
+		visualPreferences.setScreenSaverUsage(Status.off);
+		visualPreferences.setWindowLayout(WindowLayoutType.overlap);
+		uiPrefsSubProfile.setVisualPreferences(visualPreferences);
+
+		return uiPrefsSubProfile;
+	}
+
+	/**
+	 * 
+	 * @param uiPrefsSubProfile
+	 *            {@link UIPreferencesSubprofile} to be filled in
+	 * @return given {@link UIPreferencesSubprofile} with stereotype data for
+	 *         {@link Caregiver}
+	 */
+	public UIPreferencesSubProfile populateUIPreferencesWithStereotypeDataForCaregiver(
+			UIPreferencesSubProfile uiPrefsSubProfile) {
+		LogUtils.logDebug(mcontext, this.getClass(), "populateUIPreferencesWithStereotypeDataForAssistedPerson",
+				new Object[] {
+						"ui.preferences initialization started for uiPrefsSubProfile: " + uiPrefsSubProfile.getURI() },
+				null);
+
+		GeneralInteractionPreferences generalInteractionPreferences = new GeneralInteractionPreferences(
+				uiPrefsSubProfile.getURI() + "GeneralInteractionPreferences");
+		generalInteractionPreferences.setContentDensity(ContentDensityType.detailed);
+		generalInteractionPreferences.setPreferredLanguage(getLanguageOntFromSystemSetup());
+		generalInteractionPreferences.setSecondaryLanguage(getLanguageOntFromSystemSetup());
+		generalInteractionPreferences.setPreferredModality(Modality.web);
+		generalInteractionPreferences.setSecondaryModality(Modality.gui);
+		uiPrefsSubProfile.setInteractionPreferences(generalInteractionPreferences);
+
+		AlertPreferences alertPref = new AlertPreferences(uiPrefsSubProfile.getURI() + "AlertPreferences");
+		alertPref.setAlertOption(AlertType.visualOnly);
+		uiPrefsSubProfile.setAlertPreferences(alertPref);
+
+		AccessMode accessMode = new AccessMode(uiPrefsSubProfile.getURI() + "AccessMode");
+		accessMode.setAuditoryModeStatus(Status.on);
+		accessMode.setOlfactoryModeStatus(Status.off);
+		accessMode.setTactileModeStatus(Status.off);
+		accessMode.setVisualModeStatus(Status.on);
+		accessMode.setTextualModeStatus(Status.on);
+		uiPrefsSubProfile.setAccessMode(accessMode);
+
+		AuditoryPreferences auditoryPreferences = new AuditoryPreferences(
+				uiPrefsSubProfile.getURI() + "AuditoryPreferences");
+		auditoryPreferences.setKeySoundStatus(Status.off);
+		auditoryPreferences.setPitch(Intensity.medium);
+		auditoryPreferences.setSpeechRate(Intensity.medium);
+		auditoryPreferences.setVolume(Intensity.medium);
+		auditoryPreferences.setVoiceGender(VoiceGender.female);
+		auditoryPreferences.setSystemSounds(Status.on);
+		uiPrefsSubProfile.setAudioPreferences(auditoryPreferences);
+
+		SystemMenuPreferences systemMenuPreferences = new SystemMenuPreferences(
+				uiPrefsSubProfile.getURI() + "SystemMenuPreferences");
+		systemMenuPreferences.setMainMenuConfiguration(MainMenuConfigurationType.taskBar);
+		systemMenuPreferences.setUIRequestPersistance(Status.on);
+		systemMenuPreferences.setPendingDialogBuilder(PendingDialogsBuilderType.table);
+		systemMenuPreferences.setPendingMessageBuilder(PendingMessageBuilderType.simpleTable);
+		systemMenuPreferences.setSearchFeatureIsFirst(Status.on);
+		uiPrefsSubProfile.setSystemMenuPreferences(systemMenuPreferences);
+
+		VisualPreferences visualPreferences = new VisualPreferences(uiPrefsSubProfile.getURI() + "VisualPreferences");
+		visualPreferences.setBackgroundColor(ColorType.lightBlue);
+		visualPreferences.setBrightness(Intensity.medium);
+		visualPreferences.setComponentSpacing(Intensity.medium);
+		visualPreferences.setContentContrast(Intensity.high);
+		visualPreferences.setCursorSize(Size.medium);
+		visualPreferences.setDayNightMode(Status.on);
+		visualPreferences.setFlashingResources(Status.on);
+		visualPreferences.setFontColor(ColorType.black);
+		visualPreferences.setFontFamily(GenericFontFamily.serif);
+		visualPreferences.setFontSize(Size.medium);
+		visualPreferences.setHighlightColor(ColorType.black);
+		visualPreferences.setScreenResolution(Intensity.medium);
+		visualPreferences.setScreenSaverUsage(Status.off);
+		visualPreferences.setWindowLayout(WindowLayoutType.overlap);
+		uiPrefsSubProfile.setVisualPreferences(visualPreferences);
+
+		return uiPrefsSubProfile;
+	}
+
+	/**
+	 * 
+	 * @return {@link Language} based on the user.language property defined in
+	 *         JVM arguments (or, from Locale)
+	 */
+	private Language getLanguageOntFromSystemSetup() {
+
+		// get language from jvm (system) property or b) from default locale
+		// already in memory
+		String langCode = System.getProperty("user.language",
+				java.util.Locale.getDefault().getLanguage().toLowerCase());
+
+		return getLanguageFromIso639(langCode);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public static Language getLanguageFromIso639(String code) {
+		Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
+		for (Iterator i = allLang.iterator(); i.hasNext();) {
+			String uri = (String) i.next();
+			Language l = (Language) Resource.getResource(uri, uri.toLowerCase());
+			if (l.getIso639code().equals(code)) {
+				return l;
+			}
+		}
+		return null;
+	}
+
+	// /**
+	// * Get the English Language.
+	// * @return {@link Language} English
+	// */
+	// private Language getLanguageOntEnglish() {
+	// String englishURI = LanguageOntology.NAMESPACE + "English";
+	// return (Language) Resource.getResource(englishURI,
+	// englishURI.toLowerCase());
+	// }
 }

@@ -30,25 +30,24 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu;
 
 public class ProfilableFileMainMenuProvider extends FileMainMenuProvider {
 
-    private static String PROF_FILE_PREFIX = "mainmenu_";
+	private static String PROF_FILE_PREFIX = "mainmenu_";
 
-    public ProfilableFileMainMenuProvider(UserDialogManager udm) {
-	super(udm);
-    }
+	public ProfilableFileMainMenuProvider(UserDialogManager udm) {
+		super(udm);
+	}
 
-    protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
-	return new RDFMainMenu(ctxt, in);
-    }
+	protected MainMenu newMainMenu(ModuleContext ctxt, InputStream in) {
+		return new RDFMainMenu(ctxt, in);
+	}
 
-    @Override
-    protected File getMainMenuFile() {
-	String userID = userDM.getUserId();
-	return getMainMenuFile(userID);
-    }
+	@Override
+	protected File getMainMenuFile() {
+		String userID = userDM.getUserId();
+		return getMainMenuFile(userID);
+	}
 
-    public static File getMainMenuFile(String userURI) {
-	userURI = userURI.substring(userURI.lastIndexOf("#") + 1);
-	return new File(DialogManagerImpl.getModuleContext().getConfigHome(), PROF_FILE_PREFIX + userURI
-		+ ".txt");
-    }
+	public static File getMainMenuFile(String userURI) {
+		userURI = userURI.substring(userURI.lastIndexOf("#") + 1);
+		return new File(DialogManagerImpl.getModuleContext().getConfigHome(), PROF_FILE_PREFIX + userURI + ".txt");
+	}
 }

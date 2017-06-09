@@ -38,76 +38,81 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerMod
  * @author pabril
  * 
  */
-public class SubdialogTriggerLAF extends SubdialogTriggerModel  implements ComponentListener{
-    
-    /**
-     * Constructor.
-     * 
-     * @param control
-     *            the {@link SubdialogTrigger} which to model.
-     */
-    public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
-	super(control, render);
-    }
+public class SubdialogTriggerLAF extends SubdialogTriggerModel implements ComponentListener {
 
-    /** {@inheritDoc} */
-    public JComponent getNewComponent() {
-	JButton button = new JButton();
-	button.setBorderPainted(false);
-	button.setFocusPainted(false);
-	button.setContentAreaFilled(false);
-	button.setHorizontalTextPosition(SwingConstants.CENTER);
-	button.setVerticalAlignment(SwingConstants.CENTER);
-	button.setMaximumSize(new Dimension(SubmitLAF.MAX_WIDE,SubmitLAF.MAX_HEIGHT));
-	if(fc.getLabel()!=null){
-	    String txt=fc.getLabel().getText();
-	    if(txt!=null){
-		button.setText("<html><body align=\"center\"> "+txt+" </body>");
-	    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            the {@link SubdialogTrigger} which to model.
+	 */
+	public SubdialogTriggerLAF(SubdialogTrigger control, Renderer render) {
+		super(control, render);
 	}
-	button.addComponentListener(this);
-	button.addActionListener(this);
-	return button;
-    }
-    
-    public void componentShown(ComponentEvent e) {
-    }
-    
-    public void componentResized(ComponentEvent e) {
-	if(fc.getLabel()!=null && ((AbstractButton) e.getComponent()).getIcon()==null){
-//	    String url=fc.getLabel().getIconURL();
-//	    if(url!=null){//Custom buttons not allowed
-//		((AbstractButton) e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
-//	    }else{
-		((AbstractButton) e.getComponent()).setIcon(ColorLAF.button_normal);
-		((AbstractButton) e.getComponent()).setPressedIcon(ColorLAF.button_pressed);
-		((AbstractButton) e.getComponent()).setRolloverIcon(ColorLAF.button_focused);
-		int width=((AbstractButton) e.getComponent()).getWidth();//ZERO UNTIL .pack()
-		int height=((AbstractButton) e.getComponent()).getHeight();
-		if(width>0 && height>0){
-		if(width<SubmitLAF.MIN_WIDE)width=SubmitLAF.MIN_WIDE;
-		if(height<SubmitLAF.MIN_HEIGHT)height=SubmitLAF.MIN_HEIGHT;
-		Image img, newimg;
-		img = ColorLAF.button_normal.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setIcon(new ImageIcon( newimg ));
-		
-		img = ColorLAF.button_pressed.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setPressedIcon(new ImageIcon( newimg ));
-		
-		img = ColorLAF.button_focused.getImage() ;  
-		newimg = img.getScaledInstance( width, height,  java.awt.Image.SCALE_SMOOTH ) ;
-		((AbstractButton) e.getComponent()).setRolloverIcon(new ImageIcon( newimg ));
-//		}
-	    }
+
+	/** {@inheritDoc} */
+	public JComponent getNewComponent() {
+		JButton button = new JButton();
+		button.setBorderPainted(false);
+		button.setFocusPainted(false);
+		button.setContentAreaFilled(false);
+		button.setHorizontalTextPosition(SwingConstants.CENTER);
+		button.setVerticalAlignment(SwingConstants.CENTER);
+		button.setMaximumSize(new Dimension(SubmitLAF.MAX_WIDE, SubmitLAF.MAX_HEIGHT));
+		if (fc.getLabel() != null) {
+			String txt = fc.getLabel().getText();
+			if (txt != null) {
+				button.setText("<html><body align=\"center\"> " + txt + " </body>");
+			}
+		}
+		button.addComponentListener(this);
+		button.addActionListener(this);
+		return button;
 	}
-    }
-    
-    public void componentMoved(ComponentEvent e) {
-    }
-    
-    public void componentHidden(ComponentEvent e) {
-    }
+
+	public void componentShown(ComponentEvent e) {
+	}
+
+	public void componentResized(ComponentEvent e) {
+		if (fc.getLabel() != null && ((AbstractButton) e.getComponent()).getIcon() == null) {
+			// String url=fc.getLabel().getIconURL();
+			// if(url!=null){//Custom buttons not allowed
+			// ((AbstractButton)
+			// e.getComponent()).setIcon(IconFactory.getIcon(fc.getLabel().getIconURL()));
+			// }else{
+			((AbstractButton) e.getComponent()).setIcon(ColorLAF.button_normal);
+			((AbstractButton) e.getComponent()).setPressedIcon(ColorLAF.button_pressed);
+			((AbstractButton) e.getComponent()).setRolloverIcon(ColorLAF.button_focused);
+			int width = ((AbstractButton) e.getComponent()).getWidth();// ZERO
+																		// UNTIL
+																		// .pack()
+			int height = ((AbstractButton) e.getComponent()).getHeight();
+			if (width > 0 && height > 0) {
+				if (width < SubmitLAF.MIN_WIDE)
+					width = SubmitLAF.MIN_WIDE;
+				if (height < SubmitLAF.MIN_HEIGHT)
+					height = SubmitLAF.MIN_HEIGHT;
+				Image img, newimg;
+				img = ColorLAF.button_normal.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setIcon(new ImageIcon(newimg));
+
+				img = ColorLAF.button_pressed.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setPressedIcon(new ImageIcon(newimg));
+
+				img = ColorLAF.button_focused.getImage();
+				newimg = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+				((AbstractButton) e.getComponent()).setRolloverIcon(new ImageIcon(newimg));
+				// }
+			}
+		}
+	}
+
+	public void componentMoved(ComponentEvent e) {
+	}
+
+	public void componentHidden(ComponentEvent e) {
+	}
 
 }

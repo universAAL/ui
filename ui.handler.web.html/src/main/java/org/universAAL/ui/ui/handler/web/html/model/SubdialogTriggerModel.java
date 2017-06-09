@@ -35,10 +35,10 @@ public class SubdialogTriggerModel extends SubmitModel {
 		super(fe, render);
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void submitted() {
-		//Doesn't close currentdialog.
-        getRenderer().getHandler().submit((Submit) fe);
+		// Doesn't close currentdialog.
+		getRenderer().getHandler().submit((Submit) fe);
 	}
 
 }

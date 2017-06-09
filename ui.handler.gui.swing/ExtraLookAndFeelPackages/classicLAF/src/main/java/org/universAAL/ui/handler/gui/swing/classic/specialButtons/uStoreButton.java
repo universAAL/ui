@@ -32,7 +32,7 @@ import org.universAAL.ui.handler.gui.swing.model.special.SpecialButtonInterface;
 public class uStoreButton implements SpecialButtonInterface {
 
 	private Submit submit;
-	
+
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uStore";
 
 	/**
@@ -45,14 +45,14 @@ public class uStoreButton implements SpecialButtonInterface {
 	/** {@inheritDoc} */
 	public void actionPerformed(ActionEvent e) {
 		// open webbrowser uStore url
-		 try {
-	         //Set your page url in this string. For eg, I m using URL for Google Search engine
-	         String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
-	         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-	       }
-	       catch (java.io.IOException ex) {
-	           System.out.println(ex.getMessage());
-	       }
+		try {
+			// Set your page url in this string. For eg, I m using URL for
+			// Google Search engine
+			String url = "https://srv-ustore.haifa.il.ibm.com/webapp/wcs/stores/servlet/TopCategories_10001_10001";
+			java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+		} catch (java.io.IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 
 	public boolean isSpecial() {

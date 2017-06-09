@@ -29,36 +29,35 @@ import org.universAAL.ontology.handgestures.HandGestures;
 
 public class HandGesturesPublisher implements AbstractContext {
 
-    HandGestures gesture;
-    ContextEvent ce;
+	HandGestures gesture;
+	ContextEvent ce;
 
-    public final ContextEvent getContextEvent() {
-	return ce;
-    }
+	public final ContextEvent getContextEvent() {
+		return ce;
+	}
 
-    public final void setContextEvent(final Collection<?> args) {
+	public final void setContextEvent(final Collection<?> args) {
 
-	// System.out.println("HandGesturesPublisher setContextEvent" +
-	// args.toString());
-	gesture = new HandGestures();
-	Object[] oargs = args.toArray();
-	gesture.setUser((String) oargs[0]);
-	gesture.setGestureType(HandGestureType.valueOf((String) oargs[1]));
-	gesture.setTimestamp((String) oargs[2]);
+		// System.out.println("HandGesturesPublisher setContextEvent" +
+		// args.toString());
+		gesture = new HandGestures();
+		Object[] oargs = args.toArray();
+		gesture.setUser((String) oargs[0]);
+		gesture.setGestureType(HandGestureType.valueOf((String) oargs[1]));
+		gesture.setTimestamp((String) oargs[2]);
 
-	LogUtils.logInfo(Activator.mc, this.getClass(), "setContextEvent",
-		new Object[] { "user: " + (String) oargs[0]
-			+ "\n GestureType: "
-			+ HandGestureType.valueOf((String) oargs[1])
-			+ "\n Timestamp: " + (String) oargs[2] + "\n" }, null);
+		LogUtils.logInfo(Activator.mc, this.getClass(), "setContextEvent",
+				new Object[] { "user: " + (String) oargs[0] + "\n GestureType: "
+						+ HandGestureType.valueOf((String) oargs[1]) + "\n Timestamp: " + (String) oargs[2] + "\n" },
+				null);
 
-	ce = new ContextEvent(gesture, HandGestures.PROP_GESTURE_TYPE);
-	// System.out.println("HandGesturesPublisher ContextEvent:" +
-	// ce.toString());
-    }
+		ce = new ContextEvent(gesture, HandGestures.PROP_GESTURE_TYPE);
+		// System.out.println("HandGesturesPublisher ContextEvent:" +
+		// ce.toString());
+	}
 
-    public final Collection<?> handleContextEvent(final ContextEvent response) {
+	public final Collection<?> handleContextEvent(final ContextEvent response) {
 
-	return null;
-    }
+		return null;
+	}
 }

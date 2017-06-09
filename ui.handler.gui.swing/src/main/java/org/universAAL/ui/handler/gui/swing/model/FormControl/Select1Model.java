@@ -36,88 +36,88 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Select1
  */
-public abstract class Select1Model extends SelectModel
-implements  ActionListener {
+public abstract class Select1Model extends SelectModel implements ActionListener {
 
-    /**
-     * constructor.
-     * @param control
-     *         the {@link FormControl} which this model represents.
-     */
-    public Select1Model(Select1 control, Renderer render) {
-        super(control, render);
-    }
+	/**
+	 * constructor.
+	 * 
+	 * @param control
+	 *            the {@link FormControl} which this model represents.
+	 */
+	public Select1Model(Select1 control, Renderer render) {
+		super(control, render);
+	}
 
-    /**
-     * {@inheritDoc}
-     * @return either a {@link JTree} or a {@link JComboBox}
-     */
-    public JComponent getNewComponent() {
-        if (!((Select) fc).isMultilevel()) {
-            Label[] items = ((Select1) fc).getChoices();
-            JComboBox cb = new JComboBox(items);            
-            cb.addActionListener(this);
-            return cb;
-        } else {
-            JTree jt = new JTree(new SelectionTreeModel());
-            return jt;
-        }
-    }
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @return either a {@link JTree} or a {@link JComboBox}
+	 */
+	public JComponent getNewComponent() {
+		if (!((Select) fc).isMultilevel()) {
+			Label[] items = ((Select1) fc).getChoices();
+			JComboBox cb = new JComboBox(items);
+			cb.addActionListener(this);
+			return cb;
+		} else {
+			JTree jt = new JTree(new SelectionTreeModel());
+			return jt;
+		}
+	}
 
-    /**
-     * Update the {@link JComponent}
-     */
-    public void update() {
-    	//XXX add icons to component!
-        if (!((Select) fc).isMultilevel()) {
-            Label[] items = ((Select1) fc).getChoices();
-            JComboBox cb = (JComboBox) jc;
-            for (int i = 0; i < items.length; i++) {
-                if (((ChoiceItem) items[i]).getValue()
-                        .equals( fc.getValue())) {
-                    cb.setSelectedIndex(i);
-                }
-            }
-            cb.setEditable(true);
-        } else {
-            JTree jt = (JTree) jc;
-            jt.setEditable(false);
-            jt.setSelectionModel(new SingleTreeSelectionModel());
-        }
-        super.update();
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public boolean isValid() {
-        // TODO check validity.
-        return true;
-    }
+	/**
+	 * Update the {@link JComponent}
+	 */
+	public void update() {
+		// XXX add icons to component!
+		if (!((Select) fc).isMultilevel()) {
+			Label[] items = ((Select1) fc).getChoices();
+			JComboBox cb = (JComboBox) jc;
+			for (int i = 0; i < items.length; i++) {
+				if (((ChoiceItem) items[i]).getValue().equals(fc.getValue())) {
+					cb.setSelectedIndex(i);
+				}
+			}
+			cb.setEditable(true);
+		} else {
+			JTree jt = (JTree) jc;
+			jt.setEditable(false);
+			jt.setSelectionModel(new SingleTreeSelectionModel());
+		}
+		super.update();
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    public void actionPerformed(final ActionEvent e) {
-    	TaskQueue.addTask(new Runnable() {
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isValid() {
+		// TODO check validity.
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void actionPerformed(final ActionEvent e) {
+		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				if (!((Select) fc).isMultilevel()) {
 					int i = ((JComboBox) e.getSource()).getSelectedIndex();
-					((Select1) fc).storeUserInput(
-							((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
+					((Select1) fc).storeUserInput(((ChoiceItem) ((Select1) fc).getChoices()[i]).getValue());
 				}
 			}
 		});
-        
-    }
 
-    /**
-     * The selection model for, selecting only one element in a tree.
-     * @author amedrano
-     *
-     */
-    private class SingleTreeSelectionModel extends DefaultTreeSelectionModel {
-        private static final long serialVersionUID = 1L;
-        //TODO Model the selection! and gather Tree input
-    }
+	}
+
+	/**
+	 * The selection model for, selecting only one element in a tree.
+	 * 
+	 * @author amedrano
+	 *
+	 */
+	private class SingleTreeSelectionModel extends DefaultTreeSelectionModel {
+		private static final long serialVersionUID = 1L;
+		// TODO Model the selection! and gather Tree input
+	}
 }

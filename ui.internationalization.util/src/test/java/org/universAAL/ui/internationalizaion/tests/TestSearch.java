@@ -44,78 +44,75 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 import org.universAAL.ontology.vcard.VCardOntology;
 import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
-
 /**
  * @author amedrano
  *
  */
 public class TestSearch extends TestCase {
-	
+
 	private static final String LOC = "loc";
 	private static final String LANG = "lang";
 
 	static ModuleContext mc = new JUnitModuleContext();
-	
-	static{
+
+	static {
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
 		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
 		OntologyManagement.getInstance().register(mc, new LanguageOntology());
 		OntologyManagement.getInstance().register(mc, new UIPreferencesProfileOntology());
 	}
-	
-    private static Language getLanguageFromIso639(String code) {
-	Set allLang = OntologyManagement.getInstance().getNamedSubClasses(
-		Language.MY_URI, true, false);
-	for (Iterator i = allLang.iterator(); i.hasNext();) {
-	    String uri = (String) i.next();
-	    Language l = (Language) Resource
-		    .getResource(uri, uri.toLowerCase());
-	    if (l.getIso639code().equals(code)) {
-		return l;
-	    }
+
+	private static Language getLanguageFromIso639(String code) {
+		Set allLang = OntologyManagement.getInstance().getNamedSubClasses(Language.MY_URI, true, false);
+		for (Iterator i = allLang.iterator(); i.hasNext();) {
+			String uri = (String) i.next();
+			Language l = (Language) Resource.getResource(uri, uri.toLowerCase());
+			if (l.getIso639code().equals(code)) {
+				return l;
+			}
+		}
+		return null;
 	}
-	return null;
-    }
-	
-	private UIPreferencesSubProfile getProfile(){
+
+	private UIPreferencesSubProfile getProfile() {
 		GeneralInteractionPreferences gip = new GeneralInteractionPreferences();
 		gip.setPreferredLanguage(getLanguageFromIso639("en"));
 		gip.setSecondaryLanguage(getLanguageFromIso639("es"));
-		
+
 		assertNotNull(gip.getPreferredLanguage());
 		assertNotNull(gip.getSecondaryLanguage());
-		
+
 		UIPreferencesSubProfile ps = new UIPreferencesSubProfile();
 		ps.setInteractionPreferences(gip);
 		return ps;
 	}
 
-	private UIPreferencesSubProfile getProfile2(){
+	private UIPreferencesSubProfile getProfile2() {
 		GeneralInteractionPreferences gip = new GeneralInteractionPreferences();
 		gip.setPreferredLanguage(getLanguageFromIso639("de"));
 		gip.setSecondaryLanguage(getLanguageFromIso639("de"));
-		
+
 		assertNotNull(gip.getPreferredLanguage());
 		assertNotNull(gip.getSecondaryLanguage());
-		
+
 		UIPreferencesSubProfile ps = new UIPreferencesSubProfile();
 		ps.setInteractionPreferences(gip);
 		return ps;
 	}
-	
-	private URL getLoc(String loc){
-		URL url = getClass().getClassLoader().getResource(loc+"/messages.properties");
+
+	private URL getLoc(String loc) {
+		URL url = getClass().getClassLoader().getResource(loc + "/messages.properties");
 		assertNotNull(url);
 		return url;
 	}
-	
+
 	public void test1() {
 		// Normal usage, primary found
 		List<URL> l = new ArrayList<URL>();
@@ -127,9 +124,10 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("en",mlh.getString(LANG));
-		assertEquals("loc1",mlh.getString(LOC));
+		assertEquals("en", mlh.getString(LANG));
+		assertEquals("loc1", mlh.getString(LOC));
 	}
+
 	public void test2() {
 		// primary not found, but secondary is
 		List<URL> l = new ArrayList<URL>();
@@ -141,8 +139,8 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("es",mlh.getString(LANG));
-		assertEquals("loc2",mlh.getString(LOC));
+		assertEquals("es", mlh.getString(LANG));
+		assertEquals("loc2", mlh.getString(LOC));
 	}
 
 	public void test3() {
@@ -156,10 +154,10 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("def",mlh.getString(LANG));
-		assertEquals("loc3",mlh.getString(LOC));
+		assertEquals("def", mlh.getString(LANG));
+		assertEquals("loc3", mlh.getString(LOC));
 	}
-	
+
 	public void test4() {
 		// long search
 		List<URL> l = new ArrayList<URL>();
@@ -173,10 +171,10 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("en",mlh.getString(LANG));
-		assertEquals("loc1",mlh.getString(LOC));
+		assertEquals("en", mlh.getString(LANG));
+		assertEquals("loc1", mlh.getString(LOC));
 	}
-	
+
 	public void test5() {
 		// long search, only secondary Lang
 		List<URL> l = new ArrayList<URL>();
@@ -193,10 +191,10 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("es",mlh.getString(LANG));
-		assertEquals("loc2",mlh.getString(LOC));
+		assertEquals("es", mlh.getString(LANG));
+		assertEquals("loc2", mlh.getString(LOC));
 	}
-	
+
 	public void test6() {
 		// primary == secondary, only default
 		List<URL> l = new ArrayList<URL>();
@@ -208,9 +206,10 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("def",mlh.getString(LANG));
-		assertEquals("loc3",mlh.getString(LOC));
+		assertEquals("def", mlh.getString(LANG));
+		assertEquals("loc3", mlh.getString(LOC));
 	}
+
 	public void test7() {
 		List<URL> l = new ArrayList<URL>();
 		l.add(getLoc("loc3"));
@@ -221,6 +220,6 @@ public class TestSearch extends TestCase {
 			e.printStackTrace();
 			fail();
 		}
-		assertEquals("page 1 of 10",mlh.getString("key", new String[]{"1","10"}));
+		assertEquals("page 1 of 10", mlh.getString("key", new String[] { "1", "10" }));
 	}
 }

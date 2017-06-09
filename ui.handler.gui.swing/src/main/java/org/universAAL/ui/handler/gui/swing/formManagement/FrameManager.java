@@ -26,90 +26,90 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
- * Manage a single {@link JFrame} corresponding to a
- * {@link Form}.
+ * Manage a single {@link JFrame} corresponding to a {@link Form}.
  *
  * @author amedrano
  */
-public class FrameManager implements Runnable{
-
-    /**
-     * Switch to set the search for model and rendering the model a concurrent task.
-     */
-    private static final boolean CONCURRENT_MODELING_DISPLAY = true;
+public class FrameManager implements Runnable {
 
 	/**
-     * the {@link Form} for which {@link FrameManager#frame}
-     * corresponds to.
-     */
-    private FormModel model;
-    
-    /**
-     * The {@link Form} for which to find the {@link FormModel}. 
-     */
-    private Form form;
-    
-    /**
-     * The modelmapper used to locate models.
-     */
-    private ModelMapper mp;
+	 * Switch to set the search for model and rendering the model a concurrent
+	 * task.
+	 */
+	private static final boolean CONCURRENT_MODELING_DISPLAY = true;
+
+	/**
+	 * the {@link Form} for which {@link FrameManager#frame} corresponds to.
+	 */
+	private FormModel model;
+
+	/**
+	 * The {@link Form} for which to find the {@link FormModel}.
+	 */
+	private Form form;
+
+	/**
+	 * The modelmapper used to locate models.
+	 */
+	private ModelMapper mp;
 
 	private UIRequest request;
 
-    /**
-     * Constructor.
-     * Sets the actual rendering of the {@link Form} in motion
-     * @param req
-     *         the {@link UIRequest} to be rendered.
-     * @param mp the mapper to use for locating classes
-     */    
-    public FrameManager(final UIRequest req, final ModelMapper mp ){
-    	this.request = req;
-    	this.form = req.getDialogForm();
-    	this.mp = mp;
-    	if (CONCURRENT_MODELING_DISPLAY) {
+	/**
+	 * Constructor. Sets the actual rendering of the {@link Form} in motion
+	 * 
+	 * @param req
+	 *            the {@link UIRequest} to be rendered.
+	 * @param mp
+	 *            the mapper to use for locating classes
+	 */
+	public FrameManager(final UIRequest req, final ModelMapper mp) {
+		this.request = req;
+		this.form = req.getDialogForm();
+		this.mp = mp;
+		if (CONCURRENT_MODELING_DISPLAY) {
 			Thread t = new Thread(this);
 			t.setPriority(Thread.MAX_PRIORITY);
-			t.start();			
+			t.start();
 		} else {
 			run();
 		}
-    }
+	}
 
-    /**
-     * close the Frame and command the finalization of the form.
-     * @see FormModel#finalizeForm()
-     */
-    public void disposeFrame() {
-    	if (model != null) {
-    		synchronized (model) {
-    			model.finalizeForm();
-    		}
-    	}
-    }
-    
-    /**
-     * Relay the missing update to the model.
-     * @param in
-     */
-    public void missing(Input in){
-    	model.updateMissingInput(in);
-    }
+	/**
+	 * close the Frame and command the finalization of the form.
+	 * 
+	 * @see FormModel#finalizeForm()
+	 */
+	public void disposeFrame() {
+		if (model != null) {
+			synchronized (model) {
+				model.finalizeForm();
+			}
+		}
+	}
 
-	/** {@ inheritDoc}	 */
+	/**
+	 * Relay the missing update to the model.
+	 * 
+	 * @param in
+	 */
+	public void missing(Input in) {
+		model.updateMissingInput(in);
+	}
+
+	/** {@ inheritDoc} */
 	public void run() {
-		LogUtils.logDebug(Renderer.getContext(), getClass(), "run", 
-				new String[]{"Starting Modeling"}, null);
-	    model = mp.getModelFor(form);
-	    if (model != null){
-	    	LogUtils.logDebug(Renderer.getContext(), getClass(), "run", 
-	    			new String[]{"Starting Rendering"}, null);
-	    	synchronized (model) {
-	    		if (request != null){
-	    			model.setRequest(request);
-	    		}
-	    		model.showForm();
-	    	}
-	    }		
+		LogUtils.logDebug(Renderer.getContext(), getClass(), "run", new String[] { "Starting Modeling" }, null);
+		model = mp.getModelFor(form);
+		if (model != null) {
+			LogUtils.logDebug(Renderer.getContext(), getClass(), "run", new String[] { "Starting Rendering" }, null);
+			synchronized (model) {
+				if (request != null) {
+					model.setRequest(request);
+				}
+				model.showForm();
+			}
+		}
 	}
 }

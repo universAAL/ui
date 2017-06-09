@@ -47,38 +47,29 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  * 
  *         created: 26-sep-2012 13:03:50
  */
-public class PendingDialogBuilder implements ISubmitGroupListener,
-		IDialogBuilder {
+public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilder {
 
 	/**
 	 * Prefix of a submission ID to switch to a pending dialog. All pending
 	 * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
 	 * control which automatically adds index numbers to this prefix.
 	 */
-	public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX
-			+ ":switchTo#"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE
-			+ "dlgDate"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE
-			+ "dlgList"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE
-			+ "dlgTitle"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE
-			+ "dlgDialogID"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE
-			+ "dlgListSentItems"; //$NON-NLS-1$
+	public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX + ":switchTo#"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE + "dlgDate"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE + "dlgList"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE + "dlgTitle"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE + "dlgDialogID"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE + "dlgListSentItems"; //$NON-NLS-1$
 	/**
 	 * The submission ID to close the dialog that shows all pending dialogs.
 	 */
-	public static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-			+ "#closeOpenDialogs"; //$NON-NLS-1$
+	public static final String CLOSE_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX + "#closeOpenDialogs"; //$NON-NLS-1$
 	/**
 	 * The submission ID to abort all open dialogs. A button with this
 	 * functionality is available in the dialog showing the list of all pending
 	 * dialogs.
 	 */
-	public static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX
-			+ "#abortAllOpenDialogs"; //$NON-NLS-1$
+	public static final String ABORT_ALL_OPEN_DIALOGS_CALL = DialogManagerImpl.CALL_PREFIX + "#abortAllOpenDialogs"; //$NON-NLS-1$
 	/**
 	 * The DialogPool containing all dialogs for the user.
 	 */
@@ -125,15 +116,11 @@ public class PendingDialogBuilder implements ISubmitGroupListener,
 			Resource msgList = new Resource();
 			msgList.setProperty(PROP_DLG_LIST_DIALOG_LIST, dialogs);
 			msgList.setProperty(PROP_DLG_LIST_SENT_ITEMS, sentItems);
-			f = Form.newDialog(messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), msgList);
+			f = Form.newDialog(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), msgList);
 			Group g = f.getIOControls();
 			g = new Repeat(g,
-					new Label(messageLocaleHelper
-							.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
-					new PropertyPath(null, false,
-							new String[] { PROP_DLG_LIST_DIALOG_LIST }), null,
-					null);
+					new Label(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS), null),
+					new PropertyPath(null, false, new String[] { PROP_DLG_LIST_DIALOG_LIST }), null, null);
 			((Repeat) g).banEntryAddition();
 			((Repeat) g).banEntryDeletion();
 			((Repeat) g).banEntryEdit();
@@ -141,40 +128,28 @@ public class PendingDialogBuilder implements ISubmitGroupListener,
 			// be added as child of the repeat
 			g = new Group(g, null, null, null, null);
 			new SimpleOutput(g,
-					new Label(messageLocaleHelper
-							.getString(MessageConstants.PENDING_DIALOG_BUILDER_SUBJECT), null),
-					new PropertyPath(null, false,
-							new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
-			new SimpleOutput(g, new Label(
-					messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_DATE),
-					null), new PropertyPath(null, false,
-					new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
-			SubdialogTrigger sdt = new SubdialogTrigger(
-					g,
-					new Label(messageLocaleHelper
-							.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO), null),
+					new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_SUBJECT), null),
+					new PropertyPath(null, false, new String[] { PROP_DLG_LIST_DIALOG_TITLE }), null);
+			new SimpleOutput(g,
+					new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_DATE), null),
+					new PropertyPath(null, false, new String[] { PROP_DLG_LIST_DIALOG_DATE }), null);
+			SubdialogTrigger sdt = new SubdialogTrigger(g,
+					new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO), null),
 					SubdialogTrigger.VAR_REPEATABLE_ID);
 			sdt.setRepeatableIDPrefix(SWITCH_TO_CALL_PREFIX);
-			sdt.setHelpString(messageLocaleHelper
-					.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
+			sdt.setHelpString(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_SWITCH_TO_HELP));
 			// add submits
 			g = f.getSubmits();
-			new Submit(g, new Label(
-					messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_OK),
-					null), CLOSE_OPEN_DIALOGS_CALL);
-			new Submit(
-					g,
-					new Label(messageLocaleHelper
-							.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL), null),
-					ABORT_ALL_OPEN_DIALOGS_CALL)
-					.setHelpString(messageLocaleHelper
-							.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL_HELP));
+			new Submit(g, new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_OK), null),
+					CLOSE_OPEN_DIALOGS_CALL);
+			new Submit(g,
+					new Label(messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL), null),
+					ABORT_ALL_OPEN_DIALOGS_CALL).setHelpString(
+							messageLocaleHelper.getString(MessageConstants.PENDING_DIALOG_BUILDER_ABORT_ALL_HELP));
 		}
 		if (f == null)
-			f = Form.newMessage(messageLocaleHelper
-					.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
-					messageLocaleHelper
-							.getString(MessageConstants.MENU_PROVIDER_NO_PENDING_DIALOGS));
+			f = Form.newMessage(messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_PENDING_DIALOGS),
+					messageLocaleHelper.getString(MessageConstants.MENU_PROVIDER_NO_PENDING_DIALOGS));
 		return f;
 	}
 
@@ -192,8 +167,8 @@ public class PendingDialogBuilder implements ISubmitGroupListener,
 	/** {@inheritDoc} */
 	public void handle(UIResponse response) {
 		String submissionID = response.getSubmissionID();
-		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(),
-				"handle", new String[] { "handling:", submissionID }, null);
+		LogUtils.logDebug(DialogManagerImpl.getModuleContext(), getClass(), "handle",
+				new String[] { "handling:", submissionID }, null);
 		if (ABORT_ALL_OPEN_DIALOGS_CALL.equals(submissionID)) {
 			dialogPool.removeAll();
 		}
@@ -203,8 +178,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener,
 		if (submissionID.startsWith(SWITCH_TO_CALL_PREFIX)) {
 			int idx = -1;
 			try {
-				idx = Integer.parseInt(submissionID
-						.substring(SWITCH_TO_CALL_PREFIX.length()));
+				idx = Integer.parseInt(submissionID.substring(SWITCH_TO_CALL_PREFIX.length()));
 			} catch (Exception e) {
 				idx = -1;
 			}

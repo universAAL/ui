@@ -33,26 +33,24 @@ import org.universAAL.ui.dm.interfaces.IAdapter;
  */
 public class AdapterUserImpairments implements IAdapter {
 
-    private AccessImpairment[] accessImpairments = null;
+	private AccessImpairment[] accessImpairments = null;
 
-    public AdapterUserImpairments(AccessImpairment[] impairments) {
-	accessImpairments = impairments;
-    }
+	public AdapterUserImpairments(AccessImpairment[] impairments) {
+		accessImpairments = impairments;
+	}
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
-     * .ui.UIRequest)
-     */
-    public void adapt(UIRequest request) {
-	LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(),
-		"adapt",
-		new String[] { "Adding User impairments data to UI Request" },
-		null);
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.universAAL.ui.dm.interfaces.IAdapter#adapt(org.universAAL.middleware
+	 * .ui.UIRequest)
+	 */
+	public void adapt(UIRequest request) {
+		LogUtils.logInfo(DialogManagerImpl.getModuleContext(), getClass(), "adapt",
+				new String[] { "Adding User impairments data to UI Request" }, null);
 
-	request.setImpairments(accessImpairments);
-    }
+		request.setImpairments(accessImpairments);
+	}
 
 }

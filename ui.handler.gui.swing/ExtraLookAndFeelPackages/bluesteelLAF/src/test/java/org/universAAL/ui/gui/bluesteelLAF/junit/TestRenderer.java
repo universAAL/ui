@@ -23,32 +23,29 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 public class TestRenderer extends Renderer {
 
-    public static String SIMPLE_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager";
-    public static String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager";
-    public static String QUEUED_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager";
+	public static String SIMPLE_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager";
+	public static String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager";
+	public static String QUEUED_MANAGER = "org.universAAL.ui.handler.gui.swing.formManagement.QueuedFormManager";
 
-   
-    
-    public TestRenderer(ModuleContext mc, String FromManager) {
-	super();
-	loadProperties();
-	modelMapper = new ModelMapper(this);
-	loadFormManager(FromManager);
-	initLAF = modelMapper.initializeLAF();
-    }
+	public TestRenderer(ModuleContext mc, String FromManager) {
+		super();
+		loadProperties();
+		modelMapper = new ModelMapper(this);
+		loadFormManager(FromManager);
+		initLAF = modelMapper.initializeLAF();
+	}
 
-    /**
-     * load configuration properties from a file, setting the default for those
-     * which are not defined.
-     * 
-     * @see Renderer#properties
-     */
-    protected void loadProperties() {
-	properties = new Properties();
-	properties.put(DEMO_MODE, "true");
-	properties.put("LookandFeel.package",
-		"org.universAAL.ui.gui.swing.bluesteelLAF");
-	properties.put(GUI_LOCATION, "Unknown");
-    }
+	/**
+	 * load configuration properties from a file, setting the default for those
+	 * which are not defined.
+	 * 
+	 * @see Renderer#properties
+	 */
+	protected void loadProperties() {
+		properties = new Properties();
+		properties.put(DEMO_MODE, "true");
+		properties.put("LookandFeel.package", "org.universAAL.ui.gui.swing.bluesteelLAF");
+		properties.put(GUI_LOCATION, "Unknown");
+	}
 
 }

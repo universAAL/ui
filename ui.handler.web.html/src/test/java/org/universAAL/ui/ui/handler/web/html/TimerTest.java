@@ -27,12 +27,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class TimerTest {
 
-	private static class Watchdog implements Runnable{
-		
+	private static class Watchdog implements Runnable {
+
 		private static final long TIMEOUT = 3000;
-//		private Timer timer;
+		// private Timer timer;
 		private ScheduledThreadPoolExecutor p;
-private ScheduledFuture f;
+		private ScheduledFuture f;
 
 		/**
 		 * 
@@ -41,22 +41,22 @@ private ScheduledFuture f;
 			p = new ScheduledThreadPoolExecutor(1);
 			reschedule();
 		}
-		private void reschedule(){
+
+		private void reschedule() {
 			f = p.schedule(this, 3, TimeUnit.SECONDS);
 		}
-		
-		public void liveForAnotherDay(){
+
+		public void liveForAnotherDay() {
 			f.cancel(true);
 			reschedule();
 		}
-		
-		/** {@ inheritDoc}	 */
+
+		/** {@ inheritDoc} */
 		public void run() {
 			System.out.println("watchdog busines");
-			
+
 		}
 	}
-
 
 	/**
 	 * @param args

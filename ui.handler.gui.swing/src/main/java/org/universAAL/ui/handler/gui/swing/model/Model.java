@@ -49,8 +49,7 @@ public abstract class Model {
 	/**
 	 * A property added to FormControls added to tables
 	 */
-	public static final String FORM_CONTROL_IN_TABLE = Form.uAAL_DIALOG_NAMESPACE
-			+ "formInTable";
+	public static final String FORM_CONTROL_IN_TABLE = Form.uAAL_DIALOG_NAMESPACE + "formInTable";
 
 	/**
 	 * the {@link FormControl} for which this model represents.
@@ -214,8 +213,7 @@ public abstract class Model {
 	}
 
 	public boolean isInTable() {
-		return fc.hasProperty(FORM_CONTROL_IN_TABLE)
-				&& Boolean.TRUE.equals(fc.getProperty(FORM_CONTROL_IN_TABLE));
+		return fc.hasProperty(FORM_CONTROL_IN_TABLE) && Boolean.TRUE.equals(fc.getProperty(FORM_CONTROL_IN_TABLE));
 	}
 
 	/**
@@ -272,8 +270,7 @@ public abstract class Model {
 		List recs = fc.getAppearanceRecommendations();
 		for (Iterator i = recs.iterator(); i.hasNext();) {
 			Recommendation r = (Recommendation) i.next();
-			if (ManagedIndividual.checkCompatibility(MaximumSize.MY_URI,
-					r.getClassURI())) {
+			if (ManagedIndividual.checkCompatibility(MaximumSize.MY_URI, r.getClassURI())) {
 				Size s = (Size) r;
 				SizeUnit su = s.getUnits();
 				if (su.equals(SizeUnit.absolute)) {
@@ -281,29 +278,21 @@ public abstract class Model {
 				}
 				if (su.equals(SizeUnit.screenRelative)) {
 					try {
-						Dimension d = Toolkit.getDefaultToolkit()
-								.getScreenSize();
+						Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-						jc.setMaximumSize(new Dimension(
-								(s.getWidth() * d.width) / 100,
-								(s.getHeight() * d.height) / 100));
+						jc.setMaximumSize(
+								new Dimension((s.getWidth() * d.width) / 100, (s.getHeight() * d.height) / 100));
 					} catch (Exception e) {
-						LogUtils.logWarn(
-								getRenderer().getModuleContext(),
-								getClass(),
-								"update",
-								new String[] { "unable to apply Maximum Relative Size Recommendation " },
-								e);
+						LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "update",
+								new String[] { "unable to apply Maximum Relative Size Recommendation " }, e);
 					}
 				}
-				if (su.equals(SizeUnit.ParentRelative)){
+				if (su.equals(SizeUnit.ParentRelative)) {
 					jc.addHierarchyBoundsListener(
-							new RelativeParentListener(
-									RelativeParentListener.MAX, s.getWidth(), s.getHeight()));
+							new RelativeParentListener(RelativeParentListener.MAX, s.getWidth(), s.getHeight()));
 				}
 			}
-			if (ManagedIndividual.checkCompatibility(MinimumSize.MY_URI,
-					r.getClassURI())) {
+			if (ManagedIndividual.checkCompatibility(MinimumSize.MY_URI, r.getClassURI())) {
 				Size s = (Size) r;
 				SizeUnit su = s.getUnits();
 				if (su.equals(SizeUnit.absolute)) {
@@ -311,56 +300,40 @@ public abstract class Model {
 				}
 				if (su.equals(SizeUnit.screenRelative)) {
 					try {
-						Dimension d = Toolkit.getDefaultToolkit()
-								.getScreenSize();
+						Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-						jc.setMinimumSize(new Dimension(
-								(s.getWidth() * d.width) / 100,
-								(s.getHeight() * d.height) / 100));
+						jc.setMinimumSize(
+								new Dimension((s.getWidth() * d.width) / 100, (s.getHeight() * d.height) / 100));
 					} catch (Exception e) {
-						LogUtils.logWarn(
-								getRenderer().getModuleContext(),
-								getClass(),
-								"update",
-								new String[] { "unable to apply Minimum Relative Size Recommendation " },
-								e);
+						LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "update",
+								new String[] { "unable to apply Minimum Relative Size Recommendation " }, e);
 					}
 				}
-				if (su.equals(SizeUnit.ParentRelative)){
+				if (su.equals(SizeUnit.ParentRelative)) {
 					jc.addHierarchyBoundsListener(
-							new RelativeParentListener(
-									RelativeParentListener.MIN, s.getWidth(), s.getHeight()));
+							new RelativeParentListener(RelativeParentListener.MIN, s.getWidth(), s.getHeight()));
 				}
 			}
-			if (ManagedIndividual.checkCompatibility(PreferredSize.MY_URI,
-					r.getClassURI())) {
+			if (ManagedIndividual.checkCompatibility(PreferredSize.MY_URI, r.getClassURI())) {
 				Size s = (Size) r;
 				SizeUnit su = s.getUnits();
 				if (su.equals(SizeUnit.absolute)) {
-					jc.setPreferredSize(new Dimension(s.getWidth(), s
-							.getHeight()));
+					jc.setPreferredSize(new Dimension(s.getWidth(), s.getHeight()));
 				}
 				if (su.equals(SizeUnit.screenRelative)) {
 					try {
-						Dimension d = Toolkit.getDefaultToolkit()
-								.getScreenSize();
+						Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-						jc.setPreferredSize(new Dimension(
-								(s.getWidth() * d.width) / 100,
-								(s.getHeight() * d.height) / 100));
+						jc.setPreferredSize(
+								new Dimension((s.getWidth() * d.width) / 100, (s.getHeight() * d.height) / 100));
 					} catch (Exception e) {
-						LogUtils.logWarn(
-								getRenderer().getModuleContext(),
-								getClass(),
-								"update",
-								new String[] { "unable to apply Preferred Relative Size Recommendation " },
-								e);
+						LogUtils.logWarn(getRenderer().getModuleContext(), getClass(), "update",
+								new String[] { "unable to apply Preferred Relative Size Recommendation " }, e);
 					}
 				}
-				if (su.equals(SizeUnit.ParentRelative)){
+				if (su.equals(SizeUnit.ParentRelative)) {
 					jc.addHierarchyBoundsListener(
-							new RelativeParentListener(
-									RelativeParentListener.PREF, s.getWidth(), s.getHeight()));
+							new RelativeParentListener(RelativeParentListener.PREF, s.getWidth(), s.getHeight()));
 				}
 			}
 		}
@@ -431,7 +404,9 @@ public abstract class Model {
 	}
 
 	/**
-	 * A helper class to listen to parent resizeing, and apply relative-to-parent recommendations.
+	 * A helper class to listen to parent resizeing, and apply
+	 * relative-to-parent recommendations.
+	 * 
 	 * @author amedrano
 	 *
 	 */
@@ -444,7 +419,7 @@ public abstract class Model {
 		int type;
 		int relWidth;
 		int relHeight;
-		
+
 		public RelativeParentListener(int typeOfSize, int relativeWidth, int releativeHeight) {
 			type = typeOfSize;
 			relWidth = relativeWidth;
@@ -459,9 +434,8 @@ public abstract class Model {
 		/** {@ inheritDoc} */
 		public void ancestorResized(HierarchyEvent e) {
 			Container parent = jc.getParent();
-			if (e.getComponent().equals(parent)){
-				Dimension d =  new Dimension(
-						(relWidth * parent.getSize().width) / 100,
+			if (e.getComponent().equals(parent)) {
+				Dimension d = new Dimension((relWidth * parent.getSize().width) / 100,
 						(relHeight * parent.getSize().height) / 100);
 				switch (type) {
 				case MIN:

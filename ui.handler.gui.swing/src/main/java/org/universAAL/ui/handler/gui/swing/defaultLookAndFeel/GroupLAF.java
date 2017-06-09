@@ -28,7 +28,6 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
  */
 public class GroupLAF extends GroupModel {
 
-	
 	private GroupModel wrap;
 
 	/**
@@ -47,24 +46,23 @@ public class GroupLAF extends GroupModel {
 	}
 
 	public JComponent getNewComponent() {
-        LevelRating complexity = ((Group) fc).getComplexity();
-        if (((Group) fc).isRootGroup()
-                || complexity == LevelRating.none) {
-            wrap = new GroupPanelLAF((Group) fc, getRenderer());
-        }
-        if (complexity == LevelRating.low ) {
-            wrap = new GroupPanelLAF((Group) fc, getRenderer());
-        }
-        if (complexity == LevelRating.middle ) {
-            wrap = new GroupPanelLAF((Group) fc, getRenderer());
-        }
-        if (complexity == LevelRating.high ) {
-            wrap = new GroupPanelLAF((Group) fc, getRenderer());
-        }
-        if (complexity == LevelRating.full) {
-            wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
-        }
-        return wrap.getComponent();
-    }
+		LevelRating complexity = ((Group) fc).getComplexity();
+		if (((Group) fc).isRootGroup() || complexity == LevelRating.none) {
+			wrap = new GroupPanelLAF((Group) fc, getRenderer());
+		}
+		if (complexity == LevelRating.low) {
+			wrap = new GroupPanelLAF((Group) fc, getRenderer());
+		}
+		if (complexity == LevelRating.middle) {
+			wrap = new GroupPanelLAF((Group) fc, getRenderer());
+		}
+		if (complexity == LevelRating.high) {
+			wrap = new GroupPanelLAF((Group) fc, getRenderer());
+		}
+		if (complexity == LevelRating.full) {
+			wrap = new GroupTabbedPanelLAF((Group) fc, getRenderer());
+		}
+		return wrap.getComponent();
+	}
 
 }

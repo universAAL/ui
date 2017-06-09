@@ -42,38 +42,38 @@ public class JLabelWAVPlayer implements ComponentListener {
 	public JLabelWAVPlayer(String url) {
 		this.url = url;
 	}
-	
-	/** {@ inheritDoc}	 */
+
+	/** {@ inheritDoc} */
 	public void componentResized(ComponentEvent e) {
 		// Nothing
 
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void componentMoved(ComponentEvent e) {
 		// Nothing
 
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void componentShown(ComponentEvent e) {
-	try{
-    	URL resuorce = new URL(this.url);
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(resuorce.openStream());
-        clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
-        clip.setFramePosition(0);
-        clip.start();
-    }catch(Exception ex){
-        System.out.println("Error with playing sound.");
-        ex.printStackTrace();
-    }
+		try {
+			URL resuorce = new URL(this.url);
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(resuorce.openStream());
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.setFramePosition(0);
+			clip.start();
+		} catch (Exception ex) {
+			System.out.println("Error with playing sound.");
+			ex.printStackTrace();
+		}
 
 	}
 
-	/** {@ inheritDoc}	 */
+	/** {@ inheritDoc} */
 	public void componentHidden(ComponentEvent e) {
-		if (clip != null){
+		if (clip != null) {
 			clip.stop();
 		}
 

@@ -33,13 +33,14 @@ import javax.swing.JViewport;
  * extended to occupy the full width provided. The spare space is added to each
  * {@link Unit} maintaining the ratio of space (minimum or preferred size). <br>
  * Preview:<br>
- * <center> <img src="doc-files/FormLayout-preview.png" alt="Layout preview"
- * width="60%"/> </center>
+ * <center>
+ * <img src="doc-files/FormLayout-preview.png" alt="Layout preview" width=
+ * "60%"/> </center>
  * 
  * <br>
  * Each {@link Row} is spaced one {@link FormLayout#gap} between each other and
- * also the margin all arround has the same size. <center> <img
- * src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%"/>
+ * also the margin all arround has the same size. <center>
+ * <img src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%"/>
  * </center>
  * 
  * @author amedrano
@@ -48,7 +49,6 @@ import javax.swing.JViewport;
 public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 
 	private static final int LAYOUT_ITERATIONS = 2;
-
 
 	/**
 	 * Create a {@link FormLayout} with a default gap of 5.
@@ -75,14 +75,12 @@ public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 			int maxPrefWidth = 0;
 			if (parent.getSize().width != 0) {
 				maxWidth = parent.getSize().width - insets.left - insets.right;
-			}
-			else if (parent.getParent() != null
-					&& parent.getParent() instanceof JViewport
+			} else if (parent.getParent() != null && parent.getParent() instanceof JViewport
 					&& ((JViewport) parent.getParent()).getSize().width > 0) {
 				JViewport vp = ((JViewport) parent.getParent());
 				maxWidth = vp.getSize().width - insets.left - insets.right;
 			}
-			
+
 			Dimension ld = new Dimension();
 			List units = toUnits(parent.getComponents());
 			int height = gap;
@@ -92,17 +90,14 @@ public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 				maxPrefWidth = Math.max(maxPrefWidth, d.width);
 				height += d.height + gap;
 			}
-			
+
 			maxWidth = Math.max(maxPrefWidth, maxWidth);
 
 			for (int i = 0; i < LAYOUT_ITERATIONS; i++) {
 				// Adjust Width so the ratio of the container is similar to the
 				// screen ratio
 				int Area = maxPrefWidth * height;
-				maxPrefWidth = Math.min(
-						Math.max(maxPrefWidth,
-								(int) Math.sqrt(Area * getSreenRatio())),
-						maxWidth);
+				maxPrefWidth = Math.min(Math.max(maxPrefWidth, (int) Math.sqrt(Area * getSreenRatio())), maxWidth);
 
 				List rows = getRows(units, maxPrefWidth);
 				ld = getRowsDimension(rows);
@@ -136,20 +131,18 @@ public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 				}
 			}
 			int parentHeight = parent.getSize().height;
-			if (parent.getParent() != null
-					&& parent.getParent() instanceof JViewport) {
-				parentHeight = Math.min(parentHeight,parent.getParent().getSize().height);
+			if (parent.getParent() != null && parent.getParent() instanceof JViewport) {
+				parentHeight = Math.min(parentHeight, parent.getParent().getSize().height);
 			}
 			int spareVertSpace = parentHeight - loc - insets.bottom;
 			if (spareVertSpace > 0 && totalHeightVRows > 0) {
 				// distribute spare vertical space between vertical rows
 				loc = gap + insets.top;
-				float ratio = (float)(totalHeightVRows + spareVertSpace) / (float)totalHeightVRows;
+				float ratio = (float) (totalHeightVRows + spareVertSpace) / (float) totalHeightVRows;
 				for (Iterator i = rows.iterator(); i.hasNext();) {
 					Row row = (Row) i.next();
 					if (row instanceof RowWithVertUnits) {
-						((RowWithVertUnits) row)
-						.setHeight((int)(row.Size().height*ratio));
+						((RowWithVertUnits) row).setHeight((int) (row.Size().height * ratio));
 					}
 					row.setYLocation(insets.right, loc);
 					loc += gap + row.Size().height;

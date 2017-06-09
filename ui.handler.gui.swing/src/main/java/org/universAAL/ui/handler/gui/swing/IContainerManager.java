@@ -26,5 +26,5 @@ public interface IContainerManager {
 	 * Shuts down the container, in a civiliced way;
 	 */
 	void shutdownContainer();
-	
+
 }

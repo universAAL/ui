@@ -21,35 +21,34 @@ import org.universAAL.middleware.container.ModuleContext;
 
 public class TestFMRenderer extends Renderer {
 
+	public static final String HIERARCHICAL_MANAGER = "org.universAAL.ui.handler.gui.swing.TestHierarchicalFormManager";
 
-	public static final String HIERARCHICAL_MANAGER =
-			"org.universAAL.ui.handler.gui.swing.TestHierarchicalFormManager";
-	
-	public static final String SIMPLE_MANAGER =
-			"org.universAAL.ui.handler.gui.swing.TestSimpleFM";
+	public static final String SIMPLE_MANAGER = "org.universAAL.ui.handler.gui.swing.TestSimpleFM";
 
 	public TestFMRenderer(ModuleContext mc, String formManagerClass) {
 		super();
 		moduleContext = mc;
-		//handler = new Handler(this);
+		// handler = new Handler(this);
 		loadProperties();
 		modelMapper = new ModelMapper(this);
 		loadFormManager(formManagerClass);
-        modelMapper.initializeLAF();
+		modelMapper.initializeLAF();
 	}
 
 	protected void loadProperties() {
-	        properties = new Properties();
-	        properties.put(DEMO_MODE, "true");
-	        properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
-	        properties.put(GUI_LOCATION, "Unkown");
-	        properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
-	    }
-	
-	/** 
+		properties = new Properties();
+		properties.put(DEMO_MODE, "true");
+		properties.put(ModelMapper.LAFPackageProperty, ModelMapper.DefaultLAFPackage);
+		properties.put(GUI_LOCATION, "Unkown");
+		properties.put(FORM_MANAGEMENT, "org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager");
+	}
+
+	/**
 	 * Tests should not store anything!
+	 * 
 	 * @see org.universAAL.ui.handler.gui.swing.Renderer#storeProperties()
 	 */
-	protected void storeProperties() {	}
-	
+	protected void storeProperties() {
+	}
+
 }

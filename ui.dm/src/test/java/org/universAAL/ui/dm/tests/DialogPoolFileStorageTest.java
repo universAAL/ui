@@ -56,13 +56,11 @@ public class DialogPoolFileStorageTest extends TestCase {
 	private static final String FILE_PATH = "target/poolstorage.txt";
 	private ModuleContext mc;
 
-	public void setUp(){
+	public void setUp() {
 		mc = new JUnitModuleContext();
-		mc.getContainer().shareObject(mc,
-				new TurtleSerializer(),
+		mc.getContainer().shareObject(mc, new TurtleSerializer(),
 				new Object[] { MessageContentSerializer.class.getName() });
-		mc.getContainer().shareObject(mc,
-				new TurtleSerializer(),
+		mc.getContainer().shareObject(mc, new TurtleSerializer(),
 				new Object[] { MessageContentSerializerEx.class.getName() });
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
@@ -76,43 +74,39 @@ public class DialogPoolFileStorageTest extends TestCase {
 		OntologyManagement.getInstance().register(mc, new MenuProfileOntology());
 		TurtleUtil.moduleContext = mc;
 	}
-	
-	public void testWrite(){
+
+	public void testWrite() {
 		UIRequest[] reqs = new UIRequest[NO_REQUESTS];
 		IUIRequestPool pool = new DialogPriorityQueue();
 		for (int i = 0; i < NO_REQUESTS; i++) {
-			reqs[i] = new UIRequest(
-				    new Resource(UIRequestPoolTest.MY_USER),
-				    Form.newMessage("", ""),
-				    LevelRating.full,
-				    Locale.ENGLISH,
-				    PrivacyLevel.insensible);
+			reqs[i] = new UIRequest(new Resource(UIRequestPoolTest.MY_USER), Form.newMessage("", ""), LevelRating.full,
+					Locale.ENGLISH, PrivacyLevel.insensible);
 			pool.add(reqs[i]);
-			if (i%2 == 0){
+			if (i % 2 == 0) {
 				pool.suspend(reqs[i].getDialogID());
 			}
 		}
-		
+
 		IUIRequestStore store = new DialogPoolFileStorage(mc, new File(FILE_PATH));
 		store.save(pool);
 	}
-	
-	public void testRead(){
+
+	public void testRead() {
 		IUIRequestPool pool = new DialogPriorityQueue();
 		IUIRequestStore store = new DialogPoolFileStorage(mc, new File(FILE_PATH));
-		
+
 		store.read(pool);
-		
-		assertEquals(NO_REQUESTS/2, pool.listAllSuspended().size());
+
+		assertEquals(NO_REQUESTS / 2, pool.listAllSuspended().size());
 		assertEquals(NO_REQUESTS, pool.listAllActive().size() + pool.listAllSuspended().size());
 	}
-	
-	public void testReadNonExistent(){
+
+	public void testReadNonExistent() {
 		IUIRequestPool pool = new DialogPriorityQueue();
-		IUIRequestStore store = new DialogPoolFileStorage(mc, new File(FILE_PATH+"foo"));
-		
+		IUIRequestStore store = new DialogPoolFileStorage(mc, new File(FILE_PATH + "foo"));
+
 		store.read(pool);
-		
+
 		assertEquals(0, pool.listAllSuspended().size());
 		assertEquals(0, pool.listAllActive().size() + pool.listAllSuspended().size());
 	}

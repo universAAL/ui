@@ -45,44 +45,40 @@ import org.universAAL.ui.dm.interfaces.IUIRequestPool;
  *
  */
 public class DialogPoolCopierTest extends TestCase {
-	
+
 	private JUnitModuleContext mc;
 
-	public void setUp(){
+	public void setUp() {
 		mc = new JUnitModuleContext();
 
 		OntologyManagement.getInstance().register(mc, new DataRepOntology());
-    	OntologyManagement.getInstance().register(mc, new UIBusOntology());
-        OntologyManagement.getInstance().register(mc, new LocationOntology());
-        OntologyManagement.getInstance().register(mc, new ShapeOntology());
-        OntologyManagement.getInstance().register(mc, new PhThingOntology());
-        OntologyManagement.getInstance().register(mc, new SpaceOntology());
-        OntologyManagement.getInstance().register(mc, new VCardOntology());
-    	OntologyManagement.getInstance().register(mc, new ProfileOntology());
+		OntologyManagement.getInstance().register(mc, new UIBusOntology());
+		OntologyManagement.getInstance().register(mc, new LocationOntology());
+		OntologyManagement.getInstance().register(mc, new ShapeOntology());
+		OntologyManagement.getInstance().register(mc, new PhThingOntology());
+		OntologyManagement.getInstance().register(mc, new SpaceOntology());
+		OntologyManagement.getInstance().register(mc, new VCardOntology());
+		OntologyManagement.getInstance().register(mc, new ProfileOntology());
 		OntologyManagement.getInstance().register(mc, new MenuProfileOntology());
 	}
-	
+
 	private static final int NO_REQUESTS = 20;
 
-	public void testCopy(){
+	public void testCopy() {
 		IUIRequestPool orgin = new DialogPriorityQueue();
 		IUIRequestPool dest = new NonRedundantDialogPriorityQueue();
-		
+
 		for (int i = 0; i < NO_REQUESTS; i++) {
-			UIRequest req = new UIRequest(
-				    new Resource(UIRequestPoolTest.MY_USER),
-				    Form.newMessage("", ""),
-				    LevelRating.full,
-				    Locale.ENGLISH,
-				    PrivacyLevel.insensible);
+			UIRequest req = new UIRequest(new Resource(UIRequestPoolTest.MY_USER), Form.newMessage("", ""),
+					LevelRating.full, Locale.ENGLISH, PrivacyLevel.insensible);
 			orgin.add(req);
-			if (i%2 == 0){
+			if (i % 2 == 0) {
 				orgin.suspend(req.getDialogID());
 			}
 		}
-		
+
 		DialogPoolCopier.copy(orgin, dest);
-		
+
 		assertEquals(orgin.listAllActive().size(), dest.listAllActive().size());
 		assertEquals(orgin.listAllSuspended().size(), dest.listAllSuspended().size());
 	}

@@ -33,124 +33,104 @@ import org.universAAL.middleware.container.utils.LogUtils;
  */
 public class Activator implements BundleActivator {
 
-    /** the {@link BundleContext}. */
-    private static BundleContext context;
+	/** the {@link BundleContext}. */
+	private static BundleContext context;
 
-    /** The mcontext. {@link ModuleContext} */
-    public static ModuleContext mcontext;
+	/** The mcontext. {@link ModuleContext} */
+	public static ModuleContext mcontext;
 
-    private static HttpService httpService = null;
+	private static HttpService httpService = null;
 
-    /** URI on which resources will be exposed. */
-    public static String URI = "/resources";
+	/** URI on which resources will be exposed. */
+	public static String URI = "/resources";
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
-     * )
-     */
-    public void start(BundleContext context) throws Exception {
-	Activator.context = context;
-	BundleContext[] bc = { context };
-	mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
-	doRegister();
-    }
-
-    /**
-     * Registeres a servlet and maps it to the URI.
-     */
-    private void doRegister() {
-
-	ServiceReference sRef = Activator.context
-		.getServiceReference(HttpService.class.getName());
-	if (sRef != null) {
-	    HttpService httpService = (HttpService) Activator.context
-		    .getService(sRef);
-
-	    try {
-		httpService.registerServlet(URI, new ResourceServer(mcontext),
-			null, null);
-
-		// test serving resources from bundle
-		// httpService.registerResources(URI + "2", "/www", null);
-
-	    } catch (ServletException e) {
-		LogUtils
-			.logError(
-				mcontext,
-				this.getClass(),
-				"doRegister()",
-				new Object[] { "Exception while registering Servlet." },
-				e);
-	    } catch (NamespaceException e) {
-		LogUtils
-			.logError(
-				mcontext,
-				this.getClass(),
-				"doRegister()",
-				new Object[] { "Resource Server Namespace exception; alias (URI) is already in use." },
-				e);
-
-	    }
-	    LogUtils.logInfo(Activator.mcontext, this.getClass(), "doRegister",
-		    new Object[] { "Resource Server started on port: ",
-			    System.getProperty("org.osgi.service.http.port") },
-		    null);
-
-	} else {
-	    LogUtils
-		    .logInfo(
-			    mcontext,
-			    this.getClass(),
-			    "start",
-			    new Object[] { "No servlet to register. Problem with http service." },
-			    null);
-
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
+	 * )
+	 */
+	public void start(BundleContext context) throws Exception {
+		Activator.context = context;
+		BundleContext[] bc = { context };
+		mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
+		doRegister();
 	}
-    }
 
-    /**
-     * Unregisteres a servlet.
-     */
-    private void doUnregister() {
-	httpService.unregister(URI);
-	System.err.println("unregistered");
-    }
+	/**
+	 * Registeres a servlet and maps it to the URI.
+	 */
+	private void doRegister() {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-     */
-    public void stop(BundleContext arg0) throws Exception {
-	doUnregister();
-    }
+		ServiceReference sRef = Activator.context.getServiceReference(HttpService.class.getName());
+		if (sRef != null) {
+			HttpService httpService = (HttpService) Activator.context.getService(sRef);
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.
-     * ServiceEvent)
-     */
-    public void serviceChanged(ServiceEvent event) {
-	String objectClass = ((String[]) event.getServiceReference()
-		.getProperty("objectClass"))[0];
+			try {
+				httpService.registerServlet(URI, new ResourceServer(mcontext), null, null);
 
-	LogUtils.logInfo(mcontext, this.getClass(), "serviceChanged",
-		new Object[] { "Service change event occurred for : {}",
-			objectClass }, null);
+				// test serving resources from bundle
+				// httpService.registerResources(URI + "2", "/www", null);
 
-	if (event.getType() == ServiceEvent.REGISTERED) {
-	    doRegister();
-	} else if (event.getType() == ServiceEvent.UNREGISTERING) {
-	    doUnregister();
-	} else if (event.getType() == ServiceEvent.MODIFIED) {
-	    doUnregister();
-	    doRegister();
+			} catch (ServletException e) {
+				LogUtils.logError(mcontext, this.getClass(), "doRegister()",
+						new Object[] { "Exception while registering Servlet." }, e);
+			} catch (NamespaceException e) {
+				LogUtils.logError(mcontext, this.getClass(), "doRegister()",
+						new Object[] { "Resource Server Namespace exception; alias (URI) is already in use." }, e);
+
+			}
+			LogUtils.logInfo(
+					Activator.mcontext, this.getClass(), "doRegister", new Object[] {
+							"Resource Server started on port: ", System.getProperty("org.osgi.service.http.port") },
+					null);
+
+		} else {
+			LogUtils.logInfo(mcontext, this.getClass(), "start",
+					new Object[] { "No servlet to register. Problem with http service." }, null);
+
+		}
 	}
-    }
+
+	/**
+	 * Unregisteres a servlet.
+	 */
+	private void doUnregister() {
+		httpService.unregister(URI);
+		System.err.println("unregistered");
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	 */
+	public void stop(BundleContext arg0) throws Exception {
+		doUnregister();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.osgi.framework.ServiceListener#serviceChanged(org.osgi.framework.
+	 * ServiceEvent)
+	 */
+	public void serviceChanged(ServiceEvent event) {
+		String objectClass = ((String[]) event.getServiceReference().getProperty("objectClass"))[0];
+
+		LogUtils.logInfo(mcontext, this.getClass(), "serviceChanged",
+				new Object[] { "Service change event occurred for : {}", objectClass }, null);
+
+		if (event.getType() == ServiceEvent.REGISTERED) {
+			doRegister();
+		} else if (event.getType() == ServiceEvent.UNREGISTERING) {
+			doUnregister();
+		} else if (event.getType() == ServiceEvent.MODIFIED) {
+			doUnregister();
+			doRegister();
+		}
+	}
 }

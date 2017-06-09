@@ -49,175 +49,169 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see InputField
  */
-public abstract class InputFieldModel extends InputModel implements ChangeListener,
-	CaretListener, ActionListener {
+public abstract class InputFieldModel extends InputModel implements ChangeListener, CaretListener, ActionListener {
 
-    /**
-     * Constructor.
-     * 
-     * @param control
-     *            de {@link InputField} which to model.
-     */
-    public InputFieldModel(InputField control, Renderer render) {
-	super(control, render);
-    }
-
-    /**
-     * the representation for InputField can either be
-     * <ul>
-     * <li>a {@link JCheckBox} if the {@link InputField#getValue()} is a boolean
-     * type
-     * <li>a {@link JTextField} if the {@link InputField#getValue()} is a String
-     * and not secret
-     * <li>a {@link JPasswordField} if the {@link InputField#getValue()} is
-     * String and it is secret
-     * <li>a ?? if the {@link InputField#getValue()} is a XMLGregorianCalendar
-     * <li>a ?? if the {@link InputField#getValue()} is a Duration
-     * <li>a ?? if the {@link InputField#getValue()} is a Integer
-     * <li>a ?? if the {@link InputField#getValue()} is a Long
-     * <li>a ?? if the {@link InputField#getValue()} is a Float
-     * <li>a ?? if the {@link InputField#getValue()} is a Double
-     * <li>a {@link JComboBox} if the {@link InputField#getValue()} is a Locale
-     * </ul>
-     * 
-     * @return {@inheritDoc}
-     */
-    public JComponent getNewComponent() {
-	int maxLength = ((InputField) fc).getMaxLength();
-	InputField inFi = (InputField) fc;
-
-	if (inFi.isOfBooleanType()) {
-	    /*
-	     * the input type is boolean therefore it can be represented as a
-	     * checkbox.
-	     */
-	    JCheckBox cb = new JCheckBox(inFi.getLabel().getText(),
-		    IconFactory.getIcon(inFi.getLabel().getIconURL()));
-	    needsLabel = false;
-	    cb.addChangeListener(this);
-	    return cb;
-	}
-	if (isOfType(String.class) && !inFi.isSecret()) {
-	    /*
-	     * the input requested is a normal text field
-	     */
-	    return normalTextField(maxLength);
-	}
-	if (isOfType(String.class) && inFi.isSecret()) {
-	    /*
-	     * the input requested is a password field
-	     */
-	    JPasswordField pf;
-	    if (maxLength > 0) {
-		pf = new JPasswordField(maxLength);
-	    } else {
-		pf = new JPasswordField();
-	    }
-	    pf.addCaretListener(this);
-	    return pf;
-	}
-	
-	
-	// if (isOfType(XMLGregorianCalendar.class) ) {}
-	// if (isOfType(Duration.class) ) {}
-
-	if (isOfType(Integer.class) || isOfType(Long.class)) {
-	    JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getIntegerInstance());
-	    ftf.addCaretListener(this);
-	    return ftf;
-	} 
-	if (isOfType(Float.class) || isOfType(Double.class)) {
-	    JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getNumberInstance());
-	    ftf.addCaretListener(this);
-	    return ftf;
+	/**
+	 * Constructor.
+	 * 
+	 * @param control
+	 *            de {@link InputField} which to model.
+	 */
+	public InputFieldModel(InputField control, Renderer render) {
+		super(control, render);
 	}
 
-	if (isOfType(Locale.class)) {
-	    JComboBox lcb = new JComboBox(Locale.getAvailableLocales());
-	    lcb.addActionListener(this);
-	    return lcb;
-	}
-	
-	// TODO: USING text field as default, this needs to be discussed.
-	return normalTextField(maxLength);
-    }
-    
-    /**
-     * defines a normal textfield given a maximum length.
-     * @param maxLength
-     * 		the maximum length of the text field.
-     * @return
-     * 		a JTextComponent that is listened by this model.
-     */
-    private JComponent normalTextField(int maxLength){
-	JTextComponent tf;
-	    if (maxLength > 0) {
-		tf = new JTextField(maxLength);
-	    } else {
-		tf = new JTextField(7);
-	    }
-	    tf.addCaretListener(this);
-	    return tf;
-    }
+	/**
+	 * the representation for InputField can either be
+	 * <ul>
+	 * <li>a {@link JCheckBox} if the {@link InputField#getValue()} is a boolean
+	 * type
+	 * <li>a {@link JTextField} if the {@link InputField#getValue()} is a String
+	 * and not secret
+	 * <li>a {@link JPasswordField} if the {@link InputField#getValue()} is
+	 * String and it is secret
+	 * <li>a ?? if the {@link InputField#getValue()} is a XMLGregorianCalendar
+	 * <li>a ?? if the {@link InputField#getValue()} is a Duration
+	 * <li>a ?? if the {@link InputField#getValue()} is a Integer
+	 * <li>a ?? if the {@link InputField#getValue()} is a Long
+	 * <li>a ?? if the {@link InputField#getValue()} is a Float
+	 * <li>a ?? if the {@link InputField#getValue()} is a Double
+	 * <li>a {@link JComboBox} if the {@link InputField#getValue()} is a Locale
+	 * </ul>
+	 * 
+	 * @return {@inheritDoc}
+	 */
+	public JComponent getNewComponent() {
+		int maxLength = ((InputField) fc).getMaxLength();
+		InputField inFi = (InputField) fc;
 
-    /**
-     * Updating the InputField
-     */
-    public void update() {
-	Object initVal = fc.getValue();
-	if (jc instanceof JCheckBox) {
-	    ((JCheckBox) jc).setSelected(((Boolean) initVal).booleanValue());
-	}
-	if (jc instanceof JTextField
-	    && initVal != null) {
-		((JTextField) jc).setText(initVal.toString());
-	}
-	if (jc instanceof JPasswordField
-	    && initVal != null) {
-		((JPasswordField) jc).setText(initVal.toString());
-	    
-	}
-	if (jc instanceof JComboBox) {
-	    ((JComboBox) jc).setSelectedItem(initVal);
-	}
-	super.update();
-    }
+		if (inFi.isOfBooleanType()) {
+			/*
+			 * the input type is boolean therefore it can be represented as a
+			 * checkbox.
+			 */
+			JCheckBox cb = new JCheckBox(inFi.getLabel().getText(), IconFactory.getIcon(inFi.getLabel().getIconURL()));
+			needsLabel = false;
+			cb.addChangeListener(this);
+			return cb;
+		}
+		if (isOfType(String.class) && !inFi.isSecret()) {
+			/*
+			 * the input requested is a normal text field
+			 */
+			return normalTextField(maxLength);
+		}
+		if (isOfType(String.class) && inFi.isSecret()) {
+			/*
+			 * the input requested is a password field
+			 */
+			JPasswordField pf;
+			if (maxLength > 0) {
+				pf = new JPasswordField(maxLength);
+			} else {
+				pf = new JPasswordField();
+			}
+			pf.addCaretListener(this);
+			return pf;
+		}
 
-    /** {@inheritDoc} */
-    public boolean isValid() {
-	// TODO check input length!
-	return true;
-    }
+		// if (isOfType(XMLGregorianCalendar.class) ) {}
+		// if (isOfType(Duration.class) ) {}
 
-    /**
-     * When a checkbox is pressed the input will be stored.
-     * 
-     * @param e
-     *            the {@link ChangeEvent} to listen to.
-     */
-    public void stateChanged(final ChangeEvent e) {
+		if (isOfType(Integer.class) || isOfType(Long.class)) {
+			JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getIntegerInstance());
+			ftf.addCaretListener(this);
+			return ftf;
+		}
+		if (isOfType(Float.class) || isOfType(Double.class)) {
+			JFormattedTextField ftf = new JFormattedTextField(NumberFormat.getNumberInstance());
+			ftf.addCaretListener(this);
+			return ftf;
+		}
+
+		if (isOfType(Locale.class)) {
+			JComboBox lcb = new JComboBox(Locale.getAvailableLocales());
+			lcb.addActionListener(this);
+			return lcb;
+		}
+
+		// TODO: USING text field as default, this needs to be discussed.
+		return normalTextField(maxLength);
+	}
+
+	/**
+	 * defines a normal textfield given a maximum length.
+	 * 
+	 * @param maxLength
+	 *            the maximum length of the text field.
+	 * @return a JTextComponent that is listened by this model.
+	 */
+	private JComponent normalTextField(int maxLength) {
+		JTextComponent tf;
+		if (maxLength > 0) {
+			tf = new JTextField(maxLength);
+		} else {
+			tf = new JTextField(7);
+		}
+		tf.addCaretListener(this);
+		return tf;
+	}
+
+	/**
+	 * Updating the InputField
+	 */
+	public void update() {
+		Object initVal = fc.getValue();
+		if (jc instanceof JCheckBox) {
+			((JCheckBox) jc).setSelected(((Boolean) initVal).booleanValue());
+		}
+		if (jc instanceof JTextField && initVal != null) {
+			((JTextField) jc).setText(initVal.toString());
+		}
+		if (jc instanceof JPasswordField && initVal != null) {
+			((JPasswordField) jc).setText(initVal.toString());
+
+		}
+		if (jc instanceof JComboBox) {
+			((JComboBox) jc).setSelectedItem(initVal);
+		}
+		super.update();
+	}
+
+	/** {@inheritDoc} */
+	public boolean isValid() {
+		// TODO check input length!
+		return true;
+	}
+
+	/**
+	 * When a checkbox is pressed the input will be stored.
+	 * 
+	 * @param e
+	 *            the {@link ChangeEvent} to listen to.
+	 */
+	public void stateChanged(final ChangeEvent e) {
 		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				/*
 				 * Update Model if valid
 				 */
 				if (isValid()) {
-					((Input) fc).storeUserInput(Boolean.valueOf((((JCheckBox) e
-							.getSource()).isSelected())));
-				}				
+					((Input) fc).storeUserInput(Boolean.valueOf((((JCheckBox) e.getSource()).isSelected())));
+				}
 			}
 		});
-    }
+	}
 
-    /**
-     * Input will be stored each time the user types something in the
-     * text field.
-     * 
-     * @param e
-     *            the {@link CaretEvent} to listen to.
-     */
-    public void caretUpdate(final CaretEvent e) {
-    	TaskQueue.addTask(new Runnable() {
+	/**
+	 * Input will be stored each time the user types something in the text
+	 * field.
+	 * 
+	 * @param e
+	 *            the {@link CaretEvent} to listen to.
+	 */
+	public void caretUpdate(final CaretEvent e) {
+		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				/*
 				 * Update Model if valid
@@ -226,56 +220,53 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 				InputField inFi = (InputField) fc;
 				if (isValid()) {
 					if (tf instanceof JFormattedTextField) {
-					    JFormattedTextField ftf = (JFormattedTextField) tf;
-					    try {
-					    	ftf.commitEdit();
-					    	castAndStore(ftf.getText());
-					    } catch (ParseException e1) {
-					    }
-					}else {
-					    try {
-						if (!inFi.isSecret()) {
-						    castAndStore(tf
-							    .getText());
-						} else {
-						    castAndStore(new String(((JPasswordField) tf)
-							    .getPassword()));
+						JFormattedTextField ftf = (JFormattedTextField) tf;
+						try {
+							ftf.commitEdit();
+							castAndStore(ftf.getText());
+						} catch (ParseException e1) {
 						}
-					    } catch (NullPointerException e1) {
-						castAndStore("");
-					    }
+					} else {
+						try {
+							if (!inFi.isSecret()) {
+								castAndStore(tf.getText());
+							} else {
+								castAndStore(new String(((JPasswordField) tf).getPassword()));
+							}
+						} catch (NullPointerException e1) {
+							castAndStore("");
+						}
 					}
 				}
 			}
 		});
-    }
+	}
 
-    private boolean castAndStore(String val){
-	InputField inFi = (InputField) fc;
-	if (isOfType(Boolean.class)){
-	    return inFi.storeUserInput(Boolean.valueOf(val));
+	private boolean castAndStore(String val) {
+		InputField inFi = (InputField) fc;
+		if (isOfType(Boolean.class)) {
+			return inFi.storeUserInput(Boolean.valueOf(val));
+		}
+		if (isOfType(Integer.class)) {
+			return inFi.storeUserInput(Integer.decode(val));
+		}
+		if (isOfType(Long.class)) {
+			return inFi.storeUserInput(Long.decode(val));
+		}
+		if (isOfType(Float.class)) {
+			return inFi.storeUserInput(Float.valueOf(val));
+		}
+		if (isOfType(Double.class)) {
+			return inFi.storeUserInput(Double.valueOf(val));
+		}
+		return inFi.storeUserInput(val);
 	}
-	if (isOfType(Integer.class)){
-	    return inFi.storeUserInput(Integer.decode(val));
-	}
-	if (isOfType(Long.class)){
-	    return inFi.storeUserInput(Long.decode(val));
-	}
-	if (isOfType(Float.class)){
-	    return inFi.storeUserInput(Float.valueOf(val));
-	}
-	if (isOfType(Double.class)){
-	    return inFi.storeUserInput(Double.valueOf(val));
-	}
-	return inFi.storeUserInput(val);
-    }
-    
-    /**
-     * Input will be stored each time the user changes the status of
-     * an Input
-     */
-    public void actionPerformed(final ActionEvent e) {
-    	TaskQueue.addTask(new Runnable() {
+
+	/**
+	 * Input will be stored each time the user changes the status of an Input
+	 */
+	public void actionPerformed(final ActionEvent e) {
+		TaskQueue.addTask(new Runnable() {
 			public void run() {
 				if (e.getSource() instanceof JComboBox) {
 					JComboBox cb = (JComboBox) e.getSource();
@@ -284,6 +275,6 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 				}
 			}
 		});
-    }
+	}
 
 }

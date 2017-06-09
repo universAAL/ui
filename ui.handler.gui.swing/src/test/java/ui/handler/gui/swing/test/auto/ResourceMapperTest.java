@@ -26,8 +26,7 @@ import org.universAAL.ui.handler.gui.swing.ResourceMapper;
  *
  */
 public class ResourceMapperTest extends TestCase {
-	
-	
+
 	/** {@inheritDoc} */
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -41,15 +40,15 @@ public class ResourceMapperTest extends TestCase {
 	public void testResource2() {
 		assertNull(ResourceMapper.search("Health.png"));
 	}
-	
+
 	public void testResource3() {
 		assertNull(ResourceMapper.search("/icons/app/Health.png"));
 	}
-	
+
 	public void testRemoteResource1() {
 		assertNotNull(ResourceMapper.search("https://octodex.github.com/images/original.png"));
 	}
-	
+
 	public void testRemoteResource2() {
 		assertNull(ResourceMapper.search("https://octodex.github.com/images/original"));
 	}
