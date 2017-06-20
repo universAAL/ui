@@ -41,7 +41,7 @@ public class MainMenuTest extends TestCase {
 		OntologyManagement.getInstance().register(mc, new UIBusOntology());
 		OntologyManagement.getInstance().register(mc, new ServiceBusOntology());
 
-		user = new Resource(Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + "testUser");
+		user = new Resource(Constants.MIDDLEWARE_LOCAL_ID_PREFIX + "testUser");
 	}
 
 	public void test1() {

@@ -372,7 +372,7 @@ public class Renderer extends Thread {
 				return user;
 			} else {
 				user = user.replaceAll("\\W", "_").toLowerCase();
-				return Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + user;
+				return Constants.MIDDLEWARE_LOCAL_ID_PREFIX + user;
 			}
 		} else {
 			return null;
@@ -639,7 +639,7 @@ public class Renderer extends Thread {
 		 * Read Location from properties XXX other location process?
 		 */
 		AbsLocation loc = (AbsLocation) Resource.getResource(Location.MY_URI,
-				Constants.uAAL_MIDDLEWARE_LOCAL_ID_PREFIX + getProperty(GUI_LOCATION));
+				Constants.MIDDLEWARE_LOCAL_ID_PREFIX + getProperty(GUI_LOCATION));
 		return loc;
 	}
 
