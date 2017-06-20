@@ -3,7 +3,7 @@ package org.universAAL.ui.dm.tests;
 import java.io.InputStream;
 import java.util.Iterator;
 
-import org.universAAL.container.JUnit.JUnitModuleContext;
+import org.universAAL.middleware.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.serialization.MessageContentSerializer;

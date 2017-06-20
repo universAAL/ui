@@ -19,7 +19,7 @@ import java.util.Locale;
 
 import junit.framework.TestCase;
 
-import org.universAAL.container.JUnit.JUnitModuleContext;
+import org.universAAL.middleware.container.JUnit.JUnitModuleContext;
 import org.universAAL.middleware.owl.DataRepOntology;
 import org.universAAL.middleware.owl.OntologyManagement;
 import org.universAAL.middleware.owl.supply.LevelRating;

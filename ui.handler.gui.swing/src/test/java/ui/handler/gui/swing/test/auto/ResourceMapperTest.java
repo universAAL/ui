@@ -17,7 +17,7 @@ package ui.handler.gui.swing.test.auto;
 
 import junit.framework.TestCase;
 
-import org.universAAL.container.JUnit.JUnitModuleContext;
+import org.universAAL.middleware.container.JUnit.JUnitModuleContext;
 import org.universAAL.ui.handler.gui.swing.Renderer;
 import org.universAAL.ui.handler.gui.swing.ResourceMapper;
 
