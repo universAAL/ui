@@ -55,11 +55,11 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	 * control which automatically adds index numbers to this prefix.
 	 */
 	public static final String SWITCH_TO_CALL_PREFIX = DialogManagerImpl.CALL_PREFIX + ":switchTo#"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_DATE = Form.uAAL_DIALOG_NAMESPACE + "dlgDate"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_LIST = Form.uAAL_DIALOG_NAMESPACE + "dlgList"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.uAAL_DIALOG_NAMESPACE + "dlgTitle"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE + "dlgDialogID"; //$NON-NLS-1$
-	public static final String PROP_DLG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE + "dlgListSentItems"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_DATE = Form.DIALOG_NAMESPACE + "dlgDate"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_LIST = Form.DIALOG_NAMESPACE + "dlgList"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_TITLE = Form.DIALOG_NAMESPACE + "dlgTitle"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_DIALOG_ID = Form.DIALOG_NAMESPACE + "dlgDialogID"; //$NON-NLS-1$
+	public static final String PROP_DLG_LIST_SENT_ITEMS = Form.DIALOG_NAMESPACE + "dlgListSentItems"; //$NON-NLS-1$
 	/**
 	 * The submission ID to close the dialog that shows all pending dialogs.
 	 */

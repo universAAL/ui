@@ -49,7 +49,7 @@ public abstract class Model {
 	/**
 	 * A property added to FormControls added to tables
 	 */
-	public static final String FORM_CONTROL_IN_TABLE = Form.uAAL_DIALOG_NAMESPACE + "formInTable";
+	public static final String FORM_CONTROL_IN_TABLE = Form.DIALOG_NAMESPACE + "formInTable";
 
 	/**
 	 * the {@link FormControl} for which this model represents.

@@ -54,12 +54,12 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 	 * dialogs are given in a {@link org.universAAL.middleware.ui.rdf.Repeat}
 	 * control which atomatically adds index numbers to this prefix.
 	 */
-	static final String PROP_MSG_LIST_MESSAGE_BODY = Form.uAAL_DIALOG_NAMESPACE + "msgBody"; //$NON-NLS-1$
-	static final String PROP_MSG_LIST_MESSAGE_DATE = Form.uAAL_DIALOG_NAMESPACE + "msgDate"; //$NON-NLS-1$
-	static final String PROP_MSG_LIST_MESSAGE_LIST = Form.uAAL_DIALOG_NAMESPACE + "msgList"; //$NON-NLS-1$
-	static final String PROP_MSG_LIST_MESSAGE_TITLE = Form.uAAL_DIALOG_NAMESPACE + "msgTitle"; //$NON-NLS-1$
-	static final String PROP_MSG_LIST_MSG_DIALOG_ID = Form.uAAL_DIALOG_NAMESPACE + "msgDialogID"; //$NON-NLS-1$
-	static final String PROP_MSG_LIST_SENT_ITEMS = Form.uAAL_DIALOG_NAMESPACE + "msgListSentItems"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_BODY = Form.DIALOG_NAMESPACE + "msgBody"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_DATE = Form.DIALOG_NAMESPACE + "msgDate"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_LIST = Form.DIALOG_NAMESPACE + "msgList"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MESSAGE_TITLE = Form.DIALOG_NAMESPACE + "msgTitle"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_MSG_DIALOG_ID = Form.DIALOG_NAMESPACE + "msgDialogID"; //$NON-NLS-1$
+	static final String PROP_MSG_LIST_SENT_ITEMS = Form.DIALOG_NAMESPACE + "msgListSentItems"; //$NON-NLS-1$
 
 	/**
 	 * The submission ID to close the dialog that shows all pending messages.

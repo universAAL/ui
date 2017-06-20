@@ -46,7 +46,7 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  */
 public class SearchableAggregatedMainMenuProvider extends AggregatedMainMenuProvider {
 
-	static final String PROP_SEARCH_STRING = Form.uAAL_DIALOG_NAMESPACE + "searchString"; //$NON-NLS-1$
+	static final String PROP_SEARCH_STRING = Form.DIALOG_NAMESPACE + "searchString"; //$NON-NLS-1$
 	/**
 	 * The submission ID to search for a specific service. A button with this
 	 * functionality is available in the system menu.
