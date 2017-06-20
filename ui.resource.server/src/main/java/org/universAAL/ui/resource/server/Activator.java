@@ -24,7 +24,7 @@ import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
@@ -54,7 +54,7 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext context) throws Exception {
 		Activator.context = context;
 		BundleContext[] bc = { context };
-		mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
+		mcontext = OSGiContainer.THE_CONTAINER.registerModule(bc);
 		doRegister();
 	}
 

@@ -26,7 +26,7 @@ import org.universAAL.kinect.adapter.defaultComponents.DefaultBroker;
 import org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher;
 import org.universAAL.kinect.adapter.logging.LoggerWithModuleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.middleware.context.ContextEvent;
 import org.universAAL.middleware.context.ContextEventPattern;
@@ -49,7 +49,7 @@ public class Activator implements BundleActivator {
 	 */
 	public final void start(final BundleContext context) throws Exception {
 
-		mc = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { context });
+		mc = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { context });
 
 		LogUtils.logInfo(Activator.mc, this.getClass(), "start", new Object[] { "Kinect adapter starting..." }, null);
 

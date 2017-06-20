@@ -23,7 +23,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.handler.gui.swing.IContainerManager;
 import org.universAAL.ui.handler.gui.swing.Renderer;
@@ -53,7 +53,7 @@ public final class Activator implements BundleActivator, IContainerManager {
 		tGroup = new ThreadGroup("Swing Handler Threads");
 		bundleContext = context;
 		BundleContext[] bc = { bundleContext };
-		Activator.context = uAALBundleContainer.THE_CONTAINER.registerModule(bc);
+		Activator.context = OSGiContainer.THE_CONTAINER.registerModule(bc);
 		File dir = Activator.context.getConfigHome();
 		File[] props = dir.listFiles(new FileFilter() {
 

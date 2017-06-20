@@ -21,7 +21,7 @@ import java.io.File;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+import org.universAAL.middleware.container.osgi.OSGiContainer;
 import org.universAAL.middleware.container.utils.LogUtils;
 import org.universAAL.ui.ui.handler.web.html.HTTPHandlerService;
 import org.universAAL.ui.ui.handler.web.html.ResourceMapper;
@@ -33,7 +33,7 @@ public class HTMLHandlerActivator implements BundleActivator {
 	private HTTPHandlerService httpHS;
 
 	public void start(BundleContext arg0) throws Exception {
-		mcontext = uAALBundleContainer.THE_CONTAINER.registerModule(new Object[] { arg0 });
+		mcontext = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { arg0 });
 		LogUtils.logDebug(mcontext, getClass(), "start", "Starting.");
 		/*
 		 * uAAL stuff
