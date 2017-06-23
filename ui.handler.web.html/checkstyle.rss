@@ -46,273 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SubdialogTriggerModel.java">org/universAAL/ui/ui/handler/web/html/model/SubdialogTriggerModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.osgi.HTMLHandlerActivator.java">org/universAAL/ui/ui/handler/web/html/osgi/HTMLHandlerActivator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RepeatModel.java">org/universAAL/ui/ui/handler/web/html/model/RepeatModel.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.TextAreaModel.java">org/universAAL/ui/ui/handler/web/html/model/TextAreaModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.UpdatedPropertiesFile.java">org/universAAL/ui/ui/handler/web/html/UpdatedPropertiesFile.java</a>
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.MediaObjectModel.java">org/universAAL/ui/ui/handler/web/html/model/MediaObjectModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SimpleOutputModel.java">org/universAAL/ui/ui/handler/web/html/model/SimpleOutputModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.fm.SimpleFormManager.java">org/universAAL/ui/ui/handler/web/html/fm/SimpleFormManager.java</a>
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.Select1Model.java">org/universAAL/ui/ui/handler/web/html/model/Select1Model.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.LabelModel.java">org/universAAL/ui/ui/handler/web/html/model/LabelModel.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.InputFieldModel.java">org/universAAL/ui/ui/handler/web/html/model/InputFieldModel.java</a>
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RangeModel.java">org/universAAL/ui/ui/handler/web/html/model/RangeModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.fm.FormManager.java">org/universAAL/ui/ui/handler/web/html/fm/FormManager.java</a>
-                </td>
-                <td>
-                  9
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.RecommendationModel.java">org/universAAL/ui/ui/handler/web/html/model/RecommendationModel.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SelectModel.java">org/universAAL/ui/ui/handler/web/html/model/SelectModel.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  12
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.InputModel.java">org/universAAL/ui/ui/handler/web/html/model/InputModel.java</a>
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.ResourceMapper.java">org/universAAL/ui/ui/handler/web/html/ResourceMapper.java</a>
-                </td>
-                <td>
-                  16
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator.java">org/universAAL/ui/ui/handler/web/html/HTMLUserGenerator.java</a>
-                </td>
-                <td>
-                  18
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  13
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.FormControlModel.java">org/universAAL/ui/ui/handler/web/html/model/FormControlModel.java</a>
-                </td>
-                <td>
-                  13
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  22
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.HTTPHandlerService.java">org/universAAL/ui/ui/handler/web/html/HTTPHandlerService.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.HTTPHandlerService.java">org/universAAL/ui/handler/web/html/HTTPHandlerService.java</a>
                 </td>
                 <td>
                   3
@@ -326,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.SubmitModel.java">org/universAAL/ui/ui/handler/web/html/model/SubmitModel.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.LabelModel.java">org/universAAL/ui/handler/web/html/model/LabelModel.java</a>
                 </td>
                 <td>
                   1
@@ -335,26 +69,26 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  10
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.FormModel.java">org/universAAL/ui/ui/handler/web/html/model/FormModel.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.Model.java">org/universAAL/ui/handler/web/html/model/Model.java</a>
+                </td>
+                <td>
+                  11
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  5
+                  10
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.GroupModel.java">org/universAAL/ui/ui/handler/web/html/model/GroupModel.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.GroupModel.java">org/universAAL/ui/handler/web/html/model/GroupModel.java</a>
                 </td>
                 <td>
                   2
@@ -368,7 +102,77 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.ModelMapper.java">org/universAAL/ui/ui/handler/web/html/ModelMapper.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.fm.FormManager.java">org/universAAL/ui/handler/web/html/fm/FormManager.java</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.SimpleOutputModel.java">org/universAAL/ui/handler/web/html/model/SimpleOutputModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.TextAreaModel.java">org/universAAL/ui/handler/web/html/model/TextAreaModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.HTMLUserGenerator.java">org/universAAL/ui/handler/web/html/HTMLUserGenerator.java</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.ResourceMapper.java">org/universAAL/ui/handler/web/html/ResourceMapper.java</a>
+                </td>
+                <td>
+                  16
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.ModelMapper.java">org/universAAL/ui/handler/web/html/ModelMapper.java</a>
                 </td>
                 <td>
                   11
@@ -382,7 +186,91 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.OutputModel.java">org/universAAL/ui/ui/handler/web/html/model/OutputModel.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.SubmitModel.java">org/universAAL/ui/handler/web/html/model/SubmitModel.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.Select1Model.java">org/universAAL/ui/handler/web/html/model/Select1Model.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.MediaObjectModel.java">org/universAAL/ui/handler/web/html/model/MediaObjectModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.SelectModel.java">org/universAAL/ui/handler/web/html/model/SelectModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.FormControlModel.java">org/universAAL/ui/handler/web/html/model/FormControlModel.java</a>
+                </td>
+                <td>
+                  13
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.InputFieldModel.java">org/universAAL/ui/handler/web/html/model/InputFieldModel.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.OutputModel.java">org/universAAL/ui/handler/web/html/model/OutputModel.java</a>
                 </td>
                 <td>
                   0
@@ -396,7 +284,77 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.Handler.java">org/universAAL/ui/ui/handler/web/html/Handler.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.osgi.HTMLHandlerActivator.java">org/universAAL/ui/handler/web/html/osgi/HTMLHandlerActivator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.InputModel.java">org/universAAL/ui/handler/web/html/model/InputModel.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.RangeModel.java">org/universAAL/ui/handler/web/html/model/RangeModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  9
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.FormModel.java">org/universAAL/ui/handler/web/html/model/FormModel.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.fm.SimpleFormManager.java">org/universAAL/ui/handler/web/html/fm/SimpleFormManager.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.Handler.java">org/universAAL/ui/handler/web/html/Handler.java</a>
                 </td>
                 <td>
                   7
@@ -410,16 +368,58 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.ui.handler.web.html.model.Model.java">org/universAAL/ui/ui/handler/web/html/model/Model.java</a>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.RepeatModel.java">org/universAAL/ui/handler/web/html/model/RepeatModel.java</a>
                 </td>
                 <td>
-                  11
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.UpdatedPropertiesFile.java">org/universAAL/ui/handler/web/html/UpdatedPropertiesFile.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.SubdialogTriggerModel.java">org/universAAL/ui/handler/web/html/model/SubdialogTriggerModel.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  10
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.handler.web.html//checkstyle.html#org.universAAL.ui.handler.web.html.model.RecommendationModel.java">org/universAAL/ui/handler/web/html/model/RecommendationModel.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
                 </td>
               </tr>
                       </tbody>

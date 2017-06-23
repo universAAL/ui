@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="121" branches-covered="0" branches-valid="52" complexity="3.0" version="2.1.1" timestamp="1498208416527">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="121" branches-covered="0" branches-valid="52" complexity="3.0" version="2.1.1" timestamp="1498222112778">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.handler.sms/src/main/java</source>

@@ -40,9 +40,9 @@ org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel
 org.universAAL.ui.handler.gui.swing.model.special
 org.universAAL.ui.handler.gui.swing.osgi
 org.universAAL.ui.handler.sms
+org.universAAL.ui.handler.web.html
+org.universAAL.ui.handler.web.html.fm
+org.universAAL.ui.handler.web.html.model
+org.universAAL.ui.handler.web.html.osgi
 org.universAAL.ui.internationalization.util
 org.universAAL.ui.resource.server
-org.universAAL.ui.ui.handler.web.html
-org.universAAL.ui.ui.handler.web.html.fm
-org.universAAL.ui.ui.handler.web.html.model
-org.universAAL.ui.ui.handler.web.html.osgi
