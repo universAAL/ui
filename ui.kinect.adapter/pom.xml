@@ -42,12 +42,12 @@
             <Bundle-Name>${project.name}</Bundle-Name>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>org.universAAL.kinect.adapter.communication.receiver,
-							org.universAAL.kinect.adapter.contextBus,
-							org.universAAL.kinect.adapter.defaultComponents,
-							org.universAAL.kinect.adapter.IMessageBroker,
-							org.universAAL.kinect.adapter.logging,
-							org.universAAL.kinect.adapter.serviceBus</Export-Package>
+            <Export-Package>org.universAAL.ui.handler.kinect.adapter.communication.receiver,
+							org.universAAL.ui.handler.kinect.adapter.contextBus,
+							org.universAAL.ui.handler.kinect.adapter.defaultComponents,
+							org.universAAL.ui.handler.kinect.adapter.IMessageBroker,
+							org.universAAL.ui.handler.kinect.adapter.logging,
+							org.universAAL.ui.handler.kinect.adapter.serviceBus</Export-Package>
           </instructions>
         </configuration>
       </plugin>
