@@ -1,7 +1,7 @@
 @prefix ns: <http://ontology.universaal.org/Lighting.owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix : <http://ontology.universaal.org/UIMainMenuProfile.owl#> .
+@prefix : <http://ontology.universAAL.org/UIMainMenuProfile.owl#> .
 _:BN000000 :hasEntry (
      [
        :hasVendor <http://www.tsbtecnologias.es> ;
