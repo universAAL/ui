@@ -99,14 +99,13 @@
         <configuration>
           <instructions>
             <Bundle-Name>${project.name}</Bundle-Name>
-            <Bundle-Activator>org.universAAL.ui.handler.web.Activator</Bundle-Activator>
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-            <Bundle-Activator>org.universAAL.ui.ui.handler.web.html.osgi.HTMLHandlerActivator</Bundle-Activator>
-            <Export-Package>org.universAAL.ui.ui.handler.web.html</Export-Package>
-            <Private-Package>org.universAAL.ui.ui.handler.web.html.fm,
-					org.universAAL.ui.ui.handler.web.html.model,
-					org.universAAL.ui.ui.handler.web.html.osgi</Private-Package>
+            <Bundle-Activator>org.universAAL.ui.handler.web.html.osgi.HTMLHandlerActivator</Bundle-Activator>
+            <Export-Package>org.universAAL.ui.handler.web.html</Export-Package>
+            <Private-Package>org.universAAL.ui.handler.web.html.fm,
+					org.universAAL.ui.handler.web.html.model,
+					org.universAAL.ui.handler.web.html.osgi</Private-Package>
           </instructions>
         </configuration>
       </plugin>
