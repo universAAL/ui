@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="1.0" lines-covered="0" lines-valid="31" branches-covered="0" branches-valid="0" complexity="1.0" version="2.1.1" timestamp="1498222163941">
+<coverage line-rate="0.0" branch-rate="1.0" lines-covered="0" lines-valid="31" branches-covered="0" branches-valid="0" complexity="1.0" version="2.1.1" timestamp="1498222358358">
 	<sources>
 		<source>/home/travis/build/universAAL/ui/ui.kinect.adapter.instance/src/main/java</source>
 		<source>--source</source>
 	</sources>
 	<packages>
-		<package name="org.universAAL.kinect.adapter.instance.contextBus" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+		<package name="org.universAAL.ui.handler.kinect.adapter.instance.contextBus" line-rate="0.0" branch-rate="1.0" complexity="1.0">
 			<classes>
-				<class name="org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher" filename="org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+				<class name="org.universAAL.ui.handler.kinect.adapter.instance.contextBus.HandGesturesPublisher" filename="org/universAAL/ui/handler/kinect/adapter/instance/contextBus/HandGesturesPublisher.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
@@ -57,9 +57,9 @@
 				</class>
 			</classes>
 		</package>
-		<package name="org.universAAL.kinect.adapter.instance.osgi" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+		<package name="org.universAAL.ui.handler.kinect.adapter.instance.osgi" line-rate="0.0" branch-rate="1.0" complexity="1.0">
 			<classes>
-				<class name="org.universAAL.kinect.adapter.instance.osgi.Activator" filename="org/universAAL/kinect/adapter/instance/osgi/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
+				<class name="org.universAAL.ui.handler.kinect.adapter.instance.osgi.Activator" filename="org/universAAL/ui/handler/kinect/adapter/instance/osgi/Activator.java" line-rate="0.0" branch-rate="1.0" complexity="1.0">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>

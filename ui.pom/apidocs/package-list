@@ -1,12 +1,4 @@
 net.vsms.bulksms
-org.universAAL.kinect.adapter.IMessageBroker
-org.universAAL.kinect.adapter.communication.receiver
-org.universAAL.kinect.adapter.contextBus
-org.universAAL.kinect.adapter.defaultComponents
-org.universAAL.kinect.adapter.instance.contextBus
-org.universAAL.kinect.adapter.instance.osgi
-org.universAAL.kinect.adapter.logging
-org.universAAL.kinect.adapter.serviceBus
 org.universAAL.ui.dm
 org.universAAL.ui.dm.adapters
 org.universAAL.ui.dm.dialogManagement
@@ -39,6 +31,14 @@ org.universAAL.ui.handler.gui.swing.model.FormControl.support
 org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel
 org.universAAL.ui.handler.gui.swing.model.special
 org.universAAL.ui.handler.gui.swing.osgi
+org.universAAL.ui.handler.kinect.adapter.IMessageBroker
+org.universAAL.ui.handler.kinect.adapter.communication.receiver
+org.universAAL.ui.handler.kinect.adapter.contextBus
+org.universAAL.ui.handler.kinect.adapter.defaultComponents
+org.universAAL.ui.handler.kinect.adapter.instance.contextBus
+org.universAAL.ui.handler.kinect.adapter.instance.osgi
+org.universAAL.ui.handler.kinect.adapter.logging
+org.universAAL.ui.handler.kinect.adapter.serviceBus
 org.universAAL.ui.handler.sms
 org.universAAL.ui.handler.web.html
 org.universAAL.ui.handler.web.html.fm

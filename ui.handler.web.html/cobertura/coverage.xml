@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.3465447154471545" branch-rate="0.26587301587301587" lines-covered="341" lines-valid="984" branches-covered="134" branches-valid="504" complexity="2.5161290322580645" version="2.1.1" timestamp="1498222083397">
+<coverage line-rate="0.3465447154471545" branch-rate="0.26587301587301587" lines-covered="341" lines-valid="984" branches-covered="134" branches-valid="504" complexity="2.5161290322580645" version="2.1.1" timestamp="1498222279624">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.handler.web.html/src/main/java</source>
@@ -1397,15 +1397,15 @@
 						</method>
 						<method name="finalize" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="272" hits="1" branch="false"/>
-								<line number="273" hits="1" branch="false"/>
-								<line number="274" hits="1" branch="false"/>
+								<line number="272" hits="2" branch="false"/>
+								<line number="273" hits="2" branch="false"/>
+								<line number="274" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="finish" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="313" hits="1" branch="false"/>
-								<line number="314" hits="1" branch="false"/>
+								<line number="313" hits="2" branch="false"/>
+								<line number="314" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="run" signature="()V" line-rate="0.5" branch-rate="0.2777777777777778" complexity="0">
@@ -1474,9 +1474,9 @@
 						<line number="266" hits="4" branch="false"/>
 						<line number="267" hits="4" branch="false"/>
 						<line number="268" hits="4" branch="false"/>
-						<line number="272" hits="1" branch="false"/>
-						<line number="273" hits="1" branch="false"/>
-						<line number="274" hits="1" branch="false"/>
+						<line number="272" hits="2" branch="false"/>
+						<line number="273" hits="2" branch="false"/>
+						<line number="274" hits="2" branch="false"/>
 						<line number="279" hits="4" branch="true" condition-coverage="25% (1/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
@@ -1531,8 +1531,8 @@
 						<line number="307" hits="4" branch="false"/>
 						<line number="308" hits="0" branch="false"/>
 						<line number="310" hits="4" branch="false"/>
-						<line number="313" hits="1" branch="false"/>
-						<line number="314" hits="1" branch="false"/>
+						<line number="313" hits="2" branch="false"/>
+						<line number="314" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.ui.handler.web.html.UpdatedPropertiesFile" filename="org/universAAL/ui/handler/web/html/UpdatedPropertiesFile.java" line-rate="0.0" branch-rate="0.0" complexity="1.8888888888888888">

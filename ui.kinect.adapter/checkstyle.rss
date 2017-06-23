@@ -46,35 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextCallback.java">org/universAAL/kinect/adapter/contextBus/IContextCallback.java</a>
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.AbstractService.java">org/universAAL/kinect/adapter/serviceBus/AbstractService.java</a>
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultBroker.java">org/universAAL/kinect/adapter/defaultComponents/DefaultBroker.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.IMessageBroker.IMessageBroker.java">org/universAAL/ui/handler/kinect/adapter/IMessageBroker/IMessageBroker.java</a>
                 </td>
                 <td>
                   7
@@ -83,82 +55,26 @@ under the License.
                   1
                 </td>
                 <td>
-                  11
+                  1
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultContextSubscriber.java">org/universAAL/kinect/adapter/defaultComponents/DefaultContextSubscriber.java</a>
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.TCPServer.java">org/universAAL/kinect/adapter/communication/receiver/TCPServer.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.communication.receiver.MessageParser.java">org/universAAL/ui/handler/kinect/adapter/communication/receiver/MessageParser.java</a>
                 </td>
                 <td>
                   8
                 </td>
                 <td>
-                  2
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.IContextPublisher.java">org/universAAL/kinect/adapter/contextBus/IContextPublisher.java</a>
+                  3
                 </td>
                 <td>
                   6
                 </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.RequestService.java">org/universAAL/kinect/adapter/serviceBus/RequestService.java</a>
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.Worker.java">org/universAAL/kinect/adapter/communication/receiver/Worker.java</a>
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.contextBus.AbstractContext.java">org/universAAL/kinect/adapter/contextBus/AbstractContext.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.contextBus.AbstractContext.java">org/universAAL/ui/handler/kinect/adapter/contextBus/AbstractContext.java</a>
                 </td>
                 <td>
                   9
@@ -172,13 +88,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.QueryService.java">org/universAAL/kinect/adapter/serviceBus/QueryService.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.serviceBus.RequestService.java">org/universAAL/ui/handler/kinect/adapter/serviceBus/RequestService.java</a>
                 </td>
                 <td>
                   6
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   2
@@ -186,63 +102,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.IMessageBroker.java">org/universAAL/kinect/adapter/IMessageBroker/IMessageBroker.java</a>
-                </td>
-                <td>
-                  7
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.logging.LoggerWithModuleContext.java">org/universAAL/kinect/adapter/logging/LoggerWithModuleContext.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.communication.receiver.Worker.java">org/universAAL/ui/handler/kinect/adapter/communication/receiver/Worker.java</a>
                 </td>
                 <td>
                   6
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.communication.receiver.MessageParser.java">org/universAAL/kinect/adapter/communication/receiver/MessageParser.java</a>
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  6
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.serviceBus.IServiceCall.java">org/universAAL/kinect/adapter/serviceBus/IServiceCall.java</a>
-                </td>
-                <td>
-                  7
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  4
+                  10
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.IMessageBroker.AdapterException.java">org/universAAL/kinect/adapter/IMessageBroker/AdapterException.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.IMessageBroker.AdapterException.java">org/universAAL/ui/handler/kinect/adapter/IMessageBroker/AdapterException.java</a>
                 </td>
                 <td>
                   6
@@ -256,7 +130,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.kinect.adapter.defaultComponents.DefaultAdapter.java">org/universAAL/kinect/adapter/defaultComponents/DefaultAdapter.java</a>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.communication.receiver.TCPServer.java">org/universAAL/ui/handler/kinect/adapter/communication/receiver/TCPServer.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.defaultComponents.DefaultContextSubscriber.java">org/universAAL/ui/handler/kinect/adapter/defaultComponents/DefaultContextSubscriber.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.defaultComponents.DefaultBroker.java">org/universAAL/ui/handler/kinect/adapter/defaultComponents/DefaultBroker.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.defaultComponents.DefaultAdapter.java">org/universAAL/ui/handler/kinect/adapter/defaultComponents/DefaultAdapter.java</a>
                 </td>
                 <td>
                   7
@@ -266,6 +182,90 @@ under the License.
                 </td>
                 <td>
                   6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.serviceBus.QueryService.java">org/universAAL/ui/handler/kinect/adapter/serviceBus/QueryService.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.logging.LoggerWithModuleContext.java">org/universAAL/ui/handler/kinect/adapter/logging/LoggerWithModuleContext.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.serviceBus.AbstractService.java">org/universAAL/ui/handler/kinect/adapter/serviceBus/AbstractService.java</a>
+                </td>
+                <td>
+                  8
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.contextBus.IContextCallback.java">org/universAAL/ui/handler/kinect/adapter/contextBus/IContextCallback.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.contextBus.IContextPublisher.java">org/universAAL/ui/handler/kinect/adapter/contextBus/IContextPublisher.java</a>
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://ui/ui.kinect.adapter//checkstyle.html#org.universAAL.ui.handler.kinect.adapter.serviceBus.IServiceCall.java">org/universAAL/ui/handler/kinect/adapter/serviceBus/IServiceCall.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
                 </td>
               </tr>
                       </tbody>

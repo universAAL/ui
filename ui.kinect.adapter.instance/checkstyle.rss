@@ -46,21 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="/checkstyle.html#org.universAAL.kinect.adapter.instance.contextBus.HandGesturesPublisher.java">org/universAAL/kinect/adapter/instance/contextBus/HandGesturesPublisher.java</a>
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="/checkstyle.html#org.universAAL.kinect.adapter.instance.osgi.Activator.java">org/universAAL/kinect/adapter/instance/osgi/Activator.java</a>
+                  <a href="/checkstyle.html#org.universAAL.ui.handler.kinect.adapter.instance.osgi.Activator.java">org/universAAL/ui/handler/kinect/adapter/instance/osgi/Activator.java</a>
                 </td>
                 <td>
                   6
@@ -70,6 +56,20 @@ under the License.
                 </td>
                 <td>
                   5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="/checkstyle.html#org.universAAL.ui.handler.kinect.adapter.instance.contextBus.HandGesturesPublisher.java">org/universAAL/ui/handler/kinect/adapter/instance/contextBus/HandGesturesPublisher.java</a>
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  8
                 </td>
               </tr>
                       </tbody>
