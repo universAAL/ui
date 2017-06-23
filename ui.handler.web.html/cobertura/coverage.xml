@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.47865853658536583" branch-rate="0.38492063492063494" lines-covered="471" lines-valid="984" branches-covered="194" branches-valid="504" complexity="2.5161290322580645" version="2.1.1" timestamp="1496983496051">
+<coverage line-rate="0.483739837398374" branch-rate="0.38492063492063494" lines-covered="476" lines-valid="984" branches-covered="194" branches-valid="504" complexity="2.5161290322580645" version="2.1.1" timestamp="1498208387107">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.handler.web.html/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="org.universAAL.ui.ui.handler.web.html" line-rate="0.25396825396825395" branch-rate="0.25925925925925924" complexity="2.4925373134328357">
+		<package name="org.universAAL.ui.ui.handler.web.html" line-rate="0.2671957671957672" branch-rate="0.25925925925925924" complexity="2.4925373134328357">
 			<classes>
 				<class name="org.universAAL.ui.ui.handler.web.html.HTMLUserGenerator" filename="org/universAAL/ui/ui/handler/web/html/HTMLUserGenerator.java" line-rate="0.11428571428571428" branch-rate="0.0625" complexity="2.0588235294117645">
 					<methods>
@@ -1383,7 +1383,7 @@
 						<line number="244" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.ui.ui.handler.web.html.ResourceMapper$Retreiver" filename="org/universAAL/ui/ui/handler/web/html/ResourceMapper.java" line-rate="0.5142857142857142" branch-rate="0.2777777777777778" complexity="4.6923076923076925">
+				<class name="org.universAAL.ui.ui.handler.web.html.ResourceMapper$Retreiver" filename="org/universAAL/ui/ui/handler/web/html/ResourceMapper.java" line-rate="0.6571428571428571" branch-rate="0.2777777777777778" complexity="4.6923076923076925">
 					<methods>
 						<method name="&lt;init&gt;" signature="(Ljava/io/InputStream;Ljava/io/File;)V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
@@ -1395,17 +1395,17 @@
 								<line number="268" hits="3" branch="false"/>
 							</lines>
 						</method>
-						<method name="finalize" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="finalize" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="272" hits="0" branch="false"/>
-								<line number="273" hits="0" branch="false"/>
-								<line number="274" hits="0" branch="false"/>
+								<line number="272" hits="2" branch="false"/>
+								<line number="273" hits="2" branch="false"/>
+								<line number="274" hits="2" branch="false"/>
 							</lines>
 						</method>
-						<method name="finish" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
+						<method name="finish" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="313" hits="0" branch="false"/>
-								<line number="314" hits="0" branch="false"/>
+								<line number="313" hits="2" branch="false"/>
+								<line number="314" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="run" signature="()V" line-rate="0.5" branch-rate="0.2777777777777778" complexity="0">
@@ -1474,9 +1474,9 @@
 						<line number="266" hits="3" branch="false"/>
 						<line number="267" hits="3" branch="false"/>
 						<line number="268" hits="3" branch="false"/>
-						<line number="272" hits="0" branch="false"/>
-						<line number="273" hits="0" branch="false"/>
-						<line number="274" hits="0" branch="false"/>
+						<line number="272" hits="2" branch="false"/>
+						<line number="273" hits="2" branch="false"/>
+						<line number="274" hits="2" branch="false"/>
 						<line number="279" hits="3" branch="true" condition-coverage="25% (1/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
@@ -1531,8 +1531,8 @@
 						<line number="307" hits="3" branch="false"/>
 						<line number="308" hits="0" branch="false"/>
 						<line number="310" hits="3" branch="false"/>
-						<line number="313" hits="0" branch="false"/>
-						<line number="314" hits="0" branch="false"/>
+						<line number="313" hits="2" branch="false"/>
+						<line number="314" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.ui.ui.handler.web.html.UpdatedPropertiesFile" filename="org/universAAL/ui/ui/handler/web/html/UpdatedPropertiesFile.java" line-rate="0.0" branch-rate="0.0" complexity="1.8888888888888888">
