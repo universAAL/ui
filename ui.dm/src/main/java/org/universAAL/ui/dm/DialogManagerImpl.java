@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,9 +43,9 @@ import org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee;
 /**
  * The UICaller implements the interface
  * {@link org.universAAL.middleware.ui.IDialogManager}.
- * 
+ *
  * @author amedrano
- * 
+ *
  *         created: 26-sep-2012 13:03:50
  */
 public final class DialogManagerImpl extends UICaller implements IDialogManager {
@@ -123,7 +123,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * private constructor for creating singleton instance.
-	 * 
+	 *
 	 * @param context
 	 */
 	private DialogManagerImpl(ModuleContext context) {
@@ -162,7 +162,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	 * be shown directly (e.g. by comparing the dialogs priority with the
 	 * priority of a dialog that is currently shown). Additionally, it adds
 	 * adaptation parameters.
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.IDialogManager#checkNewDialog(UIRequest)
 	 * @param request
 	 *            The UI request containing a dialog.
@@ -187,7 +187,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	 * This method is called by the UI bus to inform the dialog manager that a
 	 * dialog was successfully finished. The dialog manager can then show
 	 * dialogs that were previously suspended.
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.IDialogManager#dialogFinished(String)
 	 * @param dialogID
 	 *            ID of the dialog that is now finished.
@@ -221,7 +221,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	/**
 	 * Get a suspended dialog. Removes the dialog from 'suspendedDialogs' and
 	 * adds it to 'runningDialogs'.
-	 * 
+	 *
 	 * @param dialogID
 	 *            ID of the dialog.
 	 * @return the suspended {@link UIRequest}, null if not found.
@@ -249,7 +249,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	/**
 	 * Suspend a dialog. This method is called by the UI bus and removes the
 	 * given dialog from 'runningDialogs' and stores it in 'suspendedDialogs'.
-	 * 
+	 *
 	 * @param dialogID
 	 *            ID of the dialog.
 	 */
@@ -278,7 +278,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	/**
 	 * This method is called when an event on the UI bus occurs indicating that
 	 * a dialog was aborted.
-	 * 
+	 *
 	 * @param dialogID
 	 *            the dialogID of the dialog to be aborted
 	 */
@@ -328,7 +328,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * Get the {@link UserDialogManager} for a given userURI
-	 * 
+	 *
 	 * @param userURI
 	 * @return
 	 */
@@ -339,7 +339,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * Get the {@link UIPreferencesBuffer}.
-	 * 
+	 *
 	 * @return
 	 */
 	public IUIPreferencesBuffer getUIPreferencesBuffer() {
@@ -384,7 +384,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * Create a Singleton Instance.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} needed to create the singleton
 	 *            instance (for {@link UICaller}).
@@ -413,7 +413,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * Get the singleton instance.
-	 * 
+	 *
 	 * @return the singleton Instance, null if not created.
 	 */
 	public static DialogManagerImpl getInstance() {
@@ -437,7 +437,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * Get the {@link ServiceCaller} for calling a service
-	 * 
+	 *
 	 * @return the service caller created during the bundle start.
 	 */
 	public static ServiceCaller getServiceCaller() {
@@ -446,7 +446,7 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 
 	/**
 	 * The module context reference.
-	 * 
+	 *
 	 * @return The module context reference.
 	 */
 	public static ModuleContext getModuleContext() {
@@ -456,9 +456,9 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	/**
 	 * A mini-Garbage collector to purge the
 	 * {@link DialogManagerImpl#dialogIDMap}
-	 * 
+	 *
 	 * @author amedrano
-	 * 
+	 *
 	 */
 	private class DMGC extends TimerTask {
 

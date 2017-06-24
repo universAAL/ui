@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,9 +40,9 @@ import org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesProvidedService;
 /**
  * Helper class for making service requests towards Profiling Server in order to
  * manipulate (add, change, get) {@link UIPreferencesSubProfile} data.
- * 
+ *
  * @author eandgrg
- * 
+ *
  */
 public class UIPreferencesSubprofileHelper {
 
@@ -62,7 +62,7 @@ public class UIPreferencesSubprofileHelper {
 	/**
 	 * Adds given {@link SubProfile} to a Profiling Server and connects it with
 	 * given {@link User}.
-	 * 
+	 *
 	 * @param profilable
 	 *            {@link User}
 	 * @param subProfile
@@ -86,7 +86,7 @@ public class UIPreferencesSubprofileHelper {
 
 	/**
 	 * Updates given {@link SubProfile}.
-	 * 
+	 *
 	 * @param subProfile
 	 *            {@link SubProfile}
 	 * @return call status as a {@link String}
@@ -108,10 +108,10 @@ public class UIPreferencesSubprofileHelper {
 	 * {@link User} from a Profiling Server (makes a service call). Note
 	 * {@link User} and {@link UserProfile} should exist and be connected with
 	 * {@link UIPreferencesSubProfile} before obtainment
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
-	 * 
+	 *
 	 * @return {@link UIPreferencesSubProfile} that belongs to a given
 	 *         {@link User} or null in all other cases.
 	 */
@@ -167,7 +167,7 @@ public class UIPreferencesSubprofileHelper {
 	/**
 	 * Adds given {@link SubProfile} to a Profiling Server and connects it with
 	 * given {@link UserProfile}.
-	 * 
+	 *
 	 * @param userProfile
 	 *            {@link UserProfile}
 	 * @param subProfile

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,7 +49,7 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
  * the initialization class.
- * 
+ *
  * @author amedrano
  */
 public class Init implements InitInterface {
@@ -227,19 +227,19 @@ public class Init implements InitInterface {
 			 * if (bgColor != null){ switch (bgColor.ord()) { case
 			 * ColorType.WHITE: case ColorType.BLACK: case ColorType.LIGHT_GRAY:
 			 * case ColorType.DARK_GREY:
-			 * 
+			 *
 			 * break; case ColorType.LIGHT_BLUE: case ColorType.DARK_BLUE: case
 			 * ColorType.CYAN:
-			 * 
+			 *
 			 * break; case ColorType.LIGHT_GREEN: case ColorType.DARK_GREEN:
-			 * 
+			 *
 			 * break; case ColorType.LIGHT_RED: case ColorType.DARK_RED: case
 			 * ColorType.MAGENTA: case ColorType.PURPLE: case ColorType.PINK:
-			 * 
+			 *
 			 * break; case ColorType.YELLOW: case ColorType.ORANGE:
-			 * 
+			 *
 			 * break;
-			 * 
+			 *
 			 * default: break; } }
 			 */
 			if (fColor != null) {
@@ -366,7 +366,7 @@ public class Init implements InitInterface {
 
 	/**
 	 * get the Internationalized message corresponding to the provided Key
-	 * 
+	 *
 	 * @param key
 	 *            the Key of the message.
 	 * @return the string.
@@ -377,7 +377,7 @@ public class Init implements InitInterface {
 
 	/**
 	 * Tells whether the frame should be full screen or windowed.
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isWindowed() {

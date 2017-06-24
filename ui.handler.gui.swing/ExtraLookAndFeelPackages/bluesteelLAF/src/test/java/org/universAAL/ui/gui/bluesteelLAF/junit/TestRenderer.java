@@ -38,7 +38,7 @@ public class TestRenderer extends Renderer {
 	/**
 	 * load configuration properties from a file, setting the default for those
 	 * which are not defined.
-	 * 
+	 *
 	 * @see Renderer#properties
 	 */
 	protected void loadProperties() {

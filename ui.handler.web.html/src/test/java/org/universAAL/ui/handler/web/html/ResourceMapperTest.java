@@ -30,7 +30,7 @@ import junit.framework.TestCase;
 public class ResourceMapperTest extends TestCase {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String CACHE = "./target/cache";
 

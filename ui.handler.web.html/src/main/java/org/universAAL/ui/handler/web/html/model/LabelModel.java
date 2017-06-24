@@ -74,7 +74,7 @@ public class LabelModel extends Model {
 
 	/**
 	 * Generate a Label tag, for the given id.
-	 * 
+	 *
 	 * @param id
 	 *            the id in the "for" property.
 	 * @return

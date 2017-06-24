@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * This {@link FormManager} queues the {@link UIRequest}s in a priority queue
  * according to the dialog's priority. And displays the most prioritarial
  * {@link UIRequest}. Message type dialogs don't enter the priority queue.
- * 
+ *
  * @author amedrano
  * @see UIRequestPriorityComparator
  */
@@ -67,7 +67,7 @@ public final class QueuedFormManager implements FormManager {
 
 	/**
 	 * Default constructor.
-	 * 
+	 *
 	 */
 	public QueuedFormManager() {
 		dialogQueue = new PriorityQueue(QUEUE_MAX, new UIRequestPriorityComparator());

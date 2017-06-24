@@ -25,7 +25,7 @@ public interface ISMSSender {
 
 	/**
 	 * Sends text to specified number.
-	 * 
+	 *
 	 * @param number
 	 *            number to send text (sms), should include country code
 	 * @param text

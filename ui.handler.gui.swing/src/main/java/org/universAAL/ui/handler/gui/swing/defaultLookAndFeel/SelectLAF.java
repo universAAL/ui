@@ -26,7 +26,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SelectModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class SelectLAF extends SelectModel {
 
@@ -42,7 +42,7 @@ public class SelectLAF extends SelectModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Select} which to model.
 	 */

@@ -60,14 +60,14 @@ import java.io.ObjectInputStream;
  * <p>
  * <hr>
  * <blockquote>
- * 
+ *
  * <pre>
  * import java.awt.*;
  * import java.applet.Applet;
  *
  * public class myButtons extends Applet {
  * 	Button button1, button2, button3;
- * 
+ *
  * 	public void init() {
  * 		button1 = new Button("Ok");
  * 		button2 = new Button("Open");
@@ -78,7 +78,7 @@ import java.io.ObjectInputStream;
  * 	}
  * }
  * </pre>
- * 
+ *
  * </blockquote>
  * <hr>
  * <p>
@@ -215,7 +215,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	 * <code>VerticalFlowLayout.CENTER</code>,
 	 * <code>VerticalFlowLayout.LEADING</code>, or
 	 * <code>VerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @param align
 	 *            the alignment value
 	 */
@@ -233,7 +233,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	 * <code>VerticalFlowLayout.CENTER</code>,
 	 * <code>VerticalFlowLayout.LEADING</code>, or
 	 * <code>VerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @param align
 	 *            the alignment value
 	 * @param hgap
@@ -256,7 +256,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	 * <code>VerticalFlowLayout.CENTER</code>,
 	 * <code>VerticalFlowLayout.LEADING</code>, or
 	 * <code>VerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @return the alignment value for this layout
 	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setAlignment
 	 * @since JDK1.1
@@ -274,7 +274,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	 * <li><code>VerticalFlowLayout.LEADING</code>
 	 * <li><code>VerticalFlowLayout.TRAILING</code>
 	 * </ul>
-	 * 
+	 *
 	 * @param align
 	 *            one of the alignment values shown above
 	 * @see #getAlignment()
@@ -356,7 +356,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 
 	/**
 	 * Adds the specified component to the layout. Not used by this class.
-	 * 
+	 *
 	 * @param name
 	 *            the name of the component
 	 * @param comp
@@ -367,7 +367,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 
 	/**
 	 * Removes the specified component from the layout. Not used by this class.
-	 * 
+	 *
 	 * @param comp
 	 *            the component to remove
 	 * @see java.awt.Container#removeAll
@@ -417,7 +417,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	/**
 	 * Returns the minimum dimensions needed to layout the <i>visible</i>
 	 * components contained in the specified target container.
-	 * 
+	 *
 	 * @param target
 	 *            the container that needs to be laid out
 	 * @return the minimum dimensions to lay out the subcomponents of the
@@ -451,7 +451,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 
 	/**
 	 * Centers the elements in the specified row, if there is any slack.
-	 * 
+	 *
 	 * @param target
 	 *            the component which needs to be moved
 	 * @param x
@@ -587,7 +587,7 @@ public class VerticalFlowLayout implements LayoutManager, java.io.Serializable {
 	/**
 	 * Returns a string representation of this <code>VerticalFlowLayout</code>
 	 * object and its values.
-	 * 
+	 *
 	 * @return a string representation of this layout
 	 */
 	public String toString() {

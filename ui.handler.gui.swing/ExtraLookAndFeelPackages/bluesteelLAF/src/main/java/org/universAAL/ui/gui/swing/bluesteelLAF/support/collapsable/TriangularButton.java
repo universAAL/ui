@@ -32,7 +32,7 @@ import javax.swing.JButton;
 public class TriangularButton extends JButton {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -57,7 +57,7 @@ public class TriangularButton extends JButton {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
@@ -100,7 +100,7 @@ public class TriangularButton extends JButton {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.AbstractButton#paintBorder(java.awt.Graphics)
 	 */
 	@Override

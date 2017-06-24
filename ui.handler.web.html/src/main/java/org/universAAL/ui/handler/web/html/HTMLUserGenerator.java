@@ -45,10 +45,10 @@ import org.universAAL.ui.handler.web.html.model.SubmitModel;
 
 /**
  * Coordinator Class for Web HTML Handler per user.
- * 
+ *
  * It will provide all of the needed properties and constants for all other
  * classes, as well as acting as placeholder for all the needed classes to work.
- * 
+ *
  * This placeholding and mutual reference (between contained and container
  * classes) enables the renderer to be loaded more than once per instance.
  *
@@ -103,7 +103,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Constructor for one Renderer on a certain file.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} to work in uAAL.
 	 * @param usr
@@ -138,7 +138,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * get the {@link ModuleContext}.
-	 * 
+	 *
 	 * @return the module context.
 	 * @see HTMLUserGenerator#moduleContext
 	 */
@@ -155,7 +155,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Access to the property file.
-	 * 
+	 *
 	 * @param key
 	 *            Key of property to access
 	 * @return String Value of the property
@@ -167,7 +167,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Access to the property file.
-	 * 
+	 *
 	 * @param key
 	 *            Key of property to access
 	 * @param defaultVal
@@ -181,7 +181,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Gets the form being displayed right now.
-	 * 
+	 *
 	 * @return the current {@link Form} being processed.
 	 */
 	public final Form getCurrentForm() {
@@ -201,7 +201,7 @@ public class HTMLUserGenerator {
 	/**
 	 * Check if impairment is listed as present impairments for the current user
 	 * and form.
-	 * 
+	 *
 	 * @param impariment
 	 *            the {@link AccessImpairment} to be checked
 	 * @return true is impairment is present in the current Dialog Request.
@@ -219,7 +219,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Get the Language that should be used.
-	 * 
+	 *
 	 * @return the two-letter representation of the language-
 	 */
 	public final String getLanguage() {
@@ -229,7 +229,7 @@ public class HTMLUserGenerator {
 	/**
 	 * Get the {@link FormManager} being used, useful to access the current
 	 * UIResquest and current form.
-	 * 
+	 *
 	 * @return {@link HTMLUserGenerator#fm}
 	 */
 	public FormManager getFormManagement() {
@@ -239,7 +239,7 @@ public class HTMLUserGenerator {
 	/**
 	 * Returns the ModelMapper that automatically assigns this Renderer to the
 	 * Models.
-	 * 
+	 *
 	 * @return
 	 */
 	public final ModelMapper getModelMapper() {
@@ -248,7 +248,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * get the {@link Handler} of this {@link HTMLUserGenerator}.
-	 * 
+	 *
 	 * @return the {@link Handler}
 	 */
 	public final Handler getHandler() {
@@ -257,7 +257,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Get the location of the user, always a global location.
-	 * 
+	 *
 	 * @return
 	 */
 	public final AbsLocation getUserLocation() {
@@ -268,7 +268,7 @@ public class HTMLUserGenerator {
 	/**
 	 * Check if there is a form available, if there is it models it and
 	 * generates HTML. If not it will request a main menu and wait for one.
-	 * 
+	 *
 	 * @return
 	 */
 	public String getHTML() {
@@ -292,7 +292,7 @@ public class HTMLUserGenerator {
 
 	/**
 	 * Get the input from user and send it.
-	 * 
+	 *
 	 * @param parameters
 	 */
 	public void processInput(Map parameters) {

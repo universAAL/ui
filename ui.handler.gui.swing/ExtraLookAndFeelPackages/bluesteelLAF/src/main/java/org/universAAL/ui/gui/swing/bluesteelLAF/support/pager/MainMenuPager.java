@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,14 +41,14 @@ import org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF;
  * usually have low number of components, arranged in {@link GridLayout}; the
  * {@link MainMenuPager} will create the necessary pages to fit all the
  * components, and manage the user input to change between pages
- * 
+ *
  * @author amedrano
  *
  */
 public class MainMenuPager extends JPanel {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -164,7 +164,7 @@ public class MainMenuPager extends JPanel {
 	class BookMarker extends JPanel implements ContainerListener {
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = 1L;
 		private ButtonGroup bg;
@@ -240,7 +240,7 @@ public class MainMenuPager extends JPanel {
 
 	/**
 	 * set the help strings for different elements.
-	 * 
+	 *
 	 * @param next
 	 * @param previous
 	 * @param jump

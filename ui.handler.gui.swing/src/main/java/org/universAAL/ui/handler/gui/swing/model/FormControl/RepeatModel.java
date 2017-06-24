@@ -41,7 +41,7 @@ public abstract class RepeatModel extends GroupModel {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Repeat} which to model.
 	 */
@@ -51,7 +51,7 @@ public abstract class RepeatModel extends GroupModel {
 
 	/**
 	 * get the java {@link Class} of the children.
-	 * 
+	 *
 	 * @return {@link Class} of the 1st child.
 	 */
 	protected Class getChildrenType() {
@@ -64,7 +64,7 @@ public abstract class RepeatModel extends GroupModel {
 
 	/**
 	 * check if the {@link Repeat} {@link FormControl} models a table.
-	 * 
+	 *
 	 * @return <code>true</code> is it does model a table. <code>false</code>
 	 *         otherwise.
 	 */
@@ -108,7 +108,7 @@ public abstract class RepeatModel extends GroupModel {
 	/**
 	 * Tells whether this repeat has or not {@link Submit}s (or
 	 * {@link SubdialogTrigger}s).
-	 * 
+	 *
 	 * @return true iff there is a {@link Submit} (or subclass of) as child.
 	 */
 	public boolean containsSubmits() {

@@ -34,7 +34,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 /**
  * Model {@link Select} as a group of {@link JCheckBox}es, better for
  * non-multilevel selects.
- * 
+ *
  * @author amedrano
  *
  */
@@ -47,7 +47,7 @@ public abstract class SelectChecboxModel extends SelectModel implements ActionLi
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 * @param render
 	 */
@@ -87,7 +87,7 @@ public abstract class SelectChecboxModel extends SelectModel implements ActionLi
 
 	/**
 	 * Get the Label associated to the {@link JCheckBox}.
-	 * 
+	 *
 	 * @param jc
 	 *            teh {@link JCheckBox}.
 	 * @return
@@ -101,7 +101,7 @@ public abstract class SelectChecboxModel extends SelectModel implements ActionLi
 
 	/**
 	 * The associated value to the Label to the {@link JCheckBox}.
-	 * 
+	 *
 	 * @param jc
 	 *            the {@link JCheckBox}.
 	 * @return

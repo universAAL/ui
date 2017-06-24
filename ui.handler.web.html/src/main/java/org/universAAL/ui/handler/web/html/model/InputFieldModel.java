@@ -31,7 +31,7 @@ import org.universAAL.ui.handler.web.html.HTMLUserGenerator;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class InputFieldModel extends InputModel {
 
@@ -103,7 +103,7 @@ public class InputFieldModel extends InputModel {
 	 * <li>a number if the {@link InputField#getValue()} is a Double
 	 * <li>a ?? if the {@link InputField#getValue()} is a Locale
 	 * </ul>
-	 * 
+	 *
 	 * @return {@inheritDoc}
 	 */
 	public StringBuffer generateInputHTML() {
@@ -127,7 +127,7 @@ public class InputFieldModel extends InputModel {
 	/**
 	 * Add properties to input properties. According to type of val the type and
 	 * value of the input will be generated.
-	 * 
+	 *
 	 * @param prop
 	 *            the properties to edit
 	 * @param val

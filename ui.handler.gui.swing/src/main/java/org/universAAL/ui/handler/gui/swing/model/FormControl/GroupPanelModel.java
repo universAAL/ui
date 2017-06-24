@@ -25,7 +25,7 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
  * Specific {@link Model} for {@link Group}s to be rendered as {@link JPanel}.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
@@ -33,7 +33,7 @@ public abstract class GroupPanelModel extends GroupModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Group} which to model.
 	 */
@@ -43,7 +43,7 @@ public abstract class GroupPanelModel extends GroupModel {
 
 	/**
 	 * create a simple panel with the children in it
-	 * 
+	 *
 	 * @return a {@link JPanel} with all the group's children.
 	 */
 	public JComponent getNewComponent() {

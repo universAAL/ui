@@ -30,15 +30,15 @@ import org.universAAL.ui.dm.UserDialogManager;
 /**
  * Helper Class to construct a message for the user to understand when it
  * presses a button and nothing happens.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class UIServiceResponseNotifyer {
 
 	/**
 	 * Send a message to the user reporting the issue with the service.
-	 * 
+	 *
 	 * @param userDM
 	 * @param sResp
 	 */

@@ -25,13 +25,13 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class RepeatLAF extends RepeatModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Repeat} which to model.
 	 */

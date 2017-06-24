@@ -19,7 +19,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Executes Tasks sequentially in FIFO order.
- * 
+ *
  * @author amedrano
  *
  */
@@ -37,7 +37,7 @@ public class TaskQueue implements Runnable {
 
 	/**
 	 * Add a new task to the queue.
-	 * 
+	 *
 	 * @param task
 	 *            the task to be executed when the rest of the tasks are over.
 	 */

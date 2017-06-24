@@ -32,7 +32,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class RepeatModelTableLAF extends RepeatModelTable {
 

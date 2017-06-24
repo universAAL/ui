@@ -38,7 +38,7 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * The mechanism to update the {@link UIPreferencesSubProfile} is though the
  * Context bus, when an update is needed outside the UI.DM just publish an event
  * whith the {@link UIPreferencesSubProfile} as object.
- * 
+ *
  * @author amedrano
  *
  */

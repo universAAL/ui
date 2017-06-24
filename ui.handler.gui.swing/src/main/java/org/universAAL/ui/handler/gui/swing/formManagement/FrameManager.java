@@ -57,7 +57,7 @@ public class FrameManager implements Runnable {
 
 	/**
 	 * Constructor. Sets the actual rendering of the {@link Form} in motion
-	 * 
+	 *
 	 * @param req
 	 *            the {@link UIRequest} to be rendered.
 	 * @param mp
@@ -78,7 +78,7 @@ public class FrameManager implements Runnable {
 
 	/**
 	 * close the Frame and command the finalization of the form.
-	 * 
+	 *
 	 * @see FormModel#finalizeForm()
 	 */
 	public void disposeFrame() {
@@ -91,7 +91,7 @@ public class FrameManager implements Runnable {
 
 	/**
 	 * Relay the missing update to the model.
-	 * 
+	 *
 	 * @param in
 	 */
 	public void missing(Input in) {

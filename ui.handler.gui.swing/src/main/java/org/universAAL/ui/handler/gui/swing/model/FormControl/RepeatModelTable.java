@@ -41,7 +41,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.TableFor
 
 /**
  * Helper Class just to render RepeatTables.
- * 
+ *
  * @author amedrano
  *
  */
@@ -56,7 +56,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param control
 	 */
 	public RepeatModelTable(Repeat control, Renderer render) {
@@ -137,7 +137,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 
 	/**
 	 * Class representing the Add button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class AddTableButton extends JButton implements ActionListener {
@@ -187,7 +187,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 
 	/**
 	 * Class representing the Delete button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class DeleteTableButton extends JButton implements ActionListener {
@@ -237,7 +237,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 
 	/**
 	 * Class representing the Up button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class UpTableButton extends JButton implements ActionListener {
@@ -293,7 +293,7 @@ public abstract class RepeatModelTable extends RepeatModel implements ListSelect
 
 	/**
 	 * Class representing the Down button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class DownTableButton extends JButton implements ActionListener {

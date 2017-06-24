@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -78,10 +78,10 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 /**
  * Dialog Management per user. This delegate of {@link DialogManagerImpl} cares
  * for Interaction with just one user.
- * 
+ *
  * @author amedrano
  * @author eandgrg
- * 
+ *
  *         created: 26-sep-2012 13:03:50
  */
 public class UserDialogManager implements IDialogManager, IUIPreferencesChangeListener {
@@ -185,7 +185,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param user
 	 *            the {@link User} this DM is only attending.
 	 * @param location
@@ -349,7 +349,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Get the user's URI for this {@link UserDialogManager} target {@link User}
 	 * .
-	 * 
+	 *
 	 * @return the user's URI.
 	 */
 	public final String getUserId() {
@@ -375,7 +375,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * be shown directly (e.g. by comparing the dialogs priority with the
 	 * priority of a dialog that is currently shown). Additionally, it adds
 	 * adaptation parameters.
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.IDialogManager#checkNewDialog(UIRequest)
 	 * @param request
 	 *            The UI request containing a dialog.
@@ -444,7 +444,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * Internal mechanism to perform adaptations.
-	 * 
+	 *
 	 * @param request
 	 *            the {@link UIRequest} to be adapted.
 	 */
@@ -457,7 +457,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Adds the system menu to a {@link UIRequest} by calling a
 	 * {@link ISystemMenuProvider} and adds it to the listener list.
-	 * 
+	 *
 	 * @param request
 	 *            the {@link UIRequest} to add the system Menu.
 	 */
@@ -478,7 +478,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * lists {@link DialogManagerImpl#runningDialogs},
 	 * {@link DialogManagerImpl#suspendedDialogs}, and
 	 * {@link DialogManagerImpl#waitingDialogs}).
-	 * 
+	 *
 	 * @param dialogID
 	 */
 	public void dialogAborted(String dialogID, Resource data) {
@@ -494,7 +494,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * This method is called by the UI bus to inform the dialog manager that a
 	 * dialog was successfully finished. The dialog manager can then show
 	 * dialogs that were previously suspended.
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.IDialogManager#dialogFinished(String)
 	 * @param dialogID
 	 *            ID of the dialog that is now finished.
@@ -561,7 +561,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * Resume an existing dialog.
-	 * 
+	 *
 	 * @param req
 	 *            the Request to be resumed.
 	 */
@@ -606,7 +606,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Get a suspended dialog. Removes the dialog from suspendedDialogs and adds
 	 * it to runningDialogs.
-	 * 
+	 *
 	 * @param dialogID
 	 *            ID of the dialog.
 	 * @return the suspended {@link UIRequest}, null if not found.
@@ -625,7 +625,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Suspend a dialog. This method is called by the UI bus and removes the
 	 * given dialog from 'runningDialogs' and stores it in 'suspendedDialogs'.
-	 * 
+	 *
 	 * @param dialogID
 	 *            ID of the dialog.
 	 */
@@ -641,7 +641,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * Handle the response. If the {@link UIResponse} corresponds to one of the
 	 * registered {@link ISubmitGroupListener}s then delegate method, and remove
 	 * all its IDs from map.
-	 * 
+	 *
 	 * @param response
 	 *            the response to be handled.
 	 */
@@ -688,7 +688,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * Add a {@link ISubmitGroupListener} to listen to {@link UIResponse}s.
-	 * 
+	 *
 	 * @param sgl
 	 *            the {@link ISubmitGroupListener} to be added to the list of
 	 *            listeners.
@@ -702,7 +702,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * Last estimated location of the user.
-	 * 
+	 *
 	 * @return the location of the user
 	 */
 	public final AbsLocation getCurrentUserLocation() {
@@ -713,7 +713,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * This method is for the context susbscriber to update the user's location.
 	 * when called the DM will re-send the current dialog (to implement the
 	 * follow me scenario).
-	 * 
+	 *
 	 * @param currentUserLocation
 	 *            the new location of the user.
 	 */
@@ -733,7 +733,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * Order a {@link UIRequest} to be sent. pushing a {@link UIRequest} through
 	 * this method will skip the priority check and the {@link UIRequest} will
 	 * be sent Immediately to any {@link UIHandler}.
-	 * 
+	 *
 	 * @param req
 	 *            the {@link UIRequest} to be sent by the DM.
 	 */
@@ -747,7 +747,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Present a dialog to the user. This method is only intended for DMs forms
 	 * to be presented to the user.
-	 * 
+	 *
 	 * @param form
 	 *            the form to be presented to the user.
 	 */
@@ -812,7 +812,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	/**
 	 * Get the {@link MessageLocaleHelper}, to access internationalized strings
 	 * and user locale.
-	 * 
+	 *
 	 * @return the helper.
 	 */
 	public MessageLocaleHelper getLocaleHelper() {
@@ -821,7 +821,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 	/**
 	 * change the AdaptationParameters of the current dialog.
-	 * 
+	 *
 	 * @param parameter
 	 *            the parameter that has changed.
 	 */
@@ -839,9 +839,9 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 	 * The task for finalizing a dialog. Waits
 	 * {@link UserDialogManager#DEFAULT_FINALISE_WAIT} milliseconds before
 	 * checking if something must be shown.
-	 * 
+	 *
 	 * @author amedrano
-	 * 
+	 *
 	 */
 	class ClosingTask implements Runnable {
 
@@ -852,7 +852,7 @@ public class UserDialogManager implements IDialogManager, IUIPreferencesChangeLi
 
 		/**
 		 * constructor for the task.
-		 * 
+		 *
 		 * @param dialogId
 		 *            the dialog id being finalized.
 		 */

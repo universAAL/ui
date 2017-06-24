@@ -36,7 +36,7 @@ public class AdapterMessageInternationalization implements IAdapter {
 	private MessageLocaleHelper messageLocaleHelper;
 
 	/**
-	 * 
+	 *
 	 */
 	public AdapterMessageInternationalization(MessageLocaleHelper messageLocaleHelper) {
 		this.messageLocaleHelper = messageLocaleHelper;

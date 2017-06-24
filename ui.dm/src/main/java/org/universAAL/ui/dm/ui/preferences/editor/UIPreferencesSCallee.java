@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@ import org.universAAL.ontology.profile.User;
 
 /**
  * Handles the service call for starting UI Preferences Editor screen.
- * 
+ *
  * @author eandgrg
  */
 
@@ -54,7 +54,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.middleware.service.ServiceCallee#
 	 * communicationChannelBroken ()
 	 */
@@ -65,7 +65,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.middleware.service.ServiceCallee#handleCall(org.universAAL
 	 * .middleware.service.ServiceCall)
@@ -122,7 +122,7 @@ public class UIPreferencesSCallee extends ServiceCallee {
 	/**
 	 * Shows UI Preferences editor dialog. Sends {@link UIRequest} containing
 	 * abstract user interface of the UI Preferences Editor.
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
 	 * @return {@link ServiceResponse} status

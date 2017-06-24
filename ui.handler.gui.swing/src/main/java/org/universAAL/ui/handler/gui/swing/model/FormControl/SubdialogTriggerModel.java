@@ -39,7 +39,7 @@ public class SubdialogTriggerModel extends SubmitModel implements ActionListener
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link FormControl} which to model.
 	 */
@@ -49,7 +49,7 @@ public class SubdialogTriggerModel extends SubmitModel implements ActionListener
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return a {@link JToggleButton}, whose state is determined by the
 	 *         antecessor {@link Form}s.
 	 */
@@ -71,7 +71,7 @@ public class SubdialogTriggerModel extends SubmitModel implements ActionListener
 	/**
 	 * Checks that the current dialog is a successor of the dialog this
 	 * {@link SubdialogTrigger} triggers
-	 * 
+	 *
 	 * @return true is it should be selected
 	 */
 	private boolean isSelected() {

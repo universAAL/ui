@@ -1,19 +1,19 @@
 /*
 	Copyright 2008-2010 SPIRIT, http://www.spirit-intl.com/
-	SPIRIT S.A. E-BUSINESS AND COMMUNICATIONS ENGINEERING 
-	
+	SPIRIT S.A. E-BUSINESS AND COMMUNICATIONS ENGINEERING
+
 	Copyright 2012 -2014 UPM, http://www.upm.es/
 	Universidad Politécnica de Madrid
-	
-	See the NOTICE file distributed with this work for additional 
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,7 +21,7 @@
 	limitations under the License.
  */
 /**
- * 
+ *
  */
 package org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel;
 
@@ -43,10 +43,10 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdi
 /**
  * This class implements a multiple inheritance of {@link Repeat} and
  * {@link AbstractTableModel}.
- * 
+ *
  * @author mtazari
  * @author amedrano
- * 
+ *
  */
 public class RepeatTableModel extends AbstractTableModel {
 
@@ -69,7 +69,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/**
 	 * Constructor method.
-	 * 
+	 *
 	 * @param repeat
 	 *            initial {@link Repeat} object
 	 */
@@ -95,7 +95,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/**
 	 * Implements {@link TableModel#getColumnClass(int)}
-	 * 
+	 *
 	 * @param col
 	 *            indicates column index
 	 */
@@ -114,7 +114,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.table.TableModel#getColumnCount()
 	 */
 	/**
@@ -126,7 +126,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/**
 	 * Implements {@link TableModel#getColumnName(int)}
-	 * 
+	 *
 	 * @param col
 	 *            column Index
 	 */
@@ -145,7 +145,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see javax.swing.table.TableModel#getRowCount()
 	 */
 	/**
@@ -156,7 +156,7 @@ public class RepeatTableModel extends AbstractTableModel {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param col
 	 *            Column index.
 	 * @return the value contained in column.
@@ -167,7 +167,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/**
 	 * Implements {@link TableModel#getValueAt(int, int)}
-	 * 
+	 *
 	 * @param rowIndex
 	 *            index of the row
 	 * @param columnIndex
@@ -203,7 +203,7 @@ public class RepeatTableModel extends AbstractTableModel {
 
 	/**
 	 * Call {@link Repeat#setSelection(int)} for {@link #repeat}
-	 * 
+	 *
 	 * @param i
 	 *            index of the new selection
 	 */

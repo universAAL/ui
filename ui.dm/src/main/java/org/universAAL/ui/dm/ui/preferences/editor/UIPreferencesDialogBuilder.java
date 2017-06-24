@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,13 +64,13 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  * to the user to edit UI related preferences. Contains preferences related to
  * system menu, visual, auditory, alert, access mode and general ones such as
  * language or modality preferences.
- * 
+ *
  * Initially selected preferences are the ones stored in User Profile (in
  * {@link UIPreferencesSubprofile}). All preferences are given as Select1
  * selections (mostly rendered as dropdown by UI Handlers).
- * 
+ *
  * @author eandgrg
- * 
+ *
  */
 public class UIPreferencesDialogBuilder {
 
@@ -81,7 +81,7 @@ public class UIPreferencesDialogBuilder {
 	private MessageLocaleHelper messageLocaleHelper;
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
 	 * @return UI Preferences Editor {@link Form} for the given user
@@ -1096,7 +1096,7 @@ public class UIPreferencesDialogBuilder {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param msg
 	 *            message to show
 	 * @return form containing the message

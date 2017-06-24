@@ -17,7 +17,7 @@ package org.universAAL.ui.dm.interfaces;
 
 /**
  * Implementations Of this Interface Build dialogs and show them to the user.
- * 
+ *
  * @author amedrano
  *
  */

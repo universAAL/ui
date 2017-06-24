@@ -25,7 +25,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelGrid;
 
 public class TableTest3 extends JFrame {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5693849204938097813L;
 	private static final String PREFIX = "http://example.com/Dable.owl#";

@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * A class to help manage specialButtons.
- * 
+ *
  * @author amedrano
  *
  */
@@ -47,7 +47,7 @@ public class SpecialButtonFactory {
 	 * Check if the {@link Submit} s complies with the conditions to be
 	 * considered special by any of the {@link SpecialButtonInterface} in
 	 * {@link SpecialButtonFactory#specialButtons}
-	 * 
+	 *
 	 * @param s
 	 *            the Submit to check
 	 * @return the {@link SpecialButtonInterface} that considers {@link Submit}
@@ -74,7 +74,7 @@ public class SpecialButtonFactory {
 	/**
 	 * removes previous {@link ActionListener}s and adds only the
 	 * {@link SpecialButtonInterface} as listener.
-	 * 
+	 *
 	 * @param ab
 	 *            the {@link AbstractButton} to check.
 	 * @param al
@@ -91,7 +91,7 @@ public class SpecialButtonFactory {
 	/**
 	 * Add a class to create {@link SpecialButtonInterface} listeners when
 	 * necessary.
-	 * 
+	 *
 	 * @param specialButton
 	 */
 	public void add(Class specialButton) {
@@ -109,7 +109,7 @@ public class SpecialButtonFactory {
 
 	/**
 	 * Get the special button List
-	 * 
+	 *
 	 * @return
 	 */
 	public List getSpecialButtList() {

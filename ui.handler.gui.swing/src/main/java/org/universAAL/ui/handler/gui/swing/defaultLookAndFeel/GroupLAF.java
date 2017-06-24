@@ -24,7 +24,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.GroupModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class GroupLAF extends GroupModel {
 
@@ -32,7 +32,7 @@ public class GroupLAF extends GroupModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Group} which to model
 	 */

@@ -41,13 +41,13 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 /**
  * A {@link Border} that paints as title a Component. TODO: only checked default
  * positions.
- * 
+ *
  * @author amedrano
  *
  */
 public class ComponentBorder extends AbstractBorder {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -2630126738154288515L;
 
@@ -109,7 +109,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Creates a TitledBorder instance.
-	 * 
+	 *
 	 * @param title
 	 *            the title the border should display
 	 */
@@ -120,7 +120,7 @@ public class ComponentBorder extends AbstractBorder {
 	/**
 	 * Creates a TitledBorder instance with the specified border and an empty
 	 * title.
-	 * 
+	 *
 	 * @param border
 	 *            the border
 	 */
@@ -130,7 +130,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Creates a TitledBorder instance with the specified border and title.
-	 * 
+	 *
 	 * @param border
 	 *            the border
 	 * @param title
@@ -143,7 +143,7 @@ public class ComponentBorder extends AbstractBorder {
 	/**
 	 * Creates a TitledBorder instance with the specified border, title,
 	 * title-justification, and title-position.
-	 * 
+	 *
 	 * @param border
 	 *            the border
 	 * @param title
@@ -164,7 +164,7 @@ public class ComponentBorder extends AbstractBorder {
 	/**
 	 * Paints the border for the specified component with the specified position
 	 * and size.
-	 * 
+	 *
 	 * @param c
 	 *            the component for which this border is being painted
 	 * @param g
@@ -331,7 +331,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Returns the insets of the border.
-	 * 
+	 *
 	 * @param c
 	 *            the component for which this border insets value applies
 	 */
@@ -341,7 +341,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Reinitialize the insets parameter with this Border's current Insets.
-	 * 
+	 *
 	 * @param c
 	 *            the component for which this border insets value applies
 	 * @param insets
@@ -475,7 +475,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Sets the border of the titled border.
-	 * 
+	 *
 	 * @param border
 	 *            the border
 	 */
@@ -485,7 +485,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Sets the title-position of the titled border.
-	 * 
+	 *
 	 * @param titlePosition
 	 *            the position for the border
 	 */
@@ -507,7 +507,7 @@ public class ComponentBorder extends AbstractBorder {
 
 	/**
 	 * Sets the title-justification of the titled border.
-	 * 
+	 *
 	 * @param titleJustification
 	 *            the justification for the border
 	 */
@@ -529,7 +529,7 @@ public class ComponentBorder extends AbstractBorder {
 	/**
 	 * Returns the minimum dimensions this border requires in order to fully
 	 * display the border and title.
-	 * 
+	 *
 	 * @param c
 	 *            the component where this border will be drawn
 	 */

@@ -30,7 +30,7 @@ public abstract class OutputModel extends Model {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Output} {@link FormControl} which to model.
 	 */
@@ -41,7 +41,7 @@ public abstract class OutputModel extends Model {
 	/**
 	 * all {@link Output} {@link FormControl}s are always valid, as the user is
 	 * not allowed to change its status.
-	 * 
+	 *
 	 * @return <code>true</code>
 	 */
 	public final boolean isValid() {

@@ -2,7 +2,7 @@
  * Copyright 2012 Ericsson Nikola Tesla d.d.
  * Copyright 2013 Universidad Politécnica de Madrid
  * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,9 +36,9 @@ import org.universAAL.ui.handler.sms.SMSActivator;
 /**
  * Responsible for sending given sms message via designated server to desired
  * number.
- * 
+ *
  * @author eandgrg
- * 
+ *
  */
 public final class SmsSender implements ISMSSender {
 
@@ -71,7 +71,7 @@ public final class SmsSender implements ISMSSender {
 	/**
 	 * Unicode support (so that e.g. arabic and chinese messages can be
 	 * correctly represented)
-	 * 
+	 *
 	 * @param s
 	 *            text
 	 * @return unicode representation of a message
@@ -93,7 +93,7 @@ public final class SmsSender implements ISMSSender {
 
 	/**
 	 * Helper method to decipher bulksms server's response on send sms.
-	 * 
+	 *
 	 * @param result
 	 *            string containing status from bulksms server (e.g.
 	 *            25|FAILED_USERCREDITS|342762992)

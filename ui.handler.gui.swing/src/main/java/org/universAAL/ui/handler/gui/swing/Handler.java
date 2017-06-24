@@ -39,10 +39,10 @@ import org.universAAL.ontology.profile.User;
  * Main uAAL interfacing class. The {@link Handler} is responsible of
  * interfacing with universAAL, it will handle the UICalls by delegating to the
  * {@link Renderer}, and it will also provide a method to submit the user input.
- * 
+ *
  * @see UIHandler
  * @see Renderer
- * 
+ *
  * @author amedrano
  *
  */
@@ -50,7 +50,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * internal constructor.
-	 * 
+	 *
 	 * @param context
 	 *            the {@link ModuleContext} to be able to implement an
 	 *            {@link UIHandler}
@@ -69,7 +69,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * constructor for Handler.
-	 * 
+	 *
 	 * @param renderer
 	 *            the {@link Renderer} to associate with
 	 */
@@ -119,7 +119,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * Get the current user that is inputing information.
-	 * 
+	 *
 	 * @return the current user.
 	 */
 	public User getCurrentUser() {
@@ -129,7 +129,7 @@ public final class Handler extends UIHandler {
 	/**
 	 * Change the current {@link User}. and adapt {@link UIHandlerProfile} to
 	 * the {@link User}.
-	 * 
+	 *
 	 * @param currentUser
 	 *            the user to be the current user.
 	 */
@@ -156,7 +156,7 @@ public final class Handler extends UIHandler {
 	/**
 	 * When any user has authenticated, this method will change the request
 	 * pattern to receive only addressed {@link UIRequest}.
-	 * 
+	 *
 	 * @param user
 	 *            user for whom the {@link UIRequest} should be addressed to.
 	 */
@@ -173,7 +173,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * Shortcut to send {@link UIResponse} related to Submit Buttons.
-	 * 
+	 *
 	 * @param submit
 	 *            the {@link Submit} button model pressed.
 	 */
@@ -194,7 +194,7 @@ public final class Handler extends UIHandler {
 	 * @return a pattern used to subscribe to the output bus.
 	 * @param demo
 	 *            set demo mode or not.
-	 * 
+	 *
 	 */
 	private static UIHandlerProfile getPermanentSubscriptions(boolean demo, AbsLocation location) {
 		/*

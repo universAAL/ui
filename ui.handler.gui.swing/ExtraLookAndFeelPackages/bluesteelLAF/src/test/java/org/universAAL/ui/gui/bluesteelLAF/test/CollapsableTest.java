@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlo
 public class CollapsableTest extends JFrame {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private GradientLAF contentPane;

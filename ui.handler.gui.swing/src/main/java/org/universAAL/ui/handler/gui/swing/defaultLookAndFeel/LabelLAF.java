@@ -24,7 +24,7 @@ import org.universAAL.ui.handler.gui.swing.model.LabelModel;
 /**
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
- * 
+ *
  */
 public class LabelLAF extends LabelModel {
 
@@ -32,7 +32,7 @@ public class LabelLAF extends LabelModel {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param l
 	 *            the {@link Label} which to model.
 	 */

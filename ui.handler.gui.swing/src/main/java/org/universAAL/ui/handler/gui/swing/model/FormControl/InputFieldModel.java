@@ -45,7 +45,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
 /**
  * ImputField Model, it condenses the view and controller parts of the MVC
  * methodology.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see InputField
  */
@@ -53,7 +53,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            de {@link InputField} which to model.
 	 */
@@ -78,7 +78,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 	 * <li>a ?? if the {@link InputField#getValue()} is a Double
 	 * <li>a {@link JComboBox} if the {@link InputField#getValue()} is a Locale
 	 * </ul>
-	 * 
+	 *
 	 * @return {@inheritDoc}
 	 */
 	public JComponent getNewComponent() {
@@ -141,7 +141,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 
 	/**
 	 * defines a normal textfield given a maximum length.
-	 * 
+	 *
 	 * @param maxLength
 	 *            the maximum length of the text field.
 	 * @return a JTextComponent that is listened by this model.
@@ -186,7 +186,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 
 	/**
 	 * When a checkbox is pressed the input will be stored.
-	 * 
+	 *
 	 * @param e
 	 *            the {@link ChangeEvent} to listen to.
 	 */
@@ -206,7 +206,7 @@ public abstract class InputFieldModel extends InputModel implements ChangeListen
 	/**
 	 * Input will be stored each time the user types something in the text
 	 * field.
-	 * 
+	 *
 	 * @param e
 	 *            the {@link CaretEvent} to listen to.
 	 */

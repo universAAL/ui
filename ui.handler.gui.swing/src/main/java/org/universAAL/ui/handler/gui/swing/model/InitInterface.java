@@ -22,7 +22,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * Interface for the entry point Class for any look and feel package.
  *
  * the initialization class must be named Init
- * 
+ *
  * @author amedrano
  *
  */
@@ -31,7 +31,7 @@ public interface InitInterface {
 	 * The procedure of installing the LAF. Any actions needed to use the LAF
 	 * package should be done here. <br>
 	 * For example initializing the UIManager.
-	 * 
+	 *
 	 * @param render
 	 */
 	public void install(Renderer render);
@@ -41,7 +41,7 @@ public interface InitInterface {
 	 * the LAF package, and leave the swing system as default should be done
 	 * here. <br>
 	 * For example reestablishing the UIManager.
-	 * 
+	 *
 	 * @param render
 	 */
 	public void uninstall();
@@ -49,7 +49,7 @@ public interface InitInterface {
 	/**
 	 * When a user logs in this method is called. This enables the LAF package
 	 * to adapt colours and sizes to the user's specific impairments.
-	 * 
+	 *
 	 * @param usr
 	 *            The user that just logged in.
 	 */
@@ -58,7 +58,7 @@ public interface InitInterface {
 	/**
 	 * When a user logs off this method is called. This enables the LAF package
 	 * to re-adapt colours and sizes.
-	 * 
+	 *
 	 * @param usr
 	 *            The user that just logged in.
 	 */

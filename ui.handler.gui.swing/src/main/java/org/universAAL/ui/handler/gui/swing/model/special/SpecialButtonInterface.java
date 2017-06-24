@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 /**
  * An interface to detect and manage. SpecialButtons must have a
  * ({@link Submit}, {@link Renderer}) constructor.
- * 
+ *
  * @author amedrano
  *
  */
@@ -31,7 +31,7 @@ public interface SpecialButtonInterface extends ActionListener {
 
 	/**
 	 * Evaluate the "Specialness" of the button.
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isSpecial();

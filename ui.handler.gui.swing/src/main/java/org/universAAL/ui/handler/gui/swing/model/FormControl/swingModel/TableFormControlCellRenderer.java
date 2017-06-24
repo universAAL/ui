@@ -35,7 +35,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 public class TableFormControlCellRenderer extends DefaultTableCellRenderer implements TableCellEditor {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6364850374955049734L;
 
@@ -50,7 +50,7 @@ public class TableFormControlCellRenderer extends DefaultTableCellRenderer imple
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * javax.swing.table.DefaultTableCellRenderer#getTableCellRendererComponent(
 	 * javax.swing.JTable, java.lang.Object, boolean, boolean, int, int)

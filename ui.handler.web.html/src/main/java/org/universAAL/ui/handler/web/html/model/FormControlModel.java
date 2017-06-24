@@ -52,7 +52,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * Generates the title with help and hint.
-	 * 
+	 *
 	 * @return
 	 */
 	protected String getTitle() {
@@ -88,7 +88,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Message type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Message
 	 *         {@link Form}
 	 */
@@ -98,7 +98,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Main Menu type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Main Menu
 	 *         {@link Form}
 	 */
@@ -108,7 +108,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Dialog type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Dialog
 	 *         {@link Form}
 	 */
@@ -118,7 +118,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Subdialog type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Subdialog
 	 *         {@link Form}
 	 */
@@ -129,7 +129,7 @@ public abstract class FormControlModel extends Model {
 	/**
 	 * Check if the root group of this form control is equal to a given group.
 	 * Also checks if this form control is in deed one of the root groups.
-	 * 
+	 *
 	 * @param g
 	 *            the group to compare to.
 	 * @return if this, or the root group equals g.
@@ -146,7 +146,7 @@ public abstract class FormControlModel extends Model {
 	/**
 	 * test whether this {@link FormControl} is in a standard buttons root
 	 * group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the
 	 *         standard buttons group
 	 */
@@ -157,7 +157,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a IO root group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the IO
 	 *         group
 	 */
@@ -167,7 +167,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a submit buttons root group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the
 	 *         Submits group
 	 */
@@ -177,7 +177,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * Checks if this model corresponds to the form control with the given URI.
-	 * 
+	 *
 	 * @param formControlURI
 	 *            the {@link FormControl}'s URI to check with.
 	 * @return true if the {@link FormControl}'s URI for this model is equal to
@@ -191,7 +191,7 @@ public abstract class FormControlModel extends Model {
 	 * Models (if needed) and returns the {@link LabelModel} for the
 	 * {@link FormControl}. This method May be overridden to personalize Labels
 	 * for certain {@link FormControl}s.
-	 * 
+	 *
 	 * @return
 	 */
 	public LabelModel getLabelModel() {
@@ -203,7 +203,7 @@ public abstract class FormControlModel extends Model {
 
 	/**
 	 * Checks if the value will be accepted as class c.
-	 * 
+	 *
 	 * @param c
 	 * @return
 	 */

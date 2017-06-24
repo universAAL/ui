@@ -44,7 +44,7 @@ public class SimpleOutputModel extends OutputModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link FormControl} which to model.
 	 */
@@ -54,7 +54,7 @@ public class SimpleOutputModel extends OutputModel {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return the representation for {@link SimpleOutput} can either be
 	 *         <ul>
 	 *         <li>a {@link JCheckBox} if the {@link SimpleOutput#getContent()}
@@ -85,7 +85,7 @@ public class SimpleOutputModel extends OutputModel {
 		 * (disabled) textarea for long length if boolean use (disabled)
 		 * checkbock if Date ?? if number use ?? if ?? use progress bar if an
 		 * ontology class do ??
-		 * 
+		 *
 		 * Primitive Types are: Boolean XMLGregorianCalendar Double Duration
 		 * Float Integer Locale Long String
 		 */

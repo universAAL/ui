@@ -26,7 +26,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * Interface to implement Form management Logic.
- * 
+ *
  * @author amedrano
  *
  */
@@ -35,7 +35,7 @@ public interface FormManager {
 	/**
 	 * Callback for incoming dialogs. This method will model and render (if
 	 * necessary) the {@link Form}.
-	 * 
+	 *
 	 * @param oe
 	 *            {@link UIRequest} that includes the dialog to show
 	 */
@@ -43,7 +43,7 @@ public interface FormManager {
 
 	/**
 	 * get the Dialog Being currently displayed.
-	 * 
+	 *
 	 * @return the {@link UIRequest} currently being displayed
 	 */
 	UIRequest getCurrentDialog();
@@ -55,7 +55,7 @@ public interface FormManager {
 
 	/**
 	 * Callback for {@link Handler#cutDialog(String)}.
-	 * 
+	 *
 	 * @param dialogID
 	 *            DialogURI to cut
 	 * @return result of the operation
@@ -70,7 +70,7 @@ public interface FormManager {
 
 	/**
 	 * get the parent {@link Form} of a given formURI.
-	 * 
+	 *
 	 * @param formURI
 	 *            the URI of the child {@link Form}
 	 * @return the parent of the child {@link Form}
@@ -79,7 +79,7 @@ public interface FormManager {
 
 	/**
 	 * Associate a {@link Renderer} to the {@link FormManager}.
-	 * 
+	 *
 	 * @param renderer
 	 *            the {@link Renderer} to associate with
 	 */
@@ -87,7 +87,7 @@ public interface FormManager {
 
 	/**
 	 * Consult all the added dialogs that are not closed yet.
-	 * 
+	 *
 	 * @return a Collection of {@link UIRequest}s
 	 */
 	Collection getAllDialogs();
@@ -96,7 +96,7 @@ public interface FormManager {
 	 * This method is called when a Submit has detected there is a missing input
 	 * it needs, therefore the model for that input should be notified (so the
 	 * user knows).
-	 * 
+	 *
 	 * @param input
 	 */
 	void missingInput(Input input);
@@ -104,7 +104,7 @@ public interface FormManager {
 	/**
 	 * Callback for when the bus instructs some parameters have changed. Default
 	 * behavior should be to re-render the form.
-	 * 
+	 *
 	 * @param dialogID
 	 * @param changedProp
 	 * @param newVal

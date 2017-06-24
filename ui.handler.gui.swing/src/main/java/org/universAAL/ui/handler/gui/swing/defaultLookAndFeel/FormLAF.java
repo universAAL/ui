@@ -34,7 +34,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * The Look and Feel for Forms.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
  * @see FormModel
@@ -48,7 +48,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param f
 	 *            {@link Form} which to model.
 	 * @param render
@@ -60,7 +60,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the io panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}
 	 *         .
 	 */
@@ -82,7 +82,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the submit panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSubmitPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -96,7 +96,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the system panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSystemPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -109,7 +109,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * generate the header panel.
-	 * 
+	 *
 	 * @return a pannel with universAAL icon in it.
 	 */
 	protected JPanel getHeader() {

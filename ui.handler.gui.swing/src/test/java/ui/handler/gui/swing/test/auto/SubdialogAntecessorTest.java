@@ -43,7 +43,7 @@ import org.universAAL.ui.handler.gui.swing.formManagement.FormManager;
 
 /**
  * Test the framework for locating form antecessors.
- * 
+ *
  * @author amedrano
  *
  */

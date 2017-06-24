@@ -35,7 +35,7 @@ public class TimerTest {
 		private ScheduledFuture f;
 
 		/**
-		 * 
+		 *
 		 */
 		public Watchdog() {
 			p = new ScheduledThreadPoolExecutor(1);

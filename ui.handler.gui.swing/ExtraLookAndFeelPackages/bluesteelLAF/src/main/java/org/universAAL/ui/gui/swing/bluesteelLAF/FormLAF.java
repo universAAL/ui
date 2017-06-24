@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * The Look and Feel for Forms
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
  * @see FormModel
@@ -60,7 +60,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param f
 	 *            {@link Form} which to model.
 	 */
@@ -70,7 +70,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 
 	/**
 	 * get the io panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}
 	 *         .
 	 */
@@ -92,7 +92,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 
 	/**
 	 * get the submit panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSubmitPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -112,7 +112,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 
 	/**
 	 * get the submit panel Horizontally displayed wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSubmitPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -132,7 +132,7 @@ public class FormLAF extends FormModel implements ComponentListener {
 
 	/**
 	 * generate the header panel.
-	 * 
+	 *
 	 * @return a pannel with universAAL icon in it.
 	 */
 	protected JPanel getHeader() {

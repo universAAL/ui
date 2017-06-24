@@ -2,16 +2,16 @@
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  * Copyright 2013 Universidad Politécnica de Madrid
  * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
- * 
- * See the NOTICE file distributed with this work for additional 
+ *
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ import org.universAAL.ui.dm.interfaces.IAdapter;
  * information ({@link ContextEvent}) is not received, or if an amount of
  * {@link AdapterUserLocation#SYSTEM_PROP_CLEAR_LOCATION_PERIOD time} has
  * elapsed since the last event.
- * 
+ *
  * @author eandgrg
  * @author amedrano
  */
@@ -165,13 +165,13 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 	}
 
 	/**
-	 * 
+	 *
 	 * The task for clearing the most current (and last) user location. It is
 	 * executed after some predefined amount of time (read from system
 	 * properties) before clearing it.
-	 * 
+	 *
 	 * @author eandgrg
-	 * 
+	 *
 	 */
 	class ClearLocationTask implements Runnable {
 		public void run() {

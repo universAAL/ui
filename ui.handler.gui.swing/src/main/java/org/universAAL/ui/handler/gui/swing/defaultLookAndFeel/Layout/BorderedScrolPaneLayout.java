@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import javax.swing.border.Border;
 public class BorderedScrolPaneLayout extends ScrollPaneLayout {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -43,7 +43,7 @@ public class BorderedScrolPaneLayout extends ScrollPaneLayout {
 	 * <p>
 	 * Note that the rowHeader is calculated as part of the preferred width and
 	 * the colHeader is calculated as part of the preferred size.
-	 * 
+	 *
 	 * @param parent
 	 *            the <code>Container</code> that will be laid out
 	 * @return a <code>Dimension</code> object specifying the preferred size of
@@ -119,11 +119,11 @@ public class BorderedScrolPaneLayout extends ScrollPaneLayout {
 		/*
 		 * If a scrollbar is going to appear, factor its preferred size in. If
 		 * the scrollbars policy is AS_NEEDED, this can be a little tricky:
-		 * 
+		 *
 		 * - If the view is a Scrollable then scrollableTracksViewportWidth and
 		 * scrollableTracksViewportHeight can be used to effectively disable
 		 * scrolling (if they're true) in their respective dimensions.
-		 * 
+		 *
 		 * - Assuming that a scrollbar hasn't been disabled by the previous
 		 * constraint, we need to decide if the scrollbar is going to appear to
 		 * correctly compute the JScrollPanes preferred size. To do this we

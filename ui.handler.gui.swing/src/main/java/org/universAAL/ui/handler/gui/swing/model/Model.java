@@ -40,7 +40,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * Abstract Class for all Form Control Models.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see FormControl
  */
@@ -90,7 +90,7 @@ public abstract class Model {
 	/**
 	 * tests if there is a need to render the Label of this {@link FormControl},
 	 * as the representation might have already included.
-	 * 
+	 *
 	 * @return whether it {@link Model#needsLabel} or not.
 	 */
 	public boolean needsLabel() {
@@ -113,7 +113,7 @@ public abstract class Model {
 
 	/**
 	 * Model constructor.
-	 * 
+	 *
 	 * @param control
 	 *            The RDF component which this Model represents.
 	 * @param renderer
@@ -125,7 +125,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Message type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Message
 	 *         {@link Form}
 	 */
@@ -135,7 +135,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Main Menu type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Main Menu
 	 *         {@link Form}
 	 */
@@ -145,7 +145,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Dialog type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Dialog
 	 *         {@link Form}
 	 */
@@ -155,7 +155,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a Subdialog type dialog.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is in a Subdialog
 	 *         {@link Form}
 	 */
@@ -166,7 +166,7 @@ public abstract class Model {
 	/**
 	 * Check if the root group of this form control is equal to a given group.
 	 * Also checks if this form control is in deed one of the root groups.
-	 * 
+	 *
 	 * @param g
 	 *            the group to compare to.
 	 * @return if this, or the root group equals g.
@@ -183,7 +183,7 @@ public abstract class Model {
 	/**
 	 * test whether this {@link FormControl} is in a standard buttons root
 	 * group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the
 	 *         standard buttons group
 	 */
@@ -194,7 +194,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a IO root group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the IO
 	 *         group
 	 */
@@ -204,7 +204,7 @@ public abstract class Model {
 
 	/**
 	 * test whether this {@link FormControl} is in a submit buttons root group.
-	 * 
+	 *
 	 * @return <code>true</code> if the {@link FormControl} is within the
 	 *         Submits group
 	 */
@@ -219,7 +219,7 @@ public abstract class Model {
 	/**
 	 * Test if the {@link JComponent} information provided by the user is valid
 	 * according to the {@link FormControl}'s definition.
-	 * 
+	 *
 	 * @return true if the data has passed every restriction
 	 */
 	public abstract boolean isValid();
@@ -227,7 +227,7 @@ public abstract class Model {
 	/**
 	 * Returns the {@link JComponent}, and updates representing this
 	 * {@link FormControl}. If it isn't already created, it generates it.
-	 * 
+	 *
 	 * @return a {@link JComponent} Representing model's information,
 	 */
 	public JComponent getComponent() {
@@ -342,7 +342,7 @@ public abstract class Model {
 	/**
 	 * generate the {@link JComponent} that displays this {@link FormControl}'s
 	 * information.
-	 * 
+	 *
 	 * @return a {@link JComponent} initialised with the model's information,
 	 */
 	public abstract JComponent getNewComponent();
@@ -350,7 +350,7 @@ public abstract class Model {
 	/**
 	 * Get the {@link Renderer} instance to which this {@link Model} is
 	 * associated to
-	 * 
+	 *
 	 * @return the {@link Renderer}
 	 */
 	public Renderer getRenderer() {
@@ -359,7 +359,7 @@ public abstract class Model {
 
 	/**
 	 * Checks if this model corresponds to the form control with the given URI.
-	 * 
+	 *
 	 * @param formControlURI
 	 *            the {@link FormControl}'s URI to check with.
 	 * @return true if the {@link FormControl}'s URI for this model is equal to
@@ -373,7 +373,7 @@ public abstract class Model {
 	 * Models (if needed) and returns the {@link LabelModel} for the
 	 * {@link FormControl}. This method May be overridden to personalize Labels
 	 * for certain {@link FormControl}s.
-	 * 
+	 *
 	 * @return
 	 */
 	public LabelModel getLabelModel() {
@@ -386,7 +386,7 @@ public abstract class Model {
 	/**
 	 * Calculates the position in the parent group of the modeled
 	 * {@link FormControl}.
-	 * 
+	 *
 	 * @return the position the {@link FormControl} was added to the group. 0 is
 	 *         first, -1 if not calculable (ie, fc is rootgroup).
 	 */
@@ -406,7 +406,7 @@ public abstract class Model {
 	/**
 	 * A helper class to listen to parent resizeing, and apply
 	 * relative-to-parent recommendations.
-	 * 
+	 *
 	 * @author amedrano
 	 *
 	 */

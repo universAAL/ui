@@ -20,7 +20,7 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 /**
  * Implementations of this interface can be added as listeners for changes in a
  * {@link UIPreferencesSubProfile}.
- * 
+ *
  * @author amedrano
  *
  */
@@ -28,7 +28,7 @@ public interface IUIPreferencesChangeListener {
 
 	/**
 	 * Callback when the {@link UIPreferencesSubProfile} is changed.
-	 * 
+	 *
 	 * @param subProfile
 	 *            the new changed {@link UIPreferencesSubProfile}
 	 */

@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,7 +42,7 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  * {@link Form} with UI Preferences and handles {@link UIResponse} so that it
  * stores to the Profiling Server UI Preferences related information; it also
  * refreshes local buffer containing that data)
- * 
+ *
  * @author eandgrg
  */
 public class UIPreferencesUICaller extends UICaller {
@@ -75,7 +75,7 @@ public class UIPreferencesUICaller extends UICaller {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.UICaller#communicationChannelBroken()
 	 */
 	public void communicationChannelBroken() {
@@ -86,7 +86,7 @@ public class UIPreferencesUICaller extends UICaller {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.middleware.ui.UICaller#handleUIResponse(org.universAAL
 	 * .middleware.ui.UIResponse)
@@ -132,7 +132,7 @@ public class UIPreferencesUICaller extends UICaller {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
 	 * @param msg
@@ -150,7 +150,7 @@ public class UIPreferencesUICaller extends UICaller {
 	/**
 	 * Handle submit UI preferences data, and refresh Java JVM user.language
 	 * based on the one defined in the {@link UIPreferencesSubprofile}
-	 * 
+	 *
 	 * @param uiResponse
 	 *            user input
 	 */
@@ -216,7 +216,7 @@ public class UIPreferencesUICaller extends UICaller {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.middleware.ui.UICaller#dialogAborted(java.lang.String)
 	 */
@@ -228,7 +228,7 @@ public class UIPreferencesUICaller extends UICaller {
 
 	/**
 	 * Send {@link UIRequest} with UI Preferences Editor dialog
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
 	 */

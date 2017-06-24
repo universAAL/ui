@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,9 +43,9 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
  * interaction to allow the user to select a message, remove all message...
  * TODO: Add message management like, read a selected message, delete one
  * message ...
- * 
+ *
  * @author amedrano
- * 
+ *
  *         created: 26-sep-2012 13:03:50
  */
 public class PendingMessageBuilder implements ISubmitGroupListener {
@@ -83,7 +83,7 @@ public class PendingMessageBuilder implements ISubmitGroupListener {
 
 	/**
 	 * The constructor will build the form and send the request to the user.
-	 * 
+	 *
 	 * @param udm
 	 */
 	public PendingMessageBuilder(UserDialogManager udm) {

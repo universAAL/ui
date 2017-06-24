@@ -63,7 +63,7 @@ import deprecated.MediaObjectLAF;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class BluesteelLAFConstructorTest extends TestCase {
 

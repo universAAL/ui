@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SimpleOutputModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class SimpleOutputLAF extends SimpleOutputModel {
 
@@ -47,7 +47,7 @@ public class SimpleOutputLAF extends SimpleOutputModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link SimpleOutput} which to model.
 	 */

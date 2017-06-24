@@ -33,7 +33,7 @@ import javax.swing.table.TableCellRenderer;
 public class TableJButtonEditor extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 8761650045853661345L;
 	private final JPanel renderer = new JPanel();

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -42,9 +42,9 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 /**
  * Build a form that list all pending dialogs for a user. Manage the interaction
  * to allow the user to select a dialog, remove all dialogs, suspend a dialog...
- * 
+ *
  * @author amedrano
- * 
+ *
  *         created: 26-sep-2012 13:03:50
  */
 public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilder {
@@ -83,7 +83,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 
 	/**
 	 * The constructor will build the form and send the request to the user.
-	 * 
+	 *
 	 * @param udm
 	 */
 	public PendingDialogBuilder(UserDialogManager udm) {
@@ -190,7 +190,7 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	 * Switch to a specific pending dialog. This method is called from the
 	 * dialog presenting the list of pending dialogs when the user selects the
 	 * appropriate button.
-	 * 
+	 *
 	 * @param selectionIndex
 	 *            Index of the selected pending dialog.
 	 */
@@ -205,15 +205,15 @@ public class PendingDialogBuilder implements ISubmitGroupListener, IDialogBuilde
 	/*
 	 * void switchTo(Resource user, Resource data, int selectionIndex) { if
 	 * (user == null || data == null) return;
-	 * 
+	 *
 	 * Object o = data.getProperty(PROP_MSG_LIST_SENT_ITEMS); List<?> sentItems
 	 * = (o instanceof List<?>) ? (List<?>) o : null; if (sentItems == null)
 	 * return;
-	 * 
+	 *
 	 * o = data.getProperty(PROP_MSG_LIST_MESSAGE_LIST); List<?> remaining = (o
 	 * instanceof List<?>) ? (List<?>) o : null; boolean allRemoved = remaining
 	 * == null || remaining.isEmpty();
-	 * 
+	 *
 	 * int selected = -1; for (Iterator<?> i = sentItems.iterator();
 	 * i.hasNext();) { o = i.next(); if (o == null) continue; String dialogID =
 	 * o.toString(); if (allRemoved || getMessage(dialogID, remaining) == null)

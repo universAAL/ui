@@ -32,7 +32,7 @@ import javax.swing.JViewport;
  * units in the same column, and to the maximum height of all units of the same
  * row (preferred in both cases). Then the proportion is maintained so the grid
  * fills the available spare space.
- * 
+ *
  * @author amedrano
  *
  */
@@ -150,7 +150,7 @@ public class GridUnitLayout extends AbstractUnitLayout implements LayoutManager 
 		int totalH;
 
 		/**
-		 * 
+		 *
 		 */
 		public Gridder(List units) {
 

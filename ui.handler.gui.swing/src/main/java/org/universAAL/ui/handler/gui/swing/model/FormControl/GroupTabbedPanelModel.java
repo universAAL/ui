@@ -28,7 +28,7 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 /**
  * Specific {@link Model} for {@link Group}s to be rendered as
  * {@link JTabbedPane}.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Group
  */
@@ -36,7 +36,7 @@ public abstract class GroupTabbedPanelModel extends GroupModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Group} which to model.
 	 */
@@ -46,7 +46,7 @@ public abstract class GroupTabbedPanelModel extends GroupModel {
 
 	/**
 	 * create a tabbed panel with diferent groups in different pannels.
-	 * 
+	 *
 	 * @return a {@link JTabbedPane} with children groups as panels
 	 */
 	public JComponent getNewComponent() {

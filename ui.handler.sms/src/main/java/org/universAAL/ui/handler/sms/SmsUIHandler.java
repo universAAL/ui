@@ -2,7 +2,7 @@
  * Copyright 2012 Ericsson Nikola Tesla d.d.
  * Copyright 2013 Universidad Politécnica de Madrid
  * Copyright 2013 Fraunhofer-Gesellschaft - Institute for Computer Graphics Research
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,9 +40,9 @@ import org.universAAL.ontology.impairment.SightImpairment;
  * SMS UI Handler. Handles dialogs containing sms message and a number to send
  * this message to and forwards it via designated SMS Gateway server to the
  * receiver's mobile phone.
- * 
+ *
  * @author eandgrg
- * 
+ *
  */
 public class SmsUIHandler extends UIHandler {
 
@@ -55,7 +55,7 @@ public class SmsUIHandler extends UIHandler {
 
 	/**
 	 * States the pattern of interesting UI requests for the {@link Handler}.
-	 * 
+	 *
 	 * @return a pattern used to subscribe to the UI bus.
 	 */
 	private static UIHandlerProfile getPermanentSubscriptions() {
@@ -81,7 +81,7 @@ public class SmsUIHandler extends UIHandler {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.middleware.ui.UIHandler#handleUICall(org.universAAL.
 	 * middleware .ui.UIRequest)
 	 */

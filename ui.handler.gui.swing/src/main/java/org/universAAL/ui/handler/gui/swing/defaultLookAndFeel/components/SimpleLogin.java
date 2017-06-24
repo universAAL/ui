@@ -52,7 +52,7 @@ public class SimpleLogin extends JDialog {
 
 	/**
 	 * Create the dialog.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public SimpleLogin(Renderer render) throws Exception {

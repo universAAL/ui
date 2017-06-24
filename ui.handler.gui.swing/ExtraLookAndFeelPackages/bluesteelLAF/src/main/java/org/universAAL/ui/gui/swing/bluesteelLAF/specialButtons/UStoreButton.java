@@ -32,7 +32,7 @@ public class UStoreButton implements SpecialButtonInterface {
 	public static final String SUBMIT_ID = "urn:ui.handler.gui.swing:UICaller#open_uStore";
 
 	/**
-	 * 
+	 *
 	 */
 	public UStoreButton(Submit s, Renderer render) {
 		submit = s;

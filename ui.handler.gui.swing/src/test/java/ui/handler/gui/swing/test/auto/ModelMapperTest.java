@@ -42,9 +42,9 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.TestExtensionOfTes
 
 /**
  * testing the main component of the Handler
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class ModelMapperTest extends TestCase {
 
@@ -111,7 +111,7 @@ public class ModelMapperTest extends TestCase {
 	 * it, it will return the first in component the parent linage that is
 	 * capable of rendering it. <br>
 	 * In this test {@link TestExtensionOfGroup} -> {@link GroupLAF}
-	 * 
+	 *
 	 * @see ModelMapperTest#testHierarchicalNonExistingFormControlExtension()
 	 */
 	public void testNonExistingFormControlExtension() {
@@ -158,7 +158,7 @@ public class ModelMapperTest extends TestCase {
 	 * <td></td>
 	 * </tr>
 	 * </table>
-	 * 
+	 *
 	 */
 	public void testHierarchicalNonExistingFormControlExtension() {
 		warn();

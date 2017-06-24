@@ -40,7 +40,7 @@ public abstract class Select1Model extends SelectModel implements ActionListener
 
 	/**
 	 * constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link FormControl} which this model represents.
 	 */
@@ -50,7 +50,7 @@ public abstract class Select1Model extends SelectModel implements ActionListener
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return either a {@link JTree} or a {@link JComboBox}
 	 */
 	public JComponent getNewComponent() {
@@ -112,7 +112,7 @@ public abstract class Select1Model extends SelectModel implements ActionListener
 
 	/**
 	 * The selection model for, selecting only one element in a tree.
-	 * 
+	 *
 	 * @author amedrano
 	 *
 	 */

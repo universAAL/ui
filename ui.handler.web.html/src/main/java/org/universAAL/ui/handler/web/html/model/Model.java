@@ -59,7 +59,7 @@ public abstract class Model {
 	/**
 	 * Get the {@link HTMLUserGenerator} instance to which this {@link Model} is
 	 * associated to
-	 * 
+	 *
 	 * @return the {@link HTMLUserGenerator}
 	 */
 	public HTMLUserGenerator getRenderer() {
@@ -68,7 +68,7 @@ public abstract class Model {
 
 	/**
 	 * get the {@link FormElement} associated to this Model.
-	 * 
+	 *
 	 * @return the FormElement
 	 */
 	public FormElement getFormElement() {
@@ -78,7 +78,7 @@ public abstract class Model {
 	/**
 	 * Generate the HTML code for the concrete {@link FormElement}, Including
 	 * all of it's children (if applies).
-	 * 
+	 *
 	 * @return a {@link StringBuffer} with all the HTML code for the Element.
 	 */
 	abstract public StringBuffer generateHTML();
@@ -86,7 +86,7 @@ public abstract class Model {
 	/**
 	 * Wrapper method for {@link Model#tag(String, StringBuffer, Properties)},
 	 * where the body is just a {@link String}.
-	 * 
+	 *
 	 * @param tagName
 	 *            the HTML tag type
 	 * @param body
@@ -104,7 +104,7 @@ public abstract class Model {
 	/**
 	 * Create a HTML simply providing the tag type, the body inside and the
 	 * properties for the opening tag.
-	 * 
+	 *
 	 * @param tagName
 	 *            the HTML tag type
 	 * @param body
@@ -124,7 +124,7 @@ public abstract class Model {
 
 	/**
 	 * Create a tag that has no closing tag, and therefore no body.
-	 * 
+	 *
 	 * @param tagName
 	 *            the HTML tag type
 	 * @param tagProps
@@ -154,7 +154,7 @@ public abstract class Model {
 	/**
 	 * Create a {@link Properties} instance with a src key pointing to the
 	 * cached resource.
-	 * 
+	 *
 	 * @param p
 	 *            the properties to which to add the src property.
 	 * @param url

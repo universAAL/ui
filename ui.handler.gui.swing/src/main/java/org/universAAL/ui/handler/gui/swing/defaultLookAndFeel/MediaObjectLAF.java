@@ -29,7 +29,7 @@ public class MediaObjectLAF extends MediaObjectModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link MediaObject} which to model
 	 */

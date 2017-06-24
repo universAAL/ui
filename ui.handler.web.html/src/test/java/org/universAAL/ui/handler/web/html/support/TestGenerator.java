@@ -34,7 +34,7 @@ import org.universAAL.ui.handler.web.html.fm.SimpleFormManager;
 public class TestGenerator extends HTMLUserGenerator {
 
 	/**
-	 * 
+	 *
 	 */
 	public TestGenerator(ModuleContext mc) {
 		super();

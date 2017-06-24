@@ -28,7 +28,7 @@ import org.universAAL.ui.handler.gui.swing.model.InitInterface;
 
 /**
  * the initialization class.
- * 
+ *
  * @author amedrano
  */
 public class Init implements InitInterface {

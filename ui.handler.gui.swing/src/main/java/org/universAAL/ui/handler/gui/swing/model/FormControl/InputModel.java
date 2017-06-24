@@ -36,7 +36,7 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 public abstract class InputModel extends Model {
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Input} {@link FormControl} to model.
 	 */
@@ -46,7 +46,7 @@ public abstract class InputModel extends Model {
 
 	/**
 	 * Check if the {@link Input} of Mandatory completion.
-	 * 
+	 *
 	 * @return true if user must complete, false otherwise.
 	 */
 	public boolean isMandatory() {
@@ -69,7 +69,7 @@ public abstract class InputModel extends Model {
 
 	/**
 	 * Checks if the value will be accepted as class c.
-	 * 
+	 *
 	 * @param c
 	 * @return
 	 */

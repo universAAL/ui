@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,9 +39,9 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 /**
  * Like @link SmartSystemMenuProvider but pending dialogs are shown in the
  * standard button group (windows inspired).
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
@@ -70,7 +70,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	private List<String> sentItems;
 
 	/**
-	 * 
+	 *
 	 */
 	public TaskBarSystemMenuProvider(UserDialogManager udm) {
 		userDM = udm;
@@ -79,7 +79,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.
 	 * universAAL .middleware.ui.UIResponse)
 	 */
@@ -110,7 +110,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#
 	 * listDeclaredSubmitIds ()
 	 */
@@ -127,7 +127,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
 	 * universAAL.middleware.ui.UIRequest)
@@ -193,7 +193,7 @@ public class TaskBarSystemMenuProvider implements ISystemMenuProvider {
 	 * Switch to a specific pending dialog. This method is called from the
 	 * dialog presenting the list of pending dialogs when the user selects the
 	 * appropriate button.
-	 * 
+	 *
 	 * @param selectionIndex
 	 *            Index of the selected pending dialog.
 	 */

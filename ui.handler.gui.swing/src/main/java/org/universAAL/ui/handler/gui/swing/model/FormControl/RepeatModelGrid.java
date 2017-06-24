@@ -42,7 +42,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue;
  * An alternative to drawing Repeats, Specially indicated for editable repeats,
  * since forms whould be modeled and rendered with in a {@link JPanel} fitted
  * with a {@link GridLayout}.
- * 
+ *
  * @author amedrano
  *
  */
@@ -123,7 +123,7 @@ public class RepeatModelGrid extends RepeatModel {
 
 	/**
 	 * See {@link RepeatModelGrid#layout}.
-	 * 
+	 *
 	 * @return The layout used for the JPanel containing the repeat sub
 	 *         components.
 	 */
@@ -146,7 +146,7 @@ public class RepeatModelGrid extends RepeatModel {
 
 	/**
 	 * Class representing the Add button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class AddTableButton extends JButton implements ActionListener {
@@ -198,7 +198,7 @@ public class RepeatModelGrid extends RepeatModel {
 
 	/**
 	 * Class representing the Delete button for Tables.
-	 * 
+	 *
 	 * @author amedrano
 	 */
 	public class DeleteTableButton extends JButton implements ActionListener {
@@ -255,7 +255,7 @@ public class RepeatModelGrid extends RepeatModel {
 		/**
 		 * Create a Row listener that will change the selected row when the
 		 * element is selected.
-		 * 
+		 *
 		 * @param row
 		 *            the row at which the listened element is at.
 		 */

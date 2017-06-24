@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
  * Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- *	Instituto Tecnologico de Aplicaciones de Comunicacion 
- *	Avanzadas - Grupo Tecnologias para la Salud y el 
+ *	Instituto Tecnologico de Aplicaciones de Comunicacion
+ *	Avanzadas - Grupo Tecnologias para la Salud y el
  *	Bienestar (TSB)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,15 +28,15 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 
 /**
  * Color and Font Theme for MetalTheme.
- * 
+ *
  * @author pabril
- * 
+ *
  */
 public class ColorLAF extends DefaultMetalTheme {
 
 	/**
 	 * Returns the name of the theme.
-	 * 
+	 *
 	 * @return "uaal Default"
 	 */
 	public String getName() {

@@ -33,7 +33,7 @@ public class ExitButton extends SubmitModel implements SpecialButtonInterface {
 	private static final String SUBMIT_ID = "urn:ui.dm:UICaller#stopDialogLoop";
 
 	/**
-	 * 
+	 *
 	 */
 	public ExitButton(Submit submit, Renderer render) {
 		super(submit, render);

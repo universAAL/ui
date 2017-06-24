@@ -20,7 +20,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 /**
  * WARNING THIS CLASS IS ONLY FOR TESTING PURPOSES. EXTENSION LAFS SHOULD BE
  * JUST LIKE STANDAR LAFS, SUBCLASES OF THE MODEL
- * 
+ *
  * @author amedrano
  *
  */

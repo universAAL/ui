@@ -24,13 +24,13 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubdialogTriggerMod
 
 /**
  * @author pabril
- * 
+ *
  */
 public class SubdialogTriggerLAF extends SubdialogTriggerModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link SubdialogTrigger} which to model.
 	 */

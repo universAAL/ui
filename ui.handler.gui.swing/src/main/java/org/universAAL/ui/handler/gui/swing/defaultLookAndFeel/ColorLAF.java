@@ -24,15 +24,15 @@ import javax.swing.plaf.metal.DefaultMetalTheme;
 
 /**
  * Color and Font Theme for MetalTheme.
- * 
+ *
  * @author pabril
- * 
+ *
  */
 public final class ColorLAF extends DefaultMetalTheme {
 
 	/**
 	 * Returns the name of the theme.
-	 * 
+	 *
 	 * @return "uaal Default"
 	 */
 	public String getName() {
@@ -164,7 +164,7 @@ public final class ColorLAF extends DefaultMetalTheme {
 
 	/**
 	 * get the font for any label.
-	 * 
+	 *
 	 * @return the {@link Font} to use in labels
 	 */
 	public Font getLabelFont() {

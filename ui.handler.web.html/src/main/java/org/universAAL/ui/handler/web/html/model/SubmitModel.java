@@ -71,7 +71,7 @@ public class SubmitModel extends FormControlModel {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public void submitted() {
 		getRenderer().getFormManagement().closeCurrentDialog();

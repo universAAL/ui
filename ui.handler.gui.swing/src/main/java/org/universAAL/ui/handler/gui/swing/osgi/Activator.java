@@ -31,7 +31,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer.RenderStarter;
 
 /**
  * OSGi Activator Class for SWING GUI HANDLER
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  *
  */

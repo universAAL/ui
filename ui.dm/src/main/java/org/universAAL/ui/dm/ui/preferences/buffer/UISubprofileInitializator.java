@@ -1,15 +1,15 @@
 /*******************************************************************************
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,18 +58,18 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
  * Initializes {@link UIPreferencesSubprofile} based on stereotype data for
  * {@link AssistedPerson} or {@link Caregiver} user and connects it with given
  * {@link User}.
- * 
+ *
  * Before that it checks if the {@link User} exists and if not adds it (to the
  * Profiling server), it also checks if {@link UserProfile} exists for that
  * {@link UIRequest} and if not it adds it and connects it with given
  * {@link User}.
- * 
+ *
  * In addition same initialization data is also stored in the
  * {@link UIPreferencesBuffer} (although they are retrieved by periodic task
  * triggered every predefined amount of time).
- * 
+ *
  * @author eandgrg
- * 
+ *
  */
 
 public class UISubprofileInitializator {
@@ -132,7 +132,7 @@ public class UISubprofileInitializator {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param uiPrefsSubProfile
 	 *            {@link UIPreferencesSubprofile} to be filled in
 	 * @return given {@link UIPreferencesSubprofile} with stereotype data for
@@ -206,7 +206,7 @@ public class UISubprofileInitializator {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param uiPrefsSubProfile
 	 *            {@link UIPreferencesSubprofile} to be filled in
 	 * @return given {@link UIPreferencesSubprofile} with stereotype data for
@@ -280,7 +280,7 @@ public class UISubprofileInitializator {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return {@link Language} based on the user.language property defined in
 	 *         JVM arguments (or, from Locale)
 	 */

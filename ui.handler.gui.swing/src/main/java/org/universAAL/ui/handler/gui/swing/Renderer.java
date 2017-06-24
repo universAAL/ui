@@ -50,10 +50,10 @@ import org.universAAL.ui.handler.gui.swing.model.Model;
 
 /**
  * Coordinator Class for Swing GUI Handler.
- * 
+ *
  * It will provide all of the needed properties and constants for all other
  * classes, as well as acting as placeholder for all the needed classes to work.
- * 
+ *
  * This placeholding and mutual reference (between contained and container
  * classes) enables the renderer to be loaded more than once per instance.
  *
@@ -65,7 +65,7 @@ public class Renderer extends Thread {
 	/**
 	 * The Key value for the demo mode configuration property. demo mode will
 	 * disable Impairment parameter registration. user. Default: demo.mode=true.
-	 * 
+	 *
 	 * @see Renderer#properties
 	 */
 	protected static final String DEMO_MODE = "demo.mode";
@@ -78,7 +78,7 @@ public class Renderer extends Thread {
 	/**
 	 * The Key value for the location configuration property. this location is
 	 * used when publishing {@link UIResponse}s. Default: gui.location = Unknown
-	 * 
+	 *
 	 * @see Renderer#properties
 	 */
 	protected static final String GUI_LOCATION = "gui.location";
@@ -87,7 +87,7 @@ public class Renderer extends Thread {
 	 * The Key value for the Form manager selection configuration property. this
 	 * will select between the available {@link FormManager}s Default:
 	 * queued.forms=org.universAAL.ui.handler.gui.swing.formManagement.SimpleFormManager
-	 * 
+	 *
 	 * @see Renderer#fm
 	 * @see QueuedFormManager
 	 * @see SimpleFormManager
@@ -163,7 +163,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} to create {@link UIHandler} and send
 	 *            logs
@@ -174,7 +174,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} to create {@link UIHandler} and send
 	 *            logs
@@ -187,7 +187,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Constructor for one Renderer on a certain file.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} to create {@link UIHandler} and send
 	 *            logs
@@ -201,7 +201,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Constructor for one Renderer on a certain file with a container manager.
-	 * 
+	 *
 	 * @param mc
 	 *            the {@link ModuleContext} to create {@link UIHandler} and send
 	 *            logs
@@ -245,7 +245,7 @@ public class Renderer extends Thread {
 	/**
 	 * Load the {@link FormManager} from name (to be configured in properties
 	 * file).
-	 * 
+	 *
 	 * @param FormManagerClassName
 	 *            the name of the {@link FormManager} to be loaded, if not found
 	 *            {@link SimpleFormManager} will be loaded.
@@ -262,7 +262,7 @@ public class Renderer extends Thread {
 	/**
 	 * load configuration properties from a file, setting the default for those
 	 * which are not defined.
-	 * 
+	 *
 	 * @see Renderer#properties
 	 */
 	protected void loadProperties() {
@@ -351,7 +351,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * get the {@link ModuleContext}.
-	 * 
+	 *
 	 * @return the module context.
 	 * @see Renderer#moduleContext
 	 */
@@ -361,7 +361,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Composes the configured user (in properties).
-	 * 
+	 *
 	 * @return
 	 */
 	private String getDefaultUserURI() {
@@ -411,7 +411,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Access to the property file.
-	 * 
+	 *
 	 * @param string
 	 *            Key of property to access
 	 * @return String Value of the property
@@ -428,7 +428,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Access to the property file.
-	 * 
+	 *
 	 * @param key
 	 *            Key of property to access
 	 * @param defaultVal
@@ -452,7 +452,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Update the property file.
-	 * 
+	 *
 	 * @param key
 	 *            Key of property to access
 	 * @param newValue
@@ -470,7 +470,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Gets the form being displayed right now.
-	 * 
+	 *
 	 * @return the current {@link Form} being processed.
 	 */
 	public final Form getCurrentForm() {
@@ -489,7 +489,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Set the user that has just authenticated.
-	 * 
+	 *
 	 * @param user
 	 *            the user that has just logged in
 	 */
@@ -516,7 +516,7 @@ public class Renderer extends Thread {
 		private User u;
 
 		/**
-		 * 
+		 *
 		 */
 		public DeauthenticateRunnable(ModuleContext mc, User u) {
 			this.moduleContext = mc;
@@ -540,7 +540,7 @@ public class Renderer extends Thread {
 	/**
 	 * Check if impairment is listed as present impairments for the current user
 	 * and form.
-	 * 
+	 *
 	 * @param impariment
 	 *            the {@link AccessImpairment} to be checked
 	 * @return true is impairment is present in the current Dialog Request.
@@ -558,7 +558,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Get the Language that should be used.
-	 * 
+	 *
 	 * @return the two-letter representation of the language-
 	 */
 	public final String getLanguage() {
@@ -568,7 +568,7 @@ public class Renderer extends Thread {
 	/**
 	 * Get the {@link FormManager} being used, useful to access the current
 	 * UIResquest and current form.
-	 * 
+	 *
 	 * @return {@link Renderer#fm}
 	 */
 	public FormManager getFormManagement() {
@@ -578,7 +578,7 @@ public class Renderer extends Thread {
 	/**
 	 * Returns the ModelMapper that automatically assigns this Renderer to the
 	 * Models.
-	 * 
+	 *
 	 * @return
 	 */
 	public final ModelMapper getModelMapper() {
@@ -587,7 +587,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * get the {@link Handler} of this {@link Renderer}.
-	 * 
+	 *
 	 * @return the {@link Handler}
 	 */
 	public final Handler getHandler() {
@@ -596,7 +596,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * get the Initial instance when the LAF was loaded.
-	 * 
+	 *
 	 * @return the initLAF
 	 */
 	public final InitInterface getInitLAF() {
@@ -606,7 +606,7 @@ public class Renderer extends Thread {
 	/**
 	 * Check if a user-password pair is registered. If it is this method will
 	 * set the current user, and initiate the handler business.
-	 * 
+	 *
 	 * @param user
 	 *            userID trying to authenticate
 	 * @param password
@@ -645,7 +645,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Get the configuration directory.
-	 * 
+	 *
 	 * @return the home directory (ends with "/")
 	 */
 	public static File getHomeDir() {
@@ -654,7 +654,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * Get the {@link ModuleContext} for the {@link Renderer}.
-	 * 
+	 *
 	 * @return the {@link ModuleContext}.
 	 */
 	public static ModuleContext getContext() {
@@ -673,7 +673,7 @@ public class Renderer extends Thread {
 
 	/**
 	 * A bootstrap class to start Renderer(s).
-	 * 
+	 *
 	 * @author amedrano
 	 *
 	 */

@@ -31,7 +31,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 /**
  * Resource Server receives GET and POST requests and exposes/serves requested
  * resources from the common resources storage.
- * 
+ *
  * One of the usage scenarios of this artefact is following: UI Handlers that
  * are not always on the same node can, by using this server, obtain common
  * (also application specific) resources. Since universAAL middleware does not
@@ -41,9 +41,9 @@ import org.universAAL.middleware.container.utils.LogUtils;
  * specific resources into the common folder and then simply add their names to
  * the abstract UI representations. The job of the UI Handlers is to merge this
  * resources with the rendered user interfaces.
- * 
+ *
  * @author <a href="mailto:andrej.grguric@ericsson.com">Andrej Grguric</a>
- * 
+ *
  */
 public class ResourceServer extends HttpServlet {
 
@@ -73,7 +73,7 @@ public class ResourceServer extends HttpServlet {
 	 * Determine mime type of the resource. If resource type is not recognized
 	 * (between gif, png, jpg, jpeg, xml, au, aa3, aac, aif, al, mp4, mpeg) null
 	 * is returned.
-	 * 
+	 *
 	 * @param name
 	 *            resoruce name
 	 * @return mime type
@@ -113,8 +113,8 @@ public class ResourceServer extends HttpServlet {
 
 	/**
 	 * Checks if the resource Requester is authorized to access resource
-	 * 
-	 * 
+	 *
+	 *
 	 * @param req
 	 *            The request
 	 * @param resp

@@ -35,7 +35,7 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 public class MyButton extends JButton {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 

@@ -30,7 +30,7 @@ public abstract class InputModel extends FormControlModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param fe
 	 * @param render
 	 */
@@ -51,7 +51,7 @@ public abstract class InputModel extends FormControlModel {
 	 * Called when the input is received. The implementation should interpret
 	 * the input and call {@link Input#storeUserInput(Object)}, returning false
 	 * is either the interpretation or the sotore was unsucsessful.
-	 * 
+	 *
 	 * @param strings
 	 *            the parameters recovered by the servlet
 	 * @return true only if the update was successful.
@@ -73,7 +73,7 @@ public abstract class InputModel extends FormControlModel {
 
 	/**
 	 * Generate only the Input tag.
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract StringBuffer generateInputHTML();
@@ -81,7 +81,7 @@ public abstract class InputModel extends FormControlModel {
 	/**
 	 * Get if the current Input is tagged as erroneous or missing so User can be
 	 * warned about it.
-	 * 
+	 *
 	 * @return
 	 */
 	protected boolean isErroneousOrMissing() {

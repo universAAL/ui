@@ -26,7 +26,7 @@ import org.universAAL.middleware.container.utils.LogUtils;
 
 /**
  * Find the resources referenced by urls.
- * 
+ *
  * @author amedrano
  *
  */
@@ -50,7 +50,7 @@ public class ResourceMapper {
 
 	/**
 	 * Searches for the specified url in the config directory and JAR resources.
-	 * 
+	 *
 	 * @param url
 	 *            relative url of the resource to find
 	 * @return the {@link URL} for the resource, null if not found
@@ -89,7 +89,7 @@ public class ResourceMapper {
 
 	/**
 	 * Check that the resource pointed by the URL really exists.
-	 * 
+	 *
 	 * @param url
 	 *            the URL to be checked
 	 * @return true is the URL can be accessed
@@ -108,7 +108,7 @@ public class ResourceMapper {
 
 	/**
 	 * Searched for the specified url in the config directory.
-	 * 
+	 *
 	 * @param url
 	 *            the relative url of the file to look for.
 	 * @return the {@link URL} of the file if found, null otherwise.
@@ -125,7 +125,7 @@ public class ResourceMapper {
 
 	/**
 	 * check whether the specified url exists or not.
-	 * 
+	 *
 	 * @param url
 	 *            the url to test.
 	 * @return the {@link URL} of existent file, null otherwise
@@ -152,7 +152,7 @@ public class ResourceMapper {
 
 	/**
 	 * Searched for the specified url in the JAR.
-	 * 
+	 *
 	 * @param url
 	 *            the relative url of the resource to look for.
 	 * @return the {@link URL} of the resource if found, null otherwise.

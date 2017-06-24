@@ -32,7 +32,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.SubmitModel;
 /**
  * @author pabril
  * @author amedrano
- * 
+ *
  */
 public class SubmitLAF extends SubmitModel {
 
@@ -40,7 +40,7 @@ public class SubmitLAF extends SubmitModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Submit} which to model.
 	 */

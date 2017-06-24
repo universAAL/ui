@@ -44,7 +44,7 @@ public abstract class RangeModel extends InputModel implements ChangeListener {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Range} which to model.
 	 */
@@ -55,7 +55,7 @@ public abstract class RangeModel extends InputModel implements ChangeListener {
 	/**
 	 * Ranges can yield a {@link JSpinner} if the specified range is less than a
 	 * threshold, or it can also be {@link JSlider}.
-	 * 
+	 *
 	 * @return {@inheritDoc}
 	 */
 	public JComponent getNewComponent() {
@@ -73,7 +73,7 @@ public abstract class RangeModel extends InputModel implements ChangeListener {
 
 	/**
 	 * Create a {@link SpinnerModel} based on the values obtained from model
-	 * 
+	 *
 	 * @return
 	 */
 	private SpinnerModel getSpinnerModel() {

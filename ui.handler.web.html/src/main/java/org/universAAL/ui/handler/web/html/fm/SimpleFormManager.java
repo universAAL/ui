@@ -30,9 +30,9 @@ import org.universAAL.ui.handler.web.html.HTMLUserGenerator;
 /**
  * This {@link FormManager} is the simplest form of form management as it only
  * displays one form at a time. The order of the forms is the order of arrival.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class SimpleFormManager implements FormManager {
 

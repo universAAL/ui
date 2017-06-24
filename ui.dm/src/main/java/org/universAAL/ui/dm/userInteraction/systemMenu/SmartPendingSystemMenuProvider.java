@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,9 +34,9 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 /**
  * Unlike in @link ClassicSystemMenuProvider buttons of pending messages or
  * dialogs only show up if there are indeed pending messages or dialogs.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 
@@ -67,7 +67,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 	private UserDialogManager userDM;
 
 	/**
-	 * 
+	 *
 	 */
 	public SmartPendingSystemMenuProvider(UserDialogManager udm) {
 		userDM = udm;
@@ -75,7 +75,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#handle(org.
 	 * universAAL .middleware.ui.UIResponse)
 	 */
@@ -98,7 +98,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.universAAL.ui.dm.interfaces.ISubmitGroupListener#
 	 * listDeclaredSubmitIds ()
 	 */
@@ -113,7 +113,7 @@ public class SmartPendingSystemMenuProvider implements ISystemMenuProvider {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.universAAL.ui.dm.interfaces.ISystemMenuProvider#getSystemMenu(org.
 	 * universAAL.middleware.ui.UIRequest)

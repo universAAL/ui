@@ -33,7 +33,7 @@ public abstract class TextAreaModel extends InputModel implements CaretListener 
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link FormControl} which to model.
 	 */
@@ -43,7 +43,7 @@ public abstract class TextAreaModel extends InputModel implements CaretListener 
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return a {@link JTextArea}.
 	 */
 	public JComponent getNewComponent() {

@@ -151,7 +151,7 @@ public class GroupModel extends FormControlModel {
 
 	/**
 	 * Meant to be used as gridLayout for groups.
-	 * 
+	 *
 	 * @param child
 	 *            the list of children to fit in the table
 	 * @param cols

@@ -52,7 +52,7 @@ public final class ModelMapper {
 	/**
 	 * Default Look and Feel Package, to be used when the selected package is
 	 * not found.
-	 * 
+	 *
 	 * @see ModelMapper#LAFPackageProperty
 	 */
 	static final String DefaultLAFPackage = "org.universAAL.ui.handler.gui.swing.defaultLookAndFeel";
@@ -69,7 +69,7 @@ public final class ModelMapper {
 
 	/**
 	 * The main Constructor.
-	 * 
+	 *
 	 * @param renderer
 	 *            the {@link Renderer} to be associated with
 	 */
@@ -79,7 +79,7 @@ public final class ModelMapper {
 
 	/**
 	 * construct the name of the LAF class for the component.
-	 * 
+	 *
 	 * @param c
 	 *            the component for which the LAF class name is constructed
 	 * @return the name of the component (stripped of the package name) appended
@@ -92,7 +92,7 @@ public final class ModelMapper {
 
 	/**
 	 * Using Java reflection try to load the LAF class of a given component.
-	 * 
+	 *
 	 * @param LAFPackage
 	 *            the selected LAFPackage full qualified name
 	 * @param constructorParameter
@@ -128,7 +128,7 @@ public final class ModelMapper {
 	 * {@link ModelMapper#getModelFor(Label)}. get {@link Model} or
 	 * {@link FormModel} or {@link LabelModel} for a given {@link FormControl}
 	 * or {@link Form} or {@link Label} respectively.
-	 * 
+	 *
 	 * @param refObj
 	 *            the {@link FormControl}, or {@link Form} or {@link Label} for
 	 *            which the model is required
@@ -168,7 +168,7 @@ public final class ModelMapper {
 
 	/**
 	 * get {@link Model} for a given {@link FormControl}.
-	 * 
+	 *
 	 * @param fc
 	 *            the {@link FormControl} for which the model is required
 	 * @return the found LAF extension for the component.
@@ -179,7 +179,7 @@ public final class ModelMapper {
 
 	/**
 	 * get {@link FormModel} for a given {@link Form}.
-	 * 
+	 *
 	 * @param f
 	 *            the {@link Form} for which the model is required
 	 * @return the found LAF extension for the component.
@@ -190,7 +190,7 @@ public final class ModelMapper {
 
 	/**
 	 * get {@link LabelModel} for a given {@link Label}.
-	 * 
+	 *
 	 * @param l
 	 *            the {@link Label} for which the model is required
 	 * @return the found LAF extension for the component.
@@ -201,7 +201,7 @@ public final class ModelMapper {
 
 	/**
 	 * locate the LookAndFeel ( {@link InitInterface}) class of the LAF package.
-	 * 
+	 *
 	 * @param LAFPackage
 	 *            the full qualified name of the LAF package
 	 * @return the initialization class of the LAF package
@@ -215,7 +215,7 @@ public final class ModelMapper {
 	/**
 	 * Initialize the selected L&F extension. If could not be found, defaultLAF
 	 * is used.
-	 * 
+	 *
 	 * @return TODO
 	 */
 	public InitInterface initializeLAF() {

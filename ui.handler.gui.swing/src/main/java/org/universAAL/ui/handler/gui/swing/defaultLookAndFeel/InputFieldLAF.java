@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.InputFieldModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class InputFieldLAF extends InputFieldModel {
 
@@ -31,7 +31,7 @@ public class InputFieldLAF extends InputFieldModel {
 
 	/**
 	 * Constructor
-	 * 
+	 *
 	 * @param control
 	 *            the {@link InputField} which to model.
 	 */

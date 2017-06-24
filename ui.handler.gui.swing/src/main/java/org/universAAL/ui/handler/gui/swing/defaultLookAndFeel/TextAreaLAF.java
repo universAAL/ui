@@ -26,7 +26,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.TextAreaModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class TextAreaLAF extends TextAreaModel {
 
@@ -44,7 +44,7 @@ public class TextAreaLAF extends TextAreaModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link TextArea} which to model.
 	 */

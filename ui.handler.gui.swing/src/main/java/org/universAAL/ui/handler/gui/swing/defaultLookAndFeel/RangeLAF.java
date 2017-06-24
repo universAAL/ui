@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RangeModel;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class RangeLAF extends RangeModel {
 
@@ -31,7 +31,7 @@ public class RangeLAF extends RangeModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Range} which to model.
 	 */

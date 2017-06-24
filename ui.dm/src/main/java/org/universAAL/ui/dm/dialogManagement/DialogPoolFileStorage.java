@@ -36,7 +36,7 @@ import org.universAAL.ui.dm.interfaces.IUIRequestStore;
 
 /**
  * Serialize/Deserialze a whole {@link IUIRequestPool} into/form a file.
- * 
+ *
  * @author amedrano
  *
  */

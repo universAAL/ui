@@ -47,7 +47,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Group} which to model.
 	 */
@@ -86,7 +86,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * check whether it is the submit root group.
-	 * 
+	 *
 	 * @return true is it is.
 	 */
 	public boolean isTheSubmitGroup() {
@@ -95,7 +95,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * check whether it is the system root group.
-	 * 
+	 *
 	 * @return true is it is.
 	 */
 	public boolean isTheMainGroup() {
@@ -104,7 +104,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * check whether it is the io root group.
-	 * 
+	 *
 	 * @return true is it is.
 	 */
 	public boolean isTheIOGroup() {
@@ -115,7 +115,7 @@ public abstract class GroupModel extends Model {
 	 * Access to the Model mapper. it will load the {@link JComponent} for a
 	 * given {@link FormControl} which is a child of the current group. Adds the
 	 * located {@link Model} to the list of children.
-	 * 
+	 *
 	 * @param fc
 	 *            the child from which to obtain it's model and
 	 *            {@link JComponent}
@@ -132,7 +132,7 @@ public abstract class GroupModel extends Model {
 	 * given {@link FormControl} which is a child of the current group, and add
 	 * it to a {@link Container}. Adds the located {@link Model} to the list of
 	 * children.
-	 * 
+	 *
 	 * @param fc
 	 *            the child from which to obtain it's model and
 	 *            {@link JComponent}
@@ -160,7 +160,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * adds a component that will force a new line
-	 * 
+	 *
 	 * @return
 	 */
 	protected Component getNewLineCompoent() {
@@ -174,7 +174,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * Find the Model for the {@link FormControl} with the given URI.
-	 * 
+	 *
 	 * @param formControlURI
 	 * @return the model or null if not found.
 	 */
@@ -190,7 +190,7 @@ public abstract class GroupModel extends Model {
 
 	/**
 	 * Tell whether the form control contain only groups.
-	 * 
+	 *
 	 * @param fc
 	 * @return
 	 */

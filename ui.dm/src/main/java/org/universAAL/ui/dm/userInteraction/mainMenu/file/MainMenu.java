@@ -1,16 +1,16 @@
 /*
 	Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
-	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
-	
-	See the NOTICE file distributed with this work for additional 
+	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,7 @@ import org.universAAL.ui.dm.DialogManagerImpl;
  * /Light Control|myVendor|LightingURI<br>
  * /Home Control/Light Control|myVendor|LightingURI
  * </code>
- * 
+ *
  * @author mtazari
  * @author cstockloew
  * @author eandgrg
@@ -76,7 +76,7 @@ public class MainMenu {
 
 	/**
 	 * constructor. Creates the menu.
-	 * 
+	 *
 	 * @param in
 	 *            Input stream for the configuration file
 	 */
@@ -88,7 +88,7 @@ public class MainMenu {
 	 * Create the menu. Reads a configuration file with menu entries and creates
 	 * a tree of menu nodes where leaf nodes have a vendor and service class
 	 * associated.
-	 * 
+	 *
 	 * @param in
 	 *            Input stream for the configuration file
 	 */
@@ -138,7 +138,7 @@ public class MainMenu {
 	 * other information like pending messages or a functionality to search for
 	 * services. The services that are added in this method are added to a
 	 * special group and then the whole dialog is sent to the output bus.
-	 * 
+	 *
 	 * @param rg
 	 *            The group to add the menu.
 	 */
@@ -178,7 +178,7 @@ public class MainMenu {
 
 	/**
 	 * Select a specific node given its node path.
-	 * 
+	 *
 	 * @param nodePath
 	 *            The path to the node.
 	 * @return true, iff selection has changed.
@@ -205,7 +205,7 @@ public class MainMenu {
 	 * node, it creates the service request according to the service class and
 	 * vendor of this node. If the node is not a leaf node and the selection has
 	 * changed, the update service is returned.
-	 * 
+	 *
 	 * @param nodePath
 	 *            Determines the menu node. Can be a set of labels for
 	 *            hierarchical menus.
@@ -227,7 +227,7 @@ public class MainMenu {
 
 	/**
 	 * Get a specific menu node.
-	 * 
+	 *
 	 * @param nodePath
 	 *            Determines the menu node. Can be a set of labels for
 	 *            hierarchical menus.
@@ -253,7 +253,7 @@ public class MainMenu {
 
 	/**
 	 * Get all the entries for the (sub)menu.
-	 * 
+	 *
 	 * @return
 	 */
 	public Iterable<MenuNode> entries() {

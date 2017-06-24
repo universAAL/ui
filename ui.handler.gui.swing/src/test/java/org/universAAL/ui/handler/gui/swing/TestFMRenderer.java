@@ -45,7 +45,7 @@ public class TestFMRenderer extends Renderer {
 
 	/**
 	 * Tests should not store anything!
-	 * 
+	 *
 	 * @see org.universAAL.ui.handler.gui.swing.Renderer#storeProperties()
 	 */
 	protected void storeProperties() {

@@ -37,7 +37,7 @@ public class JLabelWAVPlayer implements ComponentListener {
 	private Clip clip;
 
 	/**
-	 * 
+	 *
 	 */
 	public JLabelWAVPlayer(String url) {
 		this.url = url;

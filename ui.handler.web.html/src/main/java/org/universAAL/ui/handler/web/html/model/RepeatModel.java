@@ -29,7 +29,7 @@ import org.universAAL.ui.handler.web.html.HTMLUserGenerator;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class RepeatModel extends GroupModel {
 

@@ -54,7 +54,7 @@ public class UCCButton implements SpecialButtonInterface {
 	private static final int SOCK_TIMEOUT = 10;
 
 	/**
-	 * 
+	 *
 	 */
 	public UCCButton(Submit s, Renderer render) {
 		this.render = render;

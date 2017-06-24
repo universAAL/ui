@@ -34,7 +34,7 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 import org.universAAL.ui.handler.gui.swing.model.FormControl.swingModel.JLabelWAVPlayer;
 
 /**
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see MediaObject
  */
@@ -42,7 +42,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link MediaObject} which to model.
 	 */
@@ -54,7 +54,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 	 * The {@link JComponent} returned is a {@link JLabel}. in future versions
 	 * it may accommodate other components for videos, audio and other media
 	 * files.
-	 * 
+	 *
 	 * @return {@inheritDoc}
 	 */
 	public JComponent getNewComponent() {
@@ -139,7 +139,7 @@ public class MediaObjectModel extends OutputModel implements HyperlinkListener {
 	 * locate the resource (DONE) - in jar - in file system - in config dir - in
 	 * remote repo (like http) - other cases? use VFS.. Media Cache : once
 	 * located resources store and index them in config dir for faster location.
-	 * 
+	 *
 	 * Use Locator and cache for the other Icons (using IconFactory)
 	 */
 

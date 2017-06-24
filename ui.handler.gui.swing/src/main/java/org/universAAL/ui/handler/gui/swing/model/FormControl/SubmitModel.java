@@ -43,7 +43,7 @@ public class SubmitModel extends Model implements ActionListener {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link FormControl} which to model.
 	 */
@@ -56,7 +56,7 @@ public class SubmitModel extends Model implements ActionListener {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @return a {@link JButton}
 	 */
 	public JComponent getNewComponent() {
@@ -77,7 +77,7 @@ public class SubmitModel extends Model implements ActionListener {
 
 	/**
 	 * a Submit is allways valid.
-	 * 
+	 *
 	 * @return <code>true</code>
 	 */
 	public boolean isValid() {

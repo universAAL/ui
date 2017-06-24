@@ -35,10 +35,10 @@ import org.universAAL.ui.handler.web.html.fm.FormManager;
  * interfacing with universAAL, it will handle the UICalls by delegating to the
  * {@link HTMLUserGenerator}, and it will also provide a method to submit the
  * user input.
- * 
+ *
  * @see UIHandler
  * @see HTMLUserGenerator
- * 
+ *
  * @author amedrano
  *
  */
@@ -46,7 +46,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * internal constructor.
-	 * 
+	 *
 	 * @param context
 	 *            the {@link ModuleContext} to be able to implement an
 	 *            {@link UIHandler}
@@ -70,7 +70,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * constructor for Handler.
-	 * 
+	 *
 	 * @param renderer
 	 *            the {@link HTMLUserGenerator} to associate with
 	 * @param usr
@@ -114,7 +114,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * Get the current user that is inputing information.
-	 * 
+	 *
 	 * @return the current user.
 	 */
 	public User getCurrentUser() {
@@ -123,7 +123,7 @@ public final class Handler extends UIHandler {
 
 	/**
 	 * Shortcut to send {@link UIResponse} related to Submit Buttons.
-	 * 
+	 *
 	 * @param submit
 	 *            the {@link Submit} button model pressed.
 	 */
@@ -139,7 +139,7 @@ public final class Handler extends UIHandler {
 	 * @return a pattern used to subscribe to the output bus.
 	 * @param usr
 	 *            set demo mode or not.
-	 * 
+	 *
 	 */
 	private static UIHandlerProfile getPermanentSubscriptions(final User usr, AbsLocation location) {
 		/*

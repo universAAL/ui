@@ -2,15 +2,15 @@
  * Copyright 2013 Universidad Politécnica de Madrid
  * Copyright 2013 Ericsson Nikola Tesla d.d.
  *
- * See the NOTICE file distributed with this work for additional 
+ * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership
- *	
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *	
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- *	
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,7 +48,7 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
  * preferred (or secondary) Language for the user stored in
  * {@link UIPreferencesSubProfile}. Then it can be used as normal messages
  * class, to retrieve the correct internationalized messages for the given user.
- * 
+ *
  * @author amedrano
  * @author eandgrg
  */
@@ -87,9 +87,9 @@ public class MessageLocaleHelper {
 
 	/**
 	 * This constructor should be used by Applications.
-	 * 
+	 *
 	 * Typical Call is something like:
-	 * 
+	 *
 	 * <pre>
 	 * <code>
 	 * ArrayList<URL> list = new ArrayList<URL>();
@@ -98,13 +98,13 @@ public class MessageLocaleHelper {
 	 * list.add(new URL("Form_Resource_Server"));
 	 * //list.add(Other sources, for example a web server hosting these files);
 	 * MessageLocaleHelper messages = new MessageLocaleHelper(mc, user, list);
-	 * 
+	 *
 	 * ...
-	 * 
+	 *
 	 * messages.getString("welcomeScreen.sayHello");
 	 * </code>
 	 * </pre>
-	 * 
+	 *
 	 * @param mc
 	 *            The {@link ModuleContext} to enable logging and service call.
 	 * @param user
@@ -127,7 +127,7 @@ public class MessageLocaleHelper {
 	/**
 	 * This constructor is to be used when the {@link UIPreferencesSubProfile}
 	 * is already available, IE: by the DialogManager.
-	 * 
+	 *
 	 * @param mc
 	 * @param uiPreferencesSubprofile
 	 * @param urlList
@@ -150,10 +150,10 @@ public class MessageLocaleHelper {
 	 * {@link User} from a Profiling Server (makes a service call). Note
 	 * {@link User} and {@link UserProfile} should exist and be connected with
 	 * {@link UIPreferencesSubProfile} before obtainment.
-	 * 
+	 *
 	 * @param user
 	 *            {@link User}
-	 * 
+	 *
 	 * @return {@link UIPreferencesSubProfile} that belongs to a given
 	 *         {@link User} or null in all other cases.
 	 */
@@ -213,7 +213,7 @@ public class MessageLocaleHelper {
 	 * primary nor secondary language is found then the first instance of
 	 * default message file is loaded. It will throw an exception if no files
 	 * could be loaded.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void reloadMessages() throws Exception {
@@ -261,7 +261,7 @@ public class MessageLocaleHelper {
 	 * Helper method, tries to load messages from the specified url, for
 	 * preferred language. If messages are not localized then tries secondary
 	 * language.
-	 * 
+	 *
 	 * @param url
 	 * @throws IllegalArgumentException
 	 * @throws IOException
@@ -307,7 +307,7 @@ public class MessageLocaleHelper {
 
 	/**
 	 * Get the language for the user.
-	 * 
+	 *
 	 * @return the {@link Locale} from the preferred (or if preferred not found
 	 *         secondary) language for the user stored in
 	 *         {@link UIPreferencesSubProfile}.
@@ -342,7 +342,7 @@ public class MessageLocaleHelper {
 
 	/**
 	 * Get the selected Locale for the messages.
-	 * 
+	 *
 	 * @return the selected message locale, null if default is selected.
 	 */
 	public final Locale getSelectedMessageLocale() {
@@ -351,7 +351,7 @@ public class MessageLocaleHelper {
 
 	/**
 	 * Get the {@link Locale} instance for a given language.
-	 * 
+	 *
 	 * @param lang
 	 *            {@link Language}
 	 * @return {@link Locale}
@@ -363,7 +363,7 @@ public class MessageLocaleHelper {
 
 	/**
 	 * Get a string in internationalization Messages file.
-	 * 
+	 *
 	 * @param key
 	 *            the key for the string
 	 * @return the string.
@@ -380,15 +380,15 @@ public class MessageLocaleHelper {
 	 * Eg: for a properties file conaining: <br>
 	 * <code>key=page \{0\} of \{1\} </code> <br>
 	 * this code: <br>
-	 * 
+	 *
 	 * <pre>
 	 * <code> {@link MessageLocaleHelper} mlh = ...
 	 * mlh.getString("key",new String[]{"1","10"});
 	 * </code>
 	 * </pre>
-	 * 
+	 *
 	 * will return: <code>"page 1 of 10"<code>
-	 * 
+	 *
 	 * @param key
 	 * @param substitutions
 	 * @return

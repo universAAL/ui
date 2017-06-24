@@ -35,7 +35,7 @@ import org.universAAL.ui.handler.gui.swing.model.IconFactory;
 /**
  * Model {@link Select1} as a group of {@link JRadioButton}s, better for
  * non-multilevel selects.
- * 
+ *
  * @author amedrano
  *
  */
@@ -52,7 +52,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 * @param render
 	 */
@@ -88,7 +88,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 
 	/**
 	 * Get the value associated to the Label for the {@link JRadioButton}.
-	 * 
+	 *
 	 * @param jc
 	 *            the {@link JRadioButton}
 	 * @return
@@ -99,7 +99,7 @@ public abstract class Select1RadiobuttonModel extends Select1Model implements Ac
 
 	/**
 	 * Get the associated Label for the {@link JRadioButton}.
-	 * 
+	 *
 	 * @param jc
 	 *            the {@link JRadioButton}
 	 * @return

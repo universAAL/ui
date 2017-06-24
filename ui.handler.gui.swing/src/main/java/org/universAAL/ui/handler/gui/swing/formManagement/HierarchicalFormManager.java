@@ -31,9 +31,9 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
  * Hierarchical management of dialogs. This Manager will enable the access to
  * parent dialogs in order to offer the possibility of displaying elements of a
  * subdialog's parent, such as it's submits.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class HierarchicalFormManager implements FormManager {
 
@@ -88,7 +88,7 @@ public class HierarchicalFormManager implements FormManager {
 
 	/**
 	 * deletes all subdialogs of a given dialog ID.
-	 * 
+	 *
 	 * @param dialogID
 	 *            the parent dialog to delete
 	 */
@@ -131,9 +131,9 @@ public class HierarchicalFormManager implements FormManager {
 
 	/**
 	 * Model of Form Hierarchy.
-	 * 
+	 *
 	 * @author amedrano
-	 * 
+	 *
 	 */
 	private static class FormTree extends TreeMap {
 		/**
@@ -143,7 +143,7 @@ public class HierarchicalFormManager implements FormManager {
 
 		/**
 		 * Add a child to a form.
-		 * 
+		 *
 		 * @param key
 		 *            the formID
 		 * @param child
@@ -158,7 +158,7 @@ public class HierarchicalFormManager implements FormManager {
 
 		/**
 		 * get the children of a {@link Form}.
-		 * 
+		 *
 		 * @param key
 		 *            the FormId
 		 * @return The {@link Set} of children for the form
@@ -176,7 +176,7 @@ public class HierarchicalFormManager implements FormManager {
 
 	/**
 	 * Render the frame.
-	 * 
+	 *
 	 * @param req
 	 *            the {@link Form} to be rendered
 	 */

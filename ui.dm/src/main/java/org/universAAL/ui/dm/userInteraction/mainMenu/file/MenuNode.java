@@ -1,16 +1,16 @@
 /*
 	Copyright 2008-2010 Fraunhofer IGD, http://www.igd.fraunhofer.de
-	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research 
-	
-	See the NOTICE file distributed with this work for additional 
+	Fraunhofer-Gesellschaft - Institute of Computer Graphics Research
+
+	See the NOTICE file distributed with this work for additional
 	information regarding copyright ownership
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	  http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,7 +30,7 @@ import org.universAAL.middleware.service.owl.InitialServiceDialog;
  * can have a parent and multiple children (currently, a maximum of 15 children
  * is allowed). The leaf node of this tree should have a service class and
  * vendor associated.
- * 
+ *
  * @author mtazari
  * @author cstockloew
  */
@@ -110,7 +110,7 @@ public class MenuNode {
 	 * of the menu. Nodes are automatically created if they do not exist. The
 	 * leaf node is associated with the given parameters for vendor and service
 	 * class.
-	 * 
+	 *
 	 * @param path
 	 *            The path of possibly multiple labels according to the
 	 *            different levels in the menu.
@@ -162,7 +162,7 @@ public class MenuNode {
 	/**
 	 * Add a single child to this node and set correctly the parent of the newly
 	 * created child.
-	 * 
+	 *
 	 * @param c
 	 *            The child.
 	 */
@@ -177,7 +177,7 @@ public class MenuNode {
 
 	/**
 	 * Get an iterator for all children of this node.
-	 * 
+	 *
 	 * @return The iterator.
 	 */
 	public Iterable<MenuNode> children() {
@@ -208,7 +208,7 @@ public class MenuNode {
 
 	/**
 	 * Get a child with a given label. Only considers direct children.
-	 * 
+	 *
 	 * @param label
 	 *            The label.
 	 * @return The child, or null if no child with this label is available.
@@ -224,7 +224,7 @@ public class MenuNode {
 
 	/**
 	 * Get the label of this node.
-	 * 
+	 *
 	 * @return The label.
 	 */
 	public String getLabel() {
@@ -237,7 +237,7 @@ public class MenuNode {
 
 	/**
 	 * Get the parent of this node.
-	 * 
+	 *
 	 * @return The parent.
 	 */
 	public MenuNode getParent() {
@@ -250,7 +250,7 @@ public class MenuNode {
 	 * Get the path of this node. The path is a string containing the labels of
 	 * all nodes from this node up to the root node. It starts with '/' and the
 	 * labels are separated by '/'.
-	 * 
+	 *
 	 * @return The path.
 	 */
 	public String getPath() {
@@ -269,7 +269,7 @@ public class MenuNode {
 	 * Create a service request with the user as well as service class and
 	 * vendor of this node (if this node a leaf node and has an associated
 	 * service).
-	 * 
+	 *
 	 * @param user
 	 *            The user.
 	 * @return The service request.
@@ -280,7 +280,7 @@ public class MenuNode {
 
 	/**
 	 * Get the service class associated with this node.
-	 * 
+	 *
 	 * @return The service class, or null if no service class available.
 	 */
 	String getServiceClass() {
@@ -289,7 +289,7 @@ public class MenuNode {
 
 	/**
 	 * Get the vendor associated with this node.
-	 * 
+	 *
 	 * @return The vendor, or null if no vendor available.
 	 */
 	String getVendor() {
@@ -298,7 +298,7 @@ public class MenuNode {
 
 	/**
 	 * Determines whether this node has children.
-	 * 
+	 *
 	 * @return true, if this node has children.
 	 */
 	public boolean hasChild() {
@@ -307,7 +307,7 @@ public class MenuNode {
 
 	/**
 	 * Determines whether a service (and a vendor) is bound to this node.
-	 * 
+	 *
 	 * @return true, if this node has a service.
 	 */
 	public boolean hasService() {

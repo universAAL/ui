@@ -23,7 +23,7 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 
 /**
  * A model for Labels.
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @see Label
  */
@@ -43,7 +43,7 @@ public class LabelModel {
 
 	/**
 	 * Model constructor.
-	 * 
+	 *
 	 * @param l
 	 *            the {@link Label} to model.
 	 * @param renderer
@@ -56,7 +56,7 @@ public class LabelModel {
 
 	/**
 	 * get the {@link JLabel} represented by {@link LabelModel#label}
-	 * 
+	 *
 	 * @return {@link JLabel} with text and/or icon.
 	 */
 	public JLabel getComponent() {
@@ -72,7 +72,7 @@ public class LabelModel {
 
 	/**
 	 * test whether the label has any information at all.
-	 * 
+	 *
 	 * @return true if there is text and/or an icon false if there is no text
 	 *         and no icon
 	 */
@@ -84,7 +84,7 @@ public class LabelModel {
 
 	/**
 	 * get the {@link Renderer} associated to this {@link LabelModel}
-	 * 
+	 *
 	 * @return the {@link Renderer}
 	 */
 	public Renderer getRenderer() {

@@ -72,7 +72,7 @@ public class HTTPHandlerService extends GatewayPort {
 	public static final String TIMEOUT = "session.timeout";
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -106,7 +106,7 @@ public class HTTPHandlerService extends GatewayPort {
 		properties = new UpdatedPropertiesFile(prop) {
 
 			/**
-			 * 
+			 *
 			 */
 			private static final long serialVersionUID = 1L;
 
@@ -246,7 +246,7 @@ public class HTTPHandlerService extends GatewayPort {
 		private ScheduledFuture sf;
 
 		/**
-		 * 
+		 *
 		 */
 		public Watchdog(User u) {
 			user = u;

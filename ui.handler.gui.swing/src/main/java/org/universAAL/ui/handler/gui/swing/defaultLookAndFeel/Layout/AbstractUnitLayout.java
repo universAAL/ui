@@ -56,7 +56,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	protected int gap;
 
 	/**
-	 * 
+	 *
 	 */
 	public AbstractUnitLayout(int gap) {
 		this.gap = gap;
@@ -84,7 +84,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	 * registered as a {@link Unit}. Single {@link Component}s (
 	 * {@link Component}s without a {@link JLabel} associated) compose them
 	 * selves a single {@link Unit}.
-	 * 
+	 *
 	 * @param comps
 	 *            The list of components to transform into {@link Unit}
 	 * @return {@link List} of {@link Unit}s.
@@ -112,7 +112,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 
 	/**
 	 * Get a Layout out of a list of Units and a given width.
-	 * 
+	 *
 	 * @param units
 	 *            the {@link List} of {@link Unit}s
 	 * @param width
@@ -146,7 +146,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	/**
 	 * Scan a {@link List} of {@link Row}s to get the total dimension, including
 	 * the padding.
-	 * 
+	 *
 	 * @param rows
 	 *            the {@link List} of {@link Row}s
 	 * @return the Dimension it occupies
@@ -166,7 +166,7 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 
 	/**
 	 * Get the screen ratio, ie: Width / Height.
-	 * 
+	 *
 	 * @return
 	 */
 	static public float getSreenRatio() {
@@ -194,9 +194,9 @@ public abstract class AbstractUnitLayout implements LayoutManager {
 	 * <center>
 	 * <img src="doc-files/FormLayout-halfspaces.png" alt="Layout preview" width
 	 * ="60%" align="middle"/> </center>
-	 * 
+	 *
 	 * @author amedrano
-	 * 
+	 *
 	 */
 	class Unit {
 

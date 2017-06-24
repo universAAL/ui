@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,15 +36,15 @@ import javax.swing.JViewport;
  * <center>
  * <img src="doc-files/FormLayout-preview.png" alt="Layout preview" width=
  * "60%"/> </center>
- * 
+ *
  * <br>
  * Each {@link Row} is spaced one {@link FormLayout#gap} between each other and
  * also the margin all arround has the same size. <center>
  * <img src="doc-files/FormLayout-spaces.png" alt="Layout gaps" width="60%"/>
  * </center>
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 
@@ -59,7 +59,7 @@ public class FormLayout extends AbstractUnitLayout implements LayoutManager {
 
 	/**
 	 * Create a {@link FormLayout} witha specific gap.
-	 * 
+	 *
 	 * @param gap
 	 *            the space in pixels to leave between elements and as margins
 	 */

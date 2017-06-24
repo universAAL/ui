@@ -56,7 +56,7 @@ public class RecommendationModel {
 	private String style;
 
 	/**
-	 * 
+	 *
 	 */
 	public RecommendationModel(FormElement fe) {
 		for (Iterator i = fe.getAppearanceRecommendations().iterator(); i.hasNext();) {

@@ -80,7 +80,7 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class FullFormGeneratorTest extends BusTestCase {
 

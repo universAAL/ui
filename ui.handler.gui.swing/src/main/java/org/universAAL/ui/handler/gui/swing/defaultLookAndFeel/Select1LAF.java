@@ -23,13 +23,13 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.Select1Model;
 
 /**
  * @author pabril
- * 
+ *
  */
 public class Select1LAF extends Select1Model {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param control
 	 *            the {@link Select1} which to model.
 	 */

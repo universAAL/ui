@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
  * Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- *	Instituto Tecnologico de Aplicaciones de Comunicacion 
- *	Avanzadas - Grupo Tecnologias para la Salud y el 
+ *	Instituto Tecnologico de Aplicaciones de Comunicacion
+ *	Avanzadas - Grupo Tecnologias para la Salud y el
  *	Bienestar (TSB)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,7 +36,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormControl.RepeatModelTable;
 
 /**
  * @author amedrano
- * 
+ *
  */
 public class RepeatModelTableLAF extends RepeatModelTable {
 
@@ -51,13 +51,13 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 	public JComponent getNewComponent() {
 		/*
 		 * Repeat r = (Repeat)fc;
-		 * 
-		 * 
+		 *
+		 *
 		 * tableComponent = new JTable(new
 		 * RepeatTableModel(r,this.getRenderer())); JScrollPane scrollPane = new
 		 * JScrollPane(tableComponent);
 		 * tableComponent.setFillsViewportHeight(true);
-		 * 
+		 *
 		 * JPanel buttonPanel = new JPanel(); buttonPanel.setLayout( new
 		 * BoxLayout(buttonPanel, BoxLayout.Y_AXIS)); JButton b; if
 		 * (r.listAcceptsNewEntries()) { b = new AddTableButton();
@@ -67,7 +67,7 @@ public class RepeatModelTableLAF extends RepeatModelTable {
 		 * (r.listEntriesEditable()) { b = new UpTableButton(); b.setText("^");
 		 * setButtonColors(b); buttonPanel.add(b); b = new DownTableButton();
 		 * b.setText("v"); setButtonColors(b); buttonPanel.add(b); }
-		 * 
+		 *
 		 * JPanel pannelWithAll = new JPanel(); buttonPanel.setLayout( new
 		 * BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 		 * pannelWithAll.add(scrollPane); pannelWithAll.add(buttonPanel); return

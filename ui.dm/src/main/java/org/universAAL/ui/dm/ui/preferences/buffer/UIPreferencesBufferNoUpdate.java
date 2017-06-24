@@ -32,7 +32,7 @@ import org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofil
 /**
  * Only meant for Testing, External Updates of the
  * {@link UIPreferencesSubProfile} will be ignored.
- * 
+ *
  * @author amedrano
  *
  */

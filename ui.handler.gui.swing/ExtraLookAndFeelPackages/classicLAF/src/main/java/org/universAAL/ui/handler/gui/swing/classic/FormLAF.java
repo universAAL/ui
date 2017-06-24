@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
  * Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- *	Instituto Tecnologico de Aplicaciones de Comunicacion 
- *	Avanzadas - Grupo Tecnologias para la Salud y el 
+ *	Instituto Tecnologico de Aplicaciones de Comunicacion
+ *	Avanzadas - Grupo Tecnologias para la Salud y el
  *	Bienestar (TSB)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ import org.universAAL.ui.handler.gui.swing.model.FormModel;
 
 /**
  * The Look and Feel for Forms
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  * @author pabril
  * @see FormModel
@@ -72,7 +72,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param f
 	 *            {@link Form} which to model.
 	 */
@@ -120,7 +120,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the io panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getIOPanel} wrapped in a {@link JScrollPane}
 	 *         .
 	 */
@@ -143,7 +143,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the submit panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSubmitPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -164,7 +164,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * get the system panel wrapped in a scroll pane.
-	 * 
+	 *
 	 * @return the {@link FormModel#getSystemPanel} wrapped in a
 	 *         {@link JScrollPane}.
 	 */
@@ -184,7 +184,7 @@ public class FormLAF extends FormModel {
 
 	/**
 	 * generate the header panel.
-	 * 
+	 *
 	 * @return a pannel with universAAL icon in it.
 	 */
 	protected JPanel getHeader(String title) {

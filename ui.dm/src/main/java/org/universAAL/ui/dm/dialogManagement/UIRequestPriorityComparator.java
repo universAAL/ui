@@ -23,10 +23,10 @@ import org.universAAL.middleware.ui.UIRequest;
 
 /**
  * Comparator for {@link UIRequest}s.
- * 
+ *
  * Compares the priority of {@link UIRequest}s to implement the priority queue
  * of {@link UIRequest}s
- * 
+ *
  * @author <a href="mailto:amedrano@lst.tfo.upm.es">amedrano</a>
  */
 public class UIRequestPriorityComparator implements Comparator<UIRequest>, Serializable {
@@ -38,7 +38,7 @@ public class UIRequestPriorityComparator implements Comparator<UIRequest>, Seria
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.util.Comparator#compare(T, T)
 	 */
 	/** {@inheritDoc} */

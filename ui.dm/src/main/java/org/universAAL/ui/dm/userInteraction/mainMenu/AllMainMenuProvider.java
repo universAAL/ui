@@ -34,7 +34,7 @@ import org.universAAL.ui.dm.interfaces.IMainMenuProvider;
 
 /**
  * Loads All InitialDialogProfiles. Useful only for testing purposes.
- * 
+ *
  * @author amedrano
  *
  */

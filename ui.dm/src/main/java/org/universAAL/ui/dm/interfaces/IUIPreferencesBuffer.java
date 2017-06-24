@@ -23,9 +23,9 @@ import org.universAAL.ontology.ui.preferences.UIPreferencesSubProfile;
 /**
  * An entry point to the Preffences buffer. To allow different implementations
  * to maintain {@link UIPreferencesSubProfile}s up-to-date.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public interface IUIPreferencesBuffer {
 
@@ -38,7 +38,7 @@ public interface IUIPreferencesBuffer {
 	 * or
 	 * {@link IUIPreferencesBuffer#changeCurrentUIPreferencesSubProfileForUser(User, UIPreferencesSubProfile)
 	 * change} its {@link UIPreferencesSubProfile} correctly.
-	 * 
+	 *
 	 * @param user
 	 *            {@link User} the user to be monitored.
 	 */
@@ -46,7 +46,7 @@ public interface IUIPreferencesBuffer {
 
 	/**
 	 * Get the {@link UIPreferencesSubProfile} for the given {@link User}.
-	 * 
+	 *
 	 * @return the {@link UIPreferencesSubProfile} or null
 	 */
 	public UIPreferencesSubProfile getUIPreferencesSubprofileForUser(User user);
@@ -55,7 +55,7 @@ public interface IUIPreferencesBuffer {
 	 * Updates the {@link UIPreferencesSubProfile} for the user. Associates the
 	 * specified {@link UIPreferencesSubProfile} with the specified {@link User}
 	 * If possible, the old value is replaced by the specified value.
-	 * 
+	 *
 	 * @return the old {@link UIPreferencesSubProfile} that was associated with
 	 *         the {@link User} or null if there was no mapping
 	 */

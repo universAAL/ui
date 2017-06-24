@@ -37,7 +37,7 @@ import org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.BorderedScr
 public class SystemCollapse extends JPanel implements ComponentListener {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JXCollapsiblePane collapsablePanel;
@@ -151,7 +151,7 @@ public class SystemCollapse extends JPanel implements ComponentListener {
 
 	/**
 	 * set the tooltips for the button.
-	 * 
+	 *
 	 * @param show
 	 *            the text to show when the menu is hidden
 	 * @param hide

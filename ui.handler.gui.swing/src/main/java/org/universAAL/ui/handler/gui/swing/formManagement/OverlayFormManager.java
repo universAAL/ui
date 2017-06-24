@@ -32,9 +32,9 @@ import org.universAAL.ui.handler.gui.swing.Renderer;
 /**
  * A {@link FormManager} that can command to render more than one
  * {@link FrameManager}. Thus capable of producing overlaying interfaces.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class OverlayFormManager implements FormManager {
 
@@ -169,9 +169,9 @@ public class OverlayFormManager implements FormManager {
 	 * A mini-Garbage collector to purge the
 	 * {@link OverlayFormManager#dialogIDMap} and
 	 * {@link OverlayFormManager#requestMap}
-	 * 
+	 *
 	 * @author amedrano
-	 * 
+	 *
 	 */
 	private class DMGC extends TimerTask {
 

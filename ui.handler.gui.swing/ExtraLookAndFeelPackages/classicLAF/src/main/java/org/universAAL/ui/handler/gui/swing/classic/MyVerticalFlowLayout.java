@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Copyright 2011 Universidad Politécnica de Madrid
  * Copyright 2008-2014 ITACA-TSB, http://www.tsb.upv.es
- *	Instituto Tecnologico de Aplicaciones de Comunicacion 
- *	Avanzadas - Grupo Tecnologias para la Salud y el 
+ *	Instituto Tecnologico de Aplicaciones de Comunicacion
+ *	Avanzadas - Grupo Tecnologias para la Salud y el
  *	Bienestar (TSB)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,14 +64,14 @@ import java.io.ObjectInputStream;
  * <p>
  * <hr>
  * <blockquote>
- * 
+ *
  * <pre>
  * import java.awt.*;
  * import java.applet.Applet;
  *
  * public class myButtons extends Applet {
  * 	Button button1, button2, button3;
- * 
+ *
  * 	public void init() {
  * 		button1 = new Button("Ok");
  * 		button2 = new Button("Open");
@@ -82,7 +82,7 @@ import java.io.ObjectInputStream;
  * 	}
  * }
  * </pre>
- * 
+ *
  * </blockquote>
  * <hr>
  * <p>
@@ -219,7 +219,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	 * <code>MyVerticalFlowLayout.CENTER</code>,
 	 * <code>MyVerticalFlowLayout.LEADING</code>, or
 	 * <code>MyVerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @param align
 	 *            the alignment value
 	 */
@@ -237,7 +237,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	 * <code>MyVerticalFlowLayout.CENTER</code>,
 	 * <code>MyVerticalFlowLayout.LEADING</code>, or
 	 * <code>MyVerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @param align
 	 *            the alignment value
 	 * @param hgap
@@ -260,7 +260,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	 * <code>MyVerticalFlowLayout.CENTER</code>,
 	 * <code>MyVerticalFlowLayout.LEADING</code>, or
 	 * <code>MyVerticalFlowLayout.TRAILING</code>.
-	 * 
+	 *
 	 * @return the alignment value for this layout
 	 * @see org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.Layout.VerticalFlowLayout#setAlignment
 	 * @since JDK1.1
@@ -278,7 +278,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	 * <li><code>MyVerticalFlowLayout.LEADING</code>
 	 * <li><code>MyVerticalFlowLayout.TRAILING</code>
 	 * </ul>
-	 * 
+	 *
 	 * @param align
 	 *            one of the alignment values shown above
 	 * @see #getAlignment()
@@ -360,7 +360,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 
 	/**
 	 * Adds the specified component to the layout. Not used by this class.
-	 * 
+	 *
 	 * @param name
 	 *            the name of the component
 	 * @param comp
@@ -371,7 +371,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 
 	/**
 	 * Removes the specified component from the layout. Not used by this class.
-	 * 
+	 *
 	 * @param comp
 	 *            the component to remove
 	 * @see java.awt.Container#removeAll
@@ -421,7 +421,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	/**
 	 * Returns the minimum dimensions needed to layout the <i>visible</i>
 	 * components contained in the specified target container.
-	 * 
+	 *
 	 * @param target
 	 *            the container that needs to be laid out
 	 * @return the minimum dimensions to lay out the subcomponents of the
@@ -455,7 +455,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 
 	/**
 	 * Centers the elements in the specified row, if there is any slack.
-	 * 
+	 *
 	 * @param target
 	 *            the component which needs to be moved
 	 * @param x
@@ -603,7 +603,7 @@ public class MyVerticalFlowLayout implements LayoutManager, java.io.Serializable
 	/**
 	 * Returns a string representation of this <code>MyVerticalFlowLayout</code>
 	 * object and its values.
-	 * 
+	 *
 	 * @return a string representation of this layout
 	 */
 	public String toString() {

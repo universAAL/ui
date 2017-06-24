@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2012 Universidad Politécnica de Madrid
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,9 +40,9 @@ import org.universAAL.ui.internationalization.util.MessageLocaleHelper;
 
 /**
  * Adds a search widget to the main menu, making it searchable.
- * 
+ *
  * @author amedrano
- * 
+ *
  */
 public class SearchableAggregatedMainMenuProvider extends AggregatedMainMenuProvider {
 
@@ -95,7 +95,7 @@ public class SearchableAggregatedMainMenuProvider extends AggregatedMainMenuProv
 	/**
 	 * Filters {@link SearchableAggregatedMainMenuProvider#mmGroup} with
 	 * searchStr, and resends the new main menu.
-	 * 
+	 *
 	 * @param mmGroup
 	 *            the main menu group to filter.
 	 * @return the number of results after filtering.
@@ -167,7 +167,7 @@ public class SearchableAggregatedMainMenuProvider extends AggregatedMainMenuProv
 
 	/**
 	 * Create the Search group element to be added to the main menu.
-	 * 
+	 *
 	 * @param parent
 	 * @return
 	 */
