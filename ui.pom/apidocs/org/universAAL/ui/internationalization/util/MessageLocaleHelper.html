@@ -238,9 +238,9 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
                            <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/net/URL.html?is-external=true" title="class or interface in java.net">URL</a>&gt;&nbsp;urlList)
                     throws <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang">Exception</a></pre>
 <div class="block">This constructor should be used by Applications.
- 
+
  Typical Call is something like:
- 
+
  <pre>
  <code>
  ArrayList<URL> list = new ArrayList<URL>();
@@ -249,9 +249,9 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
  list.add(new URL("Form_Resource_Server"));
  //list.add(Other sources, for example a web server hosting these files);
  MessageLocaleHelper messages = new MessageLocaleHelper(mc, user, list);
- 
+
  ...
- 
+
  messages.getString("welcomeScreen.sayHello");
  </code>
  </pre></div>
@@ -382,13 +382,13 @@ extends <a href="http://docs.oracle.com/javase/1.5.0/docs/api/java/lang/Object.h
  Eg: for a properties file conaining: <br>
  <code>key=page \{0\} of \{1\} </code> <br>
  this code: <br>
- 
+
  <pre>
  <code> <a href="../../../../../org/universAAL/ui/internationalization/util/MessageLocaleHelper.html" title="class in org.universAAL.ui.internationalization.util"><code>MessageLocaleHelper</code></a> mlh = ...
  mlh.getString("key",new String[]{"1","10"});
  </code>
  </pre>
- 
+
  will return: <code>"page 1 of 10"<code></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

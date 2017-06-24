@@ -28,7 +28,7 @@ under the License.
       <title>File: 55,
              Errors: 499,
              Warnings: 37,
-             Infos: 447
+             Infos: 40
       </title>
             <link>http://ui/ui.dm//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.osgi.DialogManagerActivator.java">org/universAAL/ui/dm/osgi/DialogManagerActivator.java</a>
                 </td>
                 <td>
-                  4
+                  1
                 </td>
                 <td>
                   1
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMenuNode.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -77,7 +77,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.DialogManagerImpl.java">org/universAAL/ui/dm/DialogManagerImpl.java</a>
                 </td>
                 <td>
-                  19
+                  0
                 </td>
                 <td>
                   0
@@ -91,7 +91,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofilePrerequisitesHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofilePrerequisitesHelper.java</a>
                 </td>
                 <td>
-                  8
+                  0
                 </td>
                 <td>
                   0
@@ -105,7 +105,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IAdapter.java">org/universAAL/ui/dm/interfaces/IAdapter.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   1
@@ -119,7 +119,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.MessageConstants.java">org/universAAL/ui/dm/userInteraction/MessageConstants.java</a>
                 </td>
                 <td>
-                  35
+                  3
                 </td>
                 <td>
                   1
@@ -133,7 +133,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.DMServiceCaller.java">org/universAAL/ui/dm/DMServiceCaller.java</a>
                 </td>
                 <td>
-                  10
+                  1
                 </td>
                 <td>
                   1
@@ -147,7 +147,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolCopier.java">org/universAAL/ui/dm/dialogManagement/DialogPoolCopier.java</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   1
@@ -161,7 +161,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AllMainMenuProvider.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -175,7 +175,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/ProfilableFileMainMenuProvider.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   2
@@ -189,7 +189,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.caller.helpers.UIPreferencesSubprofileHelper.java">org/universAAL/ui/dm/ui/preferences/caller/helpers/UIPreferencesSubprofileHelper.java</a>
                 </td>
                 <td>
-                  11
+                  0
                 </td>
                 <td>
                   1
@@ -203,7 +203,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesProvidedService.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesProvidedService.java</a>
                 </td>
                 <td>
-                  9
+                  1
                 </td>
                 <td>
                   0
@@ -217,7 +217,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterDialogPrivacyLevel.java">org/universAAL/ui/dm/adapters/AdapterDialogPrivacyLevel.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   1
@@ -245,7 +245,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.LocalizedMessagesURLProvider.java">org/universAAL/ui/dm/LocalizedMessagesURLProvider.java</a>
                 </td>
                 <td>
-                  8
+                  1
                 </td>
                 <td>
                   0
@@ -259,7 +259,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPoolFileStorage.java">org/universAAL/ui/dm/dialogManagement/DialogPoolFileStorage.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -273,7 +273,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesChangeListener.java">org/universAAL/ui/dm/interfaces/IUIPreferencesChangeListener.java</a>
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   0
@@ -287,7 +287,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.NonRedundantDialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/NonRedundantDialogPriorityQueue.java</a>
                 </td>
                 <td>
-                  6
+                  1
                 </td>
                 <td>
                   2
@@ -301,7 +301,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUIPreferences.java">org/universAAL/ui/dm/adapters/AdapterUIPreferences.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0
@@ -315,7 +315,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserLocation.java">org/universAAL/ui/dm/adapters/AdapterUserLocation.java</a>
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   0
@@ -329,7 +329,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferSubscriptor.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -343,7 +343,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IMainMenuProvider.java">org/universAAL/ui/dm/interfaces/IMainMenuProvider.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -357,7 +357,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UISubprofileInitializator.java">org/universAAL/ui/dm/ui/preferences/buffer/UISubprofileInitializator.java</a>
                 </td>
                 <td>
-                  16
+                  5
                 </td>
                 <td>
                   0
@@ -371,7 +371,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer.java">org/universAAL/ui/dm/interfaces/IUIPreferencesBuffer.java</a>
                 </td>
                 <td>
-                  6
+                  1
                 </td>
                 <td>
                   0
@@ -385,7 +385,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/RDFMainMenu.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -399,7 +399,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueue.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueue.java</a>
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
                   6
@@ -413,7 +413,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/AggregatedMainMenuProvider.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   1
@@ -427,7 +427,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterMessageInternationalization.java">org/universAAL/ui/dm/adapters/AdapterMessageInternationalization.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -441,7 +441,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestStore.java">org/universAAL/ui/dm/interfaces/IUIRequestStore.java</a>
                 </td>
                 <td>
-                  5
+                  2
                 </td>
                 <td>
                   0
@@ -455,7 +455,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilderWithSubmits.java</a>
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
                   0
@@ -469,7 +469,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.FileMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/FileMainMenuProvider.java</a>
                 </td>
                 <td>
-                  4
+                  0
                 </td>
                 <td>
                   1
@@ -483,7 +483,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.ISystemMenuProvider.java">org/universAAL/ui/dm/interfaces/ISystemMenuProvider.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -497,7 +497,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.UserDialogManager.java">org/universAAL/ui/dm/UserDialogManager.java</a>
                 </td>
                 <td>
-                  28
+                  2
                 </td>
                 <td>
                   0
@@ -511,7 +511,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.UIRequestPriorityComparator.java">org/universAAL/ui/dm/dialogManagement/UIRequestPriorityComparator.java</a>
                 </td>
                 <td>
-                  3
+                  0
                 </td>
                 <td>
                   0
@@ -525,7 +525,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesSCallee.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesSCallee.java</a>
                 </td>
                 <td>
-                  9
+                  1
                 </td>
                 <td>
                   1
@@ -539,7 +539,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IDialogBuilder.java">org/universAAL/ui/dm/interfaces/IDialogBuilder.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -553,7 +553,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/ClassicSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  8
+                  0
                 </td>
                 <td>
                   1
@@ -567,7 +567,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/SmartPendingSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   0
@@ -581,7 +581,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider.java">org/universAAL/ui/dm/userInteraction/mainMenu/SearchableAggregatedMainMenuProvider.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   0
@@ -595,7 +595,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MainMenu.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MainMenu.java</a>
                 </td>
                 <td>
-                  14
+                  0
                 </td>
                 <td>
                   0
@@ -609,7 +609,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferPoller.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferPoller.java</a>
                 </td>
                 <td>
-                  9
+                  2
                 </td>
                 <td>
                   0
@@ -623,7 +623,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferNoUpdate.java">org/universAAL/ui/dm/ui/preferences/buffer/UIPreferencesBufferNoUpdate.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -637,7 +637,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener.java">org/universAAL/ui/dm/userInteraction/messageManagement/MessageListener.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   1
@@ -651,7 +651,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer.java">org/universAAL/ui/dm/userInteraction/mainMenu/UIServiceResponseNotifyer.java</a>
                 </td>
                 <td>
-                  7
+                  4
                 </td>
                 <td>
                   0
@@ -665,7 +665,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.IUIRequestPool.java">org/universAAL/ui/dm/interfaces/IUIRequestPool.java</a>
                 </td>
                 <td>
-                  15
+                  0
                 </td>
                 <td>
                   5
@@ -679,7 +679,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.file.MenuNode.java">org/universAAL/ui/dm/userInteraction/mainMenu/file/MenuNode.java</a>
                 </td>
                 <td>
-                  19
+                  0
                 </td>
                 <td>
                   0
@@ -693,7 +693,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.PendingDialogBuilder.java">org/universAAL/ui/dm/userInteraction/PendingDialogBuilder.java</a>
                 </td>
                 <td>
-                  12
+                  2
                 </td>
                 <td>
                   0
@@ -707,7 +707,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider.java">org/universAAL/ui/dm/userInteraction/systemMenu/TaskBarSystemMenuProvider.java</a>
                 </td>
                 <td>
-                  10
+                  0
                 </td>
                 <td>
                   0
@@ -721,7 +721,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.interfaces.ISubmitGroupListener.java">org/universAAL/ui/dm/interfaces/ISubmitGroupListener.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   0
@@ -735,7 +735,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.adapters.AdapterUserImpairments.java">org/universAAL/ui/dm/adapters/AdapterUserImpairments.java</a>
                 </td>
                 <td>
-                  7
+                  0
                 </td>
                 <td>
                   0
@@ -749,7 +749,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesUICaller.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesUICaller.java</a>
                 </td>
                 <td>
-                  14
+                  3
                 </td>
                 <td>
                   1
@@ -763,7 +763,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.dialogManagement.DialogPriorityQueueVerbosity.java">org/universAAL/ui/dm/dialogManagement/DialogPriorityQueueVerbosity.java</a>
                 </td>
                 <td>
-                  7
+                  1
                 </td>
                 <td>
                   6
@@ -777,7 +777,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.ui.preferences.editor.UIPreferencesDialogBuilder.java">org/universAAL/ui/dm/ui/preferences/editor/UIPreferencesDialogBuilder.java</a>
                 </td>
                 <td>
-                  14
+                  5
                 </td>
                 <td>
                   1
@@ -791,7 +791,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.messageManagement.PendingMessageBuilder.java">org/universAAL/ui/dm/userInteraction/messageManagement/PendingMessageBuilder.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   0
@@ -805,7 +805,7 @@ under the License.
                   <a href="http://ui/ui.dm//checkstyle.html#org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee.java">org/universAAL/ui/dm/userInteraction/mainMenu/profilable/SCallee.java</a>
                 </td>
                 <td>
-                  6
+                  0
                 </td>
                 <td>
                   1

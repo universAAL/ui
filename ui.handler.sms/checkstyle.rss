@@ -28,7 +28,7 @@ under the License.
       <title>File: 4,
              Errors: 23,
              Warnings: 2,
-             Infos: 12
+             Infos: 1
       </title>
             <link>http://ui/ui.handler.sms//checkstyle.html</link>
       <description>
@@ -49,7 +49,7 @@ under the License.
                   <a href="http://ui/ui.handler.sms//checkstyle.html#org.universAAL.ui.handler.sms.ISMSSender.java">org/universAAL/ui/handler/sms/ISMSSender.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   1
@@ -63,7 +63,7 @@ under the License.
                   <a href="http://ui/ui.handler.sms//checkstyle.html#net.vsms.bulksms.SmsSender.java">net/vsms/bulksms/SmsSender.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   1
@@ -91,7 +91,7 @@ under the License.
                   <a href="http://ui/ui.handler.sms//checkstyle.html#org.universAAL.ui.handler.sms.SmsUIHandler.java">org/universAAL/ui/handler/sms/SmsUIHandler.java</a>
                 </td>
                 <td>
-                  5
+                  0
                 </td>
                 <td>
                   0

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.23214285714285715" branch-rate="0.12365591397849462" lines-covered="403" lines-valid="1736" branches-covered="69" branches-valid="558" complexity="2.429657794676806" version="2.1.1" timestamp="1498280369598">
+<coverage line-rate="0.23214285714285715" branch-rate="0.12365591397849462" lines-covered="403" lines-valid="1736" branches-covered="69" branches-valid="558" complexity="2.429657794676806" version="2.1.1" timestamp="1498297098564">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java</source>

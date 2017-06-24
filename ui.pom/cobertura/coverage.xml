@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.20805853256389117" branch-rate="0.17597292724196278" lines-covered="2019" lines-valid="9704" branches-covered="624" branches-valid="3546" complexity="2.3963963963963963" version="2.1.1" timestamp="1498280618431">
+<coverage line-rate="0.20805853256389117" branch-rate="0.17597292724196278" lines-covered="2019" lines-valid="9704" branches-covered="624" branches-valid="3546" complexity="2.3963963963963963" version="2.1.1" timestamp="1498297331000">
 	<sources>
 		<source>/home/travis/build/universAAL/ui/ui.pom/ui.karaf.feature/src/main/java</source>
 		<source>/home/travis/build/universAAL/ui/ui.resource.server/src/main/java</source>
@@ -3728,8 +3728,8 @@
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="56" hits="170" branch="false"/>
-								<line number="58" hits="162" branch="false"/>
+								<line number="56" hits="201" branch="false"/>
+								<line number="58" hits="131" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -3755,8 +3755,8 @@
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="56" hits="170" branch="false"/>
-						<line number="58" hits="162" branch="false"/>
+						<line number="56" hits="201" branch="false"/>
+						<line number="58" hits="131" branch="false"/>
 					</lines>
 				</class>
 			</classes>
