@@ -44,10 +44,10 @@ public final class ModelMapper {
 	/**
 	 * Default Look and Feel Package, to be used when the selected package is
 	 * not found.
-	 * 
+	 *
 	 * @see ModelMapper#LAFPackageProperty
 	 */
-	static final String DefaultLAFPackage = "org.universAAL.ui.ui.handler.web.html.model";
+	static final String DefaultLAFPackage = "org.universAAL.ui.handler.web.html.model";
 
 	/**
 	 * Suffix for all look and feel classes.
@@ -61,7 +61,7 @@ public final class ModelMapper {
 
 	/**
 	 * The main Constructor.
-	 * 
+	 *
 	 * @param renderer
 	 *            the {@link HTMLUserGenerator} to be associated with
 	 */
@@ -71,7 +71,7 @@ public final class ModelMapper {
 
 	/**
 	 * construct the name of the LAF class for the component.
-	 * 
+	 *
 	 * @param c
 	 *            the component for which the LAF class name is constructed
 	 * @return the name of the component (stripped of the package name) appended
@@ -84,7 +84,7 @@ public final class ModelMapper {
 
 	/**
 	 * Using Java reflection try to load the LAF class of a given component.
-	 * 
+	 *
 	 * @param LAFPackage
 	 *            the selected LAFPackage full qualified name
 	 * @param constructorParameter
@@ -120,7 +120,7 @@ public final class ModelMapper {
 	 * {@link ModelMapper#getModelFor(Label)}. get {@link Model} or
 	 * {@link FormModel} or {@link LabelModel} for a given {@link FormControl}
 	 * or {@link Form} or {@link Label} respectively.
-	 * 
+	 *
 	 * @param refObj
 	 *            the {@link FormControl}, or {@link Form} or {@link Label} for
 	 *            which the model is required
@@ -154,7 +154,7 @@ public final class ModelMapper {
 
 	/**
 	 * get {@link Model} for a given {@link FormElement}.
-	 * 
+	 *
 	 * @param fe
 	 *            the {@link FormElement} for which the model is required
 	 * @return the found LAF extension for the component.
