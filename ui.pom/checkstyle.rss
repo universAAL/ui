@@ -28,7 +28,7 @@ under the License.
       <title>File: 246,
              Errors: 2461,
              Warnings: 149,
-             Infos: 1385
+             Infos: 1379
       </title>
             <link>http://ui/ui.pom//checkstyle.html</link>
       <description>
@@ -2905,7 +2905,7 @@ under the License.
                   <a href="http://ui/ui.pom//checkstyle.html#org.universAAL.ui.handler.web.html.ModelMapper.java">org/universAAL/ui/handler/web/html/ModelMapper.java</a>
                 </td>
                 <td>
-                  11
+                  5
                 </td>
                 <td>
                   3
