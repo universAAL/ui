@@ -241,7 +241,7 @@
 <tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="comment">/**</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;112</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;<span class="comment">         * uAAL {@link ModuleContext} to make uAAL operations.</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;<span class="comment">         * universAAL {@link ModuleContext} to make universAAL operations.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">         */</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;114</td>  <td class="nbHitsCovered">&nbsp;45</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">protected</span> ModuleContext moduleContext = <span class="keyword">null</span>;</pre></td></tr>
@@ -463,7 +463,7 @@
 <tr>  <td class="numLine">&nbsp;233</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;234</td>  <td class="nbHits">&nbsp;</td>
-  <td class="src"><pre class="src">&nbsp;                <span class="comment">// Build the uAAL handler</span></pre></td></tr>
+  <td class="src"><pre class="src">&nbsp;                <span class="comment">// Build the universAAL handler</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;235</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                LogUtils.logDebug(moduleContext, getClass(), <span class="string">"Constructor for "</span> + propFile.getName(),</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;236</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                                <span class="keyword">new</span> String[] { <span class="string">"starting Handler"</span> }, <span class="keyword">null</span>);</pre></td></tr>
@@ -938,11 +938,11 @@
 <tr>  <td class="numLineCover">&nbsp;527</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        AuthenticationPublisher ap = <span class="keyword">new</span> AuthenticationPublisher(moduleContext);</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;528</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// find current device</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;529</td>  <td class="nbHitsUncovered"><a title="Line 529: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 529: Conditional coverage 0% (0/2).">                        SpaceManager aalSM = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;529</td>  <td class="nbHitsUncovered"><a title="Line 529: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 529: Conditional coverage 0% (0/2).">                        SpaceManager sm = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;530</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                        <span class="keyword">new</span> String[] { SpaceManager.<span class="keyword">class</span>.getName() });</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;531</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        String devURI = <span class="keyword">null</span>;</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;532</td>  <td class="nbHitsUncovered"><a title="Line 532: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 532: Conditional coverage 0% (0/2).">                        <span class="keyword">if</span> (aalSM != <span class="keyword">null</span>)</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;533</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                devURI = aalSM.getMyPeerCard().toURI().toString();</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;532</td>  <td class="nbHitsUncovered"><a title="Line 532: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 532: Conditional coverage 0% (0/2).">                        <span class="keyword">if</span> (sm != <span class="keyword">null</span>)</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;533</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                devURI = sm.getMyPeerCard().toURI().toString();</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;534</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// publish Deauthentication event</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;535</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        ap.deauthenticate(u, <span class="keyword">new</span> Device(devURI));</span></pre></td></tr>
@@ -1103,11 +1103,11 @@
 <tr>  <td class="numLineCover">&nbsp;621</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        AuthenticationPublisher ap = <span class="keyword">new</span> AuthenticationPublisher(moduleContext);</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;622</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// find current device</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;623</td>  <td class="nbHitsUncovered"><a title="Line 623: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 623: Conditional coverage 0% (0/2).">                        SpaceManager aalSM = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;623</td>  <td class="nbHitsUncovered"><a title="Line 623: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 623: Conditional coverage 0% (0/2).">                        SpaceManager sm = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;624</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                        <span class="keyword">new</span> String[] { SpaceManager.<span class="keyword">class</span>.getName() });</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;625</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        String devURI = <span class="keyword">null</span>;</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;626</td>  <td class="nbHitsUncovered"><a title="Line 626: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 626: Conditional coverage 0% (0/2).">                        <span class="keyword">if</span> (aalSM != <span class="keyword">null</span>)</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;627</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                devURI = aalSM.getMyPeerCard().toURI().toString();</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;626</td>  <td class="nbHitsUncovered"><a title="Line 626: Conditional coverage 0% (0/2).">&nbsp;0</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 626: Conditional coverage 0% (0/2).">                        <span class="keyword">if</span> (sm != <span class="keyword">null</span>)</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;627</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                                devURI = sm.getMyPeerCard().toURI().toString();</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;628</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                        <span class="comment">// publish Authentication event</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;629</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                        ap.authenticate(u, <span class="keyword">new</span> Device(devURI));</span></pre></td></tr>
@@ -1271,6 +1271,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/24/17 9:42 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.1.1 on 6/25/17 2:03 AM.</div>
 </body>
 </html>
