@@ -102,7 +102,7 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 			// mw.container.osgi[org.universAAL.ui.dm] :
 			// AdapterUserLocation->handleContextEvent():
 			// User var: org.universAAL.ontology.profile.AssistedPerson
-			// URI: urn:org.universAAL.aal_space:test_environment#saied
+			// URI: urn:org.universAAL.space:test_environment#saied
 			// Properties (Key-Value): (size: 1)
 			// * K http://www.w3.org/1999/02/22-rdf-syntax-ns#type
 			// * V List
@@ -111,13 +111,13 @@ public class AdapterUserLocation extends ContextSubscriber implements IAdapter {
 			// Properties (Key-Value): (size: 0)
 			//
 			// Received context event for user:
-			// urn:org.universAAL.aal_space:test_environment#saied
+			// urn:org.universAAL.space:test_environment#saied
 			// RDF Subject type:
 			// http://ontology.universAAL.org/Profile.owl#User
 			// RDF Predicate:
 			// http://ontology.universaal.org/PhThing.owl#hasLocation
 			// user location:
-			// urn:org.universAAL.aal_space:test_environment#london
+			// urn:org.universAAL.space:test_environment#london
 
 			Location newUserLocation = (Location) (event.getRDFObject());
 

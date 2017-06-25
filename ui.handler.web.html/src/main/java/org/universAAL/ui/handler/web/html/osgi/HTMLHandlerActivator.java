@@ -36,7 +36,7 @@ public class HTMLHandlerActivator implements BundleActivator {
 		mcontext = OSGiContainer.THE_CONTAINER.registerModule(new Object[] { arg0 });
 		LogUtils.logDebug(mcontext, getClass(), "start", "Starting.");
 		/*
-		 * uAAL stuff
+		 * universAAL stuff
 		 */
 		// activate ResourceMapper logging
 		ResourceMapper.mc = mcontext;
@@ -63,7 +63,7 @@ public class HTMLHandlerActivator implements BundleActivator {
 	public void stop(BundleContext arg0) throws Exception {
 		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopping.");
 		/*
-		 * close uAAL stuff
+		 * close universAAL stuff
 		 */
 		httpHS.unregister();
 		LogUtils.logDebug(mcontext, getClass(), "stop", "Stopped.");

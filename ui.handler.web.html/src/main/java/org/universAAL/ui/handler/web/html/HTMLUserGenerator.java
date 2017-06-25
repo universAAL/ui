@@ -105,7 +105,7 @@ public class HTMLUserGenerator {
 	 * Constructor for one Renderer on a certain file.
 	 *
 	 * @param mc
-	 *            the {@link ModuleContext} to work in uAAL.
+	 *            the {@link ModuleContext} to work in universAAL.
 	 * @param usr
 	 *            the user for which this renderer is working.
 	 * @param mc
@@ -126,7 +126,7 @@ public class HTMLUserGenerator {
 				"Initialising FormManager");
 		fm = new SimpleFormManager();
 
-		// Build the uAAL handler
+		// Build the universAAL handler
 		LogUtils.logDebug(getModuleContext(), getClass(), "Constructor for " + usr.getURI(), "starting Handler");
 		handler = new Handler(this, usr);
 		missingInputs = new HashSet();

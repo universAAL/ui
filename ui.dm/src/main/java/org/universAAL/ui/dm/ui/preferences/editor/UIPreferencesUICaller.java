@@ -169,7 +169,7 @@ public class UIPreferencesUICaller extends UICaller {
 			// set possible new data in UI Pref subprofile
 			updatedUIPreferencesSubProfile = (UIPreferencesSubProfile) uiResponse.getSubmittedData();
 
-			// refresh user.properties in JVM also (so that other uAAL apps can
+			// refresh user.properties in JVM also (so that other universAAL apps can
 			// retrieve most recent status)
 			String langLabel = null;
 			try {

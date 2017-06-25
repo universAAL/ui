@@ -36,7 +36,7 @@ import org.universAAL.ontology.impairment.SightImpairment;
 import org.universAAL.ontology.profile.User;
 
 /**
- * Main uAAL interfacing class. The {@link Handler} is responsible of
+ * Main universAAL interfacing class. The {@link Handler} is responsible of
  * interfacing with universAAL, it will handle the UICalls by delegating to the
  * {@link Renderer}, and it will also provide a method to submit the user input.
  *

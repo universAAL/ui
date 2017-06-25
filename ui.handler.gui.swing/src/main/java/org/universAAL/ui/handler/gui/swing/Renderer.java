@@ -109,7 +109,7 @@ public class Renderer extends Thread {
 	private Handler handler = null;
 
 	/**
-	 * uAAL {@link ModuleContext} to make uAAL operations.
+	 * universAAL {@link ModuleContext} to make universAAL operations.
 	 */
 	protected ModuleContext moduleContext = null;
 
@@ -231,7 +231,7 @@ public class Renderer extends Thread {
 				new String[] { "selecting Form Manager" }, null);
 		loadFormManager(getProperty(FORM_MANAGEMENT));
 
-		// Build the uAAL handler
+		// Build the universAAL handler
 		LogUtils.logDebug(moduleContext, getClass(), "Constructor for " + propFile.getName(),
 				new String[] { "starting Handler" }, null);
 		handler = new Handler(this);
@@ -526,11 +526,11 @@ public class Renderer extends Thread {
 		public void run() {
 			AuthenticationPublisher ap = new AuthenticationPublisher(moduleContext);
 			// find current device
-			SpaceManager aalSM = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,
+			SpaceManager sm = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,
 					new String[] { SpaceManager.class.getName() });
 			String devURI = null;
-			if (aalSM != null)
-				devURI = aalSM.getMyPeerCard().toURI().toString();
+			if (sm != null)
+				devURI = sm.getMyPeerCard().toURI().toString();
 			// publish Deauthentication event
 			ap.deauthenticate(u, new Device(devURI));
 			ap.close();
@@ -620,11 +620,11 @@ public class Renderer extends Thread {
 		if (u != null) {
 			AuthenticationPublisher ap = new AuthenticationPublisher(moduleContext);
 			// find current device
-			SpaceManager aalSM = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,
+			SpaceManager sm = (SpaceManager) moduleContext.getContainer().fetchSharedObject(moduleContext,
 					new String[] { SpaceManager.class.getName() });
 			String devURI = null;
-			if (aalSM != null)
-				devURI = aalSM.getMyPeerCard().toURI().toString();
+			if (sm != null)
+				devURI = sm.getMyPeerCard().toURI().toString();
 			// publish Authentication event
 			ap.authenticate(u, new Device(devURI));
 			ap.close();

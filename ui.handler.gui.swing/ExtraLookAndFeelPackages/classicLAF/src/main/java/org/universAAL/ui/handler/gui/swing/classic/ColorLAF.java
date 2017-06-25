@@ -37,7 +37,7 @@ public class ColorLAF extends DefaultMetalTheme {
 	/**
 	 * Returns the name of the theme.
 	 *
-	 * @return "uaal Default"
+	 * @return "uAAL Classic"
 	 */
 	public String getName() {
 		return "uAAL Classic";

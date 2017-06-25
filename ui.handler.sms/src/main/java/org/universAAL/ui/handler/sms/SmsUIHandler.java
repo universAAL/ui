@@ -93,7 +93,7 @@ public class SmsUIHandler extends UIHandler {
 		// notify the UI bus the message was delivered
 		// TODO: Check the message was infact delivered.
 		dialogFinished(new UIResponse(uiRequest.getAddressedUser(), null, new Submit(f.getStandardButtons(),
-				new Label("send", null), "http://sms.handler.unviersAAL.org/MessageSent")));
+				new Label("send", null), "http://sms.handler.universAAL.org/MessageSent")));
 	}
 
 	@Override

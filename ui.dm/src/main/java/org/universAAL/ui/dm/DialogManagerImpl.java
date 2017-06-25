@@ -102,12 +102,12 @@ public final class DialogManagerImpl extends UICaller implements IDialogManager 
 	private ModuleContext moduleContext;
 
 	/**
-	 * The uAAL Service Caller. To call main menu services.
+	 * The universAAL Service Caller. To call main menu services.
 	 */
 	private ServiceCaller serviceCaller;
 
 	/**
-	 * The uAAL Service Callee. To offer services like profilable main menu.
+	 * The universAAL Service Callee. To offer services like profilable main menu.
 	 */
 	private ServiceCallee serviceCallee;
 

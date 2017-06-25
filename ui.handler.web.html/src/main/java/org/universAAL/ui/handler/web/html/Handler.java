@@ -31,7 +31,7 @@ import org.universAAL.ontology.profile.User;
 import org.universAAL.ui.handler.web.html.fm.FormManager;
 
 /**
- * Main uAAL interfacing class. The {@link Handler} is responsible of
+ * Main universAAL interfacing class. The {@link Handler} is responsible of
  * interfacing with universAAL, it will handle the UICalls by delegating to the
  * {@link HTMLUserGenerator}, and it will also provide a method to submit the
  * user input.
