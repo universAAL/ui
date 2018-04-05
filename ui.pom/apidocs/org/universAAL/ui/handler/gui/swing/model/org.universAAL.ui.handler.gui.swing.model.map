@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="c6179" href="./IconFactory.html" title="org.universAAL.ui.handler.gui.swing.model.IconFactory" alt="" coords="15,19,105,45"/>
-<area shape="rect" id="node1" href="./IconFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,8,115,56"/>
-<area shape="rect" id="c6180" href="./InitInterface.html" title="org.universAAL.ui.handler.gui.swing.model.InitInterface" alt="" coords="149,11,238,53"/>
-<area shape="rect" id="node2" href="./InitInterface.html" title="&lt;TABLE&gt;" alt="" coords="139,6,248,58"/>
-<area shape="rect" id="c6181" href="./LabelModel.html" title="org.universAAL.ui.handler.gui.swing.model.LabelModel" alt="" coords="282,19,369,45"/>
-<area shape="rect" id="node3" href="./LabelModel.html" title="&lt;TABLE&gt;" alt="" coords="272,8,379,56"/>
-<area shape="rect" id="c6182" href="./Model.html" title="org.universAAL.ui.handler.gui.swing.model.Model" alt="" coords="413,19,469,45"/>
-<area shape="rect" id="node4" href="./Model.html" title="&lt;TABLE&gt;" alt="" coords="403,8,480,56"/>
-<area shape="rect" id="c6183" href="./FormModel.html" title="org.universAAL.ui.handler.gui.swing.model.FormModel" alt="" coords="515,19,600,45"/>
-<area shape="rect" id="node5" href="./FormModel.html" title="&lt;TABLE&gt;" alt="" coords="504,8,611,56"/>
+<area shape="rect" id="node1_0" href="./IconFactory.html" title="org.universAAL.ui.handler.gui.swing.model.IconFactory" alt="" coords="15,20,105,47"/>
+<area shape="rect" id="node1" href="./IconFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,9,115,57"/>
+<area shape="rect" id="node2_1" href="./InitInterface.html" title="org.universAAL.ui.handler.gui.swing.model.InitInterface" alt="" coords="150,11,239,55"/>
+<area shape="rect" id="node2" href="./InitInterface.html" title="&lt;TABLE&gt;" alt="" coords="139,6,250,61"/>
+<area shape="rect" id="node3_2" href="./LabelModel.html" title="org.universAAL.ui.handler.gui.swing.model.LabelModel" alt="" coords="285,20,371,47"/>
+<area shape="rect" id="node3" href="./LabelModel.html" title="&lt;TABLE&gt;" alt="" coords="274,9,382,57"/>
+<area shape="rect" id="node4_3" href="./Model.html" title="org.universAAL.ui.handler.gui.swing.model.Model" alt="" coords="417,20,473,47"/>
+<area shape="rect" id="node4" href="./Model.html" title="&lt;TABLE&gt;" alt="" coords="407,9,484,57"/>
+<area shape="rect" id="node5_4" href="./FormModel.html" title="org.universAAL.ui.handler.gui.swing.model.FormModel" alt="" coords="519,20,604,47"/>
+<area shape="rect" id="node5" href="./FormModel.html" title="&lt;TABLE&gt;" alt="" coords="508,9,615,57"/>
 </map>

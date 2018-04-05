@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="c25028" href="../adapters/AdapterUserImpairments.html" title="org.universAAL.ui.dm.adapters.AdapterUserImpairments" alt="" coords="16,118,181,143"/>
-<area shape="rect" id="node1" href="../adapters/AdapterUserImpairments.html" title="&lt;TABLE&gt;" alt="" coords="5,107,192,155"/>
-<area shape="rect" id="c25029" href="../adapters/AdapterDialogPrivacyLevel.html" title="org.universAAL.ui.dm.adapters.AdapterDialogPrivacyLevel" alt="" coords="226,118,403,143"/>
-<area shape="rect" id="node2" href="../adapters/AdapterDialogPrivacyLevel.html" title="&lt;TABLE&gt;" alt="" coords="216,107,413,155"/>
-<area shape="rect" id="c25030" href="../adapters/AdapterUserLocation.html" title="org.universAAL.ui.dm.adapters.AdapterUserLocation" alt="" coords="447,118,590,143"/>
-<area shape="rect" id="node3" href="../adapters/AdapterUserLocation.html" title="&lt;TABLE&gt;" alt="" coords="437,107,600,155"/>
-<area shape="rect" id="c25031" href="../adapters/AdapterUIPreferences.html" title="org.universAAL.ui.dm.adapters.AdapterUIPreferences" alt="" coords="635,118,784,143"/>
-<area shape="rect" id="node4" href="../adapters/AdapterUIPreferences.html" title="&lt;TABLE&gt;" alt="" coords="624,107,795,155"/>
-<area shape="rect" id="c25032" href="../adapters/AdapterMessageInternationalization.html" title="org.universAAL.ui.dm.adapters.AdapterMessageInternationalization" alt="" coords="829,118,1057,143"/>
-<area shape="rect" id="node5" href="../adapters/AdapterMessageInternationalization.html" title="&lt;TABLE&gt;" alt="" coords="819,107,1067,155"/>
-<area shape="rect" id="c25044" href="./IAdapter.html" title="org.universAAL.ui.dm.interfaces.IAdapter" alt="" coords="476,11,561,53"/>
-<area shape="rect" id="node6" href="./IAdapter.html" title="&lt;TABLE&gt;" alt="" coords="465,6,572,58"/>
+<area shape="rect" id="node1_0" href="../adapters/AdapterUserImpairments.html" title="org.universAAL.ui.dm.adapters.AdapterUserImpairments" alt="" coords="16,120,181,147"/>
+<area shape="rect" id="node1" href="../adapters/AdapterUserImpairments.html" title="&lt;TABLE&gt;" alt="" coords="5,109,192,157"/>
+<area shape="rect" id="node2_1" href="../adapters/AdapterDialogPrivacyLevel.html" title="org.universAAL.ui.dm.adapters.AdapterDialogPrivacyLevel" alt="" coords="227,120,405,147"/>
+<area shape="rect" id="node2" href="../adapters/AdapterDialogPrivacyLevel.html" title="&lt;TABLE&gt;" alt="" coords="217,109,415,157"/>
+<area shape="rect" id="node3_2" href="../adapters/AdapterUserLocation.html" title="org.universAAL.ui.dm.adapters.AdapterUserLocation" alt="" coords="450,120,593,147"/>
+<area shape="rect" id="node3" href="../adapters/AdapterUserLocation.html" title="&lt;TABLE&gt;" alt="" coords="439,109,603,157"/>
+<area shape="rect" id="node4_3" href="../adapters/AdapterUIPreferences.html" title="org.universAAL.ui.dm.adapters.AdapterUIPreferences" alt="" coords="639,120,788,147"/>
+<area shape="rect" id="node4" href="../adapters/AdapterUIPreferences.html" title="&lt;TABLE&gt;" alt="" coords="628,109,799,157"/>
+<area shape="rect" id="node5_4" href="../adapters/AdapterMessageInternationalization.html" title="org.universAAL.ui.dm.adapters.AdapterMessageInternationalization" alt="" coords="834,120,1062,147"/>
+<area shape="rect" id="node5" href="../adapters/AdapterMessageInternationalization.html" title="&lt;TABLE&gt;" alt="" coords="823,109,1073,157"/>
+<area shape="rect" id="node6_5" href="./IAdapter.html" title="org.universAAL.ui.dm.interfaces.IAdapter" alt="" coords="479,11,564,55"/>
+<area shape="rect" id="node6" href="./IAdapter.html" title="&lt;TABLE&gt;" alt="" coords="468,6,575,61"/>
 </map>

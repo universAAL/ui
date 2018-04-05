@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="c20189" href="./GroupModel.html" title="org.universAAL.ui.handler.web.html.model.GroupModel" alt="" coords="16,209,107,234"/>
+<area shape="rect" id="node1_0" href="./GroupModel.html" title="org.universAAL.ui.handler.web.html.model.GroupModel" alt="" coords="16,208,107,235"/>
 <area shape="rect" id="node1" href="./GroupModel.html" title="&lt;TABLE&gt;" alt="" coords="5,197,117,245"/>
-<area shape="rect" id="c20192" href="./InputModel.html" title="org.universAAL.ui.handler.web.html.model.InputModel" alt="" coords="152,209,237,234"/>
+<area shape="rect" id="node2_1" href="./InputModel.html" title="org.universAAL.ui.handler.web.html.model.InputModel" alt="" coords="152,208,237,235"/>
 <area shape="rect" id="node2" href="./InputModel.html" title="&lt;TABLE&gt;" alt="" coords="141,197,248,245"/>
-<area shape="rect" id="c20195" href="./SubmitModel.html" title="org.universAAL.ui.handler.web.html.model.SubmitModel" alt="" coords="282,209,379,234"/>
-<area shape="rect" id="node3" href="./SubmitModel.html" title="&lt;TABLE&gt;" alt="" coords="272,197,389,245"/>
-<area shape="rect" id="c20199" href="./Model.html" title="org.universAAL.ui.handler.web.html.model.Model" alt="" coords="235,17,291,42"/>
+<area shape="rect" id="node3_2" href="./SubmitModel.html" title="org.universAAL.ui.handler.web.html.model.SubmitModel" alt="" coords="283,208,381,235"/>
+<area shape="rect" id="node3" href="./SubmitModel.html" title="&lt;TABLE&gt;" alt="" coords="273,197,391,245"/>
+<area shape="rect" id="node4_3" href="./Model.html" title="org.universAAL.ui.handler.web.html.model.Model" alt="" coords="235,16,291,43"/>
 <area shape="rect" id="node4" href="./Model.html" title="&lt;TABLE&gt;" alt="" coords="224,5,301,53"/>
-<area shape="rect" id="c20200" href="./FormControlModel.html" title="org.universAAL.ui.handler.web.html.model.FormControlModel" alt="" coords="199,113,327,138"/>
+<area shape="rect" id="node5_4" href="./FormControlModel.html" title="org.universAAL.ui.handler.web.html.model.FormControlModel" alt="" coords="199,112,327,139"/>
 <area shape="rect" id="node5" href="./FormControlModel.html" title="&lt;TABLE&gt;" alt="" coords="188,101,337,149"/>
-<area shape="rect" id="c20201" href="./OutputModel.html" title="org.universAAL.ui.handler.web.html.model.OutputModel" alt="" coords="423,209,518,234"/>
-<area shape="rect" id="node6" href="./OutputModel.html" title="&lt;TABLE&gt;" alt="" coords="413,197,528,245"/>
+<area shape="rect" id="node6_5" href="./OutputModel.html" title="org.universAAL.ui.handler.web.html.model.OutputModel" alt="" coords="426,208,521,235"/>
+<area shape="rect" id="node6" href="./OutputModel.html" title="&lt;TABLE&gt;" alt="" coords="415,197,531,245"/>
 </map>

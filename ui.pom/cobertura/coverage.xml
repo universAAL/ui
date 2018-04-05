@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.20805853256389117" branch-rate="0.17597292724196278" lines-covered="2019" lines-valid="9704" branches-covered="624" branches-valid="3546" complexity="2.3963963963963963" version="2.1.1" timestamp="1498731311848">
+<coverage line-rate="0.20781362746108648" branch-rate="0.17597292724196278" lines-covered="2016" lines-valid="9701" branches-covered="624" branches-valid="3546" complexity="2.3963963963963963" version="2.1.1" timestamp="1522969733727">
 	<sources>
 		<source>/home/travis/build/universAAL/ui/ui.pom/ui.karaf.feature/src/main/java</source>
 		<source>/home/travis/build/universAAL/ui/ui.resource.server/src/main/java</source>
@@ -3728,8 +3728,8 @@
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
 								</line>
-								<line number="56" hits="126" branch="false"/>
-								<line number="58" hits="206" branch="false"/>
+								<line number="56" hits="140" branch="false"/>
+								<line number="58" hits="192" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -3755,8 +3755,8 @@
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
 						</line>
-						<line number="56" hits="126" branch="false"/>
-						<line number="58" hits="206" branch="false"/>
+						<line number="56" hits="140" branch="false"/>
+						<line number="58" hits="192" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -10571,7 +10571,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="org.universAAL.ui.gui.swing.bluesteelLAF" line-rate="0.359375" branch-rate="0.16666666666666666" complexity="2.5338983050847457">
+		<package name="org.universAAL.ui.gui.swing.bluesteelLAF" line-rate="0.358604091456077" branch-rate="0.16666666666666666" complexity="2.5338983050847457">
 			<classes>
 				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF" filename="org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java" line-rate="0.7192982456140351" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -12217,11 +12217,10 @@
 						<line number="88" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.Init" filename="org/universAAL/ui/gui/swing/bluesteelLAF/Init.java" line-rate="0.1524390243902439" branch-rate="0.0" complexity="4.928571428571429">
+				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.Init" filename="org/universAAL/ui/gui/swing/bluesteelLAF/Init.java" line-rate="0.147239263803681" branch-rate="0.0" complexity="4.928571428571429">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="178" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$100" signature="(Lorg/universAAL/ui/gui/swing/bluesteelLAF/Init;)Lorg/universAAL/ui/handler/gui/swing/Renderer;" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -12652,7 +12651,6 @@
 						<line number="171" hits="0" branch="false"/>
 						<line number="172" hits="0" branch="false"/>
 						<line number="175" hits="60" branch="false"/>
-						<line number="178" hits="1" branch="false"/>
 						<line number="188" hits="0" branch="false"/>
 						<line number="190" hits="0" branch="false"/>
 						<line number="191" hits="0" branch="false"/>
@@ -17830,7 +17828,7 @@
 						</method>
 						<method name="tryToLoadClass" signature="(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;" line-rate="1.0" branch-rate="0.75" complexity="0">
 							<lines>
-								<line number="110" hits="54" branch="true" condition-coverage="100% (2/2)">
+								<line number="110" hits="102" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -17856,7 +17854,7 @@
 						<line number="78" hits="45" branch="false"/>
 						<line number="89" hits="60" branch="false"/>
 						<line number="90" hits="60" branch="false"/>
-						<line number="110" hits="54" branch="true" condition-coverage="100% (2/2)">
+						<line number="110" hits="102" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
@@ -26767,7 +26765,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="org.universAAL.ui.handler.gui.swing.formManagement" line-rate="0.13513513513513514" branch-rate="0.045454545454545456" complexity="1.8970588235294117">
+		<package name="org.universAAL.ui.handler.gui.swing.formManagement" line-rate="0.13178294573643412" branch-rate="0.045454545454545456" complexity="1.8970588235294117">
 			<classes>
 				<class name="org.universAAL.ui.handler.gui.swing.formManagement.FormManager" filename="org/universAAL/ui/handler/gui/swing/formManagement/FormManager.java" line-rate="1.0" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -26871,14 +26869,13 @@
 						<line number="114" hits="0" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager" filename="org/universAAL/ui/handler/gui/swing/formManagement/HierarchicalFormManager.java" line-rate="0.3076923076923077" branch-rate="0.14285714285714285" complexity="1.5333333333333334">
+				<class name="org.universAAL.ui.handler.gui.swing.formManagement.HierarchicalFormManager" filename="org/universAAL/ui/handler/gui/swing/formManagement/HierarchicalFormManager.java" line-rate="0.29411764705882354" branch-rate="0.14285714285714285" complexity="1.5333333333333334">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="38" hits="7" branch="false"/>
 								<line number="43" hits="7" branch="false"/>
 								<line number="48" hits="7" branch="false"/>
-								<line number="138" hits="7" branch="false"/>
 							</lines>
 						</method>
 						<method name="adaptationParametersChanged" signature="(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Object;)V" line-rate="0.0" branch-rate="0.0" complexity="0">
@@ -27061,7 +27058,6 @@
 						<line number="124" hits="0" branch="false"/>
 						<line number="128" hits="16" branch="false"/>
 						<line number="129" hits="16" branch="false"/>
-						<line number="138" hits="7" branch="false"/>
 						<line number="174" hits="7" branch="false"/>
 						<line number="175" hits="7" branch="false"/>
 						<line number="184" hits="0" branch="false"/>
@@ -33323,7 +33319,7 @@
 				</class>
 			</classes>
 		</package>
-		<package name="org.universAAL.ui.handler.gui.swing.model.FormControl.support" line-rate="0.7777777777777778" branch-rate="0.42857142857142855" complexity="3.4">
+		<package name="org.universAAL.ui.handler.gui.swing.model.FormControl.support" line-rate="0.7692307692307693" branch-rate="0.42857142857142855" complexity="3.4">
 			<classes>
 				<class name="org.universAAL.ui.handler.gui.swing.model.FormControl.support.RepeatSubdivider" filename="org/universAAL/ui/handler/gui/swing/model/FormControl/support/RepeatSubdivider.java" line-rate="0.7142857142857143" branch-rate="0.4166666666666667" complexity="4.0">
 					<methods>
@@ -33407,7 +33403,7 @@
 						<line number="77" hits="3" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue" filename="org/universAAL/ui/handler/gui/swing/model/FormControl/support/TaskQueue.java" line-rate="0.8461538461538461" branch-rate="0.5" complexity="2.5">
+				<class name="org.universAAL.ui.handler.gui.swing.model.FormControl.support.TaskQueue" filename="org/universAAL/ui/handler/gui/swing/model/FormControl/support/TaskQueue.java" line-rate="0.8333333333333334" branch-rate="0.5" complexity="2.5">
 					<methods>
 						<method name="&lt;clinit&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
@@ -33432,14 +33428,13 @@
 								<line number="49" hits="1" branch="false"/>
 							</lines>
 						</method>
-						<method name="run" signature="()V" line-rate="0.6666666666666666" branch-rate="1.0" complexity="0">
+						<method name="run" signature="()V" line-rate="0.6" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="56" hits="2" branch="false"/>
 								<line number="57" hits="1" branch="false"/>
 								<line number="58" hits="0" branch="false"/>
 								<line number="59" hits="0" branch="false"/>
 								<line number="60" hits="1" branch="false"/>
-								<line number="61" hits="1" branch="false"/>
 							</lines>
 						</method>
 					</methods>
@@ -33460,7 +33455,6 @@
 						<line number="58" hits="0" branch="false"/>
 						<line number="59" hits="0" branch="false"/>
 						<line number="60" hits="1" branch="false"/>
-						<line number="61" hits="1" branch="false"/>
 					</lines>
 				</class>
 			</classes>
@@ -36040,7 +36034,7 @@
 						</method>
 						<method name="tryToLoadClass" signature="(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;" line-rate="0.625" branch-rate="0.75" complexity="0">
 							<lines>
-								<line number="102" hits="1198" branch="true" condition-coverage="100% (2/2)">
+								<line number="102" hits="1888" branch="true" condition-coverage="100% (2/2)">
 									<conditions>
 										<condition number="0" type="jump" coverage="100%"/>
 									</conditions>
@@ -36066,7 +36060,7 @@
 						<line number="70" hits="3" branch="false"/>
 						<line number="81" hits="1198" branch="false"/>
 						<line number="82" hits="1198" branch="false"/>
-						<line number="102" hits="1198" branch="true" condition-coverage="100% (2/2)">
+						<line number="102" hits="1888" branch="true" condition-coverage="100% (2/2)">
 							<conditions>
 								<condition number="0" type="jump" coverage="100%"/>
 							</conditions>
@@ -36537,15 +36531,15 @@
 						</method>
 						<method name="finalize" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="272" hits="1" branch="false"/>
-								<line number="273" hits="1" branch="false"/>
-								<line number="274" hits="1" branch="false"/>
+								<line number="272" hits="2" branch="false"/>
+								<line number="273" hits="2" branch="false"/>
+								<line number="274" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="finish" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="313" hits="1" branch="false"/>
-								<line number="314" hits="1" branch="false"/>
+								<line number="313" hits="2" branch="false"/>
+								<line number="314" hits="2" branch="false"/>
 							</lines>
 						</method>
 						<method name="run" signature="()V" line-rate="0.5" branch-rate="0.2777777777777778" complexity="0">
@@ -36614,9 +36608,9 @@
 						<line number="266" hits="3" branch="false"/>
 						<line number="267" hits="3" branch="false"/>
 						<line number="268" hits="3" branch="false"/>
-						<line number="272" hits="1" branch="false"/>
-						<line number="273" hits="1" branch="false"/>
-						<line number="274" hits="1" branch="false"/>
+						<line number="272" hits="2" branch="false"/>
+						<line number="273" hits="2" branch="false"/>
+						<line number="274" hits="2" branch="false"/>
 						<line number="279" hits="3" branch="true" condition-coverage="25% (1/4)">
 							<conditions>
 								<condition number="0" type="jump" coverage="50%"/>
@@ -36671,8 +36665,8 @@
 						<line number="307" hits="3" branch="false"/>
 						<line number="308" hits="0" branch="false"/>
 						<line number="310" hits="3" branch="false"/>
-						<line number="313" hits="1" branch="false"/>
-						<line number="314" hits="1" branch="false"/>
+						<line number="313" hits="2" branch="false"/>
+						<line number="314" hits="2" branch="false"/>
 					</lines>
 				</class>
 				<class name="org.universAAL.ui.handler.web.html.UpdatedPropertiesFile" filename="org/universAAL/ui/handler/web/html/UpdatedPropertiesFile.java" line-rate="0.0" branch-rate="0.0" complexity="1.8888888888888888">

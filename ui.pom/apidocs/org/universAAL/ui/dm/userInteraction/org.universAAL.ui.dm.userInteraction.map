@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c2304" href="./MessageConstants.html" title="org.universAAL.ui.dm.userInteraction.MessageConstants" alt="" coords="16,11,149,53"/>
-<area shape="rect" id="node1" href="./MessageConstants.html" title="&lt;TABLE&gt;" alt="" coords="5,6,160,58"/>
-<area shape="rect" id="c2305" href="./PendingDialogBuilder.html" title="org.universAAL.ui.dm.userInteraction.PendingDialogBuilder" alt="" coords="194,19,339,45"/>
-<area shape="rect" id="node2" href="./PendingDialogBuilder.html" title="&lt;TABLE&gt;" alt="" coords="184,8,349,56"/>
-<area shape="rect" id="c2306" href="./PendingDialogBuilderWithSubmits.html" title="org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits" alt="" coords="157,118,377,143"/>
-<area shape="rect" id="node3" href="./PendingDialogBuilderWithSubmits.html" title="&lt;TABLE&gt;" alt="" coords="147,107,387,155"/>
+<area shape="rect" id="node1_0" href="./MessageConstants.html" title="org.universAAL.ui.dm.userInteraction.MessageConstants" alt="" coords="15,11,148,55"/>
+<area shape="rect" id="node1" href="./MessageConstants.html" title="&lt;TABLE&gt;" alt="" coords="4,6,159,61"/>
+<area shape="rect" id="node2_1" href="./PendingDialogBuilder.html" title="org.universAAL.ui.dm.userInteraction.PendingDialogBuilder" alt="" coords="194,20,339,47"/>
+<area shape="rect" id="node2" href="./PendingDialogBuilder.html" title="&lt;TABLE&gt;" alt="" coords="183,9,350,57"/>
+<area shape="rect" id="node3_2" href="./PendingDialogBuilderWithSubmits.html" title="org.universAAL.ui.dm.userInteraction.PendingDialogBuilderWithSubmits" alt="" coords="157,120,377,147"/>
+<area shape="rect" id="node3" href="./PendingDialogBuilderWithSubmits.html" title="&lt;TABLE&gt;" alt="" coords="146,109,387,157"/>
 </map>

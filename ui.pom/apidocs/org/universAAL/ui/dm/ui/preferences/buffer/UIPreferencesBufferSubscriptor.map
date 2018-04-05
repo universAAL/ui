@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c56363" href="../../../interfaces/IUIPreferencesBuffer.html" title="org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer" alt="" coords="16,11,160,53"/>
-<area shape="rect" id="node1" href="../../../interfaces/IUIPreferencesBuffer.html" title="&lt;TABLE&gt;" alt="" coords="5,6,171,58"/>
-<area shape="rect" id="c56374" href="./UIPreferencesBufferSubscriptor.html" title="org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor" alt="" coords="76,118,281,143"/>
-<area shape="rect" id="node2" href="./UIPreferencesBufferSubscriptor.html" title="&lt;TABLE&gt;" alt="" coords="65,107,292,155"/>
-<area shape="rect" id="c56598" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="org.universAAL.middleware.context.ContextSubscriber" alt="" coords="205,19,334,45"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="&lt;TABLE&gt;" alt="" coords="195,8,344,56"/>
+<area shape="rect" id="node1_0" href="../../../interfaces/IUIPreferencesBuffer.html" title="org.universAAL.ui.dm.interfaces.IUIPreferencesBuffer" alt="" coords="16,11,160,55"/>
+<area shape="rect" id="node1" href="../../../interfaces/IUIPreferencesBuffer.html" title="&lt;TABLE&gt;" alt="" coords="5,6,171,61"/>
+<area shape="rect" id="node2_1" href="./UIPreferencesBufferSubscriptor.html" title="org.universAAL.ui.dm.ui.preferences.buffer.UIPreferencesBufferSubscriptor" alt="" coords="76,120,281,147"/>
+<area shape="rect" id="node2" href="./UIPreferencesBufferSubscriptor.html" title="&lt;TABLE&gt;" alt="" coords="65,109,292,157"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="org.universAAL.middleware.context.ContextSubscriber" alt="" coords="206,20,335,47"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/universAAL/middleware/context/ContextSubscriber.html" title="&lt;TABLE&gt;" alt="" coords="195,9,346,57"/>
 </map>

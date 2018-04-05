@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c10569" href="./TCPServer.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.TCPServer" alt="" coords="16,17,101,42"/>
+<area shape="rect" id="node1_0" href="./TCPServer.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.TCPServer" alt="" coords="16,16,101,43"/>
 <area shape="rect" id="node1" href="./TCPServer.html" title="&lt;TABLE&gt;" alt="" coords="5,5,112,53"/>
-<area shape="rect" id="c10570" href="./MessageParser.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.MessageParser" alt="" coords="147,17,259,42"/>
+<area shape="rect" id="node2_1" href="./MessageParser.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.MessageParser" alt="" coords="147,16,259,43"/>
 <area shape="rect" id="node2" href="./MessageParser.html" title="&lt;TABLE&gt;" alt="" coords="136,5,269,53"/>
-<area shape="rect" id="c10571" href="./Worker.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.Worker" alt="" coords="303,17,366,42"/>
-<area shape="rect" id="node3" href="./Worker.html" title="&lt;TABLE&gt;" alt="" coords="293,5,376,53"/>
+<area shape="rect" id="node3_2" href="./Worker.html" title="org.universAAL.ui.handler.kinect.adapter.communication.receiver.Worker" alt="" coords="305,16,367,43"/>
+<area shape="rect" id="node3" href="./Worker.html" title="&lt;TABLE&gt;" alt="" coords="294,5,378,53"/>
 </map>

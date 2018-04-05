@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="c3070" href="./RDFMainMenu.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu" alt="" coords="16,17,125,42"/>
-<area shape="rect" id="node1" href="./RDFMainMenu.html" title="&lt;TABLE&gt;" alt="" coords="5,5,136,53"/>
-<area shape="rect" id="c3071" href="./RDFMenuNode.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMenuNode" alt="" coords="171,17,283,42"/>
-<area shape="rect" id="node2" href="./RDFMenuNode.html" title="&lt;TABLE&gt;" alt="" coords="160,5,293,53"/>
-<area shape="rect" id="c3072" href="./SCallee.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee" alt="" coords="328,17,395,42"/>
-<area shape="rect" id="node3" href="./SCallee.html" title="&lt;TABLE&gt;" alt="" coords="317,5,405,53"/>
-<area shape="rect" id="c3073" href="./ProfilableFileMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider" alt="" coords="439,17,643,42"/>
-<area shape="rect" id="node4" href="./ProfilableFileMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="429,5,653,53"/>
+<area shape="rect" id="node1_0" href="./RDFMainMenu.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMainMenu" alt="" coords="15,16,124,43"/>
+<area shape="rect" id="node1" href="./RDFMainMenu.html" title="&lt;TABLE&gt;" alt="" coords="4,5,135,53"/>
+<area shape="rect" id="node2_1" href="./RDFMenuNode.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.RDFMenuNode" alt="" coords="169,16,281,43"/>
+<area shape="rect" id="node2" href="./RDFMenuNode.html" title="&lt;TABLE&gt;" alt="" coords="159,5,292,53"/>
+<area shape="rect" id="node3_2" href="./SCallee.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.SCallee" alt="" coords="327,16,393,43"/>
+<area shape="rect" id="node3" href="./SCallee.html" title="&lt;TABLE&gt;" alt="" coords="316,5,404,53"/>
+<area shape="rect" id="node4_3" href="./ProfilableFileMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.profilable.ProfilableFileMainMenuProvider" alt="" coords="439,16,643,43"/>
+<area shape="rect" id="node4" href="./ProfilableFileMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="429,5,654,53"/>
 </map>

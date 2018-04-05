@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="c11587" href="./RequestService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.RequestService" alt="" coords="15,118,129,143"/>
-<area shape="rect" id="node1" href="./RequestService.html" title="&lt;TABLE&gt;" alt="" coords="5,107,139,155"/>
-<area shape="rect" id="c11588" href="./QueryService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.QueryService" alt="" coords="173,118,273,143"/>
-<area shape="rect" id="node2" href="./QueryService.html" title="&lt;TABLE&gt;" alt="" coords="163,107,283,155"/>
-<area shape="rect" id="c11589" href="./AbstractService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.AbstractService" alt="" coords="90,19,203,45"/>
-<area shape="rect" id="node3" href="./AbstractService.html" title="&lt;TABLE&gt;" alt="" coords="80,8,213,56"/>
-<area shape="rect" id="c11590" href="./IServiceCall.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.IServiceCall" alt="" coords="247,11,339,53"/>
-<area shape="rect" id="node4" href="./IServiceCall.html" title="&lt;TABLE&gt;" alt="" coords="237,6,349,58"/>
+<area shape="rect" id="node1_0" href="./RequestService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.RequestService" alt="" coords="15,120,129,147"/>
+<area shape="rect" id="node1" href="./RequestService.html" title="&lt;TABLE&gt;" alt="" coords="5,109,139,157"/>
+<area shape="rect" id="node2_1" href="./QueryService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.QueryService" alt="" coords="174,120,274,147"/>
+<area shape="rect" id="node2" href="./QueryService.html" title="&lt;TABLE&gt;" alt="" coords="163,109,285,157"/>
+<area shape="rect" id="node3_2" href="./AbstractService.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.AbstractService" alt="" coords="91,20,205,47"/>
+<area shape="rect" id="node3" href="./AbstractService.html" title="&lt;TABLE&gt;" alt="" coords="81,9,215,57"/>
+<area shape="rect" id="node4_3" href="./IServiceCall.html" title="org.universAAL.ui.handler.kinect.adapter.serviceBus.IServiceCall" alt="" coords="250,11,342,55"/>
+<area shape="rect" id="node4" href="./IServiceCall.html" title="&lt;TABLE&gt;" alt="" coords="239,6,353,61"/>
 </map>

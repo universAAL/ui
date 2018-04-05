@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.23214285714285715" branch-rate="0.12365591397849462" lines-covered="403" lines-valid="1736" branches-covered="69" branches-valid="558" complexity="2.429657794676806" version="2.1.1" timestamp="1498731233051">
+<coverage line-rate="0.23170028818443805" branch-rate="0.12365591397849462" lines-covered="402" lines-valid="1735" branches-covered="69" branches-valid="558" complexity="2.429657794676806" version="2.1.1" timestamp="1522969586455">
 	<sources>
 		<source>--source</source>
 		<source>/home/travis/build/universAAL/ui/ui.handler.gui.swing/ExtraLookAndFeelPackages/bluesteelLAF/src/main/java</source>
 	</sources>
 	<packages>
-		<package name="org.universAAL.ui.gui.swing.bluesteelLAF" line-rate="0.359375" branch-rate="0.16666666666666666" complexity="2.5338983050847457">
+		<package name="org.universAAL.ui.gui.swing.bluesteelLAF" line-rate="0.358604091456077" branch-rate="0.16666666666666666" complexity="2.5338983050847457">
 			<classes>
 				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.ColorLAF" filename="org/universAAL/ui/gui/swing/bluesteelLAF/ColorLAF.java" line-rate="0.7192982456140351" branch-rate="1.0" complexity="1.0">
 					<methods>
@@ -1653,11 +1653,10 @@
 						<line number="88" hits="1" branch="false"/>
 					</lines>
 				</class>
-				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.Init" filename="org/universAAL/ui/gui/swing/bluesteelLAF/Init.java" line-rate="0.1524390243902439" branch-rate="0.0" complexity="4.928571428571429">
+				<class name="org.universAAL.ui.gui.swing.bluesteelLAF.Init" filename="org/universAAL/ui/gui/swing/bluesteelLAF/Init.java" line-rate="0.147239263803681" branch-rate="0.0" complexity="4.928571428571429">
 					<methods>
 						<method name="&lt;init&gt;" signature="()V" line-rate="1.0" branch-rate="1.0" complexity="0">
 							<lines>
-								<line number="178" hits="1" branch="false"/>
 							</lines>
 						</method>
 						<method name="access$100" signature="(Lorg/universAAL/ui/gui/swing/bluesteelLAF/Init;)Lorg/universAAL/ui/handler/gui/swing/Renderer;" line-rate="1.0" branch-rate="1.0" complexity="0">
@@ -2088,7 +2087,6 @@
 						<line number="171" hits="0" branch="false"/>
 						<line number="172" hits="0" branch="false"/>
 						<line number="175" hits="60" branch="false"/>
-						<line number="178" hits="1" branch="false"/>
 						<line number="188" hits="0" branch="false"/>
 						<line number="190" hits="0" branch="false"/>
 						<line number="191" hits="0" branch="false"/>

@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="c2559" href="./UIServiceResponseNotifyer.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer" alt="" coords="16,17,200,42"/>
+<area shape="rect" id="node1_0" href="./UIServiceResponseNotifyer.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.UIServiceResponseNotifyer" alt="" coords="16,16,200,43"/>
 <area shape="rect" id="node1" href="./UIServiceResponseNotifyer.html" title="&lt;TABLE&gt;" alt="" coords="5,5,211,53"/>
-<area shape="rect" id="c2560" href="./AllMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider" alt="" coords="245,17,389,42"/>
+<area shape="rect" id="node2_1" href="./AllMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.AllMainMenuProvider" alt="" coords="245,16,389,43"/>
 <area shape="rect" id="node2" href="./AllMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="235,5,400,53"/>
-<area shape="rect" id="c2561" href="./SearchableAggregatedMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider" alt="" coords="402,113,662,138"/>
-<area shape="rect" id="node3" href="./SearchableAggregatedMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="392,101,672,149"/>
-<area shape="rect" id="c2562" href="./AggregatedMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider" alt="" coords="435,17,629,42"/>
+<area shape="rect" id="node3_2" href="./SearchableAggregatedMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.SearchableAggregatedMainMenuProvider" alt="" coords="402,112,662,139"/>
+<area shape="rect" id="node3" href="./SearchableAggregatedMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="391,101,673,149"/>
+<area shape="rect" id="node4_3" href="./AggregatedMainMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.mainMenu.AggregatedMainMenuProvider" alt="" coords="435,16,629,43"/>
 <area shape="rect" id="node4" href="./AggregatedMainMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="424,5,640,53"/>
 </map>

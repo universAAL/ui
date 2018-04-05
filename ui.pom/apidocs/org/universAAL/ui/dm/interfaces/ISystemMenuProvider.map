@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="c27563" href="./ISystemMenuProvider.html" title="org.universAAL.ui.dm.interfaces.ISystemMenuProvider" alt="" coords="273,113,423,154"/>
-<area shape="rect" id="node1" href="./ISystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="263,107,433,159"/>
-<area shape="rect" id="c27595" href="../userInteraction/systemMenu/ClassicSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider" alt="" coords="16,219,205,245"/>
-<area shape="rect" id="node3" href="../userInteraction/systemMenu/ClassicSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,208,216,256"/>
-<area shape="rect" id="c27596" href="../userInteraction/systemMenu/TaskBarSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider" alt="" coords="251,219,445,245"/>
-<area shape="rect" id="node4" href="../userInteraction/systemMenu/TaskBarSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="240,208,456,256"/>
-<area shape="rect" id="c27597" href="../userInteraction/systemMenu/SmartPendingSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider" alt="" coords="490,219,718,245"/>
-<area shape="rect" id="node5" href="../userInteraction/systemMenu/SmartPendingSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="480,208,728,256"/>
-<area shape="rect" id="c27566" href="./ISubmitGroupListener.html" title="org.universAAL.ui.dm.interfaces.ISubmitGroupListener" alt="" coords="275,11,421,53"/>
-<area shape="rect" id="node2" href="./ISubmitGroupListener.html" title="&lt;TABLE&gt;" alt="" coords="264,6,432,58"/>
+<area shape="rect" id="node1_0" href="./ISystemMenuProvider.html" title="org.universAAL.ui.dm.interfaces.ISystemMenuProvider" alt="" coords="273,115,423,159"/>
+<area shape="rect" id="node1" href="./ISystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="263,110,433,165"/>
+<area shape="rect" id="node3_1" href="../userInteraction/systemMenu/ClassicSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.ClassicSystemMenuProvider" alt="" coords="16,224,205,251"/>
+<area shape="rect" id="node3" href="../userInteraction/systemMenu/ClassicSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,213,216,261"/>
+<area shape="rect" id="node4_2" href="../userInteraction/systemMenu/TaskBarSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.TaskBarSystemMenuProvider" alt="" coords="251,224,445,251"/>
+<area shape="rect" id="node4" href="../userInteraction/systemMenu/TaskBarSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="240,213,456,261"/>
+<area shape="rect" id="node5_3" href="../userInteraction/systemMenu/SmartPendingSystemMenuProvider.html" title="org.universAAL.ui.dm.userInteraction.systemMenu.SmartPendingSystemMenuProvider" alt="" coords="491,224,719,251"/>
+<area shape="rect" id="node5" href="../userInteraction/systemMenu/SmartPendingSystemMenuProvider.html" title="&lt;TABLE&gt;" alt="" coords="481,213,730,261"/>
+<area shape="rect" id="node2_4" href="./ISubmitGroupListener.html" title="org.universAAL.ui.dm.interfaces.ISubmitGroupListener" alt="" coords="275,11,421,55"/>
+<area shape="rect" id="node2" href="./ISubmitGroupListener.html" title="&lt;TABLE&gt;" alt="" coords="264,6,432,61"/>
 </map>

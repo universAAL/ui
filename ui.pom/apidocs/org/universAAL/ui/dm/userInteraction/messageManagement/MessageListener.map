@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="c34134" href="../../interfaces/ISubmitGroupListener.html" title="org.universAAL.ui.dm.interfaces.ISubmitGroupListener" alt="" coords="16,11,163,53"/>
-<area shape="rect" id="node1" href="../../interfaces/ISubmitGroupListener.html" title="&lt;TABLE&gt;" alt="" coords="5,6,173,58"/>
-<area shape="rect" id="c34162" href="./MessageListener.html" title="org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener" alt="" coords="29,118,149,143"/>
-<area shape="rect" id="node2" href="./MessageListener.html" title="&lt;TABLE&gt;" alt="" coords="19,107,160,155"/>
+<area shape="rect" id="node1_0" href="../../interfaces/ISubmitGroupListener.html" title="org.universAAL.ui.dm.interfaces.ISubmitGroupListener" alt="" coords="16,11,163,55"/>
+<area shape="rect" id="node1" href="../../interfaces/ISubmitGroupListener.html" title="&lt;TABLE&gt;" alt="" coords="5,6,173,61"/>
+<area shape="rect" id="node2_1" href="./MessageListener.html" title="org.universAAL.ui.dm.userInteraction.messageManagement.MessageListener" alt="" coords="29,120,149,147"/>
+<area shape="rect" id="node2" href="./MessageListener.html" title="&lt;TABLE&gt;" alt="" coords="19,109,160,157"/>
 </map>

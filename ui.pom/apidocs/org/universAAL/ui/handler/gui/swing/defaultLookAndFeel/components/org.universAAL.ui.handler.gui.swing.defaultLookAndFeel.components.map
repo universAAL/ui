@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="c4877" href="./SimpleLogin.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.SimpleLogin" alt="" coords="15,17,107,42"/>
-<area shape="rect" id="node1" href="./SimpleLogin.html" title="&lt;TABLE&gt;" alt="" coords="5,5,117,53"/>
-<area shape="rect" id="c4878" href="./MyButton.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton" alt="" coords="152,17,229,42"/>
-<area shape="rect" id="node2" href="./MyButton.html" title="&lt;TABLE&gt;" alt="" coords="141,5,240,53"/>
-<area shape="rect" id="c4879" href="./MyButton.MyMouseAdatper.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton.MyMouseAdatper" alt="" coords="275,17,397,42"/>
-<area shape="rect" id="node3" href="./MyButton.MyMouseAdatper.html" title="&lt;TABLE&gt;" alt="" coords="264,5,408,53"/>
+<area shape="rect" id="node1_0" href="./SimpleLogin.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.SimpleLogin" alt="" coords="15,16,107,43"/>
+<area shape="rect" id="node1" href="./SimpleLogin.html" title="&lt;TABLE&gt;" alt="" coords="5,5,118,53"/>
+<area shape="rect" id="node2_1" href="./MyButton.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton" alt="" coords="153,16,231,43"/>
+<area shape="rect" id="node2" href="./MyButton.html" title="&lt;TABLE&gt;" alt="" coords="143,5,241,53"/>
+<area shape="rect" id="node3_2" href="./MyButton.MyMouseAdatper.html" title="org.universAAL.ui.handler.gui.swing.defaultLookAndFeel.components.MyButton.MyMouseAdatper" alt="" coords="276,16,399,43"/>
+<area shape="rect" id="node3" href="./MyButton.MyMouseAdatper.html" title="&lt;TABLE&gt;" alt="" coords="265,5,409,53"/>
 </map>
